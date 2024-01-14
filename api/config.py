@@ -1,8 +1,10 @@
 import os
 
+HERE = os.getcwd()
+API_DIR = os.path.join(HERE, 'api')
 
-BACKEND_HOST = os.environ.get('BACKEND_HOST', 'localhost')
-BACKEND_PORT = os.environ.get('BACKEND_PORT', 8080)
+BACKEND_HOST = os.environ.get('BACKEND_HOST', "0.0.0.0")
+BACKEND_PORT = int(os.environ.get('BACKEND_PORT', 8000))
 
 WEBHOST = os.environ.get("WEBHOST")
 
