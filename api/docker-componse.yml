@@ -33,9 +33,7 @@ services:
     networks:
       - fc_api_net
       - fc_db_net
-    command:
-      - sh chmod +x docker-entrypoint.sh
-      - sh docker-entrypoint.sh
+    command: sh docker-entrypoint.sh
     depends_on:
       - fc_db
 

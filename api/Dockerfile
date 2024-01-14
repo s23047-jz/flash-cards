@@ -7,11 +7,10 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/* \
 
 COPY ./requirements.txt ./fc_api/
-COPY . /fc_api
 
+COPY ./docker-entrypoint.sh ./fc_api/
+
+COPY . /fc_api
 WORKDIR ./fc_api
 
 RUN pip install -r requirements.txt
-
-EXPOSE 8000:8000
-ENV PORT 8000

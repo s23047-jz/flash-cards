@@ -5,8 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from config import (
     WEBHOST,
     BACKEND_HOST,
-    BACKEND_PORT,
-    API_DIR
+    BACKEND_PORT
 )
 
 
