@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  fc_db:
+    image: "mariadb:11.0"
+    container_name: fc_db
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mariadb_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: flash_cards
+      MYSQL_USER: flashcards
+      MYSQL_PASSWORD: Fl@5hc@rd5
+    networks:
+      - fc_db_net
+
+  fc_api:
+    container_name: 'fc_api'
+    image: fc_api
+    ports:
+      - 8000:8000
+    build:
+      context: .
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - .:/fc_api
+      - media:/media
+    networks:
+      - fc_api_net
+      - fc_db_net
+    command:
+      - sh docker-entrypoint.sh
+    depends_on:
+      - fc_db
+
+networks:
+  fc_db_net:
+    driver: bridge
+    name: fc_db_net
+
+  fc_api_net:
+    driver: bridge
+    name: fc_api_net
