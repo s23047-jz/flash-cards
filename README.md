@@ -9,4 +9,10 @@
 #### *komenda* "deactivate" dezaktywuje środowisko
 
 ## Uruchomienie projektu:
-#### Pycharm utwóz projekt korzystając z aktalogu fastapi
+#### Pycharm utwórz projekt korzystając z aktalogu fastapi
+
+## Uruchomienie kontenera aplikacji:
+#### docker-compose up -d --build <---- do budowania kontenera, uzywac gdy jakies zmiany nastapily w zmiennych srodowiskowych, zainstalowanych bibliotekach czy pliukach dokerowych
+#### docker-compose up -d wlaczacie / uruchamiacie kontenery
+#### docker-compose down wylaczacie kontenery
+#### jesli pokaze wam problemy ze sciezka dodajcie po docker-compose flage -f "sciezka do docker-compose yml"
