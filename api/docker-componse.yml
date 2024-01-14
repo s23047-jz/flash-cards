@@ -10,6 +10,7 @@ services:
     volumes:
       - ./mariadb_data:/var/lib/mysql
     environment:
+      MYSQL_ROOT_PASSWORD: Fl@5hc@rd5r00t
       MYSQL_DATABASE: flash_cards
       MYSQL_USER: flashcards
       MYSQL_PASSWORD: Fl@5hc@rd5
@@ -33,6 +34,7 @@ services:
       - fc_api_net
       - fc_db_net
     command:
+      - sh chmod +x docker-entrypoint.sh
       - sh docker-entrypoint.sh
     depends_on:
       - fc_db
@@ -45,3 +47,6 @@ networks:
   fc_api_net:
     driver: bridge
     name: fc_api_net
+
+volumes:
+  media:
