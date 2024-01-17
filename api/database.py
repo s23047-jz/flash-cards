@@ -1,7 +1,6 @@
 from sqlalchemy import create_engine
 from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 
 from config import (
     MARIADB_USER,
@@ -11,6 +10,7 @@ from config import (
     MARIADB_PORT
 )
 
+# in seconds
 CONNECTION_TIMEOUT = 60
 
 MARIADB_URL = URL(
