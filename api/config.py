@@ -8,6 +8,7 @@ BACKEND_PORT = int(os.environ.get('BACKEND_PORT', 8000))
 
 WEBHOST = os.environ.get("WEBHOST")
 
+MARIADB_HOST = os.environ.get("MARIADB_HOST")
 MARIADB_DATABASE = os.environ.get("MARIADB_DATABASE")
 MARIADB_USER = os.environ.get("MARIADB_USER")
 MARIADB_PASSWORD = os.environ.get("MARIADB_PASSWORD")
