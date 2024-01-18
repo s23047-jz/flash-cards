@@ -1,19 +1,15 @@
 import uuid
-
+from api.models.deck_of_flash_cards import Deck
 from sqlalchemy.orm import relationship
 
-from deck_of_flash_cards import Deck
+#from deck_of_flash_cards import Deck
 
 from sqlalchemy import (
     Column,
     String,
-    DateTime,
-    Boolean,
-    Integer,
     ForeignKey,
     UUID,
     Text,
-    func
 )
 
 from api.models import Base

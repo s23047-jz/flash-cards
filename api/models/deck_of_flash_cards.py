@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from users import User
+from api.models.users import User
 from sqlalchemy.orm import relationship
 from sqlalchemy import (
     Column,
