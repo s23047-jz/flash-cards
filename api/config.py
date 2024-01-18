@@ -3,6 +3,9 @@ import os
 HERE = os.getcwd()
 API_DIR = os.path.join(HERE, 'api')
 
+SECRET_KEY = os.environ.get("SECRET_KEY")
+ALGORITHM = os.environ.get("ALGORITHM")
+
 BACKEND_HOST = os.environ.get('BACKEND_HOST', "0.0.0.0")
 BACKEND_PORT = int(os.environ.get('BACKEND_PORT', 8000))
 
