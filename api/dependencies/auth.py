@@ -37,6 +37,11 @@ def get_user(email: str, db):
     return user if user else None
 
 
+def get_user_by_username(username: str, db):
+    user = db.query(User).filter(User.username == username).first()
+    return user if user else None
+
+
 def authenticate_user(email: str, password: str, db):
     user = get_user(email, db)
     if not user:
@@ -75,3 +80,11 @@ async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db: Se
     if user is None:
         raise credentials_exception
     return user
+
+
+async def get_current_active_user(
+    current_user: Annotated[User, Depends(get_current_user)]
+):
+    if not current_user.active:
+        raise HTTPException(status_code=400, detail="Inactive user")
+    return current_user
