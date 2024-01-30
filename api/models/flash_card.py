@@ -1,5 +1,5 @@
 import uuid
-from api.models.deck_of_flash_cards import Deck
+
 from sqlalchemy.orm import relationship
 
 #from deck_of_flash_cards import Deck
@@ -12,7 +12,7 @@ from sqlalchemy import (
     Text,
 )
 
-from api.models import Base
+from models import Base
 
 
 class FlashCard(Base):

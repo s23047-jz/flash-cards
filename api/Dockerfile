@@ -13,4 +13,6 @@ COPY ./docker-entrypoint.sh ./fc_api/
 COPY . /fc_api
 WORKDIR ./fc_api
 
+RUN mkdir -p /media
+
 RUN pip install -r requirements.txt

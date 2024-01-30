@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-from api.models.users import User
+
 from sqlalchemy.orm import relationship
 from sqlalchemy import (
     Column,
@@ -13,7 +13,7 @@ from sqlalchemy import (
     ForeignKey
 )
 
-from api.models import Base
+from models import Base
 
 
 class Deck(Base):

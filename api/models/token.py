@@ -3,7 +3,7 @@ from sqlalchemy import (
     String
 )
 
-from api.models import Base
+from models import Base
 
 
 class Token(Base):

@@ -7,14 +7,14 @@ from fastapi.security import OAuth2PasswordBearer
 from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
-from api.models.users import User
+from models.users import User
 
 
-from api.config import (
+from config import (
     SECRET_KEY,
     ALGORITHM
 )
-from api.database import get_db
+from database import get_db
 
 # in minutes
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24

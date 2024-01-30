@@ -11,7 +11,7 @@ from sqlalchemy import (
     func
 )
 
-from api.models import Base
+from models import Base
 
 
 class User(Base):

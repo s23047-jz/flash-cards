@@ -1,5 +1,4 @@
 from datetime import date
-from typing import Annotated
 
 from pydantic.main import BaseModel
 
@@ -11,17 +10,17 @@ from fastapi import (
 )
 from sqlalchemy.orm import Session
 
-from api.database import get_db
-from api.models.users import User
-from api.models.token import Token
-from api.dependencies.auth import (
+from database import get_db
+from models.users import User
+from models.token import Token
+from dependencies.auth import (
     authenticate_user,
     get_password_hash,
     create_access_token,
     get_user,
     get_user_by_username,
     ACCESS_TOKEN_EXPIRE_MINUTES,
-    get_current_active_user, oauth2_scheme
+    get_current_active_user
 )
 
 
