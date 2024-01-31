@@ -41,6 +41,15 @@ db_dependency = Annotated[Session, Depends(get_db)]
 
 @app.on_event("startup")
 def register_routers():
+    # from endpoints import (
+    #     auth,
+    #     users,
+    #     decs
+    # )
+    #
+    # app.include_router(auth.router)
+    # app.include_router(users.router)
+    # app.include_router(decs.router)
     pass
 
 
