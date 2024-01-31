@@ -10,10 +10,10 @@ services:
     volumes:
       - ./mariadb_data:/var/lib/mysql
     environment:
-      MYSQL_ROOT_PASSWORD: Fl@5hc@rd5r00t
+      MYSQL_ROOT_PASSWORD: Fla5hcard5r00t
       MYSQL_DATABASE: flash_cards
       MYSQL_USER: flashcards
-      MYSQL_PASSWORD: Fl@5hc@rd5
+      MYSQL_PASSWORD: Fla5hcard5
     networks:
       - fc_db_net
 
