@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models.users import User
-from models.token import Token
+from models.token import Token, BlackToken
 from dependencies.auth import (
     authenticate_user,
     get_password_hash,
@@ -132,3 +132,18 @@ async def refresh(
     user: User = Depends(get_current_active_user)
 ):
     return user
+
+
+@router.post("/logout")
+async def logout(
+    user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    token = db.query(Token).filter(Token.access_token == user.email).first()
+    db.add(
+        BlackToken(
+            token=token
+        )
+    )
+    db.commit()
+    return {"message": "Successfully logged out"}
