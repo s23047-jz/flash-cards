@@ -3,3 +3,7 @@ dev_install:
 
 def_run:
 	@python ./main.py
+
+db_load_models_and_fixtures:
+	@python cli.py database_defaults --clear_database
+	@python cli.py database_defaults --fixtures
