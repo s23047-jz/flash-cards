@@ -12,7 +12,7 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models.users import User
-from models.token import Token, BlackToken
+from models.token import Token, Blacklist_Tokens
 from dependencies.auth import (
     authenticate_user,
     get_password_hash,
@@ -141,7 +141,7 @@ async def logout(
 ):
     token = db.query(Token).filter(Token.access_token == user.email).first()
     db.add(
-        BlackToken(
+        Blacklist_Tokens(
             token=token
         )
     )
