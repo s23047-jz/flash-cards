@@ -1,7 +1,7 @@
 dev_install:
 	@pip install -r ./requirements.txt
 
-def_run:
+dev_run:
 	@python ./main.py
 
 db_load_models_and_fixtures:

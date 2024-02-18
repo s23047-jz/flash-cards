@@ -6,9 +6,24 @@ from models import Base
 from database import engine
 
 
+def get_models():
+    from models.users import User
+    from models.token import Token, Blacklist_Tokens
+    from models.flash_card import FlashCard
+    from models.deck_of_flash_cards import Deck
+
+    return (
+        Token,
+        Blacklist_Tokens,
+        User,
+        FlashCard,
+        Deck
+    )
+
+
 def coroutine(func):
     @wraps(func)
-    async def wrapper(*args, **kwargs):
+    def wrapper(*args, **kwargs):
         return asyncio.get_event_loop().run_until_complete(func(*args, **kwargs))
 
     return wrapper
@@ -21,17 +36,20 @@ def cli():
     """
 
 
-@cli.command()
+@cli.command("database_defaults")
 @coroutine
 @click.option("--fixtures", is_flag=True, default=False)
 @click.option("--clear_database", is_flag=True, default=False)
 async def database_defaults(fixtures, clear_database):
     try:
         if clear_database:
+            click.echo("Dropping all tables...!")
+            get_models()
+
             Base.metadata.drop_all(engine)
             Base.metadata.create_all(engine)
 
-            click.echo("Models created successfully!")
+            click.echo("New tables created successfully!")
         if fixtures:
             # TODO create a function to inject fixtures
             pass

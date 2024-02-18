@@ -1,13 +1,10 @@
 from sqlalchemy import create_engine
-from sqlalchemy.engine.url import URL
 from sqlalchemy.orm import sessionmaker
 
 from config import MARIADB_URL
 
 # in seconds
 CONNECTION_TIMEOUT = 60
-
-print("MARIADB_URL", MARIADB_URL)
 
 engine = create_engine(
     MARIADB_URL,
