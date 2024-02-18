@@ -4,11 +4,10 @@ from typing import Annotated
 from jose import jwt, JWTError
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
-from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 
 from models.users import User
-
+from models.token import Token
 
 from config import (
     SECRET_KEY,
@@ -20,16 +19,7 @@ from database import get_db
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 RESET_ACCESS_TOKEN_EXPIRE_MINUTES = 60
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
-
-
-def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
-
-
-def get_password_hash(password):
-    return pwd_context.hash(password)
 
 
 def get_user(email: str, db):
@@ -46,12 +36,12 @@ def authenticate_user(email: str, password: str, db):
     user = get_user(email, db)
     if not user:
         return False
-    if not verify_password(password, user.password):
+    if not user.verify_password(password):
         return False
     return user
 
 
-def create_access_token(data: dict, expires_delta: timedelta | None = None) -> str:
+def create_access_token(data: dict, db, expires_delta: timedelta | None = None) -> str:
     to_encode = data.copy()
     if expires_delta:
         expire = datetime.now() + expires_delta
@@ -59,7 +49,24 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None) -> s
         expire = datetime.now() + timedelta(minutes=RESET_ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+
+    db.add(
+        Token(
+            access_token=encoded_jwt,
+            user_email=to_encode['sub']
+        )
+    )
+    db.commit()
+
     return encoded_jwt
+
+
+def decode_token(token: str):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        return payload
+    except JWTError:
+        return None
 
 
 async def get_current_user(token: Annotated[str, Depends(oauth2_scheme)], db: Session = Depends(get_db)):

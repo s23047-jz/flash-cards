@@ -1,6 +1,8 @@
 import uuid
 from datetime import datetime
 
+from passlib.context import CryptContext
+
 from sqlalchemy import (
     Column,
     String,
@@ -14,6 +16,13 @@ from sqlalchemy import (
 from models import Base
 
 
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
+
+def get_password_hash(password):
+    return pwd_context.hash(password)
+
+
 class User(Base):
     __tablename__ = "users"
 
@@ -25,6 +34,10 @@ class User(Base):
     updated_at = Column(DateTime, default=datetime.now(), server_default=func.now())
     ranking = Column(Integer, nullable=False)
     active = Column(Boolean, default=False)
+
+    @classmethod
+    def verify_password(self, password: str):
+        return pwd_context.verify(password, self.password)
 
     class Config:
         orm_mode = True
