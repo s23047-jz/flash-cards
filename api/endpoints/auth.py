@@ -1,4 +1,5 @@
-from datetime import date, datetime, timedelta
+import uuid
+from datetime import datetime, timedelta
 
 from pydantic.main import BaseModel
 
@@ -46,11 +47,12 @@ class TokenResponse(RefreshTokenPayloadScheme):
     token_type: str
 
 
-class UserResponse(LoginPayloadScheme):
-    id: str
+class UserResponse(BaseModel):
+    id: uuid.UUID
+    email: str
     username: str
-    created_at: date
-    updated_at: date
+    created_at: datetime
+    updated_at: datetime
     active: bool
 
 
@@ -74,13 +76,19 @@ async def login(
 
     token = create_access_token(
         {"sub": user.email},
-        db,
         expires_delta=timedelta(ACCESS_TOKEN_EXPIRE_MINUTES),
     )
 
+    db.add(
+        Token(access_token=token, user_email=user.email)
+    )
+    db.commit()
+
+    res_token = db.query(Token).filter(Token.access_token==token).first()
+
     return {
         "user_data": user,
-        "token": token
+        "token": res_token
     }
 
 
@@ -103,7 +111,11 @@ async def register(
             detail="Username already taken"
         )
 
-    # TODO dodac walidacje hasla? @Kossak
+    if payload['password'] != payload['re_password']:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Passwords do not match"
+        )
 
     db.add(
         User(
