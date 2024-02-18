@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime, timedelta
 
 from pydantic.main import BaseModel
 
@@ -11,16 +11,17 @@ from fastapi import (
 from sqlalchemy.orm import Session
 
 from database import get_db
-from models.users import User
-from models.token import Token
+from models.users import User, get_password_hash
+from models.token import Blacklist_Tokens, Token
 from dependencies.auth import (
     authenticate_user,
-    get_password_hash,
     create_access_token,
     get_user,
     get_user_by_username,
     ACCESS_TOKEN_EXPIRE_MINUTES,
-    get_current_active_user
+    get_current_active_user,
+    oauth2_scheme,
+    decode_token
 )
 
 
@@ -48,9 +49,9 @@ class TokenResponse(RefreshTokenPayloadScheme):
 class UserResponse(LoginPayloadScheme):
     id: str
     username: str
-    created_at = date
-    updated_at = date
-    active = bool
+    created_at: date
+    updated_at: date
+    active: bool
 
 
 class LoginResponse(BaseModel):
@@ -72,17 +73,10 @@ async def login(
         )
 
     token = create_access_token(
-        {"sub": user.email}, expires_delta=ACCESS_TOKEN_EXPIRE_MINUTES
+        {"sub": user.email},
+        db,
+        expires_delta=timedelta(ACCESS_TOKEN_EXPIRE_MINUTES),
     )
-
-    db.add(
-        Token(
-            access_token=token,
-            user_email=user.email
-        )
-    )
-    db.commit()
-    token = db.query(Token).filter(Token.access_token == user.email).first()
 
     return {
         "user_data": user,
@@ -126,9 +120,44 @@ async def register(
         )
 
 
-# TODO add refresh / check token
 @router.post("/refresh")
 async def refresh(
-    user: User = Depends(get_current_active_user)
+    token: str = Depends(oauth2_scheme),
+    db: Session = Depends(get_db)
 ):
-    return user
+    payload = decode_token(token)
+    if not payload:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid token",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    if datetime.now() > payload["exp"]:
+        db.add(
+            Blacklist_Tokens(
+                token=token
+            )
+        )
+        db.commit()
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Token has expired",
+            headers={"WWW-Authenticate": "Bearer"},
+        )
+
+    return {"message": "Token refreshed successfully"}
+
+
+@router.post("/logout")
+async def logout(
+    token: str = Depends(oauth2_scheme),
+    db: Session = Depends(get_db)
+):
+    db.add(
+        Blacklist_Tokens(
+            token=token
+        )
+    )
+    db.commit()
+    return {"message": "Successfully logged out"}
