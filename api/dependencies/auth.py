@@ -7,7 +7,6 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
 from models.users import User
-from models.token import Token
 
 from config import (
     SECRET_KEY,
