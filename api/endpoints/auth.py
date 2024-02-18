@@ -49,9 +49,9 @@ class TokenResponse(RefreshTokenPayloadScheme):
 class UserResponse(LoginPayloadScheme):
     id: str
     username: str
-    created_at = date
-    updated_at = date
-    active = bool
+    created_at: date
+    updated_at: date
+    active: bool
 
 
 class LoginResponse(BaseModel):
