@@ -1,54 +1,22 @@
-## Instrukcja utworzenia środowiska
-
-
-#### W katalogu domowym projektu utworz srodowisko python'owe w wersji 3.10.
-
-Do tego celu mozesz wykorzystac pyenv z poleceniem
-
-```
-$ pyenv exec python -m venv venv
-```
-
-Nastepnie aktywowac srodowisko
-```
-Unix
-$ source venv/bin/activate
-
-Windows
-$ source venv/Scripts/activate
-```
-Zainstaluj requirements poleceniem :
-```
-$ pip install -r requirements.txt
-lub
-$ make dev_install
-```
-______________________________________________
-## Uruchomienie projektu:
-
-```
-$ python main.py
-lub
-$ make dev_run
-```
-Projekt jest konteneryzowany, wiec wystarczy uzyc komendy
-```
-$ docker-compose up -d --build
-```
-aby zbudowac kontener. Powyzsze instrukcje do srodowiska wykonaja sie samodzielnie
-w kontenerze.
+## Flash Cards
 
 ______________________________________________
 
-## Uruchomienie kontenera aplikacji:
+#### Postawienie projektu.
 
-#### uruchomienie kontenera
-```
-$ docker-compose up -d
-```
-#### wylaczenie kontenera
-```
-$ docker-compose down
-```
+W każdym katalogu głownym aplikacji znajduje się opis jak postawić dana część aplikacji
+
+
+______________________________________________
+
+## Krótko o aplikacji
+
+Aplikacja <span style="font-size: 15px; font-weight: bold;"> Flash Cards </span>
+będzie obsługiwana w dwóch środowiskach, webowej oraz mobilnej.
+Z aplikacji webowej będzie mógł skorzystać każdy, kto posiada przeglądarke wspierającą Javascript.
+
+Dla aplikacji mobilnej wymogiem jest posiadać systemy
+Android w wersji >= 10 lub
+IOS w wersji >= 16
 ______________________________________________
 

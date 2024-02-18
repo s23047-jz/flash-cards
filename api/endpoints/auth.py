@@ -15,14 +15,17 @@ from database import get_db
 from models.users import User, get_password_hash
 from models.token import Blacklist_Tokens, Token
 from dependencies.auth import (
-    authenticate_user,
-    create_access_token,
+    get_current_active_user,
+    oauth2_scheme
+)
+from utils.auth import (
     get_user,
     get_user_by_username,
+    authenticate_user,
+    create_access_token,
+    decode_token,
     ACCESS_TOKEN_EXPIRE_MINUTES,
-    get_current_active_user,
-    oauth2_scheme,
-    decode_token
+    RESET_ACCESS_TOKEN_EXPIRE_MINUTES
 )
 
 

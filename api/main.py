@@ -17,10 +17,19 @@ from config import (
     BACKEND_HOST,
     BACKEND_PORT
 )
+from utils.app import (
+    catch_exception_middleware,
+    jwt_middleware,
+    security_headers_middleware
+)
 
 
 def create_app() -> FastAPI:
     app = FastAPI()
+
+    app.middleware('http')(catch_exception_middleware)
+    app.middleware('http')(jwt_middleware)
+    app.middleware('http')(security_headers_middleware)
 
     app.add_middleware(
         CORSMiddleware,
