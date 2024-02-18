@@ -10,7 +10,6 @@ from fastapi import (
     status
 )
 from sqlalchemy.orm import Session
-from typing import List, Tuple, Optional
 
 from database import get_db
 from models.users import User, get_password_hash
