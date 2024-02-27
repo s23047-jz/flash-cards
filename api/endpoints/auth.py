@@ -11,14 +11,14 @@ from fastapi import (
 )
 from sqlalchemy.orm import Session
 
-from database import get_db
-from models.users import User, get_password_hash
-from models.token import Blacklist_Tokens, Token
-from dependencies.auth import (
+from api.database import get_db
+from api.models.users import User, get_password_hash
+from api.models.token import Blacklist_Tokens, Token
+from api.dependencies.auth import (
     get_current_active_user,
     oauth2_scheme
 )
-from utils.auth import (
+from api.utils.auth import (
     get_user,
     get_user_by_username,
     authenticate_user,

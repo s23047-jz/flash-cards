@@ -1,12 +1,12 @@
 /.venv
 /venv
-/.env
-/.copy_env
+/api_fc/.env
+/api_fc/.copy_env
 #python
 __pycache__/
 /__pycache__
 
 /mariadb_data
 
-.env
-.copy_env
+../api_fc/.env
+../api_fc/.copy_env

@@ -1,10 +1,10 @@
 import uvicorn
-import models
+import api.models
 
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import Annotated
-from database import (
+from api.database import (
     get_db,
     engine
 )
@@ -12,12 +12,12 @@ from fastapi import (
     FastAPI,
     Depends,
 )
-from config import (
+from api.config import (
     WEBHOST,
     BACKEND_HOST,
     BACKEND_PORT
 )
-from utils.app import (
+from api.utils.app import (
     catch_exception_middleware,
     jwt_middleware,
     security_headers_middleware
@@ -44,13 +44,13 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
-models.metadata.create_all(bind=engine)
+api.models.metadata.create_all(bind=engine)
 db_dependency = Annotated[Session, Depends(get_db)]
 
 
 @app.on_event("startup")
 def register_routers():
-    from endpoints import (
+    from api.endpoints import (
         auth,
     )
 

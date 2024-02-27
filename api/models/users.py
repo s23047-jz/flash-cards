@@ -13,7 +13,7 @@ from sqlalchemy import (
     func
 )
 
-from models import Base
+from api.models import Base
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")

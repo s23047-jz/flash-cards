@@ -6,7 +6,7 @@ from sqlalchemy import (
     UUID
 )
 
-from models import Base
+from api.models import Base
 
 
 class Token(Base):

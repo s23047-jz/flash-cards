@@ -1,6 +1,6 @@
 from fastapi import Request, Response
 
-from models.token import Blacklist_Tokens
+from api.models.token import Blacklist_Tokens
 
 
 def get_token(headers) -> str:
@@ -30,7 +30,7 @@ async def jwt_middleware(request: Request, call_next):
 
 async def security_headers_middleware(request: Request, call_next):
     response = await call_next(request)
-    response.headers["Cache-Control"] = "no-store",
+    response.headers["Cache-Control"] = "no-store"
     response.headers["X-Frame-Options"] = "deny"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-XSS-Protection"] = "1"
