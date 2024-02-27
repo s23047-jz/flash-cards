@@ -13,7 +13,7 @@ from sqlalchemy import (
     ForeignKey
 )
 
-from models import Base
+from flash_cards_api.models import Base
 
 
 class Deck(Base):
