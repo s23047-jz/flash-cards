@@ -2,12 +2,12 @@ from datetime import timedelta, datetime
 
 from jose import jwt, JWTError
 
-from api.config import (
+from api.flash_cards_api.config import (
     SECRET_KEY,
     ALGORITHM
 )
 
-from api.models.users import User
+from api.flash_cards_api.models.users import User
 
 
 # in minutes

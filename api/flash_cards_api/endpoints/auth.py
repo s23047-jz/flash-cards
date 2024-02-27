@@ -11,21 +11,19 @@ from fastapi import (
 )
 from sqlalchemy.orm import Session
 
-from api.database import get_db
-from api.models.users import User, get_password_hash
-from api.models.token import Blacklist_Tokens, Token
-from api.dependencies.auth import (
-    get_current_active_user,
+from api.flash_cards_api.database import get_db
+from api.flash_cards_api.models.users import User, get_password_hash
+from api.flash_cards_api.models.token import Blacklist_Tokens, Token
+from api.flash_cards_api.dependencies.auth import (
     oauth2_scheme
 )
-from api.utils.auth import (
+from api.flash_cards_api.utils.auth import (
     get_user,
     get_user_by_username,
     authenticate_user,
     create_access_token,
     decode_token,
-    ACCESS_TOKEN_EXPIRE_MINUTES,
-    RESET_ACCESS_TOKEN_EXPIRE_MINUTES
+    ACCESS_TOKEN_EXPIRE_MINUTES
 )
 
 

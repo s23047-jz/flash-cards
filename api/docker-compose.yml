@@ -24,7 +24,7 @@ services:
       context: .
     restart: always
     env_file:
-      - .env
+      - flash_cards_api/.env
     volumes:
       - .:/fc_api
       - media:/media

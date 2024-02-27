@@ -1,6 +1,6 @@
 from fastapi import Request, Response
 
-from api.models.token import Blacklist_Tokens
+from api.flash_cards_api.models.token import Blacklist_Tokens
 
 
 def get_token(headers) -> str:
