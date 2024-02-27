@@ -3,7 +3,7 @@ import click
 from functools import wraps
 
 from flash_cards_api.models import Base
-from database import engine
+from flash_cards_api.database import engine
 
 
 def get_models():
