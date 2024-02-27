@@ -13,7 +13,7 @@ from sqlalchemy import (
     func
 )
 
-from api.flash_cards_api.models import Base
+from flash_cards_api.models import Base
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
