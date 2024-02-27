@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from database import get_db
+from flash_cards_api.database import get_db
 
 from fastapi import (
     APIRouter,
@@ -9,8 +9,8 @@ from fastapi import (
     status
 )
 
-from models.flash_card import FlashCard
-from models.deck_of_flash_cards import Deck
+from flash_cards_api.models.flash_card import FlashCard
+from flash_cards_api.models.deck_of_flash_cards import Deck
 
 
 router = APIRouter(prefix="/auth", tags=["authentication"])

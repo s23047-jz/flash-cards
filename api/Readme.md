@@ -17,16 +17,22 @@ $ source venv/bin/activate
 Windows
 $ source venv/Scripts/activate
 ```
-Zainstaluj requirements poleceniem :
-```
-$ pip install -r requirements.txt
-lub
-$ make dev_install
-```
+
+______________________________________________
+## Zainstaluj odpowiednie dependencje:
+    "setuptools" >= 60.0,
+    "setuptools_scm" >= 8.0
+
+Nastepnie uzyj komendy z Makefile:
+
+    $ make dev_install
+
+która przeprowadzi konfiguracje projektu i zainstaluje pozostałe dependencje
+
 
 ______________________________________________
 ## Tworzenie tablic i ładowanie danych:
-Używając komendy
+Używając komendy:
 
     $ make db_load_models_and_fixtures
 
@@ -38,8 +44,6 @@ ______________________________________________
 ## Uruchomienie projektu:
 
 ```
-$ python main.py
-lub
 $ make dev_run
 ```
 Projekt jest konteneryzowany, wiec wystarczy uzyc komendy

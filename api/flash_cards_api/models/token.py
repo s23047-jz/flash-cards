@@ -6,7 +6,7 @@ from sqlalchemy import (
     UUID
 )
 
-from api.models import Base
+from flash_cards_api.models import Base
 
 
 class Token(Base):

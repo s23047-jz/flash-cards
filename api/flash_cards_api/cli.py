@@ -2,15 +2,15 @@ import asyncio
 import click
 from functools import wraps
 
-from api.models import Base
-from database import engine
+from flash_cards_api.models import Base
+from flash_cards_api.database import engine
 
 
 def get_models():
-    from api.models import User
-    from api.models import Token, Blacklist_Tokens
-    from api.models import FlashCard
-    from api.models import Deck
+    from flash_cards_api.models.users import User
+    from flash_cards_api.models.token import Token, Blacklist_Tokens
+    from flash_cards_api.models.flash_card import FlashCard
+    from flash_cards_api.models.deck_of_flash_cards import Deck
 
     return (
         Token,

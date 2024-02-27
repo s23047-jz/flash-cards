@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from api.config import MARIADB_URL
+from flash_cards_api.config import MARIADB_URL
 
 # in seconds
 CONNECTION_TIMEOUT = 60

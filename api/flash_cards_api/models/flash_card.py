@@ -2,7 +2,7 @@ import uuid
 
 from sqlalchemy.orm import relationship
 
-#from deck_of_flash_cards import Deck
+# from deck_of_flash_cards import Deck
 
 from sqlalchemy import (
     Column,
@@ -12,7 +12,7 @@ from sqlalchemy import (
     Text,
 )
 
-from api.models import Base
+from flash_cards_api.models import Base
 
 
 class FlashCard(Base):
