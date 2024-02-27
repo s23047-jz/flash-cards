@@ -12,7 +12,7 @@ WORKDIR ./fc_api
 
 RUN mkdir -p /media
 
-RUN pip install -r requirements.txt
+RUN make dev_install
 
 EXPOSE 8000
 ENV PORT 8000

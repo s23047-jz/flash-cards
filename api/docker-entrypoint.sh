@@ -5,4 +5,4 @@ sleep 20
 
 #start server
 echo "Starting server"
-python ./main.py
+make dev_run
