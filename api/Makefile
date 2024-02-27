@@ -12,5 +12,5 @@ dev_run:
 	@python flash_cards_api/app.py
 
 db_load_models_and_fixtures:
-	@python flash_cards_api_cli database_defaults --clear_database
-	@python flash_cards_api_cli database_defaults --fixtures
+	flash_cards_api_cli database_defaults --clear_database
+	flash_cards_api_cli database_defaults --fixtures
