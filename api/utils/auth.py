@@ -2,12 +2,12 @@ from datetime import timedelta, datetime
 
 from jose import jwt, JWTError
 
-from config import (
+from api.config import (
     SECRET_KEY,
     ALGORITHM
 )
 
-from models.users import User
+from api.models.users import User
 
 
 # in minutes

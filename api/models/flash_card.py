@@ -12,7 +12,7 @@ from sqlalchemy import (
     Text,
 )
 
-from models import Base
+from api.models import Base
 
 
 class FlashCard(Base):
