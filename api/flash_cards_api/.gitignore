@@ -2,6 +2,7 @@
 /venv
 /api_fc/.env
 /api_fc/.copy_env
+
 #python
 __pycache__/
 /__pycache__
@@ -10,3 +11,5 @@ __pycache__/
 
 ../api_fc/.env
 ../api_fc/.copy_env
+
+*.egg-info/
