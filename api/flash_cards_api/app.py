@@ -1,23 +1,14 @@
 import uvicorn
-import api
 
 from fastapi.middleware.cors import CORSMiddleware
-from sqlalchemy.orm import Session
-from typing import Annotated
-from api import (
-    get_db,
-    engine
-)
-from fastapi import (
-    FastAPI,
-    Depends,
-)
-from api import (
+
+from fastapi import FastAPI
+from flash_cards_api.config import (
     WEBHOST,
     BACKEND_HOST,
     BACKEND_PORT
 )
-from api import (
+from flash_cards_api.utils.app import (
     catch_exception_middleware,
     jwt_middleware,
     security_headers_middleware
@@ -44,8 +35,6 @@ def create_app() -> FastAPI:
 
 
 app = create_app()
-api.models.metadata.create_all(bind=engine)
-db_dependency = Annotated[Session, Depends(get_db)]
 
 
 @app.on_event("startup")
@@ -57,7 +46,7 @@ def register_routers():
 
 def run_dev_server():
     uvicorn.run(
-        app="main:app",
+        app="flash_cards_api.app:app",
         host=BACKEND_HOST,
         port=BACKEND_PORT,
         reload=True,

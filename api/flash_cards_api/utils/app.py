@@ -1,6 +1,7 @@
 from fastapi import Request, Response
 
-from api.flash_cards_api.models.token import Blacklist_Tokens
+from flash_cards_api.models.token import Blacklist_Tokens
+from flash_cards_api.logger import logger
 
 
 def get_token(headers) -> str:
@@ -14,7 +15,7 @@ async def catch_exception_middleware(request: Request, call_next):
     try:
         return await call_next(request)
     except Exception as e:
-        # TODO add logger info
+        logger.error(str(e))
         return Response("Internal Server Error", status_code=500)
 
 

@@ -1,9 +1,16 @@
+clean:
+	@rm -rf */_version.txt
+	@rm -rf ./*/__pycache__
+	@rm -rf ./*/*/__pycache__
+	@rm -rf ./__pycache__
+	@echo ':) Cleaning done (:'
+
 dev_install:
-	@pip install -r ./requirements.txt
+	@pip install -e .
 
 dev_run:
-	@python ./main.py
+	@python flash_cards_api/app.py
 
 db_load_models_and_fixtures:
-	@python cli.py database_defaults --clear_database
-	@python cli.py database_defaults --fixtures
+	@python flash_cards_api_cli database_defaults --clear_database
+	@python flash_cards_api_cli database_defaults --fixtures

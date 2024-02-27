@@ -40,11 +40,11 @@ websockets==12.0
 setup(
     name="flash_cards_api",
     requires=[
-        "setuptools>=60",
-        "setuptools-scm>=8.0"
+        "setuptools",
+        "setuptools_scm"
     ],
     use_scm_version={
-        "write_to": "_version.txt",
+        "write_to": "./_version.txt",
         "root": "..",
         "relative_to": __file__,
     },
@@ -55,7 +55,7 @@ setup(
     # decorator for all cli commands in flash_cards_api/cli.py
     entry_points={
         "console_scripts": [
-            "flash-cards_api_cli = flash_cards_api.cli:cli"
+            "flash_cards_api_cli = flash_cards_api.cli:cli"
         ]
     }
 )
