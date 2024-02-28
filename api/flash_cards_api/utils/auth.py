@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 
-from jose import jwt, JWTError
+from jose import jwt
 
 from flash_cards_api.config import (
     SECRET_KEY,
@@ -45,9 +45,9 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None) -> s
     return encoded_jwt
 
 
-def decode_token(token: str) -> dict | None:
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        return payload
-    except JWTError:
-        return None
+def check_if_token_is_expired(decoded_token: dict) -> bool:
+    if not decoded_token and not decoded_token["exp"]:
+        return True
+
+    expire = decoded_token["exp"]
+    return datetime.now() > expire

@@ -6,6 +6,7 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
 from flash_cards_api.models.users import User
+from flash_cards_api.models.token import Blacklist_Tokens
 
 from flash_cards_api.config import (
     SECRET_KEY,
@@ -13,7 +14,7 @@ from flash_cards_api.config import (
 )
 from flash_cards_api.database import get_db
 
-from flash_cards_api.utils.auth import get_user
+from flash_cards_api.utils.auth import get_user, check_if_token_is_expired
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -29,7 +30,24 @@ async def get_current_user(
         headers={"WWW-Authenticate": "Bearer"}
     )
     try:
+        black_token = db.query(
+            Blacklist_Tokens
+        ).filter(Blacklist_Tokens.token == token).first()
+
+        if black_token:
+            raise credentials_exception
+
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+
+        if check_if_token_is_expired(payload):
+            db.add(
+                Blacklist_Tokens(
+                    token=token
+                )
+            )
+            db.commit()
+            raise credentials_exception
+
         email: str = payload.get("sub")
         if email is None:
             raise credentials_exception

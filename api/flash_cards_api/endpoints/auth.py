@@ -14,6 +14,7 @@ from sqlalchemy.orm import Session
 from flash_cards_api.database import get_db
 from flash_cards_api.models.users import User, get_password_hash
 from flash_cards_api.models.token import Blacklist_Tokens, Token
+from flash_cards_api.models.roles import UserRoles
 from flash_cards_api.dependencies.auth import (
     oauth2_scheme
 )
@@ -22,7 +23,6 @@ from flash_cards_api.utils.auth import (
     get_user_by_username,
     authenticate_user,
     create_access_token,
-    decode_token,
     ACCESS_TOKEN_EXPIRE_MINUTES
 )
 
@@ -85,7 +85,7 @@ async def login(
     )
     db.commit()
 
-    res_token = db.query(Token).filter(Token.access_token==token).first()
+    res_token = db.query(Token).filter(Token.access_token == token).first()
 
     return {
         "user_data": user,
@@ -122,7 +122,8 @@ async def register(
         User(
             email=payload['email'],
             username=payload['username'],
-            password=get_password_hash(payload['password'])
+            password=get_password_hash(payload['password']),
+            role=UserRoles.get_default_roles()
         )
     )
     db.commit()
@@ -131,35 +132,6 @@ async def register(
             status_code=status.HTTP_201_CREATED,
             detail="Successfully created a new user"
         )
-
-
-@router.post("/refresh")
-async def refresh(
-    token: str = Depends(oauth2_scheme),
-    db: Session = Depends(get_db)
-):
-    payload = decode_token(token)
-    if not payload:
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid token",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-
-    if datetime.now() > payload["exp"]:
-        db.add(
-            Blacklist_Tokens(
-                token=token
-            )
-        )
-        db.commit()
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Token has expired",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-
-    return {"message": "Token refreshed successfully"}
 
 
 @router.post("/logout")
@@ -173,4 +145,9 @@ async def logout(
         )
     )
     db.commit()
-    return {"message": "Successfully logged out"}
+
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Token is no longer valid",
+        headers={"WWW-Authenticate": "Bearer"}
+    )
