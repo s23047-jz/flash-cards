@@ -1,6 +1,6 @@
 from datetime import timedelta, datetime
 
-from jose import jwt, JWTError
+from jose import jwt
 
 from flash_cards_api.config import (
     SECRET_KEY,
