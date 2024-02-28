@@ -40,6 +40,12 @@ async def get_current_user(
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
 
         if check_if_token_is_expired(payload):
+            db.add(
+                Blacklist_Tokens(
+                    token=token
+                )
+            )
+            db.commit()
             raise credentials_exception
 
         email: str = payload.get("sub")
