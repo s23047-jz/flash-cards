@@ -8,7 +8,7 @@ class UserRoles(str, Enum):
 
     @classmethod
     def get_default_roles(cls) -> str:
-        return cls.USER
+        return cls.USER.value
 
     @classmethod
     def get_roles(cls) -> list:
