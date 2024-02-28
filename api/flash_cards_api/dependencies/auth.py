@@ -6,6 +6,7 @@ from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
 from flash_cards_api.models.users import User
+from flash_cards_api.models.token import Blacklist_Tokens
 
 from flash_cards_api.config import (
     SECRET_KEY,
@@ -29,6 +30,13 @@ async def get_current_user(
         headers={"WWW-Authenticate": "Bearer"}
     )
     try:
+        black_token = db.query(
+            Blacklist_Tokens
+        ).filter(Blacklist_Tokens.token == token).first()
+
+        if black_token:
+            raise credentials_exception
+
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         email: str = payload.get("sub")
         if email is None:
