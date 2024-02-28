@@ -9,10 +9,16 @@ from sqlalchemy.orm import Session
 
 from flash_cards_api.database import get_db
 from flash_cards_api.models.users import User
+from flash_cards_api.models.roles import UserRoles
 
-from flash_cards_api.dependencies.auth import get_current_active_user
+from flash_cards_api.dependencies.role import RoleAccessChecker
 
-router = APIRouter(prefix="/users", tags=["users"], dependencies=[Depends(get_current_active_user)])
+
+router = APIRouter(
+    prefix="/users",
+    tags=["users"],
+    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
+)
 
 
 class UserDetailsResponse(BaseModel):
