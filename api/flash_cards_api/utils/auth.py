@@ -45,4 +45,9 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None) -> s
     return encoded_jwt
 
 
+def check_if_token_is_expired(decoded_token: dict) -> bool:
+    if not decoded_token and not decoded_token["exp"]:
+        return True
 
+    expire = decoded_token["exp"]
+    return datetime.now() > expire
