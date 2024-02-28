@@ -34,6 +34,7 @@ class User(Base):
     updated_at = Column(DateTime, default=datetime.now(), server_default=func.now())
     ranking = Column(Integer, nullable=True)
     active = Column(Boolean, default=True)
+    role = Column(String(50), nullable=False)
 
     def verify_password(self, password: str):
         return pwd_context.verify(password, self.password)
