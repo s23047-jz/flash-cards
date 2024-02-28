@@ -1,5 +1,6 @@
 from datetime import date
 from pydantic.main import BaseModel
+from typing import List
 
 from fastapi import (
     APIRouter,
@@ -27,6 +28,14 @@ class UserDetailsResponse(BaseModel):
     ranking: int
     # TODO add count query for users decks
     # number_of_decs: int
+
+
+@router.get("/", response_model=[List[UserDetailsResponse]])
+async def get_user_list(
+    db: Session = Depends(get_db)
+):
+    users = db.query(User).all()
+    return users
 
 
 @router.get("/{user_id}", response_model=UserDetailsResponse)
