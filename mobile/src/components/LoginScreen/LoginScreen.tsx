@@ -1,12 +1,20 @@
 import React, {useState} from 'react';
-// @ts-ignore
-import Logo from '../../../assets/images/logo.png';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
+// @ts-ignore
+import Logo from '../../../assets/images/logo.png';
+import DarkMode from "../DarkMode";
+import {NavigationProp, StackNavigationState} from "@react-navigation/native";
 
-const LoginScreen = () => {
+type LoginScreenNavigationProp = NavigationProp<any>
+
+interface Props {
+    navigation: LoginScreenNavigationProp;
+}
+
+const LoginScreen: React.FC<Props> = ({navigation}) => {
+
     useState()
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
@@ -14,45 +22,49 @@ const LoginScreen = () => {
         setShowPassword(!showPassword);
     };
 
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     const handleLogin = () => {
-        if (reg.test(email) === false) {
+        if (!regMail.test(email)) {
             alert("Email is not correct");
-        }else if(password === "" ){
-            alert("Password is empty")
-        }else{
-            console.log('Email:', email);
-            console.log('Password:', password);
+            return 0
         }
+
+        if(password.length < 7) {
+            alert("Password should contain more than 8 characters")
+            return 0
+        }
+
+        console.log('Email:', email);
+        console.log('Password:', password);
+
 
     };
 
     return (
-        <View className="flex min-h-full flex-1 flex-col justify-center">
-            {/*<View className="hero container max-w-screen-lg mx-auto pb-10"> */}
-            <Image
-                    className="mx-auto object-scale-down h-40 w-40"
-                    source={Logo}
+        <View className={'flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900'}>
+        <DarkMode></DarkMode>
+        <View className="w-72 flex min-h-full flex-1 justify-center">
+
+
+            <Image className="mx-auto object-scale-down h-40 w-40" source={Logo}
             />
-                {/*<Text className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                    Log in to your account
-                </Text>*/}
-            <Text className={`text-2xl font-bold mb-6 text-white`}>Log in to your account</Text>
+
+            {/*<Text className={`text-2xl font-bold mb-6 text-white`}>Log in to your account</Text>*/}
             <TextInput
-                className={`h-10 border border-gray-300 rounded px-3 mb-3`}
+                className={`h-10 border border-gray-300 rounded px-3 mb-3 text-white`}
                 placeholder="Email"
-                placeholderTextColor='white'
+                placeholderTextColor='rgba(255, 255, 255, 0.5)'
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
                 autoCapitalize={"none"}
             />
 
-            <View className={'flex-row items-center relative'}>
+            <View className={'flex-row'}>
                 <TextInput
-                    className={`h-10 border border-gray-300 rounded px-3 mb-3 flex-1 `}
+                    className={`h-10 border border-gray-300 rounded px-3 mb-3 flex-1 text-white`}
                     placeholder="Password"
-                    placeholderTextColor='white'
+                    placeholderTextColor='rgba(255, 255, 255, 0.5)'
                     value={password}
                     onChangeText={setPassword}
                     secureTextEntry={!showPassword}
@@ -78,17 +90,18 @@ const LoginScreen = () => {
                 <Text className={`text-center text-white font-bold`}>Login</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity className={'m-5'}>
+            <TouchableOpacity className={'m-5'} onPress={() => navigation.navigate('ForgotPass')}>
                 <Text className={'text-center text-white font-bold'}>Forgot Password?</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity className={'m-5 flex-row'  }>
+            <TouchableOpacity className={'m-5 flex-row justify-center'} onPress={() => navigation.navigate('SignUp')}>
                 <Text className={'text-center text-white font-bold'}>Dont have an account? </Text>
                 <Text className={'text-center text-white font-extrabold animate-bounce scale-125'}>  Sign up</Text>
             </TouchableOpacity>
 
 
         </View>
+    </View>
     )
 }
 export default LoginScreen;

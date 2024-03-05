@@ -7,7 +7,9 @@ Manual:
     $ cd fishki-app  
     $ npm install nativewind  
     $ npm install --save-dev tailwindcss@3.3.2  
-    $ npm install eslint prettier eslint-config-universe --save-dev
+    $ npm install eslint prettier eslint-config-universe --save-dev  
+    $ npm install @react-navigation/native @react-navigation/native-stack  
+    $ npx expo install react-native-gesture-handler react-native-reanimated react-native-screens react-native-safe-area-context  
 
 3. Clone all files from the repo and replace them in your project  
 
