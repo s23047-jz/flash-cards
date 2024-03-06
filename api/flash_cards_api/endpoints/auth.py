@@ -1,4 +1,5 @@
 import uuid
+from typing import Annotated
 from jose import jwt
 from datetime import datetime, timedelta
 
@@ -34,8 +35,6 @@ from flash_cards_api.config import (
     SECRET_KEY,
     ALGORITHM
 )
-
-from flash_cards_api.dependencies.auth import get_current_active_user
 
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
@@ -88,7 +87,7 @@ async def login(
 
     token = create_access_token(
         {"sub": user.email},
-        expires_delta=timedelta(ACCESS_TOKEN_EXPIRE_MINUTES),
+        expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
 
     db.add(
@@ -147,7 +146,7 @@ async def register(
 
 @router.post("/logout")
 async def logout(
-    token: str = Depends(oauth2_scheme),
+    token: Annotated[str, Depends(oauth2_scheme)],
     db: Session = Depends(get_db)
 ):
     db.add(
@@ -180,7 +179,7 @@ async def reset_password(
     if user is not None:
         token = create_access_token(
             {"sub": req["email"]},
-            expires_delta=timedelta(RESET_ACCESS_TOKEN_EXPIRE_MINUTES),
+            expires_delta=timedelta(minutes=RESET_ACCESS_TOKEN_EXPIRE_MINUTES),
         )
         db.add(
             Token(access_token=token, user_email=req["email"])
