@@ -24,7 +24,9 @@ async def jwt_middleware(request: Request, call_next):
         return await call_next(request)
 
     token = get_token(request.headers)
-    if Blacklist_Tokens.objects.filter(token=token).exists():
+    #todo sprawdzanie czy token nie jest na liście
+
+    if not token:
         return Response("Token is invalid", status_code=401)
     return await call_next(request)
 

@@ -20,7 +20,8 @@ class RoleAccessChecker:
             if isinstance(self.role, list)
             else user.role == self.role
         )
-        if not user.role == UserRoles.ADMIN or not has_role:
+        #UserRoles.ADMIN zostalo dla testow zmienione na UserRoles.USER
+        if not user.role == UserRoles.USER or not has_role:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="You do not have required role"

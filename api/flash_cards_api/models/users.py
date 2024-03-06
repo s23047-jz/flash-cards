@@ -32,7 +32,7 @@ class User(Base):
     password = Column(String(256), nullable=False)
     created_at = Column(DateTime, default=datetime.now(), server_default=func.now())
     updated_at = Column(DateTime, default=datetime.now(), server_default=func.now())
-    ranking = Column(Integer, nullable=True)
+    ranking = Column(Integer, nullable=False, default=0)
     active = Column(Boolean, default=True)
     role = Column(String(50), nullable=False)
 

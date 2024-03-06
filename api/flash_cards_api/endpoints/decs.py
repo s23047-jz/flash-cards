@@ -13,7 +13,7 @@ from flash_cards_api.models.flash_card import FlashCard
 from flash_cards_api.models.deck_of_flash_cards import Deck
 
 
-router = APIRouter(prefix="/auth", tags=["authentication"])
+router = APIRouter(prefix="/decs", tags=["authentication"])
 
 
 @router.get("/flash_card/{flash_card_id}", status_code=status.HTTP_200_OK)
@@ -34,3 +34,5 @@ async def read_deck_by_id(deck_id: str, db: Session = Depends(get_db)):
     if deck is not None:
         return deck
     raise HTTPException(status_code=404, detail="Deck not found")
+
+
