@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import datetime
 from pydantic.main import BaseModel
 from typing import List
 
@@ -18,19 +18,17 @@ from flash_cards_api.dependencies.role import RoleAccessChecker
 router = APIRouter(
     prefix="/users",
     tags=["users"],
-    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
+
 )
 
-
+# dependencies = [Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
 class UserDetailsResponse(BaseModel):
+    email: str
     username: str
-    created_at: date
-    ranking: int
-    # TODO add count query for users decks
-    # number_of_decs: int
+    created_at: datetime
 
 
-@router.get("/", response_model=[List[UserDetailsResponse]])
+@router.get("/", response_model=List[UserDetailsResponse])
 async def get_user_list(
     db: Session = Depends(get_db)
 ):
