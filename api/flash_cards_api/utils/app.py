@@ -3,6 +3,8 @@ from fastapi import Request, Response
 from flash_cards_api.models.token import Blacklist_Tokens
 from flash_cards_api.logger import logger
 
+from flash_cards_api.database import Session
+
 
 def get_token(headers) -> str:
     token = headers['Authorization']
@@ -24,7 +26,9 @@ async def jwt_middleware(request: Request, call_next):
         return await call_next(request)
 
     token = get_token(request.headers)
-    if Blacklist_Tokens.objects.filter(token=token).exists():
+    db = Session()
+    blacklist_tokens = db.query(Blacklist_Tokens).filter(Blacklist_Tokens.token == token).first()
+    if blacklist_tokens:
         return Response("Token is invalid", status_code=401)
     return await call_next(request)
 
