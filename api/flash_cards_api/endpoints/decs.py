@@ -14,6 +14,7 @@ from fastapi import (
 from flash_cards_api.models.flash_card import FlashCard
 from flash_cards_api.models.deck_of_flash_cards import Deck
 
+import uuid
 
 router = APIRouter(prefix="/decs", tags=["authentication"])
 
@@ -61,9 +62,9 @@ async def create_deck(
     db.refresh(deck_model)  # Refresh to get the updated data from the database
     return deck_model
 
-@router.delete("/{delete_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/delete_deck/{delete_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_deck(
-    delete_id: str,
+    delete_id: uuid.UUID,
     db: Session = Depends(get_db)
 ):
     """Delete deck"""
