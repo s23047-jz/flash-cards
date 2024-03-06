@@ -1,4 +1,5 @@
 import uuid
+from jose import jwt
 from datetime import datetime, timedelta
 
 from pydantic.main import BaseModel
@@ -7,7 +8,8 @@ from fastapi import (
     APIRouter,
     Depends,
     HTTPException,
-    status
+    status,
+    Request
 )
 from sqlalchemy.orm import Session
 
@@ -23,8 +25,17 @@ from flash_cards_api.utils.auth import (
     get_user_by_username,
     authenticate_user,
     create_access_token,
-    ACCESS_TOKEN_EXPIRE_MINUTES
+    check_if_token_is_expired,
+    ACCESS_TOKEN_EXPIRE_MINUTES,
+    RESET_ACCESS_TOKEN_EXPIRE_MINUTES
 )
+
+from flash_cards_api.config import (
+    SECRET_KEY,
+    ALGORITHM
+)
+
+from flash_cards_api.dependencies.auth import get_current_active_user
 
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
@@ -150,4 +161,60 @@ async def logout(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Token is no longer valid",
         headers={"WWW-Authenticate": "Bearer"}
+    )
+
+
+@router.post("/reset_password")
+async def reset_password(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    req = request.query_params
+    if "email" not in req.keys():
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing email"
+        )
+
+    user = get_user(email=req["email"], db=db)
+    if user is not None:
+        token = create_access_token(
+            {"sub": req["email"]},
+            expires_delta=timedelta(RESET_ACCESS_TOKEN_EXPIRE_MINUTES),
+        )
+        db.add(
+            Token(access_token=token, user_email=req["email"])
+        )
+        db.commit()
+
+        # TODO add send email with reset password link
+
+        url = f"frontend_address/reset_password/{token}"
+        return url
+
+
+@router.post("/change_password")
+async def reset_password(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    req = request.query_params
+    if "token" not in req.keys():
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing token"
+        )
+    token = req.get("token")
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    if not check_if_token_is_expired(payload):
+        password = req.get("password")
+        email: str = payload.get("sub")
+
+        user = get_user(email=email, db=db)
+        user.password = get_password_hash(password)
+        db.commit()
+
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Token is expired"
     )
