@@ -191,3 +191,30 @@ async def reset_password(
 
         url = f"frontend_address/reset_password/{token}"
         return url
+
+
+@router.post("/change_password")
+async def reset_password(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    req = request.query_params
+    if "token" not in req.keys():
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Missing token"
+        )
+    token = req.get("token")
+    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    if not check_if_token_is_expired(payload):
+        password = req.get("password")
+        email: str = payload.get("sub")
+
+        user = get_user(email=email, db=db)
+        user.password = get_password_hash(password)
+        db.commit()
+
+    raise HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Token is expired"
+    )
