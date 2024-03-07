@@ -1,17 +1,11 @@
 from fastapi import Request, Response
-from typing import Annotated
-from flash_cards_api.database import Session
+
 from flash_cards_api.models.token import Blacklist_Tokens
-from fastapi.security import OAuth2PasswordBearer
 from flash_cards_api.logger import logger
-from sqlalchemy import select
-from flash_cards_api.database import get_db
-from fastapi import (
-    APIRouter,
-    Depends,
-    HTTPException,
-    status
-)
+
+from flash_cards_api.database import Session
+
+
 def get_token(headers) -> str:
     token = headers['Authorization']
     token = token.replace('Bearer ', '')
@@ -26,13 +20,15 @@ async def catch_exception_middleware(request: Request, call_next):
         logger.error(str(e))
         return Response("Internal Server Error", status_code=500)
 
+
 async def jwt_middleware(request: Request, call_next):
     if "Authorization" not in request.headers or "auth" in str(request.url.path):
         return await call_next(request)
 
     token = get_token(request.headers)
-
-    if not token:
+    db = Session()
+    blacklist_tokens = db.query(Blacklist_Tokens).filter(Blacklist_Tokens.token == token).first()
+    if blacklist_tokens:
         return Response("Token is invalid", status_code=401)
     return await call_next(request)
 

@@ -13,7 +13,8 @@ from fastapi import (
 
 from flash_cards_api.models.flash_card import FlashCard
 from flash_cards_api.models.deck_of_flash_cards import Deck
-
+from flash_cards_api.dependencies.role import RoleAccessChecker
+from flash_cards_api.models.roles import UserRoles
 import uuid
 
 router = APIRouter(prefix="/decs", tags=["authentication"])
