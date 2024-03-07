@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from jose import jwt, JWTError
+from jose import jwt, JWTError, jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
@@ -33,12 +33,9 @@ async def get_current_user(
         black_token = db.query(
             Blacklist_Tokens
         ).filter(Blacklist_Tokens.token == token).first()
-
-        if black_token:
+        if black_token is not None:
             raise credentials_exception
-
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-
+        payload = jwt.decode(token[1:],SECRET_KEY, algorithms=ALGORITHM)
         if check_if_token_is_expired(payload):
             db.add(
                 Blacklist_Tokens(
@@ -51,7 +48,7 @@ async def get_current_user(
         email: str = payload.get("sub")
         if email is None:
             raise credentials_exception
-    except JWTError:
+    except JWTError as e:
         raise credentials_exception
 
     user = get_user(email, db)
