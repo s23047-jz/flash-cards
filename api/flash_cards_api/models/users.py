@@ -35,6 +35,7 @@ class User(Base):
     ranking = Column(Integer, nullable=False, default=0)
     active = Column(Boolean, default=True)
     role = Column(String(50), nullable=False)
+    is_superuser = Column(Boolean, default=False)
 
     def verify_password(self, password: str):
         return pwd_context.verify(password, self.password)
