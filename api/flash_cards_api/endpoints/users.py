@@ -16,7 +16,7 @@ from flash_cards_api.dependencies.role import RoleAccessChecker
 
 
 router = APIRouter(
-    prefix="/users",
+    prefix="/api/users",
     tags=["users"],
 )
 

@@ -37,7 +37,7 @@ from flash_cards_api.config import (
 )
 
 
-router = APIRouter(prefix="/auth", tags=["authentication"])
+router = APIRouter(prefix="/api/auth", tags=["authentication"])
 
 
 class LoginPayloadScheme(BaseModel):
@@ -65,6 +65,8 @@ class UserResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
     active: bool
+    role: str
+    is_superuser: bool
 
 
 class LoginResponse(BaseModel):
@@ -72,7 +74,7 @@ class LoginResponse(BaseModel):
     token: TokenResponse
 
 
-@router.post("/login", response_model=LoginResponse)
+@router.post("/login/", response_model=LoginResponse)
 async def login(
     payload: LoginPayloadScheme,
     db: Session = Depends(get_db)
@@ -103,7 +105,7 @@ async def login(
     }
 
 
-@router.post("/register")
+@router.post("/register/")
 async def register(
     payload: RegisterPayloadScheme,
     db: Session = Depends(get_db)
@@ -144,7 +146,7 @@ async def register(
     )
 
 
-@router.post("/logout")
+@router.post("/logout/")
 async def logout(
     token: Annotated[str, Depends(oauth2_scheme)],
     db: Session = Depends(get_db)
@@ -162,7 +164,7 @@ async def logout(
     )
 
 
-@router.post("/reset_password")
+@router.post("/reset_password/")
 async def reset_password(
     request: Request,
     db: Session = Depends(get_db)
@@ -191,7 +193,7 @@ async def reset_password(
         return url
 
 
-@router.post("/change_password")
+@router.post("/change_password/")
 async def reset_password(
     request: Request,
     db: Session = Depends(get_db)
