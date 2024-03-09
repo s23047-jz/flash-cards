@@ -18,7 +18,7 @@ from flash_cards_api.models import Base
 class FlashCard(Base):
     __tablename__ = 'flash_card'
 
-    id =Column(UUID, primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
+    id = Column(UUID, primary_key=True, default=uuid.uuid4, unique=True, nullable=False)
     deck_id = Column(UUID(as_uuid=True), ForeignKey("deck.id"))
     card_title = Column(String(30), nullable=False)
     card_text = Column(Text, nullable=False)

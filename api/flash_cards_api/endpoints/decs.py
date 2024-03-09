@@ -24,6 +24,7 @@ class DeckCreate(BaseModel):
     title: str
     deck_category: str
 
+
 class DeckUpdate(DeckCreate):
     is_deck_public: bool
     downloads: int
@@ -54,6 +55,7 @@ async def read_deck_by_id(
         return deck
     raise HTTPException(status_code=404, detail="Deck not found")
 
+
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
 async def create_deck(
     deck: DeckCreate,
@@ -65,6 +67,7 @@ async def create_deck(
     db.commit()
     db.refresh(deck_model)  # Refresh to get the updated data from the database
     return deck_model
+
 
 @router.put("/update_deck/{deck_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_deck(
@@ -84,6 +87,7 @@ async def update_deck(
     db.add(deck_model)
     db.commit()
 
+
 @router.delete("/delete_deck/{delete_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def delete_deck(
     delete_id: uuid.UUID,
@@ -96,4 +100,3 @@ async def delete_deck(
 
     db.query(Deck).filter(Deck.id == delete_id).delete()
     db.commit()
-

@@ -139,9 +139,9 @@ async def register(
     db.commit()
 
     return HTTPException(
-            status_code=status.HTTP_201_CREATED,
-            detail="Successfully created a new user"
-        )
+        status_code=status.HTTP_201_CREATED,
+        detail="Successfully created a new user"
+    )
 
 
 @router.post("/logout")
