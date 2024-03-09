@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 // @ts-ignore
 import Logo from '../../../assets/images/logo.png';
-import DarkMode from "../DarkMode";
+import DarkMode from "../../components/DarkMode";
 import {NavigationProp} from "@react-navigation/native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 

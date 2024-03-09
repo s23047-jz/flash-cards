@@ -1,9 +1,9 @@
 import {Text, View, SafeAreaView, TouchableOpacity, Pressable} from 'react-native';
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import LoginScreen from "./src/components/LoginScreen";
-import SignUpScreen from "./src/components/SignUpScreen";
-import ForgotPassScreen from "./src/components/ForgotPassScreen";
+import LoginScreen from "./src/views/LoginScreen";
+import SignUpScreen from "./src/views/SignUpScreen";
+import ForgotPassScreen from "./src/views/ForgotPassScreen";
 
 const Stack = createNativeStackNavigator();
 const { Navigator, Screen} = Stack;
