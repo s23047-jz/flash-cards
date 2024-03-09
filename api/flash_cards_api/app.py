@@ -41,7 +41,6 @@ app = create_app()
 def register_routers():
     from flash_cards_api.endpoints import (auth, users, decs)
 
-
     app.include_router(auth.router)
     app.include_router(users.router)
     app.include_router(decs.router)

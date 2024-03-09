@@ -14,3 +14,6 @@ dev_run:
 db_load_models_and_fixtures:
 	flash_cards_api_cli database_defaults --clear_database
 	flash_cards_api_cli database_defaults --fixtures
+
+check_code:
+	@flake8 .

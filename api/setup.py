@@ -14,6 +14,7 @@ greenlet==3.0.3
 h11==0.14.0
 httptools==0.6.1
 idna==3.6
+flake8==7.0.0
 packaging==23.2
 passlib==1.7.4
 pyasn1==0.5.1

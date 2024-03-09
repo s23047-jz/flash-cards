@@ -35,7 +35,7 @@ async def get_current_user(
         ).filter(Blacklist_Tokens.token == token).first()
         if black_token is not None:
             raise credentials_exception
-        payload = jwt.decode(token[1:],SECRET_KEY, algorithms=ALGORITHM)
+        payload = jwt.decode(token[1:], SECRET_KEY, algorithms=ALGORITHM)
         if check_if_token_is_expired(payload):
             db.add(
                 Blacklist_Tokens(
@@ -48,7 +48,7 @@ async def get_current_user(
         email: str = payload.get("sub")
         if email is None:
             raise credentials_exception
-    except JWTError as e:
+    except JWTError:
         raise credentials_exception
 
     user = get_user(email, db)
