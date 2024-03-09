@@ -4,6 +4,7 @@ from functools import wraps
 
 from flash_cards_api.models import Base
 from flash_cards_api.database import engine
+from flash_cards_api.utils.fixtures import inject_users
 
 
 def get_models():
@@ -51,8 +52,7 @@ async def database_defaults(fixtures, clear_database):
 
             click.echo("New tables created successfully!")
         if fixtures:
-            # TODO create a function to inject fixtures
-            pass
+            await inject_users()
 
     except Exception as e:
         print("Failed in database_defaults", str(e))

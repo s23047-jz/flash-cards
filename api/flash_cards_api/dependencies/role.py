@@ -20,7 +20,7 @@ class RoleAccessChecker:
             if isinstance(self.role, list)
             else user.role == self.role
         )
-        #UserRoles.ADMIN zostalo dla testow zmienione na UserRoles.USER
+        # TODO user.is_superuser zostalo dla testow zmienione na UserRoles.USER @oliwier
         if not user.role == UserRoles.USER or not has_role:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,

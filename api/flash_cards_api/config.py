@@ -1,7 +1,8 @@
 import os
 
 HERE = os.getcwd()
-API_DIR = os.path.join(HERE, 'api')
+FLASH_CARDS_API_DIR = os.path.join(HERE, "flash_cards_api")
+FIXTURES_DIR = os.path.join(FLASH_CARDS_API_DIR, "fixtures")
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 ALGORITHM = os.environ.get("ALGORITHM")

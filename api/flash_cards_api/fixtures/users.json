@@ -1,0 +1,23 @@
+[
+  {
+    "email": "admin@flashcards.com",
+    "username": "Administrator",
+    "password": "admin",
+    "role": "Admin",
+    "is_superuser": true
+  },
+  {
+    "email": "moderator@flashcards.com",
+    "username": "Moderator",
+    "password": "moderator",
+    "role": "Moderator",
+    "is_superuser": false
+  },
+  {
+    "email": "user@flashcards.com",
+    "username": "User",
+    "password": "user",
+    "role": "User",
+    "is_superuser": false
+  }
+]
