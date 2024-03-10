@@ -1,0 +1,82 @@
+from sqlalchemy.orm import Session
+
+from flash_cards_api.database import get_db
+
+from pydantic.main import BaseModel
+
+from fastapi import (
+    APIRouter,
+    Depends,
+    HTTPException,
+    status
+)
+
+from flash_cards_api.models.flash_card import FlashCard
+from flash_cards_api.models.deck_of_flash_cards import Deck
+from flash_cards_api.dependencies.role import RoleAccessChecker
+from flash_cards_api.models.roles import UserRoles
+import uuid
+
+router = APIRouter(prefix="/flash_card", tags=["authentication"])
+
+
+class FlashCardCreate(BaseModel):
+    card_title: str
+    card_text: str
+
+
+@router.get("/{flash_card_id}", status_code=status.HTTP_200_OK)
+async def read_flash_card_by_id(
+        flash_card_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Return flash card by id"""
+    flash_card = db.query(FlashCard).filter(FlashCard.id == flash_card_id).first()
+
+    if flash_card is not None:
+        return flash_card
+    raise HTTPException(status_code=404, detail="Flash card not found")
+
+
+@router.post("/create_flash_card", status_code=status.HTTP_201_CREATED)
+async def create_flash_card(
+        flash_card: FlashCardCreate,
+        db: Session = Depends(get_db)
+):
+    """Create a new flash card"""
+    flash_card_model = FlashCard(**flash_card.dict())
+    db.add(flash_card_model)
+    db.commit()
+    db.refresh(flash_card_model)  # Refresh to get the updated data from the database
+    return flash_card_model
+
+
+@router.put("/update_flash_card/{flash_card_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def update_flash_card(
+        flash_card: FlashCardCreate,
+        flash_card_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    flash_card_model = db.query(FlashCard).filter(FlashCard.id == flash_card_id).first()
+    if flash_card_model is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    flash_card_model.card_title = flash_card.card_title
+    flash_card_model.card_text = flash_card.card_text
+
+    db.add(flash_card_model)
+    db.commit()
+
+
+@router.delete("/delete_flash_card/{flash_card_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def delete_flash_card(
+        flash_card_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Delete flash card"""
+    deck = db.query(FlashCard).filter(FlashCard.id == flash_card_id).first()
+    if deck is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    db.query(FlashCard).filter(FlashCard.id == flash_card_id).delete()
+    db.commit()

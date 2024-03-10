@@ -39,11 +39,12 @@ app = create_app()
 
 @app.on_event("startup")
 def register_routers():
-    from flash_cards_api.endpoints import (auth, users, decs)
+    from flash_cards_api.endpoints import (auth, users, decs, flash_card)
 
     app.include_router(auth.router)
     app.include_router(users.router)
     app.include_router(decs.router)
+    app.include_router(flash_card.router)
 
 
 def run_dev_server():
