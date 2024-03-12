@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  react-app:
+    image: "react-app"
+    container_name: fc_web
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: npm start
+    networks:
+      - fc_web_net
+      - fc_api_net  # Dodanie sieci fc_api_net
+
+networks:
+  fc_web_net:
+    driver: bridge
+    name: fc_web_net
+
+  fc_api_net:  # Dodanie sieci fc_api_net
+    external: true
