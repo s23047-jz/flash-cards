@@ -17,7 +17,7 @@ from flash_cards_api.dependencies.role import RoleAccessChecker
 
 router = APIRouter(
     prefix="/api/users",
-    tags=["users"],
+    tags=["users"]
 )
 
 
@@ -32,7 +32,7 @@ class UserDetailsResponse(BaseModel):
 @router.get("/", response_model=List[UserDetailsResponse])
 async def get_user_list(
     db: Session = Depends(get_db),
-    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR, UserRoles.USER]))] # noqa
+    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
 ):
     users = db.query(User).all()
     return users
@@ -42,7 +42,7 @@ async def get_user_list(
 async def get_user_details(
     user_id: str,
     db: Session = Depends(get_db),
-    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR, UserRoles.USER]))] # noqa
+    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
 ):
     user = db.query(User).get(User.id == user_id)
     return user
