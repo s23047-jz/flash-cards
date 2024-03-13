@@ -30,12 +30,13 @@ async def get_current_user(
         headers={"WWW-Authenticate": "Bearer"}
     )
     try:
+        token = token.replace(" ", "")
         black_token = db.query(
             Blacklist_Tokens
         ).filter(Blacklist_Tokens.token == token).first()
         if black_token is not None:
             raise credentials_exception
-        payload = jwt.decode(token[1:], SECRET_KEY, algorithms=ALGORITHM)
+        payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
         if check_if_token_is_expired(payload):
             db.add(
                 Blacklist_Tokens(
