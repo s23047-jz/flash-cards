@@ -4,7 +4,6 @@ from fastapi import Depends, HTTPException, status
 
 from flash_cards_api.dependencies.auth import get_current_active_user
 from flash_cards_api.models.users import User
-from flash_cards_api.models.roles import UserRoles
 
 
 class RoleAccessChecker:
@@ -20,9 +19,8 @@ class RoleAccessChecker:
             if isinstance(self.role, list)
             else user.role == self.role
         )
-        # TODO user.is_superuser zostalo dla testow
-        #  zmienione na UserRoles.USER @oliwier
-        if not user.role == UserRoles.USER or not has_role:
+
+        if not user.is_superuser and not has_role:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="You do not have required role"
