@@ -1,4 +1,5 @@
 import {BASE_API} from "./config";
+import {request} from "../utils/request";
 
 export const AUTH_ENDPOINTS = {
     login: `${BASE_API}/auth/login/`,
@@ -6,4 +7,14 @@ export const AUTH_ENDPOINTS = {
     logout: `${BASE_API}/auth/logout/`,
 }
 
-// TODO utworzyc request method
+export class AuthService {
+
+    constructor() {}
+    public async login(body: Object) {
+        const data = await request({
+            url: AUTH_ENDPOINTS.login,
+            body: body
+        })
+        console.log(data)
+    }
+}
