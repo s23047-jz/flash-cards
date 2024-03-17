@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 // @ts-ignore
 import Logo from '../../assets/images/logo.png';
-import DarkMode from "../../components/DarkMode";
-import {NavigationProp, StackNavigationState} from "@react-navigation/native";
+import { NavigationProp } from "@react-navigation/native";
+import { InputValidator } from "../../components/Validator/InputValidator";
 
 type LoginScreenNavigationProp = NavigationProp<any>
 
@@ -15,18 +14,17 @@ interface Props {
 const ForgotPassScreen: React.FC<Props> = ({navigation}) => {
     useState()
     const [email, setEmail] = useState('');
-    let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+
     const handleForgot = () => {
-        if (!regMail.test(email)) {
-            alert("Email is not correct");
-            return 0
+        {/* validation */}
+        if(InputValidator('email', email)){
+            {/* handle recovery with api */}
+            alert("Password recovery sent to your email!")
         }
-        alert("Recovery email sent!")
     }
 
     return (
         <View className={'flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900'}>
-            <DarkMode></DarkMode>
             <View className="w-72 flex min-h-full flex-1 justify-center">
 
 
@@ -61,5 +59,4 @@ const ForgotPassScreen: React.FC<Props> = ({navigation}) => {
         </View>
     )
 };
-
 export default ForgotPassScreen;

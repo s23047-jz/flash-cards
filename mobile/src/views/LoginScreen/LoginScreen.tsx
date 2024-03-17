@@ -3,8 +3,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 // @ts-ignore
 import Logo from '../../assets/images/logo.png';
-import DarkMode from "../../components/DarkMode";
-import {NavigationProp, StackNavigationState} from "@react-navigation/native";
+import {NavigationProp} from "@react-navigation/native";
+import { InputValidator } from "../../components/Validator/InputValidator";
+
+{/* import DarkMode from "../../components/DarkMode"; */}
 
 type LoginScreenNavigationProp = NavigationProp<any>
 
@@ -21,28 +23,22 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
-
-    let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     const handleLogin = () => {
-        if (!regMail.test(email)) {
-            alert("Email is not correct");
-            return 0
+
+        {/* validation */}
+        if(
+        InputValidator("email", email) &&
+        InputValidator("password", password)
+        ) {
+            {/* handle login with api */}
+            console.log('Email:', email);
+            console.log('Password:', password);
         }
-
-        if(password.length < 7) {
-            alert("Password should contain more than 8 characters")
-            return 0
-        }
-
-        console.log('Email:', email);
-        console.log('Password:', password);
-
-
     };
 
     return (
         <View className={'flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900'}>
-        <DarkMode></DarkMode>
+
         <View className="w-72 flex min-h-full flex-1 justify-center">
 
 
@@ -73,7 +69,7 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
                 />
                 <MaterialCommunityIcons
                     position='absolute'
-                    right={"-15%"}
+                    right={"2%"}
                     top={"10%"}
                     size={30}
                     className={'w-max h-max'}

@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 // @ts-ignore
 import Logo from '../../assets/images/logo.png';
-import DarkMode from "../../components/DarkMode";
 import {NavigationProp} from "@react-navigation/native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import { InputValidator } from "../../components/Validator/InputValidator";
+import { ConfirmPassValidator } from "../../components/Validator/InputValidator";
 
 type SignUpScreenNavigationProp = NavigationProp<any>
 interface Props {
@@ -24,45 +25,23 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
         setShowPassword(!showPassword);
     };
 
-    let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    let regNickname = /^[a-zA-Z0-9_]{3,20}$/;
-
     const handleSignUp = () => {
-
-        if (!regNickname.test(nickname)){
-            alert("Nickname is not correct")
-            return 0
+        {/* validation */}
+        if(
+        InputValidator("nickname", nickname) &&
+        InputValidator("email", email) &&
+        InputValidator("password", password) &&
+        ConfirmPassValidator(password, confirmPassword)
+        ){
+            {/* handle sign up with api */}
+            console.log('Nickname:', nickname)
+            console.log('Email:', email);
+            console.log('Password:', password);
         }
-
-        if (!regMail.test(email)) {
-            alert("Email is not correct");
-            return 0
-        }
-
-        if(password.length < 8) {
-            alert("Password should contain more than 8 characters")
-            return 0
-        }
-
-        if(confirmPassword != password){
-            alert("Passwords are not the same")
-            return 0
-        }
-
-        console.log('Nickname:', nickname)
-        console.log('Email:', email);
-        console.log('Password:', password);
-
-
-
-
-
-
     };
 
     return (
         <View className={'flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900'}>
-            <DarkMode></DarkMode>
             <View className="w-72 flex min-h-full flex-1 justify-center">
 
 
@@ -103,7 +82,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
                     />
                     <MaterialCommunityIcons
                         position='absolute'
-                        right={"-15%"}
+                        right={"2%"}
                         top={"10%"}
                         size={30}
                         className={'w-max h-max'}
