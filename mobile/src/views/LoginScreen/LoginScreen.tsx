@@ -15,9 +15,6 @@ interface Props {
 }
 
 const LoginScreen: React.FC<Props> = ({navigation}) => {
-
-    const authService = new AuthService()
-
     useState()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -33,19 +30,16 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
             return 0
         }
 
-        if(password.length < 7) {
-            alert("Password should contain more than 8 characters")
-            return 0
-        }
-
-        console.log('Email:', email);
-        console.log('Password:', password);
+        // if(password.length < 7) {
+        //     alert("Password should contain more than 8 characters")
+        //     return 0
+        // }
 
         const body = {
             email: email,
             password: password
         }
-        await authService.login(body)
+        await AuthService.login(body)
     };
 
     return (
