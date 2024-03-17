@@ -11,7 +11,7 @@ export const AUTH_ENDPOINTS = {
 class Auth {
     constructor() {}
     public async login(body: object) {
-        const { data } = await request({
+        const { data} = await request({
             url: AUTH_ENDPOINTS.login,
             method: 'POST',
             body
