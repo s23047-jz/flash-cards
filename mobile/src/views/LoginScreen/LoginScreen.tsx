@@ -6,6 +6,8 @@ import Logo from '../../assets/images/logo.png';
 import DarkMode from "../../components/DarkMode";
 import {NavigationProp, StackNavigationState} from "@react-navigation/native";
 
+import {AuthService} from "../../services/auth";
+
 type LoginScreenNavigationProp = NavigationProp<any>
 
 interface Props {
@@ -13,7 +15,6 @@ interface Props {
 }
 
 const LoginScreen: React.FC<Props> = ({navigation}) => {
-
     useState()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -23,21 +24,22 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
     };
 
     let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    const handleLogin = () => {
+    const handleLogin = async () => {
         if (!regMail.test(email)) {
             alert("Email is not correct");
             return 0
         }
 
-        if(password.length < 7) {
-            alert("Password should contain more than 8 characters")
-            return 0
+        // if(password.length < 7) {
+        //     alert("Password should contain more than 8 characters")
+        //     return 0
+        // }
+
+        const body = {
+            email: email,
+            password: password
         }
-
-        console.log('Email:', email);
-        console.log('Password:', password);
-
-
+        await AuthService.login(body)
     };
 
     return (
