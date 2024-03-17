@@ -1,4 +1,5 @@
 import {ActiveUser} from "../services/user";
+import {RequestInterface} from "../interfaces/request";
 // TODO add querystring
 
 // function decode(obj: object): string {
@@ -35,7 +36,7 @@ export const request = async({
     body?: object;
     formData?: FormData;
     skipRedirect?: boolean;
-}) =>
+}): Promise<RequestInterface> =>
 {
     const methodLower: string = method.toLowerCase()
     const jsonMethods: string[] = ["post", "put", "patch", "delete"]
