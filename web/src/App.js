@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import SignInSide from "./views/SignIn.tsx"; // Importowanie komponentu SignInSide
 
 function App() {
