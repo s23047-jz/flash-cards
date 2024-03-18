@@ -1,18 +1,17 @@
-import ActiveUser from "../services/user";
+import {ActiveUser} from "../services/user";
 // TODO add querystring
 
-function decode(obj: Object): string {
-    const keys = Object.keys(obj);
-    const keyValuePairs = keys.map(key => {
-        return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
-    });
-    return keyValuePairs.join('&');
-}
+// function decode(obj: object): string {
+//     const keys = Object.keys(obj);
+//     const keyValuePairs = keys.map(key => {
+//         return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
+//     });
+//     return keyValuePairs.join('&');
+// }
 
 export const redirectIfNotAuthenticated = (res: Response) => {
     if (res.status === 401) {
-        const user = new ActiveUser();
-        user.clean();
+        ActiveUser.clean()
         // TODO add redirect to login page
     }
     if (res.status === 403) {
@@ -20,26 +19,28 @@ export const redirectIfNotAuthenticated = (res: Response) => {
     }
 }
 
-export async function request({
+export const request = async({
     url,
     query,
-    headers = {},
-    method = "GET",
+    headers={},
+    method="GET",
     body,
     formData,
-    skipRedirect = false
+    skipRedirect=false
 }: {
     url: string;
-    query?: Object;
+    query?: object;
     headers?: Record<string, string>;
     method?: string;
-    body?: Object;
+    body?: object;
     formData?: FormData;
     skipRedirect?: boolean;
-})
+}) =>
 {
     const methodLower: string = method.toLowerCase()
     const jsonMethods: string[] = ["post", "put", "patch", "delete"]
+
+    if (!jsonMethods.includes(methodLower)) return
 
     if (body) {
         body = JSON.stringify(body);
@@ -47,12 +48,11 @@ export async function request({
     if (formData) {
         body = formData
     }
-
-    const user = new ActiveUser();
-    const token = user.getAuthorization();
+    const token = ActiveUser.getAuthorization();
 
     if (token) headers.Authorization = token
-    if (query) url = `${url}?${decode(query)}`
+    headers["content-type"] = 'application/json'
+    // if (query) url = `${url}?${decode(query)}`
 
     const res: Response = await fetch(url, {
         method,
@@ -73,7 +73,7 @@ export async function request({
         }
     }
 
-    const data = res.json();
+    const data = await res.json();
 
     return {
         res,

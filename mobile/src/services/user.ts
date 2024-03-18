@@ -5,7 +5,7 @@ import {
 } from "../interfaces/auth";
 
 
-export default class ActiveUser {
+class User {
     tokenData: TokenInterface = {}
     userData: UserInterface = {}
 
@@ -53,3 +53,5 @@ export default class ActiveUser {
         localStorage.removeItem("tokenData")
     }
 }
+
+export const ActiveUser = new User();

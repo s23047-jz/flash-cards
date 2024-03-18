@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from fastapi import FastAPI
 from flash_cards_api.config import (
-    WEBHOST,
+    ALLOWED_HOSTS,
     BACKEND_HOST,
     BACKEND_PORT
 )
@@ -24,7 +24,7 @@ def create_app() -> FastAPI:
 
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[WEBHOST],
+        allow_origins=[ALLOWED_HOSTS],
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],

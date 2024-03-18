@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 requirements = """
 annotated-types==0.6.0
 anyio==4.2.0
-bcrypt==4.1.2
+bcrypt==4.0.1
 cffi==1.16.0
 click==8.1.7
 cryptography==41.0.7
