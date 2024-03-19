@@ -1,4 +1,3 @@
-import { NavigationProp } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
 import {ROUTES} from "../../constants"
@@ -6,14 +5,9 @@ import {ROUTES} from "../../constants"
 // @ts-ignore
 import Logo from "../../assets/images/logo.png";
 import { InputValidator } from "../../components/Validator/InputValidator";
+import { ScreenProps } from "../../interfaces/screen";
 
-type LoginScreenNavigationProp = NavigationProp<any>;
-
-interface Props {
-  navigation: LoginScreenNavigationProp;
-}
-
-const ForgotPassScreen: React.FC<Props> = ({ navigation }) => {
+const ForgotPassScreen: React.FC<ScreenProps> = ({ navigation }) => {
   useState();
   const [email, setEmail] = useState("");
 

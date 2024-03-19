@@ -1,19 +1,15 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { NavigationProp } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import { ScreenProps } from "../../interfaces/screen";
 
 // @ts-ignore
 import Logo from "../../assets/images/logo.png";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import {ROUTES} from "../../constants";
 
-{
-  /* import DarkMode from "../../components/DarkMode"; */
-}
 
-interface Props {
-  navigation: any;
+interface Props extends ScreenProps {
   LoginMode: any;
 }
 

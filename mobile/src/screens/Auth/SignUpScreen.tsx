@@ -2,17 +2,14 @@ import React, {useState} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 // @ts-ignore
 import Logo from '../../assets/images/logo.png';
-import {NavigationProp} from "@react-navigation/native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import { ConfirmPassValidator } from "../../components/Validator/InputValidator";
 import {ROUTES} from "../../constants";
+import { ScreenProps } from "../../interfaces/screen";
 
-type SignUpScreenNavigationProp = NavigationProp<any>
-interface Props {
-    navigation: SignUpScreenNavigationProp;
-}
-const SignUpScreen: React.FC<Props> = ({navigation}) => {
+
+const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
 
     useState()
 
