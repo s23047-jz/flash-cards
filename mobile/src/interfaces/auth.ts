@@ -15,11 +15,6 @@ export interface UserInterface {
     is_superuser: boolean
 }
 
-
-export type TokenDataType = TokenInterface | {};
-export type UserDataType = UserInterface | {};
-
-
 export interface AuthInterface {
     user_data: UserInterface
     token_data: TokenInterface

@@ -1,18 +1,13 @@
-import { NavigationProp } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import {ROUTES} from "../../constants"
 
 // @ts-ignore
 import Logo from "../../assets/images/logo.png";
 import { InputValidator } from "../../components/Validator/InputValidator";
+import { ScreenProps } from "../../interfaces/screen";
 
-type LoginScreenNavigationProp = NavigationProp<any>;
-
-interface Props {
-  navigation: LoginScreenNavigationProp;
-}
-
-const ForgotPassScreen: React.FC<Props> = ({ navigation }) => {
+const ForgotPassScreen: React.FC<ScreenProps> = ({ navigation }) => {
   useState();
   const [email, setEmail] = useState("");
 
@@ -35,7 +30,7 @@ const ForgotPassScreen: React.FC<Props> = ({ navigation }) => {
 
         {/*<Text className={`text-2xl font-bold mb-6 text-white`}>Log in to your account</Text>*/}
         <TextInput
-          className="h-10 border border-gray-300 rounded px-3 mb-3 text-white"
+          className="h-10 border border-gray-300 rounded-xl px-3 mb-3 text-white"
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
@@ -58,7 +53,10 @@ const ForgotPassScreen: React.FC<Props> = ({ navigation }) => {
           onPress={() => navigation.navigate("Login")}
         >
           <Text className="text-center text-white font-bold">Return to </Text>
-          <Text className="text-center text-white font-extrabold animate-bounce scale-125">
+          <Text
+              className="text-center text-white font-extrabold animate-bounce scale-125"
+              onPress={() => navigation.navigate(ROUTES.LOGIN)}
+          >
             {" "}
             Log In
           </Text>

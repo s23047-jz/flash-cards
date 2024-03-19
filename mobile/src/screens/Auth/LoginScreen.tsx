@@ -1,18 +1,15 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { NavigationProp } from "@react-navigation/native";
 import React, { useState } from "react";
 import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import { ScreenProps } from "../../interfaces/screen";
 
 // @ts-ignore
 import Logo from "../../assets/images/logo.png";
 import { InputValidator } from "../../components/Validator/InputValidator";
+import {ROUTES} from "../../constants";
 
-{
-  /* import DarkMode from "../../components/DarkMode"; */
-}
 
-interface Props {
-  navigation: any;
+interface Props extends ScreenProps {
   LoginMode: any;
 }
 
@@ -48,7 +45,7 @@ const LoginScreen: React.FC<Props> = ({ navigation, LoginMode }) => {
 
         {/*<Text className={`text-2xl font-bold mb-6 text-white`}>Log in to your account</Text>*/}
         <TextInput
-          className="h-10 border border-gray-300 rounded px-3 mb-3 text-white"
+          className="h-10 border border-gray-300 rounded-xl px-3 mb-3 text-white"
           placeholder="Email"
           placeholderTextColor="rgba(255, 255, 255, 0.5)"
           value={email}
@@ -59,7 +56,7 @@ const LoginScreen: React.FC<Props> = ({ navigation, LoginMode }) => {
 
         <View className="flex-row">
           <TextInput
-            className="h-10 border border-gray-300 rounded px-3 mb-3 flex-1 text-white"
+            className="h-10 border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-white"
             placeholder="Password"
             placeholderTextColor="rgba(255, 255, 255, 0.5)"
             value={password}
@@ -89,16 +86,18 @@ const LoginScreen: React.FC<Props> = ({ navigation, LoginMode }) => {
 
         <TouchableOpacity
           className="m-5"
-          onPress={() => navigation.navigate("ForgotPass")}
+          onPress={() => navigation.navigate(ROUTES.FORGOT_PASSWORD)}
         >
-          <Text className="text-center text-white font-bold">
+          <Text
+              className="text-center text-white font-bold"
+          >
             Forgot Password?
           </Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           className="m-5 flex-row justify-center"
-          onPress={() => navigation.navigate("SignUp")}
+          onPress={() => navigation.navigate(ROUTES.REGISTER)}
         >
           <Text className="text-center text-white font-bold">
             Dont have an account?{" "}

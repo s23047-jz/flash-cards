@@ -35,8 +35,7 @@ export const request = async({
     body?: object;
     formData?: FormData;
     skipRedirect?: boolean;
-}) =>
-{
+}) => {
     const methodLower: string = method.toLowerCase()
     const jsonMethods: string[] = ["post", "put", "patch", "delete"]
 
