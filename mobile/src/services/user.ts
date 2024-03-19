@@ -6,8 +6,8 @@ import {
 
 
 class User {
-    tokenData: TokenInterface = {}
-    userData: UserInterface = {}
+    tokenData: TokenInterface | object = {}
+    userData: UserInterface | object = {}
 
     constructor() {
         try {
@@ -29,23 +29,30 @@ class User {
     }
 
     public isUserAdmin(): boolean {
-        return this.userData?.is_superuser || false
+        if ('is_superuser' in this.userData) return this.userData.is_superuser
+        return false
     }
 
-    getUserData(): UserInterface {
+    getUserData(): UserInterface | object {
         return this.userData
     }
 
-    private getTokenType(): string | undefined {
-        return this.tokenData.token_type;
+    private getTokenType(): string {
+        if ('token_type' in this.tokenData) return this.tokenData.token_type;
+        return ''
     }
 
-    private getAccessToken(): string | undefined {
-        return this.tokenData.access_token;
+    private getAccessToken(): string {
+        if ('access_token' in this.tokenData) return this.tokenData.access_token;
+        return ''
     }
 
-    public getAuthorization(): string | undefined {
-        return `${this.getTokenType()} ${this.getAccessToken()}`
+    public getAuthorization(): string {
+        return `${this.getTokenType()} ${this.getAccessToken()}` || '';
+    }
+
+    public isAuthenticated() {
+        return false
     }
 
     public clean() {
