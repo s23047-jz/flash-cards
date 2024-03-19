@@ -52,7 +52,7 @@ class User {
     }
 
     public isAuthenticated() {
-        return false
+        return (!!this.getTokenType() && !!this.getAccessToken())
     }
 
     public clean() {
