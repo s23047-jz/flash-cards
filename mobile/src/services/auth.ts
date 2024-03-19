@@ -11,12 +11,14 @@ export const AUTH_ENDPOINTS = {
 class Auth {
     constructor() {}
     public async login(body: object) {
-        const { data } = await request({
+        const { res, data } = await request({
             url: AUTH_ENDPOINTS.login,
             method: 'POST',
             body
         })
-        ActiveUser.set(data)
+        if([200, 201].includes(res.status)) {
+            ActiveUser.set(data);
+        }
     }
 }
 
