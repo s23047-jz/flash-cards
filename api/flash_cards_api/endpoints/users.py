@@ -29,20 +29,26 @@ class UserDetailsResponse(BaseModel):
     # number_of_decs: int
 
 
-@router.get("/", response_model=List[UserDetailsResponse])
-async def get_user_list(
-    db: Session = Depends(get_db),
+@router.get(
+    "/",
+    response_model=List[UserDetailsResponse],
     dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
+)
+async def get_user_list(
+    db: Session = Depends(get_db)
 ):
     users = db.query(User).all()
     return users
 
 
-@router.get("/{user_id}", response_model=UserDetailsResponse)
+@router.get(
+    "/{user_id}",
+    response_model=UserDetailsResponse,
+    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
+)
 async def get_user_details(
     user_id: str,
-    db: Session = Depends(get_db),
-    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
+    db: Session = Depends(get_db)
 ):
     user = db.query(User).get(User.id == user_id)
     return user
