@@ -3,8 +3,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 // @ts-ignore
 import Logo from '../../assets/images/logo.png';
-import DarkMode from "../../components/DarkMode";
-import {NavigationProp, StackNavigationState} from "@react-navigation/native";
+import {NavigationProp} from "@react-navigation/native";
+import { InputValidator } from "../../components/Validator/InputValidator";
+
+{/* import DarkMode from "../../components/DarkMode"; */}
 
 import {AuthService} from "../../services/auth";
 
@@ -15,6 +17,7 @@ interface Props {
 }
 
 const LoginScreen: React.FC<Props> = ({navigation}) => {
+
     useState()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -22,24 +25,17 @@ const LoginScreen: React.FC<Props> = ({navigation}) => {
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
+    const handleLogin = () => {
 
-    let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    const handleLogin = async () => {
-        if (!regMail.test(email)) {
-            alert("Email is not correct");
-            return 0
+        {/* validation */}
+        if(
+        InputValidator("email", email) &&
+        InputValidator("password", password)
+        ) {
+            {/* handle login with api */}
+            console.log('Email:', email);
+            console.log('Password:', password);
         }
-
-        // if(password.length < 7) {
-        //     alert("Password should contain more than 8 characters")
-        //     return 0
-        // }
-
-        const body = {
-            email: email,
-            password: password
-        }
-        await AuthService.login(body)
     };
 
     return (
