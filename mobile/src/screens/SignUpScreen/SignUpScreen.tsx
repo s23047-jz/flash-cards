@@ -6,6 +6,7 @@ import {NavigationProp} from "@react-navigation/native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import { ConfirmPassValidator } from "../../components/Validator/InputValidator";
+import {ROUTES} from "../../constants";
 
 type SignUpScreenNavigationProp = NavigationProp<any>
 interface Props {
@@ -50,7 +51,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
 
                 {/*<Text className={`text-2xl font-bold mb-6 text-white`}>Log in to your account</Text>*/}
                 <TextInput
-                    className={`h-10 border border-gray-300 rounded px-3 mb-3 text-white`}
+                    className={`h-10 border border-gray-300 rounded-xl px-3 mb-3 text-white`}
                     placeholder="Nickname"
                     placeholderTextColor='rgba(255, 255, 255, 0.5)'
                     value={nickname}
@@ -60,7 +61,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
                 />
 
                 <TextInput
-                    className={`h-10 border border-gray-300 rounded px-3 mb-3 text-white`}
+                    className={`h-10 border border-gray-300 rounded-xl px-3 mb-3 text-white`}
                     placeholder="Email"
                     placeholderTextColor='rgba(255, 255, 255, 0.5)'
                     value={email}
@@ -71,7 +72,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
 
                 <View className={'flex-row'}>
                     <TextInput
-                        className={`h-10 border border-gray-300 rounded px-3 mb-3 flex-1 text-white`}
+                        className={`h-10 border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-white`}
                         placeholder="Password"
                         placeholderTextColor='rgba(255, 255, 255, 0.5)'
                         value={password}
@@ -94,7 +95,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
 
                 <View className={'flex-row'}>
                     <TextInput
-                        className={`h-10 border border-gray-300 rounded px-3 mb-3 flex-1 text-white`}
+                        className={`h-10 border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-white`}
                         placeholder="Confirm password"
                         placeholderTextColor='rgba(255, 255, 255, 0.5)'
                         value={confirmPassword}
@@ -114,7 +115,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
 
 
 
-                <TouchableOpacity className={'m-5 flex-row justify-center'} onPress={() => navigation.navigate('Login')}>
+                <TouchableOpacity className={'m-5 flex-row justify-center'} onPress={() => navigation.navigate(ROUTES.LOGIN)}>
                     <Text className={'text-center text-white font-bold'}>Have an account? </Text>
                     <Text className={'text-center text-white font-extrabold animate-bounce scale-125'}>  Log In</Text>
                 </TouchableOpacity>
