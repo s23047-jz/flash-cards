@@ -1,0 +1,31 @@
+
+.main-container {
+  background-image: url('../../assets/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .flex-container {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .button-container {
+    flex: 0 0 20%;
+    box-sizing: border-box;
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+}
+
+
+@media screen and (max-width: 900px) {
+  .button-container {
+    flex: 0 0 100%;
+  }
+}
