@@ -9,9 +9,9 @@ import {ActiveUser} from "../services/user";
 //     return keyValuePairs.join('&');
 // }
 
-export const redirectIfNotAuthenticated = (res: Response) => {
+export const redirectIfNotAuthenticated = async (res: Response) => {
     if (res.status === 401) {
-        ActiveUser.clean()
+        await ActiveUser.clean()
         // TODO add redirect to login page
     }
     if (res.status === 403) {
@@ -47,7 +47,9 @@ export const request = async({
     if (formData) {
         body = formData
     }
-    const token = ActiveUser.getAuthorization();
+
+    const token = await ActiveUser.getAuthorization();
+    console.log("token", token)
 
     if (token) headers.Authorization = token
     headers["content-type"] = 'application/json'
@@ -60,7 +62,7 @@ export const request = async({
     })
 
     if (!skipRedirect) {
-        redirectIfNotAuthenticated(res)
+        await redirectIfNotAuthenticated(res)
     }
 
     const contentType: string | null = res.headers.get('content-type')
