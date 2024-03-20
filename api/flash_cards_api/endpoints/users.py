@@ -29,6 +29,7 @@ class UserDetailsResponse(BaseModel):
     # number_of_decs: int
 
 
+
 @router.get(
     "/",
     response_model=List[UserDetailsResponse],
