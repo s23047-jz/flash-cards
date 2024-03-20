@@ -71,7 +71,7 @@ class UserResponse(BaseModel):
 
 class LoginResponse(BaseModel):
     user_data: UserResponse
-    token: TokenResponse
+    token_data: TokenResponse
 
 
 @router.post("/login/", response_model=LoginResponse)
@@ -101,7 +101,7 @@ async def login(
 
     return {
         "user_data": user,
-        "token": res_token
+        "token_data": res_token
     }
 
 
