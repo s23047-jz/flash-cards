@@ -1,13 +1,13 @@
 import {
     AuthInterface,
-    TokenDataType,
-    UserDataType
+    TokenInterface,
+    UserInterface
 } from "../interfaces/auth";
 
 
-export default class ActiveUser {
-    tokenData: TokenDataType = {}
-    userData: UserDataType = {}
+class User {
+    tokenData: TokenInterface | object = {}
+    userData: UserInterface | object = {}
 
     constructor() {
         try {
@@ -20,7 +20,7 @@ export default class ActiveUser {
     }
 
 
-    set(payload: AuthInterface) {
+    public set(payload: AuthInterface) {
         this.userData = payload.user_data
         this.tokenData = payload.token_data
 
@@ -28,20 +28,37 @@ export default class ActiveUser {
         localStorage.setItem("tokenData", JSON.stringify(this.tokenData))
     }
 
-    isUserAdmin(): boolean {
-        return 'is_superuser' in this.userData && this.userData.is_superuser
+    public isUserAdmin(): boolean {
+        if ('is_superuser' in this.userData) return this.userData.is_superuser
+        return false
     }
 
-    getUserData(): UserDataType {
+    getUserData(): UserInterface | object {
         return this.userData
     }
 
-    getTokenData(): TokenDataType {
-        return this.tokenData
+    private getTokenType(): string {
+        if ('token_type' in this.tokenData) return this.tokenData.token_type;
+        return ''
     }
 
-    logout() {
+    private getAccessToken(): string {
+        if ('access_token' in this.tokenData) return this.tokenData.access_token;
+        return ''
+    }
+
+    public getAuthorization(): string {
+        return `${this.getTokenType()} ${this.getAccessToken()}` || '';
+    }
+
+    public isAuthenticated() {
+        return (!!this.getTokenType() && !!this.getAccessToken())
+    }
+
+    public clean() {
         localStorage.removeItem("userData")
         localStorage.removeItem("tokenData")
     }
 }
+
+export const ActiveUser = new User();

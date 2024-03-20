@@ -2,15 +2,14 @@ import React, {useState} from 'react';
 import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 // @ts-ignore
 import Logo from '../../assets/images/logo.png';
-import DarkMode from "../../components/DarkMode";
-import {NavigationProp} from "@react-navigation/native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import { InputValidator } from "../../components/Validator/InputValidator";
+import { ConfirmPassValidator } from "../../components/Validator/InputValidator";
+import {ROUTES} from "../../constants";
+import { ScreenProps } from "../../interfaces/screen";
 
-type SignUpScreenNavigationProp = NavigationProp<any>
-interface Props {
-    navigation: SignUpScreenNavigationProp;
-}
-const SignUpScreen: React.FC<Props> = ({navigation}) => {
+
+const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
 
     useState()
 
@@ -24,45 +23,23 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
         setShowPassword(!showPassword);
     };
 
-    let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    let regNickname = /^[a-zA-Z0-9_]{3,20}$/;
-
     const handleSignUp = () => {
-
-        if (!regNickname.test(nickname)){
-            alert("Nickname is not correct")
-            return 0
+        {/* validation */}
+        if(
+        InputValidator("nickname", nickname) &&
+        InputValidator("email", email) &&
+        InputValidator("password", password) &&
+        ConfirmPassValidator(password, confirmPassword)
+        ){
+            {/* handle sign up with api */}
+            console.log('Nickname:', nickname)
+            console.log('Email:', email);
+            console.log('Password:', password);
         }
-
-        if (!regMail.test(email)) {
-            alert("Email is not correct");
-            return 0
-        }
-
-        if(password.length < 8) {
-            alert("Password should contain more than 8 characters")
-            return 0
-        }
-
-        if(confirmPassword != password){
-            alert("Passwords are not the same")
-            return 0
-        }
-
-        console.log('Nickname:', nickname)
-        console.log('Email:', email);
-        console.log('Password:', password);
-
-
-
-
-
-
     };
 
     return (
         <View className={'flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900'}>
-            <DarkMode></DarkMode>
             <View className="w-72 flex min-h-full flex-1 justify-center">
 
 
@@ -71,7 +48,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
 
                 {/*<Text className={`text-2xl font-bold mb-6 text-white`}>Log in to your account</Text>*/}
                 <TextInput
-                    className={`h-10 border border-gray-300 rounded px-3 mb-3 text-white`}
+                    className={`h-10 border border-gray-300 rounded-xl px-3 mb-3 text-white`}
                     placeholder="Nickname"
                     placeholderTextColor='rgba(255, 255, 255, 0.5)'
                     value={nickname}
@@ -81,7 +58,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
                 />
 
                 <TextInput
-                    className={`h-10 border border-gray-300 rounded px-3 mb-3 text-white`}
+                    className={`h-10 border border-gray-300 rounded-xl px-3 mb-3 text-white`}
                     placeholder="Email"
                     placeholderTextColor='rgba(255, 255, 255, 0.5)'
                     value={email}
@@ -92,7 +69,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
 
                 <View className={'flex-row'}>
                     <TextInput
-                        className={`h-10 border border-gray-300 rounded px-3 mb-3 flex-1 text-white`}
+                        className={`h-10 border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-white`}
                         placeholder="Password"
                         placeholderTextColor='rgba(255, 255, 255, 0.5)'
                         value={password}
@@ -103,7 +80,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
                     />
                     <MaterialCommunityIcons
                         position='absolute'
-                        right={"-15%"}
+                        right={"2%"}
                         top={"10%"}
                         size={30}
                         className={'w-max h-max'}
@@ -115,7 +92,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
 
                 <View className={'flex-row'}>
                     <TextInput
-                        className={`h-10 border border-gray-300 rounded px-3 mb-3 flex-1 text-white`}
+                        className={`h-10 border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-white`}
                         placeholder="Confirm password"
                         placeholderTextColor='rgba(255, 255, 255, 0.5)'
                         value={confirmPassword}
@@ -135,7 +112,7 @@ const SignUpScreen: React.FC<Props> = ({navigation}) => {
 
 
 
-                <TouchableOpacity className={'m-5 flex-row justify-center'} onPress={() => navigation.navigate('Login')}>
+                <TouchableOpacity className={'m-5 flex-row justify-center'} onPress={() => navigation.navigate(ROUTES.LOGIN)}>
                     <Text className={'text-center text-white font-bold'}>Have an account? </Text>
                     <Text className={'text-center text-white font-extrabold animate-bounce scale-125'}>  Log In</Text>
                 </TouchableOpacity>
