@@ -50,7 +50,7 @@ const ForgotPassScreen: React.FC<ScreenProps> = ({ navigation }) => {
 
         <TouchableOpacity
           className="m-5 flex-row justify-center"
-          onPress={() => navigation.navigate("Login")}
+          onPress={() => navigation.navigate(ROUTES.LOGIN)}
         >
           <Text className="text-center text-white font-bold">Return to </Text>
           <Text

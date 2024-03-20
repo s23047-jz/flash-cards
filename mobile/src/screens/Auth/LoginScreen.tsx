@@ -8,9 +8,12 @@ import Logo from "../../assets/images/logo.png";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import {ROUTES} from "../../constants";
 
+import {AuthService} from "../../services/auth";
+import {ActiveUser} from "../../services/user";
+
 
 interface Props extends ScreenProps {
-  LoginMode: any;
+  LoginMode?: any;
 }
 
 const LoginScreen: React.FC<Props> = ({ navigation, LoginMode }) => {
@@ -21,20 +24,19 @@ const LoginScreen: React.FC<Props> = ({ navigation, LoginMode }) => {
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
   };
-  const handleLogin = () => {
-    {
-      /* validation */
-    }
+  const handleLogin = async () => {
     if (
       InputValidator("email", email) &&
       InputValidator("password", password)
     ) {
-      {
-        /* handle login with api */
-      }
       console.log("Email:", email);
       console.log("Password:", password);
-      LoginMode();
+      const { res, data } = await AuthService.login({email, password});
+      console.log("RES", res.status);
+      if ([200, 201].includes(res.status)) {
+        await ActiveUser.set(data);
+        navigation.navigate(ROUTES.HOME);
+      }
     }
   };
 
