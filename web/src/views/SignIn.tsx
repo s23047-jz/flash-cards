@@ -17,12 +17,11 @@ const LoginPage = () => {
         <Paper
           elevation={6}
           sx={{
-            marginTop: 8,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            padding: 4,
-            borderRadius: '30px', // Tutaj ustawiasz pożądany poziom zaokrąglenia rogów
+            padding: 3,
+            borderRadius: '30px',
           }}
         >
           <Avatar sx={{ m: 1, width: 200, height: 200 }} src={logo} />
@@ -36,7 +35,7 @@ const LoginPage = () => {
               required
               fullWidth
               id="email"
-              label="Username or Email"
+              label="Email"
               name="email"
               autoComplete="email"
               autoFocus
@@ -69,12 +68,12 @@ const LoginPage = () => {
               Log In
             </Button>
             <Grid container>
-              <Grid item xs>
+              <Grid item xs className="text-left">
                 <Link href="#" variant="body2">
                   {"Forgot password?"}
                 </Link>
               </Grid>
-              <Grid item xs>
+              <Grid item xs className="text-right">
                 <Link href="RegistrationPage.tsx" variant="body2">
                   {"Don't have an account?"}
                 </Link>
