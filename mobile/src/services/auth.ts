@@ -10,9 +10,17 @@ export const AUTH_ENDPOINTS = {
 
 class Auth {
     constructor() {}
-    public async login(body: object | FormData) {
+    public async login(body: object) {
         return await request({
             url: AUTH_ENDPOINTS.login,
+            method: 'POST',
+            body
+        })
+    }
+
+    public async register(body: object) {
+        return await request({
+            url: AUTH_ENDPOINTS.register,
             method: 'POST',
             body
         })

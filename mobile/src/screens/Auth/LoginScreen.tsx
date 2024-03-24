@@ -29,10 +29,9 @@ const LoginScreen: React.FC<Props> = ({ navigation, LoginMode }) => {
       InputValidator("email", email) &&
       InputValidator("password", password)
     ) {
-      console.log("Email:", email);
-      console.log("Password:", password);
+
       const { res, data } = await AuthService.login({email, password});
-      console.log("RES", res.status);
+
       if ([200, 201].includes(res.status)) {
         await ActiveUser.set(data);
         navigation.navigate(ROUTES.HOME);
