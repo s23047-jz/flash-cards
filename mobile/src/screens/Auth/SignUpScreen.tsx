@@ -7,6 +7,8 @@ import { InputValidator } from "../../components/Validator/InputValidator";
 import { ConfirmPassValidator } from "../../components/Validator/InputValidator";
 import {ROUTES} from "../../constants";
 import { ScreenProps } from "../../interfaces/screen";
+import {AuthService} from "../../services/auth";
+import {ActiveUser} from "../../services/user";
 
 
 const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
@@ -23,7 +25,7 @@ const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
         setShowPassword(!showPassword);
     };
 
-    const handleSignUp = () => {
+    const handleSignUp = async () => {
         {/* validation */}
         if(
         InputValidator("nickname", nickname) &&
@@ -36,6 +38,14 @@ const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
             console.log('Email:', email);
             console.log('Password:', password);
         }
+        const body = {
+            email,
+            password,
+            username: nickname,
+            re_password: confirmPassword
+        }
+        const { res } = await AuthService.register(body);
+        if ([200, 201].includes(res.status)) navigation.navigate(ROUTES.LOGIN);
     };
 
     return (
