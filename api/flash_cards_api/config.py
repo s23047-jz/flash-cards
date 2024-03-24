@@ -11,9 +11,7 @@ BACKEND_HOST = os.environ.get('BACKEND_HOST', "0.0.0.0")
 BACKEND_PORT = int(os.environ.get('BACKEND_PORT', 8000))
 
 WEBHOST = os.environ.get("WEBHOST")
-MOBILE_HOST = os.environ.get("MOBILE_HOST", "exp://192.168.1.25:19000").split(",")
-MOBILE_HOST.append(WEBHOST)
-ALLOWED_HOSTS = ", ".join(MOBILE_HOST)
+MOBILE_HOST = os.environ.get("MOBILE_HOST", "exp://192.168.1.25:19000")
 
 MARIADB_HOST = os.environ["MARIADB_HOST"]
 MARIADB_DATABASE = os.environ["MARIADB_DATABASE"]
