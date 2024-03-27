@@ -192,36 +192,40 @@
 	\begin{titlepage}
 		\begin{center}
 			\includegraphics[width=0.8\textwidth]{sprz/pjatk}
+			\vfill{\textbf{Gdańsk, \@date}} \\
 			\vspace{1cm}
 			\large
 			\begin{tabularx}{\textwidth}{X r}
 				\textbf{Kierunek studiów: \@studfield} & \textbf{Rodzaj studiów: \@studtype}
-			\end{tabularx}
+			\end{tabularx} \\
 			\vspace{1cm}
 			\huge
 			\textbf{Praca dyplomowa}
 		\end{center}
 
 		\large
-		\textbf{\\Temat pracy: \@title} \\
-		\textbf{Temat w języku angielskim: \@engtitle} \\
-		\textbf{Opiekun pracy: \@supervisor} \\
-		\textbf{Wykonawcy:}
 		\begin{center}
+			\textbf{\\Temat pracy:} \\
+			\@title \\
+			\textbf{\\Temat w języku angielskim:} \\
+			\@engtitle \\
+			\textbf{\\Opiekun pracy:} \\
+			\@supervisor \\
+			\textbf{\\Wykonawcy:}
+
 			\begin{tabularx}{0.8\textwidth}{|X|X|}
 				\hline
 				\textbf{Nazwisko, imie} & \textbf{Nr albumu} \\
 				\hline
 				\@authors
 			\end{tabularx}
-		\end{center}
-		\vspace{1cm}
-		\textbf{\\Streszczenie:}
 
-		\@nabstract
-		\begin{center}
-			\vfill{\textbf{Gdańsk, \@date}}
+			\vspace{1cm}
+			\textbf{\\Streszczenie:} \\
+			\@nabstract
+
 		\end{center}
+
 		\newpage
 	\end{titlepage}
 }
