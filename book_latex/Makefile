@@ -9,3 +9,9 @@ $(FNAME).pdf: $(FNAME).tex
 
 clean:
 	rm -f $(FNAME).bcf $(FNAME).xml $(FNAME).run.xml $(FNAME).aux $(FNAME)-blx.bib $(FNAME).blg  $(FNAME).nav  $(FNAME).pdf $(FNAME).bbl  $(FNAME).log  $(FNAME).out  $(FNAME).snm	$(FNAME).toc $(FNAME).fdb_latexmk  $(FNAME).fls
+
+create_chapters_dir:
+	bash ./create_chapters_dir.sh
+
+create_pdf:
+	bash ./create_pdf.sh
