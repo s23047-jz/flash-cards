@@ -3,10 +3,12 @@ import React from "react";
 import { View } from "react-native";
 import { LayoutsInterface } from "../interfaces/layouts";
 
-export const Col: React.FC<LayoutsInterface> = ({ children, classNames }) => {
+const Col: React.FC<LayoutsInterface> = ({ className, children }) => {
     return (
-        <View className={`flex-col ${classNames}`}>
+        <View className={`flex-col ${className}`}>
             { children }
         </View>
     )
 }
+
+export default Col;
