@@ -1,4 +1,7 @@
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 HERE = os.getcwd()
 FLASH_CARDS_API_DIR = os.path.join(HERE, "flash_cards_api")
