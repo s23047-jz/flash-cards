@@ -5,7 +5,7 @@ import { LayoutsInterface } from "../interfaces/layouts";
 
 const Row: React.FC<LayoutsInterface> = ({ className, children }) => {
     return (
-        <View className={`flex-row ${className}`}>
+        <View className={`flex flex-row ${className}`}>
             { children }
         </View>
     )

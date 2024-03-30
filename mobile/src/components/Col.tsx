@@ -5,7 +5,7 @@ import { LayoutsInterface } from "../interfaces/layouts";
 
 const Col: React.FC<LayoutsInterface> = ({ className, children }) => {
     return (
-        <View className={`flex-col ${className}`}>
+        <View className={`flex flex-col ${className}`}>
             { children }
         </View>
     )
