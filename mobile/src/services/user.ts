@@ -22,13 +22,10 @@ class User {
     }
 
     public async set(payload: AuthInterface) {
-        this.userData = payload.user_data
-        this.tokenData = payload.token_data
-
-        console.log('payload', payload)
-
-        await AsyncStorage.setItem("userData", JSON.stringify(this.userData))
-        await AsyncStorage.setItem("tokenData", JSON.stringify(this.tokenData))
+        this.userData = payload.user_data;
+        this.tokenData = payload.token_data;
+        await AsyncStorage.setItem("userData", JSON.stringify(this.userData));
+        await AsyncStorage.setItem("tokenData", JSON.stringify(this.tokenData));
     }
 
     public async isUserAdmin(): Promise<boolean> {

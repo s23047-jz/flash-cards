@@ -18,7 +18,7 @@ export function InputValidator(type: string, value: string): boolean{
             break;
 
         case "password":
-            if(value.length < 8){
+            if(value.length < 1){
                 alert("Password should contain more than 8 characters");
                 return false;
             }
