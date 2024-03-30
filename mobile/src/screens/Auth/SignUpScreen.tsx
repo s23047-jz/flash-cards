@@ -8,7 +8,6 @@ import { ConfirmPassValidator } from "../../components/Validator/InputValidator"
 import {ROUTES} from "../../constants";
 import { ScreenProps } from "../../interfaces/screen";
 import {AuthService} from "../../services/auth";
-import {ActiveUser} from "../../services/user";
 
 
 const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
@@ -44,7 +43,7 @@ const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
             username: nickname,
             re_password: confirmPassword
         }
-        const { res } = await AuthService.register(body);
+        const { res } = await AuthService.register(body, navigation);
         if ([200, 201].includes(res.status)) navigation.navigate(ROUTES.LOGIN);
     };
 

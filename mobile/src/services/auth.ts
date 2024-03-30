@@ -1,6 +1,7 @@
 import {BASE_API} from "./config";
 import {request} from "../utils/request";
-import {ActiveUser} from "./user";
+import { NavigationProp } from "@react-navigation/native";
+
 
 export const AUTH_ENDPOINTS = {
     login: `${BASE_API}/api/auth/login/`,
@@ -10,19 +11,29 @@ export const AUTH_ENDPOINTS = {
 
 class Auth {
     constructor() {}
-    public async login(body: object) {
+    public async login(body: object, navigation: NavigationProp<any>) {
         return await request({
             url: AUTH_ENDPOINTS.login,
             method: 'POST',
-            body
+            body,
+            navigation
         })
     }
 
-    public async register(body: object) {
+    public async register(body: object, navigation: NavigationProp<any>) {
         return await request({
             url: AUTH_ENDPOINTS.register,
             method: 'POST',
-            body
+            body,
+            navigation
+        })
+    }
+
+    public async logout(navigation: NavigationProp<any>) {
+        return await request({
+            url: AUTH_ENDPOINTS.logout,
+            method: 'POST',
+            navigation
         })
     }
 }

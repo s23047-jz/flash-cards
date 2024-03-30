@@ -30,7 +30,7 @@ const LoginScreen: React.FC<Props> = ({ navigation, LoginMode }) => {
       InputValidator("password", password)
     ) {
 
-      const { res, data } = await AuthService.login({email, password});
+      const { res, data } = await AuthService.login({email, password}, navigation);
 
       if ([200, 201].includes(res.status)) {
         await ActiveUser.set(data);

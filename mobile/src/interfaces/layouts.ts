@@ -2,5 +2,6 @@ import { ReactNode } from "react";
 
 export interface LayoutsInterface {
     children?: ReactNode,
-    className?: string
+    className?: string,
+    onPress: () => void;
 }
