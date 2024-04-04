@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import logo from '../assets/images/logo.png';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography, Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {AuthService} from "../services/auth";
 
 const theme = createTheme();
 
@@ -24,7 +25,7 @@ const RegistrationPage: React.FC = () => {
     let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     let regNickname = /^[a-zA-Z0-9_]{3,20}$/;
 
-    const handleSignUp = () => {
+    const handleSignUp = async() => {
 
         if (!regNickname.test(nickname)){
             alert("Nickname is not correct")
@@ -50,8 +51,23 @@ const RegistrationPage: React.FC = () => {
         console.log('Email:', email);
         console.log('Password:', password);
 
+                // Prepare the payload
+        const body = {
+            email: email,
+            password: password,
+            re_password: confirmPassword,
+            username: nickname
+        };
 
-
+        try {
+            await AuthService.register(body);
+            // Navigate to the dashboard or home page upon success
+            // e.g., navigation.navigate("Dashboard");
+        } catch (error) {
+            // @ts-ignore
+            // Handle login error (e.g., show error message)
+            alert("Login failed: " + error.message);
+        }
 
 
 
@@ -133,7 +149,7 @@ const RegistrationPage: React.FC = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               name="confirmPassword"
               label="Confirm Password"
-              type="confirmPassword"
+              type="password"
               id="confirmPassword"
             />
 

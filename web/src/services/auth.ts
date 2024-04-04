@@ -20,6 +20,16 @@ class Auth {
     });
     ActiveUser.set(data);
   }
+
+    public async register(body: object) {
+    // @ts-ignore
+    return await request({
+      url: AUTH_ENDPOINTS.register,
+      method: 'POST', body
+    });
+  }
 }
+
+
 
 export const AuthService = new Auth();
