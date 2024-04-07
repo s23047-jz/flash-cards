@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Image, Text, ScrollView } from "react-native";
 import { ScreenProps } from "../../interfaces/screen";
 
 import {Row, Col, Button} from "../../components";
@@ -7,16 +7,18 @@ import {Row, Col, Button} from "../../components";
 import LOGO from "../../assets/images/logo.png"
 
 import {AuthService} from "../../services/auth";
+import Routes from "../../constants/routes";
 
 
 const UserPanelScreen: React.FC<ScreenProps> = ({ navigation }) => {
+
     const options = [
         {
             label: "Information",
             routes: [
                 {
                     label: "Stats",
-                    to: "/stats"
+                    to: ""
                 }
             ]
         },
@@ -26,20 +28,20 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation }) => {
                 {
                     label: "User Name",
                     value: 'username',
-                    to: "/username"
+                    to: Routes.UPDATE_USERNAME
                 },
                 {
                     label: "E-mail",
                     value: 'email',
-                    to: "/email"
+                    to: ""
                 },
                 {
                     label: "Change password",
-                    to: "/change_password"
+                    to: ""
                 },
                 {
                     label: "Delete account",
-                    to: "/delete_account"
+                    to: ""
                 }
             ]
         }
@@ -48,6 +50,10 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation }) => {
     const logout = async () => {
         console.log("LOGIN OUT")
         await AuthService.logout(navigation);
+    }
+
+    const handleNavigation = (path) => {
+        if (path) navigation.navigate(path)
     }
 
     return (
@@ -68,7 +74,7 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation }) => {
                             </Row>
                             { option.routes.map(route => (
                                 <Row className='w-full mt-1 mb-1' key={route.label}>
-                                    <Button className='w-full p-2'>
+                                    <Button className='w-full p-2' onPress={() => handleNavigation(route.to)}>
                                         <Row className='w-full'>
                                             <Text className='mx-5 font-bold text-xl'>
                                                 {route.label}
@@ -106,6 +112,6 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation }) => {
             </ScrollView>
         </View>
     )
-}
+};
 
 export default UserPanelScreen;
