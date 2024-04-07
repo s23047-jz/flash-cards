@@ -11,7 +11,6 @@ import Routes from "../../constants/routes";
 
 
 const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
-
     const options = [
         {
             label: "Information",
@@ -28,7 +27,8 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
                 {
                     label: "User Name",
                     value: 'username',
-                    to: Routes.UPDATE_USERNAME
+                    to: Routes.USER_UPDATE,
+                    params: { updateField: 'username' }
                 },
                 {
                     label: "E-mail",
@@ -52,10 +52,6 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
         await AuthService.logout(navigation);
     }
 
-    const handleNavigation = (path) => {
-        if (path) navigation.navigate(path)
-    }
-
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
@@ -73,20 +69,20 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
                                         {option.label}
                                     </Text>
                                 </Row>
-                                {option.routes.map(route => (
-                                    <Row className='w-full mt-1 mb-1' key={route.label}>
-                                        <Button className='w-full p-2' onPress={() => handleNavigation(route.to)}>
+                                {option.routes.map(path => (
+                                    <Row className='w-full mt-1 mb-1' key={path.label}>
+                                        <Button className='w-full p-2' onPress={() => navigation.navigate(path.to, (path.params || {}))}>
                                             <Row className='w-full'>
                                                 <Text className='mx-5 font-bold text-xl'>
-                                                    {route.label}
+                                                    {path.label}
                                                 </Text>
                                             </Row>
                                             {
-                                                Object.keys(route).includes('value')
+                                                Object.keys(path).includes('value')
                                                     ?
                                                     <Row className='w-full'>
                                                         <Text className='mx-5 text-sm'>
-                                                            {route.value}
+                                                            {path.value}
                                                         </Text>
                                                     </Row>
                                                     :
