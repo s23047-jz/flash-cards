@@ -1,5 +1,5 @@
 from pydantic.main import BaseModel
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 
 from fastapi import (
@@ -29,6 +29,15 @@ class UserDetailsResponse(BaseModel):
     # number_of_decs: int
 
 
+class UserUpdateModel(BaseModel):
+    email: Optional[str]
+    username: Optional[str]
+
+
+class SelfUserUpdate(UserUpdateModel):
+    password: str
+    re_password: str
+
 
 @router.get(
     "/",
@@ -52,4 +61,29 @@ async def get_user_details(
     db: Session = Depends(get_db)
 ):
     user = db.query(User).get(User.id == user_id)
+    return user
+
+
+@router.put(
+    "/{user_id}",
+    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
+)
+async def get_user_details(
+    user_id: str,
+    payload: UserUpdateModel,
+    db: Session = Depends(get_db)
+):
+    payload = payload.dict()
+    user: User = db.query(User).get(User.id == user_id)
+
+    if user:
+        if 'email' in payload.keys():
+            user.email = payload['email']
+
+        if 'username' in payload.keys():
+            user.username = payload['username']
+
+        db.commit()
+        db.refresh(user)
+
     return user
