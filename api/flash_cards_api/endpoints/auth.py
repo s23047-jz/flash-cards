@@ -10,7 +10,8 @@ from fastapi import (
     Depends,
     HTTPException,
     status,
-    Request
+    Request,
+    Response
 )
 from sqlalchemy.orm import Session
 
@@ -140,10 +141,9 @@ async def register(
     )
     db.commit()
 
-    return HTTPException(
-        status_code=status.HTTP_201_CREATED,
-        detail="Successfully created a new user"
-    )
+    response = Response(status_code=status.HTTP_201_CREATED)
+    response.body = "Successfully created a new user"
+    return response
 
 
 @router.post("/logout/")
