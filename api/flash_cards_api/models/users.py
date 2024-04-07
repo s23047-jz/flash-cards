@@ -1,6 +1,6 @@
 import uuid
 from datetime import datetime
-
+from sqlalchemy.orm import relationship
 from passlib.context import CryptContext
 
 from sqlalchemy import (
@@ -13,6 +13,7 @@ from sqlalchemy import (
     func
 )
 
+from flash_cards_api.models.deck_of_flash_cards import Deck
 from flash_cards_api.models import Base
 
 
@@ -36,6 +37,8 @@ class User(Base):
     active = Column(Boolean, default=True)
     role = Column(String(50), nullable=False)
     is_superuser = Column(Boolean, default=False)
+
+    decks = relationship("Deck", back_populates="user")  # Relacja jeden do wielu
 
     def verify_password(self, password: str):
         return pwd_context.verify(password, self.password)

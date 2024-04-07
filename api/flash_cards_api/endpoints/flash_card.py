@@ -14,10 +14,11 @@ from fastapi import (
 from flash_cards_api.models.flash_card import FlashCard
 import uuid
 
-router = APIRouter(prefix="/flash_card", tags=["authentication"])
+router = APIRouter(prefix="/flash_card", tags=["flash_cards"])
 
 
 class FlashCardCreate(BaseModel):
+    deck_id: uuid.UUID
     card_title: str
     card_text: str
 
