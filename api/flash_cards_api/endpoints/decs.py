@@ -14,10 +14,11 @@ from fastapi import (
 from flash_cards_api.models.deck_of_flash_cards import Deck
 import uuid
 
-router = APIRouter(prefix="/decs", tags=["authentication"])
+router = APIRouter(prefix="/decs", tags=["decs"])
 
 
 class DeckCreate(BaseModel):
+    user_id: uuid.UUID
     title: str
     deck_category: str
 
@@ -39,6 +40,20 @@ async def read_deck_by_id(
         return deck
     raise HTTPException(status_code=404, detail="Deck not found")
 
+@router.get("/{deck_id}/flash_cards", status_code=status.HTTP_200_OK)
+async def read_deck_cards_by_id(
+    deck_id: uuid.UUID,
+    db: Session = Depends(get_db)
+):
+    """Return deck cards by deck id"""
+    deck = db.query(Deck).filter(Deck.id == deck_id).first()
+    if deck is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    flashcards = deck.flash_card_relationship
+
+
+    return [{"id": card.id, "title": card.card_title} for card in flashcards]
 
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
 async def create_deck(
@@ -84,3 +99,6 @@ async def delete_deck(
 
     db.query(Deck).filter(Deck.id == delete_id).delete()
     db.commit()
+
+
+
