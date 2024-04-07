@@ -53,7 +53,7 @@ async def read_deck_cards_by_id(
     flashcards = deck.flash_card_relationship
 
 
-    return [{"id": card.id, "title": card.card_title} for card in flashcards]
+    return [{"id": card.id, "title": card.card_title, "card text": card.card_text} for card in flashcards]
 
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
 async def create_deck(
