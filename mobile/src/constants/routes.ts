@@ -10,5 +10,5 @@ export default {
 
     // user profile
     USER_DETAILS: 'User Details',
-    UPDATE_USERNAME: 'Update Username'
+    USER_UPDATE: 'User Update'
 }
