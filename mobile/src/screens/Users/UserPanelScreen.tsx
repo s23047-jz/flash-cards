@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import {View, Image, Text, ScrollView} from "react-native";
 import {ScreenProps} from "../../interfaces/screen";
 
@@ -8,9 +8,30 @@ import LOGO from "../../assets/images/logo.png"
 
 import {AuthService} from "../../services/auth";
 import Routes from "../../constants/routes";
+import {ActiveUser} from "../../services/user";
 
 
 const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
+
+    const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState({username: '', email: ''});
+
+    useEffect(() => {
+        setLoading(true);
+        const checkAuthentication = async () => {
+            try {
+                const { username, email } = await ActiveUser.getUserData();
+                setUserData({ username, email });
+                setLoading(false);
+            } catch (error) {
+            console.error('Error checking authentication status:', error);
+            setUserData({username: '', email: ''});
+            setLoading(false);
+        }
+    };
+    checkAuthentication();
+    }, []);
+
     const options = [
         {
             label: "Information",
@@ -52,6 +73,12 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
         await AuthService.logout(navigation);
     }
 
+    if (loading) {
+        return (
+            <Text>Loading...</Text>
+        );
+    }
+
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
@@ -82,7 +109,7 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
                                                     ?
                                                     <Row className='w-full'>
                                                         <Text className='mx-5 text-sm'>
-                                                            {path.value}
+                                                            {userData[path.value]}
                                                         </Text>
                                                     </Row>
                                                     :
