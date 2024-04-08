@@ -6,5 +6,9 @@ export default {
     HOME: "Home",
     SEARCH: "Search",
     STUDY: "Study",
-    USER: "User"
+    USER: "User",
+
+    // user profile
+    USER_DETAILS: 'User Details',
+    USER_UPDATE: 'User Update'
 }

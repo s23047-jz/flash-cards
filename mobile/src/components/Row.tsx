@@ -1,11 +1,11 @@
 import React from "react";
 
 import { View } from "react-native";
-import { LayoutsInterface } from "../interfaces/layouts";
+import { ComponentsInterface } from "../interfaces/components";
 
-const Row: React.FC<LayoutsInterface> = ({ className, children }) => {
+const Row: React.FC<ComponentsInterface> = ({ className, children }) => {
     return (
-        <View className={`flex flex-row ${className}`}>
+        <View className={`flex flex-wrap ${className}`}>
             { children }
         </View>
     )

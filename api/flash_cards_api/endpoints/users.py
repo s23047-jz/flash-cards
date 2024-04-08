@@ -19,6 +19,8 @@ from flash_cards_api.dependencies.auth import get_current_active_user
 
 from flash_cards_api.utils.auth import get_user_by_username, get_user
 
+from flash_cards_api.endpoints.auth import UserResponse
+
 
 router = APIRouter(
     prefix="/api/users",
@@ -115,7 +117,7 @@ async def get_me(
         return user_details
 
 
-@router.put("/me/", dependencies=[Depends(get_current_active_user)])
+@router.put("/me/", dependencies=[Depends(get_current_active_user)], response_model=UserResponse)
 async def update_me(
     payload: SelfUserUpdate,
     user: User = Depends(get_current_active_user),
@@ -157,5 +159,5 @@ async def update_me(
             user_details.email = payload['email']
 
         db.commit()
-        db.refresh(user)
-    return user
+        db.refresh(user_details)
+    return user_details
