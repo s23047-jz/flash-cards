@@ -38,7 +38,7 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                             <TextInput
                                 className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
                                 placeholder={`${updateField}`}
-                                placeholderTextColor='rgba(255, 255, 255, 0.5)'
+                                placeholderTextColor='rgba(0, 0, 0, 0.5)'
                                 autoCapitalize={"none"}
                                 accessibilityElementsHidden={true}
                             />
