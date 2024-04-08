@@ -8,6 +8,9 @@ import {Row, Col, Button} from "../../components";
 import { ScreenProps } from "../../interfaces/screen";
 import { UpdateUserInterface } from "../../interfaces/user";
 
+import { UsersService } from "../../services/users";
+import {ActiveUser} from "../../services/user";
+
 
 const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
 
@@ -20,6 +23,19 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
             ...prevState,
             [key]: value
         }))
+    }
+
+    const updateUser = async() => {
+        if (!userData[updateField]) return
+
+        const body = {}
+        body[updateField] = userData[updateField]
+
+        const { res, data } = await UsersService.updateMe(body, navigation)
+
+        if ([200, 201].includes(res.status)) {
+            await ActiveUser.updateUserData(data);
+        }
     }
 
     return (
@@ -59,9 +75,9 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                 </Row>
                 <Row className='w-full p-6'>
                     <Col className='w-full'>
-                        <Button className={'p-3 w-52 text-center mr-auto ml-auto'}>
+                        <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={updateUser}>
                             <Text className={'text-lg ml-auto mr-auto font-bold'}>
-                                Change username
+                                Change { updateField }
                                 <MaterialCommunityIcons name={'check-bold'} size={18}/>
                             </Text>
                         </Button>
