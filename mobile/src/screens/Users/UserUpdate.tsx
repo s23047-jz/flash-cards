@@ -1,6 +1,6 @@
 import React from "react";
 
-import {View, Text, TextInput} from "react-native";
+import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 import {Row, Col, Button} from "../../components";
@@ -17,10 +17,12 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
             <View className={'w-full mt-20'}>
                 <Row className='w-full p-6'>
                     <Col className='w-full'>
-                        <Text className='text-2xl text-white font-bold'>
-                            <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
-                            User profile
-                        </Text>
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <Text className='text-2xl text-white font-bold'>
+                                <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
+                                User profile
+                            </Text>
+                        </TouchableOpacity>
                     </Col>
                 </Row>
                 <Row className='w-full p-6'>
