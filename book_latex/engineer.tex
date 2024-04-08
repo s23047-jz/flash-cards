@@ -1,0 +1,158 @@
+\documentclass{sprz}
+\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\usepackage[T1]{fontenc}
+
+\addbibresource{bibliography.bib}
+
+\studfield{Informatyka}
+\studtype{Zaoczne}
+\title{Fishki - multiplatformowa aplikacja służąca do nauki pamięciowej}
+\engtitle{Fishki - a multiplatform application for memory learning}
+\acronym{Fishki}
+\titledate{11.10.2023}
+\supervisor{dr Puźniakowski Tadeusz}
+\author{Kossak Oliwier}{s22018}{Sztuczna Inteligencja}{Niestacjonarny}
+\author{Klimowski Daniel}{s18504}{Sztuczna Inteligencja}{Niestacjonarny}
+\author{Krieger Wiktor}{s23638}{Sztuczna Inteligencja}{Niestacjonarny}
+\author{Żurawski Jakub}{s23047}{Sztuczna Inteligencja}{Niestacjonarny}
+\consultant{--- brak ---} % Koniecznie trzeba podać brak, albo wpisać konsultantów tak jak przy autorach
+\projectgoals{Wytwarzany system przynosi rozwiązanie służące do efektywnej nauki pamięciowej. Cel projektu odpowiada na problem rozumiany jako trudności w organizacji oraz korzystania z materiałów służących do opanowywania pojęć. }
+\productsandservices{Strona internetowa, aplikacja mobilna, serwer obsługujący utrzymanie i żywotność produktu }
+\mainfunctionalities{Nauka metodą fishek, obsługa talii tj. zestawów fiszek, obsługa talii fiszek za pomocą mowy, tworzenie fiszek z pomocą sztucznej inteligencji. }
+\successmeasure{Wytworzenie działającej strony internetowej i aplikacji mobilnej, opracowanie techniczne projektu z wykorzystaniem infrastruktury serwerowej, zaimplementowanie silnika sztucznej inteligencji, zrealizowanie wymagań systemowych na poziomie ‘wymagane’.}
+\projlimitations{Deadline, zdalny charakter pracy nad projektem, budżet, brak doświadczenia w pracy nad projektem o zadanej złożoności, nauka i wykorzystanie nowych technologii.}
+\date{\today}
+\nabstract{
+    DO ZROBIENiA NA KOŃCU - NA RÓWNI ZE WSTĘPEM
+}
+
+
+
+\begin{document}
+
+    \maketitle
+
+    \makeprojectcard
+    \makedeclaration
+
+    \tableofcontents
+
+    \chapter{Informacje wstępne}
+
+    \input{chapters/chapter_2/main}
+
+    \input{chapters/chapter_3/main}
+
+    \chapter{Przykładowe elementy}
+
+    W niniejszym rozdziale pokażę różne ciekawe elementy które można użyć w pracy. Nie są to wszystkie możliwości, ale te, które moim zdaniem najczęściej pojawiają się w pracach inż. Na przykład, jeśli chcemy powołać się na jakieś źródła, robimy to tak~\cite{BEHESHTIROUI2021107419}.
+
+    \section{Listingi}
+
+    Jak załączać kod źródłowy jest pokazane na listingu~\ref{lst:helloworld}
+
+
+    \begin{lstlisting}[language=c,caption={Przykładowy witaj w świecie}, label={lst:helloworld}]
+printf("hello");
+    \end{lstlisting}
+
+    \section{Obrazki}
+
+    Na ilustracji~\ref{img:pjatklogo} widzimy oficjalne logo PJATK.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.5\textwidth]{sprz/pjatk}
+        \caption{Logo PJATK załączone jako obrazek}
+        \label{img:pjatklogo}
+    \end{figure}
+
+    albo dla wygody jako makro tak jak na obrazku~\ref{img:pjatklogo2}
+
+    \putimage{Obrazek załączony za pomocą makra}{sprz/pjatk}{img:pjatklogo2}{0.5\textwidth}
+
+    \chapter{Karty udziałowca}
+
+
+    \begin{stakeholder}[label={tab:stakeholder:someholder},caption={Przykładowy opis udzialowca}]
+        \id{jednoznaczny symbol np. UOB 01, UOB 02 ... dla udziałowców ożywionych bezpośrednich, UNP 01... dla nieożywionych pośrednich itd.}
+        \name{nazwa udziałowca}
+        \descr{opis udziałowca}
+        \type{ożywiony/nieożywiony, bezpośredni/pośredni}
+        \viewpoint{z jakiej perspektywy patrzy udziałowiec np. technicznej, ekonomicznej, operatora systemu itp.}
+        \limitations{ograniczenia udziałowca np. administrator nie powinien specyfikować wymagań finansowych}
+        \requ{tu tylko symbole wymagań wyspecyfikowanych w rozdziale 3}
+    \end{stakeholder}
+
+    \chapter{Wymagania wszelakie}
+
+    Na tabeli \ref{tab:requirements:general} pokazano jak można definiować wymagania ogólne lub dziedzinowe.
+
+    \begin{requirementstab}[label={tab:requirements:general},caption={Przykładowe wymaganie ogólne lub dziedzinowe}]
+        \id{jednoznaczny symbol np. WO1, WO2 .. }
+        \priority{ważność wymagania, np. wg skali MoSCoW: M – must (musi być) S – should (powinno być) C – could (może być) W – won't (nie będzie – nie będzie implementowane w danym wydaniu, ale może być rozpatrzone w przyszłości )}
+        \name{krótki opis}
+        \descr{opis szczegółowy, należy dążyć do tego, żeby wszystkie znane na ten moment szczegóły wymagania zostały wydobyte i wyspecyfikowane}
+        \sholder{nazwa udziałowca, który podał wymaganie}
+        \reqrelated{wymagania zależne i uszczegóławiające – odesłanie poprzez identyfikator}
+    \end{requirementstab}
+
+    Teraz czas na wymagania funkcjonalne, na przykład \ref{tab:requirements:func1}
+
+    \begin{requirementstab}[label={tab:requirements:func1},caption={Pryzkładowa tabela z wymaganiami na interfejs z otoczeniem}]
+        \id{jednoznaczny symbol np. FO1, FO2 .. }
+        \priority{ważność wymagania, np. wg skali MoSCoW: M – must (musi być) S – should (powinno być) C – could (może być) W – won't (nie będzie – nie będzie implementowane w danym wydaniu, ale może być rozpatrzone w przyszłości )}
+        \name{krótki opis}
+        \descr{opis szczegółowy, należy dążyć do tego, żeby wszystkie znane na ten moment szczegóły wymagania zostały wydobyte i wyspecyfikowane
+
+        Można zastosować opis jak w User Story
+            \begin{itemize}
+                \item Jako.. (konkretny użytkownik systemu)
+                \item chcę... (pożądana cecha lub problem, który trzeba rozwiązać)
+                \item bo wtedy/ponieważ… (korzyść płynąca z ukończenia story)
+            \end{itemize}
+        }
+        \acceptcrit{Warunki Satysfakcji (Szczegóły dodane na potrzeby  testów akceptacyjnych)}
+        \inputdata{uzupełniane w trakcie sprintu – dane wejściowe, związane z wymaganiem}
+        \preconditions{ uzupełniane w trakcie sprintu – warunki, które muszą być prawdziwe przed wywołaniem operacji}
+        \postconditions{ uzupełniane w trakcie sprintu – warunki, które muszą być prawdziwe po wywołaniu operacji}
+        \exceptions{ uzupełniane w trakcie sprintu – niepożądane sytuacje i sposoby ich obsługi}
+        \implementation{ uzupełniane w trakcie sprintu – opis sposobu realizacji}
+        \sholder{nazwa udziałowca, który podał wymaganie}
+        \reqrelated{wymagania zależne i uszczegóławiające – odesłanie poprzez identyfikator}
+    \end{requirementstab}
+
+
+    Natomiast tabela \ref{tab:requirements:env1} pokazuje wymagania na interfejs z otoczeniem.
+
+    \begin{requirementstab}[label={tab:requirements:env1},caption={Pryzkładowa tabela z wymaganiami na interfejs z otoczeniem}]
+        \id{jednoznaczny symbol np. IO1, IO2 .. }
+        \priority{ważność wymagania, np. wg skali MoSCoW: M – must (musi być) S – should (powinno być) C – could (może być) W – won't (nie będzie – nie będzie implementowane w danym wydaniu, ale może być rozpatrzone w przyszłości )}
+        \name{krótki opis}
+        \descr{opis szczegółowy, należy dążyć do tego, żeby wszystkie znane na ten moment szczegóły wymagania zostały wydobyte i wyspecyfikowane}
+        \acceptcrit{Warunki Satysfakcji (Szczegóły dodane na potrzeby  testów akceptacyjnych)}
+        \inputdata{uzupełniane w trakcie sprintu – dane wejściowe, związane z wymaganiem}
+        \preconditions{ uzupełniane w trakcie sprintu – warunki, które muszą być prawdziwe przed wywołaniem operacji}
+        \postconditions{ uzupełniane w trakcie sprintu – warunki, które muszą być prawdziwe po wywołaniu operacji}
+        \exceptions{ uzupełniane w trakcie sprintu – niepożądane sytuacje i sposoby ich obsługi}
+        \implementation{ uzupełniane w trakcie sprintu – opis sposobu realizacji}
+        \sholder{nazwa udziałowca, który podał wymaganie}
+        \reqrelated{wymagania zależne i uszczegóławiające – odesłanie poprzez identyfikator}
+    \end{requirementstab}
+
+    Tabela dotycząca wymagań pozafunkcjonalnych \ref{tab:requirements:nonfunc1} jest także widoczne.
+
+    \begin{requirementstab}[label={tab:requirements:nonfunc1},caption={Pryzkładowa tabela z wymaganiami pozafunkcjonalnymi}]
+        \id{jednoznaczny symbol np. NFO1, NFO2 .. }
+        \priority{ważność wymagania, np. wg skali MoSCoW: M – must (musi być) S – should (powinno być) C – could (może być) W – won't (nie będzie – nie będzie implementowane w danym wydaniu, ale może być rozpatrzone w przyszłości )}
+        \name{krótki opis}
+        \descr{opis szczegółowy, należy dążyć do tego, żeby wszystkie znane na ten moment szczegóły wymagania zostały wydobyte i wyspecyfikowane}
+        \acceptcrit{Warunki Satysfakcji (Szczegóły dodane na potrzeby  testów akceptacyjnych)}
+        \sholder{nazwa udziałowca, który podał wymaganie}
+        \reqrelated{wymagania zależne i uszczegóławiające – odesłanie poprzez identyfikator}
+    \end{requirementstab}
+
+
+    \printbibliography[title={Bibliografia}, heading=bibintoc]
+
+\end{document}

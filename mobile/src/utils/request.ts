@@ -1,4 +1,9 @@
+import { NavigationProp } from "@react-navigation/native";
+
 import {ActiveUser} from "../services/user";
+import {ROUTES} from "../constants/";
+
+
 // TODO add querystring
 
 // function decode(obj: object): string {
@@ -9,13 +14,14 @@ import {ActiveUser} from "../services/user";
 //     return keyValuePairs.join('&');
 // }
 
-export const redirectIfNotAuthenticated = (res: Response) => {
+
+const redirectIfNotAuthenticated = async (res: Response, navigation: NavigationProp<any>) => {
     if (res.status === 401) {
-        ActiveUser.clean()
-        // TODO add redirect to login page
+        await ActiveUser.clean()
+        navigation.navigate(ROUTES.LOGIN)
     }
     if (res.status === 403) {
-        // TODO add redirect to home view for logged
+        navigation.navigate(ROUTES.HOME)
     }
 }
 
@@ -26,7 +32,8 @@ export const request = async({
     method="GET",
     body,
     formData,
-    skipRedirect=false
+    skipRedirect=false,
+    navigation
 }: {
     url: string;
     query?: object;
@@ -35,8 +42,8 @@ export const request = async({
     body?: object;
     formData?: FormData;
     skipRedirect?: boolean;
-}) =>
-{
+    navigation?: NavigationProp<any>,
+}) => {
     const methodLower: string = method.toLowerCase()
     const jsonMethods: string[] = ["post", "put", "patch", "delete"]
 
@@ -48,10 +55,11 @@ export const request = async({
     if (formData) {
         body = formData
     }
-    const token = ActiveUser.getAuthorization();
 
-    if (token) headers.Authorization = token
-    headers["content-type"] = 'application/json'
+    const token = await ActiveUser.getAuthorization();
+
+    if (token) headers.Authorization = token;
+    headers["content-type"] = 'application/json';
     // if (query) url = `${url}?${decode(query)}`
 
     const res: Response = await fetch(url, {
@@ -61,7 +69,7 @@ export const request = async({
     })
 
     if (!skipRedirect) {
-        redirectIfNotAuthenticated(res)
+        await redirectIfNotAuthenticated(res, navigation)
     }
 
     const contentType: string | null = res.headers.get('content-type')

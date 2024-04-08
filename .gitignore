@@ -13,3 +13,4 @@ __pycache__/
 .env_copy
 
 *.egg-info/
+_version.txt

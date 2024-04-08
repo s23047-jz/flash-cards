@@ -4,53 +4,76 @@ import {
     UserInterface
 } from "../interfaces/auth";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 class User {
-    tokenData: TokenInterface = {}
-    userData: UserInterface = {}
+    tokenData: TokenInterface | object = {}
+    userData: UserInterface | object = {}
 
-    constructor() {
+    public async get() {
         try {
-            const storedUserData = JSON.parse(localStorage.getItem("userData") || '{}');
-            const storedTokenData = JSON.parse(localStorage.getItem("tokenData") || '{}');
+            const storedUserData = await AsyncStorage.getItem("userData");
+            const storedTokenData = await AsyncStorage.getItem("tokenData")
 
-            this.userData = storedUserData;
-            this.tokenData = storedTokenData;
+            this.userData =  JSON.parse(storedUserData !== null ? storedUserData : '{}')
+            this.tokenData = JSON.parse(storedTokenData !== null ? storedTokenData : '{}');
         } catch(e) {}
     }
 
-
-    public set(payload: AuthInterface) {
-        this.userData = payload.user_data
-        this.tokenData = payload.token_data
-
-        localStorage.setItem("userData", JSON.stringify(this.userData))
-        localStorage.setItem("tokenData", JSON.stringify(this.tokenData))
+    public async set(payload: AuthInterface) {
+        this.userData = payload.user_data;
+        this.tokenData = payload.token_data;
+        await AsyncStorage.setItem("userData", JSON.stringify(this.userData));
+        await AsyncStorage.setItem("tokenData", JSON.stringify(this.tokenData));
     }
 
-    public isUserAdmin(): boolean {
-        return this.userData?.is_superuser || false
+    public async updateUserData(payload: UserInterface) {
+        this.userData = payload;
+        await AsyncStorage.setItem("userData", JSON.stringify(this.userData));
     }
 
-    getUserData(): UserInterface {
-        return this.userData
+    public async getUserData() {
+        await this.get();
+        return this.userData;
     }
 
-    private getTokenType(): string | undefined {
-        return this.tokenData.token_type;
+    public async isUserAdmin(): Promise<boolean> {
+        await this.get();
+        if ('is_superuser' in this.userData) return this.userData.is_superuser
+        return false
     }
 
-    private getAccessToken(): string | undefined {
-        return this.tokenData.access_token;
+    private async getTokenType(): Promise<string> {
+        await this.get();
+        if ('token_type' in this.tokenData) return this.tokenData.token_type;
+        return ''
     }
 
-    public getAuthorization(): string | undefined {
-        return `${this.getTokenType()} ${this.getAccessToken()}`
+    private async  getAccessToken(): Promise<string> {
+        await this.get();
+        if ('access_token' in this.tokenData) return this.tokenData.access_token;
+        return ''
     }
 
-    public clean() {
-        localStorage.removeItem("userData")
-        localStorage.removeItem("tokenData")
+    public async getAuthorization() {
+        await this.get();
+        const tokenType = await this.getTokenType();
+        const accessToken = await this.getAccessToken();
+        if (tokenType && accessToken) return `${tokenType} ${accessToken}`
+        return '';
+    }
+
+    public async isAuthenticated() {
+        await this.get();
+        const tokenType = await this.getTokenType();
+        const accessToken = await this.getAccessToken();
+        return (!!tokenType && !!accessToken)
+    }
+
+    public async clean() {
+        await AsyncStorage.removeItem("userData")
+        await AsyncStorage.removeItem("tokenData")
     }
 }
 

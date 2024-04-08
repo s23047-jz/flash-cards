@@ -11,9 +11,6 @@ function App() {
         <Routes>
           <Route path="/signin" element={<SignIn />} />
           <Route path="/registration" element={<Registration />} />
-          {/* Możesz dodać więcej ścieżek i komponentów tutaj */}
-          {/* Domyślna ścieżka/strona główna */}
-          {/*<Route path="/" element={<div>Strona główna</div>} />*/}
         </Routes>
       </div>
     </Router>
