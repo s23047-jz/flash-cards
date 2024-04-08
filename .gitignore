@@ -10,5 +10,6 @@ __pycache__/
 
 .env
 .copy_env
+.env_copy
 
 *.egg-info/
