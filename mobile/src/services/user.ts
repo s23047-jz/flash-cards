@@ -28,6 +28,11 @@ class User {
         await AsyncStorage.setItem("tokenData", JSON.stringify(this.tokenData));
     }
 
+    public async getUserData() {
+        await this.get();
+        return this.userData;
+    }
+
     public async isUserAdmin(): Promise<boolean> {
         await this.get();
         if ('is_superuser' in this.userData) return this.userData.is_superuser
