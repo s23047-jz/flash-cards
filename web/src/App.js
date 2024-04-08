@@ -1,14 +1,19 @@
-
-import './App.css';
-import HomePage from "./ components/home_page/HomePage"
-import  CreateFlashCardsPage from "./ components/flash_cards_creator/CreateFlashCardsPage"
+import React from 'react';
+import './styles/App.scss';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import SignIn from './views/SignIn.tsx';
+import Registration from './views/Registration.tsx';
 
 function App() {
   return (
-    <div className="App">
-
-        < CreateFlashCardsPage/>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/registration" element={<Registration />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 

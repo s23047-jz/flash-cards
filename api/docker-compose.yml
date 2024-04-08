@@ -24,7 +24,7 @@ services:
 #      context: .
 #    restart: always
 #    env_file:
-#      - .env
+#      - .env.development
 #    volumes:
 #      - .:/fc_api
 #      - media:/media
