@@ -28,6 +28,11 @@ class User {
         await AsyncStorage.setItem("tokenData", JSON.stringify(this.tokenData));
     }
 
+    public async updateUserData(payload: UserInterface) {
+        this.userData = payload;
+        await AsyncStorage.setItem("userData", JSON.stringify(this.userData));
+    }
+
     public async getUserData() {
         await this.get();
         return this.userData;
