@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 import {Row, Col, Button} from "../../components";
 
-import {ScreenProps} from "../../interfaces/screen";
+import { ScreenProps } from "../../interfaces/screen";
+import { UpdateUserInterface } from "../../interfaces/user";
 
 
 const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const { updateField } = route.params;
+
+    const [userData, setUserData] = useState<UpdateUserInterface>({ username: '' })
+
+    const updateValue = (key: string, value: string) => {
+        setUserData(prevState => ({
+            ...prevState,
+            [key]: value
+        }))
+    }
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
@@ -41,6 +51,8 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                                 placeholderTextColor='rgba(0, 0, 0, 0.5)'
                                 autoCapitalize={"none"}
                                 accessibilityElementsHidden={true}
+                                value={userData[updateField]}
+                                onChangeText={text => updateValue(updateField, text)}
                             />
                         </Col>
                     </Row>

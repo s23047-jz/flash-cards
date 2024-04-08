@@ -9,8 +9,8 @@ const Stack = createNativeStackNavigator();
 export default function UserPanelNavigator() {
     return (
         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={ROUTES.USER_DETAILS}>
-        <Stack.Screen name={ROUTES.USER_DETAILS} component={UserPanelScreen} />
-        <Stack.Screen name={ROUTES.USER_UPDATE} component={UserUpdate} />
+            <Stack.Screen name={ROUTES.USER_DETAILS} component={UserPanelScreen} />
+            <Stack.Screen name={ROUTES.USER_UPDATE} component={UserUpdate} />
         </Stack.Navigator>
     )
 }
