@@ -1,9 +1,9 @@
 import React from "react";
 
 import { View } from "react-native";
-import { LayoutsInterface } from "../interfaces/layouts";
+import { ComponentsInterface } from "../interfaces/components";
 
-const Col: React.FC<LayoutsInterface> = ({ className, children }) => {
+const Col: React.FC<ComponentsInterface> = ({ className, children }) => {
     return (
         <View className={`flex flex-grow min-w-0 max-w-full ${className}`}>
             { children }
