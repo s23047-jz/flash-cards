@@ -8,6 +8,8 @@ export default {
     STUDY: "Study",
     USER: "User",
 
+    MYDECKS: "MyDecks",
+
     // user profile
     USER_DETAILS: 'User Details',
     USER_UPDATE: 'User Update'
