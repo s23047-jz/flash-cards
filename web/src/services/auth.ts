@@ -25,7 +25,8 @@ class Auth {
     // @ts-ignore
     return await request({
       url: AUTH_ENDPOINTS.register,
-      method: 'POST', body
+      method: 'POST',
+      body
     });
   }
 }

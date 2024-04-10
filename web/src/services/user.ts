@@ -32,6 +32,7 @@ class User {
         return this.userData?.is_superuser || false
     }
 
+
     getUserData(): UserInterface {
         return this.userData
     }

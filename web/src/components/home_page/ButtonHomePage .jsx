@@ -5,7 +5,7 @@ const ButtonHomePage = ({frontText, image, backText}) => {
     const [hovered, setHovered] = useState(false);
 
     return (
-        <div className="button-container">
+        <div className="button-container" >
             <button className='custom-button' onMouseEnter={() => setHovered(true)}
                     onMouseLeave={() => setHovered(false)}>
                 <img src={image} alt="Obrazek 1" className="top-right-image"/>
