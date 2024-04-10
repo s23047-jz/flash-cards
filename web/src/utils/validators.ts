@@ -14,3 +14,5 @@ const passwordValidator = ({ password }: { password: string }) => {
     if (errors.length) return errors
     return true;
 };
+
+export {};

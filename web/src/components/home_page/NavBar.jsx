@@ -18,8 +18,7 @@ import logo from '../../assets/logo.png';
 
 
 const drawerWidth = '50%';
-// const drawerHeight = 253;
-const navItems = ['Learning', 'Search', 'Profile'];
+const navItems = ['Learning', 'Search', 'Profile', 'Log out'];
 
 function DrawerAppBar(props) {
     const {window} = props;
@@ -72,12 +71,12 @@ function DrawerAppBar(props) {
                         <img src={logo} alt="Logo" style={{height: '70px', width: '70px'}}/>
 
                     </Typography>
-                    <Box sx={{display: {xs: 'none', sm: 'none', md: 'block'}}}>
+                    <Box  sx={{display: {xs: 'none', sm: 'none', md: 'block'}}}>
                         {navItems.map((item, index) => (
                             <Button key={item}
                                     sx={{
                                         color: '#fff',
-                                        mr: index < navItems.length - 1 ? 21 : 14,
+                                        mr: index < navItems.length - 1 ? 18 : 6,
                                         fontSize: '1.1rem',
                                         fontWeight: 'bold'
                                     }}>
@@ -94,7 +93,7 @@ function DrawerAppBar(props) {
                     open={mobileOpen}
                     onClose={handleDrawerToggle}
                     ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
+                        keepMounted: true
                     }}
                     sx={{
                         display: {sm: 'block', md: 'none'},

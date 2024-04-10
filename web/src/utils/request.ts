@@ -51,7 +51,7 @@ export const request = async({
     if (token) headers.Authorization = token
     headers["content-type"] = 'application/json'
     // if (query) url = `${url}?${decode(query)}`
-
+    console.log(url)
     const res: Response = await fetch(url, {
         method,
         headers,

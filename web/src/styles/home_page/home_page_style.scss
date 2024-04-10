@@ -1,9 +1,11 @@
 
 .main-container {
+  width: 100%;
   background-image: url('../../assets/background.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  background-attachment: fixed;
 
   .flex-container {
     width: 100%;
@@ -24,7 +26,21 @@
 }
 
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
+  .main-container{
+    margin-top: 100vh;
+  }
+
+  .button-container {
+    flex: 0 0 100%;
+  }
+}
+
+@media screen and (max-height: 700px) {
+  .main-container{
+    margin-top: 150vh;
+  }
+
   .button-container {
     flex: 0 0 100%;
   }
