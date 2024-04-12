@@ -71,6 +71,32 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
         }
     }
 
+    function logout() {
+        const token = ActiveUser.getAuthorization();
+        if (token) {
+            AuthService.logout(token);
+            navigate("/signin")
+        } else {
+            console.error('Brak dostępnego tokenu');
+        }
+    }
+
+    const handleNavItemClick = (item: string) => {
+        switch (item) {
+            case 'Learning':
+                break;
+            case 'Search':
+                break;
+            case 'Profile':
+                break;
+            case 'Log out':
+                logout();
+                break;
+            default:
+                break;
+        }
+    }
+
     const drawer = (
         <Box onClick={handleDrawerToggle}
              sx={{textAlign: 'center', background: 'linear-gradient(to bottom, #007bff, #004d99)', color: 'white'}}>
