@@ -41,13 +41,16 @@ class User {
         return this.tokenData.token_type;
     }
 
-    private getAccessToken(): string | undefined {
+    public getAccessToken(): string | undefined {
         return this.tokenData.access_token;
     }
+
 
     public getAuthorization(): string | undefined {
         return `${this.getTokenType()} ${this.getAccessToken()}`
     }
+
+
 
     public clean() {
         localStorage.removeItem("userData")
