@@ -29,6 +29,21 @@ class Auth {
       body
     });
   }
+   public async logout(token: string) {
+    try {
+      await request({
+        url: AUTH_ENDPOINTS.logout,
+        method: 'POST',
+        headers: {
+          'Authorization': `${token}`
+        }
+      });
+      ActiveUser.clean();
+    } catch (error) {
+      console.error('Error during log out :', error);
+    }
+  }
+
 }
 
 

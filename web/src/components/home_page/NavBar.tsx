@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -14,19 +14,52 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+// @ts-ignore
 import logo from '../../assets/logo.png';
+import {AuthService} from "../../services/auth";
+import {useNavigate} from 'react-router-dom';
+import {ActiveUser} from '../../services/user'
 
+interface DrawerAppBarProps {
+    window?: () => Window;
+}
 
 const drawerWidth = '50%';
-const navItems = ['Learning', 'Search', 'Profile', 'Log out'];
+const navItems: string[] = ['Learning', 'Search', 'Profile', 'Log out'];
 
-function DrawerAppBar(props) {
-    const {window} = props;
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
+    const navigate = useNavigate();
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen((prevState) => !prevState);
     };
+
+    function logout() {
+        const token = ActiveUser.getAuthorization();
+        if (token) {
+            AuthService.logout(token);
+            navigate("/signin")
+        } else {
+            console.error('Brak dostępnego tokenu');
+        }
+    }
+
+    const handleNavItemClick = (item: string) => {
+        switch (item) {
+            case 'Learning':
+                break;
+            case 'Search':
+                break;
+            case 'Profile':
+                break;
+            case 'Log out':
+                logout();
+                break;
+            default:
+                break;
+        }
+    }
 
     const drawer = (
         <Box onClick={handleDrawerToggle}
@@ -38,8 +71,8 @@ function DrawerAppBar(props) {
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{textAlign: 'center'}}>
-                            <ListItemText primary={item}/>
+                        <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleNavItemClick(item)}>
+                            <ListItemText primary={item} />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -71,9 +104,10 @@ function DrawerAppBar(props) {
                         <img src={logo} alt="Logo" style={{height: '70px', width: '70px'}}/>
 
                     </Typography>
-                    <Box  sx={{display: {xs: 'none', sm: 'none', md: 'block'}}}>
+                    <Box sx={{display: {xs: 'none', sm: 'none', md: 'block'}}}>
                         {navItems.map((item, index) => (
                             <Button key={item}
+                                    onClick={() => handleNavItemClick(item)}
                                     sx={{
                                         color: '#fff',
                                         mr: index < navItems.length - 1 ? 18 : 6,

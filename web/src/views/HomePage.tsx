@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import DrawerAppBar from "../components/home_page/NavBar";
 // @ts-ignore
