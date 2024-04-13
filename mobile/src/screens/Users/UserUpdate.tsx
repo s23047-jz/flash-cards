@@ -75,7 +75,7 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                 </Row>
                 <Row className='w-full p-6'>
                     <Col className='w-full'>
-                        <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={updateUser}>
+                        <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={updateUser} disabled={!userData[updateField]}>
                             <Text className={'text-lg ml-auto mr-auto font-bold'}>
                                 Change { updateField }
                                 <MaterialCommunityIcons name={'check-bold'} size={18}/>
