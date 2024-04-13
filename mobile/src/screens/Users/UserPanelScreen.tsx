@@ -59,7 +59,8 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
                 },
                 {
                     label: "Change password",
-                    to: ""
+                    to: Routes.USER_UPDATE,
+                    params: { updateField: 'password' }
                 },
                 {
                     label: "Delete account",

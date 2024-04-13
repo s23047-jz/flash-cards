@@ -16,13 +16,23 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const { updateField } = route.params;
 
-    const [userData, setUserData] = useState<UpdateUserInterface>({ username: '' })
+    const [userData, setUserData] = useState<UpdateUserInterface>({
+        username: '',
+        email: '',
+        password: '',
+        re_password: '',
+    })
 
     const updateValue = (key: string, value: string) => {
         setUserData(prevState => ({
             ...prevState,
             [key]: value
         }))
+    }
+
+    const handleDisabledButton = () => {
+        if (updateField === 'password') return (!userData[updateField] || !userData['re_password'])
+        return !userData[updateField]
     }
 
     const updateUser = async() => {
@@ -71,11 +81,24 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                                 onChangeText={text => updateValue(updateField, text)}
                             />
                         </Col>
+                        { updateField === 'password' ?
+                            <Col className='w-full h-14'>
+                                <TextInput
+                                    className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
+                                    placeholder={'repeat password'}
+                                    placeholderTextColor='rgba(0, 0, 0, 0.5)'
+                                    autoCapitalize={"none"}
+                                    accessibilityElementsHidden={true}
+                                    value={userData['re_password']}
+                                    onChangeText={text => updateValue('re_password', text)}
+                                />
+                            </Col>
+                        : ''}
                     </Row>
                 </Row>
                 <Row className='w-full p-6'>
                     <Col className='w-full'>
-                        <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={updateUser} disabled={!userData[updateField]}>
+                        <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={updateUser} disabled={handleDisabledButton()}>
                             <Text className={'text-lg ml-auto mr-auto font-bold'}>
                                 Change { updateField }
                                 <MaterialCommunityIcons name={'check-bold'} size={18}/>
