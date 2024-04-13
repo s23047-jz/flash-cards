@@ -16,7 +16,12 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const { updateField } = route.params;
 
-    const [userData, setUserData] = useState<UpdateUserInterface>({ username: '' })
+    const [userData, setUserData] = useState<UpdateUserInterface>({
+        username: '',
+        email: '',
+        password: '',
+        re_password: '',
+    })
 
     const updateValue = (key: string, value: string) => {
         setUserData(prevState => ({
