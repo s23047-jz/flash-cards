@@ -9,6 +9,7 @@ export default {
     USER: "User",
 
     MYDECKS: "MyDecks",
+    CREATEDECK: "CreateDeck",
 
     // user profile
     USER_DETAILS: 'User Details',
