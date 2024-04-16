@@ -5,6 +5,7 @@ import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import Plus from "../../assets/images/plus.png";
 import { ScreenProps } from "../../interfaces/screen";
 import {Button} from "../../components";
+import {ROUTES} from "../../constants";
 
 const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
   useState();
@@ -17,7 +18,7 @@ const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
       </Text>
       <View className=" top-14 absolute left-6">
         <MaterialCommunityIcons
-          onPress={() => navigation.goBack()}
+          onPress={() => navigation.navigate(ROUTES.HOME)}
           size={30}
           name="arrow-left-bold"
           color="white"
@@ -41,7 +42,9 @@ const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
           color="black"
         />
       </View>
-        <Button className={'p-3 w-60 h-16 justify-center mr-auto ml-auto rounded-3xl'}>
+        <Button
+            onPress={() => navigation.navigate(ROUTES.CREATEDECK)}
+            className={'p-3 w-60 h-16 justify-center mr-auto ml-auto rounded-3xl'}>
             <Text className="mx-5 font-bold">Create new deck</Text>
             <Image
                 className="absolute flex-grow h-10 -right-6"

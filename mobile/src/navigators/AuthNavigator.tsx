@@ -7,6 +7,9 @@ import {ActiveUser} from "../services/user";
 
 import { LoginScreen, RegisterScreen, ForgotPassScreen } from "../screens";
 import BottomTabNavigator from "./BottomTabNavigator";
+import CreateDeck from "../screens/PrivateDecks/CreateDeck";
+import PrivateDecksNavigator from "./PrivateDecksNavigator";
+import {ScreenStack} from "react-native-screens";
 
 
 const Stack = createNativeStackNavigator();
