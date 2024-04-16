@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 
 import Plus from "../../assets/images/plus.png";
-import {ScreenProps} from "../../interfaces/screen";
+import { ScreenProps } from "../../interfaces/screen";
+import {Button} from "../../components";
 
 const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
   useState();
@@ -14,15 +15,14 @@ const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
       <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
         My Decks
       </Text>
-      <MaterialCommunityIcons onPress={() => navigation.goBack()}
-        className="text-white"
-        position="absolute"
-        left="4%"
-        top="10%"
-        size={30}
-        name="arrow-left-bold"
-        color="white"
-      />
+      <View className=" top-14 absolute left-6">
+        <MaterialCommunityIcons
+          onPress={() => navigation.goBack()}
+          size={30}
+          name="arrow-left-bold"
+          color="white"
+        />
+      </View>
       <View className="flex-row absolute top-32">
         <TextInput
           className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white"
@@ -41,15 +41,14 @@ const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
           color="black"
         />
       </View>
-      <TouchableOpacity className="flex flex-row items-center justify-left bg-cyan-400 border-sky-600 border-2 m-2 rounded-100 object-scale-down h-16 w-60">
-        <Text className="mx-5 font-bold">Create new deck</Text>
-
-        <Image
-          className="absolute flex-grow h-10 -right-6"
-          resizeMode="contain"
-          source={Plus}
-        />
-      </TouchableOpacity>
+        <Button className={'p-3 w-60 h-16 justify-center mr-auto ml-auto rounded-3xl'}>
+            <Text className="mx-5 font-bold">Create new deck</Text>
+            <Image
+                className="absolute flex-grow h-10 -right-6"
+                resizeMode="contain"
+                source={Plus}
+            />
+        </Button>
     </View>
   );
 };
