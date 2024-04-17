@@ -25,7 +25,7 @@ interface DrawerAppBarProps {
 }
 
 const drawerWidth = '50%';
-const navItems: string[] = ['Learning', 'Search', 'Profile', 'Log out'];
+const navItems: string[] = ['Search', 'Profile', 'Home', 'Log out'];
 
 const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
     const navigate = useNavigate();
@@ -45,13 +45,18 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
         }
     }
 
+    function homePageNavigate() {
+        navigate("/home")
+    }
+
     const handleNavItemClick = (item: string) => {
         switch (item) {
-            case 'Learning':
-                break;
             case 'Search':
                 break;
             case 'Profile':
+                break;
+            case 'Home':
+                homePageNavigate();
                 break;
             case 'Log out':
                 logout();
@@ -71,8 +76,8 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }} onClick={() => handleNavItemClick(item)}>
-                            <ListItemText primary={item} />
+                        <ListItemButton sx={{textAlign: 'center'}} onClick={() => handleNavItemClick(item)}>
+                            <ListItemText primary={item}/>
                         </ListItemButton>
                     </ListItem>
                 ))}

@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import '../../styles/button/button_home_page.scss';
 
-const ButtonHomePage = ({frontText, image, backText}) => {
+const ButtonHomePage = ({frontText, image, backText, onClick}) => {
     const [hovered, setHovered] = useState(false);
 
     return (
         <div className="button-container" >
-            <button className='custom-button' onMouseEnter={() => setHovered(true)}
-                    onMouseLeave={() => setHovered(false)}>
+            <button className='custom-button' onMouseEnter={() => setHovered(true) }
+                    onMouseLeave={() => setHovered(false)} onClick={onClick}>
                 <img src={image} alt="Obrazek 1" className="top-right-image"/>
                 <img src={image} alt="Obrazek 2" className="bottom-left-image"/>
                 <p>

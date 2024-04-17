@@ -128,7 +128,12 @@ const FlashCardCreator = (props) => {
 
     return (
         <div className="texfields-container">
-            <div className="webTitle"><p>Create Deck</p></div>
+
+            <Grid container justify="center" alignItems="center">
+                <div className="webTitle"><p>Create Deck</p></div>
+                <ButtonFlashCardsCreatePage imageSize={"30px"} text={"Create Deck"} image={plus} color={"#5346F1"}
+                                            onClick={appendInputDirector}/>
+            </Grid>
             <Grid container spacing={1} style={{marginBottom: "3%"}}>
                 <Grid xs={12} lg={6} item>
                     <FormControl fullWidth margin="dense">

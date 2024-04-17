@@ -5,7 +5,6 @@ const PrivateRoutes = () => {
 
     let isAuthorized = false
     if (ActiveUser.getAccessToken() !== undefined) {
-        console.log(ActiveUser.getAuthorization())
         isAuthorized = true
     }
 

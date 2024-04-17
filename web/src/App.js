@@ -5,6 +5,7 @@ import SignIn from './views/SignIn.tsx';
 import Registration from './views/Registration.tsx';
 import HomePage from './views/HomePage';
 import PrivateRoute from './utils/PrivateRoute';
+import CreateFlashCardsPage from "./views/CreateFlashCardsPage";
 
 function App() {
     return (
@@ -16,6 +17,7 @@ function App() {
                     </Route>
                     <Route path="/signin" element={<SignIn/>}/>
                     <Route path="/registration" element={<Registration/>}/>
+                    <Route path="/create_deck" element={<CreateFlashCardsPage/>}/>
 
                 </Routes>
             </div>
