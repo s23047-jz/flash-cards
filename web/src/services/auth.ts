@@ -7,6 +7,7 @@ export const AUTH_ENDPOINTS = {
   login: `${BASE_API}/api/auth/login/`,
   register: `${BASE_API}/api/auth/register/`,
   logout: `${BASE_API}/api/auth/logout/`,
+
 };
 
 class Auth {
