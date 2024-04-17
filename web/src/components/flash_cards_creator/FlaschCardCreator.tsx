@@ -7,6 +7,7 @@ import trashbin from "../../assets/Trashbin.png";
 import plus from "../../assets/Plus.png";
 import microphone_black from "../../assets/Microphone_black.png";
 import microphone_red from "../../assets/Microphone_red.png";
+import {DeckService} from "../../services/decs" ;
 import "../../styles/create_flash_cards_page/flash_card_style.scss";
 
 const FlashCardCreator = (props) => {
@@ -15,6 +16,8 @@ const FlashCardCreator = (props) => {
     const [texts, setTexts] = useState({});
     const [isDictating, setIsDictating] = useState({});
     const recognitionInstances = useRef({});
+
+
 
     const recognition = useRef(null);
 
@@ -126,6 +129,7 @@ const FlashCardCreator = (props) => {
         }
     }, [directorsArray, textFieldRefs]);
 
+    const handleSignUp = async()
     return (
         <div className="texfields-container">
 
