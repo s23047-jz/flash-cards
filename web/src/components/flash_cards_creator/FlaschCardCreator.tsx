@@ -132,34 +132,60 @@ const FlashCardCreator = (props) => {
     };
 
     const handleDeck = async () => {
-    const userId = ActiveUser.getId();
+        const userId = ActiveUser.getId();
 
-    const deck_body = {
-        user_id: userId,
-        title: deckTitle,
-        deck_category: category,
-    };
-
-    try {
-        const createdDeck = await DeckService.create_deck(deck_body);
-
-        for (const { id } of directorsArray) {
-            const frontSideText = texts[`front-${id}`] || '';
-            const backSideText = texts[`back-${id}`] || '';
-
-            const flash_card_body = {
-                deck_id: createdDeck?.data.id,
-                card_title: frontSideText,
-                card_text: backSideText,
-            };
-
-            await DeckService.create_flash_card(flash_card_body);
+        if (!deckTitle || !category) {
+            alert('The "deck name" and "deck category" fields must be completed.');
+            return;
         }
 
-    } catch (error: any) {
-        alert("Failed to create deck and flash cards: " + error.message);
-    }
-};
+        let hasNonEmptyCards = false;
+
+        for (const {id} of directorsArray) {
+            const frontSideText = texts[`front-${id}`] || '';
+            const backSideText = texts[`back-${id}`] || '';
+            if (frontSideText.trim() !== '' && backSideText.trim() !== '') {
+                hasNonEmptyCards = true;
+                break;
+            }
+        }
+
+        if (!hasNonEmptyCards) {
+            alert('You must add at least one non-empty card before creating the deck.');
+            return;
+        }
+
+        const deck_body = {
+            user_id: userId,
+            title: deckTitle,
+            deck_category: category,
+        };
+
+
+
+
+        try {
+            const createdDeck = await DeckService.create_deck(deck_body);
+
+            for (const {id} of directorsArray) {
+                const frontSideText = texts[`front-${id}`] || '';
+                const backSideText = texts[`back-${id}`] || '';
+                if (frontSideText.length > 1 && backSideText.length > 1) {
+                    const flash_card_body = {
+                        deck_id: createdDeck?.data.id,
+                        card_title: frontSideText,
+                        card_text: backSideText,
+                    };
+
+                    await DeckService.create_flash_card(flash_card_body);
+                }
+
+            }
+
+        } catch (error: any) {
+            alert("Failed to create deck and flash cards: " + error.message);
+        }
+    };
 //     useEffect(() => {
 //     const addedNewDirector = directorsArray.length > textFieldRefs.current.length;
 //     if (
@@ -195,8 +221,8 @@ const FlashCardCreator = (props) => {
                             label="deck name"
                             name={`Deck-name`}
                             multiline={true}
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)}
+                            value={deckTitle}
+                            onChange={(e) => setDeckTitle(e.target.value)}
                             rows={1}
                             InputProps={{
                                 classes: {input: props.classes.flashCardCategoryName},
@@ -217,8 +243,8 @@ const FlashCardCreator = (props) => {
                             name={`Deck-name`}
                             multiline={true}
                             rows={1}
-                            value={deckTitle}
-                            onChange={(e) => setDeckTitle(e.target.value)}
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
                             InputProps={{
                                 classes: {input: props.classes.flashCardCategoryName},
                             }}
