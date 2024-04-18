@@ -45,6 +45,10 @@ class User {
         return this.tokenData.access_token;
     }
 
+    public getId(): string | undefined {
+        return this.userData.id;
+    }
+
 
     public getAuthorization(): string | undefined {
         return `${this.getTokenType()} ${this.getAccessToken()}`

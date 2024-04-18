@@ -6,9 +6,12 @@ import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Lin
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AuthService } from "../services/auth";
 import { useNavigate } from 'react-router-dom';
+import { ActiveUser } from "../services/user";
+
 const theme = createTheme();
 
 const LoginPage: React.FC = () => {
+    ActiveUser.clean()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
@@ -34,6 +37,7 @@ const LoginPage: React.FC = () => {
             // Navigate to the dashboard or home page upon success
             // e.g., navigation.navigate("Dashboard");
             navigate('/home');
+            window.location.reload();
         } catch (error) {
             // @ts-ignore
             // Handle login error (e.g., show error message)

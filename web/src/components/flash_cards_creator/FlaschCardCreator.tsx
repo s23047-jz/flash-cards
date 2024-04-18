@@ -3,26 +3,42 @@ import {FormControl, InputAdornment, IconButton} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import ButtonFlashCardsCreatePage from "./ButtonCreateFlashCardPage";
+// @ts-ignore
 import trashbin from "../../assets/Trashbin.png";
+// @ts-ignore
 import plus from "../../assets/Plus.png";
+// @ts-ignore
 import microphone_black from "../../assets/Microphone_black.png";
+// @ts-ignore
 import microphone_red from "../../assets/Microphone_red.png";
+import {DeckService} from "../../services/decs" ;
+// @ts-ignore
 import "../../styles/create_flash_cards_page/flash_card_style.scss";
+import {AuthService} from "../../services/auth";
+import {ActiveUser} from "../../services/user";
 
+// @ts-ignore
 const FlashCardCreator = (props) => {
+    const [category, setCategory] = useState('');
+    const [deckTitle, setDeckTitle] = useState('');
     const [directorsArray, setDirectorsArray] = useState([{id: 0, value: ""}]);
     const textFieldRefs = useRef([null]);
-    const [texts, setTexts] = useState({});
-    const [isDictating, setIsDictating] = useState({});
-    const recognitionInstances = useRef({});
+    const [texts, setTexts] = useState<Record<string, any>>({});
+    const [isDictating, setIsDictating] = useState<Record<string, boolean>>({});
+    const recognitionInstances = useRef<{ [key: string]: any }>({});
+
 
     const recognition = useRef(null);
 
     useEffect(() => {
         if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+            // @ts-ignore
             recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            // @ts-ignore
             recognition.current.lang = 'en-US';
+            // @ts-ignore
             recognition.current.continuous = true;
+            // @ts-ignore
             recognition.current.onresult = (event) => {
                 let finalTranscript = "";
                 for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -32,6 +48,7 @@ const FlashCardCreator = (props) => {
                 }
                 setTexts(prevTexts => ({
                     ...prevTexts,
+                    // @ts-ignore
                     [event.target.id]: (prevTexts[event.target.id] || '') + finalTranscript
                 }));
             };
@@ -40,6 +57,7 @@ const FlashCardCreator = (props) => {
         }
     }, []);
 
+    // @ts-ignore
     const toggleDictation = (id, isFrontSide) => {
         const recognitionInstanceKey = `${isFrontSide ? 'front-' : 'back-'}${id}`;
         const recognitionInstance = recognitionInstances.current[recognitionInstanceKey];
@@ -51,10 +69,10 @@ const FlashCardCreator = (props) => {
                 [recognitionInstanceKey]: false
             }));
         } else {
-            const recognitionForCard = recognitionInstances.current[recognitionInstanceKey] || new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            const recognitionForCard = recognitionInstances.current[recognitionInstanceKey] || new ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)();
             recognitionForCard.lang = 'en-US';
             recognitionForCard.continuous = true;
-            recognitionForCard.onresult = (event) => {
+            recognitionForCard.onresult = (event: any) => {
                 let finalTranscript = "";
                 for (let i = event.resultIndex; i < event.results.length; ++i) {
                     if (event.results[i].isFinal) {
@@ -95,7 +113,7 @@ const FlashCardCreator = (props) => {
     };
 
 
-    const removeDirector = (idToRemove) => {
+    const removeDirector = (idToRemove: any) => {
         setDirectorsArray(prevArray =>
             prevArray.filter(item => item.id !== idToRemove)
         );
@@ -113,22 +131,84 @@ const FlashCardCreator = (props) => {
         });
     };
 
-    useEffect(() => {
-        const addedNewDirector = directorsArray.length > textFieldRefs.current.length;
-        if (
-            addedNewDirector &&
-            textFieldRefs.current[textFieldRefs.current.length - 1]
-        ) {
-            textFieldRefs.current[textFieldRefs.current.length - 1].scrollIntoView({
-                behavior: "smooth",
-                inline: "nearest",
-            });
+    const handleDeck = async () => {
+        const userId = ActiveUser.getId();
+
+        if (!deckTitle || !category) {
+            alert('The "deck name" and "deck category" fields must be completed.');
+            return;
         }
-    }, [directorsArray, textFieldRefs]);
+
+        let hasNonEmptyCards = false;
+
+        for (const {id} of directorsArray) {
+            const frontSideText = texts[`front-${id}`] || '';
+            const backSideText = texts[`back-${id}`] || '';
+            if (frontSideText.trim() !== '' && backSideText.trim() !== '') {
+                hasNonEmptyCards = true;
+                break;
+            }
+        }
+
+        if (!hasNonEmptyCards) {
+            alert('You must add at least one non-empty card before creating the deck.');
+            return;
+        }
+
+        const deck_body = {
+            user_id: userId,
+            title: deckTitle,
+            deck_category: category,
+        };
+
+
+
+
+        try {
+            const createdDeck = await DeckService.create_deck(deck_body);
+
+            for (const {id} of directorsArray) {
+                const frontSideText = texts[`front-${id}`] || '';
+                const backSideText = texts[`back-${id}`] || '';
+                if (frontSideText.length > 1 && backSideText.length > 1) {
+                    const flash_card_body = {
+                        deck_id: createdDeck?.data.id,
+                        card_title: frontSideText,
+                        card_text: backSideText,
+                    };
+
+                    await DeckService.create_flash_card(flash_card_body);
+                }
+
+            }
+
+        } catch (error: any) {
+            alert("Failed to create deck and flash cards: " + error.message);
+        }
+    };
+//     useEffect(() => {
+//     const addedNewDirector = directorsArray.length > textFieldRefs.current.length;
+//     if (
+//         addedNewDirector &&
+//         textFieldRefs.current.length > 0 &&
+//         textFieldRefs.current[textFieldRefs.current.length - 1]
+//     ) {
+//         textFieldRefs.current[textFieldRefs.current.length - 1].scrollIntoView({
+//             behavior: "smooth",
+//             inline: "nearest",
+//         });
+//     }
+// }, [directorsArray, textFieldRefs]);
+
 
     return (
         <div className="texfields-container">
-            <div className="webTitle"><p>Create Deck</p></div>
+
+            <Grid container justify="center" alignItems="center">
+                <div className="webTitle"><p>Create Deck</p></div>
+                <ButtonFlashCardsCreatePage text={"Create Deck"} image={plus} color={"#5346F1"}
+                                            onClick={handleDeck}/>
+            </Grid>
             <Grid container spacing={1} style={{marginBottom: "3%"}}>
                 <Grid xs={12} lg={6} item>
                     <FormControl fullWidth margin="dense">
@@ -141,6 +221,8 @@ const FlashCardCreator = (props) => {
                             label="deck name"
                             name={`Deck-name`}
                             multiline={true}
+                            value={deckTitle}
+                            onChange={(e) => setDeckTitle(e.target.value)}
                             rows={1}
                             InputProps={{
                                 classes: {input: props.classes.flashCardCategoryName},
@@ -161,6 +243,8 @@ const FlashCardCreator = (props) => {
                             name={`Deck-name`}
                             multiline={true}
                             rows={1}
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)}
                             InputProps={{
                                 classes: {input: props.classes.flashCardCategoryName},
                             }}
@@ -185,7 +269,7 @@ const FlashCardCreator = (props) => {
                                 rows={1}
                                 inputRef={el => textFieldRefs.current[index] = el}
                                 value={texts[`front-${id}`] || ''}
-                                onInput={(e) => setTexts(prevTexts => ({
+                                onInput={(e: any) => setTexts(prevTexts => ({
                                     ...prevTexts,
                                     [`front-${id}`]: e.target.value
                                 }))}
@@ -221,13 +305,18 @@ const FlashCardCreator = (props) => {
                                 rows={1}
                                 inputRef={el => textFieldRefs.current[index] = el}
                                 value={texts[`back-${id}`] || ''}
-                                onInput={(e) => setTexts(prevTexts => ({...prevTexts, [`back-${id}`]: e.target.value}))}
+
+                                onInput={(e: any) => setTexts(prevTexts => ({
+                                    ...prevTexts,
+                                    [`back-${id}`]: e.target.value
+                                }))}
                                 InputProps={{
                                     classes: {input: props.classes.flashCardTextField},
                                     endAdornment: (
                                         <InputAdornment position="start"
                                                         style={{position: 'absolute', top: '14%', right: '0.1%'}}>
                                             <IconButton onClick={() => toggleDictation(id, false)}>
+
                                                 <img src={isDictating[`back-${id}`] ? microphone_red : microphone_black}
                                                      alt="microphone icon"
                                                      style={{width: "30px", height: "30px", zIndex: 1}}/>
@@ -240,13 +329,14 @@ const FlashCardCreator = (props) => {
                         </FormControl>
                     </Grid>
                     <Grid xs={12} lg={6} item style={{marginBottom: "25px"}}>
-                        <ButtonFlashCardsCreatePage imageSize={"30px"} text={"Remove Card"} image={trashbin}
+
+                        <ButtonFlashCardsCreatePage text={"Remove Card"} image={trashbin}
                                                     color={"#DF0A0A"} onClick={() => removeDirector(id)}/>
                     </Grid>
                 </Grid>
             ))}
             <Grid container justify="center" alignItems="center">
-                <ButtonFlashCardsCreatePage imageSize={"30px"} text={"Add Card"} image={plus} color={"#08C10A"}
+                <ButtonFlashCardsCreatePage text={"Add Card"} image={plus} color={"#08C10A"}
                                             onClick={appendInputDirector}/>
             </Grid>
         </div>

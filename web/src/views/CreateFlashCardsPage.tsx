@@ -1,8 +1,11 @@
 import React from 'react';
-import DrawerAppBar from "../home_page/NavBar";
-import FlashCard from "./FlaschCardCreator";
-import '../../styles/create_flash_cards_page/flash_card_page_style.scss';
 import {withStyles} from "@material-ui/core/styles";
+import '../styles/create_flash_cards_page/flash_card_page_style.scss';
+import DrawerAppBar from "../components/home_page/NavBar";
+import FlashCard from "../components/flash_cards_creator/FlaschCardCreator";
+
+
+
 const styles = {
     flashCardCategoryName: {
         paddingRight: '50px',
@@ -28,14 +31,15 @@ const styles = {
     }
 };
 
+// @ts-ignore
 const StyledFlashCards = withStyles(styles)(FlashCard);
+
 const CreateFlashCardsPage = () => {
 
     return (
         <>
             <nav>
                 <DrawerAppBar/>
-
             </nav>
             <main className="main-container">
                 <div className="flex-container">
