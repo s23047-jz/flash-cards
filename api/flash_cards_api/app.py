@@ -22,7 +22,7 @@ def create_app() -> FastAPI:
     app.middleware('http')(catch_exception_middleware)
     app.middleware('http')(jwt_middleware)
     app.middleware('http')(security_headers_middleware)
-
+    print(WEBHOST)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=[WEBHOST, MOBILE_HOST],
