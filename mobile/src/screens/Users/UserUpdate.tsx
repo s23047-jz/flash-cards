@@ -1,27 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import {MaterialCommunityIcons} from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import {Row, Col, Button} from "../../components";
+import { Row, Col, Button, CModal } from "../../components";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { UpdateUserInterface } from "../../interfaces/user";
 
 import { UsersService } from "../../services/users";
-import {ActiveUser} from "../../services/user";
+import { ActiveUser } from "../../services/user";
 
 
 const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const { updateField } = route.params;
 
-    const [userData, setUserData] = useState<UpdateUserInterface>({
-        username: '',
-        email: '',
-        password: '',
-        re_password: '',
-    })
+    const [userData, setUserData] = useState<UpdateUserInterface>({})
+
+    useEffect(() => {
+        Object.keys(userData).forEach(key => delete userData[key])
+    }, []);
 
     const updateValue = (key: string, value: string) => {
         setUserData(prevState => ({
@@ -50,6 +49,32 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
+            <CModal
+                visible={true}
+                animationType={'slide'}
+                transparent={false}
+            >
+                <View className={'bg-sky-500 dark:bg-blue-900 w-full p-4 rounded-xl'}>
+                    <Row className={'w-full mt-10'}>
+                        <Col className={'w-full mb-2'}>
+                            <Text>
+                                Confirm password
+                            </Text>
+                        </Col>
+                        <Col className={'w-full h-14'}>
+                        <TextInput
+                                className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
+                                placeholder={'password'}
+                                placeholderTextColor='rgba(0, 0, 0, 0.5)'
+                                autoCapitalize={"none"}
+                                accessibilityElementsHidden={true}
+                                value={userData['current_password']}
+                                onChangeText={text => updateValue(updateField, text)}
+                            />
+                        </Col>
+                    </Row>
+                </View>
+            </CModal>
             <View className={'w-full mt-20'}>
                 <Row className='w-full p-6'>
                     <Col className='w-full'>
