@@ -106,13 +106,12 @@ async def login(
     }
 
 
-@router.post("/register/")
+@router.post("/register/", status_code=201)
 async def register(
     payload: RegisterPayloadScheme,
     db: Session = Depends(get_db)
 ):
     payload = payload.dict()
-
     if get_user(payload['email'], db):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -140,10 +139,8 @@ async def register(
         )
     )
     db.commit()
-
-    response = Response(status_code=status.HTTP_201_CREATED)
-    response.body = "Successfully created a new user"
-    return response
+    # check user
+    return {'detail': 'User added successfully'}, 201
 
 
 @router.post("/logout/")
