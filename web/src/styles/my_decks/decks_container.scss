@@ -1,15 +1,57 @@
 .decks-container {
-  background: red;
   position: absolute;
-  top: 50%;
+  top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-y: auto;
   width: 60%;
-  max-height: 80vh;
-  min-height: 80vh;
+  max-height: 68vh;
+  min-height: 68vh;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 100px;
   padding-right: 20px;
-  padding-bottom: 20px;
+  padding-top: 3vh;
+}
+
+.filter-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+  top: 15%;
+  left: 40%;
+}
+
+.web-title {
+  position: absolute;
+  color: white;
+  font-size: 52px;
+  font-weight: bold;
+  top: 8%;
+  left: 6%;
+
+}
+
+@media screen and (max-width: 768px) {
+  .decks-container {
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 75%;
+    width: 72%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: 28%;
+    left: 28%;
+    transform: translateY(-50%);
+  }
 }

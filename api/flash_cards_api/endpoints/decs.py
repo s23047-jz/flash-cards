@@ -1,4 +1,7 @@
+from fastapi import Query
+
 from sqlalchemy.orm import Session
+from sqlalchemy import or_
 
 from flash_cards_api.database import get_db
 
@@ -54,11 +57,44 @@ async def read_decks_by_user_id(
         raise HTTPException(status_code=404, detail="User not found")
 
     decks = user.decks
-
-    return [
-        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category}
+    decks_json = [
+        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category,
+         "number_of_cards": deck.get_number_of_flash_cards()}
         for deck in decks
     ]
+
+    return decks_json
+
+
+@router.get("/{user_id}/filtered_decks/", status_code=status.HTTP_200_OK)
+async def read_filtered_decks_by_user_id(
+        user_id: uuid.UUID,
+        filter_string: str = Query(None),
+        db: Session = Depends(get_db)
+):
+    """Return filtered decks by user id"""
+    user = db.query(User).filter(User.id == user_id).first()
+
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    filter_conditions = [
+        (Deck.user_id == user_id),
+    ]
+
+    if filter_string:
+        filter_conditions.append(
+            or_(Deck.title.ilike(f"%{filter_string}%"), Deck.deck_category.ilike(f"%{filter_string}%")))
+
+    decks = db.query(Deck).filter(*filter_conditions).all()
+
+    decks_json = [
+        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category,
+         "number_of_cards": deck.get_number_of_flash_cards()}
+        for deck in decks
+    ]
+
+    return decks_json
 
 
 @router.get("/{deck_id}/flash_cards", status_code=status.HTTP_200_OK)

@@ -24,5 +24,6 @@ class FlashCard(Base):
     card_text = Column(Text, nullable=False)
     deck_relationship = relationship("Deck", back_populates='flash_card_relationship')
 
+
     class Config:
         orm_mode = True

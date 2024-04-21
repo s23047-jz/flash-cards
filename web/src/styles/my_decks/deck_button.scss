@@ -1,7 +1,6 @@
-$buttonBorderColor: rgb(232, 0, 142);
+$buttonBorderColorMyDecks: rgb(127, 244, 76);
 
-.button-container {
-  white-space: pre-line;
+.button-container-my-decks {
   position: relative;
   height: 50vh;
   width: 14vw;
@@ -13,7 +12,7 @@ $buttonBorderColor: rgb(232, 0, 142);
 
   button {
     transition: 1s;
-    position: relative;
+
 
 
     p {
@@ -81,14 +80,13 @@ $buttonBorderColor: rgb(232, 0, 142);
   }
 
   .custom-button {
-
     border-radius: 9%;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 4px solid $buttonBorderColor;
+    border: 4px solid $buttonBorderColorMyDecks;
     background-color: #1BDBFA;
   }
 }

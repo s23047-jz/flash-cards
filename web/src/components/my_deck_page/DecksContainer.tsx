@@ -1,13 +1,122 @@
+import React, {useEffect, useState} from 'react';
+import DeckButton from './DeckButton';
+import '../../styles/my_decks/decks_container.scss';
+import {DeckService} from '../../services/decs';
 // @ts-ignore
-import React, { useState } from 'react';
-import DeckButton from "./DeckButton";
-import '../../styles/my_decks/decks_container.scss'
+import red_cards from '../../assets/Red_cards.png';
+// @ts-ignore
+import pink_cards from '../../assets/Pink_cards.png';
+// @ts-ignore
+import yellow_cards from '../../assets/Yellow_cards.png';
+// @ts-ignore
+import dark_blue_cards from '../../assets/dark_blue_cards.png';
+// @ts-ignore
+import dark_pink_cards from '../../assets/dark_pink_cards.png';
+// @ts-ignore
+import light_blue_cards from '../../assets/light_blue_cards.png';
+// @ts-ignore
+import light_green_cards from '../../assets/light_green_cards.png';
+// @ts-ignore
+import light_green_cards_2 from '../../assets/light_green_cards2.png';
+// @ts-ignore
+import light_yellow_cards from '../../assets/light_yellow_cards.png';
+// @ts-ignore
+import purple_cards from '../../assets/purple_cards.png';
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import FilledInput from "@mui/material/FilledInput";
+import ButtonCreateFlashCardPage from "../flash_cards_creator/ButtonCreateFlashCardPage";
+// @ts-ignore
+import filter from "../../assets/Filter.png";
+
+
 const DecksContainer = () => {
-    const [hovered, setHovered] = useState(false);
+    const fields_color = "#7c3bd1";
+    const [decks, setDecks] = useState([]);
+    const [filterString, setFilterString] = useState('');
+    const [cardColors, setCardColors] = useState<string[]>([]);
+
+    useEffect(() => {
+        const fetchDecks = async () => {
+            try {
+                const response = await DeckService.get_all_user_decks();
+                setDecks(response);
+                if (cardColors.length === 0) {
+                    setCardColors(generateRandomCardColors(response.length));
+                }
+            } catch (error) {
+                console.error(error);
+            }
+        };
+
+        fetchDecks();
+    }, [cardColors]);
+
+    const cardImages = [red_cards, pink_cards, yellow_cards, purple_cards, light_yellow_cards,
+        light_green_cards_2, light_green_cards, light_blue_cards, dark_pink_cards, dark_blue_cards];
+
+    const generateRandomCardColors = (numColors: number) => {
+        const colors = [];
+        for (let i = 0; i < numColors; i++) {
+            const randomIndex = Math.floor(Math.random() * cardImages.length);
+            colors.push(cardImages[randomIndex]);
+        }
+        return colors;
+    };
+
+    const handleFilterDecks = async () => {
+        try {
+            const response = await DeckService.get_filtered_decks(filterString);
+            setDecks(response);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
-        <div className="decks-container" >
-
+        <div className="website-container">
+            <p className="web-title">My Decks</p>
+            <div className="filter-container">
+                <FormControl variant="filled" >
+                    <InputLabel htmlFor="component-filled" sx={{ backgroundColor: fields_color, color: 'white' }}>Filter Decks</InputLabel>
+                    <FilledInput
+                        id="component-filled"
+                        defaultValue=""
+                        sx={{
+                            "& input": {
+                                backgroundColor: fields_color,
+                                color: 'white',
+                                borderRadius: '10px',
+                                border: '2px solid black',
+                            }
+                        }}
+                        // @ts-ignore
+                        disableUnderline
+                        onChange={(e) => setFilterString(e.target.value)}
+                    />
+                </FormControl>
+                <ButtonCreateFlashCardPage
+                    color={fields_color}
+                    text={'Filter'}
+                    border={'2px solid black'}
+                    image={filter}
+                    onClick={handleFilterDecks}
+                />
+            </div>
+            <div className="decks-container">
+                {decks.map((deck, index) => (
+                    <div className="deck-button">
+                    <DeckButton
+                        key={index}
+                        frontTextUpper={`${deck['title']}`}
+                        frontTextLower={`${deck['deck_category']}`}
+                        image={cardColors[index]}
+                        backText={`Number of flashcards: ${deck['number_of_cards']}`}
+                        onClick={() => console.log('click')}
+                    />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };

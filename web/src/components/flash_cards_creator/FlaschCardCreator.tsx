@@ -206,7 +206,7 @@ const FlashCardCreator = (props) => {
 
             <Grid container justify="center" alignItems="center">
                 <div className="webTitle"><p>Create Deck</p></div>
-                <ButtonFlashCardsCreatePage text={"Create Deck"} image={plus} color={"#5346F1"}
+                <ButtonFlashCardsCreatePage text={"Create Deck"} image={plus} color={"#5346F1"} border={'2px solid black'}
                                             onClick={handleDeck}/>
             </Grid>
             <Grid container spacing={1} style={{marginBottom: "3%"}}>
@@ -330,13 +330,13 @@ const FlashCardCreator = (props) => {
                     </Grid>
                     <Grid xs={12} lg={6} item style={{marginBottom: "25px"}}>
 
-                        <ButtonFlashCardsCreatePage text={"Remove Card"} image={trashbin}
+                        <ButtonFlashCardsCreatePage text={"Remove Card"} image={trashbin} border={'2px solid black'}
                                                     color={"#DF0A0A"} onClick={() => removeDirector(id)}/>
                     </Grid>
                 </Grid>
             ))}
             <Grid container justify="center" alignItems="center">
-                <ButtonFlashCardsCreatePage text={"Add Card"} image={plus} color={"#08C10A"}
+                <ButtonFlashCardsCreatePage text={"Add Card"} image={plus} color={"#08C10A"} border={'2px solid black'}
                                             onClick={appendInputDirector}/>
             </Grid>
         </div>

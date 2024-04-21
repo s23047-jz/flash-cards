@@ -13,6 +13,7 @@ import YellowCard from "../assets/Yellow_cards.png";
 // @ts-ignore
 import RedCard from "../assets/Red_cards.png";
 import { useNavigate } from 'react-router-dom';
+
 const HomePage = () => {
     const navigate = useNavigate();
     const createDeckPath = '/create_deck'
@@ -31,6 +32,7 @@ const HomePage = () => {
                 <DrawerAppBar/>
             </nav>
             <main className="main-container">
+
                 <div className="flex-container">
                     <div className="button-container">
                         <ButtonHomePage frontText={'Create New One'} image={Plus} onClick={() => navigateTo(createDeckPath)}
