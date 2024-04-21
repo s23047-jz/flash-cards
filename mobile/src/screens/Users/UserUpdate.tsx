@@ -16,10 +16,12 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const { updateField } = route.params;
 
-    const [userData, setUserData] = useState<UpdateUserInterface>({})
+    const [userData, setUserData] = useState<UpdateUserInterface>({});
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         Object.keys(userData).forEach(key => delete userData[key])
+        console.log("CLEAING DATA", userData)
     }, []);
 
     const updateValue = (key: string, value: string) => {
@@ -34,43 +36,61 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
         return !userData[updateField]
     }
 
-    const updateUser = async() => {
+    const updateUser = () => {
         if (!userData[updateField]) return
+        setShowModal(true);
+    }
 
+    const onUpdate = async() => {
         const body = {}
-        body[updateField] = userData[updateField]
+        Object.keys(userData).forEach(key => body[key] = userData[key]);
 
+        console.log("BODY", body)
         const { res, data } = await UsersService.updateMe(body, navigation)
 
         if ([200, 201].includes(res.status)) {
             await ActiveUser.updateUserData(data);
+            setShowModal(false);
         }
     }
-
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
             <CModal
-                visible={true}
-                animationType={'slide'}
-                transparent={false}
+                visible={showModal}
+                animationType={'fade'}
+                transparent={true}
             >
                 <View className={'bg-sky-500 dark:bg-blue-900 w-full p-4 rounded-xl'}>
-                    <Row className={'w-full mt-10'}>
-                        <Col className={'w-full mb-2'}>
-                            <Text>
+                    <Row className={'w-full mt-5'}>
+                        <Col className={'w-full mb-4 text-center'}>
+                            <Text className={'text-xl font-bold ml-auto mr-auto'}>
                                 Confirm password
                             </Text>
                         </Col>
                         <Col className={'w-full h-14'}>
-                        <TextInput
+                            <TextInput
                                 className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
                                 placeholder={'password'}
                                 placeholderTextColor='rgba(0, 0, 0, 0.5)'
                                 autoCapitalize={"none"}
                                 accessibilityElementsHidden={true}
                                 value={userData['current_password']}
-                                onChangeText={text => updateValue(updateField, text)}
+                                onChangeText={text => updateValue('current_password', text)}
                             />
+                        </Col>
+                        <Col className={'w-full mt-4'}>
+                            <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={onUpdate} disabled={!userData['current_password']}>
+                                <Text className={'text-lg ml-auto mr-auto font-bold'}>
+                                    Update
+                                </Text>
+                            </Button>
+                        </Col>
+                        <Col className={'w-full mt-4'}>
+                            <TouchableOpacity className={'p-1 w-52 text-center mr-auto ml-auto'} onPress={() => setShowModal(false)} disabled={false}>
+                                <Text className={'text-lg ml-auto mr-auto font-bold'}>
+                                    Cancel
+                                </Text>
+                            </TouchableOpacity>
                         </Col>
                     </Row>
                 </View>

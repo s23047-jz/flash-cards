@@ -8,10 +8,13 @@ const CModal: React.FC<ModalInterface> = ({ className, visible, animationType, t
         <Modal
             className={`${className}`}
             visible={visible}
-            transparent={transparent}
+            transparent={true}
             animationType={animationType}
         >
-            <View className={'bg-zinc-700 items-center justify-center px-3 flex-1'}>
+            <View
+                className={'bg-transparent items-center justify-center px-3 flex-1'}
+                style={{backgroundColor: 'rgba(0, 0, 0, 0.7)'}}
+            >
                 { children }
             </View>
         </Modal>
