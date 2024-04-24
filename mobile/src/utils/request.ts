@@ -1,10 +1,7 @@
 import { NavigationProp } from "@react-navigation/native";
 
-import {ActiveUser} from "../services/user";
-import {ROUTES} from "../constants/";
-
-
-// TODO add querystring
+import { ActiveUser } from "../services/user";
+import { ROUTES } from "../constants/";
 
 // function decode(obj: object): string {
 //     const keys = Object.keys(obj);
@@ -60,7 +57,7 @@ export const request = async({
 
     if (token) headers.Authorization = token;
     headers["content-type"] = 'application/json';
-    // if (query) url = `${url}?${decode(query)}`
+    console.log('headers', headers)
 
     const res: Response = await fetch(url, {
         method,

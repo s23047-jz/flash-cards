@@ -1,5 +1,5 @@
-import {BASE_API} from "./config";
-import {request} from "../utils/request";
+import { BASE_API } from "./config";
+import { request } from "../utils/request";
 import { NavigationProp } from "@react-navigation/native";
 
 export const USERS_ENDPOINTS = {
@@ -8,6 +8,14 @@ export const USERS_ENDPOINTS = {
 
 class Users {
     constructor() {}
+
+    public async getMe(navigation: NavigationProp<any>) {
+        return await request({
+            url: USERS_ENDPOINTS.me,
+            method: 'GET',
+            navigation
+        })
+    }
 
     public async updateMe(body: object, navigation: NavigationProp<any>) {
         return await request({

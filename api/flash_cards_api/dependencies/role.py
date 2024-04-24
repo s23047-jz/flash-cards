@@ -19,11 +19,9 @@ class RoleAccessChecker:
             if isinstance(self.role, list)
             else user.role == self.role
         )
-        print(user)
         if not user.is_superuser and not has_role:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="You do not have required role"
             )
-        print(user)
         return True

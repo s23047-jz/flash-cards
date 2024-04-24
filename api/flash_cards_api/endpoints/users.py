@@ -24,7 +24,8 @@ from flash_cards_api.endpoints.auth import UserResponse
 
 router = APIRouter(
     prefix="/api/users",
-    tags=["users"]
+    tags=["users"],
+    dependencies=[Depends(get_current_active_user)]
 )
 
 
@@ -32,8 +33,6 @@ class UserDetailsResponse(BaseModel):
     username: str
     created_at: datetime
     ranking: int
-    # TODO add count query for users decks
-    # number_of_decs: int
 
 
 class UserUpdateModel(BaseModel):
@@ -42,9 +41,9 @@ class UserUpdateModel(BaseModel):
 
 
 class SelfUserUpdate(UserUpdateModel):
-    password: str
+    current_password: str
+    password: Optional[str]
     re_password: Optional[str]
-    new_password: Optional[str]
 
 
 @router.get(
@@ -112,52 +111,54 @@ async def get_me(
     user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db)
 ):
-    user_details: User = db.query(User).get(User.id == user.id)
-    if user_details:
-        return user_details
+    user_details: User = db.query(User).filter(User.id == user.id).first()
+    return user_details
 
 
-@router.put("/me/", dependencies=[Depends(get_current_active_user)], response_model=UserResponse)
+@router.put("/me/", response_model=UserResponse)
 async def update_me(
-    payload: SelfUserUpdate,
+    request: SelfUserUpdate,
     user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db)
 ):
     payload = payload.dict()
 
+    print("HEHEHEHE", payload)
+
     user_details: User = db.query(User).get(User.id == user.id)
 
-    if user_details:
+    print("HEHEHEHE", user_details)
 
-        if not user_details.verify_password(payload['password']):
+    if not user_details.verify_password(payload['current_password']):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Invalid password"
+        )
+
+    if 'password' in payload and 're_password' in payload:
+        if payload['password'] == payload['re_password']:
+            user_details.password = get_password_hash(payload['password'])
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Passwords do not match"
+        )
+    if 'username' in payload:
+        if get_user_by_username(payload['user'], db):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Invalid password"
+                detail="Username already taken"
             )
+        user_details.username = payload['username']
 
-        if 'new_password' in payload.keys() and 're_password' in payload.keys():
-            if payload['password'] == payload['re_password']:
-                user_details.password = get_password_hash(payload['new_password'])
+    if 'email' in payload:
+        if get_user(payload['email'], db):
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Passwords do not match"
+                detail="Email already taken"
             )
-        if 'username' in payload.keys():
-            if get_user_by_username(payload['user'], db):
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="Username already taken"
-                )
-            user_details.username = payload['username']
+        user_details.email = payload['email']
 
-        if 'email' in payload.keys():
-            if get_user(payload['email'], db):
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="Email already taken"
-                )
-            user_details.email = payload['email']
+    db.commit()
+    db.refresh(user_details)
 
-        db.commit()
-        db.refresh(user_details)
-    return user_details
+    return user_details, 200

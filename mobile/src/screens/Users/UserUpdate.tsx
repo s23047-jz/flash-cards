@@ -42,12 +42,8 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const onUpdate = async() => {
-        const body = {}
-        Object.keys(userData).forEach(key => body[key] = userData[key]);
-
-        console.log("BODY", body)
-        const { res, data } = await UsersService.updateMe(body, navigation)
-
+        console.log("userData", userData)
+        const { res, data } = await UsersService.updateMe(userData, navigation)
         if ([200, 201].includes(res.status)) {
             await ActiveUser.updateUserData(data);
             setShowModal(false);
@@ -70,7 +66,7 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                         <Col className={'w-full h-14'}>
                             <TextInput
                                 className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
-                                placeholder={'password'}
+                                placeholder={'current password'}
                                 placeholderTextColor='rgba(0, 0, 0, 0.5)'
                                 autoCapitalize={"none"}
                                 accessibilityElementsHidden={true}
