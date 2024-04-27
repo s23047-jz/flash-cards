@@ -4,9 +4,9 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { Row, Col, Button, CModal } from "../../components";
-
-import { ScreenProps } from "../../interfaces/screen";
 import { UpdateUserInterface } from "../../interfaces/user";
+import { ScreenProps } from "../../interfaces/screen";
+
 
 import { UsersService } from "../../services/users";
 import { ActiveUser } from "../../services/user";
@@ -14,14 +14,13 @@ import { ActiveUser } from "../../services/user";
 
 const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
 
-    const { updateField } = route.params;
+    const { updateField, getUserData } = route.params;
 
     const [userData, setUserData] = useState<UpdateUserInterface>({});
     const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
-        Object.keys(userData).forEach(key => delete userData[key])
-        console.log("CLEAING DATA", userData)
+        Object.keys(userData).forEach(key => userData[key] = '')
     }, []);
 
     const updateValue = (key: string, value: string) => {
@@ -41,12 +40,12 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
         setShowModal(true);
     }
 
-    const onUpdate = async() => {
-        console.log("userData", userData)
+    const handleUpdate = async() => {
         const { res, data } = await UsersService.updateMe(userData, navigation)
         if ([200, 201].includes(res.status)) {
             await ActiveUser.updateUserData(data);
             setShowModal(false);
+            await getUserData();
         }
     }
     return (
@@ -75,7 +74,7 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                             />
                         </Col>
                         <Col className={'w-full mt-4'}>
-                            <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={onUpdate} disabled={!userData['current_password']}>
+                            <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={handleUpdate} disabled={!userData['current_password']}>
                                 <Text className={'text-lg ml-auto mr-auto font-bold'}>
                                     Update
                                 </Text>

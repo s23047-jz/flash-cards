@@ -57,7 +57,6 @@ export const request = async({
 
     if (token) headers.Authorization = token;
     headers["content-type"] = 'application/json';
-    console.log('headers', headers)
 
     const res: Response = await fetch(url, {
         method,
