@@ -1,3 +1,4 @@
+import uuid
 from pydantic.main import BaseModel
 from typing import List, Optional
 from datetime import datetime
@@ -30,20 +31,21 @@ router = APIRouter(
 
 
 class UserDetailsResponse(BaseModel):
+    id: uuid.UUID
     username: str
+    email: str
     created_at: datetime
-    ranking: int
 
 
 class UserUpdateModel(BaseModel):
-    email: Optional[str]
-    username: Optional[str]
+    email: Optional[str] = ''
+    username: Optional[str] = ''
 
 
 class SelfUserUpdate(UserUpdateModel):
     current_password: str
-    password: Optional[str]
-    re_password: Optional[str]
+    password: Optional[str] = ''
+    re_password: Optional[str] = ''
 
 
 @router.get(
@@ -58,25 +60,87 @@ async def get_user_list(
     return users
 
 
+@router.get("/me/", status_code=200)
+async def get_me(
+    user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    user_details: User = db.query(User).filter(User.id == user.id).first()
+    if user_details:
+        return user_details
+    raise HTTPException(status_code=404, detail="User not found")
+
+
+@router.put("/me/", response_model=UserResponse, status_code=200)
+async def update_me(
+    payload: SelfUserUpdate,
+    user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    payload = payload.dict()
+    user_details: User = db.query(User).filter(User.id == user.id).first()
+
+    if user_details:
+        if not user_details.verify_password(payload['current_password']):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid password"
+            )
+
+        if payload['password'] and payload['re_password']:
+            if payload['password'] == payload['re_password']:
+                user_details.password = get_password_hash(payload['password'])
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Passwords do not match"
+            )
+        if payload['username']:
+            if get_user_by_username(payload['username'], db):
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Username already taken"
+                )
+            user_details.username = payload['username']
+
+        if payload['email']:
+            if get_user(payload['email'], db):
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Email already taken"
+                )
+            user_details.email = payload['email']
+
+        db.commit()
+        db.refresh(user_details)
+
+        return user_details
+
+    raise HTTPException(status_code=404, detail="User not found")
+
+
 @router.get(
     "/{user_id}/",
     response_model=UserDetailsResponse,
-    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
+    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))],
+    status_code=200
 )
 async def get_user_details(
-    user_id: str,
+    user_id: uuid.UUID,
     db: Session = Depends(get_db)
 ):
-    user = db.query(User).get(User.id == user_id)
-    return user
+    user: User = db.query(User).filter(User.id == user_id).first()
+    if user:
+        return user
+    raise HTTPException(status_code=404, detail="User not found")
 
 
 @router.put(
     "/{user_id}/",
-    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
+    dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))],
+    status_code=200
 )
 async def update_user_details(
-    user_id: str,
+    user_id: uuid.UUID,
     payload: UserUpdateModel,
     db: Session = Depends(get_db)
 ):
@@ -84,7 +148,7 @@ async def update_user_details(
     user: User = db.query(User).get(User.id == user_id)
 
     if user:
-        if 'email' in payload.keys():
+        if payload['email']:
             if get_user(payload['email'], db):
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
@@ -92,8 +156,8 @@ async def update_user_details(
                 )
             user.email = payload['email']
 
-        if 'username' in payload.keys():
-            if get_user_by_username(payload['user'], db):
+        if payload['username']:
+            if get_user_by_username(payload['username'], db):
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
                     detail="Username already taken"
@@ -103,62 +167,6 @@ async def update_user_details(
         db.commit()
         db.refresh(user)
 
-    return user
+        return user
 
-
-@router.get("/me/", response_model=UserDetailsResponse, dependencies=[Depends(get_current_active_user)])
-async def get_me(
-    user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    user_details: User = db.query(User).filter(User.id == user.id).first()
-    return user_details
-
-
-@router.put("/me/", response_model=UserResponse)
-async def update_me(
-    request: SelfUserUpdate,
-    user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
-):
-    payload = payload.dict()
-
-    print("HEHEHEHE", payload)
-
-    user_details: User = db.query(User).get(User.id == user.id)
-
-    print("HEHEHEHE", user_details)
-
-    if not user_details.verify_password(payload['current_password']):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Invalid password"
-        )
-
-    if 'password' in payload and 're_password' in payload:
-        if payload['password'] == payload['re_password']:
-            user_details.password = get_password_hash(payload['password'])
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Passwords do not match"
-        )
-    if 'username' in payload:
-        if get_user_by_username(payload['user'], db):
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Username already taken"
-            )
-        user_details.username = payload['username']
-
-    if 'email' in payload:
-        if get_user(payload['email'], db):
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Email already taken"
-            )
-        user_details.email = payload['email']
-
-    db.commit()
-    db.refresh(user_details)
-
-    return user_details, 200
+    raise HTTPException(status_code=404, detail="User not found")
