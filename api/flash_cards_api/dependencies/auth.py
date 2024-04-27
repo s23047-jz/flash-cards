@@ -34,7 +34,6 @@ async def get_current_user(
         black_token = db.query(
             Blacklist_Tokens
         ).filter(Blacklist_Tokens.token == token).first()
-        print(token)
         if black_token is not None:
             raise credentials_exception
         payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
