@@ -7,6 +7,7 @@ export const AUTH_ENDPOINTS = {
   login: `${BASE_API}/api/auth/login/`,
   register: `${BASE_API}/api/auth/register/`,
   logout: `${BASE_API}/api/auth/logout/`,
+
 };
 
 class Auth {
@@ -25,9 +26,25 @@ class Auth {
     // @ts-ignore
     return await request({
       url: AUTH_ENDPOINTS.register,
-      method: 'POST', body
+      method: 'POST',
+      body
     });
   }
+   public async logout(token: string) {
+    try {
+      await request({
+        url: AUTH_ENDPOINTS.logout,
+        method: 'POST',
+        headers: {
+          'Authorization': `${token}`
+        }
+      });
+      ActiveUser.clean();
+    } catch (error) {
+      console.error('Error during log out :', error);
+    }
+  }
+
 }
 
 

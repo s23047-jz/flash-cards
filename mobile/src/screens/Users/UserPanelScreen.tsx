@@ -1,36 +1,17 @@
-import React, {useEffect, useState} from "react";
-import {View, Image, Text, ScrollView} from "react-native";
-import {ScreenProps} from "../../interfaces/screen";
+import React from "react";
+import { View, Image, Text, ScrollView } from "react-native";
+import { ScreenProps } from "../../interfaces/screen";
 
 import {Row, Col, Button} from "../../components";
 
 import LOGO from "../../assets/images/logo.png"
 
-import {AuthService} from "../../services/auth";
+import { AuthService } from "../../services/auth";
 import Routes from "../../constants/routes";
-import {ActiveUser} from "../../services/user";
 
+const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
 
-const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
-
-    const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState({username: '', email: ''});
-
-    useEffect(() => {
-        setLoading(true);
-        const checkAuthentication = async () => {
-            try {
-                const { username, email } = await ActiveUser.getUserData();
-                setUserData({ username, email });
-                setLoading(false);
-            } catch (error) {
-            console.error('Error checking authentication status:', error);
-            setUserData({username: '', email: ''});
-            setLoading(false);
-        }
-    };
-    checkAuthentication();
-    }, []);
+    const { userData, getUserData } = route.params;
 
     const options = [
         {
@@ -49,16 +30,18 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
                     label: "User Name",
                     value: 'username',
                     to: Routes.USER_UPDATE,
-                    params: { updateField: 'username' }
+                    params: { updateField: 'username', getUserData }
                 },
                 {
                     label: "E-mail",
                     value: 'email',
-                    to: ""
+                    to: Routes.USER_UPDATE,
+                    params: { updateField: 'email', getUserData }
                 },
                 {
                     label: "Change password",
-                    to: ""
+                    to: Routes.USER_UPDATE,
+                    params: { updateField: 'password', getUserData }
                 },
                 {
                     label: "Delete account",
@@ -71,12 +54,6 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation}) => {
     const logout = async () => {
         console.log("LOGIN OUT")
         await AuthService.logout(navigation);
-    }
-
-    if (loading) {
-        return (
-            <Text>Loading...</Text>
-        );
     }
 
     return (

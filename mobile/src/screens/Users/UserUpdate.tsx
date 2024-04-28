@@ -1,22 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import {MaterialCommunityIcons} from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import {Row, Col, Button} from "../../components";
-
-import { ScreenProps } from "../../interfaces/screen";
+import { Row, Col, Button, CModal } from "../../components";
 import { UpdateUserInterface } from "../../interfaces/user";
+import { ScreenProps } from "../../interfaces/screen";
+
 
 import { UsersService } from "../../services/users";
-import {ActiveUser} from "../../services/user";
+import { ActiveUser } from "../../services/user";
 
 
 const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
 
-    const { updateField } = route.params;
+    const { updateField, getUserData } = route.params;
 
-    const [userData, setUserData] = useState<UpdateUserInterface>({ username: '' })
+    const [userData, setUserData] = useState<UpdateUserInterface>({});
+    const [showModal, setShowModal] = useState(false);
+
+    useEffect(() => {
+        Object.keys(userData).forEach(key => userData[key] = '')
+    }, []);
 
     const updateValue = (key: string, value: string) => {
         setUserData(prevState => ({
@@ -25,21 +30,66 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
         }))
     }
 
-    const updateUser = async() => {
-        if (!userData[updateField]) return
-
-        const body = {}
-        body[updateField] = userData[updateField]
-
-        const { res, data } = await UsersService.updateMe(body, navigation)
-
-        if ([200, 201].includes(res.status)) {
-            await ActiveUser.updateUserData(data);
-        }
+    const handleDisabledButton = () => {
+        if (updateField === 'password') return (!userData[updateField] || !userData['re_password'])
+        return !userData[updateField]
     }
 
+    const updateUser = () => {
+        if (!userData[updateField]) return
+        setShowModal(true);
+    }
+
+    const handleUpdate = async() => {
+        const { res, data } = await UsersService.updateMe(userData, navigation)
+        if ([200, 201].includes(res.status)) {
+            await ActiveUser.updateUserData(data);
+            setShowModal(false);
+            await getUserData();
+        }
+    }
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
+            <CModal
+                visible={showModal}
+                animationType={'fade'}
+                transparent={true}
+            >
+                <View className={'bg-sky-500 dark:bg-blue-900 w-full p-4 rounded-xl'}>
+                    <Row className={'w-full mt-5'}>
+                        <Col className={'w-full mb-4 text-center'}>
+                            <Text className={'text-xl font-bold ml-auto mr-auto'}>
+                                Confirm password
+                            </Text>
+                        </Col>
+                        <Col className={'w-full h-14'}>
+                            <TextInput
+                                className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
+                                placeholder={'current password'}
+                                placeholderTextColor='rgba(0, 0, 0, 0.5)'
+                                autoCapitalize={"none"}
+                                accessibilityElementsHidden={true}
+                                value={userData['current_password']}
+                                onChangeText={text => updateValue('current_password', text)}
+                            />
+                        </Col>
+                        <Col className={'w-full mt-4'}>
+                            <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={handleUpdate} disabled={!userData['current_password']}>
+                                <Text className={'text-lg ml-auto mr-auto font-bold'}>
+                                    Update
+                                </Text>
+                            </Button>
+                        </Col>
+                        <Col className={'w-full mt-4'}>
+                            <TouchableOpacity className={'p-1 w-52 text-center mr-auto ml-auto'} onPress={() => setShowModal(false)} disabled={false}>
+                                <Text className={'text-lg ml-auto mr-auto font-bold'}>
+                                    Cancel
+                                </Text>
+                            </TouchableOpacity>
+                        </Col>
+                    </Row>
+                </View>
+            </CModal>
             <View className={'w-full mt-20'}>
                 <Row className='w-full p-6'>
                     <Col className='w-full'>
@@ -71,11 +121,24 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                                 onChangeText={text => updateValue(updateField, text)}
                             />
                         </Col>
+                        { updateField === 'password' ?
+                            <Col className='w-full h-14'>
+                                <TextInput
+                                    className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
+                                    placeholder={'repeat password'}
+                                    placeholderTextColor='rgba(0, 0, 0, 0.5)'
+                                    autoCapitalize={"none"}
+                                    accessibilityElementsHidden={true}
+                                    value={userData['re_password']}
+                                    onChangeText={text => updateValue('re_password', text)}
+                                />
+                            </Col>
+                        : ''}
                     </Row>
                 </Row>
                 <Row className='w-full p-6'>
                     <Col className='w-full'>
-                        <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={updateUser}>
+                        <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={updateUser} disabled={handleDisabledButton()}>
                             <Text className={'text-lg ml-auto mr-auto font-bold'}>
                                 Change { updateField }
                                 <MaterialCommunityIcons name={'check-bold'} size={18}/>

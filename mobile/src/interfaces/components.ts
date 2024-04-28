@@ -6,3 +6,9 @@ export interface ComponentsInterface {
     disabled?: boolean,
     onPress?: () => void
 }
+
+export interface ModalInterface extends ComponentsInterface {
+    visible: boolean,
+    animationType: string,
+    transparent: boolean
+}

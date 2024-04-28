@@ -1,5 +1,4 @@
 import React from 'react';
-// @ts-ignore
 import {withStyles} from "@material-ui/core/styles";
 import '../styles/create_flash_cards_page/flash_card_page_style.scss';
 import DrawerAppBar from "../components/home_page/NavBar";

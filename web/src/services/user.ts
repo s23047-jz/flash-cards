@@ -32,6 +32,7 @@ class User {
         return this.userData?.is_superuser || false
     }
 
+
     getUserData(): UserInterface {
         return this.userData
     }
@@ -40,13 +41,20 @@ class User {
         return this.tokenData.token_type;
     }
 
-    private getAccessToken(): string | undefined {
+    public getAccessToken(): string | undefined {
         return this.tokenData.access_token;
     }
+
+    public getId(): string | undefined {
+        return this.userData.id;
+    }
+
 
     public getAuthorization(): string | undefined {
         return `${this.getTokenType()} ${this.getAccessToken()}`
     }
+
+
 
     public clean() {
         localStorage.removeItem("userData")

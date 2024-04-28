@@ -1,4 +1,7 @@
+from fastapi import Query
+
 from sqlalchemy.orm import Session
+from sqlalchemy import or_
 
 from flash_cards_api.database import get_db
 
@@ -12,9 +15,10 @@ from fastapi import (
 )
 
 from flash_cards_api.models.deck_of_flash_cards import Deck
+from flash_cards_api.models.users import User
 import uuid
 
-router = APIRouter(prefix="/decs", tags=["decs"])
+router = APIRouter(prefix="/decks", tags=["decks"])
 
 
 class DeckCreate(BaseModel):
@@ -40,10 +44,63 @@ async def read_deck_by_id(
         return deck
     raise HTTPException(status_code=404, detail="Deck not found")
 
+
+@router.get("/{user_id}/decks/", status_code=status.HTTP_200_OK)
+async def read_decks_by_user_id(
+        user_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Return decks by user id"""
+    user = db.query(User).filter(User.id == user_id).first()
+
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    decks = user.decks
+    decks_json = [
+        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category,
+         "number_of_cards": deck.get_number_of_flash_cards()}
+        for deck in decks
+    ]
+
+    return decks_json
+
+
+@router.get("/{user_id}/filtered_decks/", status_code=status.HTTP_200_OK)
+async def read_filtered_decks_by_user_id(
+        user_id: uuid.UUID,
+        filter_string: str = Query(None),
+        db: Session = Depends(get_db)
+):
+    """Return filtered decks by user id"""
+    user = db.query(User).filter(User.id == user_id).first()
+
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    filter_conditions = [
+        (Deck.user_id == user_id),
+    ]
+
+    if filter_string:
+        filter_conditions.append(
+            or_(Deck.title.ilike(f"%{filter_string}%"), Deck.deck_category.ilike(f"%{filter_string}%")))
+
+    decks = db.query(Deck).filter(*filter_conditions).all()
+
+    decks_json = [
+        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category,
+         "number_of_cards": deck.get_number_of_flash_cards()}
+        for deck in decks
+    ]
+
+    return decks_json
+
+
 @router.get("/{deck_id}/flash_cards", status_code=status.HTTP_200_OK)
 async def read_deck_cards_by_id(
-    deck_id: uuid.UUID,
-    db: Session = Depends(get_db)
+        deck_id: uuid.UUID,
+        db: Session = Depends(get_db)
 ):
     """Return all flash cards from deck"""
     deck = db.query(Deck).filter(Deck.id == deck_id).first()
@@ -52,8 +109,8 @@ async def read_deck_cards_by_id(
 
     flashcards = deck.flash_card_relationship
 
-
     return [{"id": card.id, "title": card.card_title, "card text": card.card_text} for card in flashcards]
+
 
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
 async def create_deck(
@@ -99,6 +156,3 @@ async def delete_deck(
 
     db.query(Deck).filter(Deck.id == delete_id).delete()
     db.commit()
-
-
-

@@ -5,13 +5,16 @@ import logo from '../assets/images/logo.png';
 import { Avatar, Button, CssBaseline, TextField, FormControlLabel, Checkbox, Link, Paper, Box, Grid, Typography, Container } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { AuthService } from "../services/auth";
+import { useNavigate } from 'react-router-dom';
+import { ActiveUser } from "../services/user";
 
 const theme = createTheme();
 
 const LoginPage: React.FC = () => {
+    ActiveUser.clean()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
     const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // Prevent default form submission behavior
 
@@ -33,6 +36,8 @@ const LoginPage: React.FC = () => {
             await AuthService.login(body);
             // Navigate to the dashboard or home page upon success
             // e.g., navigation.navigate("Dashboard");
+            navigate('/home');
+            window.location.reload();
         } catch (error) {
             // @ts-ignore
             // Handle login error (e.g., show error message)

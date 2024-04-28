@@ -1,9 +1,6 @@
 import React, {useState, useRef, useEffect} from "react";
-// @ts-ignore
 import {FormControl, InputAdornment, IconButton} from "@material-ui/core";
-// @ts-ignore
 import TextField from "@material-ui/core/TextField";
-// @ts-ignore
 import Grid from "@material-ui/core/Grid";
 import ButtonFlashCardsCreatePage from "./ButtonCreateFlashCardPage";
 // @ts-ignore
@@ -225,7 +222,7 @@ const FlashCardCreator = (props) => {
                             name={`Deck-name`}
                             multiline={true}
                             value={deckTitle}
-                            onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setDeckTitle(e.target.value)}
+                            onChange={(e) => setDeckTitle(e.target.value)}
                             rows={1}
                             InputProps={{
                                 classes: {input: props.classes.flashCardCategoryName},
@@ -247,7 +244,7 @@ const FlashCardCreator = (props) => {
                             multiline={true}
                             rows={1}
                             value={category}
-                            onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setCategory(e.target.value)}
+                            onChange={(e) => setCategory(e.target.value)}
                             InputProps={{
                                 classes: {input: props.classes.flashCardCategoryName},
                             }}
@@ -270,7 +267,7 @@ const FlashCardCreator = (props) => {
                                 name={`front-side-${id}`}
                                 multiline={true}
                                 rows={1}
-                                inputRef={(el: null) => textFieldRefs.current[index] = el}
+                                inputRef={el => textFieldRefs.current[index] = el}
                                 value={texts[`front-${id}`] || ''}
                                 onInput={(e: any) => setTexts(prevTexts => ({
                                     ...prevTexts,
@@ -306,7 +303,7 @@ const FlashCardCreator = (props) => {
                                 name={`back-side-${id}`}
                                 multiline={true}
                                 rows={1}
-                                inputRef={(el: null) => textFieldRefs.current[index] = el}
+                                inputRef={el => textFieldRefs.current[index] = el}
                                 value={texts[`back-${id}`] || ''}
 
                                 onInput={(e: any) => setTexts(prevTexts => ({
