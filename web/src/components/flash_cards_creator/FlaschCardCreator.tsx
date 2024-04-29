@@ -3,6 +3,7 @@ import {FormControl, InputAdornment, IconButton} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import ButtonFlashCardsCreatePage from "./ButtonCreateFlashCardPage";
+import Alert from '../alert/Alert'
 // @ts-ignore
 import trashbin from "../../assets/Trashbin.png";
 // @ts-ignore
@@ -26,7 +27,8 @@ const FlashCardCreator = (props) => {
     const [texts, setTexts] = useState<Record<string, any>>({});
     const [isDictating, setIsDictating] = useState<Record<string, boolean>>({});
     const recognitionInstances = useRef<{ [key: string]: any }>({});
-
+    const [alertMessage, setAlertMessage] = useState('');
+    const [showAlert, setShowAlert] = useState(false);
 
     const recognition = useRef(null);
 
@@ -53,7 +55,7 @@ const FlashCardCreator = (props) => {
                 }));
             };
         } else {
-            alert("Twoja przeglądarka nie obsługuje Speech Recognition API.");
+            alert("Your browser does not support the Speech Recognition API.");
         }
     }, []);
 
@@ -135,7 +137,8 @@ const FlashCardCreator = (props) => {
         const userId = ActiveUser.getId();
 
         if (!deckTitle || !category) {
-            alert('The "deck name" and "deck category" fields must be completed.');
+            setAlertMessage('The "deck name" and "deck category" fields must be completed.');
+            setShowAlert(true);
             return;
         }
 
@@ -151,7 +154,8 @@ const FlashCardCreator = (props) => {
         }
 
         if (!hasNonEmptyCards) {
-            alert('You must add at least one non-empty card before creating the deck.');
+            setAlertMessage('You must add at least one non-empty card before creating the deck.');
+            setShowAlert(true);
             return;
         }
 
@@ -160,8 +164,6 @@ const FlashCardCreator = (props) => {
             title: deckTitle,
             deck_category: category,
         };
-
-
 
 
         try {
@@ -186,6 +188,10 @@ const FlashCardCreator = (props) => {
             alert("Failed to create deck and flash cards: " + error.message);
         }
     };
+
+    const handleCloseAlert = () => {
+        setShowAlert(false);
+    };
 //     useEffect(() => {
 //     const addedNewDirector = directorsArray.length > textFieldRefs.current.length;
 //     if (
@@ -206,8 +212,10 @@ const FlashCardCreator = (props) => {
 
             <Grid container justify="center" alignItems="center">
                 <div className="webTitle"><p>Create Deck</p></div>
-                <ButtonFlashCardsCreatePage text={"Create Deck"} image={plus} color={"#5346F1"} border={'2px solid black'}
+                <ButtonFlashCardsCreatePage text={"Create Deck"} image={plus} color={"#5346F1"}
+                                            border={'2px solid black'}
                                             onClick={handleDeck}/>
+                {showAlert && <Alert message={alertMessage} onClose={handleCloseAlert}/>}
             </Grid>
             <Grid container spacing={1} style={{marginBottom: "3%"}}>
                 <Grid xs={12} lg={6} item>
