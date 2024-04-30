@@ -1,0 +1,46 @@
+$flash-card-border: 2px solid #000000;
+$bg-color-front: #9B4CFF;
+$bg-color-back: #8325FA;
+$animation: transform 0.5s linear;
+
+.flashcard {
+  position: relative;
+  height: 35vh;
+  width: 40vw;
+  font-size: 24px;
+  cursor: pointer;
+
+}
+
+.flashcard .front,
+.flashcard .back {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  color: white;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: $flash-card-border;
+  transition: $animation;
+  border-radius: 15px;
+}
+
+.flashcard .front {
+  background-color: $bg-color-front;
+  transition: $animation;
+}
+
+.flashcard .back {
+  background-color: $bg-color-back;
+  transform: rotateY(180deg);
+}
+
+.flashcard.flipped .front {
+  transform: rotateY(180deg);
+}
+
+.flashcard.flipped .back {
+  transform: rotateY(0deg);
+}
