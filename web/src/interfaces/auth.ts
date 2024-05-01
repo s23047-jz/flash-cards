@@ -9,6 +9,10 @@ export interface AuthInterface {
     token_data: TokenInterface
 }
 
+export interface DeckData{
+    deck_data: DeckInterface
+}
+
 export interface DeckInterface {
     id?: string;
     user_id?: string;

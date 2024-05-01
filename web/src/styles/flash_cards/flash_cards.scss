@@ -1,0 +1,114 @@
+$flash-card-border: 3px solid #000000;
+$bg-color-front: #388FFF;
+$bg-color-back: #1078FF;
+$animation: transform 0.4s linear;
+$flash-card-width: 100%;
+$flash-card-height: 35vh;
+
+.flashcard {
+  position: relative;
+  height: $flash-card-height;
+  width: $flash-card-width;
+  font-size: 24px;
+
+  .front {
+    background-color: $bg-color-front;
+
+  }
+
+  .icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+    cursor: pointer;
+    transition:transform 0.6s linear, 0.6s top;
+  }
+}
+
+.flashcard .left-corner-text {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  color: white;
+  font-weight: bold;
+  transition:transform 0.6s linear, 0.6s top;
+  z-index: 999;
+}
+
+.flashcard .front,
+.flashcard .back {
+  padding: 35px;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  color: white;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: $flash-card-border;
+  transition: $animation;
+  border-radius: 15px;
+  text-align: center;
+  overflow: hidden; /* Dodaj overflow: hidden, aby ukryć ikonę podczas animacji */
+}
+
+.flashcard .back {
+  background-color: $bg-color-back;
+  transform: rotateX(180deg);
+}
+
+.flashcard.flipped {
+  .front {
+    transform: rotateX(180deg);
+  }
+
+  .left-corner-text{
+    top: calc(-40px + $flash-card-height);
+  }
+
+  .back {
+    transform: rotateX(0deg);
+  }
+
+  .icon {
+    top: calc(-40px + $flash-card-height);
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .flashcard {
+    font-size: 20px;
+  }
+}
+
+
+@media screen and (max-width: 1005px) {
+  .flashcard {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .flashcard {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flashcard {
+    font-size: 12px;
+
+    .front,
+    .back {
+      padding-left: 20px;
+    }
+
+    .icon {
+      right: 8px;
+    }
+  }
+}
+
+
