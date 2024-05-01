@@ -28,9 +28,13 @@ import FilledInput from "@mui/material/FilledInput";
 import ButtonCreateFlashCardPage from "../flash_cards_creator/ButtonCreateFlashCardPage";
 // @ts-ignore
 import filter from "../../assets/Filter.png";
+import {useNavigate} from "react-router-dom";
+import {DeckData} from "../../interfaces/auth";
+import {ActiveUser} from "../../services/user";
 
 
 const DecksContainer = () => {
+    const navigate = useNavigate();
     const fields_color = "#7c3bd1";
     const [decks, setDecks] = useState([]);
     const [filterString, setFilterString] = useState('');
@@ -73,12 +77,20 @@ const DecksContainer = () => {
         }
     };
 
+    const navigateToDeckFlashcards = async (deck_id: string) => {
+        navigate("/my_deck_learning_modes")
+        DeckService.get_deck_by_id(deck_id)
+
+    }
+
+    // @ts-ignore
     return (
         <div className="website-container">
             <p className="web-title">My Decks</p>
             <div className="filter-container">
-                <FormControl variant="filled" >
-                    <InputLabel htmlFor="component-filled" sx={{ backgroundColor: fields_color, color: 'white' }}>Filter Decks</InputLabel>
+                <FormControl variant="filled">
+                    <InputLabel htmlFor="component-filled" sx={{backgroundColor: fields_color, color: 'white'}}>Filter
+                        Decks</InputLabel>
                     <FilledInput
                         id="component-filled"
                         defaultValue=""
@@ -90,7 +102,6 @@ const DecksContainer = () => {
                                 border: '2px solid black',
                             }
                         }}
-                        // @ts-ignore
                         disableUnderline
                         onChange={(e) => setFilterString(e.target.value)}
                     />
@@ -106,14 +117,14 @@ const DecksContainer = () => {
             <div className="decks-container">
                 {decks.map((deck, index) => (
                     <div className="deck-button">
-                    <DeckButton
-                        key={index}
-                        frontTextUpper={`${deck['title']}`}
-                        frontTextLower={`${deck['deck_category']}`}
-                        image={cardColors[index]}
-                        backText={`Number of flashcards: ${deck['number_of_cards']}`}
-                        onClick={() => console.log('click')}
-                    />
+                        <DeckButton
+                            key={index}
+                            frontTextUpper={`${deck['title']}`}
+                            frontTextLower={`${deck['deck_category']}`}
+                            image={cardColors[index]}
+                            backText={`Number of flashcards: ${deck['number_of_cards']}`}
+                            onClick={() => navigateToDeckFlashcards(deck['id'])}
+                        />
                     </div>
                 ))}
             </div>

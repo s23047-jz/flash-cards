@@ -1,0 +1,14 @@
+
+.all-flashcards-container {
+  position: relative;
+  height: 70vh;
+  width: 42vw;
+  overflow-y: auto;
+  padding-right: 20px;
+  .all-flashcards-text {
+    padding-top: 20px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+  }
+}

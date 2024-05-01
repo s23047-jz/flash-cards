@@ -21,7 +21,7 @@ function App() {
                     <Route path="/registration" element={<Registration/>}/>
                     <Route path="/create_deck" element={<CreateFlashCardsPage/>}/>
                     <Route path="/my_decks" element={<MyDecks/>}/>
-                    <Route path="/my_deck_learning_modes" element={<DeckAllFlashcards />}/>
+                    <Route path="/my_deck_learning_modes" element={<DeckAllFlashcards/>}/>
 
                 </Routes>
             </div>

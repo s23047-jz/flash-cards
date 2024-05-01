@@ -1,0 +1,48 @@
+$bg-color-front: #9B4CFF;
+$flash-card-border: 2px solid #000000;
+
+.flashcard-field {
+  position: relative;
+  margin-top: 20px;
+  background: $bg-color-front;
+  border: $flash-card-border;
+  border-radius: 15px;
+
+
+  .flashcard-field-grid {
+
+    height: 100%;
+    display: grid;
+    padding: 10px;
+
+    .front, .back-side {
+      padding: 10px 20px;
+      height: 100%;
+      width: 100%;
+      text-align: center;
+      color: white;
+    }
+
+    .front {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    .back-side {
+      grid-row: 1;
+      grid-column: 2;
+      border-left: 2px solid black;
+    }
+  }
+
+  .icon-field {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+  }
+}
+
+
+
+
+
