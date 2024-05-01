@@ -147,7 +147,7 @@ const FlashCardsContainer = () => {
                         front_text={flashcards[currentBigCardIndex]['title']}
                         back_text={flashcards[currentBigCardIndex]['card text']}
                         left_corner_text={`${currentBigCardIndex + 1}/${numberOfFlashCards} ${deckTitle}`}
-                        icon={isSpeaking ? speaker_blue : speaker}
+                        icon={isSpeakingBigCard && isSpeaking ? speaker_blue : speaker}
                         isRotated={isRotated}
                         onIconClick={() => handleSpeakerBigCardClick()}
                     />
