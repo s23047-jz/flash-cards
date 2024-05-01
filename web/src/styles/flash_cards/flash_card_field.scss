@@ -1,5 +1,5 @@
-$bg-color-front: #9B4CFF;
-$flash-card-border: 2px solid #000000;
+$bg-color-front: #388FFF;
+$flash-card-border: 3px solid #000000;
 
 .flashcard-field {
   position: relative;
@@ -7,7 +7,7 @@ $flash-card-border: 2px solid #000000;
   background: $bg-color-front;
   border: $flash-card-border;
   border-radius: 15px;
-
+  font-size: 16px;
 
   .flashcard-field-grid {
 
@@ -39,10 +39,36 @@ $flash-card-border: 2px solid #000000;
     position: absolute;
     right: 10px;
     top: 10px;
+    cursor: pointer;
   }
 }
 
 
+@media screen and (max-width: 1005px) {
+  .flashcard-field {
+    .flashcard-field-grid {
+      .front {
+        grid-row: 1;
+        grid-column: 1;
+      }
+
+      .back-side {
+        grid-row: 2;
+        grid-column: 1;
+        border-top: 2px solid black;
+        border-left: 0px;
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 1005px) {
+  .flashcard-field {
+    font-size: 12px;
+  }
+
+}
 
 
 

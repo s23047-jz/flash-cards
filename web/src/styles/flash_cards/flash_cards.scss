@@ -1,36 +1,44 @@
-$flash-card-border: 2px solid #000000;
-$bg-color-front: #9B4CFF;
-$bg-color-back: #8325FA;
+$flash-card-border: 3px solid #000000;
+$bg-color-front: #388FFF;
+$bg-color-back: #1078FF;
 $animation: transform 0.4s linear;
 $flash-card-width: 100%;
+$flash-card-height: 35vh;
 
 .flashcard {
   position: relative;
-  height: 35vh;
+  height: $flash-card-height;
   width: $flash-card-width;
   font-size: 24px;
-  cursor: pointer;
 
   .front {
     background-color: $bg-color-front;
-    transition: $animation;
+
   }
 
   .icon {
-
     position: absolute;
     top: 20px;
     right: 20px;
-    transition:top 0.4s linear;
     z-index: 999;
-
+    cursor: pointer;
+    transition:transform 0.6s linear, 0.6s top;
   }
-
 }
 
+.flashcard .left-corner-text {
+  position: absolute;
+  top: 10px;
+  left: 5px;
+  color: white;
+  font-weight: bold;
+  transition:transform 0.6s linear, 0.6s top;
+  z-index: 999;
+}
 
 .flashcard .front,
 .flashcard .back {
+  padding: 35px;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -42,8 +50,9 @@ $flash-card-width: 100%;
   border: $flash-card-border;
   transition: $animation;
   border-radius: 15px;
+  text-align: center;
+  overflow: hidden; /* Dodaj overflow: hidden, aby ukryć ikonę podczas animacji */
 }
-
 
 .flashcard .back {
   background-color: $bg-color-back;
@@ -55,20 +64,51 @@ $flash-card-width: 100%;
     transform: rotateX(180deg);
   }
 
+  .left-corner-text{
+    top: calc(-40px + $flash-card-height);
+  }
+
   .back {
     transform: rotateX(0deg);
   }
 
   .icon {
-    top: calc(-40px + #{35vh});
+    top: calc(-40px + $flash-card-height);
   }
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1600px) {
   .flashcard {
-    width: 80vw;
+    font-size: 20px;
   }
+}
 
+
+@media screen and (max-width: 1005px) {
+  .flashcard {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .flashcard {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flashcard {
+    font-size: 12px;
+
+    .front,
+    .back {
+      padding-left: 20px;
+    }
+
+    .icon {
+      right: 8px;
+    }
+  }
 }
 
 

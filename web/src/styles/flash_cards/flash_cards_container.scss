@@ -5,10 +5,19 @@
   width: 50vw;
   overflow-y: auto;
   padding-right: 20px;
+
   .all-flashcards-text {
     padding-top: 20px;
     color: white;
     font-size: 30px;
     font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .all-flashcards-container {
+
+    width: 92vw;
+
   }
 }

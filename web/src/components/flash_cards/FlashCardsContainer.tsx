@@ -7,12 +7,19 @@ import React, {useEffect, useState} from "react";
 import FlashCard from "./FlashCard";
 import FlashCardField from "./FlashCardField";
 import {DeckService} from '../../services/decs';
+import ButtonsContainer from "../all_flashcards_page_buttons/ButtonsContainer";
 import "../../styles/flash_cards/flash_cards_container.scss"
 
 const FlashCardsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [currentCardIndex, setCurrentCardIndex] = useState(-1);
+    const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
+    const [currentCardIndex, setCurrentCardIndex] = useState(0);
+    const [isSpeaking, setIsSpeaking] = useState(false);
+    const [isRotated, setIsRotated] = useState(false);
+    const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
+    const [deckTitle, setDeckTitle] = useState(false);
+    const numberOfFlashCards = flashcards.length
     useEffect(() => {
         const fetchFlashCards = async () => {
             try {
@@ -22,7 +29,7 @@ const FlashCardsContainer = () => {
                     const deckDataString = localStorage.getItem("deckData");
                     const deckData = JSON.parse(deckDataString || "{}");
                     deck_id = deckData.id;
-
+                    setDeckTitle(deckData.title);
                     if (deck_id) {
                         clearInterval(intervalId);
                         setTimeout(async () => {
@@ -49,59 +56,114 @@ const FlashCardsContainer = () => {
             sentences.forEach((sentence, i) => {
                 const speech = new SpeechSynthesisUtterance(sentence.trim());
                 speech.lang = 'en-US';
-                speech.rate = 0.8; // Możesz dostosować szybkość odczytywania
+                speech.rate = 0.8;
                 speech.pitch = 1.2;
                 speech.volume = 1.0;
 
                 speech.onstart = () => {
                     setCurrentCardIndex(index);
+                    setIsSpeaking(true);
                 };
 
                 if (i === sentences.length - 1) {
                     speech.onend = () => {
                         setCurrentCardIndex(-1);
+                        setIsSpeaking(false);
                     };
                 }
 
                 window.speechSynthesis.speak(speech);
             });
+            if (isSpeakingBigCard) {
+                setCurrentCardIndex(flashcards.length);
+            }
+
         } else {
             console.log('Speech synthesis not supported.');
         }
-
     };
 
-    // const handleVoiceCommand = () => {
-    //     const recognition = new (window as any).webkitSpeechRecognition();
-    //     recognition.lang = 'en-US';
-    //     recognition.onresult = (event: any) => {
-    //         const command = event.results[0][0].transcript.toLowerCase();
-    //         if (command == 'read') {
-    //             handleSpeak(flashcards[1]['title'], flashcards[1]['card text'], 1);
-    //         }
-    //     };
-    //     recognition.start();
-    // };
+    const handleSpeakerClick = (flashcard: any, index: number) => {
+        if (isSpeaking) {
+            window.speechSynthesis.cancel();
+            setIsSpeaking(false);
+        } else {
+            handleSpeak(flashcard['title'], flashcard['card text'], index);
+        }
+    };
 
+    const handleSpeakerBigCardClick = () => {
+        setIsSpeakingBigCard(true)
+        const currentBigFlashCard = flashcards[currentBigCardIndex];
+        if (!isRotated) {
+            handleSpeak(currentBigFlashCard['title'], '', currentBigCardIndex);
+        } else {
+            handleSpeak(currentBigFlashCard['card text'], '', currentBigCardIndex);
+        }
+        if (isSpeaking) {
+            setIsSpeakingBigCard(false)
+            window.speechSynthesis.cancel();
+            setIsSpeaking(false);
+        }
+    };
+
+    const handleNextClick = () => {
+        window.speechSynthesis.cancel();
+        setIsSpeaking(false);
+        if (currentBigCardIndex < flashcards.length - 1) {
+            setCurrentBigCardIndex(currentBigCardIndex + 1);
+            setIsRotated(false)
+        }
+    };
+
+    const handlePrevClick = () => {
+        window.speechSynthesis.cancel();
+        setIsSpeaking(false);
+        if (currentBigCardIndex > 0) {
+            setCurrentBigCardIndex(currentBigCardIndex - 1);
+            setIsRotated(false)
+        }
+    };
+
+    const handleRotateClick = () => {
+        setIsRotated(!isRotated);
+        if (isSpeaking) {
+            window.speechSynthesis.cancel();
+            setIsSpeaking(false);
+        }
+    };
     return (
         <div className={"all-flashcards-container"}>
-            <FlashCard front_text={"text front"} back_text={"back text"} icon={speaker}/>
-            <p className={"all-flashcards-text"}>All Flashcards</p>
             {isLoading ? (
                 <div>Loading...</div>
             ) : (
-                flashcards.map((flashcard, index) => (
-                    <FlashCardField
-                        key={index}
-                        front_text={`${flashcard['title']}`}
-                        back_text={flashcard['card text']}
-                        icon={currentCardIndex === index ? speaker_blue : speaker}
-                        onClick={() => handleSpeak(flashcard['title'], flashcard['card text'], index)}
+                <>
+                    <FlashCard
+                        front_text={flashcards[currentBigCardIndex]['title']}
+                        back_text={flashcards[currentBigCardIndex]['card text']}
+                        left_corner_text={`${currentBigCardIndex + 1}/${numberOfFlashCards} ${deckTitle}`}
+                        icon={isSpeaking ? speaker_blue : speaker}
+                        isRotated={isRotated}
+                        onIconClick={() => handleSpeakerBigCardClick()}
                     />
-                ))
+                    <ButtonsContainer
+                        onClickPrev={handlePrevClick}
+                        onClickNext={handleNextClick}
+                        onClickRotate={handleRotateClick}
+                    />
+                    <p className={"all-flashcards-text"}>All Flashcards</p>
+                    {flashcards.map((flashcard, index) => (
+                        <FlashCardField
+                            key={index}
+                            front_text={flashcard['title']}
+                            back_text={flashcard['card text']}
+                            icon={currentCardIndex === index && isSpeaking && !isSpeakingBigCard ? speaker_blue : speaker}
+                            onClick={() => handleSpeakerClick(flashcard, index)}
+                        />
+                    ))}
+                </>
             )}
         </div>
-
     );
 };
 
