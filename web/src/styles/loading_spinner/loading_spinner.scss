@@ -1,0 +1,35 @@
+.loading-spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  .loading-spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #3498db;
+    border-radius: 50%;
+    width: 30vh;
+    height: 30vh;
+    animation: spin 1.6s linear infinite;
+
+    .img-spinner{
+      height: 30vh;
+      width: 30vh;
+    }
+  }
+  .loading-text{
+    position: absolute;
+    top: 40vh;
+    color: white;
+    font-size: 4vh;
+  }
+}
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

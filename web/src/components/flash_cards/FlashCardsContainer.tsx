@@ -8,6 +8,8 @@ import FlashCard from "./FlashCard";
 import FlashCardField from "./FlashCardField";
 import {DeckService} from '../../services/decs';
 import ButtonsContainer from "../all_flashcards_page_buttons/ButtonsContainer";
+import ButtonsContainerLearningMode from "../all_flashcards_page_buttons/ButtonsContainerLearningMode";
+import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/flash_cards/flash_cards_container.scss"
 
 const FlashCardsContainer = () => {
@@ -135,9 +137,12 @@ const FlashCardsContainer = () => {
     return (
         <div className={"all-flashcards-container"}>
             {isLoading ? (
-                <div>Loading...</div>
+                <LoadingSpinner/>
             ) : (
                 <>
+                    <ButtonsContainerLearningMode onClickPrev={handlePrevClick}
+                                                  onClickNext={handleNextClick}
+                                                  onClickRotate={handleRotateClick}></ButtonsContainerLearningMode>
                     <FlashCard
                         front_text={flashcards[currentBigCardIndex]['title']}
                         back_text={flashcards[currentBigCardIndex]['card text']}
