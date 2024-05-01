@@ -59,6 +59,7 @@ class User {
     public clean() {
         localStorage.removeItem("userData")
         localStorage.removeItem("tokenData")
+        localStorage.removeItem("deckData");
     }
 }
 

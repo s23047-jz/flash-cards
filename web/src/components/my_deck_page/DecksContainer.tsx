@@ -51,9 +51,12 @@ const DecksContainer = () => {
             } catch (error) {
                 console.error(error);
             }
+
         };
 
         fetchDecks();
+
+
     }, [cardColors]);
 
     const cardImages = [red_cards, pink_cards, yellow_cards, purple_cards, light_yellow_cards,
@@ -82,6 +85,7 @@ const DecksContainer = () => {
         DeckService.get_deck_by_id(deck_id)
 
     }
+
 
     // @ts-ignore
     return (

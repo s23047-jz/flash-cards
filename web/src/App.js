@@ -8,6 +8,7 @@ import PrivateRoute from './utils/PrivateRoute';
 import CreateFlashCardsPage from "./views/CreateFlashCardsPage";
 import MyDecks from "./views/MyDecks";
 import DeckAllFlashcards from "./views/DeckAllFlashcards";
+
 function App() {
     return (
         <Router>

@@ -110,6 +110,9 @@ class Deck {
         });
     }
 
+    public async get_deck_id(){
+        return this.deckData.id
+    }
 
 }
 
