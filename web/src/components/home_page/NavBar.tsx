@@ -49,11 +49,16 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
         navigate("/home")
     }
 
+    function profilePageNavigate() {
+        navigate("/profile") // Dodanie funkcji przekierowującej na stronę profilu
+    }
+
     const handleNavItemClick = (item: string) => {
         switch (item) {
             case 'Search':
                 break;
             case 'Profile':
+                profilePageNavigate();
                 break;
             case 'Home':
                 homePageNavigate();
