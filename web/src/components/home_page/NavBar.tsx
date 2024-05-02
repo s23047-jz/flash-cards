@@ -50,7 +50,7 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
     }
 
     function profilePageNavigate() {
-        navigate("/profile") // Dodanie funkcji przekierowującej na stronę profilu
+        navigate("/profile")
     }
 
     const handleNavItemClick = (item: string) => {
