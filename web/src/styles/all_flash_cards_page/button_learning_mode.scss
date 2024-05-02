@@ -1,0 +1,13 @@
+$imageSize: 36px;
+
+
+.icon-learning-mode {
+  position: relative;
+  width: $imageSize;
+  height: $imageSize;
+  margin-left: auto; /* Ustawienie marginesu z lewej strony na auto spowoduje przesunięcie obrazu do prawej krawędzi */
+  margin-right: calc(-10px); /* Ustawienie marginesu z prawej strony na wartość ujemną równą szerokości obrazu */
+}
+.button-text{
+  font-weight: bold;
+}

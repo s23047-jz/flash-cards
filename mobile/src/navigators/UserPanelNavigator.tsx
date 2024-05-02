@@ -1,10 +1,11 @@
 import React, { useEffect, useState} from "react";
+
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { ROUTES } from "../constants"
+import { ROUTES } from "../constants";
 import { UserPanelScreen, UserUpdate } from "../screens";
 import { ActiveUser } from "../services/user";
-import {Text} from "react-native";
+import { Loader } from "../components";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,7 +35,7 @@ export default function UserPanelNavigator() {
 
     if (loading) {
         return (
-            <Text>Loading...</Text>
+            <Loader />
         );
     }
 

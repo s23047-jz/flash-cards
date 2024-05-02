@@ -1,16 +1,12 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {Text} from "react-native";
 
-import {ROUTES} from "../constants"
-import {ActiveUser} from "../services/user";
+import { ROUTES } from "../constants";
+import { ActiveUser } from "../services/user";
 
 import { LoginScreen, RegisterScreen, ForgotPassScreen } from "../screens";
 import BottomTabNavigator from "./BottomTabNavigator";
-import CreateDeck from "../screens/PrivateDecks/CreateDeck";
-import PrivateDecksNavigator from "./PrivateDecksNavigator";
-import {ScreenStack} from "react-native-screens";
-
+import { Loader } from "../components";
 
 const Stack = createNativeStackNavigator();
 
@@ -36,7 +32,7 @@ export default function AuthNavigator() {
 
     if (loading) {
         return (
-            <Text>Loading...</Text>
+            <Loader />
         );
     }
     return (
