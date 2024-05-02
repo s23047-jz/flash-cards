@@ -1,0 +1,67 @@
+.user-profile-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        .user-stats-button, .change-nickname-button, .change-email-button, .change-password-button, .delete-account-button {
+            font-size: 1.2rem; // Larger font size for readability on bigger buttons
+        }
+    }
+
+    .user-stats-button {
+        background-color: #01CAA1; // Red
+        color: white;
+        border: 2px solid black;
+
+        &:hover {
+            background-color: darken(#01CAA1, 10%);
+            opacity: 0.9;
+        }
+    }
+
+    .change-nickname-button {
+        background-color: #0699F2; // Blue
+        color: white;
+        border: 2px solid black;
+
+        &:hover {
+            background-color: darken(#0699F2, 10%);
+        }
+    }
+
+    .change-email-button {
+        background-color: #0699F2; // Blue
+        color: white;
+        border: 2px solid black;
+
+        &:hover {
+            background-color: darken(#0699F2, 10%);
+        }
+    }
+
+    .change-password-button {
+        background-color: #0699F2; // Blue
+        color: white;
+        border: 2px solid black;
+
+        &:hover {
+            background-color: darken(#0699F2, 10%);
+        }
+    }
+
+    .delete-account-button {
+        background-color: red; // Red, similar to user stats for consistency in critical actions
+        color: white;
+        border: 2px solid black;
+
+        &:hover {
+            background-color: darken(red, 10%);
+            opacity: 0.9;
+        }
+    }
+}

@@ -7,8 +7,8 @@ import HomePage from './views/HomePage';
 import PrivateRoute from './utils/PrivateRoute';
 import CreateFlashCardsPage from "./views/CreateFlashCardsPage";
 import MyDecks from "./views/MyDecks";
+import Profile from "./views/Profile";
 import DeckAllFlashcards from "./views/DeckAllFlashcards";
-
 function App() {
     return (
         <Router>
@@ -22,6 +22,7 @@ function App() {
                     <Route path="/registration" element={<Registration/>}/>
                     <Route path="/create_deck" element={<CreateFlashCardsPage/>}/>
                     <Route path="/my_decks" element={<MyDecks/>}/>
+                    <Route path="/profile" element={<Profile/>}/>
                     <Route path="/my_deck_learning_modes" element={<DeckAllFlashcards/>}/>
 
                 </Routes>
