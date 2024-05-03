@@ -3,29 +3,62 @@ import speaker from '../../assets/Speaker.png';
 // @ts-ignore
 import speaker_blue from '../../assets/Speaker_blue.png';
 // @ts-ignore
-import React, {useEffect, useState} from "react";
-import FlashCard from "./FlashCard";
-import FlashCardField from "./FlashCardField";
+import React, {useEffect, useRef, useState} from "react";
+import FlashCardVoiceMode from "./FlashCardVoiceMode";
 import {DeckService} from '../../services/decs';
-import ButtonsContainer from "../all_flashcards_page_buttons/ButtonsContainer";
-import ButtonsContainerLearningMode from "../all_flashcards_page_buttons/ButtonsContainerLearningMode";
+// @ts-ignore
+import ButtonsContainerVoiceMode from "./ButtonsContainerVoiceMode";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
-import "../../styles/flash_cards/flash_cards_container.scss"
-import { useNavigate } from 'react-router-dom';
+import "../../styles/voice_control_page/cards_buttons_container.scss"
+import {useNavigate} from 'react-router-dom';
 
 const FlashCardsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
-    const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const [isSpeaking, setIsSpeaking] = useState(false);
     const [isRotated, setIsRotated] = useState(false);
     const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
     const [deckTitle, setDeckTitle] = useState(false);
+    const [texts, setTexts] = useState({});
     const numberOfFlashCards = flashcards.length
-    const navigate = useNavigate();
+    const recognition = useRef(null);
+    const [textControl, setTextControl] = useState('');
+
+
 
     useEffect(() => {
+        if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+            // @ts-ignore
+            recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+            // @ts-ignore
+            recognition.current.lang = 'en-US';
+            // @ts-ignore
+            recognition.current.continuous = true;
+
+            // @ts-ignore
+            recognition.current.onresult = (event) => {
+                let finalTranscript = " ";
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript + " ";
+                    }
+                }
+
+                setTexts(prevTexts => ({
+                    ...prevTexts,
+                    voiceText: finalTranscript
+                }));
+                const trimmedText = finalTranscript.trim();
+                setTextControl(trimmedText)
+            };
+
+
+            // @ts-ignore
+            recognition.current.start();
+        } else {
+            alert("Your browser does not support the Speech Recognition API.");
+        }
         const fetchFlashCards = async () => {
             try {
                 let deck_id: string;
@@ -49,6 +82,7 @@ const FlashCardsContainer = () => {
             } catch (error) {
                 console.error(error);
             }
+
         };
 
         fetchFlashCards();
@@ -66,34 +100,20 @@ const FlashCardsContainer = () => {
                 speech.volume = 1.0;
 
                 speech.onstart = () => {
-                    setCurrentCardIndex(index);
                     setIsSpeaking(true);
                 };
 
                 if (i === sentences.length - 1) {
                     speech.onend = () => {
-                        setCurrentCardIndex(-1);
                         setIsSpeaking(false);
                     };
                 }
 
                 window.speechSynthesis.speak(speech);
             });
-            if (isSpeakingBigCard) {
-                setCurrentCardIndex(flashcards.length);
-            }
 
         } else {
             console.log('Speech synthesis not supported.');
-        }
-    };
-
-    const handleSpeakerClick = (flashcard: any, index: number) => {
-        if (isSpeaking) {
-            window.speechSynthesis.cancel();
-            setIsSpeaking(false);
-        } else {
-            handleSpeak(flashcard['title'], flashcard['card text'], index);
         }
     };
 
@@ -113,12 +133,14 @@ const FlashCardsContainer = () => {
     };
 
     const handleNextClick = () => {
+        console.log("click from handle")
         window.speechSynthesis.cancel();
         setIsSpeaking(false);
         if (currentBigCardIndex < flashcards.length - 1) {
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
+        console.log(currentBigCardIndex)
     };
 
     const handlePrevClick = () => {
@@ -131,32 +153,64 @@ const FlashCardsContainer = () => {
     };
 
     const handleRotateClick = () => {
-        //window.speechSynthesis.cancel();
+        window.speechSynthesis.cancel();
         setIsRotated(!isRotated);
         if (isSpeaking) {
             window.speechSynthesis.cancel();
             setIsSpeaking(false);
         }
     };
+    const voiceControl = (text: string) => {
+        const commands = ['previous', 'next', 'spin', 'read', 'quiet',]
+        console.log(currentBigCardIndex)
+        console.log(text)
+        switch (text) {
+            case commands[0]:{
+                console.log('prev click');
+                handlePrevClick()
+                setTextControl('')
+                break;}
+            case commands[1]: {
+                console.log('next click');
+                handleNextClick()
+                setTextControl('')
+                break;
+            }
+            case commands[2]: {
+                console.log('rotate');
+                handleRotateClick()
+                setTextControl('')
+                break;
+            }
+            case commands[3]: {
+                console.log('reading');
+                setTextControl('')
+                break;
+            }
+            case commands[4]: {
+                console.log('quiet');
+                handleSpeakerBigCardClick();
+                setTextControl('')
+                break;
+            }
+            default: {
+                console.log('not found command');
+                break;
+            }
 
-     const handleLearnModeClick = () => {
-        navigate('/voice_control')
-    };
+        }
+    }
 
     return (
-        <div className={"all-flashcards-container"}>
+
+        <div className={"voice-control-container"}>
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
-                <>
-                    <ButtonsContainerLearningMode onClickLearn={handleLearnModeClick}
-                                                  onClickMemorized={handleLearnModeClick}
-                                                  onClickNotMemorized={handleLearnModeClick}
-                                                  onClickVoiceControl={handleLearnModeClick}
-                                                  onClickOptions={handleLearnModeClick}
 
-                    />
-                    <FlashCard
+                <>
+                    {voiceControl(textControl)}
+                    <FlashCardVoiceMode
                         front_text={flashcards[currentBigCardIndex]['title']}
                         back_text={flashcards[currentBigCardIndex]['card text']}
                         left_corner_text={`${currentBigCardIndex + 1}/${numberOfFlashCards} ${deckTitle}`}
@@ -164,21 +218,13 @@ const FlashCardsContainer = () => {
                         isRotated={isRotated}
                         onIconClick={() => handleSpeakerBigCardClick()}
                     />
-                    <ButtonsContainer
+                    <ButtonsContainerVoiceMode
                         onClickPrev={handlePrevClick}
                         onClickNext={handleNextClick}
                         onClickRotate={handleRotateClick}
+                        onClickStopControl={handleNextClick}
+
                     />
-                    <p className={"all-flashcards-text"}>All Flashcards</p>
-                    {flashcards.map((flashcard, index) => (
-                        <FlashCardField
-                            key={index}
-                            front_text={flashcard['title']}
-                            back_text={flashcard['card text']}
-                            icon={currentCardIndex === index && isSpeaking && !isSpeakingBigCard ? speaker_blue : speaker}
-                            onClick={() => handleSpeakerClick(flashcard, index)}
-                        />
-                    ))}
                 </>
             )}
         </div>

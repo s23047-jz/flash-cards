@@ -9,6 +9,8 @@ import CreateFlashCardsPage from "./views/CreateFlashCardsPage";
 import MyDecks from "./views/MyDecks";
 import Profile from "./views/Profile";
 import DeckAllFlashcards from "./views/DeckAllFlashcards";
+import VoiceControlMode from "./views/VoiceControlMode";
+
 function App() {
     return (
         <Router>
@@ -24,6 +26,7 @@ function App() {
                     <Route path="/my_decks" element={<MyDecks/>}/>
                     <Route path="/profile" element={<Profile/>}/>
                     <Route path="/my_deck_learning_modes" element={<DeckAllFlashcards/>}/>
+                    <Route path="/voice_control" element={<VoiceControlMode/>}/>
 
                 </Routes>
             </div>
