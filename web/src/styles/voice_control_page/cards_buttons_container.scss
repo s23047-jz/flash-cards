@@ -1,5 +1,5 @@
 
-.all-flashcards-container {
+.voice-control-container{
   position: relative;
   height: 70vh;
   width: 60vw;
@@ -7,7 +7,6 @@
   padding-right: 20px;
 
   .all-flashcards-text {
-    overflow-y: auto;
     padding-top: 20px;
     color: white;
     font-size: 30px;
@@ -16,7 +15,7 @@
 }
 
 @media screen and (max-width: 1650px) {
-  .all-flashcards-container {
+  .voice-control-container {
 
     width: 92vw;
 
