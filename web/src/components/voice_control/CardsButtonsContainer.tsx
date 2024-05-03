@@ -21,13 +21,13 @@ const CardsButtonsContainer = () => {
     const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
     const [deckTitle, setDeckTitle] = useState(false);
     const [textControl, setTextControl] = useState('');
-    const numberOfFlashCards = flashcards.length
+    const [isListening, setIsListening] = useState(false);
+    const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
+    const numberOfFlashCards = flashcards.length;
     const recognition = useRef(null);
 
 
     useEffect(() => {
-
-
         if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
             // @ts-ignore
             recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
@@ -51,12 +51,8 @@ const CardsButtonsContainer = () => {
                     const trimmedText = finalTranscriptText.trim();
                     setTextControl(trimmedText)
                 }
-
             };
 
-
-            // @ts-ignore
-            recognition.current.start();
         } else {
             alert("Your browser does not support the Speech Recognition API.");
         }
@@ -84,16 +80,41 @@ const CardsButtonsContainer = () => {
             } catch (error) {
                 console.error(error);
             }
-
         };
 
         fetchFlashCards();
     }, []);
 
     useEffect(() => {
+        if (isListening) {
+            // @ts-ignore
+            recognition.current.start();
+        }
+        if (!isListening) {
+            // @ts-ignore
+            recognition.current.stop();
+        }
+
+    }, [isListening]);
+
+    useEffect(() => {
         voiceControl(textControl);
     }, [textControl]);
 
+
+    const onClickStopControl = () => {
+        if (isClickVoiceControlAllowed) {
+            setIsClickVoiceControlAllowed(false)
+            setTimeout(() => {
+                setIsClickVoiceControlAllowed(true)
+            }, 300); // 1000 ms to opóźnienie przed kolejnym zezwoleniem na kliknięcie
+            if (isListening) {
+                setIsListening(false);
+            } else {
+                setIsListening(true);
+            }
+        }
+    };
 
     const handleSpeak = (text_front: string, text_back: string) => {
         if ('speechSynthesis' in window) {
@@ -170,7 +191,6 @@ const CardsButtonsContainer = () => {
     };
 
     const voiceControl = (text: string) => {
-
         const commands = ['previous', 'next', 'spin', 'read', 'quiet',]
 
         if (text.length > 3) {
@@ -212,7 +232,7 @@ const CardsButtonsContainer = () => {
                 }
             }
         }
-    }
+    };
 
     return (
         <div className={"voice-control-container"}>
@@ -227,16 +247,16 @@ const CardsButtonsContainer = () => {
                         icon={isSpeakingBigCard && isSpeaking ? speaker_blue : speaker}
                         isRotated={isRotated}
                         onIconClick={handleSpeakerBigCardClick}
+                        isMicrophoneListening={isListening}
                     />
                     <ButtonsContainerVoiceMode
                         onClickPrev={handlePrevClick}
                         onClickNext={handleNextClick}
                         onClickRotate={handleRotateClick}
-                        onClickStopControl={()=>console.log('text')}
+                        onClickStopControl={onClickStopControl}
+                        isMicrophoneListening={isListening}
                     />
-
                 </>
-
             )}
         </div>
     );

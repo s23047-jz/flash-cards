@@ -3,9 +3,9 @@ import React from "react";
 import ButtonFlashAllFlashCards from "../all_flashcards_page_buttons/ButtonFlashAllFlashCards";
 import '../../styles/voice_control_page/buttons_container_voice_mode.scss'
 // @ts-ignore
-const ButtonsContainerVoiceMode = ({onClickPrev, onClickNext, onClickRotate, onClickStopControl}) => {
-    const texts = ['Prev', 'Next', 'Rotate Side', 'Stop Control']
-    const button_colors = ['#FF2020', '#46EF31', '#9C1CFF', '#f711d1']
+const ButtonsContainerVoiceMode = ({onClickPrev, onClickNext, onClickRotate, onClickStopControl, isMicrophoneListening}) => {
+    const texts = ['Prev', 'Next', 'Rotate Side', isMicrophoneListening ? 'Stop Listening' : 'Start Listening']
+    const button_colors = ['#FF2020', '#46EF31', '#9C1CFF', isMicrophoneListening ? '#075be3' : '#f711d1']
     const border = '3px solid black'
     return (
 
