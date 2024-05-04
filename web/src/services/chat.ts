@@ -11,11 +11,17 @@ class Chat {
             {"role": "user", "content": `${message}`}
         ]
     }
+    try{
+            console.log('sent meesage to chat')
         // @ts-ignore
-        return await request({
+        const answer = await request({
             url: url,
             method: 'POST', body
         });
+        return answer?.data
+    }catch (error){
+            console.log("Failed connect with chatGPT", error)
+        }
     }
 
 }

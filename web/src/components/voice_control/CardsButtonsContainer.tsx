@@ -10,7 +10,7 @@ import {DeckService} from '../../services/decs';
 import ButtonsContainerVoiceMode from "./ButtonsContainerVoiceMode";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/voice_control_page/cards_buttons_container.scss"
-import {useNavigate} from 'react-router-dom';
+import {ChatService} from "../../services/chat";
 
 const CardsButtonsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
