@@ -21,7 +21,7 @@ const HomePage = () => {
     const publicDecksPath = '/create_deck'
     const navigateTo = (path: string) => {
             navigate(path)
-        window.location.reload();
+
 
     }
 

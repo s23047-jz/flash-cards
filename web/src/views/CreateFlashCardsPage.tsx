@@ -1,8 +1,7 @@
 import React from 'react';
 import {withStyles} from "@material-ui/core/styles";
-import '../styles/create_flash_cards_page/flash_card_page_style.scss';
 import DrawerAppBar from "../components/home_page/NavBar";
-import FlashCard from "../components/flash_cards_creator/FlaschCardCreator";
+import FlashCardCreator  from "../components/flash_cards_creator/FlashCardCreator";
 
 
 
@@ -32,12 +31,14 @@ const styles = {
 };
 
 // @ts-ignore
-const StyledFlashCards = withStyles(styles)(FlashCard);
+const StyledFlashCards = withStyles(styles)(FlashCardCreator);
 
 const CreateFlashCardsPage = () => {
 
     return (
+
         <>
+
             <nav>
                 <DrawerAppBar/>
             </nav>
