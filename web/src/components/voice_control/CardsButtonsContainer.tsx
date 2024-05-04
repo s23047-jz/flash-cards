@@ -94,7 +94,6 @@ const CardsButtonsContainer = () => {
             // @ts-ignore
             recognition.current.stop();
         }
-
     }, [isListening]);
 
     useEffect(() => {
@@ -102,7 +101,7 @@ const CardsButtonsContainer = () => {
     }, [textControl]);
 
 
-    const onClickStopControl = () => {
+    const handleStopControl = () => {
         if (isClickVoiceControlAllowed) {
             setIsClickVoiceControlAllowed(false)
             setTimeout(() => {
@@ -139,7 +138,6 @@ const CardsButtonsContainer = () => {
                 }
                 window.speechSynthesis.speak(speech);
             });
-
         } else {
             console.log('Speech synthesis not supported.');
         }
@@ -158,7 +156,6 @@ const CardsButtonsContainer = () => {
             window.speechSynthesis.cancel();
             setIsSpeaking(false);
         }
-
     };
 
     const handleNextClick = () => {
@@ -168,7 +165,6 @@ const CardsButtonsContainer = () => {
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
-        console.log(currentBigCardIndex)
     };
 
     const handlePrevClick = () => {
@@ -179,7 +175,6 @@ const CardsButtonsContainer = () => {
             setIsRotated(false)
         }
     };
-
 
     const handleRotateClick = () => {
         window.speechSynthesis.cancel();
@@ -196,37 +191,32 @@ const CardsButtonsContainer = () => {
         if (text.length > 3) {
             switch (text) {
                 case commands[0]: {
-                    console.log('prev click');
                     handlePrevClick()
                     setTextControl('')
                     break;
                 }
                 case commands[1]: {
-                    console.log('next click');
                     handleNextClick()
                     setTextControl('')
                     break;
                 }
                 case commands[2]: {
-                    console.log('rotate');
                     handleRotateClick()
                     setTextControl('')
                     break;
                 }
                 case commands[3]: {
-                    console.log('reading');
-                    //handleSpeak(flashcards[0]['title'], '');
+                    handleSpeakerBigCardClick()
                     setTextControl('')
                     break;
                 }
                 case commands[4]: {
-                    console.log('quiet command 4');
-                    handleSpeakerBigCardClick()
+                    handleStopControl();
                     setTextControl('');
                     break;
                 }
                 default: {
-                    console.log('not found command');
+                    console.log('command not found');
                     setTextControl('');
                     break;
                 }
@@ -253,7 +243,7 @@ const CardsButtonsContainer = () => {
                         onClickPrev={handlePrevClick}
                         onClickNext={handleNextClick}
                         onClickRotate={handleRotateClick}
-                        onClickStopControl={onClickStopControl}
+                        onClickStopControl={handleStopControl}
                         isMicrophoneListening={isListening}
                     />
                 </>

@@ -5,7 +5,7 @@ import '../../styles/voice_control_page/buttons_container_voice_mode.scss'
 // @ts-ignore
 const ButtonsContainerVoiceMode = ({onClickPrev, onClickNext, onClickRotate, onClickStopControl, isMicrophoneListening}) => {
     const texts = ['Prev', 'Next', 'Rotate Side', isMicrophoneListening ? 'Stop Listening' : 'Start Listening']
-    const button_colors = ['#FF2020', '#46EF31', '#9C1CFF', isMicrophoneListening ? '#075be3' : '#f711d1']
+    const button_colors = ['#FF2020', '#46EF31', '#9C1CFF', isMicrophoneListening ? '#f711d1' : '#075be3']
     const border = '3px solid black'
     return (
 
