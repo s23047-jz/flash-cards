@@ -4,6 +4,7 @@
   align-items: center;
   height: 50vh;
   .loading-spinner {
+    position: absolute;
     border: 8px solid #f3f3f3;
     border-top: 8px solid #3498db;
     border-radius: 50%;
@@ -18,7 +19,7 @@
   }
   .loading-text{
     position: absolute;
-    top: 40vh;
+    margin-top: 36vh;
     color: white;
     font-size: 4vh;
   }
