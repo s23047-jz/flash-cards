@@ -16,7 +16,6 @@ const CardsButtonsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
-    const [isSpeaking, setIsSpeaking] = useState(false);
     const [isRotated, setIsRotated] = useState(false);
     const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
     const [deckTitle, setDeckTitle] = useState(false);
@@ -26,31 +25,38 @@ const CardsButtonsContainer = () => {
     const numberOfFlashCards = flashcards.length;
     const recognition = useRef(null);
 
-
     useEffect(() => {
         if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
             // @ts-ignore
             recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
             // @ts-ignore
-            recognition.current.lang = 'en-US';
+            recognition.current.lang = 'en-GB';
             // @ts-ignore
             recognition.current.continuous = true;
-
             // @ts-ignore
             recognition.current.onresult = (event) => {
-                let finalTranscriptText = " ";
+
+
+                let finalTranscriptText = "";
                 for (let i = event.resultIndex; i < event.results.length; ++i) {
                     if (event.results[i].isFinal) {
                         finalTranscriptText += event.results[i][0].transcript + " ";
                     }
                 }
-                if (isSpeakingBigCard) {
-                    finalTranscriptText = ''
-                    setTextControl(finalTranscriptText)
-                } else {
-                    const trimmedText = finalTranscriptText.trim();
-                    setTextControl(trimmedText)
+                let trimmedText = finalTranscriptText.trim();
+                console.log(isSpeakingBigCard)
+                setTextControl(isSpeakingBigCard ? '' : trimmedText);
+                if (isSpeakingBigCard){
+                    trimmedText = ''
+                    console.log('trimemed is Speaking', trimmedText)
                 }
+                console.log('trimemed', trimmedText)
+                if(!isSpeakingBigCard){
+                    voiceControl()
+                }
+                console.log(textControl)
+
+
             };
 
         } else {
@@ -81,32 +87,34 @@ const CardsButtonsContainer = () => {
                 console.error(error);
             }
         };
-
         fetchFlashCards();
-    }, []);
+    }, [isSpeakingBigCard]);
+
+    // useEffect(() => {
+    //     if (!isSpeakingBigCard && textControl) {
+    //         active_chat()
+    //         voiceControl();
+    //     }
+    // }, [isSpeakingBigCard, textControl]);
 
     useEffect(() => {
         if (isListening) {
             // @ts-ignore
             recognition.current.start();
-        }
-        if (!isListening) {
+        } else {
             // @ts-ignore
             recognition.current.stop();
         }
     }, [isListening]);
 
-    useEffect(() => {
-        voiceControl(textControl);
-    }, [textControl]);
-
 
     const handleStopControl = () => {
+
         if (isClickVoiceControlAllowed) {
             setIsClickVoiceControlAllowed(false)
             setTimeout(() => {
                 setIsClickVoiceControlAllowed(true)
-            }, 300); // 1000 ms to opóźnienie przed kolejnym zezwoleniem na kliknięcie
+            }, 300);
             if (isListening) {
                 setIsListening(false);
             } else {
@@ -115,52 +123,55 @@ const CardsButtonsContainer = () => {
         }
     };
 
-    const handleSpeak = (text_front: string, text_back: string) => {
+    const handleSpeak = (text: string) => {
         if ('speechSynthesis' in window) {
-            const text: string = text_front + "." + text_back
-            const sentences = text.split('.');
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'en-GB';
+            speech.rate = 0.9;
+            speech.pitch = 1.2;
+            speech.volume = 1.0;
 
-            sentences.forEach((sentence, i) => {
-                const speech = new SpeechSynthesisUtterance(sentence.trim());
-                speech.lang = 'en-US';
-                speech.rate = 0.8;
-                speech.pitch = 1.2;
-                speech.volume = 1.0;
+            setIsSpeakingBigCard(true);
+            speech.onend = () => {
+                setIsSpeakingBigCard(false);
+                setTextControl('');
+            };
 
-                speech.onstart = () => {
-                    setIsSpeaking(true);
-                };
-
-                if (i === sentences.length - 1) {
-                    speech.onend = () => {
-                        setIsSpeaking(false);
-                    };
-                }
-                window.speechSynthesis.speak(speech);
-            });
+            window.speechSynthesis.speak(speech);
         } else {
             console.log('Speech synthesis not supported.');
         }
     };
 
     const handleSpeakerBigCardClick = () => {
+
         setIsSpeakingBigCard(true)
         let currentBigFlashCard = flashcards[currentBigCardIndex];
         if (!isRotated) {
-            handleSpeak(currentBigFlashCard['title'], '');
+            handleSpeak(currentBigFlashCard['title']);
         } else {
-            handleSpeak(currentBigFlashCard['card text'], '');
+            handleSpeak(currentBigFlashCard['card text']);
         }
-        if (isSpeaking) {
+        if (isSpeakingBigCard) {
             setIsSpeakingBigCard(false)
             window.speechSynthesis.cancel();
-            setIsSpeaking(false);
         }
-    };
 
+    };
+    conts returnIsSPekaing ()=>{}
+
+    let active_chat = () => {
+        if (isSpeakingBigCard) {
+            return
+        }
+        if (!isSpeakingBigCard) {
+            console.log("active chat")
+        }
+
+    }
     const handleNextClick = () => {
         window.speechSynthesis.cancel();
-        setIsSpeaking(false);
+        setIsSpeakingBigCard(false);
         if (currentBigCardIndex < flashcards.length - 1) {
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
@@ -169,7 +180,7 @@ const CardsButtonsContainer = () => {
 
     const handlePrevClick = () => {
         window.speechSynthesis.cancel();
-        setIsSpeaking(false);
+        setIsSpeakingBigCard(false);
         if (currentBigCardIndex > 0) {
             setCurrentBigCardIndex(currentBigCardIndex - 1);
             setIsRotated(false)
@@ -179,49 +190,46 @@ const CardsButtonsContainer = () => {
     const handleRotateClick = () => {
         window.speechSynthesis.cancel();
         setIsRotated(!isRotated);
-        if (isSpeaking) {
+        if (isSpeakingBigCard) {
             window.speechSynthesis.cancel();
-            setIsSpeaking(false);
+            setIsSpeakingBigCard(false);
         }
     };
 
-    const voiceControl = (text: string) => {
+    const voiceControl = () => {
+        console.log('voice control text:', textControl)
         const commands = ['previous', 'next', 'spin', 'read', 'quiet',]
 
-        if (text.length > 3) {
-            switch (text) {
+        if (!isSpeakingBigCard && textControl.length > 3) {
+            switch (textControl) {
                 case commands[0]: {
                     handlePrevClick()
-                    setTextControl('')
                     break;
                 }
                 case commands[1]: {
                     handleNextClick()
-                    setTextControl('')
                     break;
                 }
                 case commands[2]: {
                     handleRotateClick()
-                    setTextControl('')
-                    break;
-                }
-                case commands[3]: {
-                    handleSpeakerBigCardClick()
-                    setTextControl('')
                     break;
                 }
                 case commands[4]: {
+                    handleSpeakerBigCardClick()
+                    break;
+                }
+                case commands[3]: {
                     handleStopControl();
-                    setTextControl('');
                     break;
                 }
                 default: {
                     console.log('command not found');
-                    setTextControl('');
                     break;
                 }
             }
         }
+        // Ustawia textControl na pusty tylko gdy isSpeakingBigCard jest aktywne
+
     };
 
     return (
@@ -234,7 +242,7 @@ const CardsButtonsContainer = () => {
                         front_text={flashcards[currentBigCardIndex]['title']}
                         back_text={flashcards[currentBigCardIndex]['card text']}
                         left_corner_text={`${currentBigCardIndex + 1}/${numberOfFlashCards} ${deckTitle}`}
-                        icon={isSpeakingBigCard && isSpeaking ? speaker_blue : speaker}
+                        icon={isSpeakingBigCard ? speaker_blue : speaker}
                         isRotated={isRotated}
                         onIconClick={handleSpeakerBigCardClick}
                         isMicrophoneListening={isListening}
