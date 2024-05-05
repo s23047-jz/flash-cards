@@ -1,5 +1,12 @@
 \usepackage{xifthen}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
+\newcommand{\daytable}[]{
+
+}
+
+% creates headers for a member
 \newcommand{\member}[6]{
     \textbf{#1} \\
     \hline #2 \\
@@ -9,6 +16,8 @@
     \ifthenelse{{ \equal {#6} {} }}{}{\\ \hline #6}
 }
 
+% creates tables for a member
+% param #1 -> member
 \newcommand{\membertable}[1]{
     \begin{tabularx}{1\textwidth}{|>{\centering\arraybackslash}X|}
         \hline
@@ -19,15 +28,43 @@
     \vspace{2em}
 }
 
+\newcommand{\gettableheaders}[1] {
+    \hline
+    \centering \textbf{#1} & \textbf{Jakub Żurawski} & \textbf{Daniel Klimowski} & \textbf{Oliwier Kossak} & \textbf{Wiktor Krieger} \\
+}
+
+\newcommand{\createtablerow}[5] {
+    \hline
+    \centering #1 & \ifthenelse{{ \equal {#2} {} }}{brak}{#2} & \ifthenelse{{ \equal {#3} {} }}{brak}{#3} & \ifthenelse{{ \equal {#4} {} }}{brak}{#4} & \ifthenelse{{ \equal {#5} {} }}{brak}{#5} \\
+    \hline
+}
+
 \begin{chap5}
     \chapter{Organizacja pracy}
 
-    \section{Wybrana metodyka}
-    \par \textbf{Agile} - główną zaletą tej metodyki jest elastyczność, która bardzo ułatwia podejmowanie działań,
-    czy sterowanie zakresem pracy.
+    \section{Harmonogram pracy}
 
-    \par Implementacja kodu odbyła się metodyką Scrum opartą na zasadach Agile. Umożliwiało łatwe podejmowanie działań i sterowaniem
-    rozwoju aplikacji poprzez planowanie celu na koniec każdego sprintu. Natomiast wypełnianie dokumentacji odbywało się w przerwach pomiędzy sprintami.
+    \begin{table}[htbp]
+        \centering
+        \begin{tabular}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
+            \gettableheaders{Styczeń 2024}
+            \createtablerow{14.01.2024}{}{}{}{}
+            \createtablerow{15.01.2024}{}{Nauka javascriptu}{Nauka javascriptu}{Nauka javascriptu}
+            \createtablerow{16.01.2024}{}{Nauka Reacta}{Nauka javascriptu}{Nauka javascriptu}
+            \createtablerow{17.01.2024}{Nic nie robilem i tyle}{Dodaje dlugi text dla testu}{Dodaje drugi dlugi text z tak zeby sobie opisac cos}{Cos tam robilem ale nie robilem bo tak tak}
+        \end{tabular}
+    \end{table}
+
+    \section{Wybrana metodyka}
+
+    \par Nasza wybrana metodyka nazywa się \textbf{modelem przyrostowo-ewolucyjnym}.
+    Jest to połączeniem dwóch modeli, przyrostowego i ewolucyjnego.
+    W naszym projekcie implementacja kodu odbywałą się w trakcie spintu, a każdy kolejny sprint był planowany po
+    zakończeniu aktualnie prowadzonego (przerwa między sprintami), razem z wypełnianiem dokumentacji.
+    Dzięki temu projekt był rozwijany i ewoulował cały czas, nie tylko w sprintach ale, i w trakcie przerw.
+    Zalety takiego rozwiązania to przedewszystkim łatwe podejmowanie działań nad rozwojem aplikacji,
+    wczesną i stopniową dystrybucja oprogramowania, stały wgląd nad wyglądem oraz funkcjonowaniem aplikacji,
+    czy poprawy naniesione w trakcie produckji w zwiazku ze zmianami wymagań.
 
     \section{Zespół i podział obowiązków}
     \centering
