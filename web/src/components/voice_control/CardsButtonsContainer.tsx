@@ -26,6 +26,33 @@ const CardsButtonsContainer = () => {
     const recognition = useRef(null);
 
     useEffect(() => {
+        const fetchFlashCards = async () => {
+            try {
+                let deck_id: string;
+
+                const intervalId = setInterval(() => {
+                    const deckDataString = localStorage.getItem("deckData");
+                    const deckData = JSON.parse(deckDataString || "{}");
+                    deck_id = deckData.id;
+                    setDeckTitle(deckData.title);
+                    if (deck_id) {
+                        clearInterval(intervalId);
+                        setTimeout(async () => {
+                            const response = await DeckService.get_flash_cards_from_deck(deck_id);
+                            // @ts-ignore
+                            setFlashcards(response);
+
+                            setIsLoading(false)
+                        }, 300);
+                    }
+                }, 100);
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchFlashCards();
+
         if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
             // @ts-ignore
             recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
@@ -44,17 +71,12 @@ const CardsButtonsContainer = () => {
                     }
                 }
                 let trimmedText = finalTranscriptText.trim();
-                console.log(isSpeakingBigCard)
                 setTextControl(isSpeakingBigCard ? '' : trimmedText);
-                if (isSpeakingBigCard){
+                if (isSpeakingBigCard) {
                     trimmedText = ''
-                    console.log('trimemed is Speaking', trimmedText)
                 }
-                console.log('trimemed', trimmedText)
-                if(!isSpeakingBigCard){
-                    voiceControl()
-                }
-                console.log(textControl)
+                console.log(trimmedText)
+                voiceControl(trimmedText)
 
 
             };
@@ -63,39 +85,9 @@ const CardsButtonsContainer = () => {
             alert("Your browser does not support the Speech Recognition API.");
         }
 
-        const fetchFlashCards = async () => {
-            try {
-                let deck_id: string;
 
-                const intervalId = setInterval(() => {
-                    const deckDataString = localStorage.getItem("deckData");
-                    const deckData = JSON.parse(deckDataString || "{}");
-                    deck_id = deckData.id;
-                    setDeckTitle(deckData.title);
-                    if (deck_id) {
-                        clearInterval(intervalId);
-                        setTimeout(async () => {
-                            const response = await DeckService.get_flash_cards_from_deck(deck_id);
-                            // @ts-ignore
-                            setFlashcards(response);
-                            setIsLoading(false);
-                        }, 500);
-                    }
-                }, 100);
+    }, [isSpeakingBigCard, currentBigCardIndex]);
 
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchFlashCards();
-    }, [isSpeakingBigCard]);
-
-    // useEffect(() => {
-    //     if (!isSpeakingBigCard && textControl) {
-    //         active_chat()
-    //         voiceControl();
-    //     }
-    // }, [isSpeakingBigCard, textControl]);
 
     useEffect(() => {
         if (isListening) {
@@ -105,7 +97,7 @@ const CardsButtonsContainer = () => {
             // @ts-ignore
             recognition.current.stop();
         }
-    }, [isListening]);
+    }, [isListening, isSpeakingBigCard, currentBigCardIndex]);
 
 
     const handleStopControl = () => {
@@ -144,31 +136,25 @@ const CardsButtonsContainer = () => {
     };
 
     const handleSpeakerBigCardClick = () => {
-
-        setIsSpeakingBigCard(true)
-        let currentBigFlashCard = flashcards[currentBigCardIndex];
-        if (!isRotated) {
-            handleSpeak(currentBigFlashCard['title']);
-        } else {
-            handleSpeak(currentBigFlashCard['card text']);
+        setIsSpeakingBigCard(true);
+        if (flashcards.length > 0) {
+            let currentBigFlashCard = flashcards[currentBigCardIndex];
+            if (!isRotated) {
+                handleSpeak(currentBigFlashCard['title']);
+            } else {
+                handleSpeak(currentBigFlashCard['card text']);
+            }
+        }
+        else {
+            console.log('not laoded')
         }
         if (isSpeakingBigCard) {
-            setIsSpeakingBigCard(false)
+            setIsSpeakingBigCard(false);
             window.speechSynthesis.cancel();
         }
-
-    };
-    conts returnIsSPekaing ()=>{}
-
-    let active_chat = () => {
-        if (isSpeakingBigCard) {
-            return
-        }
-        if (!isSpeakingBigCard) {
-            console.log("active chat")
-        }
-
     }
+
+
     const handleNextClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
@@ -196,12 +182,12 @@ const CardsButtonsContainer = () => {
         }
     };
 
-    const voiceControl = () => {
-        console.log('voice control text:', textControl)
+    const voiceControl = (text: string) => {
+
         const commands = ['previous', 'next', 'spin', 'read', 'quiet',]
 
-        if (!isSpeakingBigCard && textControl.length > 3) {
-            switch (textControl) {
+        if (!isSpeakingBigCard && text.length > 3) {
+            switch (text) {
                 case commands[0]: {
                     handlePrevClick()
                     break;
@@ -228,7 +214,7 @@ const CardsButtonsContainer = () => {
                 }
             }
         }
-        // Ustawia textControl na pusty tylko gdy isSpeakingBigCard jest aktywne
+
 
     };
 
