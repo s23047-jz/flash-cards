@@ -20,13 +20,13 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Przyciemnione tło */
-    opacity: 0; /* Ustawienie przezroczystości na początku */
-    transition: opacity 0.3s ease; /* Dodaj płynne przejście */
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .dialog.open .dialog-overlay {
-    opacity: 1; /* Zmiana przezroczystości na 1 przy otwarciu okna */
+    opacity: 1;
 }
 
 .dialog-box {
@@ -34,9 +34,9 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #0b9de6; /* Jasnoniebieskie tło */
+    background-color: #0b9de6;
     padding: 20px;
-    border-radius: 10px; /* Kwadratowe rogi */
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -45,7 +45,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-    padding-right: 20px; /* Dodatkowy odstęp po prawej stronie */
+    padding-right: 20px;
 }
 
 .dialog-header h2 {
@@ -63,30 +63,30 @@
 }
 
 .dialog-actions {
-    display: flex; /* Wyrównaj przyciski w jednym rzędzie */
-    justify-content: flex-end; /* Przesuń przyciski na koniec */
+    display: flex;
+    justify-content: flex-end;
 }
 
 .dialog-actions button {
     margin-right: 50px;
-    border: 1px solid black; /* Dodaj obramowanie */
-    border-radius: 5px; /* Zaokrąglij rogi przycisków */
-    padding: 5px 25px; /* Dodaj odstęp wewnątrz przycisków */
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 25px;
     cursor: pointer;
 }
 
 .accept-btn {
-    background-color: #00cc00; /* Zielony kolor dla przycisku Accept */
+    background-color: #00cc00;
 }
 
 .reject-btn {
-    background-color: #cc0000; /* Czerwony kolor dla przycisku Reject */
+    background-color: #cc0000;
 }
 
 .accept-btn:hover {
-    background-color: #00ff00; /* Zielony kolor po najechaniu myszką */
+    background-color: #00ff00;
 }
 
 .reject-btn:hover {
-    background-color: #ff0000; /* Czerwony kolor po najechaniu myszką */
+    background-color: #ff0000;
 }

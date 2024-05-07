@@ -47,7 +47,7 @@ const FlashCardCreator = (props) => {
             // @ts-ignore
             recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
             // @ts-ignore
-            recognition.current.lang = 'en-US';
+            recognition.current.lang = 'en-GB';
             // @ts-ignore
             recognition.current.continuous = true;
             // @ts-ignore
@@ -76,7 +76,7 @@ const FlashCardCreator = (props) => {
         return () => clearTimeout(timeout);
     }, []);
 
-    // @ts-ignore
+
     // @ts-ignore
     const toggleDictation = (id, isFrontSide) => {
         const recognitionInstanceKey = `${isFrontSide ? 'front-' : 'back-'}${id}`;
@@ -88,38 +88,55 @@ const FlashCardCreator = (props) => {
                 ...prevState,
                 [recognitionInstanceKey]: false
             }));
-        } else {
-            const recognitionForCard = recognitionInstances.current[recognitionInstanceKey] || new ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)();
-            recognitionForCard.lang = 'en-US';
-            recognitionForCard.continuous = true;
-            recognitionForCard.onresult = (event: any) => {
-                let finalTranscript = "";
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        finalTranscript += event.results[i][0].transcript + " ";
-                    }
+            return;
+        }
+
+
+        setIsDictating(prevState => ({
+            ...prevState,
+            [recognitionInstanceKey]: true
+        }));
+
+
+        const recognitionForCard = recognitionInstance || new ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)();
+        recognitionForCard.lang = 'en-US';
+        recognitionForCard.continuous = true;
+
+        recognitionForCard.onresult = (event: any) => {
+            let finalTranscript = "";
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscript += event.results[i][0].transcript + " ";
                 }
-                setTexts(prevTexts => ({
-                    ...prevTexts,
-                    [`${isFrontSide ? 'front-' : 'back-'}${id}`]: (prevTexts[`${isFrontSide ? 'front-' : 'back-'}${id}`] || '') + finalTranscript
-                }));
-            };
-            recognitionForCard.onend = () => {
+            }
+            const maxLength = isFrontSide ? 256 : 512;
+            const currentText = texts[`${isFrontSide ? 'front-' : 'back-'}${id}`] || '';
+            const remainingSpace = maxLength - currentText.length;
+            let newText = finalTranscript;
+            if (finalTranscript.length + currentText.length > maxLength) {
+                newText = finalTranscript.slice(0, maxLength - currentText.length);
+            }
+            setTexts(prevTexts => ({
+                ...prevTexts,
+                [`${isFrontSide ? 'front-' : 'back-'}${id}`]: currentText + newText
+            }));
+        };
+
+        recognitionForCard.onend = () => {
+            setTimeout(() => {
                 setIsDictating(prevState => ({
                     ...prevState,
                     [recognitionInstanceKey]: false
                 }));
-            };
-            recognitionForCard.start();
+            }, 300);
+        };
 
-            recognitionInstances.current[recognitionInstanceKey] = recognitionForCard;
 
-            setIsDictating(prevState => ({
-                ...prevState,
-                [recognitionInstanceKey]: true
-            }));
-        }
+        recognitionForCard.start();
+
+        recognitionInstances.current[recognitionInstanceKey] = recognitionForCard;
     };
+
 
     const appendInputDirector = () => {
         const maxId = directorsArray.length > 0 ? Math.max(...directorsArray.map(item => item.id)) : 0;
@@ -152,94 +169,93 @@ const FlashCardCreator = (props) => {
     };
 
     const handleDeck = async () => {
-    const userId = ActiveUser.getId();
+        const userId = ActiveUser.getId();
 
-    if (!deckTitle || !category) {
-        setAlertMessage('Pola "nazwa talii" i "kategoria talii" muszą być wypełnione.');
-        setShowAlert(true);
-        return;
-    }
-
-    let hasNonEmptyCards = false;
-
-    for (const {id} of directorsArray) {
-        const frontSideText = texts[`front-${id}`] || '';
-        const backSideText = texts[`back-${id}`] || '';
-        if (frontSideText.trim() !== '' && backSideText.trim() !== '') {
-            hasNonEmptyCards = true;
-            break;
+        if (!deckTitle || !category) {
+            setAlertMessage('Pola "nazwa talii" i "kategoria talii" muszą być wypełnione.');
+            setShowAlert(true);
+            return;
         }
-    }
 
-    if (!hasNonEmptyCards) {
-        setAlertMessage('Należy dodać przynajmniej jedną niepustą fiszkę przed utworzeniem talii.');
-        setShowAlert(true);
-        return;
-    }
-
-    const deck_body = {
-        user_id: userId,
-        title: deckTitle,
-        deck_category: category,
-    };
-
-
-    try {
-        const createdDeck = await DeckService.create_deck(deck_body);
+        let hasNonEmptyCards = false;
 
         for (const {id} of directorsArray) {
             const frontSideText = texts[`front-${id}`] || '';
             const backSideText = texts[`back-${id}`] || '';
-            if (frontSideText.length > 1 && backSideText.length > 1) {
-                const flash_card_body = {
-                    deck_id: createdDeck?.data.id,
-                    card_title: frontSideText,
-                    card_text: backSideText,
-                };
-
-                await DeckService.create_flash_card(flash_card_body);
+            if (frontSideText.trim() !== '' && backSideText.trim() !== '') {
+                hasNonEmptyCards = true;
+                break;
             }
-
         }
 
-        // Wyczyszczenie pól wejściowych i wyświetlenie alertu
-        setDeckTitle('');
-        setCategory('');
-        setTexts({});
-        setShowAlert(true);
-        setAlertMessage('Talia została pomyślnie utworzona!');
+        if (!hasNonEmptyCards) {
+            setAlertMessage('Należy dodać przynajmniej jedną niepustą fiszkę przed utworzeniem talii.');
+            setShowAlert(true);
+            return;
+        }
 
-    } catch (error: any) {
-        setAlertMessage("Nie udało się utworzyć talii i fiszek: " + error.message);
-        setShowAlert(true);
-    }
-};
+        const deck_body = {
+            user_id: userId,
+            title: deckTitle,
+            deck_category: category,
+        };
+
+
+        try {
+            const createdDeck = await DeckService.create_deck(deck_body);
+
+            for (const {id} of directorsArray) {
+                const frontSideText = texts[`front-${id}`] || '';
+                const backSideText = texts[`back-${id}`] || '';
+                if (frontSideText.length > 1 && backSideText.length > 1) {
+                    const flash_card_body = {
+                        deck_id: createdDeck?.data.id,
+                        card_title: frontSideText,
+                        card_text: backSideText,
+                    };
+
+                    await DeckService.create_flash_card(flash_card_body);
+                }
+
+            }
+
+            setDeckTitle('');
+            setCategory('');
+            setTexts({});
+            setShowAlert(true);
+            setAlertMessage('The deck has been successfully created!');
+
+        } catch (error: any) {
+            setAlertMessage("Creating Deck Failed: " + error.message);
+            setShowAlert(true);
+        }
+    };
 
     const handleCloseAlert = () => {
         setShowAlert(false);
     };
     const handleGenerateText = async (id: number) => {
-    const frontSideText = texts[`front-${id}`] || '';
-    if (frontSideText.length > 2) {
-        setIsChatGenerating(true); // Ustaw stan na true przed wysłaniem żądania do chatu
-        try {
-            let chat_answer = await ChatService.sent_message(frontSideText)
-            const maxLength = 511;
-            const sliced_message = chat_answer.slice(0, maxLength);
-            setboxContent(sliced_message);
-            setboxOpen(true);
-        } catch (error) {
-            console.error('Failed to generate text from chat:', error);
-            setAlertMessage('Failed to generate text from chat.');
+        const frontSideText = texts[`front-${id}`] || '';
+        if (frontSideText.length > 2) {
+            setIsChatGenerating(true);
+            try {
+                let chat_answer = await ChatService.sent_message(frontSideText)
+                const maxLength = 511;
+                const sliced_message = chat_answer.slice(0, maxLength);
+                setboxContent(sliced_message);
+                setboxOpen(true);
+            } catch (error) {
+                console.error('Failed to generate text from chat:', error);
+                setAlertMessage('Failed to generate text from chat.');
+                setShowAlert(true);
+            } finally {
+                setIsChatGenerating(false);
+            }
+        } else {
+            setAlertMessage('Front side cannot be empty.');
             setShowAlert(true);
-        } finally {
-            setIsChatGenerating(false);
         }
-    } else {
-        setAlertMessage('Front side cannot be empty.');
-        setShowAlert(true);
-    }
-};
+    };
 
     const handleRejectChatContent = () => {
         setboxOpen(false);
@@ -257,13 +273,13 @@ const FlashCardCreator = (props) => {
 
     return (
 
-    isLoading ? (
-        <LoadingSpinner/>
-    ) : (
-        <>
-            <div className="texfields-container">
-            { isChatGenerating ? <LoadingSpinnerChat /> : null}
-            <Grid container justify="center" alignItems="center">
+        isLoading ? (
+            <LoadingSpinner/>
+        ) : (
+            <>
+                <div className="texfields-container">
+                    {isChatGenerating ? <LoadingSpinnerChat/> : null}
+                    <Grid container justify="center" alignItems="center">
                         <div className="webTitle"><p>Create Deck</p></div>
                         <ButtonFlashCardsCreatePage text={"Create Deck"} image={plus} color={"#5346F1"}
                                                     border={'2px solid black'}
