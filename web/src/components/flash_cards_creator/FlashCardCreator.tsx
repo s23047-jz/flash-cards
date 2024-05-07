@@ -22,6 +22,7 @@ import "../../styles/create_flash_cards_page/flash_card_style.scss";
 import {ActiveUser} from "../../services/user";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import CustomIconButton from "./CustomIconButton";
+import LoadingSpinnerChat from "../loading_spinner/LoadingSpinnerChat";
 import {ChatService} from "../../services/chat";
 // @ts-ignore
 const FlashCardCreator = (props) => {
@@ -37,6 +38,7 @@ const FlashCardCreator = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const [boxOpen, setboxOpen] = useState(false);
     const [boxContent, setboxContent] = useState("");
+    const [isChatGenerating, setIsChatGenerating] = useState(false);
     const recognition = useRef(null);
 
 
@@ -150,78 +152,94 @@ const FlashCardCreator = (props) => {
     };
 
     const handleDeck = async () => {
-        const userId = ActiveUser.getId();
+    const userId = ActiveUser.getId();
 
-        if (!deckTitle || !category) {
-            setAlertMessage('The "deck name" and "deck category" fields must be completed.');
-            setShowAlert(true);
-            return;
+    if (!deckTitle || !category) {
+        setAlertMessage('Pola "nazwa talii" i "kategoria talii" muszą być wypełnione.');
+        setShowAlert(true);
+        return;
+    }
+
+    let hasNonEmptyCards = false;
+
+    for (const {id} of directorsArray) {
+        const frontSideText = texts[`front-${id}`] || '';
+        const backSideText = texts[`back-${id}`] || '';
+        if (frontSideText.trim() !== '' && backSideText.trim() !== '') {
+            hasNonEmptyCards = true;
+            break;
         }
+    }
 
-        let hasNonEmptyCards = false;
+    if (!hasNonEmptyCards) {
+        setAlertMessage('Należy dodać przynajmniej jedną niepustą fiszkę przed utworzeniem talii.');
+        setShowAlert(true);
+        return;
+    }
+
+    const deck_body = {
+        user_id: userId,
+        title: deckTitle,
+        deck_category: category,
+    };
+
+
+    try {
+        const createdDeck = await DeckService.create_deck(deck_body);
 
         for (const {id} of directorsArray) {
             const frontSideText = texts[`front-${id}`] || '';
             const backSideText = texts[`back-${id}`] || '';
-            if (frontSideText.trim() !== '' && backSideText.trim() !== '') {
-                hasNonEmptyCards = true;
-                break;
-            }
-        }
+            if (frontSideText.length > 1 && backSideText.length > 1) {
+                const flash_card_body = {
+                    deck_id: createdDeck?.data.id,
+                    card_title: frontSideText,
+                    card_text: backSideText,
+                };
 
-        if (!hasNonEmptyCards) {
-            setAlertMessage('You must add at least one non-empty card before creating the deck.');
-            setShowAlert(true);
-            return;
-        }
-
-        const deck_body = {
-            user_id: userId,
-            title: deckTitle,
-            deck_category: category,
-        };
-
-
-        try {
-            const createdDeck = await DeckService.create_deck(deck_body);
-
-            for (const {id} of directorsArray) {
-                const frontSideText = texts[`front-${id}`] || '';
-                const backSideText = texts[`back-${id}`] || '';
-                if (frontSideText.length > 1 && backSideText.length > 1) {
-                    const flash_card_body = {
-                        deck_id: createdDeck?.data.id,
-                        card_title: frontSideText,
-                        card_text: backSideText,
-                    };
-
-                    await DeckService.create_flash_card(flash_card_body);
-                }
-
+                await DeckService.create_flash_card(flash_card_body);
             }
 
-        } catch (error: any) {
-            alert("Failed to create deck and flash cards: " + error.message);
         }
-    };
+
+        // Wyczyszczenie pól wejściowych i wyświetlenie alertu
+        setDeckTitle('');
+        setCategory('');
+        setTexts({});
+        setShowAlert(true);
+        setAlertMessage('Talia została pomyślnie utworzona!');
+
+    } catch (error: any) {
+        setAlertMessage("Nie udało się utworzyć talii i fiszek: " + error.message);
+        setShowAlert(true);
+    }
+};
 
     const handleCloseAlert = () => {
         setShowAlert(false);
     };
     const handleGenerateText = async (id: number) => {
-        const frontSideText = texts[`front-${id}`] || '';
-        if (frontSideText.length > 2) {
+    const frontSideText = texts[`front-${id}`] || '';
+    if (frontSideText.length > 2) {
+        setIsChatGenerating(true); // Ustaw stan na true przed wysłaniem żądania do chatu
+        try {
             let chat_answer = await ChatService.sent_message(frontSideText)
             const maxLength = 511;
             const sliced_message = chat_answer.slice(0, maxLength);
             setboxContent(sliced_message);
             setboxOpen(true);
-        } else {
-            setAlertMessage('Front side cannot be empty.');
+        } catch (error) {
+            console.error('Failed to generate text from chat:', error);
+            setAlertMessage('Failed to generate text from chat.');
             setShowAlert(true);
+        } finally {
+            setIsChatGenerating(false);
         }
-
-    };
+    } else {
+        setAlertMessage('Front side cannot be empty.');
+        setShowAlert(true);
+    }
+};
 
     const handleRejectChatContent = () => {
         setboxOpen(false);
@@ -238,13 +256,14 @@ const FlashCardCreator = (props) => {
     };
 
     return (
-        isLoading ? (
-            <LoadingSpinner/>
-        ) : (
-            <>
-                <div className="texfields-container">
 
-                    <Grid container justify="center" alignItems="center">
+    isLoading ? (
+        <LoadingSpinner/>
+    ) : (
+        <>
+            <div className="texfields-container">
+            { isChatGenerating ? <LoadingSpinnerChat /> : null}
+            <Grid container justify="center" alignItems="center">
                         <div className="webTitle"><p>Create Deck</p></div>
                         <ButtonFlashCardsCreatePage text={"Create Deck"} image={plus} color={"#5346F1"}
                                                     border={'2px solid black'}
@@ -399,7 +418,7 @@ const FlashCardCreator = (props) => {
                                     justifyContent: 'center'
                                 }}>
                                     <ButtonFlashCardsCreatePage text={"Generate text"} image={trashbin}
-                                                                border={'2px solid black'} color={"#eb7521"}
+                                                                border={'2px solid black'} color={"#0431b8"}
                                                                 onClick={() => handleGenerateText(id)}/>
                                 </Grid>
                             </Grid>
