@@ -1,8 +1,12 @@
 import React, {useState, useRef, useEffect} from "react";
-import {FormControl, InputAdornment, IconButton} from "@material-ui/core";
+import {
+    FormControl,
+    InputAdornment,
+} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import ButtonFlashCardsCreatePage from "./ButtonCreateFlashCardPage";
+import GenerateContentChatPopUpBox from "./GenerateContebtChatPopUpBox";
 import Alert from '../alert/Alert'
 // @ts-ignore
 import trashbin from "../../assets/Trashbin.png";
@@ -18,7 +22,7 @@ import "../../styles/create_flash_cards_page/flash_card_style.scss";
 import {ActiveUser} from "../../services/user";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import CustomIconButton from "./CustomIconButton";
-
+import {ChatService} from "../../services/chat";
 // @ts-ignore
 const FlashCardCreator = (props) => {
     const [category, setCategory] = useState('');
@@ -31,6 +35,8 @@ const FlashCardCreator = (props) => {
     const [alertMessage, setAlertMessage] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [boxOpen, setboxOpen] = useState(false);
+    const [boxContent, setboxContent] = useState("");
     const recognition = useRef(null);
 
 
@@ -202,6 +208,34 @@ const FlashCardCreator = (props) => {
     const handleCloseAlert = () => {
         setShowAlert(false);
     };
+    const handleGenerateText = async (id: number) => {
+        const frontSideText = texts[`front-${id}`] || '';
+        if (frontSideText.length > 2) {
+            let chat_answer = await ChatService.sent_message(frontSideText)
+            const maxLength = 511;
+            const sliced_message = chat_answer.slice(0, maxLength);
+            setboxContent(sliced_message);
+            setboxOpen(true);
+        } else {
+            setAlertMessage('Front side cannot be empty.');
+            setShowAlert(true);
+        }
+
+    };
+
+    const handleRejectChatContent = () => {
+        setboxOpen(false);
+    };
+
+    const handleAcceptChatContent = (id: number) => {
+        setTexts(prevTexts => ({
+            ...prevTexts,
+            [`back-${id}`]: boxContent
+        }));
+        setboxOpen(false);
+
+
+    };
 
     return (
         isLoading ? (
@@ -349,13 +383,32 @@ const FlashCardCreator = (props) => {
                                     />
                                 </FormControl>
                             </Grid>
-                            <Grid xs={12} lg={6} item style={{marginBottom: "25px"}}>
-
-                                <ButtonFlashCardsCreatePage text={"Remove Card"} image={trashbin}
-                                                            border={'2px solid black'}
-                                                            color={"#DF0A0A"} onClick={() => removeDirector(id)}/>
+                            <Grid container justifyContent="center">
+                                <Grid xs={12} lg={6} item style={{
+                                    marginBottom: "25px",
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}>
+                                    <ButtonFlashCardsCreatePage text={"Remove Card"} image={trashbin}
+                                                                border={'2px solid black'} color={"#DF0A0A"}
+                                                                onClick={() => removeDirector(id)}/>
+                                </Grid>
+                                <Grid xs={12} lg={6} item style={{
+                                    marginBottom: "25px",
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}>
+                                    <ButtonFlashCardsCreatePage text={"Generate text"} image={trashbin}
+                                                                border={'2px solid black'} color={"#eb7521"}
+                                                                onClick={() => handleGenerateText(id)}/>
+                                </Grid>
                             </Grid>
+                            <GenerateContentChatPopUpBox acceptContent={() => handleAcceptChatContent(id)}
+                                                         rejectContent={handleRejectChatContent} boxOpen={boxOpen}
+                                                         boxContent={boxContent} id={id}/>
+
                         </Grid>
+
                     ))}
                     <Grid container justify="center" alignItems="center">
                         <ButtonFlashCardsCreatePage text={"Add Card"} image={plus} color={"#08C10A"}

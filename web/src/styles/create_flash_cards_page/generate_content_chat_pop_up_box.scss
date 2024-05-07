@@ -1,0 +1,92 @@
+.dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    font-weight: bold;
+    color: white;
+}
+
+.dialog.open {
+    display: block;
+}
+
+.dialog-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Przyciemnione tło */
+    opacity: 0; /* Ustawienie przezroczystości na początku */
+    transition: opacity 0.3s ease; /* Dodaj płynne przejście */
+}
+
+.dialog.open .dialog-overlay {
+    opacity: 1; /* Zmiana przezroczystości na 1 przy otwarciu okna */
+}
+
+.dialog-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #0b9de6; /* Jasnoniebieskie tło */
+    padding: 20px;
+    border-radius: 10px; /* Kwadratowe rogi */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-right: 20px; /* Dodatkowy odstęp po prawej stronie */
+}
+
+.dialog-header h2 {
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.dialog-content {
+    margin-bottom: 20px;
+}
+
+.dialog-actions {
+    display: flex; /* Wyrównaj przyciski w jednym rzędzie */
+    justify-content: flex-end; /* Przesuń przyciski na koniec */
+}
+
+.dialog-actions button {
+    margin-right: 50px;
+    border: 1px solid black; /* Dodaj obramowanie */
+    border-radius: 5px; /* Zaokrąglij rogi przycisków */
+    padding: 5px 25px; /* Dodaj odstęp wewnątrz przycisków */
+    cursor: pointer;
+}
+
+.accept-btn {
+    background-color: #00cc00; /* Zielony kolor dla przycisku Accept */
+}
+
+.reject-btn {
+    background-color: #cc0000; /* Czerwony kolor dla przycisku Reject */
+}
+
+.accept-btn:hover {
+    background-color: #00ff00; /* Zielony kolor po najechaniu myszką */
+}
+
+.reject-btn:hover {
+    background-color: #ff0000; /* Czerwony kolor po najechaniu myszką */
+}
