@@ -2,10 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.App {
+body {
+  margin-bottom: 0;
+  padding: 0;
   background-image: url('../assets/images/background.png');
   background-size: cover;
   background-position: center center;
+}
+
+.App {
   height: 100vh;
   display: flex;
   justify-content: center;

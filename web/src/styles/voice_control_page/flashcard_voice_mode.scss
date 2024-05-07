@@ -4,12 +4,14 @@ $bg-color-back: #1078FF;
 $animation: transform 0.4s linear;
 $flash-card-width: 100%;
 $flash-card-height: 50vh;
+$flash-card-border-listening: 4px solid #FF2020;
 
 .flashcard-voice-control {
   position: relative;
   height: $flash-card-height;
   width: $flash-card-width;
   font-size: 24px;
+
 
   .front {
     background-color: $bg-color-front;
@@ -22,7 +24,7 @@ $flash-card-height: 50vh;
     right: 20px;
     z-index: 999;
     cursor: pointer;
-    transition:transform 0.6s linear, 0.6s top;
+    transition: transform 0.6s linear, 0.6s top;
   }
 }
 
@@ -32,7 +34,7 @@ $flash-card-height: 50vh;
   left: 5px;
   color: white;
   font-weight: bold;
-  transition:transform 0.6s linear, 0.6s top;
+  transition: transform 0.6s linear, 0.6s top;
   z-index: 999;
 }
 
@@ -47,11 +49,16 @@ $flash-card-height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  border: $flash-card-border;
   transition: $animation;
   border-radius: 15px;
   text-align: center;
   overflow: hidden; /* Dodaj overflow: hidden, aby ukryć ikonę podczas animacji */
+  border: $flash-card-border;
+
+}
+
+.flashcard-voice-control.listening .front, .flashcard-voice-control.listening .back{
+  border: $flash-card-border-listening;
 }
 
 .flashcard-voice-control .back {
@@ -64,7 +71,7 @@ $flash-card-height: 50vh;
     transform: rotateX(180deg);
   }
 
-  .left-corner-text{
+  .left-corner-text {
     top: calc(-40px + $flash-card-height);
   }
 

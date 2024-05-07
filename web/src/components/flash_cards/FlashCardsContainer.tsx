@@ -60,8 +60,8 @@ const FlashCardsContainer = () => {
 
             sentences.forEach((sentence, i) => {
                 const speech = new SpeechSynthesisUtterance(sentence.trim());
-                speech.lang = 'en-US';
-                speech.rate = 0.8;
+                speech.lang = 'en-GB';
+                speech.rate = 0.9;
                 speech.pitch = 1.2;
                 speech.volume = 1.0;
 
@@ -131,7 +131,6 @@ const FlashCardsContainer = () => {
     };
 
     const handleRotateClick = () => {
-        //window.speechSynthesis.cancel();
         setIsRotated(!isRotated);
         if (isSpeaking) {
             window.speechSynthesis.cancel();

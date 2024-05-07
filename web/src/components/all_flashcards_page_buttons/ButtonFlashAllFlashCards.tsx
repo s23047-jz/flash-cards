@@ -10,6 +10,7 @@ const ButtonFlashAllFlashCards = ({ onClick, text, color, border}) => {
   };
 
   return (
+
     <Button  variant="contained"  onClick={onClick} style={buttonStyle}>
         {text}
     </Button>

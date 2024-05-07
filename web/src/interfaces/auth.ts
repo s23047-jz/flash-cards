@@ -43,3 +43,4 @@ export interface UserInterface {
     role?: string;
     is_superuser?: boolean;
 }
+
