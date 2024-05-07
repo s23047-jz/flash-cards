@@ -75,8 +75,18 @@ const CardsButtonsContainer = () => {
                 if (isSpeakingBigCard) {
                     trimmedText = ''
                 }
+                const commands = `['previous', 'next', 'twist', 'reading', 'quiet','rotate card and read text',
+                'go next and read front text', 'go next and read back text',
+                'back/previous and read front text', 'back/previous and read back text']`;
+                const chat_question = `[${commands}]
+                    I have the commands mapped and I have the sentence ${trimmedText},
+                    which of these commands suits you best semantically compare to text?
+                    Return the index number, starting from zero. It does not expand,
+                    I want the index number.`;
+
                 console.log(trimmedText)
-                voiceControl(trimmedText)
+                console.log(chat_question)
+                chatControl(chat_question)
 
 
             };
@@ -145,9 +155,15 @@ const CardsButtonsContainer = () => {
                 handleSpeak(currentBigFlashCard['card text']);
             }
         }
-        else {
-            console.log('not laoded')
+        if (isSpeakingBigCard) {
+            setIsSpeakingBigCard(false);
+            window.speechSynthesis.cancel();
         }
+    }
+
+    const handleSpeakerNotRecognized = () => {
+        setIsSpeakingBigCard(true);
+        handleSpeak('command not recognized')
         if (isSpeakingBigCard) {
             setIsSpeakingBigCard(false);
             window.speechSynthesis.cancel();
@@ -182,40 +198,88 @@ const CardsButtonsContainer = () => {
         }
     };
 
+    const handleRotateRead = () => {
+        handleRotateClick();
+        handleNextRead();
+    }
+    const handleNextRead = () => {
+        handleNextClick()
+        handleSpeakerBigCardClick()
+    }
+    const handleNextRotateRead = () => {
+        handleNextClick()
+        handleRotateClick()
+        handleSpeakerBigCardClick()
+    }
+
+    const handlePrevRead = () => {
+        handlePrevClick()
+        handleSpeakerBigCardClick()
+    }
+    const handlePrevRotateRead = () => {
+        handlePrevClick()
+        handleRotateClick()
+        handleSpeakerBigCardClick()
+    }
+
+
     const voiceControl = (text: string) => {
 
-        const commands = ['previous', 'next', 'spin', 'read', 'quiet',]
 
-        if (!isSpeakingBigCard && text.length > 3) {
-            switch (text) {
-                case commands[0]: {
-                    handlePrevClick()
+        console.log(text)
+        // @ts-ignore
+        let number = parseInt(text.match(/\d+/)[0]);
+        if (!isSpeakingBigCard) {
+
+            switch (number) {
+                case 0:
+                    handlePrevClick();
                     break;
-                }
-                case commands[1]: {
-                    handleNextClick()
+                case 1:
+                    handleNextClick();
                     break;
-                }
-                case commands[2]: {
-                    handleRotateClick()
+                case 2:
+                    handleRotateClick();
                     break;
-                }
-                case commands[4]: {
-                    handleSpeakerBigCardClick()
+                case 3:
+                    handleSpeakerBigCardClick();
                     break;
-                }
-                case commands[3]: {
+                case 4:
                     handleStopControl();
                     break;
-                }
-                default: {
+                case 5:
+                    handleRotateRead();
+                    break;
+                case 6:
+                    handleNextRead();
+                    break;
+                case 7:
+                    handleNextRotateRead();
+                    break;
+                case 8:
+                    handlePrevRead();
+                    break;
+                case 9:
+                    handlePrevRotateRead();
+                    break;
+                default:
+                    handleSpeakerNotRecognized();
                     console.log('command not found');
                     break;
-                }
             }
         }
+    };
 
-
+    const chatControl = async (text: string) => {
+        console.log(text)
+        try {
+            const chat_answer = await ChatService.sent_message(text);
+            console.log("chat answer", chat_answer)
+            // @ts-ignore
+            voiceControl(chat_answer);
+        } catch (error) {
+            console.error("Error:", error);
+        }
     };
 
     return (
