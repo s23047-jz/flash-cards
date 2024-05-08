@@ -13,9 +13,7 @@ function App() {
         <Router>
             <div className="App">
                 <Routes>
-                    <Route element={<PrivateRoute/>}>
-                        <Route path="/home" element={<HomePage/>} exact/>
-                    </Route>
+                    <Route path="/home" element={<HomePage/>} exact/>
                     <Route path="/signin" element={<SignIn/>}/>
                     <Route path="/registration" element={<Registration/>}/>
                     <Route path="/create_deck" element={<CreateFlashCardsPage/>}/>

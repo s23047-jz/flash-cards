@@ -35,16 +35,6 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
         setMobileOpen((prevState) => !prevState);
     };
 
-    function logout() {
-        const token = ActiveUser.getAuthorization();
-        if (token) {
-            AuthService.logout(token);
-            navigate("/signin")
-        } else {
-            console.error('Brak dostępnego tokenu');
-        }
-    }
-
     function homePageNavigate() {
         navigate("/home")
     }
@@ -78,22 +68,6 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
             navigate("/signin")
         } else {
             console.error('Brak dostępnego tokenu');
-        }
-    }
-
-    const handleNavItemClick = (item: string) => {
-        switch (item) {
-            case 'Learning':
-                break;
-            case 'Search':
-                break;
-            case 'Profile':
-                break;
-            case 'Log out':
-                logout();
-                break;
-            default:
-                break;
         }
     }
 
