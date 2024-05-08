@@ -34,11 +34,12 @@ class User(Base):
     created_at = Column(DateTime, default=datetime.now(), server_default=func.now())
     updated_at = Column(DateTime, default=datetime.now(), server_default=func.now())
     ranking = Column(Integer, nullable=False, default=0)
+    avatar = Column(Integer, nullable=False, default=0)
     active = Column(Boolean, default=True)
     role = Column(String(50), nullable=False)
     is_superuser = Column(Boolean, default=False)
 
-    decks = relationship("Deck", back_populates="user")  # Relacja jeden do wielu
+    decks = relationship("Deck", back_populates="user")
 
     def verify_password(self, password: str):
         return pwd_context.verify(password, self.password)

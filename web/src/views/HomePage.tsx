@@ -22,7 +22,6 @@ const HomePage = () => {
     const navigateTo = (path: string) => {
             navigate(path)
 
-
     }
 
     ActiveUser.getUserData();

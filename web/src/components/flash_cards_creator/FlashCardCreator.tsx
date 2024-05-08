@@ -1,8 +1,13 @@
 import React, {useState, useRef, useEffect} from "react";
-import {FormControl, InputAdornment, IconButton} from "@material-ui/core";
+import {
+    FormControl,
+    InputAdornment,
+} from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import ButtonFlashCardsCreatePage from "./ButtonCreateFlashCardPage";
+// @ts-ignore
+import GenerateContentChatPopUpBox from "./GenerateContebtChatPopUpBox";
 import Alert from '../alert/Alert'
 // @ts-ignore
 import trashbin from "../../assets/Trashbin.png";
@@ -11,6 +16,8 @@ import plus from "../../assets/Plus.png";
 // @ts-ignore
 import microphone_black from "../../assets/Microphone_black.png";
 // @ts-ignore
+import generate_text from '../../assets/Generate_text.png';
+// @ts-ignore
 import microphone_red from "../../assets/Microphone_red.png";
 import {DeckService} from "../../services/decs" ;
 // @ts-ignore
@@ -18,7 +25,9 @@ import "../../styles/create_flash_cards_page/flash_card_style.scss";
 import {ActiveUser} from "../../services/user";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import CustomIconButton from "./CustomIconButton";
-
+// @ts-ignore
+import LoadingSpinnerChat from "../loading_spinner/LoadingSpinnerChat";
+import {ChatService} from "../../services/chat";
 // @ts-ignore
 const FlashCardCreator = (props) => {
     const [category, setCategory] = useState('');
@@ -31,6 +40,10 @@ const FlashCardCreator = (props) => {
     const [alertMessage, setAlertMessage] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [boxOpen, setboxOpen] = useState(false);
+    const [boxContent, setboxContent] = useState("");
+    const [isChatGenerating, setIsChatGenerating] = useState(false);
+    const [isClickMicrophoneAllowed, setIsClickMicrophoneAllowed] = useState(true);
     const recognition = useRef(null);
 
 
@@ -39,7 +52,7 @@ const FlashCardCreator = (props) => {
             // @ts-ignore
             recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
             // @ts-ignore
-            recognition.current.lang = 'en-US';
+            recognition.current.lang = 'en-GB';
             // @ts-ignore
             recognition.current.continuous = true;
             // @ts-ignore
@@ -68,22 +81,37 @@ const FlashCardCreator = (props) => {
         return () => clearTimeout(timeout);
     }, []);
 
-    // @ts-ignore
+
     // @ts-ignore
     const toggleDictation = (id, isFrontSide) => {
-        const recognitionInstanceKey = `${isFrontSide ? 'front-' : 'back-'}${id}`;
-        const recognitionInstance = recognitionInstances.current[recognitionInstanceKey];
+        if (isClickMicrophoneAllowed) {
+            setIsClickMicrophoneAllowed(false)
+            setTimeout(() => {
+                setIsClickMicrophoneAllowed(true)
+            }, 500);
+            const recognitionInstanceKey = `${isFrontSide ? 'front-' : 'back-'}${id}`;
+            const recognitionInstance = recognitionInstances.current[recognitionInstanceKey];
 
-        if (isDictating[recognitionInstanceKey]) {
-            recognitionInstance.stop();
+            if (isDictating[recognitionInstanceKey]) {
+                recognitionInstance.stop();
+                setIsDictating(prevState => ({
+                    ...prevState,
+                    [recognitionInstanceKey]: false
+                }));
+                return;
+            }
+
+
             setIsDictating(prevState => ({
                 ...prevState,
-                [recognitionInstanceKey]: false
+                [recognitionInstanceKey]: true
             }));
-        } else {
-            const recognitionForCard = recognitionInstances.current[recognitionInstanceKey] || new ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)();
+
+
+            const recognitionForCard = recognitionInstance || new ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)();
             recognitionForCard.lang = 'en-US';
             recognitionForCard.continuous = true;
+
             recognitionForCard.onresult = (event: any) => {
                 let finalTranscript = "";
                 for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -91,27 +119,35 @@ const FlashCardCreator = (props) => {
                         finalTranscript += event.results[i][0].transcript + " ";
                     }
                 }
+                const maxLength = isFrontSide ? 256 : 512;
+                const currentText = texts[`${isFrontSide ? 'front-' : 'back-'}${id}`] || '';
+                const remainingSpace = maxLength - currentText.length;
+                let newText = finalTranscript;
+                if (finalTranscript.length + currentText.length > maxLength) {
+                    newText = finalTranscript.slice(0, maxLength - currentText.length);
+                }
                 setTexts(prevTexts => ({
                     ...prevTexts,
-                    [`${isFrontSide ? 'front-' : 'back-'}${id}`]: (prevTexts[`${isFrontSide ? 'front-' : 'back-'}${id}`] || '') + finalTranscript
+                    [`${isFrontSide ? 'front-' : 'back-'}${id}`]: currentText + newText
                 }));
             };
+
             recognitionForCard.onend = () => {
-                setIsDictating(prevState => ({
-                    ...prevState,
-                    [recognitionInstanceKey]: false
-                }));
+                setTimeout(() => {
+                    setIsDictating(prevState => ({
+                        ...prevState,
+                        [recognitionInstanceKey]: false
+                    }));
+                }, 300);
             };
+
+
             recognitionForCard.start();
 
             recognitionInstances.current[recognitionInstanceKey] = recognitionForCard;
-
-            setIsDictating(prevState => ({
-                ...prevState,
-                [recognitionInstanceKey]: true
-            }));
         }
-    };
+    }
+
 
     const appendInputDirector = () => {
         const maxId = directorsArray.length > 0 ? Math.max(...directorsArray.map(item => item.id)) : 0;
@@ -141,6 +177,7 @@ const FlashCardCreator = (props) => {
             delete newTexts[`back-${idToRemove}`];
             return newTexts;
         });
+
     };
 
     const handleDeck = async () => {
@@ -164,7 +201,7 @@ const FlashCardCreator = (props) => {
         }
 
         if (!hasNonEmptyCards) {
-            setAlertMessage('You must add at least one non-empty card before creating the deck.');
+            setAlertMessage('You must add at least one non-empty flashcard before creating your deck.');
             setShowAlert(true);
             return;
         }
@@ -182,11 +219,12 @@ const FlashCardCreator = (props) => {
             for (const {id} of directorsArray) {
                 const frontSideText = texts[`front-${id}`] || '';
                 const backSideText = texts[`back-${id}`] || '';
-                if (frontSideText.length > 1 && backSideText.length > 1) {
+                if (frontSideText.length >= 1 && backSideText.length >= 1) {
                     const flash_card_body = {
                         deck_id: createdDeck?.data.id,
                         card_title: frontSideText,
                         card_text: backSideText,
+                        is_memorized: false
                     };
 
                     await DeckService.create_flash_card(flash_card_body);
@@ -194,22 +232,66 @@ const FlashCardCreator = (props) => {
 
             }
 
+            setDeckTitle('');
+            setCategory('');
+            setTexts({});
+            setShowAlert(true);
+            setAlertMessage('The deck has been successfully created!');
+
         } catch (error: any) {
-            alert("Failed to create deck and flash cards: " + error.message);
+            setAlertMessage("Creating Deck Failed: " + error.message);
+            setShowAlert(true);
         }
     };
 
     const handleCloseAlert = () => {
         setShowAlert(false);
     };
+    const handleGenerateText = async (id: number) => {
+        const frontSideText = texts[`front-${id}`] || '';
+        if (frontSideText.length > 2) {
+            setIsChatGenerating(true);
+            try {
+                let chat_answer = await ChatService.sent_message(frontSideText)
+                const maxLength = 511;
+                const sliced_message = chat_answer.slice(0, maxLength);
+                setboxContent(sliced_message);
+                setboxOpen(true);
+            } catch (error) {
+                console.error('Failed to generate text from chat:', error);
+                setAlertMessage('Failed to generate text from chat.');
+                setShowAlert(true);
+            } finally {
+                setIsChatGenerating(false);
+            }
+        } else {
+            setAlertMessage('Front side cannot be empty.');
+            setShowAlert(true);
+        }
+    };
+
+    const handleRejectChatContent = () => {
+        setboxOpen(false);
+    };
+
+    const handleAcceptChatContent = (id: number) => {
+        setTexts(prevTexts => ({
+            ...prevTexts,
+            [`back-${id}`]: boxContent
+        }));
+        setboxOpen(false);
+
+
+    };
 
     return (
+
         isLoading ? (
             <LoadingSpinner/>
         ) : (
             <>
                 <div className="texfields-container">
-
+                    {isChatGenerating ? <LoadingSpinnerChat/> : null}
                     <Grid container justify="center" alignItems="center">
                         <div className="webTitle"><p>Create Deck</p></div>
                         <ButtonFlashCardsCreatePage text={"Create Deck"} image={plus} color={"#5346F1"}
@@ -349,13 +431,32 @@ const FlashCardCreator = (props) => {
                                     />
                                 </FormControl>
                             </Grid>
-                            <Grid xs={12} lg={6} item style={{marginBottom: "25px"}}>
-
-                                <ButtonFlashCardsCreatePage text={"Remove Card"} image={trashbin}
-                                                            border={'2px solid black'}
-                                                            color={"#DF0A0A"} onClick={() => removeDirector(id)}/>
+                            <Grid container justifyContent="center">
+                                <Grid xs={12} lg={6} item style={{
+                                    marginBottom: "25px",
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}>
+                                    <ButtonFlashCardsCreatePage text={"Remove Card"} image={trashbin}
+                                                                border={'2px solid black'} color={"#DF0A0A"}
+                                                                onClick={() => removeDirector(id)}/>
+                                </Grid>
+                                <Grid xs={12} lg={6} item style={{
+                                    marginBottom: "25px",
+                                    display: 'flex',
+                                    justifyContent: 'center'
+                                }}>
+                                    <ButtonFlashCardsCreatePage text={"Generate text"} image={generate_text}
+                                                                border={'2px solid black'} color={"#0431b8"}
+                                                                onClick={() => handleGenerateText(id)}/>
+                                </Grid>
                             </Grid>
+                            <GenerateContentChatPopUpBox acceptContent={() => handleAcceptChatContent(id)}
+                                                         rejectContent={handleRejectChatContent} boxOpen={boxOpen}
+                                                         boxContent={boxContent} id={id}/>
+
                         </Grid>
+
                     ))}
                     <Grid container justify="center" alignItems="center">
                         <ButtonFlashCardsCreatePage text={"Add Card"} image={plus} color={"#08C10A"}
