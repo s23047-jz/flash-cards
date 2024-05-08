@@ -21,6 +21,7 @@ class FlashCardCreate(BaseModel):
     deck_id: uuid.UUID
     card_title: str
     card_text: str
+    is_memorized: bool
 
 
 @router.get("/{flash_card_id}", status_code=status.HTTP_200_OK)

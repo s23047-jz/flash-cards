@@ -29,14 +29,12 @@ async def create_flash_card(body: RequestBody):
     }
 
     url = 'https://api.openai.com/v1/chat/completions'
-    print(body)
     try:
         response = requests.post(url, json=body.dict(), headers=headers)
         response.raise_for_status()
 
         response_data = response.json()
         chat_answer = response_data['choices'][0]['message']['content']
-        print(chat_answer)
         return chat_answer
     except requests.RequestException as e:
         raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,

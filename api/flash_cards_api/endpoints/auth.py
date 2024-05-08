@@ -66,6 +66,7 @@ class UserResponse(BaseModel):
     created_at: datetime
     updated_at: datetime
     active: bool
+    avatar: int
     role: str
     is_superuser: bool
 

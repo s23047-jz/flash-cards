@@ -6,6 +6,7 @@ import {
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import ButtonFlashCardsCreatePage from "./ButtonCreateFlashCardPage";
+// @ts-ignore
 import GenerateContentChatPopUpBox from "./GenerateContebtChatPopUpBox";
 import Alert from '../alert/Alert'
 // @ts-ignore
@@ -24,6 +25,7 @@ import "../../styles/create_flash_cards_page/flash_card_style.scss";
 import {ActiveUser} from "../../services/user";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import CustomIconButton from "./CustomIconButton";
+// @ts-ignore
 import LoadingSpinnerChat from "../loading_spinner/LoadingSpinnerChat";
 import {ChatService} from "../../services/chat";
 // @ts-ignore
@@ -217,11 +219,12 @@ const FlashCardCreator = (props) => {
             for (const {id} of directorsArray) {
                 const frontSideText = texts[`front-${id}`] || '';
                 const backSideText = texts[`back-${id}`] || '';
-                if (frontSideText.length > 1 && backSideText.length > 1) {
+                if (frontSideText.length >= 1 && backSideText.length >= 1) {
                     const flash_card_body = {
                         deck_id: createdDeck?.data.id,
                         card_title: frontSideText,
                         card_text: backSideText,
+                        is_memorized: false
                     };
 
                     await DeckService.create_flash_card(flash_card_body);
