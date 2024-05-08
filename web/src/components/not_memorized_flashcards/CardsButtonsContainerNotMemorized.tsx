@@ -39,7 +39,7 @@ const CardsButtonsContainerNotMemorized = () => {
                     if (deck_id) {
                         clearInterval(intervalId);
                         setTimeout(async () => {
-                            const response = await DeckService.get_flash_cards_from_deck(deck_id);
+                            const response = await DeckService.get_not_memorized_flash_cards_from_deck(deck_id);
                             // @ts-ignore
                             setFlashcards(response);
 

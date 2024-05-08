@@ -112,6 +112,42 @@ async def read_deck_cards_by_id(
     return [{"id": card.id, "title": card.card_title, "card text": card.card_text} for card in flashcards]
 
 
+@router.get("/{deck_id}/memorized_flash_cards", status_code=status.HTTP_200_OK)
+async def read_memorized_flash_cards_from_deck(
+        deck_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Return all memorized flash cards from a deck"""
+    deck = db.query(Deck).filter(Deck.id == deck_id).first()
+    if deck is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    memorized_flash_cards = [card for card in deck.flash_card_relationship if card.is_memorized]
+
+    return [{
+        "id": card.id,
+        "title": card.card_title,
+        "card_text": card.card_text
+    } for card in memorized_flash_cards]
+
+@router.get("/{deck_id}/not_memorized_flash_cards", status_code=status.HTTP_200_OK)
+async def read_not_memorized_flash_cards_from_deck(
+        deck_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Return all not memorized flash cards from a deck"""
+    deck = db.query(Deck).filter(Deck.id == deck_id).first()
+    if deck is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    memorized_flash_cards = [card for card in deck.flash_card_relationship if not card.is_memorized]
+
+    return [{
+        "id": card.id,
+        "title": card.card_title,
+        "card_text": card.card_text
+    } for card in memorized_flash_cards]
+
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
 async def create_deck(
         deck: DeckCreate,

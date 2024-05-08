@@ -77,8 +77,43 @@ class Deck {
             throw error;
         }
     }
+
     public async get_flash_cards_from_deck(deck_id: string | undefined) {
         const url = `${BASE_API}/decks/${deck_id}/flash_cards`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data: DeckData = await response.json();
+            return data;
+
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
+    public async get_memorized_flash_cards_from_deck(deck_id: string | undefined) {
+        const url = `${BASE_API}/decks/${deck_id}/memorized_flash_cards`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data: DeckData = await response.json();
+            return data;
+
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
+     public async get_not_memorized_flash_cards_from_deck(deck_id: string | undefined) {
+        const url = `${BASE_API}/decks/${deck_id}/not_memorized_flash_cards`;
 
         try {
             const response = await fetch(url);
@@ -110,7 +145,7 @@ class Deck {
         });
     }
 
-    public async get_deck_id(){
+    public async get_deck_id() {
         return this.deckData.id
     }
 
