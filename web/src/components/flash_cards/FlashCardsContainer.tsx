@@ -142,6 +142,10 @@ const FlashCardsContainer = () => {
         navigate('/voice_control')
     };
 
+     const handleNotMemorizedFlashcardsClick = () => {
+        navigate('/not_memorized_flash_cards')
+    };
+
     return (
         <div className={"all-flashcards-container"}>
             {isLoading ? (
@@ -150,7 +154,7 @@ const FlashCardsContainer = () => {
                 <>
                     <ButtonsContainerLearningMode onClickLearn={handleLearnModeClick}
                                                   onClickMemorized={handleLearnModeClick}
-                                                  onClickNotMemorized={handleLearnModeClick}
+                                                  onClickNotMemorized={handleNotMemorizedFlashcardsClick}
                                                   onClickVoiceControl={handleLearnModeClick}
                                                   onClickOptions={handleLearnModeClick}
 
