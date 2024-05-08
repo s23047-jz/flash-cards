@@ -10,11 +10,11 @@ import {DeckService} from '../../services/decs';
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/not_memorized_flash_cards/cards_buttons_container_not_memorized.scss"
 import {ChatService} from "../../services/chat";
-import ButtonContainerNotMemorizedFlashcards from "./ButtonContainerNotMemorizedFlashcards";
+import ButtonContainerNotMemorizedFlashcards from "../not_memorized_flashcards/ButtonContainerNotMemorizedFlashcards";
+import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 import {useNavigate} from 'react-router-dom';
-import ButtonNotMemorizedFlashCards from "./ButtonNotMemorizedFlashCards";
 
-const CardsButtonsContainerNotMemorized = () => {
+const CardsButtonsContainerMemorizedFlashcards = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
@@ -41,7 +41,7 @@ const CardsButtonsContainerNotMemorized = () => {
                     if (deck_id) {
                         clearInterval(intervalId);
                         setTimeout(async () => {
-                            const response = await DeckService.get_not_memorized_flash_cards_from_deck(deck_id);
+                            const response = await DeckService.get_memorized_flash_cards_from_deck(deck_id);
                             // @ts-ignore
                             setFlashcards(response);
 
@@ -331,4 +331,4 @@ const CardsButtonsContainerNotMemorized = () => {
     );
 };
 
-export default CardsButtonsContainerNotMemorized;
+export default CardsButtonsContainerMemorizedFlashcards;

@@ -1,8 +1,8 @@
 .grid-container-buttons {
   padding: 20px 0px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-column-gap: 15%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 6%;
   max-width: 3000px;
 }
 
@@ -11,7 +11,7 @@
     padding: 20px 20%;
     display: grid;
     grid-template-columns: 1fr;
-    grid-row-gap: 15%;
+    grid-row-gap: 8%;
     max-width: 3000px;
   }
 

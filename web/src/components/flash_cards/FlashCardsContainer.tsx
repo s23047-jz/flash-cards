@@ -145,6 +145,12 @@ const FlashCardsContainer = () => {
      const handleNotMemorizedFlashcardsClick = () => {
         navigate('/not_memorized_flash_cards')
     };
+     const handleMemorizedFlashcardsClick = () => {
+        navigate('/memorized_flash_cards')
+    };
+     const handleBackToDecks = () => {
+        navigate('/my_decks')
+    };
 
     return (
         <div className={"all-flashcards-container"}>
@@ -153,7 +159,7 @@ const FlashCardsContainer = () => {
             ) : (
                 <>
                     <ButtonsContainerLearningMode onClickLearn={handleLearnModeClick}
-                                                  onClickMemorized={handleLearnModeClick}
+                                                  onClickMemorized={handleMemorizedFlashcardsClick}
                                                   onClickNotMemorized={handleNotMemorizedFlashcardsClick}
                                                   onClickVoiceControl={handleLearnModeClick}
                                                   onClickOptions={handleLearnModeClick}
@@ -171,6 +177,7 @@ const FlashCardsContainer = () => {
                         onClickPrev={handlePrevClick}
                         onClickNext={handleNextClick}
                         onClickRotate={handleRotateClick}
+                        onClickBackToDecks={handleBackToDecks}
                     />
                     <p className={"all-flashcards-text"}>All Flashcards</p>
                     {flashcards.map((flashcard, index) => (
