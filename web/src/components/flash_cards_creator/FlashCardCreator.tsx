@@ -15,6 +15,8 @@ import plus from "../../assets/Plus.png";
 // @ts-ignore
 import microphone_black from "../../assets/Microphone_black.png";
 // @ts-ignore
+import generate_text from '../../assets/Generate_text.png';
+// @ts-ignore
 import microphone_red from "../../assets/Microphone_red.png";
 import {DeckService} from "../../services/decs" ;
 // @ts-ignore
@@ -39,6 +41,7 @@ const FlashCardCreator = (props) => {
     const [boxOpen, setboxOpen] = useState(false);
     const [boxContent, setboxContent] = useState("");
     const [isChatGenerating, setIsChatGenerating] = useState(false);
+    const [isClickMicrophoneAllowed, setIsClickMicrophoneAllowed] = useState(true);
     const recognition = useRef(null);
 
 
@@ -79,63 +82,69 @@ const FlashCardCreator = (props) => {
 
     // @ts-ignore
     const toggleDictation = (id, isFrontSide) => {
-        const recognitionInstanceKey = `${isFrontSide ? 'front-' : 'back-'}${id}`;
-        const recognitionInstance = recognitionInstances.current[recognitionInstanceKey];
-
-        if (isDictating[recognitionInstanceKey]) {
-            recognitionInstance.stop();
-            setIsDictating(prevState => ({
-                ...prevState,
-                [recognitionInstanceKey]: false
-            }));
-            return;
-        }
-
-
-        setIsDictating(prevState => ({
-            ...prevState,
-            [recognitionInstanceKey]: true
-        }));
-
-
-        const recognitionForCard = recognitionInstance || new ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)();
-        recognitionForCard.lang = 'en-US';
-        recognitionForCard.continuous = true;
-
-        recognitionForCard.onresult = (event: any) => {
-            let finalTranscript = "";
-            for (let i = event.resultIndex; i < event.results.length; ++i) {
-                if (event.results[i].isFinal) {
-                    finalTranscript += event.results[i][0].transcript + " ";
-                }
-            }
-            const maxLength = isFrontSide ? 256 : 512;
-            const currentText = texts[`${isFrontSide ? 'front-' : 'back-'}${id}`] || '';
-            const remainingSpace = maxLength - currentText.length;
-            let newText = finalTranscript;
-            if (finalTranscript.length + currentText.length > maxLength) {
-                newText = finalTranscript.slice(0, maxLength - currentText.length);
-            }
-            setTexts(prevTexts => ({
-                ...prevTexts,
-                [`${isFrontSide ? 'front-' : 'back-'}${id}`]: currentText + newText
-            }));
-        };
-
-        recognitionForCard.onend = () => {
+        if (isClickMicrophoneAllowed) {
+            setIsClickMicrophoneAllowed(false)
             setTimeout(() => {
+                setIsClickMicrophoneAllowed(true)
+            }, 500);
+            const recognitionInstanceKey = `${isFrontSide ? 'front-' : 'back-'}${id}`;
+            const recognitionInstance = recognitionInstances.current[recognitionInstanceKey];
+
+            if (isDictating[recognitionInstanceKey]) {
+                recognitionInstance.stop();
                 setIsDictating(prevState => ({
                     ...prevState,
                     [recognitionInstanceKey]: false
                 }));
-            }, 300);
-        };
+                return;
+            }
 
 
-        recognitionForCard.start();
+            setIsDictating(prevState => ({
+                ...prevState,
+                [recognitionInstanceKey]: true
+            }));
 
-        recognitionInstances.current[recognitionInstanceKey] = recognitionForCard;
-    };
+
+            const recognitionForCard = recognitionInstance || new ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)();
+            recognitionForCard.lang = 'en-US';
+            recognitionForCard.continuous = true;
+
+            recognitionForCard.onresult = (event: any) => {
+                let finalTranscript = "";
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript + " ";
+                    }
+                }
+                const maxLength = isFrontSide ? 256 : 512;
+                const currentText = texts[`${isFrontSide ? 'front-' : 'back-'}${id}`] || '';
+                const remainingSpace = maxLength - currentText.length;
+                let newText = finalTranscript;
+                if (finalTranscript.length + currentText.length > maxLength) {
+                    newText = finalTranscript.slice(0, maxLength - currentText.length);
+                }
+                setTexts(prevTexts => ({
+                    ...prevTexts,
+                    [`${isFrontSide ? 'front-' : 'back-'}${id}`]: currentText + newText
+                }));
+            };
+
+            recognitionForCard.onend = () => {
+                setTimeout(() => {
+                    setIsDictating(prevState => ({
+                        ...prevState,
+                        [recognitionInstanceKey]: false
+                    }));
+                }, 300);
+            };
+
+
+            recognitionForCard.start();
+
+            recognitionInstances.current[recognitionInstanceKey] = recognitionForCard;
+        }
+    }
 
 
     const appendInputDirector = () => {
@@ -166,13 +175,14 @@ const FlashCardCreator = (props) => {
             delete newTexts[`back-${idToRemove}`];
             return newTexts;
         });
+
     };
 
     const handleDeck = async () => {
         const userId = ActiveUser.getId();
 
         if (!deckTitle || !category) {
-            setAlertMessage('Pola "nazwa talii" i "kategoria talii" muszą być wypełnione.');
+            setAlertMessage('The "deck name" and "deck category" fields must be completed.');
             setShowAlert(true);
             return;
         }
@@ -189,7 +199,7 @@ const FlashCardCreator = (props) => {
         }
 
         if (!hasNonEmptyCards) {
-            setAlertMessage('Należy dodać przynajmniej jedną niepustą fiszkę przed utworzeniem talii.');
+            setAlertMessage('You must add at least one non-empty flashcard before creating your deck.');
             setShowAlert(true);
             return;
         }
@@ -433,7 +443,7 @@ const FlashCardCreator = (props) => {
                                     display: 'flex',
                                     justifyContent: 'center'
                                 }}>
-                                    <ButtonFlashCardsCreatePage text={"Generate text"} image={trashbin}
+                                    <ButtonFlashCardsCreatePage text={"Generate text"} image={generate_text}
                                                                 border={'2px solid black'} color={"#0431b8"}
                                                                 onClick={() => handleGenerateText(id)}/>
                                 </Grid>
