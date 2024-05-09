@@ -3,7 +3,7 @@ import React from "react";
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 import '../../styles/learning_mode/buttons_container_learning_mode.scss'
 // @ts-ignore
-const ButtonContainerNotMemorizedFlashcards = ({onClickPrev, onClickNext, onClickRotate,onClickPrevSide ,isMicrophoneListening}) => {
+const ButtonContainerNotMemorizedFlashcards = ({onClickPrev, onClickNext, onClickRotate,onClickPrevSide }) => {
     const texts = ['Not Remember', 'Remember', 'Rotate Side', 'Back To Deck']
     const button_colors = ['#FF2020', '#46EF31', '#9C1CFF', '#e05a12']
     const border = '3px solid black'

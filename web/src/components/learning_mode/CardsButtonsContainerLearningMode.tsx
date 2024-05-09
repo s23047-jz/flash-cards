@@ -14,7 +14,7 @@ import ButtonsContainerLearningMode from "./ButtonsContainerLearningMode";
 import {useNavigate} from 'react-router-dom';
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 
-const CardsButtonsContainerNotMemorized = () => {
+const CardsButtonsContainerLearningMode = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
@@ -23,9 +23,7 @@ const CardsButtonsContainerNotMemorized = () => {
     const [deckTitle, setDeckTitle] = useState(false);
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
-    const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
     const numberOfFlashCards = flashcards.length;
-    const recognition = useRef(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -61,31 +59,6 @@ const CardsButtonsContainerNotMemorized = () => {
     }, [isSpeakingBigCard, currentBigCardIndex]);
 
 
-    useEffect(() => {
-        if (isListening) {
-            // @ts-ignore
-            recognition.current.start();
-        } else {
-            // @ts-ignore
-            recognition.current.stop();
-        }
-    }, [isListening, isSpeakingBigCard, currentBigCardIndex]);
-
-
-    const handleStopControl = () => {
-
-        if (isClickVoiceControlAllowed) {
-            setIsClickVoiceControlAllowed(false)
-            setTimeout(() => {
-                setIsClickVoiceControlAllowed(true)
-            }, 300);
-            if (isListening) {
-                setIsListening(false);
-            } else {
-                setIsListening(true);
-            }
-        }
-    };
 
     const handleSpeak = (text: string) => {
         if ('speechSynthesis' in window) {
@@ -169,6 +142,7 @@ const CardsButtonsContainerNotMemorized = () => {
                                 <ButtonNotMemorizedFlashCards onClick={navigatePrevSide} text={'Back To Deck'}
                                                               color={'#e05a12'}
                                                               border={'3px solid black'}/>
+
                             </div>
                         </>
                     ) : (
@@ -182,12 +156,12 @@ const CardsButtonsContainerNotMemorized = () => {
                                 onIconClick={handleSpeakerBigCardClick}
                                 isMicrophoneListening={isListening}
                             />
+
                             <ButtonsContainerLearningMode
                                 onClickPrev={handlePrevClick}
                                 onClickNext={handleNextClick}
                                 onClickRotate={handleRotateClick}
                                 onClickPrevSide={navigatePrevSide}
-                                isMicrophoneListening={isListening}
                             />
                         </>
                     )}
@@ -197,4 +171,4 @@ const CardsButtonsContainerNotMemorized = () => {
     );
 };
 
-export default CardsButtonsContainerNotMemorized;
+export default CardsButtonsContainerLearningMode;

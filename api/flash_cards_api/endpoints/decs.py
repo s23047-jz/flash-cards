@@ -129,7 +129,7 @@ async def read_memorized_flash_cards_from_deck(
     return [{
         "id": card.id,
         "title": card.card_title,
-        "card_text": card.card_text
+        "card text": card.card_text
     } for card in memorized_flash_cards]
 
 @router.get("/{deck_id}/not_memorized_flash_cards", status_code=status.HTTP_200_OK)
@@ -147,7 +147,7 @@ async def read_not_memorized_flash_cards_from_deck(
     return [{
         "id": card.id,
         "title": card.card_title,
-        "card_text": card.card_text
+        "card text": card.card_text
     } for card in memorized_flash_cards]
 
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
