@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki" />
+    <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.tex" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.tex" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,7 +109,7 @@
     </configuration>
     <configuration name="engineer" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
       <texify>
-        <compiler>PDFLATEX</compiler>
+        <compiler>XELATEX</compiler>
         <compiler-path />
         <sumatra-path />
         <pdf-viewer>NONE</pdf-viewer>
@@ -124,6 +128,10 @@
       </texify>
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="BibTeX.engineer bibliography" />
+      <item itemvalue="LaTeX.engineer" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="LaTeX.engineer" />
@@ -164,7 +172,8 @@
       <workItem from="1714873024494" duration="1106000" />
       <workItem from="1714932520708" duration="3635000" />
       <workItem from="1714936251906" duration="1274000" />
-      <workItem from="1714967775359" duration="2104000" />
+      <workItem from="1714967775359" duration="4407000" />
+      <workItem from="1715276147075" duration="149000" />
     </task>
     <task id="LOCAL-00001" summary="poprawki">
       <option name="closed" value="true" />
