@@ -1,5 +1,7 @@
 from fastapi import Query
 
+from typing import List, Optional
+
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
 
@@ -23,13 +25,13 @@ router = APIRouter(prefix="/decks", tags=["decks"])
 
 class DeckCreate(BaseModel):
     user_id: uuid.UUID
-    title: str
-    deck_category: str
+    title: Optional[str] = None
+    deck_category: Optional[str] = None
 
 
 class DeckUpdate(DeckCreate):
-    is_deck_public: bool
-    downloads: int
+    is_deck_public: Optional[bool] = None
+    downloads: Optional[int] = None
 
 
 @router.get("/{deck_id}", status_code=status.HTTP_200_OK)
@@ -163,20 +165,23 @@ async def create_deck(
 
 @router.put("/update_deck/{deck_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_deck(
-        deck: DeckUpdate,
         deck_id: uuid.UUID,
+        deck_data: DeckUpdate,
         db: Session = Depends(get_db)
 ):
     deck_model = db.query(Deck).filter(Deck.id == deck_id).first()
     if deck_model is None:
         raise HTTPException(status_code=404, detail="Deck not found")
 
-    deck_model.title = deck.title
-    deck_model.deck_category = deck.deck_category
-    deck_model.is_deck_public = deck.is_deck_public
-    deck_model.downloads = deck.downloads
+    if deck_data.title is not None:
+        deck_model.title = deck_data.title
+    if deck_data.deck_category is not None:
+        deck_model.deck_category = deck_data.deck_category
+    if deck_data.is_deck_public is not None:
+        deck_model.is_deck_public = deck_data.is_deck_public
+    if deck_data.downloads is not None:
+        deck_model.downloads = deck_data.downloads
 
-    db.add(deck_model)
     db.commit()
 
 

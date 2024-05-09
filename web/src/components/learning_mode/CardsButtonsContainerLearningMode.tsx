@@ -1,0 +1,200 @@
+// @ts-ignore
+import speaker from '../../assets/Speaker.png';
+// @ts-ignore
+import speaker_blue from '../../assets/Speaker_blue.png';
+// @ts-ignore
+import React, {useEffect, useRef, useState} from "react";
+import FlashCardVoiceMode from "../voice_control/FlashCardVoiceMode";
+import {DeckService} from '../../services/decs';
+// @ts-ignore
+import LoadingSpinner from "../loading_spinner/LoadingSpinner";
+import "../../styles/learning_mode/cards_buttons_container_learning_mode.scss"
+import {ChatService} from "../../services/chat";
+import ButtonsContainerLearningMode from "./ButtonsContainerLearningMode";
+import {useNavigate} from 'react-router-dom';
+import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
+
+const CardsButtonsContainerNotMemorized = () => {
+    const [flashcards, setFlashcards] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
+    const [isRotated, setIsRotated] = useState(false);
+    const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
+    const [deckTitle, setDeckTitle] = useState(false);
+    const [textControl, setTextControl] = useState('');
+    const [isListening, setIsListening] = useState(false);
+    const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
+    const numberOfFlashCards = flashcards.length;
+    const recognition = useRef(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchFlashCards = async () => {
+            try {
+                let deck_id: string;
+
+                const intervalId = setInterval(() => {
+                    const deckDataString = localStorage.getItem("deckData");
+                    const deckData = JSON.parse(deckDataString || "{}");
+                    deck_id = deckData.id;
+                    setDeckTitle(deckData.title);
+                    if (deck_id) {
+                        clearInterval(intervalId);
+                        setTimeout(async () => {
+                            const response = await DeckService.get_not_memorized_flash_cards_from_deck(deck_id);
+                            // @ts-ignore
+                            setFlashcards(response);
+
+                            setIsLoading(false)
+                        }, 300);
+                    }
+                }, 100);
+
+            } catch (error) {
+                console.error(error);
+            }
+        };
+        fetchFlashCards();
+
+
+
+    }, [isSpeakingBigCard, currentBigCardIndex]);
+
+
+    useEffect(() => {
+        if (isListening) {
+            // @ts-ignore
+            recognition.current.start();
+        } else {
+            // @ts-ignore
+            recognition.current.stop();
+        }
+    }, [isListening, isSpeakingBigCard, currentBigCardIndex]);
+
+
+    const handleStopControl = () => {
+
+        if (isClickVoiceControlAllowed) {
+            setIsClickVoiceControlAllowed(false)
+            setTimeout(() => {
+                setIsClickVoiceControlAllowed(true)
+            }, 300);
+            if (isListening) {
+                setIsListening(false);
+            } else {
+                setIsListening(true);
+            }
+        }
+    };
+
+    const handleSpeak = (text: string) => {
+        if ('speechSynthesis' in window) {
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'en-GB';
+            speech.rate = 0.9;
+            speech.pitch = 1.2;
+            speech.volume = 1.0;
+
+            setIsSpeakingBigCard(true);
+            speech.onend = () => {
+                setIsSpeakingBigCard(false);
+                setTextControl('');
+            };
+
+            window.speechSynthesis.speak(speech);
+        } else {
+            console.log('Speech synthesis not supported.');
+        }
+    };
+
+    const handleSpeakerBigCardClick = () => {
+        setIsSpeakingBigCard(true);
+        if (flashcards.length > 0) {
+            let currentBigFlashCard = flashcards[currentBigCardIndex];
+            if (!isRotated) {
+                handleSpeak(currentBigFlashCard['title']);
+            } else {
+                handleSpeak(currentBigFlashCard['card text']);
+            }
+        }
+        if (isSpeakingBigCard) {
+            setIsSpeakingBigCard(false);
+            window.speechSynthesis.cancel();
+        }
+    }
+
+
+    const handleNextClick = () => {
+        window.speechSynthesis.cancel();
+        setIsSpeakingBigCard(false);
+        if (currentBigCardIndex < flashcards.length - 1) {
+            setCurrentBigCardIndex(currentBigCardIndex + 1);
+            setIsRotated(false)
+        }
+    };
+
+    const handlePrevClick = () => {
+        window.speechSynthesis.cancel();
+        setIsSpeakingBigCard(false);
+        if (currentBigCardIndex > 0) {
+            setCurrentBigCardIndex(currentBigCardIndex - 1);
+            setIsRotated(false)
+        }
+    };
+
+    const handleRotateClick = () => {
+        window.speechSynthesis.cancel();
+        setIsRotated(!isRotated);
+        if (isSpeakingBigCard) {
+            window.speechSynthesis.cancel();
+            setIsSpeakingBigCard(false);
+        }
+    };
+
+    const navigatePrevSide = () => {
+        navigate('/my_deck_learning_modes')
+    }
+
+
+    return (
+        <div className={"learning-mode-container"}>
+            {isLoading ? (
+                <LoadingSpinner/>
+            ) : (
+                <>
+                    {flashcards.length === 0 ? (
+                        <>
+                            <p className={"no-flash-cards-text"}>No Flashcards</p>
+                            <div className={'button-back-to-deck'}>
+                                <ButtonNotMemorizedFlashCards onClick={navigatePrevSide} text={'Back To Deck'}
+                                                              color={'#e05a12'}
+                                                              border={'3px solid black'}/>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <FlashCardVoiceMode
+                                front_text={flashcards[currentBigCardIndex]['title']}
+                                back_text={flashcards[currentBigCardIndex]['card text']}
+                                left_corner_text={`${currentBigCardIndex + 1}/${numberOfFlashCards} ${deckTitle}`}
+                                icon={isSpeakingBigCard ? speaker_blue : speaker}
+                                isRotated={isRotated}
+                                onIconClick={handleSpeakerBigCardClick}
+                                isMicrophoneListening={isListening}
+                            />
+                            <ButtonsContainerLearningMode
+                                onClickPrev={handlePrevClick}
+                                onClickNext={handleNextClick}
+                                onClickRotate={handleRotateClick}
+                                onClickPrevSide={navigatePrevSide}
+                                isMicrophoneListening={isListening}
+                            />
+                        </>
+                    )}
+                </>
+            )}
+        </div>
+    );
+};
+
+export default CardsButtonsContainerNotMemorized;

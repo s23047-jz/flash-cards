@@ -12,6 +12,7 @@ import DeckAllFlashcards from "./views/DeckAllFlashcards";
 import VoiceControlMode from "./views/VoiceControlMode";
 import NotMemorizedFlashCards from "./views/NotMemorizedFlashCards";
 import MemorizedFlashCards from "./views/MemorizedFlashCards";
+import LearningMode from "./views/LearningMode";
 
 function App() {
     return (
@@ -20,17 +21,19 @@ function App() {
                 <Routes>
 
                     <Route element={<PrivateRoute/>}>
-                        <Route path="/home" element={<HomePage/>} exact/>
+                        <Route path="/home" element={<HomePage/>}/>
+                        <Route path="/create_deck" element={<CreateFlashCardsPage/>}/>
+                        <Route path="/my_decks" element={<MyDecks/>}/>
+                        <Route path="/profile" element={<Profile/>}/>
+                        <Route path="/my_deck_learning_modes" element={<DeckAllFlashcards/>}/>
+                        <Route path="/voice_control" element={<VoiceControlMode/>}/>
+                        <Route path="/not_memorized_flash_cards" element={<NotMemorizedFlashCards/>}/>
+                        <Route path="/memorized_flash_cards" element={<MemorizedFlashCards/>}/>
+                        <Route path="/learning_mode" element={<LearningMode/>}/>
                     </Route>
                     <Route path="/signin" element={<SignIn/>}/>
                     <Route path="/registration" element={<Registration/>}/>
-                    <Route path="/create_deck" element={<CreateFlashCardsPage/>}/>
-                    <Route path="/my_decks" element={<MyDecks/>}/>
-                    <Route path="/profile" element={<Profile/>}/>
-                    <Route path="/my_deck_learning_modes" element={<DeckAllFlashcards/>}/>
-                    <Route path="/voice_control" element={<VoiceControlMode/>}/>
-                    <Route path="/not_memorized_flash_cards" element={<NotMemorizedFlashCards/>}/>
-                    <Route path="/memorized_flash_cards" element={<MemorizedFlashCards/>}/>
+
 
                 </Routes>
             </div>

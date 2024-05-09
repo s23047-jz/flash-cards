@@ -152,13 +152,17 @@ const FlashCardsContainer = () => {
         navigate('/my_decks')
     };
 
+     const handleLearningMode = () => {
+        navigate('/learning_mode')
+    };
+
     return (
         <div className={"all-flashcards-container"}>
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
                 <>
-                    <ButtonsContainerLearningMode onClickLearn={handleLearnModeClick}
+                    <ButtonsContainerLearningMode onClickLearn={handleLearningMode}
                                                   onClickMemorized={handleMemorizedFlashcardsClick}
                                                   onClickNotMemorized={handleNotMemorizedFlashcardsClick}
                                                   onClickVoiceControl={handleLearnModeClick}

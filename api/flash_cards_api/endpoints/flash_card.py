@@ -4,6 +4,8 @@ from flash_cards_api.database import get_db
 
 from pydantic.main import BaseModel
 
+from typing import Optional
+
 from fastapi import (
     APIRouter,
     Depends,
@@ -19,9 +21,9 @@ router = APIRouter(prefix="/flash_card", tags=["flash_cards"])
 
 class FlashCardCreate(BaseModel):
     deck_id: uuid.UUID
-    card_title: str
-    card_text: str
-    is_memorized: bool
+    card_title: Optional[str] = None
+    card_text: Optional[str] = None
+    is_memorized: Optional[bool] = None
 
 
 @router.get("/{flash_card_id}", status_code=status.HTTP_200_OK)
@@ -46,24 +48,27 @@ async def create_flash_card(
     flash_card_model = FlashCard(**flash_card.dict())
     db.add(flash_card_model)
     db.commit()
-    db.refresh(flash_card_model)  # Refresh to get the updated data from the database
+    db.refresh(flash_card_model)
     return flash_card_model
 
 
 @router.put("/update_flash_card/{flash_card_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_flash_card(
-        flash_card: FlashCardCreate,
         flash_card_id: uuid.UUID,
+        flash_card_data: FlashCardCreate,
         db: Session = Depends(get_db)
 ):
     flash_card_model = db.query(FlashCard).filter(FlashCard.id == flash_card_id).first()
     if flash_card_model is None:
-        raise HTTPException(status_code=404, detail="Deck not found")
+        raise HTTPException(status_code=404, detail="Flash card not found")
 
-    flash_card_model.card_title = flash_card.card_title
-    flash_card_model.card_text = flash_card.card_text
+    if flash_card_data.card_title is not None:
+        flash_card_model.card_title = flash_card_data.card_title
+    if flash_card_data.card_text is not None:
+        flash_card_model.card_text = flash_card_data.card_text
+    if flash_card_data.is_memorized is not None:
+        flash_card_model.is_memorized = flash_card_data.is_memorized
 
-    db.add(flash_card_model)
     db.commit()
 
 
