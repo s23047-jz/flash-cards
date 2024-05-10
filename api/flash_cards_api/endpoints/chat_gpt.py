@@ -19,7 +19,6 @@ class RequestBody(BaseModel):
     model: str
     messages: List[Message]
 
-
 @router.post("/chat", status_code=status.HTTP_201_CREATED)
 async def create_flash_card(body: RequestBody):
     chat_api_key = os.environ.get('KEY_GPT')
