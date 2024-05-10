@@ -11,7 +11,8 @@ import ButtonsContainer from "../all_flashcards_page_buttons/ButtonsContainer";
 import ButtonsContainerLearningMode from "../all_flashcards_page_buttons/ButtonsContainerLearningMode";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/flash_cards/flash_cards_container.scss"
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import Options from '../options/Options'
 
 const FlashCardsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
@@ -22,6 +23,7 @@ const FlashCardsContainer = () => {
     const [isRotated, setIsRotated] = useState(false);
     const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
     const [deckTitle, setDeckTitle] = useState(false);
+    const [isOpenOptions, setIsOpenOptions] = useState(false);
     const numberOfFlashCards = flashcards.length
     const navigate = useNavigate();
 
@@ -138,23 +140,31 @@ const FlashCardsContainer = () => {
         }
     };
 
-     const handleLearnModeClick = () => {
+    const handleLearnModeClick = () => {
         navigate('/voice_control')
     };
 
-     const handleNotMemorizedFlashcardsClick = () => {
+    const handleNotMemorizedFlashcardsClick = () => {
         navigate('/not_memorized_flash_cards')
     };
-     const handleMemorizedFlashcardsClick = () => {
+    const handleMemorizedFlashcardsClick = () => {
         navigate('/memorized_flash_cards')
     };
-     const handleBackToDecks = () => {
+    const handleBackToDecks = () => {
         navigate('/my_decks')
     };
 
-     const handleLearningMode = () => {
+    const handleLearningMode = () => {
         navigate('/learning_mode')
     };
+
+    const handleOpenOptions = () => {
+        if (isOpenOptions) {
+            setIsOpenOptions(false)
+        } else {
+            setIsOpenOptions(true)
+        }
+    }
 
     return (
         <div className={"all-flashcards-container"}>
@@ -162,11 +172,13 @@ const FlashCardsContainer = () => {
                 <LoadingSpinner/>
             ) : (
                 <>
+                    <Options onCloseBox={handleOpenOptions} isOpen={isOpenOptions} onResetDeck={handleNextClick}
+                             onDeleteDeck={handleNextClick}></Options>
                     <ButtonsContainerLearningMode onClickLearn={handleLearningMode}
                                                   onClickMemorized={handleMemorizedFlashcardsClick}
                                                   onClickNotMemorized={handleNotMemorizedFlashcardsClick}
                                                   onClickVoiceControl={handleLearnModeClick}
-                                                  onClickOptions={handleLearnModeClick}
+                                                  onClickOptions={handleOpenOptions}
 
                     />
                     <FlashCard

@@ -12,7 +12,7 @@ import "../../styles/learning_mode/cards_buttons_container_learning_mode.scss"
 import ButtonsContainerLearningMode from "./ButtonsContainerLearningMode";
 import {useNavigate} from 'react-router-dom';
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
-// @ts-ignore
+
 
 
 const CardsButtonsContainerLearningMode = () => {
@@ -161,7 +161,10 @@ const CardsButtonsContainerLearningMode = () => {
         DeckService.update_multiple_flash_card(flashcardsUpdated)
         navigate('/my_deck_learning_modes')
 
+
     }
+
+
 
     return (
         <div className={"learning-mode-container"}>
@@ -181,6 +184,7 @@ const CardsButtonsContainerLearningMode = () => {
                         </>
                     ) : (
                         <>
+
                             <FlashCardVoiceMode
                                 front_text={flashcards[currentBigCardIndex]['title']}
                                 back_text={flashcards[currentBigCardIndex]['card text']}
