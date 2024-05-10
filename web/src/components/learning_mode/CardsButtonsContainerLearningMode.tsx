@@ -9,13 +9,15 @@ import {DeckService} from '../../services/decs';
 // @ts-ignore
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/learning_mode/cards_buttons_container_learning_mode.scss"
-import {ChatService} from "../../services/chat";
 import ButtonsContainerLearningMode from "./ButtonsContainerLearningMode";
 import {useNavigate} from 'react-router-dom';
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
+// @ts-ignore
+
 
 const CardsButtonsContainerLearningMode = () => {
     const [flashcards, setFlashcards] = useState([]);
+    const [flashcardsUpdated, setFlashcardsUpdated]= useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
     const [isRotated, setIsRotated] = useState(false);
@@ -128,6 +130,34 @@ const CardsButtonsContainerLearningMode = () => {
         navigate('/my_deck_learning_modes')
     }
 
+    // @ts-ignore
+    const handleAccept = (flash_card_id) =>{
+        handleNextClick()
+        // const deckDataString = localStorage.getItem("deckData");
+        // // @ts-ignore
+        // const deckData = JSON.parse(deckDataString);
+        // @ts-ignore
+
+        const flashcard_body = {
+            // @ts-ignore
+            id: flash_card_id,
+            is_memorized: true,
+        };
+        // const flashcard_body_json = JSON.stringify(flashcard_body);
+        // @ts-ignore
+
+        const updatedFlashcards = flashcardsUpdated.concat(flashcard_body);
+        setFlashcardsUpdated(updatedFlashcards);
+    }
+
+    const saveDeck = () =>{
+        console.log(flashcardsUpdated)
+        // @ts-ignore
+        DeckService.update_multiple_flash_card(flashcardsUpdated)
+        // navigate('/my_deck_learning_modes')
+
+    }
+
 
     return (
         <div className={"learning-mode-container"}>
@@ -158,10 +188,10 @@ const CardsButtonsContainerLearningMode = () => {
                             />
 
                             <ButtonsContainerLearningMode
-                                onClickPrev={handlePrevClick}
-                                onClickNext={handleNextClick}
+                                onClickPrev={handleNextClick}
+                                onClickNext={()=>handleAccept(flashcards[currentBigCardIndex]['id'])}
                                 onClickRotate={handleRotateClick}
-                                onClickPrevSide={navigatePrevSide}
+                                onClickPrevSide={saveDeck}
                             />
                         </>
                     )}

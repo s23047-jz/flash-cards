@@ -32,6 +32,12 @@ export interface FlashCardInterface {
     is_memorized?: boolean;
 }
 
+export interface FlashCardInterfaceMemorized {
+    id?: string;
+    is_memorized?: boolean;
+
+}
+
 export interface UserInterface {
     id?: string;
     email?: string;

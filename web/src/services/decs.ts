@@ -2,7 +2,7 @@ import {BASE_API} from './config';
 // @ts-ignore
 import {request} from '../utils/request';
 import {ActiveUser} from './user';
-import {DeckData, DeckInterface, FlashCardInterface} from "../interfaces/auth";
+import {DeckData, DeckInterface, FlashCardInterface, FlashCardInterfaceMemorized} from "../interfaces/auth";
 
 
 export const AUTH_ENDPOINTS = {
@@ -146,17 +146,19 @@ class Deck {
         });
     }
 
-    public async update_flash_card(flash_card_id: string, body: object) {
-        const url = `${BASE_API}/flash_card/update_flash_card/${flash_card_id}`;
-         // @ts-ignore
-        return await request({
-            url: url,
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: body
-        });
+    // public async update_flash_card(flash_card_id: string, body: object) {
+    //     const url = `${BASE_API}/flash_card/update_flash_card/${flash_card_id}`;
+    //
+    //     // @ts-ignore
+    //     return await request({
+    //         url: url,
+    //         method: 'PUT',
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: body
+    //     });
+
 
         // const requestOptions = {
         //     method: 'PUT',
@@ -176,6 +178,25 @@ class Deck {
         //     // @ts-ignore
         //     console.error(error.message);
         // }
+    // }
+
+    public async update_multiple_flash_card(body: object) {
+        const url = `${BASE_API}/flash_card/update_flash_cards`;
+        try {
+            // @ts-ignore
+            return await request({
+                url: url,
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: body
+            });
+
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+        }
     }
 
     public async get_deck_id() {
@@ -185,4 +206,5 @@ class Deck {
 }
 
 
-export const DeckService = new Deck();
+export const
+    DeckService = new Deck();
