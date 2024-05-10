@@ -2,7 +2,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 
-import Plus from "../../assets/images/plus.png";
+import Plus from "../../assets/images/Plus.png";
 import { ScreenProps } from "../../interfaces/screen";
 import {Button} from "../../components";
 import {ROUTES} from "../../constants";
@@ -51,6 +51,12 @@ const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
                 resizeMode="contain"
                 source={Plus}
             />
+        </Button>
+
+        <Button
+            className={'p-3 m-5 w-60 h-16 justify-center mr-auto ml-auto rounded-3xl'}>
+            <Text className="mx-5 font-bold">Example Deck</Text>
+            <Text className="mx-5 font-bold">Category</Text>
         </Button>
     </View>
   );
