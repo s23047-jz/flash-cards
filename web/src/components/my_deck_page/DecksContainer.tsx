@@ -30,6 +30,7 @@ import ButtonCreateFlashCardPage from "../flash_cards_creator/ButtonCreateFlashC
 import filter from "../../assets/Filter.png";
 import {useNavigate} from "react-router-dom";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
+import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 
 
 const DecksContainer = () => {
@@ -88,58 +89,73 @@ const DecksContainer = () => {
 
     }
 
-    // @ts-ignore
-return (
-    <div className="website-container">
+    const navigateHomePage = () =>{
+        navigate("/create_deck")
+    }
 
-                <p className="web-title">My Decks</p>
-        {isLoadingFetchDecks ? (
-            <LoadingSpinner />
-        ) : (
-            <>
-                <div className="filter-container">
-                    <FormControl variant="filled">
-                        <InputLabel htmlFor="component-filled" sx={{ backgroundColor: fields_color, color: 'white' }}>Filter Decks</InputLabel>
-                        <FilledInput
-                            id="component-filled"
-                            defaultValue=""
-                            sx={{
-                                "& input": {
-                                    backgroundColor: fields_color,
-                                    color: 'white',
-                                    borderRadius: '10px',
-                                    border: '2px solid black',
-                                }
-                            }}
-                            disableUnderline
-                            onChange={(e) => setFilterString(e.target.value)}
-                        />
-                    </FormControl>
-                    <ButtonCreateFlashCardPage
-                        color={fields_color}
-                        text={'Filter'}
-                        border={'2px solid black'}
-                        image={filter}
-                        onClick={handleFilterDecks}
-                    />
-                </div>
-                <div className="decks-container">
-                    {decks.map((deck, index) => (
-                        <div className="deck-button" key={index}>
-                            <DeckButton
-                                frontTextUpper={`${deck['title']}`}
-                                frontTextLower={`${deck['deck_category']}`}
-                                image={cardColors[index]}
-                                backText={`Number of flashcards: ${deck['number_of_cards']}`}
-                                onClick={() => navigateToDeckFlashcards(deck['id'])}
-                            />
+
+// @ts-ignore
+ return (
+        <div className="website-container">
+            <p className="web-title">My Decks</p>
+            {isLoadingFetchDecks ? (
+                <LoadingSpinner />
+            ) : (
+                <>
+                    {decks.length === 0 ? (
+                        <div className={'no-decks-container'}>
+                            <p className={"no-decks-cards-text"}>No Decks</p>
+                            <div className={'button-create-deck'}>
+                                <ButtonNotMemorizedFlashCards onClick={navigateHomePage} text={'Create Deck'} color={'#e05a12'} border={'3px solid black'}/>
+                            </div>
                         </div>
-                    ))}
-                </div>
-            </>
-        )}
-    </div>
-);
+                    ) : (
+                        <>
+                            <div className="filter-container">
+                                <FormControl variant="filled">
+                                    <InputLabel htmlFor="component-filled" sx={{ backgroundColor: fields_color, color: 'white' }}>Filter Decks</InputLabel>
+                                    <FilledInput
+                                        id="component-filled"
+                                        defaultValue=""
+                                        sx={{
+                                            "& input": {
+                                                backgroundColor: fields_color,
+                                                color: 'white',
+                                                borderRadius: '10px',
+                                                border: '2px solid black',
+                                            }
+                                        }}
+                                        disableUnderline
+                                        onChange={(e) => setFilterString(e.target.value)}
+                                    />
+                                </FormControl>
+                                <ButtonCreateFlashCardPage
+                                    color={fields_color}
+                                    text={'Filter'}
+                                    border={'2px solid black'}
+                                    image={filter}
+                                    onClick={handleFilterDecks}
+                                />
+                            </div>
+                            <div className="decks-container">
+                                {decks.map((deck, index) => (
+                                    <div className="deck-button" key={index}>
+                                        <DeckButton
+                                            frontTextUpper={`${deck['title']}`}
+                                            frontTextLower={`${deck['deck_category']}`}
+                                            image={cardColors[index]}
+                                            backText={`Number of flashcards: ${deck['number_of_cards']}`}
+                                            onClick={() => navigateToDeckFlashcards(deck['id'])}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </>
+            )}
+        </div>
+    );
 };
 
 export default DecksContainer;

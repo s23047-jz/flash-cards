@@ -203,6 +203,7 @@ const FlashCardsContainer = () => {
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
+
                 <>
                     <Options onCloseBox={handleOpenOptions} isOpen={isOpenOptions} onResetDeck={handleResetDeck}
                              onDeleteDeck={handleDeleteDeck}></Options>

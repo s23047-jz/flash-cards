@@ -105,14 +105,6 @@ const CardsButtonsContainerLearningMode = () => {
         }
     };
 
-    const handlePrevClick = () => {
-        window.speechSynthesis.cancel();
-        setIsSpeakingBigCard(false);
-        if (currentBigCardIndex > 0) {
-            setCurrentBigCardIndex(currentBigCardIndex - 1);
-            setIsRotated(false)
-        }
-    };
 
     const handleRotateClick = () => {
         window.speechSynthesis.cancel();
