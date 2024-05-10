@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "uuid": "^9.0.1",
+    "uuid-1345": "^1.0.2"
+  },
+  "devDependencies": {
+    "@types/uuid": "^9.0.8"
+  }
+}

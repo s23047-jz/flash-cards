@@ -11,6 +11,7 @@ import ButtonsContainerVoiceMode from "./ButtonsContainerVoiceMode";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/voice_control_page/cards_buttons_container.scss"
 import {ChatService} from "../../services/chat";
+import {useNavigate} from 'react-router-dom';
 
 const CardsButtonsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
@@ -24,6 +25,7 @@ const CardsButtonsContainer = () => {
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
     const numberOfFlashCards = flashcards.length;
     const recognition = useRef(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchFlashCards = async () => {
@@ -270,6 +272,9 @@ const CardsButtonsContainer = () => {
         }
     };
 
+     const navigatePrevSide = () => {
+        navigate('/my_deck_learning_modes')
+    }
     const chatControl = async (text: string) => {
         console.log(text)
         try {
@@ -302,6 +307,7 @@ const CardsButtonsContainer = () => {
                         onClickNext={handleNextClick}
                         onClickRotate={handleRotateClick}
                         onClickStopControl={handleStopControl}
+                        onClickPrevSide={navigatePrevSide}
                         isMicrophoneListening={isListening}
                     />
                 </>

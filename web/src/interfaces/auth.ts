@@ -29,6 +29,13 @@ export interface FlashCardInterface {
     deck_id?: string;
     card_title?: string;
     card_text?: string;
+    is_memorized?: boolean;
+}
+
+export interface FlashCardInterfaceMemorized {
+    id?: string;
+    is_memorized?: boolean;
+
 }
 
 export interface UserInterface {

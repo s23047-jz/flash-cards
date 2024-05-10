@@ -2,13 +2,14 @@ import {BASE_API} from './config';
 // @ts-ignore
 import {request} from '../utils/request';
 import {ActiveUser} from './user';
-import {DeckData, DeckInterface} from "../interfaces/auth";
+import {DeckData, DeckInterface, FlashCardInterface, FlashCardInterfaceMemorized} from "../interfaces/auth";
 
 
 export const AUTH_ENDPOINTS = {
     create_deck: `${BASE_API}/decks/create_deck`,
     create_flash_card: `${BASE_API}/flash_card/create_flash_card`,
 };
+
 
 class Deck {
     deckData: DeckInterface = {}
@@ -112,9 +113,8 @@ class Deck {
         }
     }
 
-     public async get_not_memorized_flash_cards_from_deck(deck_id: string | undefined) {
+    public async get_not_memorized_flash_cards_from_deck(deck_id: string | undefined) {
         const url = `${BASE_API}/decks/${deck_id}/not_memorized_flash_cards`;
-
         try {
             const response = await fetch(url);
             if (!response.ok) {
@@ -145,6 +145,54 @@ class Deck {
         });
     }
 
+
+    public async deleteDeck(deck_id: string) {
+        try {
+            const url = `${BASE_API}/decks/delete_deck/${deck_id}`;
+            return await request({
+                url,
+                method: 'DELETE'
+            });
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
+        }
+    }
+
+
+    public async update_multiple_flash_card(body: object) {
+        const url = `${BASE_API}/flash_card/update_flash_cards`;
+        console.log(body)
+        try {
+            // @ts-ignore
+            return await request({
+                url: url,
+                method: 'PUT',
+                body: body
+            });
+
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+        }
+    }
+
+      public async update_multiple_flash_card_is_memorized_false(deck_id: string) {
+        const url = `${BASE_API}/decks/update_deck/flashcards_is_memorized/${deck_id}`;
+        try {
+            // @ts-ignore
+            return await request({
+                url: url,
+                method: 'PUT',
+            });
+
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+        }
+    }
+
     public async get_deck_id() {
         return this.deckData.id
     }
@@ -152,4 +200,5 @@ class Deck {
 }
 
 
-export const DeckService = new Deck();
+export const
+    DeckService = new Deck();

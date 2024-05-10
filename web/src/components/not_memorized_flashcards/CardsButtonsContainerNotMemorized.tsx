@@ -11,7 +11,9 @@ import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/not_memorized_flash_cards/cards_buttons_container_not_memorized.scss"
 import {ChatService} from "../../services/chat";
 import ButtonContainerNotMemorizedFlashcards from "./ButtonContainerNotMemorizedFlashcards";
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import ButtonNotMemorizedFlashCards from "./ButtonNotMemorizedFlashCards";
+
 const CardsButtonsContainerNotMemorized = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -223,7 +225,7 @@ const CardsButtonsContainerNotMemorized = () => {
         handleSpeakerBigCardClick()
     }
 
-    const navigatePrevSide = () =>{
+    const navigatePrevSide = () => {
         navigate('/my_deck_learning_modes')
     }
 
@@ -293,23 +295,36 @@ const CardsButtonsContainerNotMemorized = () => {
                 <LoadingSpinner/>
             ) : (
                 <>
-                    <FlashCardVoiceMode
-                        front_text={flashcards[currentBigCardIndex]['title']}
-                        back_text={flashcards[currentBigCardIndex]['card text']}
-                        left_corner_text={`${currentBigCardIndex + 1}/${numberOfFlashCards} ${deckTitle}`}
-                        icon={isSpeakingBigCard ? speaker_blue : speaker}
-                        isRotated={isRotated}
-                        onIconClick={handleSpeakerBigCardClick}
-                        isMicrophoneListening={isListening}
-                    />
-                    <ButtonContainerNotMemorizedFlashcards
-                        onClickPrev={handlePrevClick}
-                        onClickNext={handleNextClick}
-                        onClickRotate={handleRotateClick}
-                        onClickStopControl={handleStopControl}
-                        onClickPrevSide={navigatePrevSide}
-                        isMicrophoneListening={isListening}
-                    />
+                    {flashcards.length === 0 ? (
+                        <>
+                            <p className={"no-flash-cards-text"}>No Flashcards</p>
+                            <div className={'button-back-to-deck'}>
+                                <ButtonNotMemorizedFlashCards onClick={navigatePrevSide} text={'Back To Deck'}
+                                                              color={'#e05a12'}
+                                                              border={'3px solid black'}/>
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            <FlashCardVoiceMode
+                                front_text={flashcards[currentBigCardIndex]['title']}
+                                back_text={flashcards[currentBigCardIndex]['card text']}
+                                left_corner_text={`${currentBigCardIndex + 1}/${numberOfFlashCards} ${deckTitle}`}
+                                icon={isSpeakingBigCard ? speaker_blue : speaker}
+                                isRotated={isRotated}
+                                onIconClick={handleSpeakerBigCardClick}
+                                isMicrophoneListening={isListening}
+                            />
+                            <ButtonContainerNotMemorizedFlashcards
+                                onClickPrev={handlePrevClick}
+                                onClickNext={handleNextClick}
+                                onClickRotate={handleRotateClick}
+                                onClickStopControl={handleStopControl}
+                                onClickPrevSide={navigatePrevSide}
+                                isMicrophoneListening={isListening}
+                            />
+                        </>
+                    )}
                 </>
             )}
         </div>

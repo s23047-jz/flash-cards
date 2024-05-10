@@ -35,6 +35,33 @@
 
 }
 
+.no-decks-container {
+  position: absolute;
+  top: 40%;
+  height: 60vh;
+
+  .no-decks-cards-text {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 9vh;
+
+
+  }
+
+  .button-create-deck {
+    position: absolute;
+    top: 30%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+
+
+  }
+
+}
+
+
 @media screen and (max-width: 768px) {
   .decks-container {
     justify-content: center;
