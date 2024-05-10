@@ -25,7 +25,7 @@ interface DrawerAppBarProps {
 }
 
 const drawerWidth = '50%';
-const navItems: string[] = ['Search', 'Profile', 'Home', 'Log out'];
+const navItems: string[] = ['Ranking', 'Profile', 'Home', 'Log out'];
 
 const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
     const navigate = useNavigate();
@@ -41,7 +41,7 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
             AuthService.logout(token);
             navigate("/signin")
         } else {
-            console.error('Brak dostępnego tokenu');
+            console.error('Not access to token');
         }
     }
 
@@ -50,7 +50,7 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
     }
 
     function profilePageNavigate() {
-        navigate("/profile") // Dodanie funkcji przekierowującej na stronę profilu
+        navigate("/profile")
     }
 
     const handleNavItemClick = (item: string) => {
@@ -120,7 +120,7 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
                                     onClick={() => handleNavItemClick(item)}
                                     sx={{
                                         color: '#fff',
-                                        mr: index < navItems.length - 1 ? 18 : 6,
+                                        mr: index < navItems.length - 1 ? 15 : 6,
                                         fontSize: '1.1rem',
                                         fontWeight: 'bold'
                                     }}>

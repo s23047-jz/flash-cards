@@ -145,39 +145,21 @@ class Deck {
         });
     }
 
-    // public async update_flash_card(flash_card_id: string, body: object) {
-    //     const url = `${BASE_API}/flash_card/update_flash_card/${flash_card_id}`;
-    //
-    //     // @ts-ignore
-    //     return await request({
-    //         url: url,
-    //         method: 'PUT',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: body
-    //     });
 
+    public async deleteDeck(deck_id: string) {
+        try {
+            const url = `${BASE_API}/decks/delete_deck/${deck_id}`;
+            return await request({
+                url,
+                method: 'DELETE'
+            });
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
+        }
+    }
 
-    // const requestOptions = {
-    //     method: 'PUT',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: body
-    // };
-    //
-    // try {
-    //     const response = await fetch(updateFlashCardUrl, requestOptions);
-    //     if (!response.ok) {
-    //         throw new Error('Error during update');
-    //     }
-    //     console.log('update success');
-    // } catch (error) {
-    //     // @ts-ignore
-    //     console.error(error.message);
-    // }
-    // }
 
     public async update_multiple_flash_card(body: object) {
         const url = `${BASE_API}/flash_card/update_flash_cards`;
@@ -188,6 +170,21 @@ class Deck {
                 url: url,
                 method: 'PUT',
                 body: body
+            });
+
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+        }
+    }
+
+      public async update_multiple_flash_card_is_memorized_false(deck_id: string) {
+        const url = `${BASE_API}/decks/update_deck/flashcards_is_memorized/${deck_id}`;
+        try {
+            // @ts-ignore
+            return await request({
+                url: url,
+                method: 'PUT',
             });
 
         } catch (error) {

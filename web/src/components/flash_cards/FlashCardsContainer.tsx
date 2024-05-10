@@ -166,14 +166,46 @@ const FlashCardsContainer = () => {
         }
     }
 
+    const handleDeleteDeck = () => {
+        try {
+            const deckDataString = localStorage.getItem("deckData");
+            const deckData = JSON.parse(deckDataString || "{}");
+            const deck_id = deckData.id;
+            DeckService.deleteDeck(deck_id)
+            localStorage.removeItem("deckData");
+        }catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
+        }
+
+        navigate('/my_decks')
+
+    }
+
+       const handleResetDeck = () => {
+        try {
+            const deckDataString = localStorage.getItem("deckData");
+            const deckData = JSON.parse(deckDataString || "{}");
+            const deck_id = deckData.id;
+            DeckService.update_multiple_flash_card_is_memorized_false(deck_id)
+            setIsOpenOptions(false)
+        }catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
+        }
+
+    }
+
     return (
         <div className={"all-flashcards-container"}>
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
                 <>
-                    <Options onCloseBox={handleOpenOptions} isOpen={isOpenOptions} onResetDeck={handleNextClick}
-                             onDeleteDeck={handleNextClick}></Options>
+                    <Options onCloseBox={handleOpenOptions} isOpen={isOpenOptions} onResetDeck={handleResetDeck}
+                             onDeleteDeck={handleDeleteDeck}></Options>
                     <ButtonsContainerLearningMode onClickLearn={handleLearningMode}
                                                   onClickMemorized={handleMemorizedFlashcardsClick}
                                                   onClickNotMemorized={handleNotMemorizedFlashcardsClick}

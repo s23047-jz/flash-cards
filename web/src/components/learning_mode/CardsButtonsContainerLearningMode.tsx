@@ -14,7 +14,6 @@ import {useNavigate} from 'react-router-dom';
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 
 
-
 const CardsButtonsContainerLearningMode = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [flashcardsUpdated, setFlashcardsUpdated] = useState([])
@@ -147,23 +146,23 @@ const CardsButtonsContainerLearningMode = () => {
         };
 
         // @ts-ignore
-        const updatedFlashcards = flashcardsUpdated.concat(flashcard_body);
-        setFlashcardsUpdated(updatedFlashcards);
-        if (currentBigCardIndex == flashcards.length - 1 ) {
-            DeckService.update_multiple_flash_card(flashcardsUpdated)
-            navigate('/my_deck_learning_modes')
-        }
+        setFlashcardsUpdated(prevState => {
+            const updatedState = [...prevState, flashcard_body];
+            if (currentBigCardIndex === flashcards.length - 1) {
+                DeckService.update_multiple_flash_card(updatedState);
+                navigate('/my_deck_learning_modes');
+            }
+            return updatedState;
+        });
     }
 
     const saveDeck = () => {
-        console.log(flashcardsUpdated)
         // @ts-ignore
         DeckService.update_multiple_flash_card(flashcardsUpdated)
         navigate('/my_deck_learning_modes')
 
 
     }
-
 
 
     return (

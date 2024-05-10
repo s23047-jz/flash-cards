@@ -1,6 +1,7 @@
 from fastapi import Query
+from flash_cards_api.models.flash_card import FlashCard
 
-from typing import List, Optional
+from typing import Optional
 
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
@@ -185,16 +186,31 @@ async def update_deck(
 
     db.commit()
 
+@router.put("/update_deck/flashcards_is_memorized/{deck_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def update_deck_is_memorized_false(
+        deck_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Update all flashcards is_memorized column  in the deck as false"""
+    deck_model = db.query(Deck).filter(Deck.id == deck_id).first()
+    if deck_model is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
 
-@router.delete("/delete_deck/{delete_id}", status_code=status.HTTP_204_NO_CONTENT)
+    db.query(FlashCard).filter(FlashCard.deck_id == deck_id).update({FlashCard.is_memorized: False})
+    db.commit()
+
+
+@router.delete("/delete_deck/{delete_id}")
 async def delete_deck(
         delete_id: uuid.UUID,
         db: Session = Depends(get_db)
 ):
-    """Delete deck"""
+    """Delete deck and all flash cards associated with it"""
     deck = db.query(Deck).filter(Deck.id == delete_id).first()
     if deck is None:
         raise HTTPException(status_code=404, detail="Deck not found")
+
+    db.query(FlashCard).filter(FlashCard.deck_id == delete_id).delete()
 
     db.query(Deck).filter(Deck.id == delete_id).delete()
     db.commit()
