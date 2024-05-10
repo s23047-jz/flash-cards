@@ -115,7 +115,6 @@ class Deck {
 
     public async get_not_memorized_flash_cards_from_deck(deck_id: string | undefined) {
         const url = `${BASE_API}/decks/${deck_id}/not_memorized_flash_cards`;
-
         try {
             const response = await fetch(url);
             if (!response.ok) {
@@ -160,36 +159,34 @@ class Deck {
     //     });
 
 
-        // const requestOptions = {
-        //     method: 'PUT',
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     },
-        //     body: body
-        // };
-        //
-        // try {
-        //     const response = await fetch(updateFlashCardUrl, requestOptions);
-        //     if (!response.ok) {
-        //         throw new Error('Error during update');
-        //     }
-        //     console.log('update success');
-        // } catch (error) {
-        //     // @ts-ignore
-        //     console.error(error.message);
-        // }
+    // const requestOptions = {
+    //     method: 'PUT',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: body
+    // };
+    //
+    // try {
+    //     const response = await fetch(updateFlashCardUrl, requestOptions);
+    //     if (!response.ok) {
+    //         throw new Error('Error during update');
+    //     }
+    //     console.log('update success');
+    // } catch (error) {
+    //     // @ts-ignore
+    //     console.error(error.message);
+    // }
     // }
 
     public async update_multiple_flash_card(body: object) {
         const url = `${BASE_API}/flash_card/update_flash_cards`;
+        console.log(body)
         try {
             // @ts-ignore
             return await request({
                 url: url,
                 method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
                 body: body
             });
 

@@ -5,7 +5,6 @@ from flash_cards_api.logger import logger
 
 from flash_cards_api.database import Session
 
-
 def get_token(headers) -> str:
     token = headers['Authorization']
     token = token.replace('Bearer ', '')
@@ -41,3 +40,4 @@ async def security_headers_middleware(request: Request, call_next):
     response.headers["X-XSS-Protection"] = "1"
 
     return response
+

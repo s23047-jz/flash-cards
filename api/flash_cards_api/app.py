@@ -12,7 +12,7 @@ from flash_cards_api.config import (
 from flash_cards_api.utils.app import (
     catch_exception_middleware,
     jwt_middleware,
-    security_headers_middleware
+    security_headers_middleware,
 )
 
 

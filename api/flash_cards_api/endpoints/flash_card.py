@@ -8,6 +8,7 @@ from typing import Optional
 
 from typing import List
 
+
 from fastapi import (
     APIRouter,
     Depends,
@@ -25,14 +26,14 @@ class FlashCardCreate(BaseModel):
     deck_id: uuid.UUID
     card_title: Optional[str] = None
     card_text: Optional[str] = None
-    is_memorized: Optional[bool] = None
+    is_memorized: Optional[bool] = False
 
 
 class FlashCardUpdate(BaseModel):
-    id: str
+    id: uuid.UUID
     card_title: Optional[str] = None
     card_text: Optional[str] = None
-    is_memorized: Optional[bool] = None
+    is_memorized: Optional[bool] = False
 
 
 @router.get("/{flash_card_id}", status_code=status.HTTP_200_OK)
@@ -76,8 +77,24 @@ async def update_flash_cards(
             flash_card_model.card_title = flash_card.card_title
         if flash_card.card_text is not None:
             flash_card_model.card_text = flash_card.card_text
-        if flash_card.is_memorized is not None:
-            flash_card_model.is_memorized = flash_card.is_memorized
+
+        flash_card_model.is_memorized = flash_card.is_memorized
+
+    db.commit()
+
+@router.put("/reset_flash_cards", status_code=status.HTTP_204_NO_CONTENT)
+async def update_flash_cards(
+    flash_cards_data: List[FlashCardUpdate],
+    db: Session = Depends(get_db)
+):
+    "Update flash cards is_memorized as false"
+    for flash_card in flash_cards_data:
+        flash_card_model = db.query(FlashCard).filter(FlashCard.id == flash_card.id).first()
+        if flash_card_model is None:
+            raise HTTPException(status_code=404, detail=f"Flash card with ID {flash_card.id} not found")
+
+
+        flash_card_model.is_memorized = False
 
     db.commit()
 

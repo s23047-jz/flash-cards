@@ -17,7 +17,7 @@ import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotM
 
 const CardsButtonsContainerLearningMode = () => {
     const [flashcards, setFlashcards] = useState([]);
-    const [flashcardsUpdated, setFlashcardsUpdated]= useState([])
+    const [flashcardsUpdated, setFlashcardsUpdated] = useState([])
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
     const [isRotated, setIsRotated] = useState(false);
@@ -57,9 +57,7 @@ const CardsButtonsContainerLearningMode = () => {
         fetchFlashCards();
 
 
-
     }, [isSpeakingBigCard, currentBigCardIndex]);
-
 
 
     const handleSpeak = (text: string) => {
@@ -130,34 +128,40 @@ const CardsButtonsContainerLearningMode = () => {
         navigate('/my_deck_learning_modes')
     }
 
-    // @ts-ignore
-    const handleAccept = (flash_card_id) =>{
+
+    const handleReject = () => {
         handleNextClick()
-        // const deckDataString = localStorage.getItem("deckData");
-        // // @ts-ignore
-        // const deckData = JSON.parse(deckDataString);
-        // @ts-ignore
+
+        if (currentBigCardIndex == flashcards.length - 1) {
+            navigate('/my_deck_learning_modes')
+        }
+    }
+
+    const handleAccept = (flash_card_id: string) => {
+        handleNextClick()
 
         const flashcard_body = {
             // @ts-ignore
             id: flash_card_id,
             is_memorized: true,
         };
-        // const flashcard_body_json = JSON.stringify(flashcard_body);
-        // @ts-ignore
 
+        // @ts-ignore
         const updatedFlashcards = flashcardsUpdated.concat(flashcard_body);
         setFlashcardsUpdated(updatedFlashcards);
+        if (currentBigCardIndex == flashcards.length - 1 ) {
+            DeckService.update_multiple_flash_card(flashcardsUpdated)
+            navigate('/my_deck_learning_modes')
+        }
     }
 
-    const saveDeck = () =>{
+    const saveDeck = () => {
         console.log(flashcardsUpdated)
         // @ts-ignore
         DeckService.update_multiple_flash_card(flashcardsUpdated)
-        // navigate('/my_deck_learning_modes')
+        navigate('/my_deck_learning_modes')
 
     }
-
 
     return (
         <div className={"learning-mode-container"}>
@@ -188,10 +192,10 @@ const CardsButtonsContainerLearningMode = () => {
                             />
 
                             <ButtonsContainerLearningMode
-                                onClickPrev={handleNextClick}
-                                onClickNext={()=>handleAccept(flashcards[currentBigCardIndex]['id'])}
+                                onClickPrev={handleReject}
+                                onClickNext={() => handleAccept(flashcards[currentBigCardIndex]['id'])}
                                 onClickRotate={handleRotateClick}
-                                onClickPrevSide={saveDeck}
+                                onClickPrevSide={() => saveDeck()}
                             />
                         </>
                     )}
