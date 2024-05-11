@@ -23,6 +23,7 @@ const Loader = () => {
             <View
                 className='text-center w-full'
             >
+                {/*
                 <MotiImage
                     className="mx-auto object-scale-down h-40 w-40"
                     source={Logo}
@@ -41,6 +42,8 @@ const Loader = () => {
                         loop: true
                     }}
                 />
+                */}
+
                 <Text className='ml-auto mr-auto text-lg'>
                     Loading...
                 </Text>

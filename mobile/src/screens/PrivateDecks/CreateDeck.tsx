@@ -47,7 +47,7 @@ const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
 
             <View className={"flex-row"}>
             <Button
-                onPress={() => navigation.navigate(ROUTES.CREATEDECK)}
+                onPress={() => navigation.navigate(ROUTES.MYDECKS)}
                 className={'p-3 w-25 h-16 justify-center m-2 rounded-3xl'}>
                 <Text className="mx-5 font-bold">Cancel</Text>
             </Button>
