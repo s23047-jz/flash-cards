@@ -1,0 +1,41 @@
+
+.learning-mode-container{
+  position: relative;
+  height: 70vh;
+  width: 60vw;
+  overflow-y: auto;
+  padding-right: 20px;
+
+  .all-flashcards-text {
+    padding-top: 20px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+  }
+
+  .no-flash-cards-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 7vh;
+
+  }
+  .button-back-to-deck{
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .voice-control-container {
+
+    width: 92vw;
+
+  }
+}

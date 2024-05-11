@@ -1,4 +1,7 @@
 from fastapi import Query
+from flash_cards_api.models.flash_card import FlashCard
+
+from typing import Optional
 
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
@@ -23,13 +26,13 @@ router = APIRouter(prefix="/decks", tags=["decks"])
 
 class DeckCreate(BaseModel):
     user_id: uuid.UUID
-    title: str
-    deck_category: str
+    title: Optional[str] = None
+    deck_category: Optional[str] = None
 
 
 class DeckUpdate(DeckCreate):
-    is_deck_public: bool
-    downloads: int
+    is_deck_public: Optional[bool] = None
+    downloads: Optional[int] = None
 
 
 @router.get("/{deck_id}", status_code=status.HTTP_200_OK)
@@ -102,6 +105,7 @@ async def read_deck_cards_by_id(
         deck_id: uuid.UUID,
         db: Session = Depends(get_db)
 ):
+
     """Return all flash cards from deck"""
     deck = db.query(Deck).filter(Deck.id == deck_id).first()
     if deck is None:
@@ -127,7 +131,7 @@ async def read_memorized_flash_cards_from_deck(
     return [{
         "id": card.id,
         "title": card.card_title,
-        "card_text": card.card_text
+        "card text": card.card_text
     } for card in memorized_flash_cards]
 
 @router.get("/{deck_id}/not_memorized_flash_cards", status_code=status.HTTP_200_OK)
@@ -145,7 +149,7 @@ async def read_not_memorized_flash_cards_from_deck(
     return [{
         "id": card.id,
         "title": card.card_title,
-        "card_text": card.card_text
+        "card text": card.card_text
     } for card in memorized_flash_cards]
 
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
@@ -163,32 +167,50 @@ async def create_deck(
 
 @router.put("/update_deck/{deck_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_deck(
-        deck: DeckUpdate,
         deck_id: uuid.UUID,
+        deck_data: DeckUpdate,
         db: Session = Depends(get_db)
 ):
     deck_model = db.query(Deck).filter(Deck.id == deck_id).first()
     if deck_model is None:
         raise HTTPException(status_code=404, detail="Deck not found")
 
-    deck_model.title = deck.title
-    deck_model.deck_category = deck.deck_category
-    deck_model.is_deck_public = deck.is_deck_public
-    deck_model.downloads = deck.downloads
+    if deck_data.title is not None:
+        deck_model.title = deck_data.title
+    if deck_data.deck_category is not None:
+        deck_model.deck_category = deck_data.deck_category
+    if deck_data.is_deck_public is not None:
+        deck_model.is_deck_public = deck_data.is_deck_public
+    if deck_data.downloads is not None:
+        deck_model.downloads = deck_data.downloads
 
-    db.add(deck_model)
+    db.commit()
+
+@router.put("/update_deck/flashcards_is_memorized/{deck_id}", status_code=status.HTTP_204_NO_CONTENT)
+async def update_deck_is_memorized_false(
+        deck_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Update all flashcards is_memorized column  in the deck as false"""
+    deck_model = db.query(Deck).filter(Deck.id == deck_id).first()
+    if deck_model is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    db.query(FlashCard).filter(FlashCard.deck_id == deck_id).update({FlashCard.is_memorized: False})
     db.commit()
 
 
-@router.delete("/delete_deck/{delete_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/delete_deck/{delete_id}")
 async def delete_deck(
         delete_id: uuid.UUID,
         db: Session = Depends(get_db)
 ):
-    """Delete deck"""
+    """Delete deck and all flash cards associated with it"""
     deck = db.query(Deck).filter(Deck.id == delete_id).first()
     if deck is None:
         raise HTTPException(status_code=404, detail="Deck not found")
+
+    db.query(FlashCard).filter(FlashCard.deck_id == delete_id).delete()
 
     db.query(Deck).filter(Deck.id == delete_id).delete()
     db.commit()
