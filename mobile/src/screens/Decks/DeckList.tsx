@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Text, TextInput, View } from "react-native";
+import { Text, TextInput, View, ScrollView } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
@@ -41,8 +41,22 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                     </Col>
                 </Row>
                 <Row className="w-full">
+                    <Button className='w-32 p-4'>
+                        <Text className='text-lg ml-auto mr-auto font-bold'>
+                            Decks
+                        </Text>
+                    </Button>
+                    <Button className='w-32 p-4'>
+                        <Text className='text-lg ml-auto mr-auto font-bold'>
+                            Users
+                        </Text>
+                    </Button>
+                </Row>
+                <Row className="w-full">
                     { deckList && deckList.length ? (
-                        <Text>DECKS</Text>
+                        <ScrollView className='flex'>
+
+                        </ScrollView>
                     ) : (
                         <Row className='w-full mt-10'>
                             <Col className='w-full'>
