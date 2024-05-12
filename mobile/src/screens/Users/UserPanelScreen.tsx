@@ -8,6 +8,7 @@ import LOGO from "../../assets/images/logo.png"
 
 import { AuthService } from "../../services/auth";
 import Routes from "../../constants/routes";
+import DarkMode from "../../components/DarkMode";
 
 const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
 
@@ -56,8 +57,12 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
         await AuthService.logout(navigation);
     }
 
+
     return (
+
+
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
+
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
                 <Row className="w-full">
                     <Col className='w-full'>
@@ -98,8 +103,20 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
                             </Col>
                         ))}
                         <Col className="w-full justify-center mb-4">
+                            <Text className='font-bold text-white text-xl'>
+                                Settings
+                            </Text>
+
                             <Row className='w-full'/>
                             <Row className='w-full mt-1 mb-1'>
+
+
+                                    <DarkMode/>
+
+                            </Row>
+
+                            <Row className='w-full mt-1 mb-1'>
+
                                 <Button className='w-full p-2' onPress={logout}>
                                     <Row className='w-full'>
                                         <Text className='mx-5 font-bold text-xl'>
@@ -108,9 +125,13 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
                                     </Row>
                                 </Button>
                             </Row>
+
                         </Col>
+
                     </Col>
+
                 </Row>
+
             </ScrollView>
         </View>
     )
