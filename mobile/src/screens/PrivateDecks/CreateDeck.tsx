@@ -4,12 +4,30 @@ import {ScreenProps} from "../../interfaces/screen";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import {ROUTES} from "../../constants";
 import {Button} from "../../components";
-
+import {useRoute} from "@react-navigation/native";
+import { InputValidator } from "../../components/Validator/InputValidator";
+import {AuthService} from "../../services/auth";
+import {ActiveUser} from "../../services/user";
 
 const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
     useState();
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
+    const goBack = () => {
+        navigation.goBack();
+    };
+
+    const handleCreate = async () => {
+        if (
+            InputValidator("deck", title) &&
+            InputValidator("deck", category)
+        ) {
+
+
+
+            }
+        }
+
 
     return (
         <View className="flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
@@ -18,7 +36,7 @@ const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
             </Text>
             <View className=" top-14 absolute left-6">
                 <MaterialCommunityIcons
-                    onPress={() => navigation.navigate(ROUTES.MYDECKS)}
+                    onPress={() => navigation.goBack()}
                     size={30}
                     name="arrow-left-bold"
                     color="white"
@@ -47,12 +65,12 @@ const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
 
             <View className={"flex-row"}>
             <Button
-                onPress={() => navigation.navigate(ROUTES.MYDECKS)}
+                onPress={() => navigation.goBack()}
                 className={'p-3 w-25 h-16 justify-center m-2 rounded-3xl'}>
                 <Text className="mx-5 font-bold">Cancel</Text>
             </Button>
                 <Button
-                    onPress={() => navigation.navigate(ROUTES.CREATEDECK)}
+                    onPress={handleCreate}
                     className={'p-3 w-25 h-16 justify-center m-2 rounded-3xl'}>
                     <Text className="mx-5 font-bold">Create</Text>
                 </Button>

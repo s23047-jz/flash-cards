@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Image } from "react-native";
 
-import { HomeNavigator, UserPanelNavigator, DecksNavigator } from "./index";
+import { HomeNavigator, UserPanelNavigator, PublicDecksNavigator } from "./index";
 import { ROUTES } from "../constants";
 
 import Lens from "../assets/images/Lens.png";
@@ -28,9 +28,9 @@ export default function BottomTabNavigator() {
           } else if (route.name === 'MyDecks' && !focused){
             iconName = <Image source={Study} className={" object-scale-down w-10 h-10"}/>
           }
-          if (route.name === 'Home' && focused) {
+          if (route.name === 'PublicDecks' && focused) {
             iconName = <Image source={Lens_blue} className={" object-scale-down w-10 h-10"}/>
-          }else if (route.name === 'Home' && !focused){
+          }else if (route.name === 'PublicDecks' && !focused){
             iconName = <Image source={Lens} className={" object-scale-down w-10 h-10"}/>
           }
           if (route.name === 'User' && focused) {
@@ -50,8 +50,10 @@ export default function BottomTabNavigator() {
       })}
 
     >
-      <Tab.Screen name={ROUTES.MYDECKS} component={HomeNavigator} />
-      <Tab.Screen name={ROUTES.HOME} component={DecksNavigator} />
+      <Tab.Screen name={ROUTES.MY_DECKS} component={HomeNavigator} />
+
+      <Tab.Screen name={ROUTES.PUBLIC_DECKS} component={PublicDecksNavigator} />
+
       <Tab.Screen name={ROUTES.USER} component={UserPanelNavigator} />
     </Tab.Navigator>
   );
