@@ -1,20 +1,16 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
+import { Image } from "react-native";
 
-import UserPanelNavigator from "./UserPanelNavigator";
-import PrivateDecksNavigator from "./PrivateDecksNavigator";
+import { HomeNavigator, UserPanelNavigator, DecksNavigator } from "./index";
 import { ROUTES } from "../constants";
-import { HomeScreen } from "../screens";
-import Logo from "../assets/images/logo.png";
-import Lens from "../assets/images/Lens.png"
-import Lens_blue from "../assets/images/Lens_blue.png"
-import Profile from "../assets/images/Profile.png"
-import Profile_blue from "../assets/images/Profile_blue.png"
-import Study from "../assets/images/Study.png"
-import Study_blue from "../assets/images/Study_blue.png"
 
-
-import {Image} from "react-native";
+import Lens from "../assets/images/Lens.png";
+import Lens_blue from "../assets/images/Lens_blue.png";
+import Profile from "../assets/images/Profile.png";
+import Profile_blue from "../assets/images/Profile_blue.png";
+import Study from "../assets/images/Study.png";
+import Study_blue from "../assets/images/Study_blue.png";
 
 const Tab = createBottomTabNavigator();
 
@@ -52,8 +48,8 @@ export default function BottomTabNavigator() {
       })}
 
     >
-      <Tab.Screen name={ROUTES.MYDECKS} component={PrivateDecksNavigator} />
-      <Tab.Screen name={ROUTES.HOME} component={HomeScreen} />
+      <Tab.Screen name={ROUTES.MYDECKS} component={HomeNavigator} />
+      <Tab.Screen name={ROUTES.HOME} component={DecksNavigator} />
       <Tab.Screen name={ROUTES.USER} component={UserPanelNavigator} />
     </Tab.Navigator>
   );

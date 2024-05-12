@@ -2,10 +2,10 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 
-import Plus from "../../assets/images/Plus.png";
+import Plus from "../../assets/images/plus.png";
 import { ScreenProps } from "../../interfaces/screen";
-import {Button} from "../../components";
-import {ROUTES} from "../../constants";
+import { Button } from "../../components";
+import { ROUTES } from "../../constants";
 
 const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
   useState();

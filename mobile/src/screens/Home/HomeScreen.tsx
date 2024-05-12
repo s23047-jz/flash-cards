@@ -6,12 +6,14 @@ import BlueCards from "../../assets/images/bluecards.png";
 import GreenCards from "../../assets/images/greencards.png";
 import Logo from "../../assets/images/logo.png";
 // @ts-ignore
-import Plus from "../../assets/images/Plus.png";
+import Plus from "../../assets/images/plus.png";
 // @ts-ignore
 // @ts-ignore
 import { ROUTES } from "../../constants";
 import { ScreenProps } from "../../interfaces/screen";
 import PrivateDecksNavigator from "../../navigators/PrivateDecksNavigator";
+
+import { DeckList } from "../index";
 
 const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
   useState();
@@ -66,7 +68,10 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
         />
       </TouchableOpacity>
 
-      <TouchableOpacity className="flex flex-row items-center justify-left bg-cyan-400 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60">
+      <TouchableOpacity
+        onPress={() => navigation.navigate(ROUTES.PUBLIC_DECKS)}
+        className="flex flex-row items-center justify-left bg-cyan-400 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+      >
         <Text className="mx-5 font-bold">Publick Decks</Text>
 
         <Image
