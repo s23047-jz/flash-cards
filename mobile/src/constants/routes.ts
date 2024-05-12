@@ -8,6 +8,7 @@ export default {
     STUDY: "Study",
     USER: "User",
 
+    HOME_DECKS: "HomeDecks",
     MYDECKS: "MyDecks",
     CREATEDECK: "CreateDeck",
     PUBLIC_DECKS: "PublicDecks",

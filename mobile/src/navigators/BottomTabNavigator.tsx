@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Image } from "react-native";
 
-import { PrivateDecksNavigator, HomeNavigator, UserPanelNavigator } from "./index";
+import { HomeNavigator, UserPanelNavigator, DecksNavigator } from "./index";
 import { ROUTES } from "../constants";
 
 import Lens from "../assets/images/Lens.png";
@@ -48,8 +48,8 @@ export default function BottomTabNavigator() {
       })}
 
     >
-      <Tab.Screen name={ROUTES.MYDECKS} component={PrivateDecksNavigator} />
-      <Tab.Screen name={ROUTES.HOME} component={HomeNavigator} />
+      <Tab.Screen name={ROUTES.MYDECKS} component={HomeNavigator} />
+      <Tab.Screen name={ROUTES.HOME} component={DecksNavigator} />
       <Tab.Screen name={ROUTES.USER} component={UserPanelNavigator} />
     </Tab.Navigator>
   );

@@ -35,6 +35,7 @@ export default function AuthNavigator() {
             <Loader />
         );
     }
+    // isAuthenticated ? ROUTES.HOME : ROUTES.LOGIN
     return (
     <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={ROUTES.HOME}>
         <Stack.Screen name={ROUTES.FORGOT_PASSWORD} component={ForgotPassScreen} />
