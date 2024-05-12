@@ -6,3 +6,5 @@ export { default as HomeScreen } from "./Home/HomeScreen";
 
 export { default as UserPanelScreen } from "./Users/UserPanelScreen";
 export { default as UserUpdate } from "./Users/UserUpdate";
+
+export { default as DeckList } from "./Decks/DeckList";
