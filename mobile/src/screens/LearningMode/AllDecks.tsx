@@ -7,7 +7,7 @@ import { ScreenProps } from "../../interfaces/screen";
 import { Button } from "../../components";
 import { ROUTES } from "../../constants";
 
-const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
+const AllDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
   useState();
   const [search, setSearch] = useState("");
 
@@ -63,4 +63,4 @@ const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
   );
 };
 
-export default MyDecks;
+export default AllDecks;
