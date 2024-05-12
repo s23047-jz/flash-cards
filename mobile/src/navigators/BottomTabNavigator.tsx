@@ -15,6 +15,7 @@ import Study_blue from "../assets/images/Study_blue.png";
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
+    const { colorScheme } = useColorScheme();
   return (
     <Tab.Navigator
       initialRouteName={ROUTES.HOME}
@@ -43,8 +44,8 @@ export default function BottomTabNavigator() {
         headerShown: false,
         tabBarActiveTintColor: 'blue',
         tabBarInactiveTintColor: 'gray',
-        tabBarActiveBackgroundColor: '#4FC3F7',
-        tabBarInactiveBackgroundColor: '#4FC3F7'
+        tabBarActiveBackgroundColor: colorScheme === 'dark' ? '#3D6EF1' : '#4FC3F7',
+        tabBarInactiveBackgroundColor: colorScheme === 'dark' ? '#3D6EF1' : '#4FC3F7'
       })}
 
     >
