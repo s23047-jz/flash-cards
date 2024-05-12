@@ -7,8 +7,33 @@ import { Row, Button, Col } from "../../components";
 
 const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
 
+    const PAGES = {
+        DECKS: 'decks',
+        USERS: 'users'
+    }
+
     const [search, setSearch] = useState("");
     const [deckList, setDeckList] = useState([]);
+    const [selectedView, setSelectedView] = useState(PAGES.DECKS);
+    const [data, setData] = useState([]);
+
+    const fetchDecks = async() => {
+        console.log('decks')
+    }
+
+    const fetchUsers = async() => {
+        console.log('users')
+    }
+
+    const changeView = async(view: string) => {
+        setSelectedView(view);
+        console.log('swiching page', view)
+        if (selectedView === PAGES.USERS) {
+            await fetchUsers();
+        } else {
+            await fetchDecks();
+        }
+    }
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
@@ -41,12 +66,12 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                     </Col>
                 </Row>
                 <Row className="w-full">
-                    <Button className='w-32 p-4'>
+                    <Button className={`w-32 p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.DECKS)}>
                         <Text className='text-lg ml-auto mr-auto font-bold'>
                             Decks
                         </Text>
                     </Button>
-                    <Button className='w-32 p-4'>
+                    <Button className={`w-32 p-4 ${selectedView === PAGES.USERS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.USERS)}>
                         <Text className='text-lg ml-auto mr-auto font-bold'>
                             Users
                         </Text>
@@ -61,7 +86,6 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                         <Row className='w-full mt-10'>
                             <Col className='w-full'>
                                 <Text className='font-bold text-xl text-center'>
-                                    {/*TODO somehow move this text in the middle of component*/}
                                     There are no public decks yet.
                                 </Text>
                             </Col>
