@@ -24,6 +24,7 @@ const FlashCardsContainer = () => {
     const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
     const [deckTitle, setDeckTitle] = useState(false);
     const [isOpenOptions, setIsOpenOptions] = useState(false);
+    const [isDeckPublic, setIsDeckPublic] = useState(false);
     const numberOfFlashCards = flashcards.length
     const navigate = useNavigate();
 
@@ -37,6 +38,7 @@ const FlashCardsContainer = () => {
                     const deckData = JSON.parse(deckDataString || "{}");
                     deck_id = deckData.id;
                     setDeckTitle(deckData.title);
+                    setIsDeckPublic(deckData.is_deck_public)
                     if (deck_id) {
                         clearInterval(intervalId);
                         setTimeout(async () => {
@@ -173,7 +175,7 @@ const FlashCardsContainer = () => {
             const deck_id = deckData.id;
             DeckService.deleteDeck(deck_id)
             localStorage.removeItem("deckData");
-        }catch (error) {
+        } catch (error) {
             // @ts-ignore
             console.error(error.message);
             throw error;
@@ -183,18 +185,43 @@ const FlashCardsContainer = () => {
 
     }
 
-       const handleResetDeck = () => {
+    const handleResetDeck = () => {
         try {
             const deckDataString = localStorage.getItem("deckData");
             const deckData = JSON.parse(deckDataString || "{}");
             const deck_id = deckData.id;
             DeckService.update_multiple_flash_card_is_memorized_false(deck_id)
             setIsOpenOptions(false)
-        }catch (error) {
+        } catch (error) {
             // @ts-ignore
             console.error(error.message);
             throw error;
         }
+
+    }
+
+    const handleShareDeck = () => {
+        const deckDataString = localStorage.getItem("deckData");
+        const deckData = JSON.parse(deckDataString || "{}");
+        const deck_id = deckData.id;
+        const user_id = deckData.user_id;
+        let deck_body
+        console.log(user_id)
+        if (isDeckPublic) {
+            deck_body = {
+                is_deck_public: false,
+            }
+            setIsDeckPublic(false)
+        }else{
+            deck_body = {
+                is_deck_public: true,
+            }
+            setIsDeckPublic(true)
+
+        }
+        deckData.is_deck_public = isDeckPublic;
+        localStorage.setItem("deckData", JSON.stringify(deckData));
+        DeckService.update_deck_is_public(deck_body, deck_id)
 
     }
 
@@ -205,7 +232,8 @@ const FlashCardsContainer = () => {
             ) : (
 
                 <>
-                    <Options onCloseBox={handleOpenOptions} isOpen={isOpenOptions} onResetDeck={handleResetDeck}
+                    <Options isDeckPublic={isDeckPublic} onShareDeck={handleShareDeck} onCloseBox={handleOpenOptions}
+                             isOpen={isOpenOptions} onResetDeck={handleResetDeck}
                              onDeleteDeck={handleDeleteDeck}></Options>
                     <ButtonsContainerLearningMode onClickLearn={handleLearningMode}
                                                   onClickMemorized={handleMemorizedFlashcardsClick}

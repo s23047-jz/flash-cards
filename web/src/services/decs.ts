@@ -160,10 +160,25 @@ class Deck {
         }
     }
 
+     public async update_deck_is_public(body: object, deck_id: string) {
+        const url = `${BASE_API}/decks/update_deck/is_public/${deck_id}`;
+        console.log("ts:", body)
+        try {
+            // @ts-ignore
+            return await request({
+                url: url,
+                method: 'PUT',
+                body: body
+            });
+
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+        }
+    }
 
     public async update_multiple_flash_card(body: object) {
         const url = `${BASE_API}/flash_card/update_flash_cards`;
-        console.log(body)
         try {
             // @ts-ignore
             return await request({
