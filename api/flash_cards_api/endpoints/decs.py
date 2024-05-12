@@ -1,7 +1,7 @@
 from fastapi import Query
 from flash_cards_api.models.flash_card import FlashCard
 
-from typing import Optional
+from typing import Optional, List
 
 from sqlalchemy.orm import Session
 from sqlalchemy import or_
@@ -14,7 +14,8 @@ from fastapi import (
     APIRouter,
     Depends,
     HTTPException,
-    status
+    status,
+    Request
 )
 
 from flash_cards_api.models.deck_of_flash_cards import Deck
@@ -33,6 +34,39 @@ class DeckCreate(BaseModel):
 class DeckUpdate(DeckCreate):
     is_deck_public: Optional[bool] = None
     downloads: Optional[int] = None
+
+
+@router.get("/public_decks/", status_code=200)
+async def get_public_decks(request: Request, db: Session = Depends(get_db)):
+    query_params = request.query_params
+    print(query_params)
+
+    page = query_params.get("page", None)
+    per_page = query_params.get("per_page", None)
+
+    offset = None
+    if page and per_page:
+        offset = (page - 1) * per_page
+
+    q = db.query(
+        Deck.title,
+        Deck.deck_category,
+        Deck.downloads,
+        User.username
+    ).select_from(
+        Deck
+    ).join(
+        User,
+        User.id == Deck.user_id
+    ).filter(
+        Deck.is_deck_public
+    )
+
+    if offset:
+        q = q.offset(offset).limit(per_page)
+
+    q = q.all()
+    return q
 
 
 @router.get("/{deck_id}", status_code=status.HTTP_200_OK)
