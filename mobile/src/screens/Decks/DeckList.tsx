@@ -3,8 +3,7 @@ import { Text, TextInput, View } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
-import { ROUTES } from "../../constants";
-import { Row, Button } from "../../components";
+import { Row, Button, Col } from "../../components";
 
 const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
 
@@ -12,41 +11,50 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
     const [deckList, setDeckList] = useState([]);
 
     return (
-        <View className="flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
-            <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
-                Public Decks
-            </Text>
-            <Row className="absolute top-32">
-                <TextInput
-                    className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white"
-                    placeholder="Search"
-                    value={search}
-                    onChangeText={setSearch}
-                    autoCapitalize="none"
-                />
-                <MaterialCommunityIcons
-                    position="absolute"
-                    right="2%"
-                    top="10%"
-                    size={30}
-                    className="w-max h-max"
-                    name="magnify"
-                    color="black"
-                />
-            </Row>
-            <Row className="w-100 bg-zinc-900">
-                { deckList && deckList.length ? (
-                    <Text>DECKS</Text>
-                ) : (
-                    <Button>
-                        <Row className='w-full'>
-                            <Text className='mx-5 font-bold text-xl'>
-
-                            </Text>
+        <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
+            <View className="flex flex-container w-full mt-20 mb-5">
+                <Row className='w-full p-6'>
+                    <Col className='w-full'>
+                        <Text className="text-2xl text-white font-bold text-right">
+                            Public Decks
+                        </Text>
+                    </Col>
+                </Row>
+                <Row className="w-full mt-5 justify-center text-center">
+                    <Col className='w-full'>
+                        <TextInput
+                            className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
+                            placeholder="Search"
+                            value={search}
+                            onChangeText={setSearch}
+                            autoCapitalize="none"
+                        />
+                        <MaterialCommunityIcons
+                            position="absolute"
+                            right="15%"
+                            top="10%"
+                            size={30}
+                            className="w-max h-max"
+                            name="magnify"
+                            color="black"
+                        />
+                    </Col>
+                </Row>
+                <Row className="w-full">
+                    { deckList && deckList.length ? (
+                        <Text>DECKS</Text>
+                    ) : (
+                        <Row className='w-full mt-10'>
+                            <Col className='w-full'>
+                                <Text className='font-bold text-xl text-center'>
+                                    {/*TODO somehow move this text in the middle of component*/}
+                                    There are no public decks yet.
+                                </Text>
+                            </Col>
                         </Row>
-                    </Button>
-                )}
-            </Row>
+                    )}
+                </Row>
+            </View>
         </View>
     )
 };
