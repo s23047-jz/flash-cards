@@ -2,6 +2,7 @@ import {BASE_API} from './config';
 // @ts-ignore
 import {request} from '../utils/request';
 import {ActiveUser} from './user';
+import {DeckData, DeckInterface} from "../interfaces/auth";
 
 
 export const AUTH_ENDPOINTS = {
@@ -10,7 +11,14 @@ export const AUTH_ENDPOINTS = {
 };
 
 class Deck {
+    deckData: DeckInterface = {}
+
     constructor() {
+        try {
+            this.deckData = JSON.parse(localStorage.getItem("deckData") || '{}');
+        } catch (e) {
+        }
+
     }
 
 
@@ -31,6 +39,7 @@ class Deck {
         }
     }
 
+
     public async get_filtered_decks(filterString: string): Promise<any> {
         const user_id = ActiveUser.getId();
         const url = `${BASE_API}/decks/${user_id}/filtered_decks/?filter_string=${filterString}`;
@@ -44,6 +53,41 @@ class Deck {
             console.log(data)
             console.log(url)
             return data;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
+    public async get_deck_by_id(deck_id: string | undefined) {
+        const url = `${BASE_API}/decks/${deck_id}`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data: DeckData = await response.json();
+            console.log(data)
+            localStorage.setItem("deckData", JSON.stringify(data))
+            return data;
+
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+    public async get_flash_cards_from_deck(deck_id: string | undefined) {
+        const url = `${BASE_API}/decks/${deck_id}/flash_cards`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data: DeckData = await response.json();
+            return data;
+
         } catch (error) {
             console.error('Error:', error);
             throw error;
@@ -66,6 +110,9 @@ class Deck {
         });
     }
 
+    public async get_deck_id(){
+        return this.deckData.id
+    }
 
 }
 

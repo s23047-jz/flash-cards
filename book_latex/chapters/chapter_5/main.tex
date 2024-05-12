@@ -1,10 +1,41 @@
-\chapter{Analiza otoczenia}
+\usepackage{xifthen}
 
-\section{Grupa docelowa}
-\section{Analiza konkurencyjnych rozwiązań}
+\newcommand{\member}[6]{
+    \textbf{#1} \\
+    \hline #2 \\
+    \hline #3 \\
+    \hline #4
+    \ifthenelse{{ \equal {#5} {} }}{}{\\ \hline #5}
+    \ifthenelse{{ \equal {#6} {} }}{}{\\ \hline #6}
+}
 
-\section{Analiza szans oraz zalet względem konkurencyjnych rozwiązań}
-\subsection{Szanse/Zalety względem konkurencyjnych rozwiązań}
-\subsection{Wady względem konkurencyjnych rozwiązań}
+\newcommand{\membertable}[1]{
+    \begin{tabularx}{1\textwidth}{|>{\centering\arraybackslash}X|}
+        \hline
+        #1
+        \\
+        \hline
+    \end{tabularx}
+    \vspace{2em}
+}
 
-\section{Analizy ryzyka}
+\begin{chap5}
+    \chapter{Organizacja pracy}
+
+    \section{Wybrana metodyka}
+    \par \textbf{Agile} - główną zaletą tej metodyki jest elastyczność, która bardzo ułatwia podejmowanie działań,
+    czy sterowanie zakresem pracy.
+
+    \par Implementacja kodu odbyła się metodyką Scrum opartą na zasadach Agile. Umożliwiało łatwe podejmowanie działań i sterowaniem
+    rozwoju aplikacji poprzez planowanie celu na koniec każdego sprintu. Natomiast wypełnianie dokumentacji odbywało się w przerwach pomiędzy sprintami.
+
+    \section{Zespół i podział obowiązków}
+    \centering
+    \membertable{\member{Daniel Klimowski}{Budowanie aplikacji mobilnej}{Konfiguracja Azure}{Wypełnianie dokumentacji technicznej}{}{}}
+
+    \membertable{\member{Oliwier Kossak}{Budowa aplikacji webowej}{Budowa aplikacji backendowej}{Tworzenie modeli sql}{Wypełnianie dokumentacji technicznej}{Mockupy aplikacji mobilnej}}
+
+    \membertable{\member{Wiktor Krieger}{Budowa aplikacji webowej}{Mockupy aplikacji webowej i mobilnej}{Wypełnianie dokumentacji technicznej}{Tworzenie ikon dla aplikacji}{}}
+
+    \membertable{\member{Jakub Żurawski}{Budowa aplikacji mobilnej}{Budowa aplikacji backendowej}{Wypełnianie dokumentacji technicznej}{Tworzenie diagramów}{Tworzenie modeli sql}}
+\end{chap5}
