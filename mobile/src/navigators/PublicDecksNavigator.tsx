@@ -6,7 +6,7 @@ import { HomeScreen, DeckList } from "../screens";
 
 const Stack = createNativeStackNavigator();
 
-export default function DecksNavigator() {
+export default function PublicDecksNavigator() {
     return (
         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={ ROUTES.SEARCH }>
             <Stack.Screen name={ ROUTES.SEARCH } component={DeckList} />

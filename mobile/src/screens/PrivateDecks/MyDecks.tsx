@@ -43,7 +43,11 @@ const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
         />
       </View>
         <Button
-            onPress={() => navigation.navigate(ROUTES.CREATEDECK)}
+            onPress={() =>
+                navigation.navigate(ROUTES.CREATE_DECK, {
+                    screen: "CreateDeck",
+                })
+            }
             className={'p-3 w-60 h-16 justify-center mr-auto ml-auto rounded-3xl'}>
             <Text className="mx-5 font-bold">Create new deck</Text>
             <Image

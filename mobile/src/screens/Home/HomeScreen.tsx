@@ -14,6 +14,7 @@ import { ScreenProps } from "../../interfaces/screen";
 import PrivateDecksNavigator from "../../navigators/PrivateDecksNavigator";
 
 import { DeckList } from "../index";
+import {Button} from "../../components";
 
 const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
   useState();
@@ -31,16 +32,14 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
         source={Logo}
       />
 
-      <TouchableOpacity
+      <Button
         onPress={() =>
-          navigation.navigate(ROUTES.MYDECKS, {
+          navigation.navigate(ROUTES.CREATE_DECK, {
             screen: "CreateDeck",
-            params: {
-              previousScreen: "MyDeck",
-            },
           })
         }
-        className="flex flex-row items-center justify-left bg-cyan-400 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+
+        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
       >
         <Text className="mx-5 font-bold">Create new one</Text>
 
@@ -49,15 +48,15 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
           resizeMode="contain"
           source={Plus}
         />
-      </TouchableOpacity>
+      </Button>
 
-      <TouchableOpacity
+      <Button
         onPress={() =>
-          navigation.navigate(ROUTES.MYDECKS, {
-            screen: "MyDeck",
+          navigation.navigate(ROUTES.MY_DECKS, {
+            screen: "MyDecks",
           })
         }
-        className="flex flex-row items-center justify-left bg-cyan-400 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
       >
         <Text className="mx-5 font-bold">My Decks</Text>
 
@@ -66,11 +65,14 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
           resizeMode="contain"
           source={GreenCards}
         />
-      </TouchableOpacity>
+      </Button>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate(ROUTES.PUBLIC_DECKS)}
-        className="flex flex-row items-center justify-left bg-cyan-400 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+      <Button
+        onPress={() => navigation.navigate(ROUTES.MY_PUBLIC_DECKS, {
+            screen: "MyPublickDecks",
+        })
+        }
+        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
       >
         <Text className="mx-5 font-bold">Publick Decks</Text>
 
@@ -79,7 +81,7 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
           resizeMode="contain"
           source={BlueCards}
         />
-      </TouchableOpacity>
+      </Button>
     </View>
   );
 };
