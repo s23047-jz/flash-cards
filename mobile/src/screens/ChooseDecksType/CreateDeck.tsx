@@ -4,7 +4,6 @@ import {ScreenProps} from "../../interfaces/screen";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import {ROUTES} from "../../constants";
 import {Button} from "../../components";
-import {useRoute} from "@react-navigation/native";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import {AuthService} from "../../services/auth";
 import {ActiveUser} from "../../services/user";

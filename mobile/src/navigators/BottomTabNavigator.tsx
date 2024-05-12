@@ -19,13 +19,13 @@ export default function BottomTabNavigator() {
     const { colorScheme } = useColorScheme();
   return (
     <Tab.Navigator
-      initialRouteName={ROUTES.HOME}
+      initialRouteName={ROUTES.HOME_DECKS}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
-          if (route.name === 'MyDecks' && focused) {
+          if (route.name === 'HomeDecks' && focused) {
             iconName = <Image source={Study_blue} className={" object-scale-down w-10 h-10"}/>
-          } else if (route.name === 'MyDecks' && !focused){
+          } else if (route.name === 'HomeDecks' && !focused){
             iconName = <Image source={Study} className={" object-scale-down w-10 h-10"}/>
           }
           if (route.name === 'PublicDecks' && focused) {
@@ -50,7 +50,7 @@ export default function BottomTabNavigator() {
       })}
 
     >
-      <Tab.Screen name={ROUTES.MY_DECKS} component={HomeNavigator} />
+      <Tab.Screen name={ROUTES.HOME_DECKS} component={HomeNavigator} />
 
       <Tab.Screen name={ROUTES.PUBLIC_DECKS} component={PublicDecksNavigator} />
 

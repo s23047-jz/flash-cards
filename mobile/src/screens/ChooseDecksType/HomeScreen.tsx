@@ -11,7 +11,7 @@ import Plus from "../../assets/images/Plus.png";
 // @ts-ignore
 import { ROUTES } from "../../constants";
 import { ScreenProps } from "../../interfaces/screen";
-import PrivateDecksNavigator from "../../navigators/PrivateDecksNavigator";
+
 
 import { DeckList } from "../index";
 import {Button} from "../../components";
@@ -52,8 +52,8 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
 
       <Button
         onPress={() =>
-          navigation.navigate(ROUTES.MY_DECKS, {
-            screen: "MyDecks",
+          navigation.navigate(ROUTES.MY_PRIVATE_DECKS, {
+            screen: "MyPrivateDecks",
           })
         }
         className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"

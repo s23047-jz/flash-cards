@@ -16,7 +16,7 @@ const MyPublicDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
             </Text>
             <View className=" top-14 absolute left-6">
                 <MaterialCommunityIcons
-                    onPress={() => navigation.navigate(ROUTES.HOME)}
+                    onPress={() => navigation.goBack()}
                     size={30}
                     name="arrow-left-bold"
                     color="white"
