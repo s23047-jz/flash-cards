@@ -7,7 +7,7 @@ import { ScreenProps } from "../../interfaces/screen";
 import { Button } from "../../components";
 import { ROUTES } from "../../constants";
 
-const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
+const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
   useState();
   const [search, setSearch] = useState("");
 
@@ -18,7 +18,7 @@ const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
       </Text>
       <View className=" top-14 absolute left-6">
         <MaterialCommunityIcons
-          onPress={() => navigation.navigate(ROUTES.HOME)}
+          onPress={() => navigation.goBack()}
           size={30}
           name="arrow-left-bold"
           color="white"
@@ -67,4 +67,4 @@ const MyDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
   );
 };
 
-export default MyDecks;
+export default MyPrivateDecks;
