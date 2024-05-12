@@ -10,7 +10,7 @@ export default {
 
     MYDECKS: "MyDecks",
     CREATEDECK: "CreateDeck",
-    PUBLIC_DECKS: "PUBLIC_DECKS",
+    PUBLIC_DECKS: "PublicDecks",
 
     // user profile
     USER_DETAILS: 'User Details',

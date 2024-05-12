@@ -5,7 +5,7 @@ import { ROUTES } from "../constants";
 import { ActiveUser } from "../services/user";
 
 import { LoginScreen, RegisterScreen, ForgotPassScreen } from "../screens";
-import BottomTabNavigator from "./BottomTabNavigator";
+import { BottomTabNavigator } from "./index";
 import { Loader } from "../components";
 
 const Stack = createNativeStackNavigator();
@@ -36,7 +36,7 @@ export default function AuthNavigator() {
         );
     }
     return (
-    <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={isAuthenticated ? ROUTES.HOME : ROUTES.LOGIN}>
+    <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={ROUTES.HOME}>
         <Stack.Screen name={ROUTES.FORGOT_PASSWORD} component={ForgotPassScreen} />
         <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
         <Stack.Screen name={ROUTES.REGISTER} component={RegisterScreen} />
