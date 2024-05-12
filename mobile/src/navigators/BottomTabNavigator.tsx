@@ -11,6 +11,7 @@ import Profile from "../assets/images/Profile.png";
 import Profile_blue from "../assets/images/Profile_blue.png";
 import Study from "../assets/images/Study.png";
 import Study_blue from "../assets/images/Study_blue.png";
+import {useColorScheme} from "nativewind";
 
 const Tab = createBottomTabNavigator();
 

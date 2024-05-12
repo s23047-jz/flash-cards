@@ -6,7 +6,7 @@ import BlueCards from "../../assets/images/bluecards.png";
 import GreenCards from "../../assets/images/greencards.png";
 import Logo from "../../assets/images/logo.png";
 // @ts-ignore
-import Plus from "../../assets/images/plus.png";
+import Plus from "../../assets/images/Plus.png";
 // @ts-ignore
 // @ts-ignore
 import { ROUTES } from "../../constants";
