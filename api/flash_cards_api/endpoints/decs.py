@@ -4,7 +4,7 @@ from flash_cards_api.models.flash_card import FlashCard
 from typing import Optional
 
 from sqlalchemy.orm import Session
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 
 from flash_cards_api.database import get_db
 
@@ -52,19 +52,47 @@ async def read_deck_by_id(
 @router.get("/{user_id}/decks/", status_code=status.HTTP_200_OK)
 async def read_decks_by_user_id(
         user_id: uuid.UUID,
-        db: Session = Depends(get_db)
+        db: Session = Depends(get_db),
 ):
     """Return decks by user id"""
-    user = db.query(User).filter(User.id == user_id).first()
+    user = db.query(User).filter(and_(User.id == user_id)).first()
 
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
 
     decks = user.decks
     decks_json = [
-        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category,
-         "number_of_cards": deck.get_number_of_flash_cards()}
-        for deck in decks
+        {
+            "id": deck.id,
+            "title": deck.title,
+            "deck_category": deck.deck_category,
+            "number_of_cards": deck.get_number_of_flash_cards()
+        }
+        for deck in decks if deck.is_created_by_user
+    ]
+
+    return decks_json
+
+@router.get("/{user_id}/imported/decks/", status_code=status.HTTP_200_OK)
+async def read_imported_decks_by_user_id(
+        user_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Return imported decks by user id"""
+    user = db.query(User).filter(and_(User.id == user_id)).first()
+
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    decks = user.decks
+    decks_json = [
+        {
+            "id": deck.id,
+            "title": deck.title,
+            "deck_category": deck.deck_category,
+            "number_of_cards": deck.get_number_of_flash_cards()
+        }
+        for deck in decks if not deck.is_created_by_user
     ]
 
     return decks_json

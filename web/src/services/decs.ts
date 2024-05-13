@@ -40,6 +40,22 @@ class Deck {
         }
     }
 
+     public async get_all_imported_decks(): Promise<any> {
+        const user_id = ActiveUser.getId();
+        const url = `${BASE_API}/decks/${user_id}/imported/decks/`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
 
     public async get_filtered_decks(filterString: string): Promise<any> {
         const user_id = ActiveUser.getId();
@@ -78,6 +94,7 @@ class Deck {
             throw error;
         }
     }
+
 
     public async get_flash_cards_from_deck(deck_id: string | undefined) {
         const url = `${BASE_API}/decks/${deck_id}/flash_cards`;

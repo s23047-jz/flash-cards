@@ -18,7 +18,7 @@ const HomePage = () => {
     const navigate = useNavigate();
     const createDeckPath = '/create_deck'
     const myDecksPath = '/my_decks'
-    const publicDecksPath = '/create_deck'
+    const publicDecksPath = '/public_decks'
     const navigateTo = (path: string) => {
             navigate(path)
 
