@@ -3,18 +3,19 @@
   top: 58%;
   left: 50%;
   transform: translate(-50%, -50%);
-  overflow-y: auto;
   width: 60%;
   max-height: 68vh;
   min-height: 68vh;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  gap: 100px;
-  padding-right: 20px;
-  padding-top: 3vh;
-}
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
 
+}
+.decks-container .deck-card {
+  position: absolute;
+  width: calc((100% - 200px) / 3);
+}
 .filter-container {
   position: absolute;
   display: flex;
@@ -32,7 +33,6 @@
   font-weight: bold;
   top: 8%;
   left: 6%;
-
 }
 
 .no-decks-container {
@@ -46,8 +46,6 @@
     color: white;
     font-weight: bold;
     font-size: 9vh;
-
-
   }
 
   .button-create-deck {
@@ -55,22 +53,14 @@
     top: 30%;
     left: 0%;
     transform: translate(-50%, -50%);
-
-
   }
-
 }
-
 
 @media screen and (max-width: 768px) {
   .decks-container {
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+
     top: 75%;
-    width: 72%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+
   }
 
   .filter-container {
