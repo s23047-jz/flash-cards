@@ -11,6 +11,8 @@ import ButtonsContainer from "../all_flashcards_page_buttons/ButtonsContainer";
 import ButtonsContainerLearningMode from "../all_flashcards_page_buttons/ButtonsContainerLearningMode";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/flash_cards/flash_cards_container.scss"
+// @ts-ignore
+import pencil from  "../../assets/Pencil.png"
 import {useNavigate} from 'react-router-dom';
 import Options from '../options/Options'
 
@@ -259,6 +261,8 @@ const FlashCardsContainer = () => {
                     <p className={"all-flashcards-text"}>All Flashcards</p>
                     {flashcards.map((flashcard, index) => (
                         <FlashCardField
+                            icon_pencil={pencil}
+                            onClickPencil={handleNextClick}
                             key={index}
                             front_text={flashcard['title']}
                             back_text={flashcard['card text']}
