@@ -1,25 +1,15 @@
 \newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
-% creates headers for a member
-\newcommand{\member}[6]{
-    \textbf{#1} \\
-    \hline #2 \\
-    \hline #3 \\
-    \hline #4
-    \ifthenelse{{ \equal {#5} {} }}{}{\\ \hline #5}
-    \ifthenelse{{ \equal {#6} {} }}{}{\\ \hline #6}
-}
-
-% creates tables for a member
-% param #1 -> member
-\newcommand{\membertable}[1]{
-    \begin{tabularx}{1\textwidth}{|>{\centering\arraybackslash}X|}
-        \hline
-        #1
-        \\
-        \hline
-    \end{tabularx}
-    \vspace{2em}
+% creates point list for a member
+\newcommand{\memberpointlist}[6]{
+    \textbf{#1:}
+    \begin{itemize}[leftmargin=17.5mm]
+        \item #2;
+        \item #3;
+        \ifthenelse{{ \equal {#5} {} }}{\item #4.}{\item #4;}
+        \ifthenelse{{ \equal {#5} {} }}{}{\ifthenelse{{ \equal {#6} {} }}{\item #5.}{\item #5;}}
+        \ifthenelse{{ \equal {#6} {} }}{}{\item #6.}
+    \end{itemize}
 }
 
 \newcommand{\gettableheaders}[1] {
@@ -47,100 +37,6 @@
         \createtablerow{31}{}{}{}{Wstępna konfiguracja projektu w jirze}
     \end{longtable}
 
-    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
-        \gettableheaders{Listopad 2023}
-        \createtablerow{08}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{Spotkanie organizacyjne i projektowanie warstwy wizualnej aplikacji mobilnej w Canva}
-        \createtablerow{12}{}{}{Utworzenie wstępnego diagramu użycia przypadków}{}
-        \createtablerow{13}{}{}{Uzupełnienie podpunktów 4 i 5 w DZW}{}
-        \createtablerow{14}{}{Uzupełnianie dokumentu SWS}{Uzupełnienie dokumentu SWS}{Projektowanie logo}
-        \createtablerow{16}{}{}{Uzupełnianie dokumentu SWS}{}
-        \createtablerow{19}{}{Rozwinięcie punktów 3, 5, 8 w DZW}{}{}
-        \createtablerow{20}{Tworzenie diagramu przypadków użycia}{Nanoszenie poprawek do DZW}{}{}
-        \createtablerow{21}{Poprawa diagramu przypadków użycia i utworzenie diagramy aktywności}{}{Uzupełnienie dokumentu SWS}{}
-        \createtablerow{22}{Poprawa diagramu przypadków użycia i spotkanie organizacyjne}{}{Uzupełnienie dokumentu SWS}{}
-        \createtablerow{27}{}{}{Rozwinięcie podpunktu 3 w DZW, analiza konkurencji}{}
-        \createtablerow{29}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{Analiza działania aplikacji mobilnej i spotkanie organizacyjne}{Analiza kokurencji i spotkanie organizacyjne}
-    \end{longtable}
-
-    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
-        \gettableheaders{Grudzień 2023}
-        \createtablerow{6}{}{}{Tworzenie i poprawa mockow w canvie}{Tworzenie i poprawa mockow w canvie}
-        \createtablerow{9}{Spotkanie organizacyjne, omawiania poprawy diagramów}{}{Tworzenie i poprawa mockow w canvie, spotkanie organizacyjne}{}
-        \createtablerow{12}{Przerzucenie diagramów do innego programu oraz poprawia diagramów}{}{Tworzenie i poprawa mockow w canvie}{}
-        \createtablerow{13}{}{}{Tworzenie i poprawa mockow w canvie}{}
-        \createtablerow{19}{}{}{Tworzenie i poprawa mockow w canvie}{}
-        \createtablerow{20}{}{}{Tworzenie i poprawa mockow w canvie}{}
-        \createtablerow{28}{}{}{Tworzenie i poprawa mockow w canvie}{}
-        \createtablerow{29}{}{}{Poprawa SWS}{}
-        \createtablerow{31}{}{}{Poprawa SWS}{}
-    \end{longtable}
-
-    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
-        \gettableheaders{Styczeń 2024}
-        \createtablerow{1}{}{}{Tworzenie diagramu ERD}{}
-        \createtablerow{3}{Spotkanie organizacyjne i poprawa diagramu użycia przypadków}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{Spotkanie organizacyjne}
-        \createtablerow{4}{}{}{Spotkanie organizacyjne i poprawa, i tworzenie mocków w canvie}{Spotkanie organizacyjne}
-        \createtablerow{5}{Utworzenie wstępnego diagramu modeli i relacji dla bazy danych i poprawa SWS}{}{Poprawa i tworzenie mocków w canvie}{}
-        \createtablerow{6}{Poprawa SWS}{Poprawa SWS}{Poprawa SWS}{}
-        \createtablerow{8}{}{}{}{Projektowanie warstwy wizualnej aplikacji mobilnej w Canva}
-        \createtablerow{9}{Poprawa SWS}{}{Poprawa SWS}{Projektowanie warstwy wizualnej aplikacji mobilnej w Canva}
-        \createtablerow{10}{}{}{}{Projektowanie warstwy wizualnej aplikacji mobilnej w Canva}
-        \createtablerow{14}{Tworzenie środowiska FastAPI}{Poprawa DZW i SWS oraz pisanie karty projektu}{Poprawa DZW i tworzenie środowiska FastAPI}{}
-        \createtablerow{17}{Aktualizacja ReadMe i poprawa silnika do łączenia z baza danych, plus utworzenie zmiennych środowiskowych}{}{Utworzenie silnika do łączności z bazą danych}{}
-        \createtablerow{23}{Poprawa diagramu użycia przypadkow i SWS}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{Spotkanie organizacyjne i przegląd artykółów naukowych}
-        \createtablerow{25}{}{}{}{Aktualizacja dokumentu z Artykułami}
-        \createtablerow{30}{}{}{Spotkanie organizacyjne}{}
-        \createtablerow{31}{Poprawa plików dockerowych}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{}
-    \end{longtable}
-
-    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
-        \gettableheaders{Luty 2024}
-        \createtablerow{13}{Implementcja cli(click scripts)}{}{Nauka HTML i Css, i spotkanie orgaznizacyjne}{}
-        \createtablerow{14}{}{}{Nauka HTML, Css i Javascriptu}{}
-        \createtablerow{15}{}{}{Nauka HTML, Css i Javascriptu}{}
-        \createtablerow{16}{}{}{Nauka Javascriptu i poprawa środowiska FastAPI}{}
-        \createtablerow{18}{Poprawa cli, endpointów autoryzacyjnych oraz działania customowych middleware'ów}{}{Poprawa importów dla api}{}
-        \createtablerow{21}{Spotkanie organizacyjne}{Spotkanie orgaznizacyjne}{Nauka Javascriptu i spotkanie organizacyjne}{Spotkanie organizacyjne}
-        \createtablerow{22}{}{}{Nauka Reacta}{}
-        \createtablerow{23}{}{}{Nauka Reacta}{}
-        \createtablerow{24}{}{}{Nauka Reacta i naprawa importów api}{}
-        \createtablerow{25}{}{}{Nauka Reacta}{}
-        \createtablerow{27}{Dodanie loggera oraz poprawa ścieżek api}{}{Nauka Reacta}{}
-        \createtablerow{28}{Aktualizacja dependencies i endpointów dla api}{}{Nauka Reacta}{}
-    \end{longtable}
-
-    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
-        \gettableheaders{Marzec 2024}
-        \createtablerow{1}{Pomoc w uruchomieniu środowiska do pracy u Oliwiera}{}{Naprawa środowiska FastAPI}{}
-        \createtablerow{2}{}{}{Naprawa środowiska FastAPI}{}
-        \createtablerow{3}{}{Tworzenie ekrana logowania dla aplikacji mobilnej FC-23}{Naprawa środowiska FastAPI i naprawa błędu związanego z tokenem autoryzującym}{}
-        \createtablerow{4}{Stawianie środowiska android}{Tworzenie ekrana logowania dla aplikacji mobilnej FC-23}{}{}
-        \createtablerow{5}{Usuwanie błędów związanych z nieprawidłowym package'em dla mobilki}{Tworzenie ekrana logowania, rejestracji i przypomnienia hasła dla aplikacji mobilnej FC-23}{Naprawa błedu z tokenem i blacklist tokens}{}
-        \createtablerow{6}{Poprawa dependencies oraz dodanie nowch endpointów dla api (FC-28)}{}{Poprawki modeli, dodanie crudów do endpointu decks}{}
-        \createtablerow{7}{}{}{Rozwiązanie konfliktów na githubie}{}
-        \createtablerow{9}{Utworzenie wstępnych fixtur (FC-30), dodanie flake8 (FC-31), dodanie serwisu do logowania i rejestracji (FC-32)}{}{}{}
-        \createtablerow{10}{}{}{Dodanie endpointów dla flash cards}{}
-        \createtablerow{11}{}{Spotkanie organizacyjne}{Spotkanie organizacyjne i poprawa modeli bazy danych FC-36 chyba}{Spotkanie organizacyjne}
-        \createtablerow{12}{}{FC-41, FC-42, FC-39}{FC-22 tworzenie kontenera node js}{}
-        \createtablerow{14}{}{}{}{}
-        \createtablerow{15}{}{}{FC-40 i pomoc w postawieniu projektu u Wiktora}{Konfiguracja projektu i środowiska}
-        \createtablerow{16}{}{}{FC-40}{}
-        \createtablerow{17}{}{}{FC-40 i uruchamianie środowiska React u Wiktora}{Konfiguracja środowiska React'a, FC-20 i projekt tła strony web}
-        \createtablerow{18}{}{}{Spotkanie organizacyjne}{}
-        \createtablerow{19}{}{COMMITY???????????????}{FC-40}{}
-        \createtablerow{20}{}{Konfiguracja latex'a i utworzenie wstępnej karty projektu, FC-39}{FC-40 i FC-47}{Projektowanie ikon}
-        \createtablerow{21}{}{}{FC-47}{}
-        \createtablerow{22}{}{}{FC-47}{}
-        \createtablerow{23}{}{Konfiguracja api i dockera na maszynie lokalnej}{}{}
-        \createtablerow{24}{}{FC-39}{}{}
-        \createtablerow{25}{}{}{}{FC-20 (integracja z backendem)}
-        \createtablerow{26}{}{Konspekt pracy dyplomowej, FC-39 i spotkanie organizacyjne}{Spotkanie organizacyjne i FC-47}{}
-        \createtablerow{27}{}{}{FC-47}{}
-        \createtablerow{28}{}{}{FC-47}{}
-        \createtablerow{29}{}{}{FC-47}{}
-        \createtablerow{30}{}{}{FC-47}{}
-    \end{longtable}
-
     \section{Wybrana metodyka}
 
     \par Nasza wybrana metodyka nazywa się \textbf{modelem przyrostowo-ewolucyjnym}.
@@ -153,12 +49,12 @@
     czy poprawy naniesione w trakcie produckji w zwiazku ze zmianami wymagań.
 
     \section{Zespół i podział obowiązków}
-    \centering
-    \membertable{\member{Daniel Klimowski}{Budowanie aplikacji mobilnej}{Konfiguracja Azure}{Wypełnianie dokumentacji technicznej}{}{}}
 
-    \membertable{\member{Oliwier Kossak}{Budowa aplikacji webowej}{Budowa aplikacji backendowej}{Tworzenie modeli sql}{Wypełnianie dokumentacji technicznej}{Mockupy aplikacji mobilnej}}
+    \memberpointlist{Daniel Klimowski}{Budowanie aplikacji mobilnej}{Konfiguracja Azure}{Wypełnianie dokumentacji technicznej}{}{}
 
-    \membertable{\member{Wiktor Krieger}{Budowa aplikacji webowej}{Mockupy aplikacji webowej i mobilnej}{Wypełnianie dokumentacji technicznej}{Tworzenie ikon dla aplikacji}{}}
+    \memberpointlist{Oliwier Kossak}{Budowa aplikacji webowej}{Budowa aplikacji backendowej}{Tworzenie modeli sql}{Wypełnianie dokumentacji technicznej}{Mockupy aplikacji mobilnej}
 
-    \membertable{\member{Jakub Żurawski}{Budowa aplikacji mobilnej}{Budowa aplikacji backendowej}{Wypełnianie dokumentacji technicznej}{Tworzenie diagramów}{Tworzenie modeli sql}}
+    \memberpointlist{Wiktor Krieger}{Budowa aplikacji webowej}{Mockupy aplikacji webowej i mobilnej}{Wypełnianie dokumentacji technicznej}{Tworzenie ikon dla aplikacji}{}
+
+    \memberpointlist{Jakub Żurawski}{Budowa aplikacji mobilnej}{Budowa aplikacji backendowej}{Wypełnianie dokumentacji technicznej}{Tworzenie diagramów}{Tworzenie modeli sql}
 \end{chap5}
