@@ -11,6 +11,8 @@ import ButtonsContainer from "../all_flashcards_page_buttons/ButtonsContainer";
 import ButtonsContainerLearningMode from "../all_flashcards_page_buttons/ButtonsContainerLearningMode";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/flash_cards/flash_cards_container.scss"
+import {useNavigate} from 'react-router-dom';
+import Options from '../options/Options'
 
 const FlashCardsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
@@ -21,7 +23,10 @@ const FlashCardsContainer = () => {
     const [isRotated, setIsRotated] = useState(false);
     const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
     const [deckTitle, setDeckTitle] = useState(false);
+    const [isOpenOptions, setIsOpenOptions] = useState(false);
     const numberOfFlashCards = flashcards.length
+    const navigate = useNavigate();
+
     useEffect(() => {
         const fetchFlashCards = async () => {
             try {
@@ -57,8 +62,8 @@ const FlashCardsContainer = () => {
 
             sentences.forEach((sentence, i) => {
                 const speech = new SpeechSynthesisUtterance(sentence.trim());
-                speech.lang = 'en-US';
-                speech.rate = 0.8;
+                speech.lang = 'en-GB';
+                speech.rate = 0.9;
                 speech.pitch = 1.2;
                 speech.volume = 1.0;
 
@@ -134,15 +139,81 @@ const FlashCardsContainer = () => {
             setIsSpeaking(false);
         }
     };
+
+    const handleLearnModeClick = () => {
+        navigate('/voice_control')
+    };
+
+    const handleNotMemorizedFlashcardsClick = () => {
+        navigate('/not_memorized_flash_cards')
+    };
+    const handleMemorizedFlashcardsClick = () => {
+        navigate('/memorized_flash_cards')
+    };
+    const handleBackToDecks = () => {
+        navigate('/my_decks')
+    };
+
+    const handleLearningMode = () => {
+        navigate('/learning_mode')
+    };
+
+    const handleOpenOptions = () => {
+        if (isOpenOptions) {
+            setIsOpenOptions(false)
+        } else {
+            setIsOpenOptions(true)
+        }
+    }
+
+    const handleDeleteDeck = () => {
+        try {
+            const deckDataString = localStorage.getItem("deckData");
+            const deckData = JSON.parse(deckDataString || "{}");
+            const deck_id = deckData.id;
+            DeckService.deleteDeck(deck_id)
+            localStorage.removeItem("deckData");
+        }catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
+        }
+
+        navigate('/my_decks')
+
+    }
+
+       const handleResetDeck = () => {
+        try {
+            const deckDataString = localStorage.getItem("deckData");
+            const deckData = JSON.parse(deckDataString || "{}");
+            const deck_id = deckData.id;
+            DeckService.update_multiple_flash_card_is_memorized_false(deck_id)
+            setIsOpenOptions(false)
+        }catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
+        }
+
+    }
+
     return (
         <div className={"all-flashcards-container"}>
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
+
                 <>
-                    <ButtonsContainerLearningMode onClickPrev={handlePrevClick}
-                                                  onClickNext={handleNextClick}
-                                                  onClickRotate={handleRotateClick}></ButtonsContainerLearningMode>
+                    <Options onCloseBox={handleOpenOptions} isOpen={isOpenOptions} onResetDeck={handleResetDeck}
+                             onDeleteDeck={handleDeleteDeck}></Options>
+                    <ButtonsContainerLearningMode onClickLearn={handleLearningMode}
+                                                  onClickMemorized={handleMemorizedFlashcardsClick}
+                                                  onClickNotMemorized={handleNotMemorizedFlashcardsClick}
+                                                  onClickVoiceControl={handleLearnModeClick}
+                                                  onClickOptions={handleOpenOptions}
+
+                    />
                     <FlashCard
                         front_text={flashcards[currentBigCardIndex]['title']}
                         back_text={flashcards[currentBigCardIndex]['card text']}
@@ -155,6 +226,7 @@ const FlashCardsContainer = () => {
                         onClickPrev={handlePrevClick}
                         onClickNext={handleNextClick}
                         onClickRotate={handleRotateClick}
+                        onClickBackToDecks={handleBackToDecks}
                     />
                     <p className={"all-flashcards-text"}>All Flashcards</p>
                     {flashcards.map((flashcard, index) => (

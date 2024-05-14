@@ -21,7 +21,6 @@ const HomePage = () => {
     const publicDecksPath = '/create_deck'
     const navigateTo = (path: string) => {
             navigate(path)
-        window.location.reload();
 
     }
 
@@ -44,7 +43,7 @@ const HomePage = () => {
                     </div>
                     <div className="button-container">
                         <ButtonHomePage frontText={'Public Decks'} image={RedCard} onClick={() => navigateTo(publicDecksPath)}
-                                        backText={'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'}/>
+                                        backText={'This is where your downloaded decks from other users are stored.'}/>
                     </div>
                 </div>
             </main>

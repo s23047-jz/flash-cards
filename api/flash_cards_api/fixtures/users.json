@@ -19,5 +19,19 @@
     "password": "user",
     "role": "User",
     "is_superuser": false
+  },
+  {
+    "email": "jacob@flashcards.com",
+    "username": "Jacobwski",
+    "password": "jacob",
+    "role": "User",
+    "is_superuser": false
+  },
+  {
+    "email": "oliwier@flashcards.com",
+    "username": "Oliwoski",
+    "password": "oliwier",
+    "role": "User",
+    "is_superuser": false
   }
 ]

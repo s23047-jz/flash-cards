@@ -1,5 +1,5 @@
-$flash-card-bg: #7AD5FF;
-$flash-card-name-category-bg: #46E4F1;
+$flash-card-bg: #b6e4fa;
+$flash-card-name-category-bg: #b6e4fa;
 $flash-card-title-color: white;
 $flash-card-title-font-size: 40px;
 $flash-card-title-font-weight: bold;
@@ -7,7 +7,6 @@ $flash-card-title-font-weight: bold;
 .texfields-container {
   position: absolute;
   top: 15%;
-  overflow-y: auto;
   width: 60%;
   max-height: 80vh;
   min-height: 80vh;
@@ -65,6 +64,7 @@ $flash-card-title-font-weight: bold;
 
 .webTitle {
   margin-right: 50%;
+  margin-bottom: 40px;
   color: $flash-card-title-color;
   font-size: $flash-card-title-font-size;
   font-weight: $flash-card-title-font-weight;

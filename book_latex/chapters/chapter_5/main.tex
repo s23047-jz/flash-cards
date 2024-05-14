@@ -1,41 +1,60 @@
-\usepackage{xifthen}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
-\newcommand{\member}[6]{
-    \textbf{#1} \\
-    \hline #2 \\
-    \hline #3 \\
-    \hline #4
-    \ifthenelse{{ \equal {#5} {} }}{}{\\ \hline #5}
-    \ifthenelse{{ \equal {#6} {} }}{}{\\ \hline #6}
+% creates point list for a member
+\newcommand{\memberpointlist}[6]{
+    \textbf{#1:}
+    \begin{itemize}[leftmargin=17.5mm]
+        \item #2;
+        \item #3;
+        \ifthenelse{{ \equal {#5} {} }}{\item #4.}{\item #4;}
+        \ifthenelse{{ \equal {#5} {} }}{}{\ifthenelse{{ \equal {#6} {} }}{\item #5.}{\item #5;}}
+        \ifthenelse{{ \equal {#6} {} }}{}{\item #6.}
+    \end{itemize}
 }
 
-\newcommand{\membertable}[1]{
-    \begin{tabularx}{1\textwidth}{|>{\centering\arraybackslash}X|}
-        \hline
-        #1
-        \\
-        \hline
-    \end{tabularx}
-    \vspace{2em}
+\newcommand{\gettableheaders}[1] {
+    \hline
+    \centering \textbf{#1} & \textbf{Jakub Żurawski} & \textbf{Daniel Klimowski} & \textbf{Oliwier Kossak} & \textbf{Wiktor Krieger} \\
+}
+
+\newcommand{\createtablerow}[5] {
+    \hline
+    \centering #1 & \ifthenelse{{ \equal {#2} {} }}{brak}{#2} & \ifthenelse{{ \equal {#3} {} }}{brak}{#3} & \ifthenelse{{ \equal {#4} {} }}{brak}{#4} & \ifthenelse{{ \equal {#5} {} }}{brak}{#5} \\
+    \hline
 }
 
 \begin{chap5}
     \chapter{Organizacja pracy}
 
-    \section{Wybrana metodyka}
-    \par \textbf{Agile} - główną zaletą tej metodyki jest elastyczność, która bardzo ułatwia podejmowanie działań,
-    czy sterowanie zakresem pracy.
+    \section{Harmonogram pracy}
 
-    \par Implementacja kodu odbyła się metodyką Scrum opartą na zasadach Agile. Umożliwiało łatwe podejmowanie działań i sterowaniem
-    rozwoju aplikacji poprzez planowanie celu na koniec każdego sprintu. Natomiast wypełnianie dokumentacji odbywało się w przerwach pomiędzy sprintami.
+    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
+        \gettableheaders{Październik 2023}
+        \createtablerow{20-21}{Dyskusja nad wyborem projektu}{Dyskusja nad wyborem projektu}{Dyskusja nad wyborem projektu}{Dyskusja nad wyborem projektu}
+        \createtablerow{24}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{Spotkanie organizacyjne}
+        \createtablerow{25}{Uzupełnienie DZW}{Uzupełnienie DZW}{Uzupełnienie DZW}{Uzupełnienie DZW}
+        \createtablerow{26-28}{Nanoszenie poprawek do DZW oraz SWS}{}{Nanoszenie poprawek do DZW}{}
+        \createtablerow{31}{}{}{}{Wstępna konfiguracja projektu w jirze}
+    \end{longtable}
+
+    \section{Wybrana metodyka}
+
+    \par Nasza wybrana metodyka nazywa się \textbf{modelem przyrostowo-ewolucyjnym}.
+    Jest to połączeniem dwóch modeli, przyrostowego i ewolucyjnego.
+    W naszym projekcie implementacja kodu odbywałą się w trakcie spintu, a każdy kolejny sprint był planowany po
+    zakończeniu aktualnie prowadzonego (przerwa między sprintami), razem z wypełnianiem dokumentacji.
+    Dzięki temu projekt był rozwijany i ewoulował cały czas, nie tylko w sprintach ale, i w trakcie przerw.
+    Zalety takiego rozwiązania to przedewszystkim łatwe podejmowanie działań nad rozwojem aplikacji,
+    wczesną i stopniową dystrybucja oprogramowania, stały wgląd nad wyglądem oraz funkcjonowaniem aplikacji,
+    czy poprawy naniesione w trakcie produckji w zwiazku ze zmianami wymagań.
 
     \section{Zespół i podział obowiązków}
-    \centering
-    \membertable{\member{Daniel Klimowski}{Budowanie aplikacji mobilnej}{Konfiguracja Azure}{Wypełnianie dokumentacji technicznej}{}{}}
 
-    \membertable{\member{Oliwier Kossak}{Budowa aplikacji webowej}{Budowa aplikacji backendowej}{Tworzenie modeli sql}{Wypełnianie dokumentacji technicznej}{Mockupy aplikacji mobilnej}}
+    \memberpointlist{Daniel Klimowski}{Budowanie aplikacji mobilnej}{Konfiguracja Azure}{Wypełnianie dokumentacji technicznej}{}{}
 
-    \membertable{\member{Wiktor Krieger}{Budowa aplikacji webowej}{Mockupy aplikacji webowej i mobilnej}{Wypełnianie dokumentacji technicznej}{Tworzenie ikon dla aplikacji}{}}
+    \memberpointlist{Oliwier Kossak}{Budowa aplikacji webowej}{Budowa aplikacji backendowej}{Tworzenie modeli sql}{Wypełnianie dokumentacji technicznej}{Mockupy aplikacji mobilnej}
 
-    \membertable{\member{Jakub Żurawski}{Budowa aplikacji mobilnej}{Budowa aplikacji backendowej}{Wypełnianie dokumentacji technicznej}{Tworzenie diagramów}{Tworzenie modeli sql}}
+    \memberpointlist{Wiktor Krieger}{Budowa aplikacji webowej}{Mockupy aplikacji webowej i mobilnej}{Wypełnianie dokumentacji technicznej}{Tworzenie ikon dla aplikacji}{}
+
+    \memberpointlist{Jakub Żurawski}{Budowa aplikacji mobilnej}{Budowa aplikacji backendowej}{Wypełnianie dokumentacji technicznej}{Tworzenie diagramów}{Tworzenie modeli sql}
 \end{chap5}

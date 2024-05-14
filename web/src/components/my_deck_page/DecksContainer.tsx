@@ -29,8 +29,8 @@ import ButtonCreateFlashCardPage from "../flash_cards_creator/ButtonCreateFlashC
 // @ts-ignore
 import filter from "../../assets/Filter.png";
 import {useNavigate} from "react-router-dom";
-import {DeckData} from "../../interfaces/auth";
-import {ActiveUser} from "../../services/user";
+import LoadingSpinner from "../loading_spinner/LoadingSpinner";
+import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 
 
 const DecksContainer = () => {
@@ -39,6 +39,9 @@ const DecksContainer = () => {
     const [decks, setDecks] = useState([]);
     const [filterString, setFilterString] = useState('');
     const [cardColors, setCardColors] = useState<string[]>([]);
+    const [isLoadingFetchDecks, setIsLoadingFetchDecks] = useState(true);
+
+
 
     useEffect(() => {
         const fetchDecks = async () => {
@@ -48,16 +51,16 @@ const DecksContainer = () => {
                 if (cardColors.length === 0) {
                     setCardColors(generateRandomCardColors(response.length));
                 }
+                setTimeout(() => {
+                    setIsLoadingFetchDecks(false);
+                }, 500);
             } catch (error) {
                 console.error(error);
             }
-
         };
 
         fetchDecks();
-
-
-    }, [cardColors]);
+    }, []);
 
     const cardImages = [red_cards, pink_cards, yellow_cards, purple_cards, light_yellow_cards,
         light_green_cards_2, light_green_cards, light_blue_cards, dark_pink_cards, dark_blue_cards];
@@ -86,52 +89,71 @@ const DecksContainer = () => {
 
     }
 
+    const navigateHomePage = () =>{
+        navigate("/create_deck")
+    }
 
-    // @ts-ignore
-    return (
+
+// @ts-ignore
+ return (
         <div className="website-container">
             <p className="web-title">My Decks</p>
-            <div className="filter-container">
-                <FormControl variant="filled">
-                    <InputLabel htmlFor="component-filled" sx={{backgroundColor: fields_color, color: 'white'}}>Filter
-                        Decks</InputLabel>
-                    <FilledInput
-                        id="component-filled"
-                        defaultValue=""
-                        sx={{
-                            "& input": {
-                                backgroundColor: fields_color,
-                                color: 'white',
-                                borderRadius: '10px',
-                                border: '2px solid black',
-                            }
-                        }}
-                        disableUnderline
-                        onChange={(e) => setFilterString(e.target.value)}
-                    />
-                </FormControl>
-                <ButtonCreateFlashCardPage
-                    color={fields_color}
-                    text={'Filter'}
-                    border={'2px solid black'}
-                    image={filter}
-                    onClick={handleFilterDecks}
-                />
-            </div>
-            <div className="decks-container">
-                {decks.map((deck, index) => (
-                    <div className="deck-button">
-                        <DeckButton
-                            key={index}
-                            frontTextUpper={`${deck['title']}`}
-                            frontTextLower={`${deck['deck_category']}`}
-                            image={cardColors[index]}
-                            backText={`Number of flashcards: ${deck['number_of_cards']}`}
-                            onClick={() => navigateToDeckFlashcards(deck['id'])}
-                        />
-                    </div>
-                ))}
-            </div>
+            {isLoadingFetchDecks ? (
+                <LoadingSpinner />
+            ) : (
+                <>
+                    {decks.length === 0 ? (
+                        <div className={'no-decks-container'}>
+                            <p className={"no-decks-cards-text"}>No Decks</p>
+                            <div className={'button-create-deck'}>
+                                <ButtonNotMemorizedFlashCards onClick={navigateHomePage} text={'Create Deck'} color={'#e05a12'} border={'3px solid black'}/>
+                            </div>
+                        </div>
+                    ) : (
+                        <>
+                            <div className="filter-container">
+                                <FormControl variant="filled">
+                                    <InputLabel htmlFor="component-filled" sx={{ backgroundColor: fields_color, color: 'white' }}>Filter Decks</InputLabel>
+                                    <FilledInput
+                                        id="component-filled"
+                                        defaultValue=""
+                                        sx={{
+                                            "& input": {
+                                                backgroundColor: fields_color,
+                                                color: 'white',
+                                                borderRadius: '10px',
+                                                border: '2px solid black',
+                                            }
+                                        }}
+                                        disableUnderline
+                                        onChange={(e) => setFilterString(e.target.value)}
+                                    />
+                                </FormControl>
+                                <ButtonCreateFlashCardPage
+                                    color={fields_color}
+                                    text={'Filter'}
+                                    border={'2px solid black'}
+                                    image={filter}
+                                    onClick={handleFilterDecks}
+                                />
+                            </div>
+                            <div className="decks-container">
+                                {decks.map((deck, index) => (
+                                    <div className="deck-button" key={index}>
+                                        <DeckButton
+                                            frontTextUpper={`${deck['title']}`}
+                                            frontTextLower={`${deck['deck_category']}`}
+                                            image={cardColors[index]}
+                                            backText={`Number of flashcards: ${deck['number_of_cards']}`}
+                                            onClick={() => navigateToDeckFlashcards(deck['id'])}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </>
+                    )}
+                </>
+            )}
         </div>
     );
 };

@@ -1,6 +1,10 @@
 \documentclass{sprz}
 \usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\usepackage{array}
+\usepackage{enumitem}
 \usepackage[T1]{fontenc}
+\usepackage{xifthen}
+
 
 \studfield{Informatyka}
 \studtype{Zaoczne}
@@ -21,39 +25,30 @@
 \projlimitations{Deadline, zdalny charakter pracy nad projektem, budżet, brak doświadczenia w pracy nad projektem o zadanej złożoności, nauka i wykorzystanie nowych technologii.}
 \date{\today}
 \nabstract{
-DO ZROBIENiA NA KOŃCU - NA RÓWNI ZE WSTĘPEM
+    DO ZROBIENiA NA KOŃCU - NA RÓWNI ZE WSTĘPEM
 }
 
 
 
 \begin{document}
 
-\maketitle
+    \maketitle
 
-\makeprojectcard
-\makedeclaration
+    \makeprojectcard
+    \makedeclaration
 
-\tableofcontents
+    \tableofcontents
 
-\include{chapters/chapter_1/main}
-\include{chapters/chapter_2/main}
-\include{chapters/chapter_3/main}
-\include{chapters/chapter_4/main}
-\include{chapters/chapter_5/main}
-\include{chapters/chapter_6/main}
-\include{chapters/chapter_7/main}
-\include{chapters/chapter_8/main}
-\include{chapters/chapter_9/main}
-\include{chapters/chapter_10/main}
-\include{chapters/chapter_11/main}
-\include{chapters/chapter_12/main}
-\include{chapters/chapter_13/main}
-\include{chapters/chapter_14/main}
+    \input{chapters/chapter_1/main}
 
+    \input{chapters/chapter_2/main}
 
-\printbibliography[title={Bibliografia}, heading=bibintoc]
+    \input{chapters/chapter_3/main}
 
+    \input{chapters/chapter_4/main}
 
+    \input{chapters/chapter_5/main}
 
+    %\printbibliography[title={Bibliografia}, heading=bibintoc]
 
 \end{document}

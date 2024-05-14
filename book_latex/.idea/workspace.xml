@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.tex" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.tex" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="poprawki_ogl_2-4" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2elQh5GFxu6uQGlCUTz5OkPeNnC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;BibTeX.engineer bibliography.executor&quot;: &quot;Run&quot;,
+    &quot;LaTeX.engineer.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/daniel/WebstormProjects/flash-cards/book_latex&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chapters/chapter_2" />
+    </key>
+  </component>
+  <component name="RunManager" selected="LaTeX.engineer">
+    <configuration default="true" type="BIBTEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify-bibtex>
+        <compiler />
+        <compiler-path />
+        <compiler-arguments />
+        <envs />
+        <main-file>/</main-file>
+        <aux-dir>/</aux-dir>
+      </texify-bibtex>
+      <method v="2" />
+    </configuration>
+    <configuration name="engineer bibliography" type="BIBTEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify-bibtex>
+        <compiler>BIBER</compiler>
+        <compiler-path />
+        <compiler-arguments />
+        <envs>
+          <env name="BIBINPUTS" value="$PROJECT_DIR$" />
+          <env name="BSTINPUTS" value="$PROJECT_DIR$/../book_latex:" />
+        </envs>
+        <main-file>$PROJECT_DIR$/engineer.tex</main-file>
+        <aux-dir>/</aux-dir>
+      </texify-bibtex>
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+      <texify>
+        <compiler>PDFLATEX</compiler>
+        <compiler-path />
+        <sumatra-path />
+        <pdf-viewer>NONE</pdf-viewer>
+        <viewer-command />
+        <compiler-arguments />
+        <envs />
+        <main-file />
+        <output-path>{projectDir}/out</output-path>
+        <auxil-path>{projectDir}/auxil</auxil-path>
+        <compile-twice>false</compile-twice>
+        <output-format>PDF</output-format>
+        <latex-distribution>TEXLIVE</latex-distribution>
+        <has-been-run>false</has-been-run>
+        <bib-run-config>[]</bib-run-config>
+        <makeindex-run-config>[]</makeindex-run-config>
+      </texify>
+      <method v="2" />
+    </configuration>
+    <configuration name="engineer" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory" temporary="true">
+      <texify>
+        <compiler>XELATEX</compiler>
+        <compiler-path />
+        <sumatra-path />
+        <pdf-viewer>NONE</pdf-viewer>
+        <viewer-command />
+        <compiler-arguments />
+        <envs />
+        <main-file>$PROJECT_DIR$/engineer.tex</main-file>
+        <output-path>$PROJECT_DIR$/out</output-path>
+        <auxil-path>{projectDir}/auxil</auxil-path>
+        <compile-twice>false</compile-twice>
+        <output-format>PDF</output-format>
+        <latex-distribution>TEXLIVE</latex-distribution>
+        <has-been-run>true</has-been-run>
+        <bib-run-config>[BibTeX.engineer bibliography]</bib-run-config>
+        <makeindex-run-config>[]</makeindex-run-config>
+      </texify>
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="BibTeX.engineer bibliography" />
+      <item itemvalue="LaTeX.engineer" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="LaTeX.engineer" />
+        <item itemvalue="LaTeX.engineer" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-4caba194b151-9b16c6e2" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="" />
+      <created>1712476801540</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712476801540</updated>
+      <workItem from="1712476802616" duration="355000" />
+      <workItem from="1712477184453" duration="104000" />
+      <workItem from="1712477334072" duration="242000" />
+      <workItem from="1712477630840" duration="58000" />
+      <workItem from="1712477694359" duration="638000" />
+      <workItem from="1712478467683" duration="2946000" />
+      <workItem from="1712481547420" duration="719000" />
+      <workItem from="1712490923770" duration="2501000" />
+      <workItem from="1713010318397" duration="922000" />
+      <workItem from="1713073662732" duration="3000" />
+      <workItem from="1713756240560" duration="1198000" />
+      <workItem from="1713918963236" duration="4590000" />
+      <workItem from="1713960361668" duration="4020000" />
+      <workItem from="1714849664548" duration="756000" />
+      <workItem from="1714870820114" duration="1954000" />
+      <workItem from="1714873024494" duration="1106000" />
+      <workItem from="1714932520708" duration="3635000" />
+      <workItem from="1714936251906" duration="1274000" />
+      <workItem from="1714967775359" duration="4407000" />
+      <workItem from="1715276147075" duration="149000" />
+    </task>
+    <task id="LOCAL-00001" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1714936051318</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1714936051318</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="poprawki" />
+    <option name="LAST_COMMIT_MESSAGE" value="poprawki" />
+  </component>
+</project>

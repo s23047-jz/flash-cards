@@ -6,6 +6,7 @@ from sqlalchemy.orm import relationship
 
 from sqlalchemy import (
     Column,
+    Boolean,
     String,
     ForeignKey,
     UUID,
@@ -22,8 +23,8 @@ class FlashCard(Base):
     deck_id = Column(UUID(as_uuid=True), ForeignKey("deck.id"))
     card_title = Column(String(256), nullable=False)
     card_text = Column(Text, nullable=False)
+    is_memorized = Column(Boolean, default=False, nullable=False)
     deck_relationship = relationship("Deck", back_populates='flash_card_relationship')
-
 
     class Config:
         orm_mode = True

@@ -51,7 +51,7 @@ $flash-card-height: 35vh;
   transition: $animation;
   border-radius: 15px;
   text-align: center;
-  overflow: hidden; /* Dodaj overflow: hidden, aby ukryć ikonę podczas animacji */
+  overflow: hidden;
 }
 
 .flashcard .back {

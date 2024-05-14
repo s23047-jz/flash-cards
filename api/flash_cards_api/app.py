@@ -12,7 +12,7 @@ from flash_cards_api.config import (
 from flash_cards_api.utils.app import (
     catch_exception_middleware,
     jwt_middleware,
-    security_headers_middleware
+    security_headers_middleware,
 )
 
 
@@ -43,13 +43,15 @@ def register_routers():
         auth,
         users,
         decs,
-        flash_card
+        flash_card,
+        chat_gpt
     )
 
     app.include_router(auth.router)
     app.include_router(users.router)
     app.include_router(decs.router)
     app.include_router(flash_card.router)
+    app.include_router(chat_gpt.router)
 
 
 def run_dev_server():
