@@ -37,7 +37,6 @@ from flash_cards_api.config import (
     ALGORITHM
 )
 
-
 router = APIRouter(prefix="/api/auth", tags=["authentication"])
 
 
@@ -69,6 +68,7 @@ class UserResponse(BaseModel):
     avatar: int
     role: str
     is_superuser: bool
+    avatar: str
 
 
 class LoginResponse(BaseModel):
@@ -76,10 +76,14 @@ class LoginResponse(BaseModel):
     token_data: TokenResponse
 
 
+class UpdateAvatarPayloadScheme(BaseModel):
+    avatar: str
+
+
 @router.post("/login/", response_model=LoginResponse)
 async def login(
-    payload: LoginPayloadScheme,
-    db: Session = Depends(get_db)
+        payload: LoginPayloadScheme,
+        db: Session = Depends(get_db)
 ):
     payload = payload.dict()
     user = authenticate_user(payload['email'], payload['password'], db)
@@ -109,8 +113,8 @@ async def login(
 
 @router.post("/register/", status_code=201)
 async def register(
-    payload: RegisterPayloadScheme,
-    db: Session = Depends(get_db)
+        payload: RegisterPayloadScheme,
+        db: Session = Depends(get_db)
 ):
     payload = payload.dict()
     if get_user(payload['email'], db):
@@ -136,7 +140,8 @@ async def register(
             email=payload['email'],
             username=payload['username'],
             password=get_password_hash(payload['password']),
-            role=UserRoles.get_default_roles()
+            role=UserRoles.get_default_roles(),
+            avatar="../Avatar_1.svg"
         )
     )
     db.commit()
@@ -146,8 +151,8 @@ async def register(
 
 @router.post("/logout/")
 async def logout(
-    token: Annotated[str, Depends(oauth2_scheme)],
-    db: Session = Depends(get_db)
+        token: Annotated[str, Depends(oauth2_scheme)],
+        db: Session = Depends(get_db)
 ):
     db.add(
         Blacklist_Tokens(
@@ -164,8 +169,8 @@ async def logout(
 
 @router.post("/reset_password/")
 async def reset_password(
-    request: Request,
-    db: Session = Depends(get_db)
+        request: Request,
+        db: Session = Depends(get_db)
 ):
     req = request.query_params
     if "email" not in req.keys():
@@ -193,8 +198,8 @@ async def reset_password(
 
 @router.post("/change_password/")
 async def reset_password(
-    request: Request,
-    db: Session = Depends(get_db)
+        request: Request,
+        db: Session = Depends(get_db)
 ):
     req = request.query_params
     if "token" not in req.keys():
@@ -216,3 +221,26 @@ async def reset_password(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Token is expired"
     )
+
+
+@router.post("/update-avatar/")
+async def update_avatar(
+        payload: UpdateAvatarPayloadScheme,
+        token: Annotated[str, Depends(oauth2_scheme)],
+        db: Session = Depends(get_db)
+):
+    payload = payload.dict()
+    user_email = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM]).get("sub")
+    user = get_user(email=user_email, db=db)
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+
+    user.avatar = payload['avatar']
+    db.commit()
+    db.refresh(user)
+
+    return {"detail": "Avatar updated successfully"}
