@@ -4,57 +4,100 @@
 \newcommand{\memberpointlist}[6]{
     \textbf{#1:}
     \begin{itemize}[leftmargin=17.5mm]
-        \item #2;
-        \item #3;
-        \ifthenelse{{ \equal {#5} {} }}{\item #4.}{\item #4;}
-        \ifthenelse{{ \equal {#5} {} }}{}{\ifthenelse{{ \equal {#6} {} }}{\item #5.}{\item #5;}}
-        \ifthenelse{{ \equal {#6} {} }}{}{\item #6.}
+    \item #2;
+    \item #3;
+    \ifthenelse{{ \equal {#5} {} }}{\item #4.}{\item #4;}
+    \ifthenelse{{ \equal {#5} {} }}{}{\ifthenelse{{ \equal {#6} {} }}{\item #5.}{\item #5;}}
+    \ifthenelse{{ \equal {#6} {} }}{}{\item #6.}
     \end{itemize}
 }
 
-\newcommand{\gettableheaders}[1] {
-    \hline
-    \centering \textbf{#1} & \textbf{Jakub Żurawski} & \textbf{Daniel Klimowski} & \textbf{Oliwier Kossak} & \textbf{Wiktor Krieger} \\
+\newcommand{\gettitle}[1] {
+    \centering \textbf{#1}
 }
 
-\newcommand{\createtablerow}[5] {
+\newcommand{\gettableheaders} {
     \hline
-    \centering #1 & \ifthenelse{{ \equal {#2} {} }}{brak}{#2} & \ifthenelse{{ \equal {#3} {} }}{brak}{#3} & \ifthenelse{{ \equal {#4} {} }}{brak}{#4} & \ifthenelse{{ \equal {#5} {} }}{brak}{#5} \\
+    \centering \textbf{Jakub Żurawski} & \textbf{Daniel Klimowski} & \textbf{Oliwier Kossak} & \textbf{Wiktor Krieger} \\
+}
+
+\newcommand{\createtablerow}[4] {
+    \hline
+    \centering \ifthenelse{{ \equal {#1} {} }}{-}{#1} & \ifthenelse{{ \equal {#2} {} }}{-}{#2} & \ifthenelse{{ \equal {#3} {} }}{-}{#3} & \ifthenelse{{ \equal {#4} {} }}{-}{#4} \\
     \hline
 }
 
 \begin{chap5}
     \chapter{Organizacja pracy}
 
+
     \section{Harmonogram pracy}
 
-    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
-        \gettableheaders{Październik 2023}
-        \createtablerow{20-21}{Dyskusja nad wyborem projektu}{Dyskusja nad wyborem projektu}{Dyskusja nad wyborem projektu}{Dyskusja nad wyborem projektu}
-        \createtablerow{24}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{Spotkanie organizacyjne}{Spotkanie organizacyjne}
-        \createtablerow{25}{Uzupełnienie DZW}{Uzupełnienie DZW}{Uzupełnienie DZW}{Uzupełnienie DZW}
-        \createtablerow{26-28}{Nanoszenie poprawek do DZW oraz SWS}{}{Nanoszenie poprawek do DZW}{}
-        \createtablerow{31}{}{}{}{Wstępna konfiguracja projektu w jirze}
+    \gettitle{Październik 2023}
+    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
+        \gettableheaders
+        \createtablerow{Omawianie z członkami zaspołu schematu budowy aplikacji np. jakich narzędzi użyć, czy gdzie monitorować postęp}{Omawianie z członkami zaspołu schematu budowy aplikacji np. jakich narzędzi użyć, czy gdzie monitorować postęp}{Omawianie z członkami zaspołu schematu budowy aplikacji np. jakich narzędzi użyć, czy gdzie monitorować postęp}{Omawianie z członkami zaspołu schematu budowy aplikacji np. jakich narzędzi użyć, czy gdzie monitorować postęp}
     \end{longtable}
 
-    \section{Wybrana metodyka}
+    \gettitle{Listopad-Grudzień 2023}
+    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
+        \gettableheaders
+        \createtablerow{Spotakania organizacyjne}{Spotakania organizacyjne}{Spotakania organizacyjne}{Spotakania organizacyjne}
+        \createtablerow{Wypełnianie dokumentacji technicznej}{Wypełnianie dokumentacji technicznej i utworzenie diagram architektury}{Wypełnianie dokumentacji technicznej}{Wypełnianie dokumentacji technicznej}
+        \createtablerow{Tworzenie diagramów}{Analiza kosztów i doboru odpowiedniego dostawcy usług chmurowych}{Tworzenie mocków aplikacji mobilnej}{Tworzenie mocków aplikacji aplikacji}
+    \end{longtable}
 
-    \par Nasza wybrana metodyka nazywa się \textbf{modelem przyrostowo-ewolucyjnym}.
-    Jest to połączeniem dwóch modeli, przyrostowego i ewolucyjnego.
-    W naszym projekcie implementacja kodu odbywałą się w trakcie spintu, a każdy kolejny sprint był planowany po
-    zakończeniu aktualnie prowadzonego (przerwa między sprintami), razem z wypełnianiem dokumentacji.
-    Dzięki temu projekt był rozwijany i ewoulował cały czas, nie tylko w sprintach ale, i w trakcie przerw.
-    Zalety takiego rozwiązania to przedewszystkim łatwe podejmowanie działań nad rozwojem aplikacji,
-    wczesną i stopniową dystrybucja oprogramowania, stały wgląd nad wyglądem oraz funkcjonowaniem aplikacji,
-    czy poprawy naniesione w trakcie produckji w zwiazku ze zmianami wymagań.
+    \gettitle{Styczeń 2024}
+    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
+        \gettableheaders
+        \createtablerow{Spotakania organizacyjne}{Spotakania organizacyjne}{Spotakania organizacyjne}{Spotakania organizacyjne}
+        \createtablerow{Poprawa i aktualizacja dokumentacji technicznej}{Poprawa i aktualizacja dokumentacji technicznej}{Poprawa i aktualizacja dokumentacji technicznej}{Poprawa i aktualizacja dokumentacji technicznej}
+        \createtablerow{Poprawa diagramów}{Nauka Javascriptu i Reacta}{Tworzenie mocków aplikacji mobilnej}{Tworzenie mocków aplikacji aplikacji}
+        \createtablerow{Utworzenie wstępnego uruchamiającego się api, opakowanie api w konterze dockerowym}{Konfiguracja środowiska iOS}{Dodanie modeli dla api i utworzenie connectora do bazy danych}{Przegląd artykułów naukowych}
+    \end{longtable}
 
-    \section{Zespół i podział obowiązków}
+    \gettitle{Luty-Marzec 2024}
+    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
+        \gettableheaders
+        \createtablerow{Spotkania organizacyjne}{Spotkania organizacyjne}{Spotkania organizacyjne}{Spotkania organizacyjne}
+        \createtablerow{Implementacji komend terminalowych (cli) i poprawa dependecji RoleChecker'a}{Tworzenie ekranów aplikacji mobilnej (logowania, rejestracji i przypomnienia hasła)}{Naprawa środowiska FastAPI}{Konfiguracja środowiska}
+        \createtablerow{Poprawa bezpieczeństwa api, poprawa middleware'ów, dodanie loggera i endpointów autoryzujących}{Konspekt pracy dyplomowej}{Poprawa działania token autoryzującego i blacklist tokens}{Utworzenie okno logowania (webówka)}
+        \createtablerow{Stawianie i konfiguracja środowiska Android}{Utworzenie strony domowej dla aplikacji mobilnej}{Dodanie endpointów dla flash cards}{Projektowanie ikon}
+        \createtablerow{Naprawa aplikacji mobilnej, poprawa doboru wersji potrzebnych paczek}{Piszanie rodziału drugiego 'Omówienie problemu'}{Poprawki w modelach bazy danych, dodanie crudów do endpointu deck}{Poprawa mocków aplikacji webowej}
+        \createtablerow{Implementacja metody rquest z interfejsem, i dodanie paneli użytkownika}{Czyszczenie kodu, przerzucenie regex'ów do kalalogi validator}{Utworzenie kontenera dla aplikacji webowej}{Utworzenie tła aplikacji webowej}
+    \end{longtable}
 
-    \memberpointlist{Daniel Klimowski}{Budowanie aplikacji mobilnej}{Konfiguracja Azure}{Wypełnianie dokumentacji technicznej}{}{}
+    \gettitle{Kwiecień-Maj 2024}
+    \begin{longtable}{|P{2.3cm}|P{2.3cm}|P{2.3cm}|P{2.3cm}|}
+        \gettableheaders
+        \createtablerow{Pisanie rodziału 5}{Pisanie rodziałów 2, 3, 4}{Pisanie rodziałów 3, 4, 5, 10 pracy}{Tworzenie ikon}
+        \createtablerow{Utworzenie widoku dla aktualizacji danych użytkownika}{Utworzenie widoku my decks}{Utworzenie strony tworzenia fiszek, utworzenie dla nich endpointów i połączenia jej całości z api}{Utworzenie widoku profilu użytkownika dla aplikacji webowej}
+        \createtablerow{To be continue...}{To be continue...}{To be continue...}{To be continue...}
+    \end{longtable}
 
-    \memberpointlist{Oliwier Kossak}{Budowa aplikacji webowej}{Budowa aplikacji backendowej}{Tworzenie modeli sql}{Wypełnianie dokumentacji technicznej}{Mockupy aplikacji mobilnej}
 
-    \memberpointlist{Wiktor Krieger}{Budowa aplikacji webowej}{Mockupy aplikacji webowej i mobilnej}{Wypełnianie dokumentacji technicznej}{Tworzenie ikon dla aplikacji}{}
+    \begin{flushleft}
 
-    \memberpointlist{Jakub Żurawski}{Budowa aplikacji mobilnej}{Budowa aplikacji backendowej}{Wypełnianie dokumentacji technicznej}{Tworzenie diagramów}{Tworzenie modeli sql}
+        \section{Wybrana metodyka}
+
+        \par Nasza wybrana metodyka nazywa się \textbf{modelem przyrostowo-ewolucyjnym}.
+        Jest to połączeniem dwóch modeli, przyrostowego i ewolucyjnego.
+        W naszym projekcie implementacja kodu odbywałą się w trakcie spintu, a każdy kolejny sprint był planowany po
+        zakończeniu aktualnie prowadzonego (przerwa między sprintami), razem z wypełnianiem dokumentacji.
+        Dzięki temu projekt był rozwijany i ewoulował cały czas, nie tylko w sprintach ale, i w trakcie przerw.
+        Zalety takiego rozwiązania to przedewszystkim łatwe podejmowanie działań nad rozwojem aplikacji,
+        wczesną i stopniową dystrybucja oprogramowania, stały wgląd nad wyglądem oraz funkcjonowaniem aplikacji,
+        czy poprawy naniesione w trakcie produckji w zwiazku ze zmianami wymagań.
+
+
+        \section{Zespół i podział obowiązków}
+
+        \memberpointlist{Daniel Klimowski}{Budowanie aplikacji mobilnej}{Konfiguracja Azure}{Wypełnianie dokumentacji technicznej}{}{}
+
+        \memberpointlist{Oliwier Kossak}{Budowa aplikacji webowej}{Budowa aplikacji backendowej}{Tworzenie modeli sql}{Wypełnianie dokumentacji technicznej}{Mockupy aplikacji mobilnej}
+
+        \memberpointlist{Wiktor Krieger}{Budowa aplikacji webowej}{Mockupy aplikacji webowej i mobilnej}{Wypełnianie dokumentacji technicznej}{Tworzenie ikon dla aplikacji}{}
+
+        \memberpointlist{Jakub Żurawski}{Budowa aplikacji mobilnej}{Budowa aplikacji backendowej}{Wypełnianie dokumentacji technicznej}{Tworzenie diagramów}{Tworzenie modeli sql}
+    \end{flushleft}
 \end{chap5}
