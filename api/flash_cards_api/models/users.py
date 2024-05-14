@@ -10,7 +10,8 @@ from sqlalchemy import (
     Boolean,
     Integer,
     UUID,
-    func
+    func,
+    Text
 )
 
 from flash_cards_api.models.deck_of_flash_cards import Deck
@@ -34,7 +35,7 @@ class User(Base):
     created_at = Column(DateTime, default=datetime.now(), server_default=func.now())
     updated_at = Column(DateTime, default=datetime.now(), server_default=func.now())
     ranking = Column(Integer, nullable=False, default=0)
-    avatar = Column(Integer, nullable=False, default=0)
+    avatar = Column(Text, default="../Avatar_1.svg")
     active = Column(Boolean, default=True)
     role = Column(String(50), nullable=False)
     is_superuser = Column(Boolean, default=False)
