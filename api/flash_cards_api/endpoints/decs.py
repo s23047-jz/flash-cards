@@ -65,7 +65,10 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     if offset:
         q = q.offset(offset).limit(per_page)
 
-    q = q.all()
+    q = q.order_by(
+        Deck.downloads
+    ).all()
+
     return q
 
 
