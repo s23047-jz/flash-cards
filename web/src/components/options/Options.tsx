@@ -1,41 +1,52 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import '../../styles/options/options.scss'
+import FlashCardEditDeckNameCategory from "../flash_cards/FlashCardEditDeckNameCategory";
 
 // @ts-ignore
-const Options = ({ isOpen, isDeckPublic, onShareDeck, onResetDeck, onDeleteDeck, onCloseBox }) => {
-  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+const Options = ({isOpen, isDeckPublic, onShareDeck, onResetDeck, onDeleteDeck, onCloseBox}) => {
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+    const [isChangeDeck, setIsChangeDeck] = useState(false)
+    const deckDataString = localStorage.getItem("deckData");
+    const deckData = JSON.parse(deckDataString || "{}");
+    const deck_title = deckData.title;
+    const deck_category = deckData.deck_category;
+    const openDeleteDialog = () => {
+        setIsDeleteDialogOpen(true);
+    };
 
-  const openDeleteDialog = () => {
-    setIsDeleteDialogOpen(true);
-  };
+    const closeDeleteDialog = () => {
+        setIsDeleteDialogOpen(false);
+    };
+    const handleChangeDeck = () => {
+        setIsChangeDeck(!isChangeDeck)
+    }
 
-  const closeDeleteDialog = () => {
-    setIsDeleteDialogOpen(false);
-  };
-
-  return (
-    <div>
-      {isOpen && (
-        <div className="options-overlay">
-          <div className="options-popup">
-            <button className="options-button" onClick={onShareDeck}>
-              {isDeckPublic ? "Unshare deck" : "Share deck"}
-            </button>
-            <button className="options-button" onClick={onResetDeck}>Reset Deck</button>
-            <button className="options-button" onClick={openDeleteDialog}>Delete Deck</button>
-            <button className="options-button" onClick={onCloseBox}>Close Options</button>
-          </div>
-          {isDeleteDialogOpen && (
-            <div className="delete-dialog">
-              <p>Are you sure you want to delete this deck?</p>
-              <button className="delete-dialog-button accept" onClick={onDeleteDeck}>Accept</button>
-              <button className="delete-dialog-button reject" onClick={closeDeleteDialog}>Reject</button>
-            </div>
-          )}
+    return (
+        <div>
+            {isOpen && (
+                <div className="options-overlay">
+                    <div className="options-popup">
+                        <button className="options-button" onClick={onShareDeck}>
+                            {isDeckPublic ? "Unshare deck" : "Share deck"}
+                        </button>
+                        <button className="options-button" onClick={onResetDeck}>Reset Deck</button>
+                        <button className="options-button" onClick={openDeleteDialog}>Delete Deck</button>
+                        <button className="options-button" onClick={handleChangeDeck}>Change Deck Name</button>
+                        <button className="options-button" onClick={onCloseBox}>Close Options</button>
+                    </div>
+                    {isChangeDeck && (
+                        <FlashCardEditDeckNameCategory deckCategory={deck_category} deckName={deck_title} onClose={handleChangeDeck}/>)}
+                    {isDeleteDialogOpen && (
+                        <div className="delete-dialog">
+                            <p>Are you sure you want to delete this deck?</p>
+                            <button className="delete-dialog-button accept" onClick={onDeleteDeck}>Accept</button>
+                            <button className="delete-dialog-button reject" onClick={closeDeleteDialog}>Reject</button>
+                        </div>
+                    )}
+                </div>
+            )}
         </div>
-      )}
-    </div>
-  );
+    );
 };
 
 export default Options;

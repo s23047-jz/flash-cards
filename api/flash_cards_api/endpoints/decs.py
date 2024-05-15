@@ -34,6 +34,10 @@ class DeckUpdate(DeckCreate):
     is_deck_public: Optional[bool] = None
     downloads: Optional[int] = None
 
+class DeckUpdateCategoryTitle(BaseModel):
+    title: Optional[str] = None
+    deck_category: Optional[str] = None
+
 class DeckPublic(BaseModel):
     is_deck_public: Optional[bool] = None
 @router.get("/{deck_id}", status_code=status.HTTP_200_OK)
@@ -212,6 +216,24 @@ async def update_deck(
         deck_model.is_deck_public = deck_data.is_deck_public
     if deck_data.downloads is not None:
         deck_model.downloads = deck_data.downloads
+
+    db.commit()
+
+@router.put("/update_deck/category_and_title/{deck_id}")
+async def update_deck_title_category(
+        deck_id: uuid.UUID,
+        deck_data: DeckUpdateCategoryTitle,
+        db: Session = Depends(get_db)
+):
+    """Update deck category and name"""
+    deck_model = db.query(Deck).filter(Deck.id == deck_id).first()
+    if deck_model is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    if deck_data.title is not None:
+        deck_model.title = deck_data.title
+    if deck_data.deck_category is not None:
+        deck_model.deck_category = deck_data.deck_category
 
     db.commit()
 

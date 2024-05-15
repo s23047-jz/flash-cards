@@ -215,6 +215,23 @@ class Deck {
 
     public async update_single_flash_card(flashcard_id: string, body: object) {
         const url = `${BASE_API}/flash_card/update_flash_card_text/${flashcard_id}`;
+
+        try {
+            // @ts-ignore
+            return await request({
+                url: url,
+                method: 'PUT',
+                body: body
+            });
+
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+        }
+    }
+
+     public async update_deck_title_category(deck_id: string, body: object) {
+        const url = `${BASE_API}/decks/update_deck/category_and_title/${deck_id}`;
         console.log(body)
         try {
             // @ts-ignore

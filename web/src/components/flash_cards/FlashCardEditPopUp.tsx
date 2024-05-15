@@ -51,11 +51,13 @@ const FlashCardEditPopUp = ({frontText, backText, onSaveChanges, onDeleteCard, o
                 value={editedFrontText}
                 onChange={handleFrontTextChange}
                 placeholder="Front Text"
+                maxLength={255}
             />
             <textarea
                 value={editedBackText}
                 onChange={handleBackTextChange}
                 placeholder="Back Text"
+                maxLength={511}
             />
             <div className="button-container">
                 <button onClick={onClose}>Cancel</button>
