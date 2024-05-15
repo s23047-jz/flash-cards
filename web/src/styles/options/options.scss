@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Jasno niebieskie tło */
+  background-color: rgba(0, 0, 0, 0.5);
   z-index: 9999;
   display: flex;
   justify-content: center;
@@ -13,32 +13,81 @@
 
 .options-popup {
   background-color: white;
-  border: 2px solid black; /* Czarna ramka */
+  border: 2px solid black;
   padding: 20px;
   border-radius: 8px;
-  width: 80%; /* 80% szerokości */
-  max-width: 400px; /* Maksymalna szerokość */
+  width: 80%;
+  max-width: 400px;
+  z-index: 10000;
+  position: relative;
 }
 
 .options-button {
-  background-color: #1E90FF; /* Ciemnoniebieski przycisk */
-  border: 2px solid black; /* Czarna ramka przycisku */
+  background-color: #1E90FF;
+  border: 2px solid black;
   color: white;
   padding: 10px 20px;
   text-align: center;
   text-decoration: none;
   display: block;
   font-size: 16px;
-  margin-bottom: 10px; /* Odstęp między przyciskami */
+  margin-bottom: 10px;
   cursor: pointer;
   border-radius: 8px;
-  width: 100%; /* Pełna szerokość */
+  width: 100%;
 }
 
-.options-button:last-child {
-  margin-bottom: 0; /* Usunięcie odstępu dla ostatniego przycisku */
+.options-button.accept-button {
+  background-color: #4CAF50;
 }
+
 
 .options-button:hover {
-  background-color: #4169E1; /* Ciemniejszy odcień niebieskiego po najechaniu myszką */
+  background-color: #4169E1;
+}
+
+.delete-dialog {
+  background-color: white;
+  border: 2px solid black;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10001;
+}
+
+
+.delete-dialog-button{
+  border: 2px solid black;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  width: 100%;
+}
+
+.delete-dialog-button.reject {
+  background-color: #FF6347;
+}
+
+
+.delete-dialog-button.accept {
+  background-color: #0fdb42;
+}
+
+.delete-dialog-button.accept:hover {
+  background-color: #07b533;
+}
+
+.delete-dialog-button.reject:hover {
+  background-color: #FF4500;
 }

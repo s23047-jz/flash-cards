@@ -13,6 +13,7 @@ import VoiceControlMode from "./views/VoiceControlMode";
 import NotMemorizedFlashCards from "./views/NotMemorizedFlashCards";
 import MemorizedFlashCards from "./views/MemorizedFlashCards";
 import LearningMode from "./views/LearningMode";
+import PublicDecks from "./views/PublicDecks";
 
 function App() {
     return (
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/home" element={<HomePage/>}/>
                         <Route path="/create_deck" element={<CreateFlashCardsPage/>}/>
                         <Route path="/my_decks" element={<MyDecks/>}/>
+                        <Route path="/public_decks" element={<PublicDecks/>}/>
                         <Route path="/profile" element={<Profile/>}/>
                         <Route path="/my_deck_learning_modes" element={<DeckAllFlashcards/>}/>
                         <Route path="/voice_control" element={<VoiceControlMode/>}/>
