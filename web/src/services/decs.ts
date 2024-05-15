@@ -163,19 +163,7 @@ class Deck {
     }
 
 
-    public async deleteDeck(deck_id: string) {
-        try {
-            const url = `${BASE_API}/decks/delete_deck/${deck_id}`;
-            return await request({
-                url,
-                method: 'DELETE'
-            });
-        } catch (error) {
-            // @ts-ignore
-            console.error(error.message);
-            throw error;
-        }
-    }
+
 
      public async update_deck_is_public(body: object, deck_id: string) {
         const url = `${BASE_API}/decks/update_deck/is_public/${deck_id}`;
@@ -222,6 +210,51 @@ class Deck {
         } catch (error) {
             // @ts-ignore
             console.error(error.message);
+        }
+    }
+
+    public async update_single_flash_card(flashcard_id: string, body: object) {
+        const url = `${BASE_API}/flash_card/update_flash_card_text/${flashcard_id}`;
+        console.log(body)
+        try {
+            // @ts-ignore
+            return await request({
+                url: url,
+                method: 'PUT',
+                body: body
+            });
+
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+        }
+    }
+
+     public async deleteDeck(deck_id: string) {
+        try {
+            const url = `${BASE_API}/decks/delete_deck/${deck_id}`;
+            return await request({
+                url,
+                method: 'DELETE'
+            });
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
+        }
+    }
+
+    public async deleteFlashCard(flashcard_id: string) {
+        try {
+            const url = `${BASE_API}/flash_card/delete_flash_card/${flashcard_id}`;
+            return await request({
+                url,
+                method: 'DELETE'
+            });
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
         }
     }
 

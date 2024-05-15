@@ -12,9 +12,10 @@ import ButtonsContainerLearningMode from "../all_flashcards_page_buttons/Buttons
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/flash_cards/flash_cards_container.scss"
 // @ts-ignore
-import pencil from  "../../assets/Pencil.png"
+import pencil from "../../assets/Pencil.png"
 import {useNavigate} from 'react-router-dom';
 import Options from '../options/Options'
+import FlashCardEditPopUp from "./FlashCardEditPopUp";
 
 const FlashCardsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
@@ -27,6 +28,10 @@ const FlashCardsContainer = () => {
     const [deckTitle, setDeckTitle] = useState(false);
     const [isOpenOptions, setIsOpenOptions] = useState(false);
     const [isDeckPublic, setIsDeckPublic] = useState(false);
+    const [popupEditFrontText, setPopupEditFrontText] = useState("");
+    const [popupEditBackText, setPopupEditBackText] = useState("");
+    const [popupEditFlashCardId, setpopupEditFlashCardId] = useState("");
+    const [isEditOpen, setIsEditOpen] = useState(false);
     const numberOfFlashCards = flashcards.length
     const navigate = useNavigate();
 
@@ -169,6 +174,20 @@ const FlashCardsContainer = () => {
             setIsOpenOptions(true)
         }
     }
+    const handleOpenPopup = (frontText: string, backText: string, flashcardId: string) => {
+        setPopupEditFrontText(frontText);
+        setPopupEditBackText(backText);
+        setpopupEditFlashCardId(flashcardId)
+        setIsEditOpen(true);
+    };
+
+    const handleSaveChanges = () => {
+        setIsEditOpen(false);
+    };
+
+    const handleDeleteCard = () => {
+        setIsEditOpen(false);
+    };
 
     const handleDeleteDeck = () => {
         try {
@@ -214,7 +233,7 @@ const FlashCardsContainer = () => {
                 is_deck_public: false,
             }
             setIsDeckPublic(false)
-        }else{
+        } else {
             deck_body = {
                 is_deck_public: true,
             }
@@ -227,6 +246,7 @@ const FlashCardsContainer = () => {
 
     }
 
+
     return (
         <div className={"all-flashcards-container"}>
             {isLoading ? (
@@ -234,6 +254,17 @@ const FlashCardsContainer = () => {
             ) : (
 
                 <>
+                    {isEditOpen && (
+                        <FlashCardEditPopUp
+                            frontText={popupEditFrontText}
+                            backText={popupEditBackText}
+                            onSaveChanges={handleSaveChanges}
+                            onDeleteCard={handleDeleteCard}
+                            onClose={() => setIsEditOpen(false)}
+                            flashcardId={popupEditFlashCardId}
+                            numberOfFlashcards={numberOfFlashCards}
+                        />
+                    )}
                     <Options isDeckPublic={isDeckPublic} onShareDeck={handleShareDeck} onCloseBox={handleOpenOptions}
                              isOpen={isOpenOptions} onResetDeck={handleResetDeck}
                              onDeleteDeck={handleDeleteDeck}></Options>
@@ -260,9 +291,10 @@ const FlashCardsContainer = () => {
                     />
                     <p className={"all-flashcards-text"}>All Flashcards</p>
                     {flashcards.map((flashcard, index) => (
+
                         <FlashCardField
                             icon_pencil={pencil}
-                            onClickPencil={handleNextClick}
+                            onClickPencil={() => handleOpenPopup(flashcard['title'], flashcard['card text'], flashcard['id'])}
                             key={index}
                             front_text={flashcard['title']}
                             back_text={flashcard['card text']}
