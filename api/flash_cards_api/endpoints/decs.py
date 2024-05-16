@@ -36,7 +36,14 @@ class DeckUpdate(DeckCreate):
     downloads: Optional[int] = None
 
 
-@router.get("/public_decks/", status_code=200)
+class PublicDecksList(BaseModel):
+    title: str
+    deck_category: str
+    downloads: int
+    username: str
+
+
+@router.get("/public_decks/", status_code=200, response_model=List[PublicDecksList])
 async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     query_params = request.query_params
     print(query_params)
@@ -60,14 +67,14 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
         User.id == Deck.user_id
     ).filter(
         Deck.is_deck_public
+    ).order_by(
+        Deck.downloads
     )
 
     if offset:
         q = q.offset(offset).limit(per_page)
 
-    q = q.order_by(
-        Deck.downloads
-    ).all()
+    q = q.all()
 
     return q
 

@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Text, TextInput, View, ScrollView } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { Row, Button, Col } from "../../components";
+
+import { DecksService } from "../../services/decks";
 
 const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
 
@@ -13,12 +16,15 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
     }
 
     const [search, setSearch] = useState("");
-    const [deckList, setDeckList] = useState([]);
     const [selectedView, setSelectedView] = useState(PAGES.DECKS);
     const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const fetchDecks = async() => {
-        console.log('decks')
+        console.log("FETCHING DECK LIST")
+        const deck_list = await DecksService.getPublicDecks({"test": "test"}, navigation);
+        console.log("deck_list", deck_list)
+        setData(deck_list)
     }
 
     const fetchUsers = async() => {
@@ -27,13 +33,23 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
 
     const changeView = async(view: string) => {
         setSelectedView(view);
-        console.log('swiching page', view)
         if (selectedView === PAGES.USERS) {
             await fetchUsers();
         } else {
+            console.log("FETCHING DECKS")
             await fetchDecks();
         }
     }
+
+    useFocusEffect(
+        useCallback(() => {
+            const view = PAGES.DECKS; // Replace with the logic to get the desired view
+            const fetchData = async () => {
+                await changeView(view);
+            };
+            fetchData();
+        }, [])
+    );
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
@@ -78,7 +94,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                     </Button>
                 </Row>
                 <Row className="w-full">
-                    { deckList && deckList.length ? (
+                    { data && data.length ? (
                         <ScrollView className='flex'>
 
                         </ScrollView>

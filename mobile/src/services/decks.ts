@@ -10,9 +10,11 @@ class Decks {
     constructor() {}
 
     public async getPublicDecks(query: object, navigation: NavigationProp<any>) {
+        console.log('DECKS_ENDPOINTS', DECKS_ENDPOINTS.public_decks)
         const { data } = await request({
             url: DECKS_ENDPOINTS.public_decks,
-            query
+            query,
+            navigation
         })
         return data;
     }
