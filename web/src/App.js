@@ -14,6 +14,7 @@ import NotMemorizedFlashCards from "./views/NotMemorizedFlashCards";
 import MemorizedFlashCards from "./views/MemorizedFlashCards";
 import LearningMode from "./views/LearningMode";
 import PublicDecks from "./views/PublicDecks";
+import UsersRanking from "./views/UsersRanking";
 
 function App() {
     return (
@@ -32,6 +33,7 @@ function App() {
                         <Route path="/not_memorized_flash_cards" element={<NotMemorizedFlashCards/>}/>
                         <Route path="/memorized_flash_cards" element={<MemorizedFlashCards/>}/>
                         <Route path="/learning_mode" element={<LearningMode/>}/>
+                        <Route path="/users_ranking" element={<UsersRanking/>}/>
                     </Route>
                     <Route path="/signin" element={<SignIn/>}/>
                     <Route path="/registration" element={<Registration/>}/>
