@@ -35,6 +35,10 @@ class FlashCardUpdate(BaseModel):
     card_text: Optional[str] = None
     is_memorized: Optional[bool] = False
 
+class FlashCardUpdateText(BaseModel):
+    card_title: Optional[str] = None
+    card_text: Optional[str] = None
+
 
 @router.get("/{flash_card_id}", status_code=status.HTTP_200_OK)
 async def read_flash_card_by_id(
@@ -62,12 +66,36 @@ async def create_flash_card(
     return flash_card_model
 
 
+@router.put("/update_flash_card_text/{flash_card_id}")
+async def update_flash_card_text(
+    flash_card_id: uuid.UUID,
+    flash_card_data: FlashCardUpdateText,
+    db: Session = Depends(get_db)
+):
+    """
+    Update a single flash card by its ID.
+    """
+    flash_card_model = db.query(FlashCard).filter(FlashCard.id == flash_card_id).first()
+
+    if flash_card_model is None:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Flash card with ID {flash_card_id} not found"
+        )
+
+    if flash_card_data.card_title is not None:
+        flash_card_model.card_title = flash_card_data.card_title
+    if flash_card_data.card_text is not None:
+        flash_card_model.card_text = flash_card_data.card_text
+
+    db.commit()
+
 @router.put("/update_flash_cards", status_code=status.HTTP_204_NO_CONTENT)
 async def update_flash_cards(
     flash_cards_data: List[FlashCardUpdate],
     db: Session = Depends(get_db)
 ):
-    "Update flash cards"
+    "Update multiple flashcards"
     for flash_card in flash_cards_data:
         flash_card_model = db.query(FlashCard).filter(FlashCard.id == flash_card.id).first()
         if flash_card_model is None:
@@ -119,7 +147,7 @@ async def update_flash_cards(
 #     db.commit()
 
 
-@router.delete("/delete_flash_card/{flash_card_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete("/delete_flash_card/{flash_card_id}")
 async def delete_flash_card(
         flash_card_id: uuid.UUID,
         db: Session = Depends(get_db)

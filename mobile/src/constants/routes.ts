@@ -8,12 +8,17 @@ export default {
     STUDY: "Study",
     USER: "User",
 
+    // local decks / learn decks
     HOME_DECKS: "HomeDecks",
-    MYDECKS: "MyDecks",
-    CREATEDECK: "CreateDeck",
+    MY_PUBLIC_DECKS: "MyPublicDecks",
+    MY_PRIVATE_DECKS: "MyPrivateDecks",
+    CREATE_DECK: "CreateDeck",
+
+    //  public decks tab
     PUBLIC_DECKS: "PublicDecks",
 
     // user profile
-    USER_DETAILS: 'User Details',
-    USER_UPDATE: 'User Update'
+    USER_DETAILS: 'UserDetails',
+    USER_UPDATE: 'UserUpdate',
+    USER_DELETE: 'UserDelete'
 }

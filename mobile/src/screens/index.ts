@@ -1,10 +1,17 @@
+//AUTH
 export { default as LoginScreen } from "./Auth/LoginScreen";
 export { default as RegisterScreen } from "./Auth/SignUpScreen";
 export { default as ForgotPassScreen } from "./Auth/ForgotPassScreen";
 
-export { default as HomeScreen } from "./Home/HomeScreen";
+//HOME DECKS
+export { default as HomeScreen } from "./ChooseDecksType/HomeScreen";
+export { default as MyPrivateDecks } from "./ChooseDecksType/MyPrivateDecks";
+export { default as MyPublicDecks } from "./ChooseDecksType/MyPublicDecks";
+export { default as CreateDeck } from "./ChooseDecksType/CreateDeck";
 
+//USER PANEL
 export { default as UserPanelScreen } from "./Users/UserPanelScreen";
 export { default as UserUpdate } from "./Users/UserUpdate";
+export { default as UserDelete } from "./Users/UserDelete";
 
 export { default as DeckList } from "./Decks/DeckList";

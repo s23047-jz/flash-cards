@@ -4,7 +4,7 @@ from flash_cards_api.models.flash_card import FlashCard
 from typing import Optional, List
 
 from sqlalchemy.orm import Session
-from sqlalchemy import or_
+from sqlalchemy import or_, and_
 
 from flash_cards_api.database import get_db
 
@@ -36,11 +36,20 @@ class DeckUpdate(DeckCreate):
     downloads: Optional[int] = None
 
 
+class DeckUpdateCategoryTitle(BaseModel):
+    title: Optional[str] = None
+    deck_category: Optional[str] = None
+
+
 class PublicDecksList(BaseModel):
     title: str
     deck_category: str
     downloads: int
     username: str
+
+
+class DeckPublic(BaseModel):
+    is_deck_public: Optional[bool] = None
 
 
 @router.get("/public_decks/", status_code=200, response_model=List[PublicDecksList])
@@ -95,19 +104,48 @@ async def read_deck_by_id(
 @router.get("/{user_id}/decks/", status_code=status.HTTP_200_OK)
 async def read_decks_by_user_id(
         user_id: uuid.UUID,
-        db: Session = Depends(get_db)
+        db: Session = Depends(get_db),
 ):
     """Return decks by user id"""
-    user = db.query(User).filter(User.id == user_id).first()
+    user = db.query(User).filter(and_(User.id == user_id)).first()
 
     if user is None:
         raise HTTPException(status_code=404, detail="User not found")
 
     decks = user.decks
     decks_json = [
-        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category,
-         "number_of_cards": deck.get_number_of_flash_cards()}
-        for deck in decks
+        {
+            "id": deck.id,
+            "title": deck.title,
+            "deck_category": deck.deck_category,
+            "number_of_cards": deck.get_number_of_flash_cards()
+        }
+        for deck in decks if deck.is_created_by_user
+    ]
+
+    return decks_json
+
+
+@router.get("/{user_id}/imported/decks/", status_code=status.HTTP_200_OK)
+async def read_imported_decks_by_user_id(
+        user_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Return imported decks by user id"""
+    user = db.query(User).filter(and_(User.id == user_id)).first()
+
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    decks = user.decks
+    decks_json = [
+        {
+            "id": deck.id,
+            "title": deck.title,
+            "deck_category": deck.deck_category,
+            "number_of_cards": deck.get_number_of_flash_cards()
+        }
+        for deck in decks if not deck.is_created_by_user
     ]
 
     return decks_json
@@ -178,6 +216,7 @@ async def read_memorized_flash_cards_from_deck(
         "card text": card.card_text
     } for card in memorized_flash_cards]
 
+
 @router.get("/{deck_id}/not_memorized_flash_cards", status_code=status.HTTP_200_OK)
 async def read_not_memorized_flash_cards_from_deck(
         deck_id: uuid.UUID,
@@ -196,6 +235,7 @@ async def read_not_memorized_flash_cards_from_deck(
         "card text": card.card_text
     } for card in memorized_flash_cards]
 
+
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
 async def create_deck(
         deck: DeckCreate,
@@ -209,7 +249,7 @@ async def create_deck(
     return deck_model
 
 
-@router.put("/update_deck/{deck_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.put("/update_deck/{deck_id}")
 async def update_deck(
         deck_id: uuid.UUID,
         deck_data: DeckUpdate,
@@ -229,6 +269,42 @@ async def update_deck(
         deck_model.downloads = deck_data.downloads
 
     db.commit()
+
+
+@router.put("/update_deck/category_and_title/{deck_id}")
+async def update_deck_title_category(
+        deck_id: uuid.UUID,
+        deck_data: DeckUpdateCategoryTitle,
+        db: Session = Depends(get_db)
+):
+    """Update deck category and name"""
+    deck_model = db.query(Deck).filter(Deck.id == deck_id).first()
+    if deck_model is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    if deck_data.title is not None:
+        deck_model.title = deck_data.title
+    if deck_data.deck_category is not None:
+        deck_model.deck_category = deck_data.deck_category
+
+    db.commit()
+
+
+@router.put("/update_deck/is_public/{deck_id}")
+async def update_deck_is_public(
+        deck_id: uuid.UUID,
+        deck_data: DeckPublic,
+        db: Session = Depends(get_db)
+):
+    deck_model = db.query(Deck).filter(Deck.id == deck_id).first()
+    if deck_model is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    if deck_data.is_deck_public is not None:
+        deck_model.is_deck_public = deck_data.is_deck_public
+
+    db.commit()
+
 
 @router.put("/update_deck/flashcards_is_memorized/{deck_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_deck_is_memorized_false(
