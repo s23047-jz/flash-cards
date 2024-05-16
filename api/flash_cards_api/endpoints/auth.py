@@ -10,8 +10,7 @@ from fastapi import (
     Depends,
     HTTPException,
     status,
-    Request,
-    Response
+    Request
 )
 from sqlalchemy.orm import Session
 

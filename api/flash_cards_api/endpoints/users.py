@@ -130,11 +130,20 @@ async def delete_me(
     db: Session = Depends(get_db)
 ):
     payload = payload.dict()
-    if (user.verify_password(payload['current_password'])
-        and user.email == payload['email']):
-        db.delete(User).where(User.id == user.id)
+    if user.verify_password(payload['password']) \
+            and user.email == payload['email']:
+        try:
+            user_to_delete = db.query(User).filter(User.id == user.id).first()
+            db.delete(user_to_delete)
+            db.commit()
+        except Exception as e:
+            print(e)
+            raise HTTPException(status_code=500, detail=str(e))
 
-    raise HTTPException(status_code=404, detail="Bad request")
+        raise HTTPException(status_code=401)
+
+    else:
+        raise HTTPException(status_code=404, detail="Bad request")
 
 
 @router.get(

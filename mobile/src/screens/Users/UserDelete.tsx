@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import {ScrollView, Text, TextInput, TouchableOpacity, View} from "react-native";
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { Button, Col, Row } from "../../components";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { UpdateUserInterface } from "../../interfaces/user";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { UsersService } from "../../services/users";
 
 const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
     const [userData, setUserData] = useState<UpdateUserInterface>({});
@@ -18,7 +19,16 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
     }
 
     const handleDelete = async() => {
-        console.log('ss')
+        let allowToDelete = true;
+        for (const field of ['email', 'password']) {
+            if (!userData[field]) {
+                allowToDelete = false;
+                alert(`The ${field} is required`);
+                break;
+            }
+        }
+        if (!allowToDelete) return;
+        await UsersService.deleteMe(userData, navigation);
     }
 
     return (
@@ -80,6 +90,7 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
                         <Button
                         className={'p-3 w-52 text-center mr-auto ml-auto'}
                         onPress={handleDelete}
+                        disabled={!userData['email'] || !userData['password']}
                         >
                             <Text className={'text-lg ml-auto mr-auto font-bold'}>
                                 Confirm

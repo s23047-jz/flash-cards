@@ -25,6 +25,15 @@ class Users {
             navigation
         })
     }
+
+    public async deleteMe(body: object, navigation: NavigationProp<any>) {
+        await request({
+            url: USERS_ENDPOINTS.me,
+            method: 'DELETE',
+            body,
+            navigation
+        })
+    }
 };
 
 export const UsersService = new Users();
