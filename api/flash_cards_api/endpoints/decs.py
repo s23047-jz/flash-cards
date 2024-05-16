@@ -83,9 +83,7 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     if offset:
         q = q.offset(offset).limit(per_page)
 
-    q = q.all()
-
-    return q
+    return q.all()
 
 
 @router.get("/{deck_id}", status_code=status.HTTP_200_OK)

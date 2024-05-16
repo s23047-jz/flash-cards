@@ -21,10 +21,9 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
     const [loading, setLoading] = useState(true);
 
     const fetchDecks = async() => {
-        console.log("FETCHING DECK LIST")
         const deck_list = await DecksService.getPublicDecks({"test": "test"}, navigation);
-        console.log("deck_list", deck_list)
         setData(deck_list)
+        console.log('decks')
     }
 
     const fetchUsers = async() => {
@@ -33,10 +32,9 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
 
     const changeView = async(view: string) => {
         setSelectedView(view);
-        if (selectedView === PAGES.USERS) {
+        if (view === PAGES.USERS) {
             await fetchUsers();
         } else {
-            console.log("FETCHING DECKS")
             await fetchDecks();
         }
     }
@@ -65,7 +63,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                     <Col className='w-full'>
                         <TextInput
                             className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
-                            placeholder="Search"
+                            placeholder="Search..."
                             value={search}
                             onChangeText={setSearch}
                             autoCapitalize="none"
@@ -102,7 +100,10 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                         <Row className='w-full mt-10'>
                             <Col className='w-full'>
                                 <Text className='font-bold text-xl text-center'>
-                                    There are no public decks yet.
+                                    {selectedView == PAGES.DECKS ?
+                                        "There are no public decks yet." :
+                                        "There are no users in the ranking."
+                                    }
                                 </Text>
                             </Col>
                         </Row>
