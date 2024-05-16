@@ -48,6 +48,11 @@ class SelfUserUpdate(UserUpdateModel):
     re_password: Optional[str] = ''
 
 
+class SelfDelete(BaseModel):
+    email: str
+    password: str
+
+
 @router.get(
     "/",
     response_model=List[UserDetailsResponse],
@@ -116,6 +121,20 @@ async def update_me(
         return user_details
 
     raise HTTPException(status_code=404, detail="User not found")
+
+
+@router.delete("/me/", status_code=401)
+async def delete_me(
+    payload: SelfDelete,
+    user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    payload = payload.dict()
+    if (user.verify_password(payload['current_password'])
+        and user.email == payload['email']):
+        db.delete(User).where(User.id == user.id)
+
+    raise HTTPException(status_code=404, detail="Bad request")
 
 
 @router.get(
