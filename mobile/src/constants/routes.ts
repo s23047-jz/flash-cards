@@ -18,6 +18,7 @@ export default {
     PUBLIC_DECKS: "PublicDecks",
 
     // user profile
-    USER_DETAILS: 'User Details',
-    USER_UPDATE: 'User Update'
+    USER_DETAILS: 'UserDetails',
+    USER_UPDATE: 'UserUpdate',
+    USER_DELETE: 'UserDelete'
 }
