@@ -3,7 +3,7 @@ import React, { useEffect, useState} from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { ROUTES } from "../constants";
-import { UserPanelScreen, UserUpdate } from "../screens";
+import { UserPanelScreen, UserUpdate, UserDelete } from "../screens";
 import { ActiveUser } from "../services/user";
 import { Loader } from "../components";
 
@@ -43,6 +43,7 @@ export default function UserPanelNavigator() {
         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={ROUTES.USER_DETAILS}>
             <Stack.Screen name={ROUTES.USER_DETAILS} component={UserPanelScreen} initialParams={{userData, getUserData}}/>
             <Stack.Screen name={ROUTES.USER_UPDATE} component={UserUpdate} initialParams={{getUserData}} />
+            <Stack.Screen name={ROUTES.USER_DELETE} component={UserDelete} initialParams={{userData}} />
         </Stack.Navigator>
     )
 }
