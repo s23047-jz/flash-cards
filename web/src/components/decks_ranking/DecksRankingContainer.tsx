@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import ButtonUserRanking from "./ButtonUserRanking";
-import '../../styles/users_ranking/users_ranking_container.scss';
+import ButtonDeckRanking from "./ButtonDeckRanking";
+import '../../styles/decks_ranking/decks_ranking_container.scss';
 import {DeckService} from '../../services/decs';
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
@@ -14,10 +14,9 @@ import {useNavigate} from "react-router-dom";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 // @ts-ignore
-import avatar from "../../assets/Avatar_1.svg"
+import profile from "../../assets/Profile.png"
 
-
-const UsersRankingContainer = () => {
+const DecksRankingContainer = () => {
     const navigate = useNavigate();
     const fields_color = "#7c3bd1";
     const decks_button_color = "#d91ed6";
@@ -65,23 +64,23 @@ const UsersRankingContainer = () => {
         navigate("/create_deck")
     }
 
-    const navigateDeckRanking = () =>{
-        navigate("/decks_ranking")
+    const navigateUsersRanking = () =>{
+        navigate("/users_ranking")
     }
 
 
 // @ts-ignore
  return (
-        <div className="website-container-users-ranking">
-            <p className="web-title">Users Ranking</p>
+        <div className="website-container-decks-ranking">
+            <p className="web-title">Decks Ranking</p>
             {isLoadingFetchDecks ? (
                 <LoadingSpinner />
             ) : (
                 <>
                     {decks.length === 0 ? (
-                        <div className={'no-users-container'}>
-                            <p className={"no-users-cards-text"}>No Decks</p>
-                            <div className={'button-create-users'}>
+                        <div className={'no-decks-container'}>
+                            <p className={"no-decks-cards-text"}>No Decks</p>
+                            <div className={'button-create-decks'}>
                                 <ButtonNotMemorizedFlashCards onClick={navigateHomePage} text={'Create Deck'} color={'#e05a12'} border={'3px solid black'}/>
                             </div>
                         </div>
@@ -114,20 +113,19 @@ const UsersRankingContainer = () => {
                                 />
                                  <ButtonCreateFlashCardPage
                                     color={decks_button_color}
-                                    text={'Decks Ranking'}
+                                    text={'Users Ranking'}
                                     border={'2px solid black'}
-                                    image={cards}
-                                    onClick={navigateDeckRanking}
+                                    image={profile}
+                                    onClick={navigateUsersRanking}
                                 />
                             </div>
-                            <div className="users-container">
+                            <div className="decks-container">
                                 {decks.map((deck, index) => (
-                                    <div className="users-button" key={index}>
-                                        <ButtonUserRanking
+                                    <div className="decks-button" key={index}>
+                                        <ButtonDeckRanking
                                             rankingPosition={"2137"}
                                             frontTextUpper={`${deck['title']}`}
                                             frontTextLower={`${deck['deck_category']}`}
-                                            image={avatar}
                                             backText={`Number of flashcards: ${deck['number_of_cards']}`}
                                             onClick={() => navigateToDeckFlashcards(deck['id'])}
                                         />
@@ -142,4 +140,4 @@ const UsersRankingContainer = () => {
     );
 };
 
-export default UsersRankingContainer;
+export default DecksRankingContainer;

@@ -6,7 +6,7 @@ import '../styles/users_ranking/users_ranking.scss'
 import {ActiveUser} from "../services/user";
 import UsersRankingContainer from "../components/users_ranking/UsersRankingContainer";
 
-const MyDecks = () => {
+const UsersRanking = () => {
 
     localStorage.removeItem("deckData");
     ActiveUser.getUserData();
@@ -24,4 +24,4 @@ const MyDecks = () => {
     );
 };
 
-export default MyDecks;
+export default UsersRanking;
