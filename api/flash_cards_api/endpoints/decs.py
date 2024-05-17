@@ -1,3 +1,5 @@
+import uuid
+
 from fastapi import Query
 from flash_cards_api.models.flash_card import FlashCard
 
@@ -42,7 +44,7 @@ class DeckUpdateCategoryTitle(BaseModel):
 
 
 class PublicDecksList(BaseModel):
-    id: uuid
+    id: uuid.UUID
     title: str
     deck_category: str
     downloads: int
