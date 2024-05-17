@@ -40,7 +40,7 @@ class Deck {
         }
     }
 
-     public async get_all_imported_decks(): Promise<any> {
+    public async get_all_imported_decks(): Promise<any> {
         const user_id = ActiveUser.getId();
         const url = `${BASE_API}/decks/${user_id}/imported/decks/`;
 
@@ -67,8 +67,6 @@ class Deck {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
             const data = await response.json();
-            console.log(data)
-            console.log(url)
             return data;
         } catch (error) {
             console.error('Error:', error);
@@ -130,6 +128,24 @@ class Deck {
         }
     }
 
+    public async get_decks_ranking() {
+        const url = `${BASE_API}/decks/decks_ranking/`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data: DeckData = await response.json();
+            return data;
+
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
+
     public async get_not_memorized_flash_cards_from_deck(deck_id: string | undefined) {
         const url = `${BASE_API}/decks/${deck_id}/not_memorized_flash_cards`;
         try {
@@ -154,6 +170,23 @@ class Deck {
         });
     }
 
+    public async decks_ranking_filtered_decks(body: object) {
+        const url = `${BASE_API}/decks/decks_ranking/filtered_decks/`;
+
+        try {
+            const response = await request({
+                url: url,
+                method: 'POST', body
+            });
+            // @ts-ignore
+            return response;
+
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
     public async create_flash_card(body: object) {
         // @ts-ignore
         return await request({
@@ -163,9 +196,7 @@ class Deck {
     }
 
 
-
-
-     public async update_deck_is_public(body: object, deck_id: string) {
+    public async update_deck_is_public(body: object, deck_id: string) {
         const url = `${BASE_API}/decks/update_deck/is_public/${deck_id}`;
         console.log("ts:", body)
         try {
@@ -198,7 +229,7 @@ class Deck {
         }
     }
 
-      public async update_multiple_flash_card_is_memorized_false(deck_id: string) {
+    public async update_multiple_flash_card_is_memorized_false(deck_id: string) {
         const url = `${BASE_API}/decks/update_deck/flashcards_is_memorized/${deck_id}`;
         try {
             // @ts-ignore
@@ -230,7 +261,7 @@ class Deck {
         }
     }
 
-     public async update_deck_title_category(deck_id: string, body: object) {
+    public async update_deck_title_category(deck_id: string, body: object) {
         const url = `${BASE_API}/decks/update_deck/category_and_title/${deck_id}`;
         console.log(body)
         try {
@@ -247,7 +278,7 @@ class Deck {
         }
     }
 
-     public async deleteDeck(deck_id: string) {
+    public async deleteDeck(deck_id: string) {
         try {
             const url = `${BASE_API}/decks/delete_deck/${deck_id}`;
             return await request({

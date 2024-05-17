@@ -1,7 +1,7 @@
 from fastapi import Query
 from flash_cards_api.models.flash_card import FlashCard
 
-from typing import Optional
+from typing import Optional, List, Dict, Any
 
 from sqlalchemy.orm import Session
 from sqlalchemy import or_, and_
@@ -133,6 +133,51 @@ async def read_filtered_decks_by_user_id(
     return decks_json
 
 
+@router.get("/decks_ranking/", status_code=status.HTTP_200_OK)
+async def read_decks(db: Session = Depends(get_db)):
+    """Return decks sorted by downloads"""
+    decks = db.query(Deck).filter(Deck.is_deck_public == True).order_by(Deck.downloads.desc()).all()
+    decks_json = [
+        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category,
+         "number_of_cards": deck.get_number_of_flash_cards(), "ranking": index + 1}
+        for index, deck in enumerate(decks)
+    ]
+    return decks_json
+
+
+@router.post("/decks_ranking/filtered_decks/", status_code=status.HTTP_200_OK)
+async def filter_decks(data: List[Dict[str, Any]], db: Session = Depends(get_db)):
+    """Filter decks ranking based on title or category"""
+    filtered_decks = []
+
+    for item in data:
+        title = item.get('title')
+        category = item.get('deck_category')
+        ranking = item.get('ranking')
+
+        query = db.query(Deck).filter(Deck.is_deck_public == True)
+
+        if title:
+            query = query.filter(Deck.title.like(f"%{title}%"))
+
+        if category:
+            query = query.filter(Deck.deck_category == category)
+
+        decks = query.order_by(Deck.downloads.desc()).all()
+
+        if decks:
+            for deck in decks:
+                deck_json = {
+                    "id": deck.id,
+                    "title": deck.title,
+                    "deck_category": deck.deck_category,
+                    "number_of_cards": deck.get_number_of_flash_cards(),
+                    "ranking": ranking
+                }
+                filtered_decks.append(deck_json)
+
+    return filtered_decks
+
 @router.get("/{deck_id}/flash_cards", status_code=status.HTTP_200_OK)
 async def read_deck_cards_by_id(
         deck_id: uuid.UUID,
@@ -194,7 +239,7 @@ async def create_deck(
     deck_model = Deck(**deck.dict())
     db.add(deck_model)
     db.commit()
-    db.refresh(deck_model)  # Refresh to get the updated data from the database
+    db.refresh(deck_model)
     return deck_model
 
 
