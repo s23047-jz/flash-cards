@@ -42,6 +42,7 @@ class DeckUpdateCategoryTitle(BaseModel):
 
 
 class PublicDecksList(BaseModel):
+    id: uuid
     title: str
     deck_category: str
     downloads: int
@@ -65,6 +66,7 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
         offset = (page - 1) * per_page
 
     q = db.query(
+        Deck.id,
         Deck.title,
         Deck.deck_category,
         Deck.downloads,
