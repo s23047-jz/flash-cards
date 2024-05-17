@@ -76,6 +76,11 @@ const DecksRankingContainer = () => {
         navigate("/users_ranking")
     }
 
+      const navigatePublicDecksFlashCards = async (deck_id: string) => {
+        DeckService.get_deck_by_id(deck_id)
+        navigate("/public_decks_flashcards")
+    }
+
 
 // @ts-ignore
     return (
@@ -137,7 +142,7 @@ const DecksRankingContainer = () => {
                                             frontTextUpper={`${deck['title']}`}
                                             frontTextLower={`${deck['deck_category']}`}
                                             backText={`Number of flashcards: ${deck['number_of_cards']}`}
-                                            onClick={() => navigateToDeckFlashcards(deck['id'])}
+                                            onClick={() => navigatePublicDecksFlashCards(deck['id'])}
                                         />
                                     </div>
                                 ))}

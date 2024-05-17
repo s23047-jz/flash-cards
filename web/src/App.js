@@ -16,7 +16,7 @@ import LearningMode from "./views/LearningMode";
 import PublicDecks from "./views/PublicDecks";
 import UsersRanking from "./views/UsersRanking";
 import DecksRanking from "./views/DecksRanking";
-
+import PublicDecksFlashCards from "./views/PublicDeckFlashCards";
 function App() {
     return (
         <Router>
@@ -35,6 +35,7 @@ function App() {
                         <Route path="/learning_mode" element={<LearningMode/>}/>
                         <Route path="/users_ranking" element={<UsersRanking/>}/>
                         <Route path="/decks_ranking" element={<DecksRanking/>}/>
+                        <Route path="/public_decks_flashcards" element={<PublicDecksFlashCards/>}/>
                     </Route>
                     <Route path="/signin" element={<SignIn/>}/>
                     <Route path="/registration" element={<Registration/>}/>

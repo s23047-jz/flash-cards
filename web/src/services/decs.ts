@@ -195,6 +195,16 @@ class Deck {
         });
     }
 
+    public async copy_public_deck(deck_id: string, user_id: string){
+        const url = `${BASE_API}/decks/copy_deck/${deck_id}/${user_id}`
+
+        return await request({
+            url: url,
+            method: 'POST'
+        });
+
+    };
+
 
     public async update_deck_is_public(body: object, deck_id: string) {
         const url = `${BASE_API}/decks/update_deck/is_public/${deck_id}`;
