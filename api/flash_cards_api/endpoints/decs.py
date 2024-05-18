@@ -1,10 +1,13 @@
+import uuid
+
 from fastapi import Query
 from flash_cards_api.models.flash_card import FlashCard
+from flash_cards_api.dependencies.auth import get_current_active_user
 
 from typing import Optional, List, Dict, Any
 
 from sqlalchemy.orm import Session
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, desc
 
 from flash_cards_api.database import get_db
 
@@ -14,14 +17,14 @@ from fastapi import (
     APIRouter,
     Depends,
     HTTPException,
-    status
+    status,
+    Request
 )
 
 from flash_cards_api.models.deck_of_flash_cards import Deck
 from flash_cards_api.models.users import User
-import uuid
 
-router = APIRouter(prefix="/decks", tags=["decks"])
+router = APIRouter(prefix="/decks", tags=["decks"], dependencies=[Depends(get_current_active_user)])
 
 
 class DeckCreate(BaseModel):
@@ -34,12 +37,61 @@ class DeckUpdate(DeckCreate):
     is_deck_public: Optional[bool] = None
     downloads: Optional[int] = None
 
+
 class DeckUpdateCategoryTitle(BaseModel):
     title: Optional[str] = None
     deck_category: Optional[str] = None
 
+
+class PublicDecksList(BaseModel):
+    id: uuid.UUID
+    title: str
+    deck_category: str
+    downloads: int
+    username: str
+    avatar: str
+
+
 class DeckPublic(BaseModel):
     is_deck_public: Optional[bool] = None
+
+
+@router.get("/public_decks/", status_code=200, response_model=List[PublicDecksList])
+async def get_public_decks(request: Request, db: Session = Depends(get_db)):
+    query_params = request.query_params
+    print(query_params)
+
+    page = query_params.get("page", None)
+    per_page = query_params.get("per_page", None)
+
+    offset = None
+    if page and per_page:
+        offset = (page - 1) * per_page
+
+    q = db.query(
+        Deck.id,
+        Deck.title,
+        Deck.deck_category,
+        Deck.downloads,
+        User.username,
+        User.avatar
+    ).select_from(
+        Deck
+    ).join(
+        User,
+        User.id == Deck.user_id
+    ).filter(
+        Deck.is_deck_public
+    ).order_by(
+        desc(Deck.downloads)
+    )
+
+    if offset:
+        q = q.offset(offset).limit(per_page)
+
+    return q.all()
+
+
 @router.get("/{deck_id}", status_code=status.HTTP_200_OK)
 async def read_deck_by_id(
         deck_id: uuid.UUID,
@@ -76,6 +128,7 @@ async def read_decks_by_user_id(
     ]
 
     return decks_json
+
 
 @router.get("/{user_id}/imported/decks/", status_code=status.HTTP_200_OK)
 async def read_imported_decks_by_user_id(
@@ -165,6 +218,7 @@ async def filter_imported_decks_by_user_id(
 
     return decks_json
 
+
 @router.get("/decks_ranking/", status_code=status.HTTP_200_OK)
 async def read_decks(db: Session = Depends(get_db)):
     """Return decks sorted by downloads"""
@@ -175,7 +229,6 @@ async def read_decks(db: Session = Depends(get_db)):
         for index, deck in enumerate(decks)
     ]
     return decks_json
-
 
 
 
@@ -213,6 +266,7 @@ async def read_memorized_flash_cards_from_deck(
         "card text": card.card_text
     } for card in memorized_flash_cards]
 
+
 @router.get("/{deck_id}/not_memorized_flash_cards", status_code=status.HTTP_200_OK)
 async def read_not_memorized_flash_cards_from_deck(
         deck_id: uuid.UUID,
@@ -230,6 +284,7 @@ async def read_not_memorized_flash_cards_from_deck(
         "title": card.card_title,
         "card text": card.card_text
     } for card in memorized_flash_cards]
+
 
 @router.post("/decks_ranking/filtered_decks/", status_code=status.HTTP_200_OK)
 async def filter_decks(data: List[Dict[str, Any]], db: Session = Depends(get_db)):
@@ -262,6 +317,8 @@ async def filter_decks(data: List[Dict[str, Any]], db: Session = Depends(get_db)
                 filtered_decks.append(deck_json)
 
     return filtered_decks
+
+
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
 async def create_deck(
         deck: DeckCreate,
@@ -273,6 +330,7 @@ async def create_deck(
     db.commit()
     db.refresh(deck_model)
     return deck_model
+
 
 @router.post("/copy_deck/{deck_id}/{user_id}", status_code=status.HTTP_201_CREATED)
 async def copy_deck(
@@ -311,6 +369,7 @@ async def copy_deck(
 
     return copied_deck
 
+
 @router.put("/update_deck/{deck_id}")
 async def update_deck(
         deck_id: uuid.UUID,
@@ -332,6 +391,7 @@ async def update_deck(
 
     db.commit()
 
+
 @router.put("/update_deck/category_and_title/{deck_id}")
 async def update_deck_title_category(
         deck_id: uuid.UUID,
@@ -350,6 +410,7 @@ async def update_deck_title_category(
 
     db.commit()
 
+
 @router.put("/update_deck/is_public/{deck_id}")
 async def update_deck_is_public(
         deck_id: uuid.UUID,
@@ -363,8 +424,8 @@ async def update_deck_is_public(
     if deck_data.is_deck_public is not None:
         deck_model.is_deck_public = deck_data.is_deck_public
 
-
     db.commit()
+
 
 @router.put("/update_deck/flashcards_is_memorized/{deck_id}", status_code=status.HTTP_204_NO_CONTENT)
 async def update_deck_is_memorized_false(

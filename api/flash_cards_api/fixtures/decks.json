@@ -1,0 +1,44 @@
+[
+  [
+    {
+      "title": "Test 1",
+      "deck_category": "Test 1",
+      "is_deck_public": true,
+      "downloads": 10200
+    },
+    {
+      "title": "Test 2",
+      "deck_category": "Test 2",
+      "is_deck_public": true,
+      "downloads": 100
+    },
+    {
+      "title": "Test 3",
+      "deck_category": "Test 3",
+      "is_deck_public": true,
+      "downloads": 2400
+    }
+  ],
+  [
+    {
+      "title": "Test 4",
+      "deck_category": "Test 4",
+      "is_deck_public": true,
+      "downloads": 6000
+    },
+    {
+      "title": "Test 5",
+      "deck_category": "Test 5",
+      "is_deck_public": true,
+      "downloads": 1250
+    }
+  ],
+  [
+    {
+      "title": "Test 6",
+      "deck_category": "Test 6",
+      "is_deck_public": true,
+      "downloads": 5555
+    }
+  ]
+]

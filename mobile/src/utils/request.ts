@@ -3,13 +3,20 @@ import { NavigationProp } from "@react-navigation/native";
 import { ActiveUser } from "../services/user";
 import { ROUTES } from "../constants/";
 
-// function decode(obj: object): string {
-//     const keys = Object.keys(obj);
-//     const keyValuePairs = keys.map(key => {
-//         return encodeURIComponent(key) + '=' + encodeURIComponent(obj[key]);
-//     });
-//     return keyValuePairs.join('&');
-// }
+type QueryParams = { [key: string]: string | number | boolean | null | undefined };
+
+function encodeQuery(params: QueryParams): string {
+  return Object.keys(params)
+    .map(key => {
+      const value = params[key];
+      if (value === undefined || value === null) {
+        return '';
+      }
+      return `${encodeURIComponent(key)}=${encodeURIComponent(String(value))}`;
+    })
+    .filter(part => part.length > 0)
+    .join('&');
+};
 
 
 const redirectIfNotAuthenticated = async (res: Response, navigation: NavigationProp<any>) => {
@@ -42,7 +49,7 @@ export const request = async({
     navigation?: NavigationProp<any>,
 }) => {
     const methodLower: string = method.toLowerCase()
-    const jsonMethods: string[] = ["post", "put", "patch", "delete"]
+    const jsonMethods: string[] = ["post", "put", "patch", "delete", "get"]
 
     if (!jsonMethods.includes(methodLower)) return
 
@@ -56,14 +63,15 @@ export const request = async({
     const token = await ActiveUser.getAuthorization();
 
     if (token) headers.Authorization = token;
-    headers["content-type"] = 'application/json';
+    headers["Content-Type"] = 'application/json';
+
+    if (query) url = `${url}?${encodeQuery(query)}`;
 
     const res: Response = await fetch(url, {
         method,
         headers,
         body
     })
-
     if (!skipRedirect) {
         await redirectIfNotAuthenticated(res, navigation)
     }
