@@ -153,12 +153,12 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
     const changeView = async(view: string) => {
         if (view !== selectedView) {
             setLoading(true);
+            setSelectedView(view);
             if (view === PAGES.USERS) {
                 await fetchUsers();
             } else {
                 await fetchDecks();
             }
-            setSelectedView(view);
             setLoading(false);
         }
     }
