@@ -1,9 +1,11 @@
 import { BASE_API } from "./config";
 import { request } from "../utils/request";
 import { NavigationProp } from "@react-navigation/native";
+import {DECKS_ENDPOINTS} from "./decks";
 
 export const USERS_ENDPOINTS = {
     me: `${BASE_API}/api/users/me/`,
+    users_ranking: `${BASE_API}/api/users/users_ranking/`,
 };
 
 class Users {
@@ -12,7 +14,6 @@ class Users {
     public async getMe(navigation: NavigationProp<any>) {
         return await request({
             url: USERS_ENDPOINTS.me,
-            method: 'GET',
             navigation
         })
     }
@@ -33,6 +34,15 @@ class Users {
             body,
             navigation
         })
+    }
+
+    public async getUsersRanking(query: object, navigation: NavigationProp<any>) {
+        const { data } = await request({
+            url: USERS_ENDPOINTS.users_ranking,
+            query,
+            navigation
+        })
+        return data;
     }
 };
 

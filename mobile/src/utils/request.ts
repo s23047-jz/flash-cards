@@ -64,7 +64,6 @@ export const request = async({
 
     if (token) headers.Authorization = token;
     headers["Content-Type"] = 'application/json';
-    console.log("headers", headers)
 
     if (query) url = `${url}?${encodeQuery(query)}`;
 
