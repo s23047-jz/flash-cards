@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, TextInput, View, ScrollView, StyleSheet } from "react-native";
-import { useFocusEffect } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
@@ -125,21 +124,6 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    const users = [
-        {
-            id: 1,
-            rank: 1,
-            username: 'Winner',
-            shared: 2303
-        },
-        {
-            id: 2,
-            rank: 2,
-            username: 'Loser',
-            shared: 2000
-        }
-    ]
-
     const fetchDecks = async() => {
         const deck_list = await DecksService.getPublicDecks({"test": "test"}, navigation);
         setData(deck_list)
@@ -163,15 +147,13 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
         }
     }
 
-    useFocusEffect(
-        useCallback(() => {
-            const view = PAGES.DECKS;
-            const fetchData = async () => {
-                await changeView(view);
-            };
-            fetchData();
-        }, [])
-    );
+    useEffect(() => {
+        const view = PAGES.DECKS;
+        const fetchData = async () => {
+            await changeView(view);
+        };
+        fetchData();
+    }, [])
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
