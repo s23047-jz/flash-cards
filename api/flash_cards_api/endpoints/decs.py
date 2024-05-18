@@ -1,7 +1,7 @@
 from fastapi import Query
 from flash_cards_api.models.flash_card import FlashCard
 
-from typing import Optional
+from typing import Optional, List, Dict, Any
 
 from sqlalchemy.orm import Session
 from sqlalchemy import or_, and_
@@ -116,6 +116,7 @@ async def read_filtered_decks_by_user_id(
 
     filter_conditions = [
         (Deck.user_id == user_id),
+        (Deck.is_created_by_user == True)
     ]
 
     if filter_string:
@@ -131,6 +132,51 @@ async def read_filtered_decks_by_user_id(
     ]
 
     return decks_json
+
+@router.get("/{user_id}/filtered_imported_decks/", status_code=status.HTTP_200_OK)
+async def filter_imported_decks_by_user_id(
+        user_id: uuid.UUID,
+        filter_string: str = Query(None),
+        db: Session = Depends(get_db)
+):
+    """Return filtered imported decks by user id"""
+    user = db.query(User).filter(User.id == user_id).first()
+
+    if user is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    filter_conditions = [
+        (Deck.user_id == user_id),
+        (Deck.is_created_by_user == False)
+    ]
+
+    if filter_string:
+        filter_conditions.append(
+            or_(Deck.title.ilike(f"%{filter_string}%"), Deck.deck_category.ilike(f"%{filter_string}%"))
+        )
+
+    decks = db.query(Deck).filter(*filter_conditions).all()
+
+    decks_json = [
+        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category,
+         "number_of_cards": deck.get_number_of_flash_cards()}
+        for deck in decks
+    ]
+
+    return decks_json
+
+@router.get("/decks_ranking/", status_code=status.HTTP_200_OK)
+async def read_decks(db: Session = Depends(get_db)):
+    """Return decks sorted by downloads"""
+    decks = db.query(Deck).filter(Deck.is_deck_public == True).order_by(Deck.downloads.desc()).all()
+    decks_json = [
+        {"id": deck.id, "title": deck.title, "deck_category": deck.deck_category, "downloads": deck.downloads,
+         "number_of_cards": deck.get_number_of_flash_cards(), "ranking": index + 1}
+        for index, deck in enumerate(decks)
+    ]
+    return decks_json
+
+
 
 
 @router.get("/{deck_id}/flash_cards", status_code=status.HTTP_200_OK)
@@ -185,6 +231,37 @@ async def read_not_memorized_flash_cards_from_deck(
         "card text": card.card_text
     } for card in memorized_flash_cards]
 
+@router.post("/decks_ranking/filtered_decks/", status_code=status.HTTP_200_OK)
+async def filter_decks(data: List[Dict[str, Any]], db: Session = Depends(get_db)):
+    """Filter decks ranking based on title or category"""
+    filtered_decks = []
+
+    for item in data:
+        title = item.get('title')
+        category = item.get('deck_category')
+        ranking = item.get('ranking')
+
+        query = db.query(Deck).filter(Deck.is_deck_public == True)
+
+        if title:
+            query = query.filter(Deck.title.like(f"%{title}%"))
+        if category:
+            query = query.filter(Deck.deck_category == category)
+
+        decks = query.order_by(Deck.downloads.desc()).all()
+
+        if decks:
+            for deck in decks:
+                deck_json = {
+                    "id": deck.id,
+                    "title": deck.title,
+                    "deck_category": deck.deck_category,
+                    "number_of_cards": deck.get_number_of_flash_cards(),
+                    "ranking": ranking
+                }
+                filtered_decks.append(deck_json)
+
+    return filtered_decks
 @router.post("/create_deck", status_code=status.HTTP_201_CREATED)
 async def create_deck(
         deck: DeckCreate,
@@ -194,9 +271,45 @@ async def create_deck(
     deck_model = Deck(**deck.dict())
     db.add(deck_model)
     db.commit()
-    db.refresh(deck_model)  # Refresh to get the updated data from the database
+    db.refresh(deck_model)
     return deck_model
 
+@router.post("/copy_deck/{deck_id}/{user_id}", status_code=status.HTTP_201_CREATED)
+async def copy_deck(
+    deck_id: uuid.UUID,
+    user_id: uuid.UUID,
+    db: Session = Depends(get_db)
+):
+    """Copy deck without modifying the original"""
+    original_deck = db.query(Deck).filter(Deck.id == deck_id).first()
+    if original_deck is None:
+        raise HTTPException(status_code=404, detail="Original deck not found")
+
+    original_deck.downloads += 1
+
+    copied_deck = Deck(
+        user_id=user_id,
+        title=original_deck.title,
+        deck_category=original_deck.deck_category,
+        is_deck_public=False,
+        is_created_by_user=False
+    )
+    db.add(copied_deck)
+    db.commit()
+    db.refresh(copied_deck)
+
+    for original_flash_card in original_deck.flash_card_relationship:
+        copied_flash_card = FlashCard(
+            deck_id=copied_deck.id,
+            card_title=original_flash_card.card_title,
+            card_text=original_flash_card.card_text,
+            is_memorized=False
+        )
+        db.add(copied_flash_card)
+
+    db.commit()
+
+    return copied_deck
 
 @router.put("/update_deck/{deck_id}")
 async def update_deck(
