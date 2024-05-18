@@ -2,6 +2,7 @@ import uuid
 
 from fastapi import Query
 from flash_cards_api.models.flash_card import FlashCard
+from flash_cards_api.dependencies.auth import get_current_active_user
 
 from typing import Optional, List
 
@@ -22,9 +23,8 @@ from fastapi import (
 
 from flash_cards_api.models.deck_of_flash_cards import Deck
 from flash_cards_api.models.users import User
-import uuid
 
-router = APIRouter(prefix="/decks", tags=["decks"])
+router = APIRouter(prefix="/decks", tags=["decks"], dependencies=[Depends(get_current_active_user)])
 
 
 class DeckCreate(BaseModel):

@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { DeckListInterface, UserListInterface } from "../../interfaces/decks";
-import { Row, Button, Col, Card } from "../../components";
+import { Row, Button, Col, Card, Loader } from "../../components";
 
 import { DecksService } from "../../services/decks";
 
@@ -116,45 +116,8 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
     const [search, setSearch] = useState("");
     const [selectedView, setSelectedView] = useState(PAGES.DECKS);
     const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
 
-    const deckListFixture = [
-    {
-        id: 1,
-      "title": "Test 1",
-      "deck_category": "Test 1",
-      "downloads": 10200,
-        "username": "JACOBEK"
-    },
-    {
-        id: 2,
-      "title": "Test 2",
-      "deck_category": "Test 2",
-      "downloads": 100,
-        "username": "JACOBEK"
-    },
-    {
-        id: 3,
-      "title": "Test 3",
-      "deck_category": "Test 3",
-      "downloads": 2400,
-        "username": "JACOBEK"
-    },
-            {
-        id: 4,
-      "title": "Test 4",
-      "deck_category": "Test 4",
-      "downloads": 6000,
-        "username": "JACOBEK"
-    },
-    {
-        id: 5,
-      "title": "Test 5",
-      "deck_category": "Test 5",
-      "downloads": 1250,
-        "username": "JACOBEK"
-    }
-  ]
     const users = [
         {
             id: 1,
@@ -171,9 +134,8 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
     ]
 
     const fetchDecks = async() => {
-        // const deck_list = await DecksService.getPublicDecks({"test": "test"}, navigation);
-        setData(deckListFixture)
-        console.log('deck_list')
+        const deck_list = await DecksService.getPublicDecks({"test": "test"}, navigation);
+        setData(deck_list)
     }
 
     const fetchUsers = async() => {
@@ -191,11 +153,13 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
 
     useFocusEffect(
         useCallback(() => {
-            const view = PAGES.DECKS; // Replace with the logic to get the desired view
+            const view = PAGES.DECKS;
+            setLoading(true);
             const fetchData = async () => {
                 await changeView(view);
             };
             fetchData();
+            setLoading(false);
         }, [])
     );
 
@@ -242,7 +206,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                     </Button>
                 </Row>
                 <Row className="w-full h-1/2">
-                    { data && data.length ? (
+                    { loading ? <Loader /> : data && data.length ? (
                         <ScrollView className='flex text-center align-middle w-full p-6 h-1/4'>
                             { data.map(item => selectedView === PAGES.DECKS ?
                                 <DeckCard
@@ -259,7 +223,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                         <Row className='w-full mt-10'>
                             <Col className='w-full'>
                                 <Text className='font-bold text-xl text-center'>
-                                    {selectedView == PAGES.DECKS ?
+                                    {selectedView === PAGES.DECKS ?
                                         "There are no public decks yet." :
                                         "There are no users in the ranking."
                                     }
