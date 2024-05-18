@@ -8,6 +8,7 @@ import { DeckListInterface, UserListInterface } from "../../interfaces/decks";
 import { Row, Button, Col, Card, Loader } from "../../components";
 
 import { DecksService } from "../../services/decks";
+import { UsersService } from "../../services/users";
 
 const styles = StyleSheet.create({
     card: {
@@ -46,7 +47,7 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
                             Downloads
                         </Text>
                     </Col>
-                    <Col className={'w-full justify-start'}>
+                    <Col className={'w-full justify-start mb-3'}>
                         <Text className={'text-center'}>
                             { downloads }
                         </Text>
@@ -101,7 +102,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared }) =
                             Shared decks
                         </Text>
                     </Col>
-                    <Col className={'w-full justify-start'}>
+                    <Col className={'w-full justify-start mb-3'}>
                         <Text className={'text-center'}>
                             { shared }
                         </Text>
@@ -145,27 +146,30 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
     }
 
     const fetchUsers = async() => {
-        setData(users)
+        const user_list = await UsersService.getUsersRanking({"test": "test"}, navigation)
+        setData(user_list)
     }
 
     const changeView = async(view: string) => {
-        if (view === PAGES.USERS) {
-            await fetchUsers();
-        } else {
-            await fetchDecks();
+        if (view !== selectedView) {
+            setLoading(true);
+            if (view === PAGES.USERS) {
+                await fetchUsers();
+            } else {
+                await fetchDecks();
+            }
+            setSelectedView(view);
+            setLoading(false);
         }
-        setSelectedView(view);
     }
 
     useFocusEffect(
         useCallback(() => {
             const view = PAGES.DECKS;
-            setLoading(true);
             const fetchData = async () => {
                 await changeView(view);
             };
             fetchData();
-            setLoading(false);
         }, [])
     );
 
@@ -218,7 +222,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                 <Row className="w-full h-3/5 mt-2">
                     { loading ? <Loader /> : data && data.length ? (
                         <ScrollView className='flex text-center align-middle w-full p-6 h-1/4'>
-                            { data.map(item => selectedView === PAGES.DECKS ?
+                            { data.map((item, index) => selectedView === PAGES.DECKS ?
                                 <DeckCard
                                     key={item.id}
                                     id={item.id}
@@ -226,7 +230,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                                     deck_category={item.deck_category}
                                     downloads={item.downloads}
                                     username={item.username}
-                                /> : <UserCard id={item.id} rank={item.rank} username={item.username} shared={item.shared} />
+                                /> : <UserCard id={item.id} rank={index+1} username={item.username} shared={item.shared_decks} />
                                 )}
                         </ScrollView>
                     ) : (

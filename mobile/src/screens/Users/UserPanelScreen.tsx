@@ -57,7 +57,6 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
     }
 
     const logout = async () => {
-        console.log("LOGIN OUT")
         await AuthService.logout(navigation);
     }
 
