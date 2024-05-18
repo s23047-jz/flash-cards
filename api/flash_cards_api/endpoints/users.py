@@ -7,13 +7,16 @@ from fastapi import (
     APIRouter,
     Depends,
     HTTPException,
-    status
+    status,
+    Request
 )
+from sqlalchemy import func, desc
 from sqlalchemy.orm import Session
 
 from flash_cards_api.database import get_db
 from flash_cards_api.models.users import User, get_password_hash
 from flash_cards_api.models.roles import UserRoles
+from flash_cards_api.models.deck_of_flash_cards import Deck
 
 from flash_cards_api.dependencies.role import RoleAccessChecker
 from flash_cards_api.dependencies.auth import get_current_active_user
@@ -35,6 +38,13 @@ class UserDetailsResponse(BaseModel):
     username: str
     email: str
     created_at: datetime
+
+
+class UserRankingResponse(BaseModel):
+    id: uuid.UUID
+    username: str
+    avatar: str
+    shared_decks: int
 
 
 class UserUpdateModel(BaseModel):
@@ -61,8 +71,42 @@ class SelfDelete(BaseModel):
 async def get_user_list(
     db: Session = Depends(get_db)
 ):
-    users = db.query(User).all()
+    users = db.query(
+        User
+    ).all()
     return users
+
+
+@router.get(
+    "/users_ranking/",
+    response_model=List[UserRankingResponse],
+    dependencies=[Depends(get_current_active_user)]
+)
+async def get_users_ranking(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    query_params = request.query_params
+    print(query_params)
+
+    q = db.query(
+        User.id,
+        User.username,
+        User.avatar,
+        func.count(Deck.id).label('shared_decks')
+    ).select_from(
+        User
+    ).join(
+        Deck,
+        Deck.user_id == User.id
+    ).filter(
+        Deck.is_deck_public
+    ).group_by(
+        User.username
+    ).order_by(
+        desc('shared_decks')
+    )
+    return q.all()
 
 
 @router.get("/me/", status_code=200)

@@ -49,6 +49,7 @@ class PublicDecksList(BaseModel):
     deck_category: str
     downloads: int
     username: str
+    avatar: str
 
 
 class DeckPublic(BaseModel):
@@ -72,7 +73,8 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
         Deck.title,
         Deck.deck_category,
         Deck.downloads,
-        User.username
+        User.username,
+        User.avatar
     ).select_from(
         Deck
     ).join(
