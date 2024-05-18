@@ -10,10 +10,12 @@ $flash-card-height: 35vh;
   height: $flash-card-height;
   width: $flash-card-width;
   font-size: 24px;
-  word-wrap: break-word; /* Dodajemy tutaj właściwość word-wrap */
+
+
 
   .front {
     background-color: $bg-color-front;
+
   }
 
   .icon {
@@ -38,6 +40,9 @@ $flash-card-height: 35vh;
 
 .flashcard .front,
 .flashcard .back {
+  overflow-wrap: break-word;
+  white-space: normal;
+  word-break: break-word;
   padding: 35px;
   position: absolute;
   height: 100%;

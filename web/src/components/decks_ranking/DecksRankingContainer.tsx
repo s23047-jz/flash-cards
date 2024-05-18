@@ -62,15 +62,6 @@ const DecksRankingContainer = () => {
         }
     };
 
-    const navigateToDeckFlashcards = async (deck_id: string) => {
-        navigate("/my_deck_learning_modes")
-        DeckService.get_deck_by_id(deck_id)
-
-    }
-
-    const navigateHomePage = () => {
-        navigate("/create_deck")
-    }
 
     const navigateUsersRanking = () => {
         navigate("/users_ranking")
@@ -90,15 +81,6 @@ const DecksRankingContainer = () => {
                 <LoadingSpinner/>
             ) : (
                 <>
-                    {decks.length === 0 ? (
-                        <div className={'no-decks-container'}>
-                            <p className={"no-decks-cards-text"}>No Decks</p>
-                            <div className={'button-create-decks'}>
-                                <ButtonNotMemorizedFlashCards onClick={navigateHomePage} text={'Create Deck'}
-                                                              color={'#e05a12'} border={'3px solid black'}/>
-                            </div>
-                        </div>
-                    ) : (
                         <>
                             <div className="filter-container">
                                 <FormControl variant="filled">
@@ -141,14 +123,13 @@ const DecksRankingContainer = () => {
                                             rankingPosition={`${deck['ranking']}`}
                                             frontTextUpper={`${deck['title']}`}
                                             frontTextLower={`${deck['deck_category']}`}
-                                            backText={`Number of flashcards: ${deck['number_of_cards']}`}
+                                            backText={`Downloads: ${deck['downloads']}`}
                                             onClick={() => navigatePublicDecksFlashCards(deck['id'])}
                                         />
                                     </div>
                                 ))}
                             </div>
                         </>
-                    )}
                 </>
             )}
         </div>

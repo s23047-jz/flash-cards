@@ -40,6 +40,7 @@ const DecksContainerPublic = () => {
     const [filterString, setFilterString] = useState('');
     const [cardColors, setCardColors] = useState<string[]>([]);
     const [isLoadingFetchDecks, setIsLoadingFetchDecks] = useState(true);
+    const [isFilterDecks, setIsFilterDecks] = useState(false)
 
 
 
@@ -75,8 +76,9 @@ const DecksContainerPublic = () => {
     };
 
     const handleFilterDecks = async () => {
+        setIsFilterDecks(true)
         try {
-            const response = await DeckService.get_filtered_decks(filterString);
+            const response = await DeckService.get_filtered_imported_decks(filterString);
             setDecks(response);
         } catch (error) {
             console.error(error);
@@ -102,7 +104,7 @@ const DecksContainerPublic = () => {
                 <LoadingSpinner />
             ) : (
                 <>
-                    {decks.length === 0 ? (
+                    {decks.length === 0 && !isFilterDecks ? (
                         <div className={'no-decks-container'}>
                             <p className={"no-decks-cards-text"}>No Decks</p>
                             <div className={'button-create-deck'}>

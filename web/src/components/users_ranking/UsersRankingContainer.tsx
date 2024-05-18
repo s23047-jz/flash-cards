@@ -78,14 +78,6 @@ const UsersRankingContainer = () => {
                 <LoadingSpinner />
             ) : (
                 <>
-                    {decks.length === 0 ? (
-                        <div className={'no-users-container'}>
-                            <p className={"no-users-cards-text"}>No Decks</p>
-                            <div className={'button-create-users'}>
-                                <ButtonNotMemorizedFlashCards onClick={navigateHomePage} text={'Create Deck'} color={'#e05a12'} border={'3px solid black'}/>
-                            </div>
-                        </div>
-                    ) : (
                         <>
                             <div className="filter-container">
                                 <FormControl variant="filled">
@@ -135,7 +127,6 @@ const UsersRankingContainer = () => {
                                 ))}
                             </div>
                         </>
-                    )}
                 </>
             )}
         </div>

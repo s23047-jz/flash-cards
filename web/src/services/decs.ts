@@ -74,6 +74,23 @@ class Deck {
         }
     }
 
+     public async get_filtered_imported_decks(filterString: string): Promise<any> {
+        const user_id = ActiveUser.getId();
+        const url = `${BASE_API}/decks/${user_id}/filtered_imported_decks/?filter_string=${filterString}`;
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
     public async get_deck_by_id(deck_id: string | undefined) {
         const url = `${BASE_API}/decks/${deck_id}`;
 
