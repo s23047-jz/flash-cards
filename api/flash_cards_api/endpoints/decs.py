@@ -7,7 +7,7 @@ from flash_cards_api.dependencies.auth import get_current_active_user
 from typing import Optional, List
 
 from sqlalchemy.orm import Session
-from sqlalchemy import or_, and_
+from sqlalchemy import or_, and_, desc
 
 from flash_cards_api.database import get_db
 
@@ -81,7 +81,7 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     ).filter(
         Deck.is_deck_public
     ).order_by(
-        Deck.downloads
+        desc(Deck.downloads)
     )
 
     if offset:
