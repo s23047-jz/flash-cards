@@ -13,6 +13,12 @@ const styles = StyleSheet.create({
     card: {
         height: 150,
     },
+    row: {
+        height: 75
+    },
+    button: {
+        width: 150
+    }
 });
 
 const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downloads, username }) => {
@@ -193,19 +199,23 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                         />
                     </Col>
                 </Row>
-                <Row className="w-full">
-                    <Button className={`w-32 p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.DECKS)}>
-                        <Text className='text-lg ml-auto mr-auto font-bold'>
-                            Decks
-                        </Text>
-                    </Button>
-                    <Button className={`w-32 p-4 ${selectedView === PAGES.USERS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.USERS)}>
-                        <Text className='text-lg ml-auto mr-auto font-bold'>
-                            Users
-                        </Text>
-                    </Button>
+                <Row className="w-full" style={styles.row}>
+                    <Col className={'w-48 h-full justify-center items-center'}>
+                        <Button style={styles.button} className={`p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.DECKS)}>
+                            <Text className='text-lg ml-auto mr-auto font-bold'>
+                                Decks
+                            </Text>
+                        </Button>
+                    </Col>
+                    <Col className={'w-48 h-full justify-center items-center'}>
+                        <Button style={styles.button} className={`p-4 ${selectedView === PAGES.USERS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.USERS)}>
+                            <Text className='text-lg ml-auto mr-auto font-bold'>
+                                Users
+                            </Text>
+                        </Button>
+                    </Col>
                 </Row>
-                <Row className="w-full h-1/2">
+                <Row className="w-full h-3/5 mt-2">
                     { loading ? <Loader /> : data && data.length ? (
                         <ScrollView className='flex text-center align-middle w-full p-6 h-1/4'>
                             { data.map(item => selectedView === PAGES.DECKS ?
