@@ -4,12 +4,11 @@ import { ScreenProps } from "../../interfaces/screen";
 
 import { Row, Col, Button, CModal } from "../../components";
 
-import LOGO from "../../assets/images/logo.png"
-
 import { AuthService } from "../../services/auth";
 import Routes from "../../constants/routes";
 import DarkMode from "../../components/DarkMode";
 import { ROUTES } from "../../constants";
+import { warning, logo } from "../../assets/images";
 
 const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
 
@@ -70,7 +69,8 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
                 <View className={'bg-sky-500 dark:bg-blue-900 w-full p-4 rounded-xl'}>
                     <Row className={'w-full mt-5'}>
                         <Col className={'w-full mb-4 text-center'}>
-                            <Text className={'text-xl font-bold ml-auto mr-auto text-white'}>
+                            <Text className={'text-xl font-bold ml-auto mr-auto text-white p-2'}>
+                                <Image source={warning} className={'w-10 h-10'}/>
                                 Delete User Account
                             </Text>
                         </Col>
@@ -109,7 +109,7 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
                 <Row className="w-full">
                     <Col className='w-full'>
-                        <Image className="mx-auto object-scale-down h-40 w-40 rounded-100" source={LOGO}/>
+                        <Image className="mx-auto object-scale-down h-40 w-40 rounded-100" source={logo}/>
                     </Col>
                 </Row>
                 <Row className='w-full p-6'>
