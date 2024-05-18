@@ -1,0 +1,23 @@
+
+.public-decks-all-flashcards-container {
+  position: relative;
+  height: 75vh;
+  width: 60vw;
+  padding-right: 20px;
+
+  .all-flashcards-text {
+    margin-top: 35px;
+    padding-top: 20px;
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+  }
+}
+
+@media screen and (max-width: 1650px) {
+  .public-decks-all-flashcards-container {
+
+    width: 92vw;
+
+  }
+}

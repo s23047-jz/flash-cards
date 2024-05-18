@@ -1,7 +1,7 @@
 $bg-color-front: #388FFF;
 $flash-card-border: 3px solid #000000;
 
-.flashcard-field {
+.public-deck-flashcard-field {
   position: relative;
   margin-top: 20px;
   background: $bg-color-front;
@@ -15,9 +15,6 @@ $flash-card-border: 3px solid #000000;
     padding: 10px;
 
     .front, .back-side {
-      overflow-wrap: break-word;
-      white-space: normal;
-      word-break: break-word;
       padding: 10px 35px;
       height: 100%;
       width: 100%;
@@ -37,12 +34,6 @@ $flash-card-border: 3px solid #000000;
     }
   }
 
-  .icon-field-pencil {
-    position: absolute;
-    left: 10px;
-    top: 10px;
-    cursor: pointer;
-  }
 
   .icon-field-loudspeaker {
     position: absolute;

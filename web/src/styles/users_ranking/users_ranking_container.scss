@@ -1,0 +1,80 @@
+.users-container {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60%;
+  max-height: 68vh;
+  min-height: 68vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-around;
+
+}
+.users-container .users-card {
+  position: absolute;
+  width: calc((100% - 200px) / 3);
+}
+.filter-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 30px;
+  top: 22%;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+.web-title {
+  position: absolute;
+  color: white;
+  font-size: 52px;
+  font-weight: bold;
+  top: 8%;
+  left: 6%;
+}
+
+.no-users-container {
+  position: absolute;
+  top: 40%;
+  height: 60vh;
+
+  .no-users-cards-text {
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-weight: bold;
+    font-size: 9vh;
+  }
+
+  .button-create-user {
+    position: absolute;
+    top: 30%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .users-container {
+
+    top: 90%;
+    width: 100%;
+
+  }
+  .web-title{
+    font-size: 35px;
+    top: 12%;
+  }
+
+  .filter-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: 42%;
+    left: 25%;
+    transform: translateY(-50%);
+  }
+}

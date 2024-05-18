@@ -53,9 +53,14 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
         navigate("/profile")
     }
 
+     function usersRankingPageNavigate() {
+        navigate("/users_ranking")
+    }
+
     const handleNavItemClick = (item: string) => {
         switch (item) {
-            case 'Search':
+            case 'Ranking':
+                usersRankingPageNavigate();
                 break;
             case 'Profile':
                 profilePageNavigate();
@@ -71,31 +76,6 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
         }
     }
 
-    // function logout() {
-    //     const token = ActiveUser.getAuthorization();
-    //     if (token) {
-    //         AuthService.logout(token);
-    //         navigate("/signin")
-    //     } else {
-    //         console.error('Brak dostępnego tokenu');
-    //     }
-    // }
-
-    // const handleNavItemClick = (item: string) => {
-    //     switch (item) {
-    //         case 'Learning':
-    //             break;
-    //         case 'Search':
-    //             break;
-    //         case 'Profile':
-    //             break;
-    //         case 'Log out':
-    //             logout();
-    //             break;
-    //         default:
-    //             break;
-    //     }
-    // }
 
     const drawer = (
         <Box onClick={handleDrawerToggle}
