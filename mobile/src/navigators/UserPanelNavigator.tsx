@@ -3,7 +3,7 @@ import React, { useEffect, useState} from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { ROUTES } from "../constants";
-import { UserPanelScreen, UserUpdate, UserDelete } from "../screens";
+import { UserPanelScreen, UserUpdate, UserDelete, UserStats } from "../screens";
 import { ActiveUser } from "../services/user";
 import { Loader } from "../components";
 
@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 export default function UserPanelNavigator() {
 
     const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState({username: '', email: ''});
+    const [userData, setUserData] = useState({username: '', email: '', id: ''});
 
     useEffect(() => {
         setLoading(true);
@@ -23,12 +23,12 @@ export default function UserPanelNavigator() {
     const getUserData = async () => {
         try {
             setLoading(true);
-            const { username, email } = await ActiveUser.getUserData();
-            setUserData({ username, email });
+            const { username, email, id } = await ActiveUser.getUserData();
+            setUserData({ username, email, id });
             setLoading(false);
         } catch (error) {
             console.error('Error checking authentication status:', error);
-            setUserData({username: '', email: ''});
+            setUserData({username: '', email: '', id: ''});
             setLoading(false);
         }
     };
@@ -44,6 +44,7 @@ export default function UserPanelNavigator() {
             <Stack.Screen name={ROUTES.USER_DETAILS} component={UserPanelScreen} initialParams={{userData, getUserData}}/>
             <Stack.Screen name={ROUTES.USER_UPDATE} component={UserUpdate} initialParams={{getUserData}} />
             <Stack.Screen name={ROUTES.USER_DELETE} component={UserDelete} initialParams={{userData}} />
+            <Stack.Screen name={ROUTES.USER_STATS} component={UserStats} initialParams={{userId: userData.id}} />
         </Stack.Navigator>
     )
 }
