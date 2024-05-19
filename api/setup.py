@@ -13,6 +13,7 @@ fastapi==0.109.0
 greenlet==3.0.3
 h11==0.14.0
 httptools==0.6.1
+httpx==0.27.0
 idna==3.6
 flake8==7.0.0
 packaging==23.2
@@ -22,15 +23,19 @@ pycparser==2.21
 pydantic==2.5.3
 pydantic_core==2.14.6
 PyMySQL==1.1.0
+pytest==8.2.0
 python-dotenv==1.0.0
 python-jose==3.3.0
 PyYAML==6.0.1
+requests==2.31.0
 rsa==4.9
 six==1.16.0
 sniffio==1.3.0
 SQLAlchemy==2.0.25
 starlette==0.35.1
 tomli==2.0.1
+torch==2.3.0
+transformers==4.41.0
 typing_extensions==4.9.0
 uvicorn==0.25.0
 uvloop==0.19.0
