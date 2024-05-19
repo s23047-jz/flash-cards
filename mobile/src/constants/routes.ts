@@ -13,6 +13,7 @@ export default {
     MY_PUBLIC_DECKS: "MyPublicDecks",
     MY_PRIVATE_DECKS: "MyPrivateDecks",
     CREATE_DECK: "CreateDeck",
+    USER_STATS: "UserStats",
 
     //  public decks tab
     PUBLIC_DECKS: "PublicDecks",

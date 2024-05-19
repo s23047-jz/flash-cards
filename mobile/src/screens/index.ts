@@ -13,5 +13,6 @@ export { default as CreateDeck } from "./ChooseDecksType/CreateDeck";
 export { default as UserPanelScreen } from "./Users/UserPanelScreen";
 export { default as UserUpdate } from "./Users/UserUpdate";
 export { default as UserDelete } from "./Users/UserDelete";
+export { default as UserStats } from "./Users/UserStats";
 
 export { default as DeckList } from "./Decks/DeckList";
