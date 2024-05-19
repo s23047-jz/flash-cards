@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, TextInput, View, ScrollView, StyleSheet } from "react-native";
+import { Text, TextInput, View, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
@@ -71,44 +71,46 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
 
 const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared }) => {
     return (
-        <Card className={'mr-auto ml-auto w-full mb-7'} style={styles.card}>
-            <Row className={'w-full'}>
-                <Row className={'w-28 h-full'}>
-                    <Col className={'w-full justify-center h-full'}>
-                        <Text className={'text-center font-bold text-xl text-blue-950 dark:text-blue-100'}>
-                            { rank }
-                        </Text>
-                    </Col>
+        <TouchableOpacity className={'w-full h-full mr-auto ml-auto mb-7'} style={styles.card}>
+            <Card className={'w-full h-full'}>
+                <Row className={'w-full'}>
+                    <Row className={'w-28 h-full'}>
+                        <Col className={'w-full justify-center h-full'}>
+                            <Text className={'text-center font-bold text-xl text-blue-950 dark:text-blue-100'}>
+                                { rank }
+                            </Text>
+                        </Col>
+                    </Row>
+                    <Row className={'w-24 h-full'}>
+                        <Col className={'w-full'}>
+                            <Text className={'text-center'}>
+                                Avatar
+                            </Text>
+                        </Col>
+                        <Col className={'w-full'}>
+                            <Text className={'text-center'}>
+                                { username }
+                            </Text>
+                        </Col>
+                    </Row>
+                    <Row className={'w-28 h-full'}>
+                        <Col className={'w-full text-center items-center justify-end'}>
+                            <MaterialCommunityIcons name={'share'} size={40} className={'ml-auto mr-auto text-center'}/>
+                        </Col>
+                        <Col className={'w-full justify-end'}>
+                            <Text className={'text-center'}>
+                                Shared decks
+                            </Text>
+                        </Col>
+                        <Col className={'w-full justify-start mb-3'}>
+                            <Text className={'text-center'}>
+                                { shared }
+                            </Text>
+                        </Col>
+                    </Row>
                 </Row>
-                <Row className={'w-24 h-full'}>
-                    <Col className={'w-full'}>
-                        <Text className={'text-center'}>
-                            Avatar
-                        </Text>
-                    </Col>
-                    <Col className={'w-full'}>
-                        <Text className={'text-center'}>
-                            { username }
-                        </Text>
-                    </Col>
-                </Row>
-                <Row className={'w-28 h-full'}>
-                    <Col className={'w-full text-center items-center justify-end'}>
-                        <MaterialCommunityIcons name={'share'} size={40} className={'ml-auto mr-auto text-center'}/>
-                    </Col>
-                    <Col className={'w-full justify-end'}>
-                        <Text className={'text-center'}>
-                            Shared decks
-                        </Text>
-                    </Col>
-                    <Col className={'w-full justify-start mb-3'}>
-                        <Text className={'text-center'}>
-                            { shared }
-                        </Text>
-                    </Col>
-                </Row>
-            </Row>
-        </Card>
+            </Card>
+        </TouchableOpacity>
     )
 };
 
