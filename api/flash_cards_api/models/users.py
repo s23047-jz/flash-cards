@@ -1,8 +1,9 @@
+import os
 import uuid
 from datetime import datetime
+
 from sqlalchemy.orm import relationship
 from passlib.context import CryptContext
-
 from sqlalchemy import (
     Column,
     String,
@@ -16,6 +17,8 @@ from sqlalchemy import (
 
 from flash_cards_api.models.deck_of_flash_cards import Deck
 from flash_cards_api.models import Base
+
+from flash_cards_api.config import AVATARS_DIR
 
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
@@ -35,7 +38,8 @@ class User(Base):
     created_at = Column(DateTime, default=datetime.now(), server_default=func.now())
     updated_at = Column(DateTime, default=datetime.now(), server_default=func.now())
     ranking = Column(Integer, nullable=False, default=0)
-    avatar = Column(Text, default="../Avatar_1.svg")
+    avatar = Column(Text, default=os.path.join(AVATARS_DIR, "Avatar_1.svg"))
+    avatar_svg = Column(Text, default=os.path.join(AVATARS_DIR, "Avatar_1.svg"))
     active = Column(Boolean, default=True)
     role = Column(String(50), nullable=False)
     is_superuser = Column(Boolean, default=False)
