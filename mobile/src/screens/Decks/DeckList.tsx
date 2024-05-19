@@ -5,6 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ScreenProps } from "../../interfaces/screen";
 import { DeckListInterface, UserListInterface } from "../../interfaces/decks";
 import { Row, Button, Col, Card, Loader } from "../../components";
+import { logo } from "../../assets/images"
 
 import { DecksService } from "../../services/decks";
 import { UsersService } from "../../services/users";
@@ -18,10 +19,14 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 150
+    },
+    avatar: {
+        width: 85,
+        height: 85
     }
 });
 
-const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downloads, username }) => {
+const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downloads, username, avatar }) => {
     return (
         <Card className={'mr-auto ml-auto w-full mb-7'} style={styles.card}>
             <Row className={'w-full'}>
@@ -53,10 +58,8 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
                     </Col>
                 </Row>
                 <Row className={'w-28 h-full'}>
-                    <Col className={'w-full'}>
-                        <Text className={'text-center'}>
-                            Avatar
-                        </Text>
+                    <Col className={'w-full items-center'}>
+                        <Image source={logo} className='rounded' style={styles.avatar} />
                     </Col>
                     <Col className={'w-full'}>
                         <Text className={'text-center'}>
@@ -82,9 +85,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared }) =
                 </Row>
                 <Row className={'w-24 h-full'}>
                     <Col className={'w-full'}>
-                        <Text className={'text-center'}>
-                            Avatar
-                        </Text>
+                        <Image source={logo} className='rounded' style={styles.avatar} />
                     </Col>
                     <Col className={'w-full'}>
                         <Text className={'text-center'}>
@@ -212,6 +213,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                                     deck_category={item.deck_category}
                                     downloads={item.downloads}
                                     username={item.username}
+                                    avatar={item.avatar}
                                 /> : <UserCard id={item.id} rank={index+1} username={item.username} shared={item.shared_decks} />
                                 )}
                         </ScrollView>
