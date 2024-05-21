@@ -4,6 +4,8 @@ import { NavigationProp } from "@react-navigation/native";
 
 export const DECKS_ENDPOINTS = {
     public_decks: `${BASE_API}/decks/public_decks/`,
+    create_deck: `${BASE_API}/decks/create_deck`,
+    get_user_decks:(user_id) =>  `${BASE_API}/decks/${user_id}/decks/`
 };
 
 class Decks {
@@ -17,6 +19,25 @@ class Decks {
         })
         return data;
     }
+
+    public async getUserDecks(user_id, navigation: NavigationProp<any>) {
+        const { data } = await request({
+            url: DECKS_ENDPOINTS.get_user_decks(user_id),
+            navigation
+        })
+        return data;
+    }
+
+    public async createDeck(body: object, navigation: NavigationProp<any>) {
+        console.log(DECKS_ENDPOINTS.create_deck)
+        return await request({
+            url: DECKS_ENDPOINTS.create_deck,
+            method: 'POST',
+            body,
+            navigation
+        })
+    }
+
 }
 
 export const DecksService = new Decks();

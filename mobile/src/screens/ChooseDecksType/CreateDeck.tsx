@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, TextInput, Image} from 'react-native';
 import {ScreenProps} from "../../interfaces/screen";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
@@ -7,25 +7,52 @@ import {Button} from "../../components";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import {AuthService} from "../../services/auth";
 import {ActiveUser} from "../../services/user";
+import { DecksService } from "../../services/decks";
 
 const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
+    const { fetchDecks } = route.params;
     useState();
     const [title, setTitle] = useState("");
     const [category, setCategory] = useState("");
+    const [user_id, setUserId] = useState("");
     const goBack = () => {
         navigation.goBack();
     };
 
+    useEffect(() => {
+        getUserData();
+    }, []);
+
+
+    const getUserData = async () => {
+        try {
+            const { id } = await ActiveUser.getUserData();
+            setUserId( id );
+        } catch (error) {
+            console.error('Error checking authentication status:', error);
+            setUserId('');
+        }
+    };
+
+
     const handleCreate = async () => {
+
+
         if (
             InputValidator("deck", title) &&
             InputValidator("deck", category)
         ) {
-
-
-
+            console.log(user_id, title, category)
+            await DecksService.createDeck({user_id, title, deck_category: category}, navigation)
+            await fetchDecks(navigation)
+            navigation.goBack()
+            navigation.navigate(ROUTES.MY_PRIVATE_DECKS)
             }
+        else {
+            alert("Category and name field must not be empty.")
         }
+        }
+
 
 
     return (
