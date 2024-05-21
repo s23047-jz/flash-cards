@@ -1,15 +1,26 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 
 import Plus from "../../assets/images/Plus.png";
 import { ScreenProps } from "../../interfaces/screen";
 import { Button } from "../../components";
 import { ROUTES } from "../../constants";
+import {DecksService} from "../../services/decks";
+import {ActiveUser} from "../../services/user";
 
 const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
-  useState();
+    const { fetchDecks, deckList } = route.params;
+    useState();
   const [search, setSearch] = useState("");
+
+
+    useEffect(() => {
+        fetchDecks();
+    }, []);
+
+
+
 
   return (
     <View className="flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900 placeholder-gray-400">

@@ -1,0 +1,14 @@
+export KEY_GPT=skproj-5JGvCsnt7lipDkTByHIYT3BlbkFJwMAex3V75T0JwKQxxsi7
+export SECRET_KEY=71ebb53651dd85dd5fe6b0ad51d9ab5b6e64dda7e1c26d130822fe582a7c1208
+export ALGORITHM=HS256
+export BACKEND_HOST=localhost
+export BACKEND_PORT=8000
+export WEBHOST="http://localhost:8080"
+export MARIADB_HOST=localhost
+export MARIADB_DATABASE=flash_cards
+export MARIADB_USER=flashcards
+export MARIADB_PASSWORD=Fla5hcard5
+export MARIADB_PORT=3306
+export MYSQL_ROOT_PASSWORD=Fla5hcard5r00t
+export MOBILE_HOST="exp://192.168.1.117:19000"
+export BACKEND_HOST=192.168.1.117
