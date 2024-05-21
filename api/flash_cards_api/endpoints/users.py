@@ -10,7 +10,7 @@ from fastapi import (
     status,
     Request
 )
-from sqlalchemy import func, desc
+from sqlalchemy import func, desc, case
 from sqlalchemy.orm import Session
 
 from flash_cards_api.database import get_db
@@ -61,6 +61,15 @@ class SelfUserUpdate(UserUpdateModel):
 class SelfDelete(BaseModel):
     email: str
     password: str
+
+
+class UserStatsResponse(BaseModel):
+    id: uuid.UUID
+    username: str
+    avatar: str
+    ranking: int
+    created_decks: int
+    public_decks: int
 
 
 @router.get(
@@ -188,6 +197,33 @@ async def delete_me(
 
     else:
         raise HTTPException(status_code=404, detail="Bad request")
+
+
+@router.get(
+    "/user_stats/{user_id}/",
+    dependencies=[Depends(get_current_active_user)],
+    status_code=200,
+    response_model=UserStatsResponse
+)
+async def get_user_stats(
+    user_id: uuid.UUID,
+    db: Session = Depends(get_db)
+):
+    q = db.query(
+        User.id,
+        User.username,
+        User.avatar,
+        User.ranking,
+        func.count(Deck.id).label('created_decks'),
+        func.count(case((Deck.is_deck_public == True, Deck.id), else_=None)).label('public_decks')
+    ).outerjoin(
+        Deck,
+        Deck.user_id == User.id
+    ).filter(
+        User.id == user_id
+    )
+
+    return q.first()
 
 
 @router.get(
