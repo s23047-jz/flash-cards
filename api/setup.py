@@ -16,12 +16,16 @@ httptools==0.6.1
 httpx==0.27.0
 idna==3.6
 flake8==7.0.0
+idna==3.6
+mccabe==0.7.0
 packaging==23.2
 passlib==1.7.4
 pyasn1==0.5.1
+pycodestyle==2.11.1
 pycparser==2.21
 pydantic==2.5.3
 pydantic_core==2.14.6
+pyflakes==3.2.0
 PyMySQL==1.1.0
 pytest==8.2.0
 python-dotenv==1.0.0

@@ -1,7 +1,8 @@
-import { ReactNode } from "react";
+import { ReactNode, CSSProperties } from "react";
 
 export interface ComponentsInterface {
     children?: ReactNode,
+    style?: CSSProperties,
     className?: string,
     disabled?: boolean,
     onPress?: () => void

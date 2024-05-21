@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { ScrollView, Text, TextInput, TouchableOpacity, View, Image } from "react-native";
 
 import { Button, Col, Row } from "../../components";
 
@@ -7,6 +7,7 @@ import { ScreenProps } from "../../interfaces/screen";
 import { UpdateUserInterface } from "../../interfaces/user";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { UsersService } from "../../services/users";
+import { warning } from "../../assets/images";
 
 const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
     const [userData, setUserData] = useState<UpdateUserInterface>({});
@@ -46,7 +47,8 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
                 </Row>
                 <Row className='w-full p-6'>
                     <Col className={'w-full text-center'}>
-                        <Text className={'text-xl font-bold ml-auto mr-auto text-white'}>
+                        <Text className={'text-xl font-bold ml-auto mr-auto text-white p-2'}>
+                            <Image source={warning} className={'w-10 h-10'}/>
                             Delete User Account
                         </Text>
                     </Col>
