@@ -36,18 +36,23 @@ const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
 
 
     const handleCreate = async () => {
-        console.log(user_id, title, category)
-        await DecksService.createDeck({user_id, title, deck_category: category}, navigation)
-        await fetchDecks(navigation)
-        navigation.navigate(ROUTES.MY_PRIVATE_DECKS)
+
+
         if (
             InputValidator("deck", title) &&
             InputValidator("deck", category)
         ) {
-
-
+            console.log(user_id, title, category)
+            await DecksService.createDeck({user_id, title, deck_category: category}, navigation)
+            await fetchDecks(navigation)
+            navigation.goBack()
+            navigation.navigate(ROUTES.MY_PRIVATE_DECKS)
             }
+        else {
+            alert("Category and name field must not be empty.")
         }
+        }
+
 
 
     return (

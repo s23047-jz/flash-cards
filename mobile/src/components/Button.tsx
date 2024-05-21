@@ -5,7 +5,7 @@ import { ComponentsInterface } from "../interfaces/components";
 
 const Button: React.FC<ComponentsInterface> = ({ className, style,  disabled, onPress, children }) => {
     return (
-        <TouchableOpacity className={`bg-cyan-400 dark:bg-blue-500 border-sky-600 border-2 rounded-md object-scale-down ${className}`} onPress={onPress} disabled={disabled} style={style}>
+        <TouchableOpacity className={`bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 rounded-md object-scale-down ${className}`} onPress={onPress} disabled={disabled} style={style}>
             { children }
         </TouchableOpacity>
     )
