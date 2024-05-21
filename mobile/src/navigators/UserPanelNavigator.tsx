@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -16,7 +16,7 @@ export default function UserPanelNavigator() {
 
     useEffect(() => {
         setLoading(true);
-    getUserData();
+        getUserData();
     }, []);
 
 

@@ -122,7 +122,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
     }
 
     const [search, setSearch] = useState("");
-    const [selectedView, setSelectedView] = useState(PAGES.DECKS);
+    const [selectedView, setSelectedView] = useState(PAGES.USERS);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
 

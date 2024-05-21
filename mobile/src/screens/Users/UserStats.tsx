@@ -2,14 +2,16 @@ import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, ScrollView, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-import {Row, Col, Loader, Button, Card} from "../../components";
+import { Row, Col, Loader, Button, Card } from "../../components";
+import { DecksService } from "../../services/decks";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { UserStatsInterface } from "../../interfaces/user";
+import { DeckListInterface } from "../../interfaces/decks";
 import { ActiveUser } from "../../services/user";
 import { ROUTES } from "../../constants";
 import { logo } from "../../assets/images";
-import {DeckListInterface} from "../../interfaces/decks";
+import { UsersService } from "../../services/users";
 
 
 const styles = StyleSheet.create({
@@ -19,12 +21,15 @@ const styles = StyleSheet.create({
     row: {
         height: 75
     },
+    stats_row: {
+        height: 45
+    },
     button: {
         width: 150
     },
     avatar: {
-        height: 100,
-        width: 100
+        height: 150,
+        width: 150
     }
 });
 
@@ -37,11 +42,34 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         DECKS: 'decks'
     }
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [checkSelfData, setCheckSelfData] = useState(false);
-    const [selectedView, setSelectedView] = useState(PAGES.USER);
+    const [selectedView, setSelectedView] = useState(PAGES.DECKS);
     const [userData, setUserData] = useState<UserStatsInterface>({});
     const [decksData, setDecksData] = useState([]);
+
+    const fetchDecks = async() => {
+        const deck_list = await DecksService.getPublicDecks({"test": "test"}, navigation);
+        setDecksData(deck_list)
+    }
+
+    const fetchUser = async() => {
+        const user_data = await UsersService.getUserStats(userId, navigation)
+        setUserData(user_data)
+    }
+
+    const changeView = async(view: string) => {
+        if (view !== selectedView) {
+            setLoading(true);
+            setSelectedView(view);
+            if (view === PAGES.USER) {
+                await fetchUser();
+            } else {
+                await fetchDecks();
+            }
+            setLoading(false);
+        }
+    }
 
 
     useEffect(() => {
@@ -49,8 +77,9 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         const checkId = async () => {
             if (!userId) navigation.navigate(ROUTES.HOME)
             try {
-                const currentUserData = await ActiveUser.getUserData();
-                setCheckSelfData(currentUserData.id === userId);
+                const { id } = await ActiveUser.getUserData();
+                setCheckSelfData(id === userId);
+                await changeView(PAGES.USER)
                 setLoading(false);
             } catch (error) {
             console.error('Error checking authentication status:', error);
@@ -66,19 +95,26 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                 {Object.keys(userData).length ?
                 <View className={'w-full h-full'}>
                     <Row className={'w-full'}>
-                        <Image source={logo} style={styles.avatar}/>
+                        <Col className={'w-full justify-center items-center'}>
+                            <Image source={logo} style={styles.avatar} className={'mr-auto ml-auto'}/>
+                        </Col>
                     </Row>
-                    <Row className={'w-full'}>
-                        <Text className={'text-white font-bold'}>Raking: </Text>
-                        <Text className={'text-blue-950 dark:text-blue-100 font-bold'}>{userData.ranking}</Text>
+                     <Row className={'w-full mb-5'} style={styles.stats_row}>
+                         <Col className={'w-full justify-center align-middle'}>
+                            <Text className={'text-white font-bold text-xl text-center'}>{userData.username}</Text>
+                         </Col>
                     </Row>
-                    <Row className={'w-full'}>
-                        <Text className={'text-white font-bold'}>Created Decks: </Text>
-                        <Text className={'text-blue-950 dark:text-blue-100 font-bold'}>{userData.created_decks}</Text>
+                    <Row className={'w-full'} style={styles.stats_row}>
+                        <Text className={'text-white font-bold text-xl ml-4 h-full'}>Raking: </Text>
+                        <Text className={'text-blue-950 dark:text-blue-100 font-bold text-xl h-full'}>{userData.ranking}</Text>
                     </Row>
-                    <Row className={'w-full'}>
-                        <Text className={'text-white font-bold'}>Public Decks: </Text>
-                        <Text className={'text-blue-950 dark:text-blue-100 font-bold'}>{userData.public_decks}</Text>
+                    <Row className={'w-full'} style={styles.stats_row}>
+                        <Text className={'text-white font-bold text-xl ml-4 h-full'}>Created Decks: </Text>
+                        <Text className={'text-blue-950 dark:text-blue-100 font-bold text-xl h-full'}>{userData.created_decks}</Text>
+                    </Row>
+                    <Row className={'w-full'} style={styles.stats_row}>
+                        <Text className={'text-white font-bold text-xl ml-4 h-full'}>Public Decks: </Text>
+                        <Text className={'text-blue-950 dark:text-blue-100 font-bold text-xl h-full'}>{userData.public_decks}</Text>
                     </Row>
                 </View>
                 :
