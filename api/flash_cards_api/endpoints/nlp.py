@@ -10,7 +10,6 @@ from fastapi import (
 
 router = APIRouter(prefix="/nlp", tags=["nlp_model"])
 
-
 class SimilarityRequest(BaseModel):
     sentence: str
     use_gpu: bool

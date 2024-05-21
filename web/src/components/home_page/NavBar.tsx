@@ -46,7 +46,7 @@ const DrawerAppBar: React.FC<DrawerAppBarProps> = ({window}) => {
     }
 
     function homePageNavigate() {
-        navigate("/home")
+        navigate("/")
     }
 
     function profilePageNavigate() {

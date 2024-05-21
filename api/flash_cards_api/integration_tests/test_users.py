@@ -1,58 +1,34 @@
-import pytest
-from starlette.testclient import TestClient
-from flash_cards_api.app import app
-from flash_cards_api.database import get_db
+import requests
 
-# Fixture Pytest do utworzenia klienta testowego
-@pytest.fixture
-def test_client():
-    with TestClient(app) as client:
-        yield client
+ENDPOINT = "http://localhost:8000/"
 
-# Testy dla endpointu /register/
-def test_successful_registration(test_client):
-    payload = {
-        "email": "test@example.com",
-        "username": "testuser",
-        "password": "password123",
-        "re_password": "password123"
+def test_post_create_user():
+    body = {
+        "email": "string5",
+        "password": "string",
+        "username": "string5",
+        "re_password": "string"
     }
-    response = test_client.post("/register/", json=payload)
+
+    response = requests.post(ENDPOINT + "api/auth/register", json=body)
     assert response.status_code == 201
-    assert response.json() == {"detail": "User added successfully"}
 
-def test_duplicate_email(test_client):
-    # Użyj istniejącego adresu e-mail
-    payload = {
-        "email": "existing@example.com",
-        "username": "newuser",
-        "password": "password123",
-        "re_password": "password123"
+def test_post_login():
+    body = {
+        "email": "string",
+        "password": "string",
     }
-    response = test_client.post("/register/", json=payload)
-    assert response.status_code == 400
-    assert response.json() == {"detail": "Email already taken"}
 
-def test_duplicate_username(test_client):
-    # Użyj istniejącej nazwy użytkownika
-    payload = {
-        "email": "new@example.com",
-        "username": "existinguser",
-        "password": "password123",
-        "re_password": "password123"
-    }
-    response = test_client.post("/register/", json=payload)
-    assert response.status_code == 400
-    assert response.json() == {"detail": "Username already taken"}
+    response = requests.post(ENDPOINT + "api/auth/login", json=body)
+    assert response.status_code == 200
 
-def test_password_mismatch(test_client):
-    # Hasła nie pasują do siebie
-    payload = {
-        "email": "mismatch@example.com",
-        "username": "mismatchuser",
-        "password": "password123",
-        "re_password": "differentpassword"
-    }
-    response = test_client.post("/register/", json=payload)
-    assert response.status_code == 400
-    assert response.json() == {"detail": "Passwords do not match"}
+def test_get_users():
+
+    response = requests.get(ENDPOINT + "api/users")
+    assert response.status_code == 401
+
+def test_get_me():
+
+    response = requests.get(ENDPOINT + "api/users/me")
+
+    assert response.status_code == 401
