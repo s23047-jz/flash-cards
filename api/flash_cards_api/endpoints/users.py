@@ -45,6 +45,7 @@ class UserRankingResponse(BaseModel):
     username: str
     avatar: str
     shared_decks: int
+    rank: int
 
 
 class UserUpdateModel(BaseModel):
@@ -67,7 +68,7 @@ class UserStatsResponse(BaseModel):
     id: uuid.UUID
     username: str
     avatar: str
-    ranking: int
+    rank: int
     created_decks: int
     public_decks: int
 
@@ -102,13 +103,24 @@ async def get_users_ranking(
     query_params = request.query_params
     print(query_params)
 
+    sub_q = db.query(
+        Deck.user_id.label('user_id'),
+        func.rank().over(order_by=desc(func.sum(Deck.downloads))).label('rank')
+    ).group_by(
+        Deck.user_id
+    ).subquery()
+
     q = db.query(
         User.id,
         User.username,
         User.avatar,
-        func.count(Deck.id).label('shared_decks')
+        func.count(Deck.id).label('shared_decks'),
+        sub_q.c.rank
     ).select_from(
         User
+    ).join(
+        sub_q,
+        sub_q.c.user_id == User.id
     ).join(
         Deck,
         Deck.user_id == User.id
@@ -213,16 +225,26 @@ async def get_user_stats(
     user_id: uuid.UUID,
     db: Session = Depends(get_db)
 ):
+    sub_q = db.query(
+        Deck.user_id.label('user_id'),
+        func.rank().over(order_by=desc(func.sum(Deck.downloads))).label('rank')
+    ).group_by(
+        Deck.user_id
+    ).subquery()
+
     q = db.query(
         User.id,
         User.username,
         User.avatar,
-        User.ranking,
         func.count(Deck.id).label('created_decks'),
-        func.count(case((Deck.is_deck_public == True, Deck.id), else_=None)).label('public_decks')
+        func.count(case((Deck.is_deck_public == True, Deck.id), else_=None)).label('public_decks'),
+        sub_q.c.rank
     ).outerjoin(
         Deck,
         Deck.user_id == User.id
+    ).join(
+        sub_q,
+        sub_q.c.user_id == User.id
     ).filter(
         User.id == user_id
     )

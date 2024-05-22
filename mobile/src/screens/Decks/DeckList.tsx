@@ -47,13 +47,11 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
                     <Col className={'w-full text-center items-center justify-end'}>
                         <MaterialCommunityIcons name={'download'} size={40} className={'ml-auto mr-auto text-center'}/>
                     </Col>
-                    <Col className={'w-full justify-end'}>
+                    <Col className={'w-full'}>
                         <Text className={'text-center'}>
                             Downloads
                         </Text>
-                    </Col>
-                    <Col className={'w-full justify-start mb-3'}>
-                        <Text className={'text-center'}>
+                        <Text className={'text-center font-bold'}>
                             { downloads }
                         </Text>
                     </Col>
@@ -88,7 +86,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, ava
                 <Row className={'w-full'}>
                     <Row className={'w-28 h-full'}>
                         <Col className={'w-full justify-center h-full'}>
-                            <Text className={'text-center font-bold text-xl text-blue-950 dark:text-blue-100'}>
+                            <Text className={'text-center font-bold text-xl text-blue-800 dark:text-blue-100'}>
                                 { rank }
                             </Text>
                         </Col>
@@ -111,13 +109,11 @@ const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, ava
                         <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'share'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>
-                        <Col className={'w-full justify-end'}>
+                        <Col className={'w-full'}>
                             <Text className={'text-center'}>
                                 Shared decks
                             </Text>
-                        </Col>
-                        <Col className={'w-full justify-start mb-3'}>
-                            <Text className={'text-center'}>
+                            <Text className={'text-center font-bold'}>
                                 { shared }
                             </Text>
                         </Col>
@@ -141,12 +137,12 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const fetchDecks = async() => {
         const deck_list = await DecksService.getPublicDecks({"test": "test"}, navigation);
-        setData(deck_list)
+        setData(deck_list);
     }
 
     const fetchUsers = async() => {
-        const user_list = await UsersService.getUsersRanking({"test": "test"}, navigation)
-        setData(user_list)
+        const user_list = await UsersService.getUsersRanking({"test": "test"}, navigation);
+        setData(user_list);
     }
 
     const changeView = async(view: string) => {
@@ -163,7 +159,10 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const handleNavigationToUserStats = (userId: string) => {
-        navigation.navigate(ROUTES.USER_STATS, { userId });
+        navigation.navigate(ROUTES.USER, {
+            screen: ROUTES.USER_STATS,
+            params: { userId, routeFrom: ROUTES.PUBLIC_DECKS }
+        })
     }
 
     useEffect(() => {
@@ -235,7 +234,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                                 /> : <UserCard
                                         key={item.id}
                                         id={item.id}
-                                        rank={index+1}
+                                        rank={item.rank}
                                         username={item.username}
                                         avatar={item.avatar}
                                         shared={item.shared_decks}

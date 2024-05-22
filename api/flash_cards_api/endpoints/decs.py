@@ -1,4 +1,5 @@
 import uuid
+from datetime import datetime
 
 from fastapi import Query
 from flash_cards_api.models.flash_card import FlashCard
@@ -7,7 +8,7 @@ from flash_cards_api.dependencies.auth import get_current_active_user
 from typing import Optional, List, Dict, Any
 
 from sqlalchemy.orm import Session
-from sqlalchemy import or_, and_, desc
+from sqlalchemy import or_, and_, desc, func
 
 from flash_cards_api.database import get_db
 
@@ -50,6 +51,8 @@ class PublicDecksList(BaseModel):
     downloads: int
     username: str
     avatar: str
+    created_at: datetime
+    rank: int
 
 
 class DeckPublic(BaseModel):
@@ -59,8 +62,9 @@ class DeckPublic(BaseModel):
 @router.get("/public_decks/", status_code=200, response_model=List[PublicDecksList])
 async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     query_params = request.query_params
-    print(query_params)
 
+    user_id = query_params.get('user_id', None)
+    print('user_id', user_id)
     page = query_params.get("page", None)
     per_page = query_params.get("per_page", None)
 
@@ -68,27 +72,39 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     if page and per_page:
         offset = (page - 1) * per_page
 
+    subquery = db.query(
+        Deck.id.label('deck_id'),
+        func.rank().over(order_by=desc(Deck.downloads)).label('rank')
+    ).subquery()
+
     q = db.query(
         Deck.id,
         Deck.title,
         Deck.deck_category,
         Deck.downloads,
+        Deck.created_at,
         User.username,
-        User.avatar
+        User.avatar,
+        subquery.c.rank
     ).select_from(
         Deck
     ).join(
         User,
         User.id == Deck.user_id
+    ).join(
+        subquery, Deck.id == subquery.c.deck_id
     ).filter(
         Deck.is_deck_public
-    ).order_by(
-        desc(Deck.downloads)
     )
+
+    if user_id:
+        user_id = uuid.UUID(user_id)
+        q = q.filter(User.id == user_id)
 
     if offset:
         q = q.offset(offset).limit(per_page)
 
+    q = q.order_by(desc(Deck.downloads))
     return q.all()
 
 
@@ -229,7 +245,6 @@ async def read_decks(db: Session = Depends(get_db)):
         for index, deck in enumerate(decks)
     ]
     return decks_json
-
 
 
 @router.get("/{deck_id}/flash_cards", status_code=status.HTTP_200_OK)

@@ -10,7 +10,7 @@ export interface UserStatsInterface {
     id?: string,
     username?: string,
     avatar?: string,
-    ranking?: number,
+    rank?: number,
     created_decks?: number,
     public_decks?: number
 }

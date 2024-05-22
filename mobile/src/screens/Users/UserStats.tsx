@@ -3,7 +3,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, ScrollView, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
 import { Row, Col, Loader, Button, Card } from "../../components";
-import { DecksService } from "../../services/decks";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { UserStatsInterface } from "../../interfaces/user";
@@ -11,6 +10,7 @@ import { DeckListInterface } from "../../interfaces/decks";
 import { ActiveUser } from "../../services/user";
 import { ROUTES } from "../../constants";
 import { UsersService } from "../../services/users";
+import {DeckService, DecksService} from "../../services/decks";
 import { AVATAR_MAPPING } from "../../utils/avatars";
 
 
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 
 
 const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
-    const { userId } = route.params;
+    const { userId, routeFrom } = route.params;
 
     const PAGES = {
         USER: 'user',
@@ -49,7 +49,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     const [decksData, setDecksData] = useState([]);
 
     const fetchDecks = async() => {
-        const deck_list = await DecksService.getPublicDecks({"test": "test"}, navigation);
+        const deck_list = await DecksService.getPublicDecks({"user_id": userId}, navigation);
         setDecksData(deck_list)
     }
 
@@ -78,12 +78,8 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
             if (!userId) navigation.navigate(ROUTES.HOME)
             try {
                 const { id } = await ActiveUser.getUserData();
-                console.log("ID", id)
-                console.log("userId", userId)
                 const show = id === userId
-                console.log("show", show)
                 setCheckSelfData(show);
-                console.log('checkSelfData', checkSelfData)
                 await changeView(PAGES.USER)
                 setLoading(false);
             } catch (error) {
@@ -111,15 +107,15 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                     </Row>
                     <Row className={'w-full'} style={styles.stats_row}>
                         <Text className={'text-white font-bold text-xl ml-4 h-full'}>Raking: </Text>
-                        <Text className={'text-blue-950 dark:text-blue-100 font-bold text-xl h-full'}>{userData.ranking}</Text>
+                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{userData.rank}</Text>
                     </Row>
                     <Row className={'w-full'} style={styles.stats_row}>
                         <Text className={'text-white font-bold text-xl ml-4 h-full'}>Created Decks: </Text>
-                        <Text className={'text-blue-950 dark:text-blue-100 font-bold text-xl h-full'}>{userData.created_decks}</Text>
+                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{userData.created_decks}</Text>
                     </Row>
                     <Row className={'w-full'} style={styles.stats_row}>
                         <Text className={'text-white font-bold text-xl ml-4 h-full'}>Public Decks: </Text>
-                        <Text className={'text-blue-950 dark:text-blue-100 font-bold text-xl h-full'}>{userData.public_decks}</Text>
+                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{userData.public_decks}</Text>
                     </Row>
                 </View>
                 :
@@ -155,9 +151,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                             <Text className={'text-center'}>
                                 Downloads
                             </Text>
-                        </Col>
-                        <Col className={'w-full justify-start mb-3'}>
-                            <Text className={'text-center'}>
+                            <Text className={'text-center font-bold'}>
                                 { downloads }
                             </Text>
                         </Col>
@@ -184,12 +178,21 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const decksView = () => {
         return (
-            <View className={'w-full h-full'}>
+            <Row className={'w-full h-full'}>
 
             {
                 decksData && decksData.length ?
                 <View className={'w-full h-full'}>
-
+                    {decksData.map(deck => (
+                        <DeckCard
+                            key={deck.id}
+                            id={deck.id}
+                            title={deck.title}
+                            deck_category={deck.deck_category}
+                            downloads={deck.downloads}
+                            created_at={deck.created_at}
+                        />
+                    ))}
                 </View> :
                 <View>
                     <Text>
@@ -197,7 +200,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                     </Text>
                 </View>
             }
-            </View>
+            </Row>
         )
     }
 
@@ -227,7 +230,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
                 <Row className='w-full p-1' style={styles.row}>
                     <Col className='w-48 h-full justify-center align-middle'>
-                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                        <TouchableOpacity onPress={() => routeFrom ? navigation.navigate(routeFrom) : navigation.goBack()}>
                             <Text className='text-2xl text-white font-bold ml-4'>
                                 <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
                             </Text>
@@ -242,7 +245,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                 { checkSelfData ? '' : sectionButtons() }
                 <Row className="w-full h-4/5 mt-2">
                     { loading ? <Loader /> :
-                        <ScrollView className={'w-full h-full'}>
+                        <ScrollView className={'w-full p-6 h-1/4'}>
                             { selectedView === PAGES.DECKS ? decksView() : userView() }
                         </ScrollView>
                     }

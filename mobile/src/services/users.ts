@@ -1,7 +1,6 @@
 import { BASE_API } from "./config";
 import { request } from "../utils/request";
 import { NavigationProp } from "@react-navigation/native";
-import {DECKS_ENDPOINTS} from "./decks";
 
 export const USERS_ENDPOINTS = {
     me: `${BASE_API}/api/users/me/`,
