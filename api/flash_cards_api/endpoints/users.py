@@ -72,6 +72,10 @@ class UserStatsResponse(BaseModel):
     public_decks: int
 
 
+class UpdateAvatarPayloadScheme(BaseModel):
+    avatar: str
+
+
 @router.get(
     "/",
     response_model=List[UserDetailsResponse],
@@ -224,6 +228,28 @@ async def get_user_stats(
     )
 
     return q.first()
+
+
+@router.put("/update-avatar/{user_id}/", status_code=200, dependencies=[Depends(get_current_active_user)])
+async def update_avatar(
+    user_id: uuid.UUID,
+    payload: UpdateAvatarPayloadScheme,
+    db: Session = Depends(get_db)
+):
+    payload = payload.dict()
+    user: User = db.query(User).where(User.id == user_id)
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+
+    user.avatar = payload['avatar']
+    db.commit()
+    db.refresh(user)
+
+    return {"detail": "Avatar updated successfully"}
 
 
 @router.get(
