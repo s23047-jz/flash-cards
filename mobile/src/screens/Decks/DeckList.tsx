@@ -177,7 +177,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
             <View className="flex flex-container w-full mt-20 mb-5">
-                <Row className='w-full p-6'>
+                <Row className='w-full p-6' style={styles.row}>
                     <Col className='w-full'>
                         <Text className="text-2xl text-white font-bold text-right">
                             Public Decks
