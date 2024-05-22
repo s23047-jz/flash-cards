@@ -238,7 +238,7 @@ async def update_avatar(
             detail="User not found"
         )
 
-    user.avatar = payload['avatar']
+    user.avatar = payload['avatars']
     db.commit()
     db.refresh(user)
 
