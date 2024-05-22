@@ -17,7 +17,6 @@ export default {
 
     //  public decks tab
     PUBLIC_DECKS: "PublicDecks",
-    USER_DECKS_DETAILS: "UserDecksDetails",
 
     // user profile
     USER_DETAILS: 'UserDetails',

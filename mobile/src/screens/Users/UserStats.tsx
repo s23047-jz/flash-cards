@@ -82,12 +82,12 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                 await changeView(PAGES.USER)
                 setLoading(false);
             } catch (error) {
-            console.error('Error checking authentication status:', error);
-            setLoading(false);
-        }
-    };
-    checkId();
-  }, []);
+                console.error('Error checking authentication status:', error);
+                setLoading(false);
+            }
+        };
+        checkId();
+    }, []);
 
     const userView = () => {
         return (

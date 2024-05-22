@@ -8,6 +8,7 @@ import { Row, Button, Col, Card, Loader } from "../../components";
 
 import { DecksService } from "../../services/decks";
 import { UsersService } from "../../services/users";
+import { ROUTES } from "../../constants";
 
 const styles = StyleSheet.create({
     card: {
@@ -69,9 +70,13 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
     )
 };
 
-const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared }) => {
+const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, navigate }) => {
     return (
-        <TouchableOpacity className={'w-full h-full mr-auto ml-auto mb-7'} style={styles.card}>
+        <TouchableOpacity
+            className={'w-full h-full mr-auto ml-auto mb-7'}
+            style={styles.card}
+            onPress={() => navigate(id)}
+        >
             <Card className={'w-full h-full'}>
                 <Row className={'w-full'}>
                     <Row className={'w-28 h-full'}>
@@ -114,8 +119,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared }) =
     )
 };
 
-const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
-
+const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     const PAGES = {
         DECKS: 'decks',
         USERS: 'users'
@@ -147,6 +151,10 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
             }
             setLoading(false);
         }
+    }
+
+    const handleNavigationToUserStats = (userId: string) => {
+        navigation.navigate(ROUTES.USER_STATS, { userId });
     }
 
     useEffect(() => {
@@ -214,7 +222,14 @@ const DeckList: React.FC<ScreenProps> = ({ navigation }) => {
                                     deck_category={item.deck_category}
                                     downloads={item.downloads}
                                     username={item.username}
-                                /> : <UserCard id={item.id} rank={index+1} username={item.username} shared={item.shared_decks} />
+                                /> : <UserCard
+                                        key={item.id}
+                                        id={item.id}
+                                        rank={index+1}
+                                        username={item.username}
+                                        shared={item.shared_decks}
+                                        navigate={handleNavigationToUserStats}
+                                    />
                                 )}
                         </ScrollView>
                     ) : (

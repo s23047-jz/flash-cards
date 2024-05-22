@@ -1,17 +1,19 @@
 export interface DeckListInterface {
-    id?: number | string,
+    id: string,
     title: string,
     deck_category: string
     downloads: number
     username?: string
     avatar?: string
-    created_at?: Date
+    created_at?: Date,
+    navigate?: () => void
 }
 
 export interface UserListInterface {
-    id?: number | string,
+    id: string,
     rank: number,
     avatar?: string,
     username: string,
-    shared: number
+    shared: number,
+    navigate?: (userId: string) => void
 }
