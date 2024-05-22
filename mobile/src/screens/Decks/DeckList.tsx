@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Text, TextInput, View, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { Text, TextInput, View, ScrollView, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
@@ -9,6 +9,7 @@ import { Row, Button, Col, Card, Loader } from "../../components";
 import { DecksService } from "../../services/decks";
 import { UsersService } from "../../services/users";
 import { ROUTES } from "../../constants";
+import { AVATAR_MAPPING } from "../../utils/avatars";
 
 const styles = StyleSheet.create({
     card: {
@@ -19,10 +20,14 @@ const styles = StyleSheet.create({
     },
     button: {
         width: 150
+    },
+    avatar: {
+        height: 50,
+        width: 50
     }
 });
 
-const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downloads, username }) => {
+const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downloads, username, avatar }) => {
     return (
         <Card className={'mr-auto ml-auto w-full mb-7'} style={styles.card}>
             <Row className={'w-full'}>
@@ -54,11 +59,13 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
                     </Col>
                 </Row>
                 <Row className={'w-28 h-full'}>
-                    <Col className={'w-full'}>
-                        <Text className={'text-center'}>
-                            Avatar
-                        </Text>
-                    </Col>
+                    <Col className={'w-full justify-center items-center'}>
+                            <Image
+                                source={AVATAR_MAPPING[avatar]}
+                                style={styles.avatar}
+                                className={'mr-auto ml-auto'}
+                            />
+                        </Col>
                     <Col className={'w-full'}>
                         <Text className={'text-center'}>
                             { username }
@@ -70,7 +77,7 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
     )
 };
 
-const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, navigate }) => {
+const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, avatar,  navigate }) => {
     return (
         <TouchableOpacity
             className={'w-full h-full mr-auto ml-auto mb-7'}
@@ -87,10 +94,12 @@ const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, nav
                         </Col>
                     </Row>
                     <Row className={'w-24 h-full'}>
-                        <Col className={'w-full'}>
-                            <Text className={'text-center'}>
-                                Avatar
-                            </Text>
+                        <Col className={'w-full justify-center items-center'}>
+                            <Image
+                                source={AVATAR_MAPPING[avatar]}
+                                style={styles.avatar}
+                                className={'mr-auto ml-auto'}
+                            />
                         </Col>
                         <Col className={'w-full'}>
                             <Text className={'text-center'}>
@@ -222,11 +231,13 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                                     deck_category={item.deck_category}
                                     downloads={item.downloads}
                                     username={item.username}
+                                    avatar={item.avatar}
                                 /> : <UserCard
                                         key={item.id}
                                         id={item.id}
                                         rank={index+1}
                                         username={item.username}
+                                        avatar={item.avatar}
                                         shared={item.shared_decks}
                                         navigate={handleNavigationToUserStats}
                                     />

@@ -10,8 +10,8 @@ import { UserStatsInterface } from "../../interfaces/user";
 import { DeckListInterface } from "../../interfaces/decks";
 import { ActiveUser } from "../../services/user";
 import { ROUTES } from "../../constants";
-import { logo } from "../../assets/images";
 import { UsersService } from "../../services/users";
+import { AVATAR_MAPPING } from "../../utils/avatars";
 
 
 const styles = StyleSheet.create({
@@ -78,7 +78,12 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
             if (!userId) navigation.navigate(ROUTES.HOME)
             try {
                 const { id } = await ActiveUser.getUserData();
-                setCheckSelfData(id === userId);
+                console.log("ID", id)
+                console.log("userId", userId)
+                const show = id === userId
+                console.log("show", show)
+                setCheckSelfData(show);
+                console.log('checkSelfData', checkSelfData)
                 await changeView(PAGES.USER)
                 setLoading(false);
             } catch (error) {
@@ -96,7 +101,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                 <View className={'w-full h-full'}>
                     <Row className={'w-full'}>
                         <Col className={'w-full justify-center items-center'}>
-                            <Image source={logo} style={styles.avatar} className={'mr-auto ml-auto'}/>
+                            <Image source={AVATAR_MAPPING[userData.avatar]} style={styles.avatar} className={'mr-auto ml-auto'}/>
                         </Col>
                     </Row>
                      <Row className={'w-full mb-5'} style={styles.stats_row}>
@@ -196,9 +201,30 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         )
     }
 
+    const sectionButtons = () => {
+        return (
+            <Row className='w-full mb-4' style={styles.row}>
+                <Col className={'w-48 h-full justify-center items-center'}>
+                    <Button style={styles.button} className={`p-4 ${selectedView === PAGES.USER ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.USER)}>
+                        <Text className='text-lg ml-auto mr-auto font-bold'>
+                            User Data
+                        </Text>
+                    </Button>
+                </Col>
+                <Col className={'w-48 h-full justify-center items-center'}>
+                    <Button style={styles.button} className={`p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.DECKS)}>
+                        <Text className='text-lg ml-auto mr-auto font-bold'>
+                            Public Decks
+                        </Text>
+                    </Button>
+                </Col>
+            </Row>
+        )
+    }
+
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
-            <View className="flex flex-container w-full mt-20 mb-5">
+            <ScrollView className="flex flex-container w-full mt-20 mb-5">
                 <Row className='w-full p-1' style={styles.row}>
                     <Col className='w-48 h-full justify-center align-middle'>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -213,24 +239,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                         </Text>
                     </Col>
                 </Row>
-                {checkSelfData ? '' :
-                    <Row className='w-full p-6'>
-                        <Col className={'w-48 h-full justify-center items-center'}>
-                            <Button style={styles.button} className={`p-4 ${selectedView === PAGES.USER ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.USERS)}>
-                                <Text className='text-lg ml-auto mr-auto font-bold'>
-                                    User Data
-                                </Text>
-                            </Button>
-                        </Col>
-                        <Col className={'w-48 h-full justify-center items-center'}>
-                            <Button style={styles.button} className={`p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.DECKS)}>
-                                <Text className='text-lg ml-auto mr-auto font-bold'>
-                                    Public Decks
-                                </Text>
-                            </Button>
-                        </Col>
-                    </Row>
-                }
+                { checkSelfData ? '' : sectionButtons() }
                 <Row className="w-full h-4/5 mt-2">
                     { loading ? <Loader /> :
                         <ScrollView className={'w-full h-full'}>
@@ -238,7 +247,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                         </ScrollView>
                     }
                 </Row>
-            </View>
+            </ScrollView>
         </View>
     )
 }
