@@ -42,7 +42,7 @@ const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
             InputValidator("deck", title) &&
             InputValidator("deck", category)
         ) {
-            console.log(user_id, title, category)
+
             await DecksService.createDeck({user_id, title, deck_category: category}, navigation)
             await fetchDecks(navigation)
             navigation.goBack()

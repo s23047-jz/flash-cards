@@ -5,6 +5,7 @@ import { ROUTES } from "../constants";
 import { HomeScreen, MyPublicDecks, MyPrivateDecks, CreateDeck} from "../screens";
 import {ActiveUser} from "../services/user";
 import {DecksService} from "../services/decks";
+import DisplayDeck from "../screens/ChooseDecksType/DisplayDeck";
 
 
 const Stack = createNativeStackNavigator();
@@ -30,6 +31,7 @@ export default function HomeNavigator() {
             <Stack.Screen name={ ROUTES.CREATE_DECK } component={CreateDeck} initialParams={{fetchDecks}}/>
             <Stack.Screen name={ ROUTES.MY_PRIVATE_DECKS } component={MyPrivateDecks} initialParams={{fetchDecks, deckList}}/>
             <Stack.Screen name={ ROUTES.MY_PUBLIC_DECKS } component={MyPublicDecks} />
+            <Stack.Screen name={ ROUTES.DISPLAY_MY_DECK } component={DisplayDeck} />
         </Stack.Navigator>
     )
 };
