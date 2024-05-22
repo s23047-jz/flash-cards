@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, ScrollView, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
@@ -10,7 +11,7 @@ import { DeckListInterface } from "../../interfaces/decks";
 import { ActiveUser } from "../../services/user";
 import { ROUTES } from "../../constants";
 import { UsersService } from "../../services/users";
-import {DeckService, DecksService} from "../../services/decks";
+import { DecksService } from "../../services/decks";
 import { AVATAR_MAPPING } from "../../utils/avatars";
 
 
@@ -128,6 +129,9 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downloads, created_at }) => {
+        const formatData = (date: Date) => {
+            return moment(date).format("DD/MM/YYYY")
+        }
         return (
             <Card className={'mr-auto ml-auto w-full mb-7'} style={styles.card}>
                 <Row className={'w-full'}>
@@ -147,7 +151,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                         <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'download'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>
-                        <Col className={'w-full justify-end'}>
+                        <Col className={'w-full'}>
                             <Text className={'text-center'}>
                                 Downloads
                             </Text>
@@ -157,17 +161,15 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                         </Col>
                     </Row>
                     <Row className={'w-28 h-full'}>
-                        <Col className={'w-full'}>
+                        <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'calendar-month'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>
                         <Col className={'w-full'}>
                             <Text className={'text-center'}>
                                 Date of creation
                             </Text>
-                        </Col>
-                         <Col className={'w-full'}>
-                            <Text className={'text-center'}>
-                                { created_at }
+                            <Text className={'text-center text-bold'}>
+                                { formatData(created_at) }
                             </Text>
                         </Col>
                     </Row>

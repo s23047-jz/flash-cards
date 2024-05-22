@@ -2,6 +2,7 @@ import requests
 
 ENDPOINT = "http://localhost:8000/"
 
+
 def test_get_flashcard_data_by_id():
     test_flash_card_data = {
         "id": "3cc32d65-8cdc-4abc-a063-02e0bef78eaf",
@@ -27,6 +28,7 @@ def test_post_create_flash_card():
     response = requests.post(ENDPOINT + f"flash_card/create_flash_card", json=test_flash_card_data)
     assert response.status_code == 201
 
+
 def test_put_update_flash_cards():
 
     test_flash_card_data = [{
@@ -38,6 +40,7 @@ def test_put_update_flash_cards():
 
     response = requests.put(ENDPOINT + "flash_card/update_flash_cards", json=test_flash_card_data)
     assert response.status_code == 204
+
 
 def test_delete_update_flash_cards():
     test_flash_card_data = {

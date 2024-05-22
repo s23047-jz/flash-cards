@@ -2,6 +2,7 @@ import requests
 
 ENDPOINT = "http://localhost:8000/"
 
+
 def test_chatGPT_connection():
 
     body = {
