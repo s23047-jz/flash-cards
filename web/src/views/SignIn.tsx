@@ -36,7 +36,7 @@ const LoginPage: React.FC = () => {
             await AuthService.login(body);
             // Navigate to the dashboard or home page upon success
             // e.g., navigation.navigate("Dashboard");
-            navigate('/home');
+            navigate('/');
             window.location.reload();
         } catch (error) {
             // @ts-ignore

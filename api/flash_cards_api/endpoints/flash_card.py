@@ -126,26 +126,6 @@ async def update_flash_cards(
 
     db.commit()
 
-# @router.put("/update_flash_card/{flash_card_id}", status_code=status.HTTP_204_NO_CONTENT)
-# async def update_flash_card(
-#         flash_card_id: uuid.UUID,
-#         flash_card_data: FlashCardCreate,
-#         db: Session = Depends(get_db)
-# ):
-#     "Update a flash card"
-#     flash_card_model = db.query(FlashCard).filter(FlashCard.id == flash_card_id).first()
-#     if flash_card_model is None:
-#         raise HTTPException(status_code=404, detail="Flash card not found")
-#
-#     if flash_card_data.card_title is not None:
-#         flash_card_model.card_title = flash_card_data.card_title
-#     if flash_card_data.card_text is not None:
-#         flash_card_model.card_text = flash_card_data.card_text
-#     if flash_card_data.is_memorized is not None:
-#         flash_card_model.is_memorized = flash_card_data.is_memorized
-#
-#     db.commit()
-
 
 @router.delete("/delete_flash_card/{flash_card_id}")
 async def delete_flash_card(

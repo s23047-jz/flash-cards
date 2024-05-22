@@ -23,7 +23,7 @@ function App() {
             <div className="App">
                 <Routes>
                     <Route element={<PrivateRoute/>}>
-                        <Route path="/home" element={<HomePage/>}/>
+                        <Route path="/" element={<HomePage/>}/>
                         <Route path="/create_deck" element={<CreateFlashCardsPage/>}/>
                         <Route path="/my_decks" element={<MyDecks/>}/>
                         <Route path="/public_decks" element={<PublicDecks/>}/>
