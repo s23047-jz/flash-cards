@@ -16,7 +16,6 @@ export default function HomeNavigator() {
         try {
             const { id } = await ActiveUser.getUserData();
             const data = await DecksService.getUserDecks(id, navigation)
-            console.log(data)
             setDeckList(data)
         } catch (error) {
             console.error('Error checking authentication status:', error);
@@ -31,7 +30,7 @@ export default function HomeNavigator() {
             <Stack.Screen name={ ROUTES.CREATE_DECK } component={CreateDeck} initialParams={{fetchDecks}}/>
             <Stack.Screen name={ ROUTES.MY_PRIVATE_DECKS } component={MyPrivateDecks} initialParams={{fetchDecks, deckList}}/>
             <Stack.Screen name={ ROUTES.MY_PUBLIC_DECKS } component={MyPublicDecks} />
-            <Stack.Screen name={ ROUTES.DISPLAY_MY_DECK } component={DisplayDeck} />
+            <Stack.Screen name={ ROUTES.DISPLAY_MY_DECK } component={DisplayDeck} initialParams={{fetchDecks}} />
         </Stack.Navigator>
     )
 };
