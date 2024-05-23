@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {View, Text, Image} from 'react-native';
 import {ScreenProps} from "../../interfaces/screen";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
@@ -7,11 +7,14 @@ import {Button} from "../../components";
 import {DeckListInterface} from "../../interfaces/decks";
 
 const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
+
+    const { deck } = route.params;
+    console.log(deck)
+
     return (
 
         <View className="flex-1 bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
             <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
-                {/* DECK TITTLE */}
                 Deck Preview
             </Text>
             <View className=" top-14 absolute left-6">
@@ -24,10 +27,10 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
             </View>
             <View className={"flex-1 top-36 pb-36"}>
                 <Text className={"text-white font-bold scale-150 left-40"}>
-                    Deck Tittle
+                    {deck.title}
                 </Text>
                 <Text className={"text-white font-bold scale-125 left-28 mt-2 mb-4"}>
-                    Number of flashcards: 0
+                    Number of flashcards: {deck.number_of_cards}
                 </Text>
 
                 <Button

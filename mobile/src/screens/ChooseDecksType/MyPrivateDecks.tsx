@@ -98,7 +98,7 @@ const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
                     id={item.id}
                     title={item.title}
                     deck_category={item.deck_category}
-                    onPress={() => navigation.navigate(DisplayDeck)}
+                    onPress={() => navigation.navigate('DisplayDeck', { deck: item })}
                 />
             )}
             keyExtractor={item => item.id}
