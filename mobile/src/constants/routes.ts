@@ -8,11 +8,12 @@ export default {
     STUDY: "Study",
     USER: "User",
 
-    // local decks / learn decks
+    // learning
     HOME_DECKS: "HomeDecks",
     MY_PUBLIC_DECKS: "MyPublicDecks",
     MY_PRIVATE_DECKS: "MyPrivateDecks",
     CREATE_DECK: "CreateDeck",
+    DISPLAY_MY_DECK: "DisplayDeck",
 
     //  public decks tab
     PUBLIC_DECKS: "PublicDecks",
