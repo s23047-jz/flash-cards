@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
 // @ts-ignore
@@ -16,10 +16,15 @@ import { ScreenProps } from "../../interfaces/screen";
 import { DeckList } from "../index";
 import {Button} from "../../components";
 
-const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
+const HomeScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
   useState();
+  const { fetchDecks } = route.params;
+    useEffect(() => {
+        fetchDecks();
+    }, []);
 
-  const handleNewDeck = async () => {};
+
+    const handleNewDeck = async () => {};
 
   const handleMyDecks = async () => {};
 
