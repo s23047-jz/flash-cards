@@ -5,11 +5,19 @@ import { NavigationProp } from "@react-navigation/native";
 export const DECKS_ENDPOINTS = {
     public_decks: `${BASE_API}/decks/public_decks/`,
     create_deck: `${BASE_API}/decks/create_deck`,
+    read_deck_by_id:(deck_id) => `${BASE_API}/${deck_id}`,
     get_user_decks:(user_id) =>  `${BASE_API}/decks/${user_id}/decks/`
 };
 
 class Decks {
     constructor() {}
+    public async read_deck_by_id(deck_id, navigation: NavigationProp<any>) {
+        const { data } = await request({
+            url: DECKS_ENDPOINTS.read_deck_by_id(deck_id),
+            navigation
+        })
+        return data;
+    }
 
     public async getPublicDecks(query: object, navigation: NavigationProp<any>) {
         const { data } = await request({
@@ -37,6 +45,8 @@ class Decks {
             navigation
         })
     }
+
+
 
 }
 

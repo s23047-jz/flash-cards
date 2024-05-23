@@ -1,15 +1,48 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import {ScreenProps} from "../../interfaces/screen";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import GreenCards from "../../assets/images/greencards.png";
 import {Button} from "../../components";
 import {DeckListInterface} from "../../interfaces/decks";
+import {DisplayFlashcards} from "../index";
+import {ActiveUser} from "../../services/user";
+import {DecksService} from "../../services/decks";
+import {ROUTES} from "../../constants";
+import {InputValidator} from "../../components/Validator/InputValidator";
+import displayFlashcards from "../FlashCards/DisplayFlashcards";
 
 const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
-
     const { deck } = route.params;
-    console.log(deck)
+
+    const [flashCards, setFlashCards] = useState([]);
+
+    const fetchFlashcards = async (navigation) => {
+        try {
+            const flashCards = await DecksService.getUserDecks(deck.id, navigation)
+            setFlashCards(flashCards)
+            console.log("selected deck", deck)
+            console.log("deck flashcards: ", flashCards)
+        } catch (error) {
+            console.error('Error checking authentication status:', error);
+            setFlashCards([])
+        }
+    };
+
+    useEffect(() => {
+        fetchFlashcards();
+    }, []);
+
+    const handleDisplayFlashcards = async () => {
+            navigation.navigate(ROUTES.DISPLAY_FLASHCARDS, { deck: deck })
+    }
+
+
+
+
+
+
+
 
     return (
 
@@ -34,7 +67,8 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
                 </Text>
 
                 <Button
-                    className={'p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl'}>
+                    className={'p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl'}
+                    onPress={handleDisplayFlashcards}>
                     <Text className="scale-125 mb-1.5 font-bold text-center justify-center" >Review flashcards</Text>
                     <Text className="font-bold text-center justify-center">Create, edit and delete</Text>
                 </Button>

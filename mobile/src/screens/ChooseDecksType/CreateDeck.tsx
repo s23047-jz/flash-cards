@@ -89,16 +89,16 @@ const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
             </View>
 
 
-            <View className={"flex-row"}>
-            <Button
-                onPress={() => navigation.goBack()}
-                className={'p-3 w-25 h-16 justify-center m-2 rounded-3xl'}>
-                <Text className="mx-5 font-bold">Cancel</Text>
-            </Button>
+            <View className={"flex-row top-6"}>
+                <Button
+                    onPress={() => navigation.goBack()}
+                    className={'p-3 w-30 h-16 justify-center mr-3 rounded-3xl'}>
+                    <Text className="mx-5 scale-125 font-bold">Cancel</Text>
+                </Button>
                 <Button
                     onPress={handleCreate}
-                    className={'p-3 w-25 h-16 justify-center m-2 rounded-3xl'}>
-                    <Text className="mx-5 font-bold">Create</Text>
+                    className={'p-3 ml-3 w-25 h-16 justify-center rounded-3xl'}>
+                    <Text className="mx-5 scale-125 font-bold">Create!</Text>
                 </Button>
             </View>
 
