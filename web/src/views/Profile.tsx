@@ -84,7 +84,7 @@ const UserProfilePage: React.FC = () => {
         } catch (error) {
             console.error("Update failed: ", error);
             // @ts-ignore
-            alert("Failed to update avatar: " + error.message);
+            alert("Failed to update avatars: " + error.message);
         }
     };
 

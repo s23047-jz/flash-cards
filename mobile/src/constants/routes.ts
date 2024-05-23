@@ -23,5 +23,6 @@ export default {
     // user profile
     USER_DETAILS: 'UserDetails',
     USER_UPDATE: 'UserUpdate',
-    USER_DELETE: 'UserDelete'
+    USER_DELETE: 'UserDelete',
+    USER_STATS: "UserStats",
 }

@@ -1,6 +1,7 @@
 import uuid
+
 from pydantic.main import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Union
 from datetime import datetime
 
 from fastapi import (
@@ -10,7 +11,7 @@ from fastapi import (
     status,
     Request
 )
-from sqlalchemy import func, desc
+from sqlalchemy import func, desc, case
 from sqlalchemy.orm import Session
 
 from flash_cards_api.database import get_db
@@ -40,11 +41,17 @@ class UserDetailsResponse(BaseModel):
     created_at: datetime
 
 
-class UserRankingResponse(BaseModel):
+class UserRanking(BaseModel):
     id: uuid.UUID
     username: str
     avatar: str
     shared_decks: int
+    rank: int
+
+
+class UserRankingResponse(BaseModel):
+    users: List[UserRanking]
+    total: int
 
 
 class UserUpdateModel(BaseModel):
@@ -63,6 +70,19 @@ class SelfDelete(BaseModel):
     password: str
 
 
+class UserStatsResponse(BaseModel):
+    id: uuid.UUID
+    username: str
+    avatar: str
+    rank: int
+    created_decks: int
+    public_decks: int
+
+
+class UpdateAvatarPayloadScheme(BaseModel):
+    avatar: str
+
+
 @router.get(
     "/",
     response_model=List[UserDetailsResponse],
@@ -79,7 +99,7 @@ async def get_user_list(
 
 @router.get(
     "/users_ranking/",
-    response_model=List[UserRankingResponse],
+    response_model=UserRankingResponse,
     dependencies=[Depends(get_current_active_user)]
 )
 async def get_users_ranking(
@@ -87,15 +107,28 @@ async def get_users_ranking(
     db: Session = Depends(get_db)
 ):
     query_params = request.query_params
-    print(query_params)
+
+    page = query_params.get("page", None)
+    per_page = query_params.get("per_page", None)
+
+    sub_q = db.query(
+        Deck.user_id.label('user_id'),
+        func.rank().over(order_by=desc(func.sum(Deck.downloads))).label('rank')
+    ).group_by(
+        Deck.user_id
+    ).subquery()
 
     q = db.query(
         User.id,
         User.username,
         User.avatar,
-        func.count(Deck.id).label('shared_decks')
+        func.count(Deck.id).label('shared_decks'),
+        sub_q.c.rank
     ).select_from(
         User
+    ).join(
+        sub_q,
+        sub_q.c.user_id == User.id
     ).join(
         Deck,
         Deck.user_id == User.id
@@ -106,7 +139,28 @@ async def get_users_ranking(
     ).order_by(
         desc('shared_decks')
     )
-    return q.all()
+
+    total = len(q.all())
+
+    if page and per_page:
+        if isinstance(page, str) or isinstance(per_page, str):
+            page = int(page)
+            per_page = int(per_page)
+
+        offset = (page - 1) * per_page
+        q = q.limit(per_page).offset(offset)
+
+    users = [
+        {
+            'id': user.id,
+            'username': user.username,
+            'avatar': user.avatar,
+            'shared_decks': user.shared_decks,
+            'rank': user.rank
+        }
+        for user in q.all()
+    ]
+    return UserRankingResponse(users=users, total=total)
 
 
 @router.get("/me/", status_code=200)
@@ -159,6 +213,7 @@ async def update_me(
                 )
             user_details.email = payload['email']
 
+        user_details.updated_at = datetime.today()
         db.commit()
         db.refresh(user_details)
 
@@ -188,6 +243,65 @@ async def delete_me(
 
     else:
         raise HTTPException(status_code=404, detail="Bad request")
+
+
+@router.get(
+    "/user_stats/{user_id}/",
+    dependencies=[Depends(get_current_active_user)],
+    status_code=200,
+    response_model=UserStatsResponse
+)
+async def get_user_stats(
+    user_id: uuid.UUID,
+    db: Session = Depends(get_db)
+):
+    sub_q = db.query(
+        Deck.user_id.label('user_id'),
+        func.rank().over(order_by=desc(func.sum(Deck.downloads))).label('rank')
+    ).group_by(
+        Deck.user_id
+    ).subquery()
+
+    q = db.query(
+        User.id,
+        User.username,
+        User.avatar,
+        func.count(Deck.id).label('created_decks'),
+        func.count(case((Deck.is_deck_public == True, Deck.id), else_=None)).label('public_decks'),
+        sub_q.c.rank
+    ).outerjoin(
+        Deck,
+        Deck.user_id == User.id
+    ).join(
+        sub_q,
+        sub_q.c.user_id == User.id
+    ).filter(
+        User.id == user_id
+    )
+
+    return q.first()
+
+
+@router.put("/update-avatar/{user_id}/", status_code=200, dependencies=[Depends(get_current_active_user)])
+async def update_avatar(
+    user_id: uuid.UUID,
+    payload: UpdateAvatarPayloadScheme,
+    db: Session = Depends(get_db)
+):
+    payload = payload.dict()
+    user: User = db.query(User).where(User.id == user_id)
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+
+    user.avatar = payload['avatar']
+    db.commit()
+    db.refresh(user)
+
+    return {"detail": "Avatar updated successfully"}
 
 
 @router.get(
