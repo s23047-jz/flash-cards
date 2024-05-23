@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { ROUTES } from "../constants";
-import { HomeScreen, MyPublicDecks, MyPrivateDecks, CreateDeck} from "../screens";
+import { HomeScreen, MyPublicDecks, MyPrivateDecks, CreateDeck, DisplayFlashcards, CreateFlashcard} from "../screens";
 import {ActiveUser} from "../services/user";
 import {DecksService} from "../services/decks";
 import DisplayDeck from "../screens/ChooseDecksType/DisplayDeck";
@@ -12,6 +12,7 @@ const Stack = createNativeStackNavigator();
 
 export default function HomeNavigator() {
     const [deckList, setDeckList] = useState([]);
+
     const fetchDecks = async (navigation) => {
         try {
             const { id } = await ActiveUser.getUserData();
@@ -24,6 +25,7 @@ export default function HomeNavigator() {
     };
 
 
+
     return (
         <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={ ROUTES.HOME_DECKS }>
             <Stack.Screen name={ ROUTES.HOME_DECKS } component={HomeScreen} initialParams={{fetchDecks}} />
@@ -31,6 +33,8 @@ export default function HomeNavigator() {
             <Stack.Screen name={ ROUTES.MY_PRIVATE_DECKS } component={MyPrivateDecks} initialParams={{fetchDecks, deckList}}/>
             <Stack.Screen name={ ROUTES.MY_PUBLIC_DECKS } component={MyPublicDecks} />
             <Stack.Screen name={ ROUTES.DISPLAY_MY_DECK } component={DisplayDeck} initialParams={{fetchDecks}} />
+            <Stack.Screen name={ ROUTES.DISPLAY_FLASHCARDS } component={DisplayFlashcards} />
+            <Stack.Screen name={ ROUTES.CREATE_FLASHCARD } component={CreateFlashcard} />
         </Stack.Navigator>
     )
 };

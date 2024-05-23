@@ -14,6 +14,8 @@ export default {
     MY_PRIVATE_DECKS: "MyPrivateDecks",
     CREATE_DECK: "CreateDeck",
     DISPLAY_MY_DECK: "DisplayDeck",
+    DISPLAY_FLASHCARDS: "DisplayFlashcards",
+    CREATE_FLASHCARD: "CreateFlashcard",
 
     //  public decks tab
     PUBLIC_DECKS: "PublicDecks",
