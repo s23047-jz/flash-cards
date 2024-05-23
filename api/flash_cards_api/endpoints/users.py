@@ -1,6 +1,7 @@
 import uuid
+
 from pydantic.main import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Union
 from datetime import datetime
 
 from fastapi import (
@@ -40,12 +41,17 @@ class UserDetailsResponse(BaseModel):
     created_at: datetime
 
 
-class UserRankingResponse(BaseModel):
+class UserRanking(BaseModel):
     id: uuid.UUID
     username: str
     avatar: str
     shared_decks: int
     rank: int
+
+
+class UserRankingResponse(BaseModel):
+    users: List[UserRanking]
+    total: int
 
 
 class UserUpdateModel(BaseModel):
@@ -93,7 +99,7 @@ async def get_user_list(
 
 @router.get(
     "/users_ranking/",
-    response_model=List[UserRankingResponse],
+    response_model=UserRankingResponse,
     dependencies=[Depends(get_current_active_user)]
 )
 async def get_users_ranking(
@@ -101,7 +107,9 @@ async def get_users_ranking(
     db: Session = Depends(get_db)
 ):
     query_params = request.query_params
-    print(query_params)
+
+    page = query_params.get("page", None)
+    per_page = query_params.get("per_page", None)
 
     sub_q = db.query(
         Deck.user_id.label('user_id'),
@@ -131,7 +139,28 @@ async def get_users_ranking(
     ).order_by(
         desc('shared_decks')
     )
-    return q.all()
+
+    total = len(q.all())
+
+    if page and per_page:
+        if isinstance(page, str) or isinstance(per_page, str):
+            page = int(page)
+            per_page = int(per_page)
+
+        offset = (page - 1) * per_page
+        q = q.limit(per_page).offset(offset)
+
+    users = [
+        {
+            'id': user.id,
+            'username': user.username,
+            'avatar': user.avatar,
+            'shared_decks': user.shared_decks,
+            'rank': user.rank
+        }
+        for user in q.all()
+    ]
+    return UserRankingResponse(users=users, total=total)
 
 
 @router.get("/me/", status_code=200)
@@ -184,6 +213,7 @@ async def update_me(
                 )
             user_details.email = payload['email']
 
+        user_details.updated_at = datetime.today()
         db.commit()
         db.refresh(user_details)
 

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, ScrollView, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 
-import { Row, Col, Loader, Button, Card } from "../../components";
+import { Row, Col, Loader, Button, Card, LoadingCard } from "../../components";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { UserStatsInterface } from "../../interfaces/user";
@@ -48,10 +48,19 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     const [selectedView, setSelectedView] = useState(PAGES.DECKS);
     const [userData, setUserData] = useState<UserStatsInterface>({});
     const [decksData, setDecksData] = useState([]);
+    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(1);
+    const [prevPage, setPrevPage] = useState(1);
+    const [fetchLoading, setFetchLoading] = useState(false);
 
     const fetchDecks = async() => {
-        const deck_list = await DecksService.getPublicDecks({"user_id": userId}, navigation);
-        setDecksData(deck_list)
+        const deck_list = await DecksService.getPublicDecks(
+            {"user_id": userId, page, per_page: 4},
+            navigation
+        );
+        setDecksData(deck_list.decks)
+        setTotal(deck_list.total)
+        setFetchLoading(false);
     }
 
     const fetchUser = async() => {
@@ -62,6 +71,12 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     const changeView = async(view: string) => {
         if (view !== selectedView) {
             setLoading(true);
+            setPrevPage(1);
+            setPage(1);
+            setTotal(0)
+            setLoading(true);
+            setDecksData([]);
+
             setSelectedView(view);
             if (view === PAGES.USER) {
                 await fetchUser();
@@ -71,6 +86,28 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
             setLoading(false);
         }
     }
+
+    const handleScroll = async({ nativeEvent }) => {
+        if (isCloseToBottom(nativeEvent) &&
+            (decksData.length % 4 === 0) &&
+            !(decksData.length === total) &&
+            selectedView === PAGES.DECKS
+        ) {
+            setFetchLoading(true)
+            setPage(prevState => prevState + 1);
+            if (prevPage !== page) {
+                setTimeout(() => {
+                    fetchDecks();
+                }, 1000)
+            }
+            setPrevPage(page);
+        }
+    };
+
+    const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
+        const paddingToBottom = 15;
+        return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
+    };
 
 
     useEffect(() => {
@@ -195,6 +232,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                             created_at={deck.created_at}
                         />
                     ))}
+                    {fetchLoading ? [...Array(3)].map(() => <LoadingCard />) : null}
                 </View> :
                 <View>
                     <Text>
@@ -229,7 +267,9 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
-            <ScrollView className="flex flex-container w-full mt-20 mb-5">
+            <ScrollView
+                className="flex flex-container w-full mt-20 mb-5"
+            >
                 <Row className='w-full p-1' style={styles.row}>
                     <Col className='w-48 h-full justify-center align-middle'>
                         <TouchableOpacity onPress={() => routeFrom ? navigation.navigate(routeFrom) : navigation.goBack()}>
@@ -247,7 +287,11 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                 { checkSelfData ? '' : sectionButtons() }
                 <Row className="w-full h-4/5 mt-2">
                     { loading ? <Loader /> :
-                        <ScrollView className={'w-full p-6 h-1/4'}>
+                        <ScrollView
+                            className={'w-full p-6 h-1/4'}
+                            onScroll={handleScroll}
+                            scrollEventThrottle={16}
+                        >
                             { selectedView === PAGES.DECKS ? decksView() : userView() }
                         </ScrollView>
                     }

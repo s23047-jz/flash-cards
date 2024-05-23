@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { DeckListInterface, UserListInterface } from "../../interfaces/decks";
-import { Row, Button, Col, Card, Loader } from "../../components";
+import { Row, Button, Col, Card, Loader, LoadingCard } from "../../components";
 
 import { DecksService } from "../../services/decks";
 import { UsersService } from "../../services/users";
@@ -38,7 +38,7 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
                         </Text>
                     </Col>
                     <Col className={'w-full'}>
-                        <Text className={'text-center justify-middle align-top'}>
+                        <Text className={'text-center justify-center align-top'}>
                             { deck_category }
                         </Text>
                     </Col>
@@ -134,20 +134,38 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     const [selectedView, setSelectedView] = useState(PAGES.USERS);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [fetchLoading, setFetchLoading] = useState(false);
+    const [total, setTotal] = useState(0);
+    const [page, setPage] = useState(1);
+    const [prevPage, setPrevPage] = useState(1);
 
     const fetchDecks = async() => {
-        const deck_list = await DecksService.getPublicDecks({"test": "test"}, navigation);
-        setData(deck_list);
+        console.log("fetchDecks page", page);
+        const deck_list = await DecksService.getPublicDecks({ page, per_page: 4 }, navigation);
+        if(data && data.length) setData(prevData => [...prevData, ...deck_list.decks]);
+        else setData(deck_list.decks);
+        setTotal(deck_list.total)
+        setFetchLoading(false)
     }
 
     const fetchUsers = async() => {
-        const user_list = await UsersService.getUsersRanking({"test": "test"}, navigation);
-        setData(user_list);
+        console.log("fetchUsers page", page)
+        const user_list = await UsersService.getUsersRanking({ page, per_page: 4 }, navigation);
+        if(data && data.length) setData(prevData => [...prevData, ...user_list.users]);
+        else setData(user_list.users);
+        setTotal(user_list.total)
+        setFetchLoading(false)
     }
 
     const changeView = async(view: string) => {
         if (view !== selectedView) {
+
+            setPrevPage(1);
+            setPage(1);
+            setTotal(0)
             setLoading(true);
+            setData([]);
+
             setSelectedView(view);
             if (view === PAGES.USERS) {
                 await fetchUsers();
@@ -157,6 +175,28 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
             setLoading(false);
         }
     }
+
+    const handleScroll = async({ nativeEvent }) => {
+        if (isCloseToBottom(nativeEvent) && (data.length % 4 === 0) && !(data.length === total)) {
+            setFetchLoading(true)
+            setPage(prevState => prevState + 1);
+            if (prevPage !== page) {
+                setTimeout(() => {
+                    if (selectedView === PAGES.USERS) {
+                        fetchUsers();
+                    } else {
+                        fetchDecks();
+                    }
+                }, 1000)
+            }
+            setPrevPage(page);
+        }
+    };
+
+    const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
+        const paddingToBottom = 15;
+        return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
+    };
 
     const handleNavigationToUserStats = (userId: string) => {
         navigation.navigate(ROUTES.USER, {
@@ -221,7 +261,11 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                 </Row>
                 <Row className="w-full h-3/5 mt-2">
                     { loading ? <Loader /> : data && data.length ? (
-                        <ScrollView className='flex text-center align-middle w-full p-6 h-1/4'>
+                        <ScrollView
+                            className='flex text-center align-middle w-full p-6 h-1/4'
+                            onScroll={handleScroll}
+                            scrollEventThrottle={16}
+                        >
                             { data.map((item, index) => selectedView === PAGES.DECKS ?
                                 <DeckCard
                                     key={item.id}
@@ -241,6 +285,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                                         navigate={handleNavigationToUserStats}
                                     />
                                 )}
+                            {fetchLoading ? [...Array(3)].map(() => <LoadingCard />) : null}
                         </ScrollView>
                     ) : (
                         <Row className='w-full mt-10'>

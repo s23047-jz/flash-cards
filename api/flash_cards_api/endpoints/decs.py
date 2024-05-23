@@ -55,22 +55,22 @@ class PublicDecksList(BaseModel):
     rank: int
 
 
+class PublicDecksResponse(BaseModel):
+    decks: List[PublicDecksList]
+    total: int
+
+
 class DeckPublic(BaseModel):
     is_deck_public: Optional[bool] = None
 
 
-@router.get("/public_decks/", status_code=200, response_model=List[PublicDecksList])
+@router.get("/public_decks/", status_code=200, response_model=PublicDecksResponse)
 async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     query_params = request.query_params
 
     user_id = query_params.get('user_id', None)
-    print('user_id', user_id)
     page = query_params.get("page", None)
     per_page = query_params.get("per_page", None)
-
-    offset = None
-    if page and per_page:
-        offset = (page - 1) * per_page
 
     subquery = db.query(
         Deck.id.label('deck_id'),
@@ -101,11 +101,36 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
         user_id = uuid.UUID(user_id)
         q = q.filter(User.id == user_id)
 
-    if offset:
-        q = q.offset(offset).limit(per_page)
-
     q = q.order_by(desc(Deck.downloads))
-    return q.all()
+
+    total = len(q.all())
+
+    if page and per_page:
+        print("PAGE", page)
+        print("per_page", per_page)
+        if isinstance(page, str) or isinstance(per_page, str):
+            page = int(page)
+            per_page = int(per_page)
+
+        offset = (page - 1) * per_page
+        q = q.limit(per_page).offset(offset)
+
+
+    decks = [
+        {
+            'id': deck.id,
+            'title': deck.title,
+            'deck_category': deck.deck_category,
+            'downloads': deck.downloads,
+            'created_at': deck.created_at,
+            'username': deck.username,
+            'avatar': deck.avatar,
+            'rank': deck.rank
+        }
+        for deck in q.all()
+    ]
+
+    return PublicDecksResponse(decks=decks, total=total)
 
 
 @router.get("/{deck_id}", status_code=status.HTTP_200_OK)
