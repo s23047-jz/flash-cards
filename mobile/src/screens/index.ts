@@ -9,6 +9,10 @@ export { default as MyPrivateDecks } from "./ChooseDecksType/MyPrivateDecks";
 export { default as MyPublicDecks } from "./ChooseDecksType/MyPublicDecks";
 export { default as CreateDeck } from "./ChooseDecksType/CreateDeck";
 
+//FLASHCARDS / LEARNING
+export { default as DisplayFlashcards } from "./FlashCards/DisplayFlashcards"
+export { default as CreateFlashcard } from "./FlashCards/CreateFlashcard"
+
 //USER PANEL
 export { default as UserPanelScreen } from "./Users/UserPanelScreen";
 export { default as UserUpdate } from "./Users/UserUpdate";

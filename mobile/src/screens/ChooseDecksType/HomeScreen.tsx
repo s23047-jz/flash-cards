@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
 // @ts-ignore
@@ -16,10 +16,15 @@ import { ScreenProps } from "../../interfaces/screen";
 import { DeckList } from "../index";
 import {Button} from "../../components";
 
-const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
+const HomeScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
   useState();
+  const { fetchDecks } = route.params;
+    useEffect(() => {
+        fetchDecks();
+    }, []);
 
-  const handleNewDeck = async () => {};
+
+    const handleNewDeck = async () => {};
 
   const handleMyDecks = async () => {};
 
@@ -39,7 +44,7 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
           })
         }
 
-        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
       >
         <Text className="mx-5 font-bold">Create new one</Text>
 
@@ -56,7 +61,7 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
             screen: "MyPrivateDecks",
           })
         }
-        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
       >
         <Text className="mx-5 font-bold">My Decks</Text>
 
@@ -72,7 +77,7 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation }) => {
             screen: "MyPublickDecks",
         })
         }
-        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
       >
         <Text className="mx-5 font-bold">Publick Decks</Text>
 

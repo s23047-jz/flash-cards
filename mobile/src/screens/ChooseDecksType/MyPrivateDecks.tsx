@@ -10,12 +10,14 @@ import {DecksService} from "../../services/decks";
 import {ActiveUser} from "../../services/user";
 import {DeckListInterface} from "../../interfaces/decks";
 import GreenCards from "../../assets/images/greencards.png";
+import DisplayDeck from "./DisplayDeck";
 
 
-const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category }) => {
+const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, onPress }) => {
     return (
         <Button
-        className={'p-3 m-3 w-60 h-16 justify-center mr-auto ml-auto rounded-3xl'}>
+            onPress={onPress}
+            className={'p-3 m-3 w-60 h-16 justify-center mr-auto ml-auto rounded-3xl'}>
             <Image
                 className="absolute flex-grow h-10 -left-8"
                 resizeMode="contain"
@@ -96,6 +98,7 @@ const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
                     id={item.id}
                     title={item.title}
                     deck_category={item.deck_category}
+                    onPress={() => navigation.navigate('DisplayDeck', { deck: item })}
                 />
             )}
             keyExtractor={item => item.id}
