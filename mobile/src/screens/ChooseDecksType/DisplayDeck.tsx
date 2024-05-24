@@ -33,7 +33,6 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
     try {
       const data = await DecksService.read_deck_by_id(selected_deck.id);
       setDeck(data);
-      console.log("wybrany deck", data);
     } catch (error) {
       console.error("Error checking authentication status:", error);
       setDeck([]);
@@ -43,7 +42,6 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   useFocusEffect(
     useCallback(() => {
       fetchAll();
-      console.log("tera ta", deckList)
     }, [fetchAll])  // zależność od fetchDeck
   );
   
