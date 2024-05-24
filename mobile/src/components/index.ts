@@ -4,3 +4,13 @@ export { default as Button } from "./Button";
 export { default as CModal } from "./CModal";
 export { default as Loader } from "./Loader";
 export { default as Card } from "./Card";
+
+
+//API
+
+export {default as FetchAllDecks } from "./ApiCompononets/FetchAllDecks"
+export {default as FetchAllFlashcards} from "./ApiCompononets/FetchAllFlashcards"
+
+
+
+export { default as LoadingCard } from "./LoadingCard";

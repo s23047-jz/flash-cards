@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from "react";
 
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { Row, Col, Button, CModal } from "../../components";
 import { UpdateUserInterface } from "../../interfaces/user";
 import { ScreenProps } from "../../interfaces/screen";
 
-
 import { UsersService } from "../../services/users";
 import { ActiveUser } from "../../services/user";
+
+const styles = StyleSheet.create({
+    row: {
+        height: 75
+    },
+});
 
 
 const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
@@ -90,15 +95,19 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                     </Row>
                 </View>
             </CModal>
-            <View className={'w-full mt-20'}>
-                <Row className='w-full p-6'>
-                    <Col className='w-full'>
+            <ScrollView className={'w-full mt-20'}>
+                <Row className='w-full p-1' style={styles.row}>
+                    <Col className='w-48 h-full justify-center align-middle'>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
-                            <Text className='text-2xl text-white font-bold'>
+                            <Text className='text-2xl text-white font-bold ml-4'>
                                 <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
-                                User profile
                             </Text>
                         </TouchableOpacity>
+                    </Col>
+                    <Col className='w-48 h-full justify-center align-middle'>
+                        <Text className='text-2xl text-white font-bold text-right mr-4'>
+                            User profile
+                        </Text>
                     </Col>
                 </Row>
                 <Row className='w-full p-6'>
@@ -146,7 +155,7 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                         </Button>
                     </Col>
                 </Row>
-            </View>
+            </ScrollView>
         </View>
     )
 };

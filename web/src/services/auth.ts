@@ -10,7 +10,7 @@ export const AUTH_ENDPOINTS = {
   updateNickname: `${BASE_API}/api/auth/update-nickname/`, // Added endpoint for updating nickname
   updateEmail: `${BASE_API}/api/auth/update-email/`, // Added endpoint for updating email
   updatePassword: `${BASE_API}/api/auth/update-password/`, // Added endpoint for updating password
-  updateAvatar: `${BASE_API}/api/auth/update-avatar/` // Added endpoint for updating avatar
+  updateAvatar: `${BASE_API}/api/auth/update-avatar/` // Added endpoint for updating avatars
 };
 
 class Auth {

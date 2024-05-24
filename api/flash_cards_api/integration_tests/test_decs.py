@@ -5,6 +5,7 @@ from flash_cards_api.dependencies.auth import get_current_user
 ENDPOINT = "http://localhost:8000/"
 
 
+
 def get_user_data():
 
     user_body = {

@@ -22,7 +22,7 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
             routes: [
                 {
                     label: "Stats",
-                    to: ""
+                    to: Routes.USER_STATS
                 }
             ]
         },
@@ -104,7 +104,7 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
 
 
     return (
-        <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
+        <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900 pb-14">
             {getDeleteModal()}
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
                 <Row className="w-full">

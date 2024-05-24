@@ -10,4 +10,6 @@ exclude =
     old,
     build,
     dist
+    .venv
+    venv
 max-complexity = 10
