@@ -10,9 +10,11 @@ export const AUTH_ENDPOINTS = {
     create_flash_card: `${BASE_API}/flash_card/create_flash_card`,
 };
 
-
+const token = ActiveUser.getAuthorization();
+console.log(token)
 class Deck {
     deckData: DeckInterface = {}
+
 
     constructor() {
         try {
@@ -28,7 +30,12 @@ class Deck {
         const url = `${BASE_API}/decks/${user_id}/decks/`;
 
         try {
-            const response = await fetch(url);
+            const response = await  fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -45,7 +52,12 @@ class Deck {
         const url = `${BASE_API}/decks/${user_id}/imported/decks/`;
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -62,7 +74,12 @@ class Deck {
         const url = `${BASE_API}/decks/${user_id}/filtered_decks/?filter_string=${filterString}`;
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -74,12 +91,17 @@ class Deck {
         }
     }
 
-     public async get_filtered_imported_decks(filterString: string): Promise<any> {
+    public async get_filtered_imported_decks(filterString: string): Promise<any> {
         const user_id = ActiveUser.getId();
         const url = `${BASE_API}/decks/${user_id}/filtered_imported_decks/?filter_string=${filterString}`;
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -95,7 +117,12 @@ class Deck {
         const url = `${BASE_API}/decks/${deck_id}`;
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -115,7 +142,12 @@ class Deck {
         const url = `${BASE_API}/decks/${deck_id}/flash_cards`;
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -132,7 +164,12 @@ class Deck {
         const url = `${BASE_API}/decks/${deck_id}/memorized_flash_cards`;
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -149,7 +186,12 @@ class Deck {
         const url = `${BASE_API}/decks/decks_ranking/`;
 
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -166,7 +208,12 @@ class Deck {
     public async get_not_memorized_flash_cards_from_deck(deck_id: string | undefined) {
         const url = `${BASE_API}/decks/${deck_id}/not_memorized_flash_cards`;
         try {
-            const response = await fetch(url);
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
             }
@@ -183,7 +230,10 @@ class Deck {
         // @ts-ignore
         return await request({
             url: AUTH_ENDPOINTS.create_deck,
-            method: 'POST', body
+            method: 'POST', body,
+            headers: {
+                    'Authorization': `${token}`
+                },
         });
     }
 
@@ -193,7 +243,10 @@ class Deck {
         try {
             const response = await request({
                 url: url,
-                method: 'POST', body
+                method: 'POST', body,
+                headers: {
+                    'Authorization': `${token}`
+                },
             });
             // @ts-ignore
             return response;
@@ -208,16 +261,22 @@ class Deck {
         // @ts-ignore
         return await request({
             url: AUTH_ENDPOINTS.create_flash_card,
-            method: 'POST', body
+            method: 'POST', body,
+            headers: {
+                    'Authorization': `${token}`
+                },
         });
     }
 
-    public async copy_public_deck(deck_id: string, user_id: string){
+    public async copy_public_deck(deck_id: string, user_id: string) {
         const url = `${BASE_API}/decks/copy_deck/${deck_id}/${user_id}`
 
         return await request({
             url: url,
-            method: 'POST'
+            method: 'POST',
+            headers: {
+                    'Authorization': `${token}`
+                },
         });
 
     };
@@ -231,7 +290,10 @@ class Deck {
             return await request({
                 url: url,
                 method: 'PUT',
-                body: body
+                body: body,
+                headers: {
+                    'Authorization': `${token}`
+                },
             });
 
         } catch (error) {
@@ -247,7 +309,10 @@ class Deck {
             return await request({
                 url: url,
                 method: 'PUT',
-                body: body
+                body: body,
+                headers: {
+                    'Authorization': `${token}`
+                },
             });
 
         } catch (error) {
@@ -263,6 +328,9 @@ class Deck {
             return await request({
                 url: url,
                 method: 'PUT',
+                headers: {
+                    'Authorization': `${token}`
+                },
             });
 
         } catch (error) {
@@ -279,7 +347,10 @@ class Deck {
             return await request({
                 url: url,
                 method: 'PUT',
-                body: body
+                body: body,
+                headers: {
+                    'Authorization': `${token}`
+                },
             });
 
         } catch (error) {
@@ -296,7 +367,10 @@ class Deck {
             return await request({
                 url: url,
                 method: 'PUT',
-                body: body
+                body: body,
+                headers: {
+                    'Authorization': `${token}`
+                },
             });
 
         } catch (error) {
@@ -310,7 +384,10 @@ class Deck {
             const url = `${BASE_API}/decks/delete_deck/${deck_id}`;
             return await request({
                 url,
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `${token}`
+                },
             });
         } catch (error) {
             // @ts-ignore
@@ -324,7 +401,10 @@ class Deck {
             const url = `${BASE_API}/flash_card/delete_flash_card/${flashcard_id}`;
             return await request({
                 url,
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `${token}`
+                },
             });
         } catch (error) {
             // @ts-ignore
