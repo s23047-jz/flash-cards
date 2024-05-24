@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image} from 'react-native';
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import {ScreenProps} from "../../interfaces/screen";
@@ -6,6 +6,8 @@ import {DeckListInterface} from "../../interfaces/decks";
 import {Button} from "../../components";
 import {ROUTES} from "../../constants";
 import Plus from "../../assets/images/Plus.png";
+import {DecksService} from "../../services/decks";
+import {ActiveUser} from "../../services/user";
 
 const FlashCard: React.FC<DeckListInterface> = ({ id, SideA, SideB }) => {
     return (
@@ -18,12 +20,48 @@ const FlashCard: React.FC<DeckListInterface> = ({ id, SideA, SideB }) => {
     )}
 
 const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
-    const { deck } = route.params;
-    const handleCreateFlashcards = async () => {
+    const { fetchDecks, deckList, deck } = route.params;
+    const [flashCards, setFlashCards] = useState([]);
+  
+  const handleCreateFlashcards = async () => {
         navigation.navigate(ROUTES.CREATE_FLASHCARD, { deck: deck })
     }
-
-    return (
+  
+    
+  const fetchFlashcards = async (navigation) => {
+    try {
+      console.log('POBRANO W HOMENAVIGATOR')
+      const { id } = await ActiveUser.getUserData();
+      const data = await DecksService.getUserDecks(id, navigation)
+      setDeckList(data)
+    } catch (error) {
+      console.error('Error checking authentication status:', error);
+      setDeckList([])
+    }
+    
+    try {
+      const data = await DecksService.read_deck_cards_by_id(
+        deck.id,
+        navigation,
+      );
+      
+      setFlashCards(data);
+      console.log("ODCZYTANO dsad")
+      console.log(data)
+      
+      
+    } catch (error) {
+      console.error("Error checking authentication status:", error);
+      setFlashCards([]);
+    }
+    
+  };
+  
+  useEffect(() => {
+    fetchFlashcards();
+  }, []);
+  
+  return (
         <View className="flex-1 bg-sky-500 dark:bg-blue-900 placeholder-gray-400 justify-center items-center">
             <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-12">
                 Flashcards Preview

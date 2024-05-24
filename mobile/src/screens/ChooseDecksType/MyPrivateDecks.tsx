@@ -29,19 +29,12 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, onPre
     )}
 
 const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
-    const { fetchDecks, deckList } = route.params;
+    const { deckList } = route.params;
     useState();
-  const [search, setSearch] = useState("");
+    const [search, setSearch] = useState("");
 
-
-    useEffect(() => {
-        fetchDecks();
-    }, []);
-
-
-
-
-
+    
+    
     return (
     <View className="flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
       <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
@@ -98,7 +91,7 @@ const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
                     id={item.id}
                     title={item.title}
                     deck_category={item.deck_category}
-                    onPress={() => navigation.navigate('DisplayDeck', { deck: item })}
+                    onPress={() => navigation.navigate('DisplayDeck', { selected_deck: item })}
                 />
             )}
             keyExtractor={item => item.id}
