@@ -1,16 +1,17 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import { View, Text, TextInput, TouchableOpacity, Image, ScrollView, FlatList } from "react-native";
 import BlueCards from "../../assets/images/bluecards.png";
 import Plus from "../../assets/images/Plus.png";
 import { ScreenProps } from "../../interfaces/screen";
-import { Button } from "../../components";
+import {Button, FetchAllDecks} from "../../components";
 import { ROUTES } from "../../constants";
 import {DecksService} from "../../services/decks";
 import {ActiveUser} from "../../services/user";
 import {DeckListInterface} from "../../interfaces/decks";
 import GreenCards from "../../assets/images/greencards.png";
 import DisplayDeck from "./DisplayDeck";
+import {useFocusEffect} from "@react-navigation/native";
 
 
 const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, onPress }) => {
@@ -29,11 +30,25 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, onPre
     )}
 
 const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
-    const { deckList } = route.params;
+    
     useState();
     const [search, setSearch] = useState("");
-
+    const [deckList, setDeckList] = useState("");
+  
     
+  useFocusEffect(
+    useCallback(() => {
+      FetchAllDecks().then(data => {
+        setDeckList(data);
+    
+        
+      }).catch(error => {
+        console.error('Error fetching decks:', error);
+      });
+    }, [])  // Pusta tablica zależności oznacza, że hook będzie reagować na każde zmiany focusu
+  );
+  
+  
     
     return (
     <View className="flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
