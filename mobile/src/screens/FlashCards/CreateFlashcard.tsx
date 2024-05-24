@@ -18,8 +18,6 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { fetchDecks } = route.params;
   
   useState();
-  
-  console.log("creating in ", deck);
   const [sideA, setSideA] = useState("");
   const [sideB, setSideB] = useState("");
   
@@ -32,7 +30,6 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
         card_text: sideB,
         is_memorized: false  // Explicitly setting it to false by default
       };
-      console.log("BODY", flashcardData);
       
       try {
         await FlashCardsService.createFlashcard(flashcardData, navigation);
