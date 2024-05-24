@@ -11,21 +11,44 @@ import { InputValidator } from "../../components/Validator/InputValidator";
 import { ROUTES } from "../../constants";
 import { ScreenProps } from "../../interfaces/screen";
 import { DecksService } from "../../services/decks";
+import {FlashCardsService} from "../../services/flashcards";
 
 const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deck } = route.params;
+  useState();
+  
   console.log("creating in ", deck);
   const [sideA, setSideA] = useState("");
   const [sideB, setSideB] = useState("");
-
+  
   const handleCreate = async () => {
-    if (InputValidator("deck", setSideA) && InputValidator("deck", setSideB)) {
-      navigation.goBack();
+    // Assuming sideA and sideB are the titles and texts for the flashcard
+    if (InputValidator("deck", sideA) && InputValidator("deck", sideB)) {
+      const flashcardData = {
+        deck_id: deck.id, // Make sure this is a valid UUID string
+        card_title: sideA,
+        card_text: sideB,
+        is_memorized: false  // Explicitly setting it to false by default
+      };
+      
+      console.log("BODY", flashcardData);
+      
+      try {
+        await FlashCardsService.createFlashcard(flashcardData, navigation);
+        // Uncomment to fetch flashcards list if needed after creating one
+        // await fetchFlashcards(navigation);
+        navigation.goBack();
+      } catch (error) {
+        console.error("Failed to create flashcard:", error);
+        alert("Failed to create flashcard.");
+      }
     } else {
       alert("Flashcards fields must not be empty.");
     }
   };
-
+  
+  
+  
   return (
     <View className="flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
       <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-12">
