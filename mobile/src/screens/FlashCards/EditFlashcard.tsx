@@ -14,39 +14,36 @@ import { DecksService } from "../../services/decks";
 import {FlashCardsService} from "../../services/flashcards";
 
 const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
-  const { deck } = route.params;
+  const { card } = route.params;
+  console.log(card);
   
-  useState();
-  const [sideA, setSideA] = useState("");
-  const [sideB, setSideB] = useState("");
+  const [sideA, setSideA] = useState(card.title || ""); // Inicjalizacja sideA wartością title z card
+  const [sideB, setSideB] = useState(card["card text"] || ""); // Inicjalizacja sideB wartością card text z card
   
-  const handleCreate = async () => {
-    // Assuming sideA and sideB are the titles and texts for the flashcard
+  const handleEdit = async () => {
     if (InputValidator("deck", sideA) && InputValidator("deck", sideB)) {
-      const flashcardData = {
-        deck_id: deck.id,
+      const flashCardData = {
         card_title: sideA,
         card_text: sideB,
       };
-      
       try {
-      
+        await FlashCardsService.updateFlashcard(card.id, flashCardData, navigation);
+        navigation.goBack();
+        console.log("Editing flashcard...");
       } catch (error) {
-        //API
+        alert("Nie udało się edytować fiszki");
       }
     } else {
       alert("Flashcards fields must not be empty.");
     }
-  };
-  
-  
+  }
   
   return (
     <View className="flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
       <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-12">
         Edit Flashcard
       </Text>
-      <View className=" top-14 absolute left-6">
+      <View className="top-14 absolute left-6">
         <MaterialCommunityIcons
           onPress={() => navigation.goBack()}
           size={30}
@@ -64,6 +61,7 @@ const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
             className="h-24 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white"
             autoCapitalize="sentences"
             multiline
+            value={sideA}
             onChangeText={setSideA}
           />
           <Button className="w-72 h-14 justify-center mr-auto ml-auto rounded-1xl">
@@ -86,6 +84,7 @@ const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
             className="h-24 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white"
             autoCapitalize="sentences"
             multiline
+            value={sideB}
             onChangeText={setSideB}
           />
           <Button className="w-72 h-14 justify-center mr-auto ml-auto rounded-1xl">
@@ -113,15 +112,15 @@ const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
         <View className="flex-row">
           <Button
             onPress={() => navigation.goBack()}
-            className="p-3 w-30 h-16 justify-center mr-3 rounded-3xl"
+            className="p-3 w-32 h-16 items-center justify-center mr-3 rounded-3xl"
           >
             <Text className="mx-5 scale-125 font-bold">Cancel</Text>
           </Button>
           <Button
-            onPress={handleCreate}
-            className="p-3 ml-3 w-25 h-16 justify-center rounded-3xl"
+            onPress={handleEdit}
+            className="p-3 ml-3 w-32 h-16 items-center justify-center rounded-3xl"
           >
-            <Text className="mx-5 scale-125 font-bold">Create!</Text>
+            <Text className="mx-5 scale-125 font-bold">Edit!</Text>
           </Button>
         </View>
       </View>

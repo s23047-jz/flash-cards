@@ -115,13 +115,13 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
         <View className="flex-row">
           <Button
             onPress={() => navigation.goBack()}
-            className="p-3 w-30 h-16 justify-center mr-3 rounded-3xl"
+            className="p-3 w-32 items-center h-16 justify-center mr-3 rounded-3xl"
           >
             <Text className="mx-5 scale-125 font-bold">Cancel</Text>
           </Button>
           <Button
             onPress={handleCreate}
-            className="p-3 ml-3 w-25 h-16 justify-center rounded-3xl"
+            className="p-3 ml-3 w-32 h-16 items-center justify-center rounded-3xl"
           >
             <Text className="mx-5 scale-125 font-bold">Create!</Text>
           </Button>

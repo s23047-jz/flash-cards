@@ -7,6 +7,8 @@ import { request } from "../utils/request";
 export const FLASHCARDS_ENDPOINTS = {
   create_flash_card: `${BASE_API}/flash_card/create_flash_card`,
   delete_flash_card: (flash_card_id) => `${BASE_API}/flash_card/delete_flash_card/${flash_card_id}`,
+  update_flash_card_text: (flash_card_id) => `${BASE_API}/flash_card/update_flash_card_text/${flash_card_id}`,
+  
 };
 
 class Flashcards {
@@ -16,6 +18,16 @@ class Flashcards {
     return await request({
       url: FLASHCARDS_ENDPOINTS.create_flash_card,
       method: "POST",
+      body,
+      navigation,
+    });
+  }
+  
+  public async updateFlashcard(flashcard_id: any, body: any, navigation: NavigationProp<any>) {
+    console.log(FLASHCARDS_ENDPOINTS.update_flash_card_text(flashcard_id));
+    return await request({
+      url: FLASHCARDS_ENDPOINTS.update_flash_card_text(flashcard_id),
+      method: "PUT",
       body,
       navigation,
     });

@@ -71,7 +71,7 @@ const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
           />
         </Button>
         <Button className="absolute right-2 w-14 h-14 justify-center items-center"
-                onPress={handleEditFlashcard}>
+                onPress={() => handleEditFlashcard(card)}>
           <Image
             className="h-10"
             resizeMode="contain"
@@ -89,13 +89,14 @@ const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
   const removeFlashCardById = (id) => {
     setFlashCards(currentFlashCards => currentFlashCards.filter(card => card.id !== id));
   };
-  const handleCreateFlashcards = async () => {
+  const handleCreateFlashcards = () => {
     navigation.navigate(ROUTES.CREATE_FLASHCARD, { deck });
   };
   
   const handleEditFlashcard = (card) => {
     navigation.navigate(ROUTES.EDIT_FLSAHCARD, { card });
   };
+  
   
   useFocusEffect(
     useCallback(() => {
@@ -138,10 +139,11 @@ const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
           className="w-full"
           data={flashCards}
           renderItem={({ item }) => (
-            <FlashCard card={item} onDeleteConfirmed={removeFlashCardById} />
+            <FlashCard card={item} onDeleteConfirmed={removeFlashCardById} onEditFlashcard={handleEditFlashcard} />
           )}
           keyExtractor={(item) => item.id}
         />
+      
       
       </View>
     </View>
