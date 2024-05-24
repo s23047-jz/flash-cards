@@ -36,6 +36,8 @@ from flash_cards_api.config import (
     ALGORITHM
 )
 
+from flash_cards_api.utils.email import send_active_account_email
+
 router = APIRouter(prefix="/api/auth", tags=["authentication"])
 
 
@@ -136,11 +138,21 @@ async def register(
             username=payload['username'],
             password=get_password_hash(payload['password']),
             role=UserRoles.get_default_roles(),
-            avatar="../Avatar_1.svg"
+            avatar="Avatar_1"
         )
     )
     db.commit()
-    # check user
+
+    token = create_access_token(
+        {"sub": payload["email"]},
+        expires_delta=timedelta(minutes=RESET_ACCESS_TOKEN_EXPIRE_MINUTES),
+    )
+    db.add(
+        Token(access_token=token, user_email=payload["email"])
+    )
+    db.commit()
+
+    send_active_account_email(payload["email"], token, db)
     return {'detail': 'User added successfully'}, 201
 
 
@@ -184,11 +196,6 @@ async def reset_password(
             Token(access_token=token, user_email=req["email"])
         )
         db.commit()
-
-        # TODO add send email with reset password link
-
-        url = f"frontend_address/reset_password/{token}"
-        return url
 
 
 @router.post("/change_password/")
