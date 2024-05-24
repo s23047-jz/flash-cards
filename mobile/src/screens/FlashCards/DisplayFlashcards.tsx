@@ -6,12 +6,11 @@ import { View, Text, Image, FlatList } from "react-native";
 import Plus from "../../assets/images/Plus.png";
 import Trashbin from "../../assets/images/Trashbin.png";
 import Pencil from "../../assets/images/Pencil.png";
-import { Button } from "../../components";
+import {Button, FetchAllFlashcards} from "../../components";
 import { ROUTES } from "../../constants";
 import { DeckListInterface } from "../../interfaces/decks";
 import { ScreenProps } from "../../interfaces/screen";
-import { DecksService } from "../../services/decks";
-import { ActiveUser } from "../../services/user";
+
 
 const FlashCard: React.FC<DeckListInterface> = ({ id, SideA, SideB }) => {
   return (
@@ -37,31 +36,21 @@ const FlashCard: React.FC<DeckListInterface> = ({ id, SideA, SideB }) => {
 };
 
 const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
-  const { fetchDecks, deckList, deck } = route.params;
+  const { deck } = route.params;
   const [flashCards, setFlashCards] = useState([]);
 
   const handleCreateFlashcards = async () => {
     navigation.navigate(ROUTES.CREATE_FLASHCARD, { deck });
   };
-
-  const fetchFlashcards = useCallback(async () => {
-    try {
-      const data = await DecksService.read_deck_cards_by_id(
-        deck.id,
-        navigation,
-      );
-      setFlashCards(data);
-      console.log("pozdro", data);
-    } catch (error) {
-      console.error("Error checking authentication status:", error);
-      setFlashCards([]);
-    }
-  }, [deck.id, navigation]); // Uwzględnienie zależności deck.id i navigation
-
+  
   useFocusEffect(
     useCallback(() => {
-      fetchFlashcards();
-    }, [fetchFlashcards]), // zależność od fetchDeck
+      FetchAllFlashcards(deck.id, navigation,).then(data => {
+        setFlashCards(data);
+      }).catch(error => {
+        console.error('Error fetching decks:', error);}
+      );
+    }, [])
   );
 
   return (

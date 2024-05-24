@@ -11,20 +11,15 @@ import Plus from "../../assets/images/Plus.png";
 // @ts-ignore
 import { ROUTES } from "../../constants";
 import { ScreenProps } from "../../interfaces/screen";
+import { FetchAllDecks } from "../../components";
 
 
 import { DeckList } from "../index";
 import {Button} from "../../components";
 
 const HomeScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
-  useState();
-  const { fetchDecks } = route.params;
-    useEffect(() => {
-        fetchDecks();
-    }, []);
 
-
-    const handleNewDeck = async () => {};
+  const handleNewDeck = async () => {};
 
   const handleMyDecks = async () => {};
 

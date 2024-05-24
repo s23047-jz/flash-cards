@@ -1,7 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, Image } from "react-native";
-
+import { useNavigationState } from '@react-navigation/native';
 import { Button } from "../../components";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import { ROUTES } from "../../constants";
@@ -9,21 +9,14 @@ import { ScreenProps } from "../../interfaces/screen";
 import { AuthService } from "../../services/auth";
 import { DecksService } from "../../services/decks";
 import { ActiveUser } from "../../services/user";
+import Routes from "../../constants/routes";
 
 const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
-  const { fetchDecks } = route.params;
   useState();
   const [title, setTitle] = useState("");
   const [category, setCategory] = useState("");
   const [user_id, setUserId] = useState("");
-  const goBack = () => {
-    navigation.goBack();
-  };
-
-  useEffect(() => {
-    getUserData();
-  }, []);
-
+  
   const getUserData = async () => {
     try {
       const { id } = await ActiveUser.getUserData();
@@ -33,16 +26,21 @@ const CreateDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
       setUserId("");
     }
   };
-
+  
+  useEffect(() => {
+    getUserData();
+  }, []);
+  
+  
   const handleCreate = async () => {
     if (InputValidator("deck", title) && InputValidator("deck", category)) {
       await DecksService.createDeck(
         { user_id, title, deck_category: category },
         navigation,
       );
-      await fetchDecks(navigation);
       navigation.goBack();
-      navigation.navigate(ROUTES.MY_PRIVATE_DECKS);
+      navigation.navigate(ROUTES.MY_PRIVATE_DECKS)
+      
     } else {
       alert("Category and name field must not be empty.");
     }

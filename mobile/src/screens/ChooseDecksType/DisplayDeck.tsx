@@ -13,6 +13,7 @@ import { DecksService } from "../../services/decks";
 import { ActiveUser } from "../../services/user";
 import displayFlashcards from "../FlashCards/DisplayFlashcards";
 import { DisplayFlashcards } from "../index";
+import FetchAllDecks from "../../components/ApiCompononets/FetchAllDecks";
 
 const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { selected_deck, fetchDecks } = route.params;
@@ -20,16 +21,6 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const [deck, setDeck] = useState([]);
   
   const fetchAll = useCallback(async () => {
-    try {
-      console.log('POBRANO W DISPLAYDECK')
-      const { id } = await ActiveUser.getUserData();
-      const data = await DecksService.getUserDecks(id, navigation)
-      setDeckList(data)
-    } catch (error) {
-      console.error('Error checking authentication status:', error);
-      setDeckList([])
-    }
-    
     try {
       const data = await DecksService.read_deck_by_id(selected_deck.id);
       setDeck(data);
@@ -45,6 +36,15 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
     }, [fetchAll])  // zależność od fetchDeck
   );
   
+  useFocusEffect(
+    useCallback(() => {
+      FetchAllDecks().then(data => {
+        setDeckList(data);
+      }).catch(error => {
+        console.error('Error fetching decks:', error);}
+      );
+    }, [])
+  );
   
   
   

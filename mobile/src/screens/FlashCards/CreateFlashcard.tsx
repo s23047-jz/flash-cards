@@ -15,7 +15,6 @@ import {FlashCardsService} from "../../services/flashcards";
 
 const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deck } = route.params;
-  const { fetchDecks } = route.params;
   
   useState();
   const [sideA, setSideA] = useState("");
@@ -25,16 +24,13 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
     // Assuming sideA and sideB are the titles and texts for the flashcard
     if (InputValidator("deck", sideA) && InputValidator("deck", sideB)) {
       const flashcardData = {
-        deck_id: deck.id, // Make sure this is a valid UUID string
+        deck_id: deck.id,
         card_title: sideA,
         card_text: sideB,
-        is_memorized: false  // Explicitly setting it to false by default
       };
       
       try {
         await FlashCardsService.createFlashcard(flashcardData, navigation);
-        // Uncomment to fetch flashcards list if needed after creating one
-        await fetchDecks(navigation);
         navigation.goBack();
       } catch (error) {
         console.error("Failed to create flashcard:", error);
