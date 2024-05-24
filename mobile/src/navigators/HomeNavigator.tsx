@@ -15,6 +15,7 @@ export default function HomeNavigator() {
 
     const fetchDecks = async (navigation) => {
         try {
+          console.log('POBRANO W HOMENAVIGATOR')
             const { id } = await ActiveUser.getUserData();
             const data = await DecksService.getUserDecks(id, navigation)
             setDeckList(data)
@@ -32,9 +33,9 @@ export default function HomeNavigator() {
             <Stack.Screen name={ ROUTES.CREATE_DECK } component={CreateDeck} initialParams={{fetchDecks}}/>
             <Stack.Screen name={ ROUTES.MY_PRIVATE_DECKS } component={MyPrivateDecks} initialParams={{fetchDecks, deckList}}/>
             <Stack.Screen name={ ROUTES.MY_PUBLIC_DECKS } component={MyPublicDecks} />
-            <Stack.Screen name={ ROUTES.DISPLAY_MY_DECK } component={DisplayDeck} initialParams={{fetchDecks}} />
-            <Stack.Screen name={ ROUTES.DISPLAY_FLASHCARDS } component={DisplayFlashcards} />
-            <Stack.Screen name={ ROUTES.CREATE_FLASHCARD } component={CreateFlashcard} />
+            <Stack.Screen name={ ROUTES.DISPLAY_MY_DECK } component={DisplayDeck} initialParams={{fetchDecks, deckList}} />
+            <Stack.Screen name={ ROUTES.DISPLAY_FLASHCARDS } component={DisplayFlashcards} initialParams={{fetchDecks, deckList}} />
+            <Stack.Screen name={ ROUTES.CREATE_FLASHCARD } component={CreateFlashcard} initialParams={{fetchDecks, deckList}}/>
         </Stack.Navigator>
     )
 };

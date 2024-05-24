@@ -1,9 +1,10 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, { useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import { View, Text, Image } from "react-native";
 
 import GreenCards from "../../assets/images/greencards.png";
 import { Button } from "../../components";
+import { useFocusEffect } from '@react-navigation/native';
 import { InputValidator } from "../../components/Validator/InputValidator";
 import { ROUTES } from "../../constants";
 import { DeckListInterface } from "../../interfaces/decks";
@@ -14,33 +15,52 @@ import displayFlashcards from "../FlashCards/DisplayFlashcards";
 import { DisplayFlashcards } from "../index";
 
 const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
-  const { deck } = route.params;
-
-  const [flashCards, setFlashCards] = useState([]);
-
-  const fetchFlashcards = async (navigation) => {
+  const { selected_deck, fetchDecks } = route.params;
+  const [deckList, setDeckList] = useState([]);
+  const [deck, setDeck] = useState([]);
+  
+  const fetchAll = useCallback(async () => {
     try {
-      const flashCards = await DecksService.read_deck_by_id(
-        deck.id,
-        navigation,
-      );
-      setFlashCards(flashCards);
-      console.log("ID", deck.id);
-      console.log("selected deck", deck);
-      console.log("deck flashcards: ", flashCards);
+      console.log('POBRANO W DISPLAYDECK')
+      const { id } = await ActiveUser.getUserData();
+      const data = await DecksService.getUserDecks(id, navigation)
+      setDeckList(data)
+    } catch (error) {
+      console.error('Error checking authentication status:', error);
+      setDeckList([])
+    }
+    
+    try {
+      const data = await DecksService.read_deck_by_id(selected_deck.id);
+      setDeck(data);
+      console.log("wybrany deck", data);
     } catch (error) {
       console.error("Error checking authentication status:", error);
-      setFlashCards([]);
+      setDeck([]);
     }
-  };
-
-  useEffect(() => {
-    fetchFlashcards();
-  }, []);
-
+  }, [selected_deck.id]);  // Zależność tylko selected_deck.id
+  
+  useFocusEffect(
+    useCallback(() => {
+      fetchAll();
+      console.log("tera ta", deckList)
+    }, [fetchAll])  // zależność od fetchDeck
+  );
+  
+  
+  
+  
   const handleDisplayFlashcards = async () => {
     navigation.navigate(ROUTES.DISPLAY_FLASHCARDS, { deck });
   };
+  
+  function get_number_of_cards(decks, id) {
+    // Znajdź obiekt w tablicy, który ma podane ID
+    const deck = decks.find(deck => deck.id === id);
+    
+    // Jeśli obiekt istnieje, zwróć jego liczbę kart, w przeciwnym razie zwróć 0
+    return deck ? deck.number_of_cards : 0;
+  }
 
   return (
     <View className="flex-1 bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
@@ -60,7 +80,7 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           {deck.title}
         </Text>
         <Text className="text-white font-bold scale-125 left-28 mt-2 mb-4">
-          Number of flashcards: {deck.number_of_cards}
+          Number of flashcards: {get_number_of_cards(deckList, selected_deck.id)}
         </Text>
 
         <Button
