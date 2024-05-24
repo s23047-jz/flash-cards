@@ -6,50 +6,54 @@ import {View, Text, Image, FlatList, Alert} from "react-native";
 import Plus from "../../assets/images/Plus.png";
 import Trashbin from "../../assets/images/Trashbin.png";
 import Pencil from "../../assets/images/Pencil.png";
-import {Button, FetchAllFlashcards} from "../../components";
+import {Button, FetchAllFlashcards } from "../../components";
 import { ROUTES } from "../../constants";
 import { DeckListInterface } from "../../interfaces/decks";
 import { ScreenProps } from "../../interfaces/screen";
-
-const deleteCardFromApi = async (card) => {
-  try {
-    console.log(card)
-    //TUTAJ API
-  } catch (error) {
-
-  }
-};
-
-
-const showConfirmDialog = (card, onDeleteConfirmed) => {
-  return Alert.alert(
-    "Flashcard removal",
-    `Are you sure you want to delete this flashcard titled ${card.title}?`,
-    [
-      {
-        text: "No",
-        style: "cancel"
-      },
-      {
-        text: "Yes",
-        onPress: () => {
-          deleteCardFromApi(card)
-          .then(() => {
-            console.log('Karta została usunięta z API');
-            onDeleteConfirmed(card.id); // Aktualizuje stan po pomyślnym usunięciu z API
-          })
-          .catch(error => {
-            console.error('Nie udało się usunąć karty z API', error);
-            // Możesz tu dodać obsługę błędów, np. informowanie użytkownika o błędzie
-          });
-        }
-      }
-    ],
-    { cancelable: false }
-  );
-};
+import { FlashCardsService } from "../../services/flashcards";
 
 const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
+  const deleteCardFromApi = async (card: { id: any; }, deckId: any) => {
+    const body = {
+      deckId: deckId // Przygotowanie body do wysłania, przekazując deckId
+    };
+    
+    try {
+      await FlashCardsService.deleteFlashcard(card.id, body, navigation);
+    } catch (error) {
+      console.error("Failed to delete flashcard:", error);
+      alert("Failed to delete flashcard.");
+    }
+  };
+  
+  const showConfirmDialog = (card, onDeleteConfirmed) => {
+    return Alert.alert(
+      "Flashcard removal",
+      `Are you sure you want to delete this flashcard titled ${card.title}?`,
+      [
+        {
+          text: "No",
+          style: "cancel"
+        },
+        {
+          text: "Yes",
+          onPress: () => {
+            deleteCardFromApi(card)
+            .then(() => {
+              onDeleteConfirmed(card.id); // Aktualizuje stan po pomyślnym usunięciu z API
+            })
+            .catch(error => {
+              console.error('Nie udało się usunąć karty z API', error);
+              // Możesz tu dodać obsługę błędów, np. informowanie użytkownika o błędzie
+            });
+          }
+        }
+      ],
+      { cancelable: false }
+    );
+  };
+  
+  
   const FlashCard: React.FC<DeckListInterface> = ({ card, onDeleteConfirmed }) => {
     return (
       <View className="justify-center">
