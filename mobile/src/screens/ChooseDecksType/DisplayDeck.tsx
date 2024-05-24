@@ -16,7 +16,7 @@ import { DisplayFlashcards } from "../index";
 import FetchAllDecks from "../../components/ApiCompononets/FetchAllDecks";
 
 const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
-  const { selected_deck, fetchDecks } = route.params;
+  const { selected_deck } = route.params;
   const [deckList, setDeckList] = useState([]);
   const [deck, setDeck] = useState([]);
   

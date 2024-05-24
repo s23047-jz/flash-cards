@@ -13,7 +13,7 @@ export const DECKS_ENDPOINTS = {
 
 class Decks {
   constructor() {}
-  public async read_deck_by_id(deck_id, navigation: NavigationProp<any>) {
+  public async read_deck_by_id(deck_id: any, navigation: NavigationProp<any>) {
     const { data } = await request({
       url: DECKS_ENDPOINTS.read_deck_by_id(deck_id),
       navigation,
@@ -21,7 +21,7 @@ class Decks {
     return data;
   }
   
-  public async read_deck_cards_by_id(deck_id, navigation: NavigationProp<any>) {
+  public async read_deck_cards_by_id(deck_id: any, navigation: NavigationProp<any>) {
     const { data } = await request({
       url: DECKS_ENDPOINTS.read_deck_cards_by_id(deck_id),
       navigation,
