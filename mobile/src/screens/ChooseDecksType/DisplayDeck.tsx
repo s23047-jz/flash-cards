@@ -18,10 +18,6 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
 
   const [flashCards, setFlashCards] = useState([]);
 
-  const chujnia = () => {
-    alert("XD");
-  };
-
   const fetchFlashcards = async (navigation) => {
     try {
       const flashCards = await DecksService.read_deck_by_id(
