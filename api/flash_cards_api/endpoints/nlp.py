@@ -71,6 +71,6 @@ def calculate_semantic_similarity(sentence: str, use_gpu: bool = False):
 async def calculate_semantic_similarity(similarity_request: SimilarityRequest):
     similarities = calculate_semantic_similarity(
         similarity_request.sentence,
-        similarity_request.use_gpu
     )
     return similarities
+

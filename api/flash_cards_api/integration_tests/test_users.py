@@ -5,9 +5,9 @@ ENDPOINT = "http://localhost:8000/"
 
 def test_post_create_user():
     body = {
-        "email": "string5",
+        "email": "string15",
         "password": "string",
-        "username": "string5",
+        "username": "string15",
         "re_password": "string"
     }
 
@@ -29,7 +29,6 @@ def test_get_users():
 
     response = requests.get(ENDPOINT + "api/users")
     assert response.status_code == 401
-
 
 def test_get_me():
 
