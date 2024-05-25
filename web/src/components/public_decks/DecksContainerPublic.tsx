@@ -91,8 +91,8 @@ const DecksContainerPublic = () => {
 
     }
 
-    const navigateHomePage = () =>{
-        navigate("/create_deck")
+    const navigateDeckRanking = () =>{
+        navigate("/decks_ranking")
     }
 
 
@@ -108,7 +108,7 @@ const DecksContainerPublic = () => {
                         <div className={'no-decks-container'}>
                             <p className={"no-decks-cards-text"}>No Decks</p>
                             <div className={'button-create-deck'}>
-                                <ButtonNotMemorizedFlashCards onClick={navigateHomePage} text={'Ranking'} color={'#e05a12'} border={'3px solid black'}/>
+                                <ButtonNotMemorizedFlashCards onClick={navigateDeckRanking} text={'Ranking'} color={'#e05a12'} border={'3px solid black'}/>
                             </div>
                         </div>
                     ) : (

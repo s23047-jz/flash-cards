@@ -18,6 +18,7 @@ import UsersRanking from "./views/UsersRanking";
 import DecksRanking from "./views/DecksRanking";
 import PublicDecksFlashCards from "./views/PublicDeckFlashCards";
 import PublicDecksUserRanking from "./views/PublicDecksUserRanking";
+import PublicDecksAllFlashcardsFromUserRanking from "./views/PublicDecksAllFlashcardsFromUserRanking";
 function App() {
     return (
         <Router>
@@ -37,8 +38,9 @@ function App() {
                         <Route path="/users_ranking" element={<UsersRanking/>}/>
                         <Route path="/decks_ranking" element={<DecksRanking/>}/>
                         <Route path="/public_decks_flashcards" element={<PublicDecksFlashCards/>}/>
-                         <Route path="/public_decks_user_ranking" element={<PublicDecksUserRanking/>}/>
+                        <Route path="/public_decks_user_ranking" element={<PublicDecksUserRanking/>}/>
                     </Route>
+                    <Route path="/flashcards_from_user_ranking" element={< PublicDecksAllFlashcardsFromUserRanking/>}/>
                     <Route path="/signin" element={<SignIn/>}/>
                     <Route path="/registration" element={<Registration/>}/>
 

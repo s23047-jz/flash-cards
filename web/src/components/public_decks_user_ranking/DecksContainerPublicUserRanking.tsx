@@ -91,11 +91,11 @@ const DecksContainerPublicUserRanking = () => {
 
    const navigatePublicDecksFlashCards = async (deck_id: string) => {
         DeckService.get_deck_by_id(deck_id)
-        navigate("/public_decks_flashcards")
+        navigate("/flashcards_from_user_ranking")
     }
 
-    const navigateHomePage = () => {
-        navigate("/create_deck")
+    const navigateDeckRanking = () => {
+        navigate("/decks_ranking")
     }
 
 
@@ -111,7 +111,7 @@ const DecksContainerPublicUserRanking = () => {
                         <div className={'no-decks-container'}>
                             <p className={"no-decks-cards-text"}>No Decks</p>
                             <div className={'button-create-deck'}>
-                                <ButtonNotMemorizedFlashCards onClick={navigateHomePage} text={'Ranking'}
+                                <ButtonNotMemorizedFlashCards onClick={navigateDeckRanking} text={'Ranking'}
                                                               color={'#e05a12'} border={'3px solid black'}/>
                             </div>
                         </div>
