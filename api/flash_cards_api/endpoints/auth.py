@@ -1,6 +1,5 @@
 import uuid
 from typing import Annotated
-from jose import jwt
 from datetime import datetime, timedelta
 
 from pydantic.main import BaseModel
@@ -18,25 +17,24 @@ from flash_cards_api.database import get_db
 from flash_cards_api.models.users import User, get_password_hash
 from flash_cards_api.models.token import Blacklist_Tokens, Token
 from flash_cards_api.models.roles import UserRoles
+from flash_cards_api.logger import logger
 from flash_cards_api.dependencies.auth import (
-    oauth2_scheme
+    oauth2_scheme,
+    get_current_active_user
 )
 from flash_cards_api.utils.auth import (
     get_user,
     get_user_by_username,
     authenticate_user,
     create_access_token,
-    check_if_token_is_expired,
     ACCESS_TOKEN_EXPIRE_MINUTES,
     RESET_ACCESS_TOKEN_EXPIRE_MINUTES
 )
 
-from flash_cards_api.config import (
-    SECRET_KEY,
-    ALGORITHM
+from flash_cards_api.utils.email import (
+    send_active_account_email,
+    send_password_reset_email
 )
-
-from flash_cards_api.utils.email import send_active_account_email
 
 router = APIRouter(prefix="/api/auth", tags=["authentication"])
 
@@ -137,8 +135,7 @@ async def register(
             email=payload['email'],
             username=payload['username'],
             password=get_password_hash(payload['password']),
-            role=UserRoles.get_default_roles(),
-            avatar="Avatar_1"
+            role=UserRoles.get_default_roles()
         )
     )
     db.commit()
@@ -197,29 +194,40 @@ async def reset_password(
         )
         db.commit()
 
+        send_password_reset_email(req["email"], token, db)
 
-@router.post("/change_password/")
-async def reset_password(
-        request: Request,
-        db: Session = Depends(get_db)
-):
-    req = request.query_params
-    if "token" not in req.keys():
+    else:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Missing token"
+            detail="User not found"
         )
-    token = req.get("token")
-    payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-    if not check_if_token_is_expired(payload):
+
+
+@router.post("/change_password/")
+async def change_password(
+        request: Request,
+        user: User = Depends(get_current_active_user),
+        db: Session = Depends(get_db)
+):
+    try:
+        req = request.query_params
         password = req.get("password")
-        email: str = payload.get("sub")
 
-        user = get_user(email=email, db=db)
-        user.password = get_password_hash(password)
+        user_model = get_user(email=user.email, db=db)
+        user_model.password = get_password_hash(password)
         db.commit()
+    except Exception as e:
+        logger.error(e)
 
-    raise HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Token is expired"
-    )
+
+@router.post("/account_activation/")
+async def account_activation(
+        user: User = Depends(get_current_active_user),
+        db: Session = Depends(get_db)
+):
+    try:
+        user_model = get_user(email=user.email, db=db)
+        user_model.active = True
+        db.commit()
+    except Exception as e:
+        logger.error(e)

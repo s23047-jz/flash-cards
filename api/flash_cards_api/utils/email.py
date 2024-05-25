@@ -2,7 +2,7 @@ import os.path
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from jinja2 import Environment, FileSystemLoader
+from jinja2 import Template
 from sqlalchemy.orm import Session
 
 from flash_cards_api.config import (
@@ -18,37 +18,64 @@ from flash_cards_api.logger import logger
 
 
 def send_email(to_email: str, subject: str, template_name: str, context: dict):
+	try:
+		with open(os.path.join(TEMPLATES_DIR, f"{template_name}.jinja2"), "r") as file:
+			template_str = file.read()
 
-	env = Environment(loader=FileSystemLoader('templates'))
-	template = env.get_template(os.path.join(TEMPLATES_DIR, template_name))
-	render_html = template.render(context)
+		template = Template(template_str)
+		render_html = template.render(context)
 
-	msg = MIMEMultipart('alternative')
-	msg['Subject'] = subject
-	msg['From'] = SMTP_LOGIN
-	msg['To'] = to_email
+		msg = MIMEMultipart('alternative')
+		msg['Subject'] = subject
+		msg['From'] = SMTP_LOGIN
+		msg['To'] = to_email
 
-	msg.attach(MIMEText(render_html, 'html'))
+		msg.attach(MIMEText(render_html, 'html'))
 
-	logger.info(f"Sends email to {to_email}")
-	with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
-		server.starttls()
-		server.login(SMTP_LOGIN, SMTP_PASSWORD)
-		server.sendmail(SMTP_LOGIN, to_email, msg.as_string())
+		with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
+			server.starttls()
+			server.login(SMTP_LOGIN, SMTP_PASSWORD)
+			server.sendmail(SMTP_LOGIN, to_email, msg.as_string())
+	except Exception as e:
+		logger.error(e)
 
 
 def send_active_account_email(user_email: str, token: str, db: Session):
-	user: User = db.query(User).where(User.email == user_email)
-	token_url = f"{WEBHOST}/reset_password/{token}"
+	try:
+		user: User = db.query(User).where(User.email == user_email)
+		token_url = f"{WEBHOST}/account_activation/{token}"
+		logger.info(f"Sending active account email to {user_email}")
+		context = {
+			'username': user.username,
+			'token_url': token_url
+		}
 
-	context = {
-		'username': user.username,
-		'token_url': token_url
-	}
+		send_email(
+			user_email,
+			"Account activation",
+			'account_activation',
+			context
+		)
+	except Exception as e:
+		logger.error(e)
 
-	send_email(
-		user.email,
-		"Account activation",
-		'account_activation.jinja2',
-		context
-	)
+
+def send_password_reset_email(user_email: str, token: str, db: Session):
+	try:
+		user: User = db.query(User).where(User.email == user_email)
+		token_url = f"{WEBHOST}/reset_password/{token}"
+		logger.info(f"Sending active account email to {user_email}")
+
+		context = {
+			'username': user.username,
+			'token_url': token_url
+		}
+
+		send_email(
+			user_email,
+			"Password reset",
+			'reset_password',
+			context
+		)
+	except Exception as e:
+		logger.error(e)
