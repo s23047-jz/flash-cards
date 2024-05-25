@@ -25,7 +25,7 @@ from fastapi import (
 from flash_cards_api.models.deck_of_flash_cards import Deck
 from flash_cards_api.models.users import User
 
-router = APIRouter(prefix="/decks", tags=["decks"], dependencies=[Depends(get_current_active_user)])
+router = APIRouter(prefix="/decks", tags=["decks"], )
 
 
 class DeckCreate(BaseModel):
@@ -325,6 +325,31 @@ async def read_not_memorized_flash_cards_from_deck(
         "card text": card.card_text
     } for card in memorized_flash_cards]
 
+@router.get("/{user_id}/shared_decks/", status_code=status.HTTP_200_OK)
+async def read_shared_decks_by_user_id(
+        user_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Return user shared decks"""
+    public_decks = db.query(Deck).filter(
+        Deck.user_id == user_id,
+        Deck.is_deck_public == True,
+    ).all()
+
+    if not public_decks:
+        raise HTTPException(status_code=404, detail="No public decks found for this user")
+
+    shared_decks = [
+        {
+            "id": deck.id,
+            "title": deck.title,
+            "deck_category": deck.deck_category,
+            "number_of_cards": deck.get_number_of_flash_cards()
+        }
+        for deck in public_decks
+    ]
+
+    return shared_decks
 
 @router.post("/decks_ranking/filtered_decks/", status_code=status.HTTP_200_OK)
 async def filter_decks(data: List[Dict[str, Any]], db: Session = Depends(get_db)):

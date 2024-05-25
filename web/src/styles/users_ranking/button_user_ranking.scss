@@ -1,7 +1,7 @@
 $buttonBorder: rgb(36, 9, 61);
 $fontRankingSize: 60px;
-$fontPositionVertical: -5px;
-$fontPositionHorizontal: 14px;
+$fontPositionVertical: -15px;
+$fontPositionHorizontal: 5px;
 $fontColor: gold;
 
 .button-container-users-ranking {
@@ -22,6 +22,10 @@ $fontColor: gold;
 
 
     p {
+      padding: 15px;
+      overflow-wrap: break-word;
+      white-space: normal;
+      word-break: break-word;
       transition: 1s;
     }
   }

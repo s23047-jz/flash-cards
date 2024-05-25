@@ -11,7 +11,6 @@ export const AUTH_ENDPOINTS = {
 };
 
 const token = ActiveUser.getAuthorization();
-console.log(token)
 class Deck {
     deckData: DeckInterface = {}
 
@@ -50,6 +49,27 @@ class Deck {
     public async get_all_imported_decks(): Promise<any> {
         const user_id = ActiveUser.getId();
         const url = `${BASE_API}/decks/${user_id}/imported/decks/`;
+
+        try {
+            const response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
+
+     public async get_user_shared_decks_by_id(user_id: string): Promise<any> {
+        const url = `${BASE_API}/decks/${user_id}/shared_decks/`;
 
         try {
             const response = await fetch(url, {

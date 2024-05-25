@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import DeckButton from "../my_deck_page/DeckButton";
-import '../../styles/my_decks/decks_container.scss';
+import '../../styles/public_decks_user_ranking/decks_container_public_decks_user_ranking.scss';
 import {DeckService} from '../../services/decs';
 // @ts-ignore
 import red_cards from '../../assets/Red_cards.png';
@@ -33,7 +33,7 @@ import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 
 
-const DecksContainerPublic = () => {
+const DecksContainerPublicUserRanking = () => {
     const navigate = useNavigate();
     const fields_color = "#7c3bd1";
     const [decks, setDecks] = useState([]);
@@ -43,11 +43,15 @@ const DecksContainerPublic = () => {
     const [isFilterDecks, setIsFilterDecks] = useState(false)
 
 
-
     useEffect(() => {
         const fetchDecks = async () => {
+            let user_id;
             try {
-                const response = await DeckService.get_all_imported_decks();
+                const userDataString = localStorage.getItem("userRankingDataId");
+                const userData = JSON.parse(userDataString || "{}");
+                user_id = userData.user_id;
+
+                const response = await DeckService.get_user_shared_decks_by_id(user_id);
                 setDecks(response);
                 if (cardColors.length === 0) {
                     setCardColors(generateRandomCardColors(response.length));
@@ -85,37 +89,39 @@ const DecksContainerPublic = () => {
         }
     };
 
-    const navigateToDeckFlashcards = async (deck_id: string) => {
-        navigate("/my_deck_learning_modes")
+   const navigatePublicDecksFlashCards = async (deck_id: string) => {
         DeckService.get_deck_by_id(deck_id)
-
+        navigate("/flashcards_from_user_ranking")
     }
 
-    const navigateDeckRanking = () =>{
+    const navigateDeckRanking = () => {
         navigate("/decks_ranking")
     }
 
 
 // @ts-ignore
- return (
-        <div className="website-container">
-            <p className="web-title">Public Decks</p>
+    return (
+        <div className="website-container-public-decks-user-ranking">
+            <p className="web-title">User Decks</p>
             {isLoadingFetchDecks ? (
-                <LoadingSpinner />
+                <LoadingSpinner/>
             ) : (
                 <>
                     {decks.length === 0 && !isFilterDecks ? (
                         <div className={'no-decks-container'}>
                             <p className={"no-decks-cards-text"}>No Decks</p>
                             <div className={'button-create-deck'}>
-                                <ButtonNotMemorizedFlashCards onClick={navigateDeckRanking} text={'Ranking'} color={'#e05a12'} border={'3px solid black'}/>
+                                <ButtonNotMemorizedFlashCards onClick={navigateDeckRanking} text={'Ranking'}
+                                                              color={'#e05a12'} border={'3px solid black'}/>
                             </div>
                         </div>
                     ) : (
                         <>
                             <div className="filter-container">
                                 <FormControl variant="filled">
-                                    <InputLabel htmlFor="component-filled" sx={{ backgroundColor: fields_color, color: 'white' }}>Filter Decks</InputLabel>
+                                    <InputLabel htmlFor="component-filled"
+                                                sx={{backgroundColor: fields_color, color: 'white'}}>Filter
+                                        Decks</InputLabel>
                                     <FilledInput
                                         id="component-filled"
                                         defaultValue=""
@@ -147,7 +153,7 @@ const DecksContainerPublic = () => {
                                             frontTextLower={`${deck['deck_category']}`}
                                             image={cardColors[index]}
                                             backText={`Number of flashcards: ${deck['number_of_cards']}`}
-                                            onClick={() => navigateToDeckFlashcards(deck['id'])}
+                                            onClick={() => navigatePublicDecksFlashCards(deck['id'])}
                                         />
                                     </div>
                                 ))}
@@ -160,4 +166,4 @@ const DecksContainerPublic = () => {
     );
 };
 
-export default DecksContainerPublic;
+export default DecksContainerPublicUserRanking;

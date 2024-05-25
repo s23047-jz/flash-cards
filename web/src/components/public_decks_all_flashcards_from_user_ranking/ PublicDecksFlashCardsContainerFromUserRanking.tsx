@@ -5,15 +5,15 @@ import speaker_blue from '../../assets/Speaker_blue.png';
 // @ts-ignore
 import React, {useEffect, useState} from "react";
 import FlashCard from "../flash_cards/FlashCard";
-import PublicDeckFlashCardField from "./PublicDeckFlashCardField";
+import PublicDeckFlashCardField from "../public_decks_flashcards/PublicDeckFlashCardField";
 import {DeckService} from '../../services/decs';
-import PublicDecksButtonsContainer from "./PublicDecksButtonsContainer";
+import PublicDecksButtonsContainer from "../public_decks_flashcards/PublicDecksButtonsContainer";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
-import "../../styles/public_deck_flashcards/public_deck_flash_cards_container.scss"
+import "../../styles/public_decks_all_flashcards_from_user_ranking/public_decks_flashcards_container_from_user_ranking.scss"
 
 import {useNavigate} from 'react-router-dom';
 
-const PublicDecksFlashCardsContainer = () => {
+const PublicDecksFlashCardsContainerFromUserRanking = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
@@ -140,7 +140,7 @@ const PublicDecksFlashCardsContainer = () => {
     };
 
     const handleBackToDecks = () => {
-        navigate('/decks_ranking')
+        navigate('/public_decks_user_ranking')
     };
 
     const handleImportPublicDeck = () => {
@@ -156,7 +156,7 @@ const PublicDecksFlashCardsContainer = () => {
     }
 
     return (
-        <div className={"public-decks-all-flashcards-container"}>
+        <div className={"public-decks-all-flashcards-container-from-user-ranking"}>
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
@@ -195,4 +195,4 @@ const PublicDecksFlashCardsContainer = () => {
     );
 };
 
-export default PublicDecksFlashCardsContainer;
+export default PublicDecksFlashCardsContainerFromUserRanking;

@@ -1,0 +1,78 @@
+.website-container-public-decks-user-ranking {
+  .decks-container {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-height: 68vh;
+    min-height: 68vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+
+  }
+
+  .decks-container .deck-card {
+    position: absolute;
+    width: calc((100% - 200px) / 3);
+  }
+
+  .filter-container {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    top: 15%;
+    left: 40%;
+  }
+
+  .web-title {
+    position: absolute;
+    color: white;
+    font-size: 52px;
+    font-weight: bold;
+    top: 8%;
+    left: 6%;
+  }
+
+  .no-decks-container {
+    position: absolute;
+    top: 40%;
+    height: 60vh;
+
+    .no-decks-cards-text {
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-weight: bold;
+      font-size: 9vh;
+    }
+
+    .button-create-deck {
+      position: absolute;
+      top: 30%;
+      left: 0%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .decks-container {
+
+      top: 75%;
+
+    }
+
+    .filter-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      top: 28%;
+      left: 28%;
+      transform: translateY(-50%);
+    }
+  }
+}

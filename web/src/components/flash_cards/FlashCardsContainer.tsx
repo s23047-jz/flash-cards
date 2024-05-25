@@ -100,6 +100,7 @@ const FlashCardsContainer = () => {
     };
 
     const handleSpeakerClick = (flashcard: any, index: number) => {
+        setIsSpeakingBigCard(false)
         if (isSpeaking) {
             window.speechSynthesis.cancel();
             setIsSpeaking(false);
@@ -121,6 +122,7 @@ const FlashCardsContainer = () => {
             window.speechSynthesis.cancel();
             setIsSpeaking(false);
         }
+
     };
 
     const handleNextClick = () => {
@@ -307,5 +309,4 @@ const FlashCardsContainer = () => {
         </div>
     );
 };
-
 export default FlashCardsContainer;

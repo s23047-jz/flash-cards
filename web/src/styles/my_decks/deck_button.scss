@@ -16,8 +16,11 @@ $buttonBorderColorMyDecks: rgb(127, 244, 76);
     transition: 1s;
 
 
-
     p {
+      padding: 20px;
+      overflow-wrap: break-word;
+      white-space: normal;
+      word-break: break-word;
       transition: 1s;
     }
   }
