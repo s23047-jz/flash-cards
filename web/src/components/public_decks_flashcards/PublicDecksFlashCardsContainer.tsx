@@ -89,6 +89,7 @@ const PublicDecksFlashCardsContainer = () => {
     };
 
     const handleSpeakerClick = (flashcard: any, index: number) => {
+        setIsSpeakingBigCard(false)
         if (isSpeaking) {
             window.speechSynthesis.cancel();
             setIsSpeaking(false);
