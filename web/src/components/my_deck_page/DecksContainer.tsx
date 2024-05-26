@@ -31,6 +31,7 @@ import filter from "../../assets/Filter.png";
 import {useNavigate} from "react-router-dom";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
+import {ActiveUser} from "../../services/user";
 
 
 const DecksContainer = () => {
@@ -40,6 +41,7 @@ const DecksContainer = () => {
     const [filterString, setFilterString] = useState('');
     const [cardColors, setCardColors] = useState<string[]>([]);
     const [isLoadingFetchDecks, setIsLoadingFetchDecks] = useState(true);
+    const [isFilterDecks, setIsFilterDecks] = useState(false)
 
 
 
@@ -75,6 +77,7 @@ const DecksContainer = () => {
     };
 
     const handleFilterDecks = async () => {
+        setIsFilterDecks(true)
         try {
             const response = await DeckService.get_filtered_decks(filterString);
             setDecks(response);
@@ -102,7 +105,7 @@ const DecksContainer = () => {
                 <LoadingSpinner />
             ) : (
                 <>
-                    {decks.length === 0 ? (
+                    {decks.length === 0 && !isFilterDecks ? (
                         <div className={'no-decks-container'}>
                             <p className={"no-decks-cards-text"}>No Decks</p>
                             <div className={'button-create-deck'}>

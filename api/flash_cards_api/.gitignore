@@ -1,5 +1,5 @@
-/.venv
-/venv
+/.venv/
+/venv/
 /api_fc/.env
 /api_fc/.copy_env
 

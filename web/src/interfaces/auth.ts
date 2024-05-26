@@ -46,8 +46,8 @@ export interface UserInterface {
     created_at?: Date;
     updated_at?: Date;
     ranking?: number;
+    avatar?: string;
     active?: boolean;
-    avatar?: number;
     role?: string;
     is_superuser?: boolean;
 }

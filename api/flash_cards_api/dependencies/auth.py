@@ -44,7 +44,11 @@ async def get_current_user(
                 )
             )
             db.commit()
-            raise credentials_exception
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Token is no longer valid",
+                headers={"WWW-Authenticate": "Bearer"}
+            )
 
         email: str = payload.get("sub")
         if email is None:

@@ -9,13 +9,18 @@ $buttonBorderColorMyDecks: rgb(127, 244, 76);
   text-align: center;
   justify-content: center;
   border-radius: 10%;
+  margin-top: 30px;
+  margin-left: 20px;
 
   button {
     transition: 1s;
 
 
-
     p {
+      padding: 20px;
+      overflow-wrap: break-word;
+      white-space: normal;
+      word-break: break-word;
       transition: 1s;
     }
   }

@@ -10,6 +10,7 @@ const MyDecks = () => {
 
     localStorage.removeItem("deckData");
     ActiveUser.getUserData();
+
     return (
         <>
             <nav>

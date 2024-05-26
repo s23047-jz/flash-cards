@@ -6,10 +6,10 @@ import { ScreenProps } from "../../interfaces/screen";
 // @ts-ignore
 import Logo from "../../assets/images/logo.png";
 import { InputValidator } from "../../components/Validator/InputValidator";
-import {ROUTES} from "../../constants";
+import { ROUTES } from "../../constants";
 
-import {AuthService} from "../../services/auth";
-import {ActiveUser} from "../../services/user";
+import { AuthService } from "../../services/auth";
+import { ActiveUser } from "../../services/user";
 
 
 interface Props extends ScreenProps {

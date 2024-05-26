@@ -1,17 +1,22 @@
 annotated-types==0.6.0
 anyio==4.2.0
 bcrypt==4.0.1
+certifi==2024.2.2
 cffi==1.16.0
+charset-normalizer==3.3.2
 click==8.1.7
 cryptography==41.0.7
 ecdsa==0.18.0
 exceptiongroup==1.2.0
 fastapi==0.109.0
+flake8==7.0.0
+-e git+ssh://git@github.com/s23047-jz/flash-cards.git@25fedadfe76c6db141af0eb033338bf01308a7d9#egg=flash_cards_api&subdirectory=api
 greenlet==3.0.3
 h11==0.14.0
 httptools==0.6.1
-flake8==7.0.0
 idna==3.6
+Jinja2==3.1.4
+MarkupSafe==2.1.5
 mccabe==0.7.0
 packaging==23.2
 passlib==1.7.4
@@ -34,9 +39,8 @@ SQLAlchemy==2.0.25
 starlette==0.35.1
 tomli==2.0.1
 typing_extensions==4.9.0
+urllib3==2.2.1
 uvicorn==0.25.0
 uvloop==0.19.0
 watchfiles==0.21.0
 websockets==12.0
-
-

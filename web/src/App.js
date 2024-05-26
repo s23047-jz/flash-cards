@@ -15,16 +15,22 @@ import MemorizedFlashCards from "./views/MemorizedFlashCards";
 import LearningMode from "./views/LearningMode";
 import UserStatsPage from "./views/UserStats";
 
+import PublicDecks from "./views/PublicDecks";
+import UsersRanking from "./views/UsersRanking";
+import DecksRanking from "./views/DecksRanking";
+import PublicDecksFlashCards from "./views/PublicDeckFlashCards";
+import PublicDecksUserRanking from "./views/PublicDecksUserRanking";
+import PublicDecksAllFlashcardsFromUserRanking from "./views/PublicDecksAllFlashcardsFromUserRanking";
 function App() {
     return (
         <Router>
             <div className="App">
                 <Routes>
-
                     <Route element={<PrivateRoute/>}>
-                        <Route path="/home" element={<HomePage/>}/>
+                        <Route path="/" element={<HomePage/>}/>
                         <Route path="/create_deck" element={<CreateFlashCardsPage/>}/>
                         <Route path="/my_decks" element={<MyDecks/>}/>
+                        <Route path="/public_decks" element={<PublicDecks/>}/>
                         <Route path="/profile" element={<Profile/>}/>
                         <Route path="/user-stats" element={<UserStatsPage />} />
                         <Route path="/my_deck_learning_modes" element={<DeckAllFlashcards/>}/>
@@ -32,7 +38,12 @@ function App() {
                         <Route path="/not_memorized_flash_cards" element={<NotMemorizedFlashCards/>}/>
                         <Route path="/memorized_flash_cards" element={<MemorizedFlashCards/>}/>
                         <Route path="/learning_mode" element={<LearningMode/>}/>
+                        <Route path="/users_ranking" element={<UsersRanking/>}/>
+                        <Route path="/decks_ranking" element={<DecksRanking/>}/>
+                        <Route path="/public_decks_flashcards" element={<PublicDecksFlashCards/>}/>
+                        <Route path="/public_decks_user_ranking" element={<PublicDecksUserRanking/>}/>
                     </Route>
+                    <Route path="/flashcards_from_user_ranking" element={< PublicDecksAllFlashcardsFromUserRanking/>}/>
                     <Route path="/signin" element={<SignIn/>}/>
                     <Route path="/registration" element={<Registration/>}/>
 

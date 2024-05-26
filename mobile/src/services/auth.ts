@@ -1,5 +1,5 @@
-import {BASE_API} from "./config";
-import {request} from "../utils/request";
+import { BASE_API } from "./config";
+import { request } from "../utils/request";
 import { NavigationProp } from "@react-navigation/native";
 
 

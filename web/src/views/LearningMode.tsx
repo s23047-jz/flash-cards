@@ -5,6 +5,7 @@ import DrawerAppBar from "../components/home_page/NavBar";
 import {ActiveUser} from "../services/user";
 import CardsButtonsContainerLearningMode from "../components/learning_mode/CardsButtonsContainerLearningMode";
 
+
 const MyDecks = () => {
     ActiveUser.getUserData();
     return (

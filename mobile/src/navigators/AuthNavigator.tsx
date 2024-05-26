@@ -35,13 +35,12 @@ export default function AuthNavigator() {
             <Loader />
         );
     }
-    // isAuthenticated ? ROUTES.HOME : ROUTES.LOGIN
     return (
-    <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={ROUTES.HOME}>
-        <Stack.Screen name={ROUTES.FORGOT_PASSWORD} component={ForgotPassScreen} />
-        <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
-        <Stack.Screen name={ROUTES.REGISTER} component={RegisterScreen} />
-        <Stack.Screen name={ROUTES.HOME} component={BottomTabNavigator} />
-    </Stack.Navigator>
+        <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName={isAuthenticated ? ROUTES.HOME : ROUTES.LOGIN}>
+            <Stack.Screen name={ROUTES.FORGOT_PASSWORD} component={ForgotPassScreen} />
+            <Stack.Screen name={ROUTES.LOGIN} component={LoginScreen} />
+            <Stack.Screen name={ROUTES.REGISTER} component={RegisterScreen} />
+            <Stack.Screen name={ROUTES.HOME} component={BottomTabNavigator} />
+        </Stack.Navigator>
     );
 }

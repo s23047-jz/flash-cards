@@ -44,7 +44,7 @@ def register_routers():
         users,
         decs,
         flash_card,
-        chat_gpt
+        chat_gpt,
     )
 
     app.include_router(auth.router)

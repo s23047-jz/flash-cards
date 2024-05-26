@@ -152,6 +152,8 @@ const UserProfilePage: React.FC = () => {
             alert("Failed to update avatar: " + error.message);
         } finally {
             setIsLoading(false);
+            // @ts-ignore
+            alert("Failed to update avatars: " + error.message);
         }
     };
 

@@ -3,6 +3,8 @@ import {
     TokenInterface,
     UserInterface
 } from "../interfaces/auth";
+import {BASE_API} from "./config";
+
 
 
 class User {
@@ -32,6 +34,26 @@ class User {
         return this.userData?.is_superuser || false
     }
 
+    public async get_users_ranking(): Promise<any> {
+        const url = `${BASE_API}/api/users/users_ranking/`;
+
+        try {
+            const response = await  fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Authorization': `${this.getAuthorization()}`
+                },
+            });
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Error:', error);
+            throw error;
+        }
+    }
 
     getUserData(): UserInterface {
         return this.userData

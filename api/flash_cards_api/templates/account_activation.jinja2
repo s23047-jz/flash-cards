@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Account activation</title>
+    <style>
+        html {
+            background: black;
+        }
+        body {
+            color:white;
+            max-width: 500px;
+            max-height: 500px;
+            background: linear-gradient(90deg, #006bb3, #0fa2f7, #66d0ff);
+            margin: 1rem auto 0;
+            border: 1px solid black;
+            border-radius: 2rem;
+        }
+        .header {
+            padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid black;
+        }
+        .context {
+            padding: 1rem;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            background-color: #007BFF;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <header>
+            <h3>Account activation</h3>
+        </header>
+    </div>
+    <div class="context">
+        <p>Dear <strong>{{ username }}</strong>,</p>
+        <p>We have sent you this email to confirm your email address.</p>
+        <p>To active your account please click the button below.</p>
+        <p style="text-align: right; margin-top: 25px;">Best regards, <strong>Flash cards team</strong></p>
+        <p style="text-align: center; margin-top: 25px;">
+            <a href="{{ url }}" class="button">Active your account</a>
+        </p>
+    </div>
+</body>
+</html>
