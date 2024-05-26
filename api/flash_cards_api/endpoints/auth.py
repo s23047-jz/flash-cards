@@ -20,7 +20,8 @@ from flash_cards_api.models.roles import UserRoles
 from flash_cards_api.logger import logger
 from flash_cards_api.dependencies.auth import (
     oauth2_scheme,
-    get_current_active_user
+    get_current_active_user,
+    get_current_user
 )
 from flash_cards_api.utils.auth import (
     get_user,
@@ -222,7 +223,7 @@ async def change_password(
 
 @router.post("/account_activation/")
 async def account_activation(
-        user: User = Depends(get_current_active_user),
+        user: User = Depends(get_current_user),
         db: Session = Depends(get_db)
 ):
     try:
