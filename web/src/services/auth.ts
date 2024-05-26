@@ -7,10 +7,9 @@ export const AUTH_ENDPOINTS = {
   login: `${BASE_API}/api/auth/login/`,
   register: `${BASE_API}/api/auth/register/`,
   logout: `${BASE_API}/api/auth/logout/`,
-  updateNickname: `${BASE_API}/api/auth/update-nickname/`, // Added endpoint for updating nickname
-  updateEmail: `${BASE_API}/api/auth/update-email/`, // Added endpoint for updating email
-  updatePassword: `${BASE_API}/api/auth/update-password/`, // Added endpoint for updating password
-  updateAvatar: `${BASE_API}/api/auth/update-avatar/` // Added endpoint for updating avatar
+  updateMe: `${BASE_API}/api/users/me/`,
+  deleteAccount: `${BASE_API}/api/users/me/`,
+  getUserStats: `${BASE_API}/api/auth/user-stats/`
 };
 
 class Auth {
@@ -35,58 +34,31 @@ class Auth {
     });
   }
 
-  public async updateNickname(nickname: string) {
+  public async updateAccount(body: Object) {
     const token = ActiveUser.getAuthorization();
 
     return await request({
-      url: AUTH_ENDPOINTS.updateNickname,
-      method: 'POST',
+      url: AUTH_ENDPOINTS.updateMe,
+      method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`
       },
-      // @ts-ignore
-      body: JSON.stringify({ nickname })
+      body
     });
   }
 
-  public async updateEmail(email: string) {
+  public async deleteAccount(current_password: string) {
     const token = ActiveUser.getAuthorization();
 
     return await request({
-      url: AUTH_ENDPOINTS.updateEmail,
-      method: 'POST',
+      url: AUTH_ENDPOINTS.deleteAccount,
+      method: 'DELETE',
       headers: {
-        'Authorization': `Bearer ${token}`
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json'
       },
       // @ts-ignore
-      body: JSON.stringify({ email })
-    });
-  }
-
-  public async updatePassword(passwordDetails: { currentPassword: string, newPassword: string }) {
-    const token = ActiveUser.getAuthorization();
-    return await request({
-      url: AUTH_ENDPOINTS.updatePassword,
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      // @ts-ignore
-      body: JSON.stringify(passwordDetails)
-    });
-  }
-
-  public async updateAvatar(avatarUrl: string) {
-    const token = ActiveUser.getAuthorization();
-
-    return await request({
-      url: AUTH_ENDPOINTS.updateAvatar,
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      },
-      // @ts-ignore
-      body: JSON.stringify({ avatar: avatarUrl })
+      body: JSON.stringify({ current_password })
     });
   }
 
@@ -103,6 +75,37 @@ class Auth {
     } catch (error) {
       console.error('Error during log out :', error);
     }
+  }
+
+  public async getUserStats() {
+    const token = ActiveUser.getAuthorization();
+
+    return await request({
+      url: AUTH_ENDPOINTS.getUserStats,
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+  }
+
+  public async getCurrentUser() {
+    const token = ActiveUser.getAuthorization();
+
+    const response = await request({
+      url: AUTH_ENDPOINTS.updateMe, // Assuming this endpoint returns current user data
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    });
+
+    // @ts-ignore
+    return response.data;
+  }
+
+  async updateAvatar(avatarName: string) {
+
   }
 }
 

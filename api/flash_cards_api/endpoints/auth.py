@@ -10,8 +10,7 @@ from fastapi import (
     Depends,
     HTTPException,
     status,
-    Request,
-    Response
+    Request
 )
 from sqlalchemy.orm import Session
 
@@ -76,8 +75,12 @@ class LoginResponse(BaseModel):
     token_data: TokenResponse
 
 
-class UpdateAvatarPayloadScheme(BaseModel):
-    avatar: str
+class UpdateUserPayload(BaseModel):
+    email: str
+    username: str
+    current_password: str
+    password: str
+    re_password: str
 
 
 @router.post("/login/", response_model=LoginResponse)
@@ -221,26 +224,3 @@ async def reset_password(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Token is expired"
     )
-
-
-@router.post("/update-avatar/")
-async def update_avatar(
-        payload: UpdateAvatarPayloadScheme,
-        token: Annotated[str, Depends(oauth2_scheme)],
-        db: Session = Depends(get_db)
-):
-    payload = payload.dict()
-    user_email = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM]).get("sub")
-    user = get_user(email=user_email, db=db)
-
-    if not user:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found"
-        )
-
-    user.avatar = payload['avatar']
-    db.commit()
-    db.refresh(user)
-
-    return {"detail": "Avatar updated successfully"}

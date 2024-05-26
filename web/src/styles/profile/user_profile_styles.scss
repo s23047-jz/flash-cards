@@ -9,12 +9,12 @@
         flex-direction: column;
 
         .user-stats-button, .change-nickname-button, .change-email-button, .change-password-button, .delete-account-button {
-            font-size: 1.2rem; // Larger font size for readability on bigger buttons
+            font-size: 1.2rem;
         }
     }
 
     .user-stats-button {
-        background-color: #01CAA1; // Red
+        background-color: #01CAA1;
         color: white;
         border: 2px solid black;
 
@@ -25,7 +25,7 @@
     }
 
     .change-nickname-button {
-        background-color: #0699F2; // Blue
+        background-color: #0699F2;
         color: white;
         border: 2px solid black;
 
@@ -35,7 +35,7 @@
     }
 
     .change-email-button {
-        background-color: #0699F2; // Blue
+        background-color: #0699F2;
         color: white;
         border: 2px solid black;
 
@@ -45,7 +45,7 @@
     }
 
     .change-password-button {
-        background-color: #0699F2; // Blue
+        background-color: #0699F2;
         color: white;
         border: 2px solid black;
 
@@ -55,13 +55,56 @@
     }
 
     .delete-account-button {
-        background-color: red; // Red, similar to user stats for consistency in critical actions
+        background-color: red;
         color: white;
         border: 2px solid black;
 
         &:hover {
             background-color: darken(red, 10%);
             opacity: 0.9;
+        }
+    }
+
+    .username {
+        margin-bottom: 24px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 2px 2px 0 black;
+        font-size: 2em;
+    }
+}
+
+.user-stats-container {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    text-align: center;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+
+    .shape-background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #01CAA1;
+        border: 5px solid black;
+        border-radius: 30px;
+        z-index: -1;
+    }
+
+    .stat-title {
+        margin-bottom: 24px;
+        font-weight: bold;
+        color: white;
+        text-shadow: 2px 2px 0 black;
+        font-size: 2em;
+
+        .stat-number {
+            color: yellow;
+            font-size: 2em;
         }
     }
 }

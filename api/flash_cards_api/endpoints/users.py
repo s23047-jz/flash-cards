@@ -22,12 +22,23 @@ from flash_cards_api.utils.auth import get_user_by_username, get_user
 
 from flash_cards_api.endpoints.auth import UserResponse
 
+from pydantic import BaseModel
+
+from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/api/users",
     tags=["users"],
     dependencies=[Depends(get_current_active_user)]
 )
+
+
+class SelfUserUpdate(BaseModel):
+    email: Optional[str] = ''
+    username: Optional[str] = ''
+    current_password: str
+    password: Optional[str] = ''
+    re_password: Optional[str] = ''
 
 
 class UserDetailsResponse(BaseModel):
@@ -48,13 +59,21 @@ class SelfUserUpdate(UserUpdateModel):
     re_password: Optional[str] = ''
 
 
+class DeleteAccountPayload(BaseModel):
+    current_password: str
+
+
+class AvatarUpdatePayload(BaseModel):
+    avatar: str
+
+
 @router.get(
     "/",
     response_model=List[UserDetailsResponse],
     dependencies=[Depends(RoleAccessChecker([UserRoles.ADMIN, UserRoles.MODERATOR]))]
 )
 async def get_user_list(
-    db: Session = Depends(get_db)
+        db: Session = Depends(get_db)
 ):
     users = db.query(User).all()
     return users
@@ -62,8 +81,8 @@ async def get_user_list(
 
 @router.get("/me/", status_code=200)
 async def get_me(
-    user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+        user: User = Depends(get_current_active_user),
+        db: Session = Depends(get_db)
 ):
     user_details: User = db.query(User).filter(User.id == user.id).first()
     if user_details:
@@ -73,9 +92,9 @@ async def get_me(
 
 @router.put("/me/", response_model=UserResponse, status_code=200)
 async def update_me(
-    payload: SelfUserUpdate,
-    user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+        payload: SelfUserUpdate,
+        user: User = Depends(get_current_active_user),
+        db: Session = Depends(get_db)
 ):
     payload = payload.dict()
     user_details: User = db.query(User).filter(User.id == user.id).first()
@@ -87,14 +106,15 @@ async def update_me(
                 detail="Invalid password"
             )
 
-        if payload['password'] and payload['re_password']:
-            if payload['password'] == payload['re_password']:
-                user_details.password = get_password_hash(payload['password'])
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Passwords do not match"
-            )
-        if payload['username']:
+        if payload.get('password') and payload.get('re_password'):
+            if payload['password'] != payload['re_password']:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="Passwords do not match"
+                )
+            user_details.password = get_password_hash(payload['password'])
+
+        if payload.get('username'):
             if get_user_by_username(payload['username'], db):
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
@@ -102,7 +122,7 @@ async def update_me(
                 )
             user_details.username = payload['username']
 
-        if payload['email']:
+        if payload.get('email'):
             if get_user(payload['email'], db):
                 raise HTTPException(
                     status_code=status.HTTP_400_BAD_REQUEST,
@@ -118,6 +138,23 @@ async def update_me(
     raise HTTPException(status_code=404, detail="User not found")
 
 
+@router.put("/me/avatar", response_model=UserResponse, status_code=200)
+async def update_avatar(
+        payload: AvatarUpdatePayload,
+        user: User = Depends(get_current_active_user),
+        db: Session = Depends(get_db)
+):
+    user_details: User = db.query(User).filter(User.id == user.id).first()
+
+    if user_details:
+        user_details.avatar = payload.avatar
+        db.commit()
+        db.refresh(user_details)
+        return user_details
+
+    raise HTTPException(status_code=404, detail="User not found")
+
+
 @router.get(
     "/{user_id}/",
     response_model=UserDetailsResponse,
@@ -125,8 +162,8 @@ async def update_me(
     status_code=200
 )
 async def get_user_details(
-    user_id: uuid.UUID,
-    db: Session = Depends(get_db)
+        user_id: uuid.UUID,
+        db: Session = Depends(get_db)
 ):
     user: User = db.query(User).filter(User.id == user_id).first()
     if user:
@@ -140,9 +177,9 @@ async def get_user_details(
     status_code=200
 )
 async def update_user_details(
-    user_id: uuid.UUID,
-    payload: UserUpdateModel,
-    db: Session = Depends(get_db)
+        user_id: uuid.UUID,
+        payload: UserUpdateModel,
+        db: Session = Depends(get_db)
 ):
     payload = payload.dict()
     user: User = db.query(User).get(User.id == user_id)
@@ -168,5 +205,27 @@ async def update_user_details(
         db.refresh(user)
 
         return user
+
+    raise HTTPException(status_code=404, detail="User not found")
+
+
+@router.delete("/me", status_code=204)
+async def delete_account(
+        payload: DeleteAccountPayload,
+        user: User = Depends(get_current_active_user),
+        db: Session = Depends(get_db)
+):
+    user_details: User = db.query(User).filter(User.id == user.id).first()
+
+    if user_details:
+        if not user_details.verify_password(payload.current_password):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Invalid password"
+            )
+
+        db.delete(user_details)
+        db.commit()
+        return
 
     raise HTTPException(status_code=404, detail="User not found")
