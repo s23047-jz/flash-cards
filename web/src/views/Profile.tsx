@@ -3,14 +3,7 @@ import { Avatar, Button, Stack, Container, Dialog, DialogActions, DialogContent,
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from 'react-router-dom';
 import DrawerAppBar from "../components/home_page/NavBar";
-// @ts-ignore
-import avatar1 from '../assets/Avatar_1.png';
-// @ts-ignore
-import avatar2 from '../assets/Avatar_2.png';
-// @ts-ignore
-import avatar3 from '../assets/Avatar_3.png';
-// @ts-ignore
-import avatar4 from '../assets/Avatar_4.png';
+import { AVATAR_MAPPING } from "../utils/avatars";
 import '../styles/profile/user_profile_styles.scss';
 import { AuthService } from "../services/auth";
 import LoadingSpinner from "../components/loading_spinner/LoadingSpinner";
@@ -23,14 +16,15 @@ const UserProfilePage: React.FC = () => {
     const [openEmail, setOpenEmail] = useState(false);
     const [email, setEmail] = useState("");
     const [openPassword, setOpenPassword] = useState(false);
-    const [current_password, setCurrentPassword] = useState("");
+    const [currentPassword, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [avatar, setAvatar] = useState(avatar1);
+    const [avatar, setAvatar] = useState(AVATAR_MAPPING.Avatar_1);
     const [openAvatarSelection, setOpenAvatarSelection] = useState(false);
     const [openDeleteAccount, setOpenDeleteAccount] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [username, setUsername] = useState("");
+    const [userEmail, setUserEmail] = useState("");
 
     const navigate = useNavigate();
 
@@ -40,6 +34,7 @@ const UserProfilePage: React.FC = () => {
             try {
                 const user = await AuthService.getCurrentUser();
                 setUsername(user.username);
+                setUserEmail(user.email);
                 setAvatar(getAvatarPath(user.avatar));
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -52,18 +47,8 @@ const UserProfilePage: React.FC = () => {
     }, []);
 
     const getAvatarPath = (avatarName: string) => {
-        switch (avatarName) {
-            case 'Avatar_1.png':
-                return avatar1;
-            case 'Avatar_2.png':
-                return avatar2;
-            case 'Avatar_3.png':
-                return avatar3;
-            case 'Avatar_4.png':
-                return avatar4;
-            default:
-                return avatar1;
-        }
+        // @ts-ignore
+        return AVATAR_MAPPING[avatarName] || AVATAR_MAPPING.Avatar_1;
     };
 
     const handleOpen = (modalType: 'nickname' | 'email' | 'password' | 'avatar' | 'deleteAccount') => {
@@ -96,7 +81,7 @@ const UserProfilePage: React.FC = () => {
             if (modalType === 'nickname') {
                 await AuthService.updateAccount({
                     username: nickname,
-                    current_password: current_password
+                    current_password: currentPassword
                 });
                 console.log("Nickname updated successfully.");
                 handleClose('nickname');
@@ -104,7 +89,7 @@ const UserProfilePage: React.FC = () => {
             } else if (modalType === 'email') {
                 await AuthService.updateAccount({
                     email: email,
-                    current_password: current_password
+                    current_password: currentPassword
                 });
                 console.log("Email updated successfully.");
                 handleClose('email');
@@ -114,7 +99,7 @@ const UserProfilePage: React.FC = () => {
                     return;
                 }
                 await AuthService.updateAccount({
-                    current_password: current_password,
+                    current_password: currentPassword,
                     password: newPassword,
                     re_password: confirmPassword
                 });
@@ -140,10 +125,9 @@ const UserProfilePage: React.FC = () => {
     const handleAvatarSelect = async (selectedAvatar: string) => {
         setIsLoading(true);
         try {
-            const avatarName = selectedAvatar.split('/').pop(); // Pobranie nazwy pliku avatara
+            await AuthService.updateAvatar(selectedAvatar);
             // @ts-ignore
-            await AuthService.updateAvatar(avatarName);
-            setAvatar(selectedAvatar);
+            setAvatar(AVATAR_MAPPING[selectedAvatar]);
             console.log("Avatar updated successfully.");
             handleClose('avatar');
         } catch (error) {
@@ -152,15 +136,13 @@ const UserProfilePage: React.FC = () => {
             alert("Failed to update avatar: " + error.message);
         } finally {
             setIsLoading(false);
-            // @ts-ignore
-            alert("Failed to update avatars: " + error.message);
         }
     };
 
     const handleDeleteAccount = async () => {
         setIsLoading(true);
         try {
-            await AuthService.deleteAccount({ email: email, password: current_password });
+            await AuthService.deleteAccount({ email: userEmail, current_password: currentPassword });
             console.log("Account deleted successfully.");
             navigate('/signin');
         } catch (error) {
@@ -218,7 +200,7 @@ const UserProfilePage: React.FC = () => {
                     <DialogTitle>Change Nickname</DialogTitle>
                     <DialogContent>
                         <TextField autoFocus margin="dense" id="nickname" label="New Nickname" type="text" fullWidth variant="standard" value={nickname} onChange={(e) => handleChange(e.target.value, 'nickname')} />
-                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={current_password} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('nickname')}>Cancel</Button>
@@ -229,7 +211,7 @@ const UserProfilePage: React.FC = () => {
                     <DialogTitle>Change Email</DialogTitle>
                     <DialogContent>
                         <TextField autoFocus margin="dense" id="email" label="New Email" type="email" fullWidth variant="standard" value={email} onChange={(e) => handleChange(e.target.value, 'email')} />
-                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={current_password} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('email')}>Cancel</Button>
@@ -239,7 +221,7 @@ const UserProfilePage: React.FC = () => {
                 <Dialog open={openPassword} onClose={() => handleClose('password')}>
                     <DialogTitle>Change Password</DialogTitle>
                     <DialogContent>
-                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={current_password} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
                         <TextField margin="dense" id="newPassword" label="New Password" type="password" fullWidth variant="standard" value={newPassword} onChange={(e) => handleChange(e.target.value, 'newPassword')} />
                         <TextField margin="dense" id="confirmPassword" label="Confirm New Password" type="password" fullWidth variant="standard" value={confirmPassword} onChange={(e) => handleChange(e.target.value, 'confirmPassword')} />
                     </DialogContent>
@@ -252,10 +234,10 @@ const UserProfilePage: React.FC = () => {
                     <DialogTitle>Select Avatar</DialogTitle>
                     <DialogContent dividers>
                         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, overflowY: { xs: 'scroll', sm: 'unset' }, maxHeight: { xs: 400, sm: 'unset' } }}>
-                            <Avatar src={avatar1} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect(avatar1)} />
-                            <Avatar src={avatar2} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect(avatar2)} />
-                            <Avatar src={avatar3} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect(avatar3)} />
-                            <Avatar src={avatar4} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect(avatar4)} />
+                            <Avatar src={AVATAR_MAPPING.Avatar_1} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect('Avatar_1')} />
+                            <Avatar src={AVATAR_MAPPING.Avatar_2} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect('Avatar_2')} />
+                            <Avatar src={AVATAR_MAPPING.Avatar_3} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect('Avatar_3')} />
+                            <Avatar src={AVATAR_MAPPING.Avatar_4} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect('Avatar_4')} />
                         </Box>
                     </DialogContent>
                     <DialogActions>
@@ -265,8 +247,7 @@ const UserProfilePage: React.FC = () => {
                 <Dialog open={openDeleteAccount} onClose={() => handleClose('deleteAccount')}>
                     <DialogTitle>Delete Account</DialogTitle>
                     <DialogContent>
-                        <TextField autoFocus margin="dense" id="email" label="New Email" type="email" fullWidth variant="standard" value={email} onChange={(e) => handleChange(e.target.value, 'email')} />
-                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={current_password} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('deleteAccount')}>Cancel</Button>

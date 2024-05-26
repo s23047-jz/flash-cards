@@ -18,11 +18,12 @@ export const AUTH_ENDPOINTS = {
 
 class Auth {
   // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor() {}
+  constructor() {
+  }
 
   public async login(body: object) {
     // @ts-ignore
-    const { data } = await request({
+    const {data} = await request({
       url: AUTH_ENDPOINTS.login,
       method: 'POST',
       body
@@ -79,17 +80,6 @@ class Auth {
     }
   }
 
-  public async getUserStats() {
-    const token = ActiveUser.getAuthorization();
-
-    return await request({
-      url: AUTH_ENDPOINTS.getUserStats,
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`
-      }
-    });
-  }
 
   public async getCurrentUser() {
     const token = ActiveUser.getAuthorization();
@@ -106,8 +96,17 @@ class Auth {
     return response.data;
   }
 
-  async updateAvatar(avatarName: string) {
+  public async updateAvatar(body: Object) {
+    const token = ActiveUser.getAuthorization();
 
+    return await request({
+      url: AUTH_ENDPOINTS.updateAvatar,
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+      },
+      body
+    });
   }
 }
 
