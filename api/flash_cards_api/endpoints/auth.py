@@ -76,6 +76,14 @@ class LoginResponse(BaseModel):
     token_data: TokenResponse
 
 
+class UpdateUserPayload(BaseModel):
+    email: str
+    username: str
+    current_password: str
+    password: str
+    re_password: str
+
+
 @router.post("/login/", response_model=LoginResponse)
 async def login(
         payload: LoginPayloadScheme,

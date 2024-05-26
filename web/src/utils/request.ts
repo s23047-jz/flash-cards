@@ -35,7 +35,7 @@ export const request = async({
 }) =>
 {
     const methodLower: string = method.toLowerCase()
-    const jsonMethods: string[] = ["post", "put", "patch", "delete"]
+    const jsonMethods: string[] = ["post", "put", "patch", "delete", "get"]
 
     if (!jsonMethods.includes(methodLower)) return
 
