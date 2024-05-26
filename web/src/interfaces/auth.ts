@@ -45,7 +45,9 @@ export interface UserInterface {
     password?: string;
     created_at?: Date;
     updated_at?: Date;
-    ranking?: number;
+    rank?: number;
+    created_decks?: number;
+    public_decks?: number,
     avatar?: string;
     active?: boolean;
     role?: string;
