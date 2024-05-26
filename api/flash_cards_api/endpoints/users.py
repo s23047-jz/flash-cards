@@ -262,7 +262,7 @@ async def delete_me(
         raise HTTPException(status_code=401)
 
     else:
-        raise HTTPException(status_code=404, detail="Bad request")
+        raise HTTPException(status_code=404, detail="Credentials are not valid")
 
 
 @router.get(
@@ -378,23 +378,23 @@ async def update_user_details(
     raise HTTPException(status_code=404, detail="User not found")
 
 
-@router.delete("/me", status_code=204)
-async def delete_account(
-        payload: DeleteAccountPayload,
-        user: User = Depends(get_current_active_user),
-        db: Session = Depends(get_db)
-):
-    user_details: User = db.query(User).filter(User.id == user.id).first()
-
-    if user_details:
-        if not user_details.verify_password(payload.current_password):
-            raise HTTPException(
-                status_code=status.HTTP_400_BAD_REQUEST,
-                detail="Invalid password"
-            )
-
-        db.delete(user_details)
-        db.commit()
-        return
-
-    raise HTTPException(status_code=404, detail="User not found")
+# @router.delete("/me", status_code=204)
+# async def delete_account(
+#         payload: DeleteAccountPayload,
+#         user: User = Depends(get_current_active_user),
+#         db: Session = Depends(get_db)
+# ):
+#     user_details: User = db.query(User).filter(User.id == user.id).first()
+#
+#     if user_details:
+#         if not user_details.verify_password(payload.current_password):
+#             raise HTTPException(
+#                 status_code=status.HTTP_400_BAD_REQUEST,
+#                 detail="Invalid password"
+#             )
+#
+#         db.delete(user_details)
+#         db.commit()
+#         return
+#
+#     raise HTTPException(status_code=404, detail="User not found")

@@ -23,7 +23,7 @@ const UserProfilePage: React.FC = () => {
     const [openEmail, setOpenEmail] = useState(false);
     const [email, setEmail] = useState("");
     const [openPassword, setOpenPassword] = useState(false);
-    const [currentPassword, setCurrentPassword] = useState("");
+    const [current_password, setCurrentPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [avatar, setAvatar] = useState(avatar1);
@@ -96,7 +96,7 @@ const UserProfilePage: React.FC = () => {
             if (modalType === 'nickname') {
                 await AuthService.updateAccount({
                     username: nickname,
-                    current_password: currentPassword
+                    current_password: current_password
                 });
                 console.log("Nickname updated successfully.");
                 handleClose('nickname');
@@ -104,7 +104,7 @@ const UserProfilePage: React.FC = () => {
             } else if (modalType === 'email') {
                 await AuthService.updateAccount({
                     email: email,
-                    current_password: currentPassword
+                    current_password: current_password
                 });
                 console.log("Email updated successfully.");
                 handleClose('email');
@@ -114,7 +114,7 @@ const UserProfilePage: React.FC = () => {
                     return;
                 }
                 await AuthService.updateAccount({
-                    current_password: currentPassword,
+                    current_password: current_password,
                     password: newPassword,
                     re_password: confirmPassword
                 });
@@ -160,7 +160,7 @@ const UserProfilePage: React.FC = () => {
     const handleDeleteAccount = async () => {
         setIsLoading(true);
         try {
-            await AuthService.deleteAccount(currentPassword);
+            await AuthService.deleteAccount({ email: email, password: current_password });
             console.log("Account deleted successfully.");
             navigate('/signin');
         } catch (error) {
@@ -218,7 +218,7 @@ const UserProfilePage: React.FC = () => {
                     <DialogTitle>Change Nickname</DialogTitle>
                     <DialogContent>
                         <TextField autoFocus margin="dense" id="nickname" label="New Nickname" type="text" fullWidth variant="standard" value={nickname} onChange={(e) => handleChange(e.target.value, 'nickname')} />
-                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={current_password} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('nickname')}>Cancel</Button>
@@ -229,7 +229,7 @@ const UserProfilePage: React.FC = () => {
                     <DialogTitle>Change Email</DialogTitle>
                     <DialogContent>
                         <TextField autoFocus margin="dense" id="email" label="New Email" type="email" fullWidth variant="standard" value={email} onChange={(e) => handleChange(e.target.value, 'email')} />
-                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={current_password} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('email')}>Cancel</Button>
@@ -239,7 +239,7 @@ const UserProfilePage: React.FC = () => {
                 <Dialog open={openPassword} onClose={() => handleClose('password')}>
                     <DialogTitle>Change Password</DialogTitle>
                     <DialogContent>
-                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={current_password} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
                         <TextField margin="dense" id="newPassword" label="New Password" type="password" fullWidth variant="standard" value={newPassword} onChange={(e) => handleChange(e.target.value, 'newPassword')} />
                         <TextField margin="dense" id="confirmPassword" label="Confirm New Password" type="password" fullWidth variant="standard" value={confirmPassword} onChange={(e) => handleChange(e.target.value, 'confirmPassword')} />
                     </DialogContent>
@@ -265,7 +265,8 @@ const UserProfilePage: React.FC = () => {
                 <Dialog open={openDeleteAccount} onClose={() => handleClose('deleteAccount')}>
                     <DialogTitle>Delete Account</DialogTitle>
                     <DialogContent>
-                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField autoFocus margin="dense" id="email" label="New Email" type="email" fullWidth variant="standard" value={email} onChange={(e) => handleChange(e.target.value, 'email')} />
+                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={current_password} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('deleteAccount')}>Cancel</Button>
