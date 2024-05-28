@@ -309,7 +309,7 @@ async def update_avatar(
     db: Session = Depends(get_db)
 ):
     payload = payload.dict()
-    user: User = db.query(User).where(User.id == user_id)
+    user: User = db.query(User).filter(User.id == user_id).first()
 
     if not user:
         raise HTTPException(

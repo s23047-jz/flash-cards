@@ -5,6 +5,8 @@ import { ScreenProps } from "../../interfaces/screen";
 import { Row, Col, Button, CModal } from "../../components";
 
 import { AuthService } from "../../services/auth";
+import { UsersService } from "../../services/users";
+import { ActiveUser } from "../../services/user";
 import Routes from "../../constants/routes";
 import DarkMode from "../../components/DarkMode";
 import { ROUTES } from "../../constants";
@@ -65,6 +67,14 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation, route}) => {
         await AuthService.logout(navigation);
     }
 
+    const handleUpdateAvatar = async(avatar: string) => {
+        await UsersService.updateUserAvatar(userData.id, avatar, navigation);
+        const getMeData = await UsersService.getMe(navigation)
+        await ActiveUser.updateUserData(getMeData);
+        await getUserData();
+        setShowAvatarModal(false);
+    }
+
     const splitRows = (rowSize: number = 2) => {
         const rows = [];
         const arr = Object.keys(AVATAR_MAPPING);
@@ -90,7 +100,9 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation, route}) => {
                                     style={styles.col}
                                     key={avatar}
                                 >
-                                    <Image source={AVATAR_MAPPING[avatar]} className={'w-32 h-32'} />
+                                    <TouchableOpacity onPress={async () => handleUpdateAvatar(avatar)}>
+                                        <Image source={AVATAR_MAPPING[avatar]} className={'w-32 h-32'} />
+                                    </TouchableOpacity>
                                 </Col>
                             ))}
                         </Row>
