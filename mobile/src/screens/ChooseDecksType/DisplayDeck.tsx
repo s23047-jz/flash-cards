@@ -92,7 +92,7 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
         
         
         <Button
-          className="p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl"
+          className="p-3 m-3 w-72 h-16 bg-cyan-400 justify-center mr-auto ml-auto rounded-1xl"
           onPress={handleDisplayFlashcards}
         >
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
