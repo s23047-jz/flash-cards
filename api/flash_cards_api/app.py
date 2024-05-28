@@ -1,8 +1,9 @@
 import uvicorn
 
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from fastapi import FastAPI
+from flash_cards_api.celery_config import make_celery
 from flash_cards_api.config import (
     WEBHOST,
     MOBILE_HOST,
@@ -34,6 +35,7 @@ def create_app() -> FastAPI:
     return app
 
 
+celery = make_celery()
 app = create_app()
 
 

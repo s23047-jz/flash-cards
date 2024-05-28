@@ -11,6 +11,9 @@ dev_install:
 dev_run:
 	@python ./flash_cards_api/app.py
 
+dev_run_worker:
+	@./celery_worker.sh
+
 db_load_models_and_fixtures:
 	flash_cards_api_cli database_defaults --clear_database
 	flash_cards_api_cli database_defaults --fixtures
