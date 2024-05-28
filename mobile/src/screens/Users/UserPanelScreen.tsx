@@ -65,6 +65,7 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation, route}) => {
 
     const logout = async () => {
         await AuthService.logout(navigation);
+        await ActiveUser.clean();
     }
 
     const handleUpdateAvatar = async(avatar: string) => {
