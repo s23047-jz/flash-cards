@@ -30,6 +30,11 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
             label: "Personal Data",
             routes: [
                 {
+                    label: "Avatar",
+                    to: Routes.USER_UPDATE_AVATAR,
+                    params: { updateField: 'username', getUserData }
+                },
+                {
                     label: "User Name",
                     value: 'username',
                     to: Routes.USER_UPDATE,
