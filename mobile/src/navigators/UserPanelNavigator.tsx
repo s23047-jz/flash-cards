@@ -3,7 +3,13 @@ import React, { useEffect, useState } from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { ROUTES } from "../constants";
-import { UserPanelScreen, UserUpdate, UserDelete, UserStats } from "../screens";
+import {
+    UserPanelScreen,
+    UserUpdate,
+    UserDelete,
+    UserStats,
+    UserUpdateAvatar
+} from "../screens";
 import { ActiveUser } from "../services/user";
 import { Loader } from "../components";
 
@@ -12,7 +18,9 @@ const Stack = createNativeStackNavigator();
 export default function UserPanelNavigator() {
 
     const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState({username: '', email: '', id: ''});
+    const [userData, setUserData] = useState(
+        {username: '', email: '', id: '', avatar: ''}
+    );
 
     useEffect(() => {
         setLoading(true);
@@ -23,12 +31,12 @@ export default function UserPanelNavigator() {
     const getUserData = async () => {
         try {
             setLoading(true);
-            const { username, email, id } = await ActiveUser.getUserData();
-            setUserData({ username, email, id });
+            const { username, email, id, avatar } = await ActiveUser.getUserData();
+            setUserData({ username, email, id, avatar });
             setLoading(false);
         } catch (error) {
             console.error('Error checking authentication status:', error);
-            setUserData({username: '', email: '', id: ''});
+            setUserData({username: '', email: '', id: '', avatar: ''});
             setLoading(false);
         }
     };
@@ -45,6 +53,7 @@ export default function UserPanelNavigator() {
             <Stack.Screen name={ROUTES.USER_UPDATE} component={UserUpdate} initialParams={{getUserData}} />
             <Stack.Screen name={ROUTES.USER_DELETE} component={UserDelete} initialParams={{userData}} />
             <Stack.Screen name={ROUTES.USER_STATS} component={UserStats} initialParams={{userId: userData.id}} />
+            <Stack.Screen name={ROUTES.USER_UPDATE_AVATAR} component={UserUpdateAvatar} initialParams={{avatar: userData.avatar}} />
         </Stack.Navigator>
     )
 }

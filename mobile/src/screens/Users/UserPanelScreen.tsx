@@ -8,7 +8,8 @@ import { AuthService } from "../../services/auth";
 import Routes from "../../constants/routes";
 import DarkMode from "../../components/DarkMode";
 import { ROUTES } from "../../constants";
-import { warning, logo } from "../../assets/images";
+import { warning } from "../../assets/images";
+import { AVATAR_MAPPING } from "../../utils/avatars";
 
 const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
 
@@ -114,7 +115,10 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
                 <Row className="w-full">
                     <Col className='w-full'>
-                        <Image className="mx-auto object-scale-down h-40 w-40 rounded-100" source={logo}/>
+                        <Image
+                            className="mx-auto object-scale-down h-40 w-40 rounded-100"
+                            source={AVATAR_MAPPING[userData.avatar]}
+                        />
                     </Col>
                 </Row>
                 <Row className='w-full p-6'>
