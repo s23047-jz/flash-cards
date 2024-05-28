@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     avatar: {
         height: 50,
         width: 50
+    },
+    loadBtn: {
+        maxWidth: 250
     }
 });
 
@@ -129,6 +132,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
         DECKS: 'decks',
         USERS: 'users'
     }
+    const perPage = 4;
 
     const [search, setSearch] = useState("");
     const [selectedView, setSelectedView] = useState(PAGES.USERS);
@@ -136,66 +140,54 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     const [loading, setLoading] = useState(false);
     const [fetchLoading, setFetchLoading] = useState(false);
     const [total, setTotal] = useState(0);
-    const [page, setPage] = useState(1);
-    const [prevPage, setPrevPage] = useState(1);
+    const [usersQuery, setUsersQuery] = useState({ page: 1, per_page: perPage });
+    const [decksQuery, setDecksQuery] = useState({ page: 1, per_page: perPage });
 
     const fetchDecks = async() => {
-        console.log("fetchDecks page", page);
-        const deck_list = await DecksService.getPublicDecks({ page, per_page: 4 }, navigation);
+        const deck_list = await DecksService.getPublicDecks(decksQuery, navigation);
         if(data && data.length) setData(prevData => [...prevData, ...deck_list.decks]);
         else setData(deck_list.decks);
+        setDecksQuery(prevState => ({ ...prevState, page: prevState.page + 1 }))
         setTotal(deck_list.total)
         setFetchLoading(false)
     }
 
     const fetchUsers = async() => {
-        console.log("fetchUsers page", page)
-        const user_list = await UsersService.getUsersRanking({ page, per_page: 4 }, navigation);
+        const user_list = await UsersService.getUsersRanking(usersQuery, navigation);
         if(data && data.length) setData(prevData => [...prevData, ...user_list.users]);
         else setData(user_list.users);
+        setUsersQuery(prevState => ({ ...prevState, page: prevState.page + 1 }))
+
         setTotal(user_list.total)
         setFetchLoading(false)
     }
 
     const changeView = async(view: string) => {
         if (view !== selectedView) {
-
-            setPrevPage(1);
-            setPage(1);
-            setTotal(0)
             setLoading(true);
             setData([]);
-
+            setTotal(0);
             setSelectedView(view);
             if (view === PAGES.USERS) {
                 await fetchUsers();
+                setDecksQuery({ page: 1, per_page: perPage });
             } else {
                 await fetchDecks();
+                setUsersQuery({ page: 1, per_page: perPage });
             }
             setLoading(false);
         }
     }
 
-    const handleScroll = async({ nativeEvent }) => {
-        if (isCloseToBottom(nativeEvent) && (data.length % 4 === 0) && !(data.length === total)) {
-            setFetchLoading(true)
-            setPage(prevState => prevState + 1);
-            if (prevPage !== page) {
-                setTimeout(() => {
-                    if (selectedView === PAGES.USERS) {
-                        fetchUsers();
-                    } else {
-                        fetchDecks();
-                    }
-                }, 1000)
+    const handleFetchMoreData = async() => {
+        setFetchLoading(true);
+        setTimeout(() => {
+            if (selectedView === PAGES.USERS) {
+                fetchUsers();
+            } else {
+                fetchDecks();
             }
-            setPrevPage(page);
-        }
-    };
-
-    const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
-        const paddingToBottom = 15;
-        return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
+        }, 1000)
     };
 
     const handleNavigationToUserStats = (userId: string) => {
@@ -245,14 +237,14 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                 </Row>
                 <Row className="w-full" style={styles.row}>
                     <Col className={'w-48 h-full justify-center items-center'}>
-                        <Button style={styles.button} className={`p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.DECKS)}>
+                        <Button style={styles.button} className={`p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={async() => changeView(PAGES.DECKS)}>
                             <Text className='text-lg ml-auto mr-auto font-bold'>
                                 Decks
                             </Text>
                         </Button>
                     </Col>
                     <Col className={'w-48 h-full justify-center items-center'}>
-                        <Button style={styles.button} className={`p-4 ${selectedView === PAGES.USERS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.USERS)}>
+                        <Button style={styles.button} className={`p-4 ${selectedView === PAGES.USERS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={async() => changeView(PAGES.USERS)}>
                             <Text className='text-lg ml-auto mr-auto font-bold'>
                                 Users
                             </Text>
@@ -263,7 +255,6 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                     { loading ? <Loader /> : data && data.length ? (
                         <ScrollView
                             className='flex text-center align-middle w-full p-6 h-1/4'
-                            onScroll={handleScroll}
                             scrollEventThrottle={16}
                         >
                             { data.map((item, index) => selectedView === PAGES.DECKS ?
@@ -286,6 +277,24 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                                     />
                                 )}
                             {fetchLoading ? [...Array(3)].map(() => <LoadingCard />) : null}
+                            {
+                                ((data.length % 4 === 0) && !(data.length === total)) ?
+                                    <Row className={'w-full'}>
+                                        <Col className={'w-full justify-center items-center mb-3'}>
+                                            <Button
+                                                className={'p-3 w-52 text-center mr-auto ml-auto mb-3'}
+                                                style={styles.loadBtn}
+                                                onPress={async () => handleFetchMoreData()}
+                                            >
+                                                <Text className={'text-center text-lg font-bold'}>
+                                                    Load more
+                                                </Text>
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                    : null
+                            }
+
                         </ScrollView>
                     ) : (
                         <Row className='w-full mt-10'>
