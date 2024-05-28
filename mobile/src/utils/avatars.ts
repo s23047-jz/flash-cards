@@ -5,5 +5,4 @@ export const AVATAR_MAPPING = {
     Avatar_2: Avatars.Avatar_2,
     Avatar_3: Avatars.Avatar_3,
     Avatar_4: Avatars.Avatar_4
-}
-;
+};

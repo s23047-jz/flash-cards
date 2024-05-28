@@ -1,20 +1,28 @@
 import React, { useState } from "react";
-import { View, Image, Text, ScrollView, TouchableOpacity } from "react-native";
+import { View, Image, Text, ScrollView, TouchableOpacity, StyleSheet} from "react-native";
 import { ScreenProps } from "../../interfaces/screen";
 
 import { Row, Col, Button, CModal } from "../../components";
 
 import { AuthService } from "../../services/auth";
+import { UsersService } from "../../services/users";
+import { ActiveUser } from "../../services/user";
 import Routes from "../../constants/routes";
 import DarkMode from "../../components/DarkMode";
 import { ROUTES } from "../../constants";
-import { warning, logo } from "../../assets/images";
+import { warning } from "../../assets/images";
+import { AVATAR_MAPPING } from "../../utils/avatars";
 
-const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
+const UserPanelScreen: React.FC<ScreenProps> = ({ navigation, route}) => {
 
     const { userData, getUserData } = route.params;
-
     const [showModal, setShowModal] = useState(false);
+    const [showAvatarModal, setShowAvatarModal] = useState(false);
+    const styles = StyleSheet.create({
+        col: {
+            width: '50%'
+        }
+});
 
     const options = [
         {
@@ -57,6 +65,60 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
 
     const logout = async () => {
         await AuthService.logout(navigation);
+    }
+
+    const handleUpdateAvatar = async(avatar: string) => {
+        await UsersService.updateUserAvatar(userData.id, avatar, navigation);
+        const getMeData = await UsersService.getMe(navigation)
+        await ActiveUser.updateUserData(getMeData);
+        await getUserData();
+        setShowAvatarModal(false);
+    }
+
+    const splitRows = (rowSize: number = 2) => {
+        const rows = [];
+        const arr = Object.keys(AVATAR_MAPPING);
+        for (let i= 0; i < arr.length; i += rowSize) {
+            rows.push(arr.slice(i, i + 2));
+        }
+        return rows;
+    }
+
+    const updateAvatarModal = () => {
+        return (
+            <CModal
+                visible={showAvatarModal}
+                animationType={'fade'}
+                transparent={true}
+            >
+                <View className={'bg-sky-500 dark:bg-blue-900 w-full rounded-xl'}>
+                    {splitRows(2).map((arr, index) => (
+                        <Row className={'w-full h-48 justify-between items-center'} key={index}>
+                            {arr.map(avatar => (
+                                <Col
+                                    className={'h-full p-3 justify-center align-middle items-center'}
+                                    style={styles.col}
+                                    key={avatar}
+                                >
+                                    <TouchableOpacity onPress={async () => handleUpdateAvatar(avatar)}>
+                                        <Image source={AVATAR_MAPPING[avatar]} className={'w-32 h-32'} />
+                                    </TouchableOpacity>
+                                </Col>
+                            ))}
+                        </Row>
+                    ))}
+                    <Row className={'w-full'}>
+                        <Col className={'w-full justify-center items-center mb-3'}>
+                            <Button className={'p-3 w-52 text-center mr-auto ml-auto'} onPress={() => setShowAvatarModal(false)}>
+                                <Text className={'text-center text-lg font-bold'}>
+                                    Cancel
+                                </Text>
+                            </Button>
+                        </Col>
+                    </Row>
+                </View>
+            </CModal>
+        )
     }
 
     const getDeleteModal = () => {
@@ -106,10 +168,16 @@ const UserPanelScreen: React.FC<ScreenProps> = ({navigation, route}) => {
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900 pb-14">
             {getDeleteModal()}
+            {updateAvatarModal()}
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
                 <Row className="w-full">
                     <Col className='w-full'>
-                        <Image className="mx-auto object-scale-down h-40 w-40 rounded-100" source={logo}/>
+                        <TouchableOpacity onPress={() => setShowAvatarModal(true)}>
+                        <Image
+                                className="mx-auto object-scale-down h-40 w-40 rounded-100"
+                                source={AVATAR_MAPPING[userData.avatar]}
+                            />
+                        </TouchableOpacity>
                     </Col>
                 </Row>
                 <Row className='w-full p-6'>

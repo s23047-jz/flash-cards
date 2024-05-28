@@ -9,13 +9,12 @@ export { default as MyPrivateDecks } from "./ChooseDecksType/MyPrivateDecks";
 export { default as MyPublicDecks } from "./ChooseDecksType/MyPublicDecks";
 export { default as CreateDeck } from "./ChooseDecksType/CreateDeck";
 export { default as DeckSettings } from "./ChooseDecksType/DeckSettings";
-export { default as EditDeck } from "./ChooseDecksType/EditDeck"
-
+export { default as EditDeck } from "./ChooseDecksType/EditDeck";
 
 //FLASHCARDS / LEARNING
-export { default as DisplayFlashcards } from "./FlashCards/DisplayFlashcards"
-export { default as CreateFlashcard } from "./FlashCards/CreateFlashcard"
-export { default as EditFlashcard } from "./FlashCards/EditFlashcard"
+export { default as DisplayFlashcards } from "./FlashCards/DisplayFlashcards";
+export { default as CreateFlashcard } from "./FlashCards/CreateFlashcard";
+export { default as EditFlashcard } from "./FlashCards/EditFlashcard";
 
 //USER PANEL
 export { default as UserPanelScreen } from "./Users/UserPanelScreen";
