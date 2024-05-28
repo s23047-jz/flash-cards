@@ -32,11 +32,11 @@ const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
       `Are you sure you want to delete this flashcard titled ${card.title}?`,
       [
         {
-          text: "No",
+          text: "Cancel",
           style: "cancel"
         },
         {
-          text: "Yes",
+          text: "Delete",
           onPress: () => {
             deleteCardFromApi(card)
             .then(() => {
@@ -46,7 +46,8 @@ const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
               console.error('Nie udało się usunąć karty z API', error);
               // Możesz tu dodać obsługę błędów, np. informowanie użytkownika o błędzie
             });
-          }
+          },
+          style: 'destructive'
         }
       ],
       { cancelable: false }

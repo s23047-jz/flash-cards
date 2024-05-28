@@ -15,6 +15,8 @@ export default {
     CREATE_DECK: "CreateDeck",
     DISPLAY_MY_DECK: "DisplayDeck",
     DISPLAY_FLASHCARDS: "DisplayFlashcards",
+    DECK_SETTINGS: "DeckSettings",
+    EDIT_DECK: "EditDeck",
     CREATE_FLASHCARD: "CreateFlashcard",
     EDIT_FLSAHCARD: "EditFlashcard",
 
