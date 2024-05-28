@@ -7,8 +7,7 @@ import {
     UserPanelScreen,
     UserUpdate,
     UserDelete,
-    UserStats,
-    UserUpdateAvatar
+    UserStats
 } from "../screens";
 import { ActiveUser } from "../services/user";
 import { Loader } from "../components";
@@ -53,7 +52,6 @@ export default function UserPanelNavigator() {
             <Stack.Screen name={ROUTES.USER_UPDATE} component={UserUpdate} initialParams={{getUserData}} />
             <Stack.Screen name={ROUTES.USER_DELETE} component={UserDelete} initialParams={{userData}} />
             <Stack.Screen name={ROUTES.USER_STATS} component={UserStats} initialParams={{userId: userData.id}} />
-            <Stack.Screen name={ROUTES.USER_UPDATE_AVATAR} component={UserUpdateAvatar} initialParams={{avatar: userData.avatar}} />
         </Stack.Navigator>
     )
 }
