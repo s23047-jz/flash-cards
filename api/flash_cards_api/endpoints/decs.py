@@ -106,8 +106,6 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     total = len(q.all())
 
     if page and per_page:
-        print("PAGE", page)
-        print("per_page", per_page)
         if isinstance(page, str) or isinstance(per_page, str):
             page = int(page)
             per_page = int(per_page)

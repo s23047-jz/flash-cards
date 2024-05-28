@@ -72,8 +72,9 @@ class User {
     }
 
     public async clean() {
-        await AsyncStorage.removeItem("userData")
-        await AsyncStorage.removeItem("tokenData")
+        await AsyncStorage.removeItem("userData");
+        await AsyncStorage.removeItem("tokenData");
+        this.tokenData = this.userData = {};
     }
 }
 

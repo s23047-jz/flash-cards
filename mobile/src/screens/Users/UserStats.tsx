@@ -31,6 +31,9 @@ const styles = StyleSheet.create({
     avatar: {
         height: 150,
         width: 150
+    },
+    loadBtn: {
+        maxWidth: 250
     }
 });
 
@@ -43,22 +46,27 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         DECKS: 'decks'
     }
 
+    const perPage = 4;
+
     const [loading, setLoading] = useState(true);
     const [checkSelfData, setCheckSelfData] = useState(false);
     const [selectedView, setSelectedView] = useState(PAGES.DECKS);
     const [userData, setUserData] = useState<UserStatsInterface>({});
     const [decksData, setDecksData] = useState([]);
     const [total, setTotal] = useState(0);
-    const [page, setPage] = useState(1);
-    const [prevPage, setPrevPage] = useState(1);
+    const [query, setQuery] = useState(
+        { "user_id": userId, page: 1, per_page: perPage }
+    );
     const [fetchLoading, setFetchLoading] = useState(false);
 
     const fetchDecks = async() => {
         const deck_list = await DecksService.getPublicDecks(
-            {"user_id": userId, page, per_page: 4},
+            query,
             navigation
         );
-        setDecksData(deck_list.decks)
+        if(decksData && decksData.length) setDecksData(prevState => [...prevState, deck_list.decks]);
+        else setDecksData(deck_list.decks);
+        setQuery(prevState => ({ ...prevState, page: prevState.page + 1 }))
         setTotal(deck_list.total)
         setFetchLoading(false);
     }
@@ -71,43 +79,26 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     const changeView = async(view: string) => {
         if (view !== selectedView) {
             setLoading(true);
-            setPrevPage(1);
-            setPage(1);
             setTotal(0)
             setLoading(true);
             setDecksData([]);
-
             setSelectedView(view);
             if (view === PAGES.USER) {
                 await fetchUser();
             } else {
                 await fetchDecks();
+                setQuery({ "user_id": userId, page: 1, per_page: perPage });
             }
             setLoading(false);
         }
     }
 
-    const handleScroll = async({ nativeEvent }) => {
-        if (isCloseToBottom(nativeEvent) &&
-            (decksData.length % 4 === 0) &&
-            !(decksData.length === total) &&
-            selectedView === PAGES.DECKS
-        ) {
-            setFetchLoading(true)
-            setPage(prevState => prevState + 1);
-            if (prevPage !== page) {
-                setTimeout(() => {
-                    fetchDecks();
-                }, 1000)
-            }
-            setPrevPage(page);
-        }
-    };
-
-    const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
-        const paddingToBottom = 15;
-        return layoutMeasurement.height + contentOffset.y >= contentSize.height - paddingToBottom;
-    };
+    const handleFetchMoreData = async() => {
+        setFetchLoading(true);
+        setTimeout(() => {
+            fetchDecks();
+        }, 1000)
+    }
 
 
     useEffect(() => {
@@ -117,6 +108,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
             try {
                 const { id } = await ActiveUser.getUserData();
                 const show = id === userId
+                setQuery({ "user_id": userId, page: 1, per_page: perPage })
                 setCheckSelfData(show);
                 await changeView(PAGES.USER)
                 setLoading(false);
@@ -233,6 +225,25 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                         />
                     ))}
                     {fetchLoading ? [...Array(3)].map(() => <LoadingCard />) : null}
+                    {
+                        ((decksData.length % 4 === 0) &&
+                            !(decksData.length === total) &&
+                            selectedView === PAGES.DECKS) ?
+                            <Row className={'w-full'}>
+                                <Col className={'w-full justify-center items-center mb-3'}>
+                                    <Button
+                                        className={'p-3 w-52 text-center mr-auto ml-auto mb-3'}
+                                        style={styles.loadBtn}
+                                        onPress={async () => handleFetchMoreData()}
+                                    >
+                                        <Text className={'text-center text-lg font-bold'}>
+                                            Load more
+                                        </Text>
+                                    </Button>
+                                </Col>
+                            </Row>
+                            : null
+                    }
                 </View> :
                 <View>
                     <Text>
@@ -289,7 +300,6 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                     { loading ? <Loader /> :
                         <ScrollView
                             className={'w-full p-6 h-1/4'}
-                            onScroll={handleScroll}
                             scrollEventThrottle={16}
                         >
                             { selectedView === PAGES.DECKS ? decksView() : userView() }
