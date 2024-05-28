@@ -8,6 +8,9 @@ export { default as HomeScreen } from "./ChooseDecksType/HomeScreen";
 export { default as MyPrivateDecks } from "./ChooseDecksType/MyPrivateDecks";
 export { default as MyPublicDecks } from "./ChooseDecksType/MyPublicDecks";
 export { default as CreateDeck } from "./ChooseDecksType/CreateDeck";
+export { default as DeckSettings } from "./ChooseDecksType/DeckSettings";
+export { default as EditDeck } from "./ChooseDecksType/EditDeck"
+
 
 //FLASHCARDS / LEARNING
 export { default as DisplayFlashcards } from "./FlashCards/DisplayFlashcards"

@@ -1,10 +1,11 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import React, {useCallback, useEffect, useState} from "react";
+import { useFocusEffect } from "@react-navigation/native";
+import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
 
 import GreenCards from "../../assets/images/greencards.png";
 import { Button } from "../../components";
-import { useFocusEffect } from '@react-navigation/native';
+import FetchAllDecks from "../../components/ApiCompononets/FetchAllDecks";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import { ROUTES } from "../../constants";
 import { DeckListInterface } from "../../interfaces/decks";
@@ -13,13 +14,12 @@ import { DecksService } from "../../services/decks";
 import { ActiveUser } from "../../services/user";
 import displayFlashcards from "../FlashCards/DisplayFlashcards";
 import { DisplayFlashcards } from "../index";
-import FetchAllDecks from "../../components/ApiCompononets/FetchAllDecks";
 
 const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { selected_deck } = route.params;
   const [deckList, setDeckList] = useState([]);
   const [deck, setDeck] = useState([]);
-  
+
   const fetchAll = useCallback(async () => {
     try {
       const data = await DecksService.read_deck_by_id(selected_deck.id);
@@ -28,34 +28,38 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
       console.error("Error checking authentication status:", error);
       setDeck([]);
     }
-  }, [selected_deck.id]);  // Zależność tylko selected_deck.id
-  
+  }, [selected_deck.id]); // Zależność tylko selected_deck.id
+
   useFocusEffect(
     useCallback(() => {
       fetchAll();
-    }, [fetchAll])  // zależność od fetchDeck
+    }, [fetchAll]), // zależność od fetchDeck
   );
-  
+
   useFocusEffect(
     useCallback(() => {
-      FetchAllDecks().then(data => {
-        setDeckList(data);
-      }).catch(error => {
-        console.error('Error fetching decks:', error);}
-      );
-    }, [])
+      FetchAllDecks()
+        .then((data) => {
+          setDeckList(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching decks:", error);
+        });
+    }, []),
   );
-  
-  
-  
+
   const handleDisplayFlashcards = async () => {
     navigation.navigate(ROUTES.DISPLAY_FLASHCARDS, { deck });
   };
-  
+
+  const handleDeckSettings = async () => {
+    navigation.navigate(ROUTES.DECK_SETTINGS, { deck });
+  };
+
   function get_number_of_cards(decks, id) {
     // Znajdź obiekt w tablicy, który ma podane ID
-    const deck = decks.find(deck => deck.id === id);
-    
+    const deck = decks.find((deck) => deck.id === id);
+
     // Jeśli obiekt istnieje, zwróć jego liczbę kart, w przeciwnym razie zwróć 0
     return deck ? deck.number_of_cards : 0;
   }
@@ -77,10 +81,16 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
         <Text className="text-white font-bold scale-150 left-40">
           {deck.title}
         </Text>
-        <Text className="text-white font-bold scale-125 left-28 mt-2 mb-4">
-          Number of flashcards: {get_number_of_cards(deckList, selected_deck.id)}
+        <Text className="text-white font-bold scale-125 left-28 mt-2 mb-1">
+          Number of flashcards:{" "}
+          {get_number_of_cards(deckList, selected_deck.id)}
         </Text>
-
+        
+        <Text className="text-white font-bold scale-125 left-28 mb-4">
+          Deck status: {deck.is_deck_public ? 'public' : 'private'}
+        </Text>
+        
+        
         <Button
           className="p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl"
           onPress={handleDisplayFlashcards}
@@ -129,7 +139,8 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           </Text>
         </Button>
 
-        <Button className="p-3 m-3 w-72 h-16 bg-amber-300 mr-auto ml-auto rounded-1xl">
+        <Button className="p-3 m-3 w-72 h-16 bg-amber-300 mr-auto ml-auto rounded-1xl"
+        onPress={handleDeckSettings}>
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
             Settings
           </Text>

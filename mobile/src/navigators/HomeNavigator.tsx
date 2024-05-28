@@ -8,35 +8,26 @@ import {
   MyPrivateDecks,
   CreateDeck,
   DisplayFlashcards,
-  CreateFlashcard, EditFlashcard,
+  CreateFlashcard, EditFlashcard, EditDeck,
 } from "../screens";
 import DisplayDeck from "../screens/ChooseDecksType/DisplayDeck";
+import DeckSettings from "../screens/ChooseDecksType/DeckSettings";
 
 const Stack = createNativeStackNavigator();
 
 export default function HomeNavigator() {
   return (
-    <Stack.Navigator
-      screenOptions={{ headerShown: false }}
-      initialRouteName={ROUTES.HOME_DECKS}
-    >
+    <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={ROUTES.HOME_DECKS}>
       <Stack.Screen name={ROUTES.HOME_DECKS} component={HomeScreen} />
       <Stack.Screen name={ROUTES.CREATE_DECK} component={CreateDeck} />
       <Stack.Screen name={ROUTES.MY_PRIVATE_DECKS} component={MyPrivateDecks} />
       <Stack.Screen name={ROUTES.MY_PUBLIC_DECKS} component={MyPublicDecks} />
       <Stack.Screen name={ROUTES.DISPLAY_MY_DECK} component={DisplayDeck} />
-      <Stack.Screen
-        name={ROUTES.DISPLAY_FLASHCARDS}
-        component={DisplayFlashcards}
-      />
-      <Stack.Screen
-        name={ROUTES.CREATE_FLASHCARD}
-        component={CreateFlashcard}
-      />
-      <Stack.Screen
-        name={ROUTES.EDIT_FLSAHCARD}
-        component={EditFlashcard}
-      />
+      <Stack.Screen name={ROUTES.DISPLAY_FLASHCARDS} component={DisplayFlashcards}/>
+      <Stack.Screen name={ROUTES.DECK_SETTINGS} component={DeckSettings} />
+      <Stack.Screen name={ROUTES.EDIT_DECK} component={EditDeck} />
+      <Stack.Screen name={ROUTES.CREATE_FLASHCARD} component={CreateFlashcard}/>
+      <Stack.Screen name={ROUTES.EDIT_FLSAHCARD} component={EditFlashcard} />
     </Stack.Navigator>
   );
 }
