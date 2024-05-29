@@ -55,6 +55,14 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const handleDeckSettings = async () => {
     navigation.navigate(ROUTES.DECK_SETTINGS, { deck });
   };
+  
+  const handleMemorizedFlashcards = async () => {
+    navigation.navigate(ROUTES.MEMORIZED_FLASHCARDS, { deck });
+  };
+  
+  const handleUnmemorizedFlashcards = async () => {
+    navigation.navigate(ROUTES.UNMEMORIZED_FLASHCARDS, { deck });
+  };
 
   function get_number_of_cards(decks, id) {
     // Znajdź obiekt w tablicy, który ma podane ID
@@ -121,7 +129,8 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           </Text>
         </Button>
 
-        <Button className="p-3 m-3 w-72 h-16 bg-green-400 justify-center mr-auto ml-auto rounded-1xl">
+        <Button className="p-3 m-3 w-72 h-16 bg-green-400 justify-center mr-auto ml-auto rounded-1xl"
+                onPress={handleMemorizedFlashcards}>
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
             Memorized flashcards
           </Text>
@@ -130,7 +139,8 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           </Text>
         </Button>
 
-        <Button className="p-3 m-3 w-72 h-16 bg-red-600 mr-auto ml-auto rounded-1xl">
+        <Button className="p-3 m-3 w-72 h-16 bg-red-600 mr-auto ml-auto rounded-1xl"
+                onPress={handleUnmemorizedFlashcards}>
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
             Unremembered flashcards
           </Text>

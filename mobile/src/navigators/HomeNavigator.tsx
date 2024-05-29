@@ -12,6 +12,8 @@ import {
 } from "../screens";
 import DisplayDeck from "../screens/ChooseDecksType/DisplayDeck";
 import DeckSettings from "../screens/ChooseDecksType/DeckSettings";
+import UnmemorizedFlashcards from "../screens/FlashCards/UnmemorizedFlashcards";
+import MemorizedFlashcards from "../screens/FlashCards/MemorizedFlashcards";
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +30,9 @@ export default function HomeNavigator() {
       <Stack.Screen name={ROUTES.EDIT_DECK} component={EditDeck} />
       <Stack.Screen name={ROUTES.CREATE_FLASHCARD} component={CreateFlashcard}/>
       <Stack.Screen name={ROUTES.EDIT_FLSAHCARD} component={EditFlashcard} />
+      <Stack.Screen name={ROUTES.MEMORIZED_FLASHCARDS} component={MemorizedFlashcards} />
+      <Stack.Screen name={ROUTES.UNMEMORIZED_FLASHCARDS} component={UnmemorizedFlashcards} />
+    
     </Stack.Navigator>
   );
 }
