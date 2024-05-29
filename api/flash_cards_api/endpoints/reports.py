@@ -46,7 +46,7 @@ async def read_all_reported_decks(db: Session = Depends(get_db)):
         result.append({
             "id": deck.id,
             "title": deck.title,
-            "description": deck.description
+            "category": deck.deck_category
         })
 
     return result
