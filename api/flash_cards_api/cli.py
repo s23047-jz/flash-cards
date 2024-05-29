@@ -15,13 +15,15 @@ def get_models():
     from flash_cards_api.models.token import Token, Blacklist_Tokens
     from flash_cards_api.models.flash_card import FlashCard
     from flash_cards_api.models.deck_of_flash_cards import Deck
+    from flash_cards_api.models.reports import Reports
 
     return (
         Token,
         Blacklist_Tokens,
         User,
         FlashCard,
-        Deck
+        Deck,
+        Reports
     )
 
 

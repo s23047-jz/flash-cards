@@ -47,6 +47,7 @@ def register_routers():
         decs,
         flash_card,
         chat_gpt,
+        reports
     )
 
     app.include_router(auth.router)
@@ -54,6 +55,7 @@ def register_routers():
     app.include_router(decs.router)
     app.include_router(flash_card.router)
     app.include_router(chat_gpt.router)
+    app.include_router(reports.router)
 
 
 def run_dev_server():
