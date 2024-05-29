@@ -95,6 +95,7 @@ const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
       await DecksService.update_deck_is_public(deck.id, deck_data, navigation);
       setIsDeckPublic(!isDeckPublic);  // Toggle the visibility state
       fetchAll()
+      //NIE MOŻE MIEĆ 0 FISZEK ZEBY GO UDOSYTEPNIC
     } catch (error) {
       console.error("Failed to change deck visibility:", error);
       alert("Failed to change deck visibility.");

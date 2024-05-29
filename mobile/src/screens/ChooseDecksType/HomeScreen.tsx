@@ -74,7 +74,7 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
         }
         className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
       >
-        <Text className="mx-5 font-bold">Publick Decks</Text>
+        <Text className="mx-5 font-bold">Public Decks</Text>
 
         <Image
           className="absolute flex-grow h-16 -right-6"

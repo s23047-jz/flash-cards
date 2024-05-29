@@ -19,6 +19,8 @@ export default {
     EDIT_DECK: "EditDeck",
     CREATE_FLASHCARD: "CreateFlashcard",
     EDIT_FLSAHCARD: "EditFlashcard",
+    MEMORIZED_FLASHCARDS: "MemorizedFlashcards",
+    UNMEMORIZED_FLASHCARDS: "UnmemorizedFlashcards",
 
     //  public decks tab
     PUBLIC_DECKS: "PublicDecks",
