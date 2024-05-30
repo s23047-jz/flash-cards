@@ -75,6 +75,7 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                                 autoCapitalize={"none"}
                                 accessibilityElementsHidden={true}
                                 value={userData['current_password']}
+                                secureTextEntry={true}
                                 onChangeText={text => updateValue('current_password', text)}
                             />
                         </Col>
@@ -127,6 +128,7 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                                 autoCapitalize={"none"}
                                 accessibilityElementsHidden={true}
                                 value={userData[updateField]}
+                                secureTextEntry={updateField === 'password'}
                                 onChangeText={text => updateValue(updateField, text)}
                             />
                         </Col>
@@ -137,6 +139,7 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                                     placeholder={'repeat password'}
                                     placeholderTextColor='rgba(0, 0, 0, 0.5)'
                                     autoCapitalize={"none"}
+                                    secureTextEntry={true}
                                     accessibilityElementsHidden={true}
                                     value={userData['re_password']}
                                     onChangeText={text => updateValue('re_password', text)}
