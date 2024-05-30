@@ -15,6 +15,7 @@ from fastapi import (
     status
 )
 
+from flash_cards_api.models.flash_card import FlashCard
 from flash_cards_api.models.reports import Reports
 from flash_cards_api.models.deck_of_flash_cards import Deck
 import uuid
@@ -36,9 +37,6 @@ async def read_all_reported_decks(db: Session = Depends(get_db)):
     deck_ids = [report.deck_id for report in reported_deck_ids]
 
     decks = db.query(Deck).filter(Deck.id.in_(deck_ids)).all()
-
-    if not decks:
-        raise HTTPException(status_code=404, detail="No decks found")
 
     result = []
     for deck in decks:
@@ -87,10 +85,30 @@ async def delete_deck(
         deck_id: uuid.UUID,
         db: Session = Depends(get_db)
 ):
-    """Delete deck from database"""
+    """Delete deck from reported list not from deck table"""
     deck = db.query(Reports).filter(Reports.deck_id == deck_id).first()
     if deck is None:
         raise HTTPException(status_code=404, detail="Deck not found")
 
     db.query(Reports).filter(Reports.deck_id == deck_id).delete()
+    db.commit()
+
+@router.delete("/delete_reported_deck_from_app/{deck_id}")
+async def delete_deck(
+        deck_id: uuid.UUID,
+        db: Session = Depends(get_db)
+):
+    """Delete deck from app"""
+    deck_reports = db.query(Reports).filter(Reports.deck_id == deck_id).first()
+    deck = db.query(Deck).filter(Deck.id == deck_id).first()
+
+    if deck is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+    if deck_reports is None:
+        raise HTTPException(status_code=404, detail="Deck not found")
+
+    db.query(Reports).filter(Reports.deck_id == deck_id).delete()
+
+    db.query(FlashCard).filter(FlashCard.deck_id == deck_id).delete()
+    db.query(Deck).filter(Deck.id == deck_id).delete()
     db.commit()

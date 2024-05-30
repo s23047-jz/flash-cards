@@ -30,6 +30,17 @@
     transform: translate(-50%);
   }
 
+  .filter-container-no-decks {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+
   .web-title {
     position: absolute;
     color: white;

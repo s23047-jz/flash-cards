@@ -140,36 +140,27 @@ const PublicDecksFlashCardsContainer = () => {
     };
 
     const handleBackToDecks = () => {
-        navigate('/decks_ranking')
+        navigate('/moderator_panel_decks')
     };
 
-    const handleImportPublicDeck = () => {
+    const handleDeleteDeckFromApp= () => {
         const deckDataString = localStorage.getItem("deckData");
         const deckData = JSON.parse(deckDataString || "{}");
         let deck_id = deckData.id;
-        const userDataString = localStorage.getItem("userData");
-        const userData = JSON.parse(userDataString || "{}");
-        let user_id = userData.id;
 
-        DeckService.copy_public_deck(deck_id, user_id)
-        navigate('/reported_Deck')
+
+        ReportService.delete_deck_from_app(deck_id)
+        navigate('/moderator_panel_decks')
     }
 
-    const handleReportDeck = () => {
+    const handleDeleteDeckFromReportedList = () => {
         const deckDataString = localStorage.getItem("deckData");
         const deckData = JSON.parse(deckDataString || "{}");
         let deck_id = deckData.id;
-        const userDataString = localStorage.getItem("userData");
-        const userData = JSON.parse(userDataString || "{}");
-        let user_email = userData.email;
 
-        const report_body = {
-            deck_id: deck_id,
-            submitter_email: user_email
-        }
-        console.log("report")
-        ReportService.report_deck(report_body)
-        window.location.reload()
+
+        ReportService.delete_deck_from_reported_list(deck_id)
+        navigate('/moderator_panel_decks')
     }
 
     return (
@@ -193,8 +184,8 @@ const PublicDecksFlashCardsContainer = () => {
                         onClickNext={handleNextClick}
                         onClickRotate={handleRotateClick}
                         onClickBackToDecks={handleBackToDecks}
-                        onClickDeleteDeckFromReportedList={handleImportPublicDeck}
-                        onClickDeleteDeckFromApp={handleReportDeck}
+                        onClickDeleteDeckFromReportedList={handleDeleteDeckFromReportedList}
+                        onClickDeleteDeckFromApp={handleDeleteDeckFromApp}
                     />
                     <p className={"all-flashcards-text"}>All Flashcards</p>
                     {flashcards.map((flashcard, index) => (

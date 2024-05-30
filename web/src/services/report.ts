@@ -46,9 +46,26 @@ class Report {
 
     };
 
-    public async delete_deck(deck_id: string) {
+    public async delete_deck_from_reported_list(deck_id: string) {
         try {
             const url = `${BASE_API}/reports/delete_reported_deck/${deck_id}`;
+            return await request({
+                url,
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
+        }
+    }
+
+     public async delete_deck_from_app(deck_id: string) {
+        try {
+            const url = `${BASE_API}/reports/delete_reported_deck_from_app/${deck_id}`;
             return await request({
                 url,
                 method: 'DELETE',
