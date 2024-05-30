@@ -64,8 +64,8 @@ const ModeratorPanelDecksContainer = () => {
     };
 
 
-    const navigateUsersRanking = () => {
-        navigate("/users_ranking")
+    const navigateUserModeratoPanel = () => {
+        navigate("/users_moderator_panel")
     }
 
     const navigatePublicDecksFlashCards = async (deck_id: string) => {
@@ -95,7 +95,7 @@ const ModeratorPanelDecksContainer = () => {
                                     text={'Users'}
                                     border={'2px solid black'}
                                     image={profile}
-                                    onClick={navigateUsersRanking}
+                                    onClick={navigateUserModeratoPanel}
                                 />
                             </div>
                         </>
@@ -135,7 +135,7 @@ const ModeratorPanelDecksContainer = () => {
                                     text={'Users'}
                                     border={'2px solid black'}
                                     image={profile}
-                                    onClick={navigateUsersRanking}
+                                    onClick={navigateUserModeratoPanel}
                                 />
                             </div>
                             <div className="decks-container">
