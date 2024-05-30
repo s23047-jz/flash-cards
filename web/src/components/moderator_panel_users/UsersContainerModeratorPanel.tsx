@@ -58,18 +58,8 @@ const UsersContainerModeratorPanel = () => {
         }
     };
 
-    const navigateToDeckFlashcards = async (deck_id: string) => {
-        navigate("/my_deck_learning_modes")
-        DeckService.get_deck_by_id(deck_id)
-    }
-
-    const navigateDeckRanking = () =>{
-        navigate("/decks_ranking")
-    }
-
-    const navigatePublicUserDecks = (user_id: string) =>{
-        localStorage.setItem("userRankingDataId", JSON.stringify({user_id}))
-        navigate("/public_decks_user_ranking")
+    const navigateReportedDecks = () =>{
+        navigate("/moderator_panel_decks")
     }
 
     const handleUserClick = (userId: string) => {
@@ -88,7 +78,7 @@ const UsersContainerModeratorPanel = () => {
 
     return (
         <div className="website-container-users-moderator-panel">
-            <p className="web-title">Users </p>
+            <p className="web-title">Users Panel</p>
             {isLoadingFetchUsers? (
                 <LoadingSpinner />
             ) : (
@@ -123,7 +113,7 @@ const UsersContainerModeratorPanel = () => {
                             text={'Reported Decks'}
                             border={'2px solid black'}
                             image={cards}
-                            onClick={navigateDeckRanking}
+                            onClick={navigateReportedDecks}
                         />
                     </div>
                     <div className="users-container">
