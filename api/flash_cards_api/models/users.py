@@ -40,7 +40,7 @@ class User(Base):
     role = Column(String(50), nullable=False)
     is_superuser = Column(Boolean, default=False)
 
-    decks = relationship("Deck", back_populates="user")
+    decks = relationship("Deck", back_populates="user", cascade="all, delete-orphan")
 
     def verify_password(self, password: str):
         return pwd_context.verify(password, self.password)

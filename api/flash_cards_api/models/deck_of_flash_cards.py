@@ -31,9 +31,14 @@ class Deck(Base):
     downloads = Column(Integer, default=0)
     user = relationship("User", back_populates="decks")
 
-    flash_card_relationship = relationship("FlashCard", back_populates='deck_relationship')
+    flash_card_relationship = relationship(
+        "FlashCard",
+        back_populates='deck_relationship',
+        cascade="all, delete-orphan"
+    )
 
     def get_number_of_flash_cards(self):
         return len(self.flash_card_relationship)
+
     class Config:
         orm_mode = True

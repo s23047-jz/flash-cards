@@ -30,6 +30,7 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
         }
         if (!allowToDelete) return;
         await UsersService.deleteMe(userData, navigation);
+        setUserData({})
     }
 
     return (
@@ -68,7 +69,6 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
                             placeholder={'Email'}
                             placeholderTextColor='rgba(0, 0, 0, 0.5)'
                             autoCapitalize={"none"}
-                            accessibilityElementsHidden={true}
                             value={userData['email']}
                             onChangeText={text => updateValue('email', text)}
                         />
@@ -81,7 +81,8 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
                             placeholder={'Password'}
                             placeholderTextColor='rgba(0, 0, 0, 0.5)'
                             autoCapitalize={"none"}
-                            accessibilityElementsHidden={true}
+                            accessibilityElementsHidden
+                            secureTextEntry={true}
                             value={userData['password']}
                             onChangeText={text => updateValue('password', text)}
                         />
