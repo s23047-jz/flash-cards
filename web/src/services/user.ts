@@ -55,6 +55,8 @@ class User {
         }
     }
 
+
+
     getUserData(): UserInterface {
         return this.userData
     }

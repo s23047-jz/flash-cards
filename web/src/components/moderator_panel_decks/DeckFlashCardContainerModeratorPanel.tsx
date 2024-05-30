@@ -7,14 +7,14 @@ import React, {useEffect, useState} from "react";
 import FlashCard from "../flash_cards/FlashCard";
 import PublicDeckFlashCardField from "../public_decks_flashcards/PublicDeckFlashCardField";
 import {DeckService} from '../../services/decs';
-import PublicDecksButtonsContainer from "../public_decks_flashcards/PublicDecksButtonsContainer";
+import ButtonsContainerModeratorPanel from "./ButtonsContainerModeratorPanel";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
-import "../../styles/public_decks_all_flashcards_from_user_ranking/public_decks_flashcards_container_from_user_ranking.scss"
-
-import {useNavigate} from 'react-router-dom';
+import "../../styles/moderator_panel_decks/public_deck_all_flashcards_container_modertor_panel.scss"
 import {ReportService} from "../../services/report";
 
-const PublicDecksFlashCardsContainerFromUserRanking = () => {
+import {useNavigate} from 'react-router-dom';
+
+const PublicDecksFlashCardsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
@@ -57,8 +57,7 @@ const PublicDecksFlashCardsContainerFromUserRanking = () => {
     const handleSpeak = (text_front: string, text_back: string, index: number) => {
         if ('speechSynthesis' in window) {
             const text: string = text_front + "." + text_back
-            const sentences = text.split('.'); // Podziel tekst na zdania
-
+            const sentences = text.split('.');
             sentences.forEach((sentence, i) => {
                 const speech = new SpeechSynthesisUtterance(sentence.trim());
                 speech.lang = 'en-GB';
@@ -141,41 +140,31 @@ const PublicDecksFlashCardsContainerFromUserRanking = () => {
     };
 
     const handleBackToDecks = () => {
-        navigate('/public_decks_user_ranking')
+        navigate('/moderator_panel_decks')
     };
 
-    const handleImportPublicDeck = () => {
+    const handleDeleteDeckFromApp= () => {
         const deckDataString = localStorage.getItem("deckData");
         const deckData = JSON.parse(deckDataString || "{}");
         let deck_id = deckData.id;
-        const userDataString = localStorage.getItem("userData");
-        const userData = JSON.parse(userDataString || "{}");
-        let user_id = userData.id;
 
-        DeckService.copy_public_deck(deck_id, user_id)
-        navigate('/decks_ranking')
+
+        ReportService.delete_deck_from_app(deck_id)
+        navigate('/moderator_panel_decks')
     }
 
-     const handleReportDeck = () => {
+    const handleDeleteDeckFromReportedList = () => {
         const deckDataString = localStorage.getItem("deckData");
         const deckData = JSON.parse(deckDataString || "{}");
         let deck_id = deckData.id;
-        const userDataString = localStorage.getItem("userData");
-        const userData = JSON.parse(userDataString || "{}");
-        let user_email = userData.email;
 
-        const report_body = {
-            deck_id: deck_id,
-            submitter_email: user_email
-        }
-        console.log("report")
-        ReportService.report_deck(report_body)
-        window.location.reload()
+
+        ReportService.delete_deck_from_reported_list(deck_id)
+        navigate('/moderator_panel_decks')
     }
-
 
     return (
-        <div className={"public-decks-all-flashcards-container-from-user-ranking"}>
+        <div className={"public-decks-all-flashcards-container-moderator-panel"}>
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
@@ -190,13 +179,13 @@ const PublicDecksFlashCardsContainerFromUserRanking = () => {
                         isRotated={isRotated}
                         onIconClick={() => handleSpeakerBigCardClick()}
                     />
-                    <PublicDecksButtonsContainer
+                    <ButtonsContainerModeratorPanel
                         onClickPrev={handlePrevClick}
                         onClickNext={handleNextClick}
                         onClickRotate={handleRotateClick}
                         onClickBackToDecks={handleBackToDecks}
-                        onClickImportDecks={handleImportPublicDeck}
-                        onClickReportDeck={handleReportDeck}
+                        onClickDeleteDeckFromReportedList={handleDeleteDeckFromReportedList}
+                        onClickDeleteDeckFromApp={handleDeleteDeckFromApp}
                     />
                     <p className={"all-flashcards-text"}>All Flashcards</p>
                     {flashcards.map((flashcard, index) => (
@@ -215,4 +204,4 @@ const PublicDecksFlashCardsContainerFromUserRanking = () => {
     );
 };
 
-export default PublicDecksFlashCardsContainerFromUserRanking;
+export default PublicDecksFlashCardsContainer;

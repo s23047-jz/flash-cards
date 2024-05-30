@@ -13,7 +13,6 @@ import filter from "../../assets/Filter.png";
 import cards from "../../assets/purple_cards.png"
 import {useNavigate} from "react-router-dom";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
-import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 // @ts-ignore
 import avatar from "../../assets/avatars/Avatar_1.png"
 

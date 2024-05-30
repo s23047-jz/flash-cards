@@ -2,7 +2,7 @@ import os.path
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from jinja2 import Template
+# from jinja2 import Template
 from sqlalchemy.orm import Session
 
 from flash_cards_api.config import (
