@@ -42,10 +42,17 @@ async def read_all_reported_decks(db: Session = Depends(get_db)):
 
     result = []
     for deck in decks:
+        reports_for_deck = db.query(Reports).filter(Reports.deck_id == deck.id).all()
+        if reports_for_deck:
+            first_submitter = reports_for_deck[0].submitter_email
+        else:
+            first_submitter = None
+
         result.append({
             "id": deck.id,
             "title": deck.title,
-            "deck_category": deck.deck_category
+            "deck_category": deck.deck_category,
+            "submitter": first_submitter
         })
 
     return result

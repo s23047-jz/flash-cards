@@ -5,11 +5,11 @@ import speaker_blue from '../../assets/Speaker_blue.png';
 // @ts-ignore
 import React, {useEffect, useState} from "react";
 import FlashCard from "../flash_cards/FlashCard";
-import PublicDeckFlashCardField from "./PublicDeckFlashCardField";
+import PublicDeckFlashCardField from "../public_decks_flashcards/PublicDeckFlashCardField";
 import {DeckService} from '../../services/decs';
-import PublicDecksButtonsContainer from "./PublicDecksButtonsContainer";
+import ButtonsContainerModeratorPanel from "./ButtonsContainerModeratorPanel";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
-import "../../styles/public_deck_flashcards/public_deck_flash_cards_container.scss"
+import "../../styles/moderator_panel_decks/public_deck_all_flashcards_container_modertor_panel.scss"
 import {ReportService} from "../../services/report";
 
 import {useNavigate} from 'react-router-dom';
@@ -152,7 +152,7 @@ const PublicDecksFlashCardsContainer = () => {
         let user_id = userData.id;
 
         DeckService.copy_public_deck(deck_id, user_id)
-        navigate('/decks_ranking')
+        navigate('/reported_Deck')
     }
 
     const handleReportDeck = () => {
@@ -173,7 +173,7 @@ const PublicDecksFlashCardsContainer = () => {
     }
 
     return (
-        <div className={"public-decks-all-flashcards-container"}>
+        <div className={"public-decks-all-flashcards-container-moderator-panel"}>
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
@@ -188,13 +188,13 @@ const PublicDecksFlashCardsContainer = () => {
                         isRotated={isRotated}
                         onIconClick={() => handleSpeakerBigCardClick()}
                     />
-                    <PublicDecksButtonsContainer
+                    <ButtonsContainerModeratorPanel
                         onClickPrev={handlePrevClick}
                         onClickNext={handleNextClick}
                         onClickRotate={handleRotateClick}
                         onClickBackToDecks={handleBackToDecks}
-                        onClickImportDecks={handleImportPublicDeck}
-                        onClickReportDeck={handleReportDeck}
+                        onClickDeleteDeckFromReportedList={handleImportPublicDeck}
+                        onClickDeleteDeckFromApp={handleReportDeck}
                     />
                     <p className={"all-flashcards-text"}>All Flashcards</p>
                     {flashcards.map((flashcard, index) => (

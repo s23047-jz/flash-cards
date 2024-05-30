@@ -22,4 +22,4 @@ const ModeratorPanelDecks = () => {
     );
 };
 
-export default ModeratorPanelDecks;
+export default ModeratorPanelDecks ;

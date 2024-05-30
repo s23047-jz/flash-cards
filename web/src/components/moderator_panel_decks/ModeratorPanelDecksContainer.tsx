@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ButtonDeckModeratorPanel from "./ButtonDeckModeratorPanel";
 import '../../styles/decks_ranking/decks_ranking_container.scss';
 import {DeckService} from '../../services/decs';
+import {ReportService} from "../../services/report";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import FilledInput from "@mui/material/FilledInput";
@@ -26,7 +27,7 @@ const ModeratorPanelDecksContainer = () => {
     useEffect(() => {
         const fetchDecks = async () => {
             try {
-                const response = await DeckService.get_decks_ranking();
+                const response = await ReportService.get_all_reported_decks();
                 // @ts-ignore
                 setDecks(response);
 
@@ -45,7 +46,7 @@ const ModeratorPanelDecksContainer = () => {
     const handleFilterDecks = async () => {
         try {
 
-            const response = await DeckService.get_decks_ranking();
+            const response = await ReportService.get_all_reported_decks();
 
             // @ts-ignore
             const filteredDecks = response.filter(deck => {
@@ -68,14 +69,14 @@ const ModeratorPanelDecksContainer = () => {
 
       const navigatePublicDecksFlashCards = async (deck_id: string) => {
         DeckService.get_deck_by_id(deck_id)
-        navigate("/public_decks_flashcards")
+        navigate("/reported_Deck")
     }
 
 
 // @ts-ignore
     return (
         <div className="website-moderator-panel-container-decks">
-            <p className="web-title">Decks Ranking</p>
+            <p className="web-title">Reported Decks</p>
             {isLoadingFetchDecks ? (
                 <LoadingSpinner/>
             ) : (
@@ -119,10 +120,10 @@ const ModeratorPanelDecksContainer = () => {
                                 {decks.slice(0, 20).map((deck, index) => (
                                     <div className="decks-button" key={index}>
                                         <ButtonDeckModeratorPanel
-                                            rankingPosition={`${deck['ranking']}`}
+
                                             frontTextUpper={`${deck['title']}`}
                                             frontTextLower={`${deck['deck_category']}`}
-                                            backText={`Downloads: ${deck['downloads']}`}
+                                            backText={`Reported by: ${deck['submitter']}`}
                                             onClick={() => navigatePublicDecksFlashCards(deck['id'])}
                                         />
                                     </div>
