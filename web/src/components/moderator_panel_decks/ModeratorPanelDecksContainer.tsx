@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import ButtonDeckRanking from "./ButtonDeckRanking";
+import ButtonDeckModeratorPanel from "./ButtonDeckModeratorPanel";
 import '../../styles/decks_ranking/decks_ranking_container.scss';
 import {DeckService} from '../../services/decs';
 import FormControl from "@mui/material/FormControl";
@@ -14,7 +14,7 @@ import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 // @ts-ignore
 import profile from "../../assets/Profile.png"
 
-const DecksRankingContainer = () => {
+const ModeratorPanelDecksContainer = () => {
     const navigate = useNavigate();
     const fields_color = "#7c3bd1";
     const decks_button_color = "#d91ed6";
@@ -74,7 +74,7 @@ const DecksRankingContainer = () => {
 
 // @ts-ignore
     return (
-        <div className="website-container-decks-ranking">
+        <div className="website-moderator-panel-container-decks">
             <p className="web-title">Decks Ranking</p>
             {isLoadingFetchDecks ? (
                 <LoadingSpinner/>
@@ -118,7 +118,7 @@ const DecksRankingContainer = () => {
                             <div className="decks-container">
                                 {decks.slice(0, 20).map((deck, index) => (
                                     <div className="decks-button" key={index}>
-                                        <ButtonDeckRanking
+                                        <ButtonDeckModeratorPanel
                                             rankingPosition={`${deck['ranking']}`}
                                             frontTextUpper={`${deck['title']}`}
                                             frontTextLower={`${deck['deck_category']}`}
@@ -135,4 +135,4 @@ const DecksRankingContainer = () => {
     );
 };
 
-export default DecksRankingContainer;
+export default ModeratorPanelDecksContainer;

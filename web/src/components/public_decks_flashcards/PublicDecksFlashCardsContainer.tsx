@@ -10,6 +10,7 @@ import {DeckService} from '../../services/decs';
 import PublicDecksButtonsContainer from "./PublicDecksButtonsContainer";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/public_deck_flashcards/public_deck_flash_cards_container.scss"
+import {ReportService} from "../../services/report";
 
 import {useNavigate} from 'react-router-dom';
 
@@ -155,6 +156,23 @@ const PublicDecksFlashCardsContainer = () => {
         navigate('/decks_ranking')
     }
 
+    const handleReportDeck = () => {
+        const deckDataString = localStorage.getItem("deckData");
+        const deckData = JSON.parse(deckDataString || "{}");
+        let deck_id = deckData.id;
+        const userDataString = localStorage.getItem("userData");
+        const userData = JSON.parse(userDataString || "{}");
+        let user_email = userData.email;
+
+        const report_body = {
+            deck_id: deck_id,
+            submitter_email: user_email
+        }
+        console.log("report")
+        ReportService.report_deck(report_body)
+        window.location.reload()
+    }
+
     return (
         <div className={"public-decks-all-flashcards-container"}>
             {isLoading ? (
@@ -177,6 +195,7 @@ const PublicDecksFlashCardsContainer = () => {
                         onClickRotate={handleRotateClick}
                         onClickBackToDecks={handleBackToDecks}
                         onClickImportDecks={handleImportPublicDeck}
+                        onClickReportDeck={handleReportDeck}
                     />
                     <p className={"all-flashcards-text"}>All Flashcards</p>
                     {flashcards.map((flashcard, index) => (
