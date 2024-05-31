@@ -13,6 +13,17 @@
         }
     }
 
+    .moderator-panel-button {
+        background-color: blue;
+        color: white;
+        border: 2px solid black;
+
+        &:hover {
+            background-color: darken(blue, 10%);
+            opacity: 0.9;
+        }
+    }
+
     .user-stats-button {
         background-color: #01CAA1;
         color: white;

@@ -25,6 +25,7 @@ const UserProfilePage: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [username, setUsername] = useState("");
     const [userEmail, setUserEmail] = useState("");
+    const [userRole, setUserRole] = useState("");
 
     const navigate = useNavigate();
 
@@ -35,6 +36,7 @@ const UserProfilePage: React.FC = () => {
                 const user = await AuthService.getCurrentUser();
                 setUsername(user.username);
                 setUserEmail(user.email);
+                setUserRole(user.role);
                 setAvatar(getAvatarPath(user.avatar));
             } catch (error) {
                 console.error('Error fetching user data:', error);
@@ -85,7 +87,7 @@ const UserProfilePage: React.FC = () => {
                 });
                 console.log("Nickname updated successfully.");
                 handleClose('nickname');
-                window.location.reload(); // Automatyczne odświeżenie strony
+                window.location.reload();
             } else if (modalType === 'email') {
                 await AuthService.updateAccount({
                     email: email,
@@ -109,7 +111,7 @@ const UserProfilePage: React.FC = () => {
         } catch (error) {
             console.error('Error updating account:', error);
         } finally {
-            handleReset();  // Reset the form after the operation
+            handleReset();
             setIsLoading(false);
         }
     };
@@ -158,6 +160,10 @@ const UserProfilePage: React.FC = () => {
         navigate('/user-stats');
     };
 
+    const handleModeratorPanelClick = () => {
+        navigate('/users_moderator_panel');
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <DrawerAppBar />
@@ -187,6 +193,9 @@ const UserProfilePage: React.FC = () => {
                             sx={{ width: '100%', flex: 1 }}
                         >
                             <div style={{ width: '100%', maxWidth: '480px' }}>
+                                {(userRole === 'Admin' || userRole === 'Moderator') && (
+                                    <Button variant="contained" fullWidth className="moderator-panel-button" sx={{ marginBottom: '24px', padding: '20px 0' }} onClick={handleModeratorPanelClick}>Moderator Panel</Button>
+                                )}
                                 <Button variant="contained" fullWidth className="user-stats-button" sx={{ marginBottom: '24px', padding: '20px 0' }} onClick={handleUserStatsClick}>User Stats</Button>
                                 <Button variant="contained" fullWidth className="change-nickname-button" sx={{ marginBottom: '24px', padding: '20px 0' }} onClick={() => handleOpen('nickname')}>Change Nickname</Button>
                                 <Button variant="contained" fullWidth className="change-email-button" sx={{ marginBottom: '24px', padding: '20px 0' }} onClick={() => handleOpen('email')}>Change Email</Button>
