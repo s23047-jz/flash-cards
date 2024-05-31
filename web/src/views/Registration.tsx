@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Avatar, Button, CssBaseline, TextField, Link, Paper, Box, Grid, Typography, Container, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import {AuthService} from '../services/auth';
+import { AuthService } from '../services/auth';
 // @ts-ignore
 import logo from '../assets/images/logo.png';
 import { useNavigate } from 'react-router-dom';
@@ -48,10 +48,6 @@ const RegistrationPage: React.FC = () => {
         }
 
         if (!isValid) {
-            setEmail('');
-            setNickName('');
-            setPassword('');
-            setConfirmPassword('');
             return;
         }
 
@@ -59,7 +55,11 @@ const RegistrationPage: React.FC = () => {
             await AuthService.register({ email, password, re_password: confirmPassword, username: nickname });
             navigate('/signin');
         } catch (error: any) {
-            alert("Registration failed: " + error.message);
+            if (error.response?.status === 400 && error.response.data?.email) {
+                setEmailError("Email already taken");
+            } else {
+                setEmailError("Registration failed, probably email already taken");
+            }
         }
     };
 
