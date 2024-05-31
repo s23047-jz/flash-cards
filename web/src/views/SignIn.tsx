@@ -16,31 +16,25 @@ const LoginPage: React.FC = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
     const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); // Prevent default form submission behavior
+        event.preventDefault();
 
-        // Email validation
         let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
         if (!regMail.test(email)) {
             alert("Email is not correct");
             return;
         }
 
-        // Prepare the payload
         const body = {
             email: email,
             password: password
         };
 
-        // Attempt to log in
         try {
             await AuthService.login(body);
-            // Navigate to the dashboard or home page upon success
-            // e.g., navigation.navigate("Dashboard");
             navigate('/');
             window.location.reload();
         } catch (error) {
             // @ts-ignore
-            // Handle login error (e.g., show error message)
             alert("Login failed: " + error.message);
         }
     };
