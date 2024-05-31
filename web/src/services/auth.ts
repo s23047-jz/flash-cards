@@ -1,5 +1,4 @@
 import { BASE_API } from './config';
-// @ts-ignore
 import { request } from '../utils/request';
 import { ActiveUser } from './user';
 
@@ -17,9 +16,7 @@ export const AUTH_ENDPOINTS = {
 };
 
 class Auth {
-  // eslint-disable-next-line @typescript-eslint/no-useless-constructor
-  constructor() {
-  }
+  constructor() {}
 
   public async login(body: object) {
     // @ts-ignore
@@ -32,11 +29,16 @@ class Auth {
   }
 
   public async register(body: object) {
+    // @ts-ignore
     return await request({
       url: AUTH_ENDPOINTS.register,
       method: 'POST',
       body
-    });
+      // @ts-ignore
+    }).then(response => response.data)
+      .catch(error => {
+        throw error;
+      });
   }
 
   public async updateAccount(body: Object) {
@@ -80,12 +82,11 @@ class Auth {
     }
   }
 
-
   public async getCurrentUser() {
     const token = ActiveUser.getAuthorization();
 
     const response = await request({
-      url: AUTH_ENDPOINTS.updateMe, // Assuming this endpoint returns current user data
+      url: AUTH_ENDPOINTS.updateMe,
       method: 'GET',
       headers: {
         'Authorization': `Bearer ${token}`

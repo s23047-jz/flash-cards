@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Avatar, Button, CssBaseline, TextField, Link, Paper, Box, Grid, Typography, Container, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
-import {AuthService} from '../services/auth';
+import { AuthService } from '../services/auth';
+import Alert from '../components/alert/Alert'; // Importujemy komponent Alert
 // @ts-ignore
 import logo from '../assets/images/logo.png';
 import { useNavigate } from 'react-router-dom';
@@ -17,6 +18,7 @@ const RegistrationPage: React.FC = () => {
     const [nicknameError, setNicknameError] = useState<string>('');
     const [passwordError, setPasswordError] = useState<string>('');
     const [confirmPasswordError, setConfirmPasswordError] = useState<string>('');
+    const [successMessage, setSuccessMessage] = useState<string | null>(null); // Stan dla komunikatu o pomyślnym utworzeniu konta
 
     const navigate = useNavigate();
 
@@ -48,25 +50,37 @@ const RegistrationPage: React.FC = () => {
         }
 
         if (!isValid) {
-            setEmail('');
-            setNickName('');
-            setPassword('');
-            setConfirmPassword('');
             return;
         }
 
         try {
             await AuthService.register({ email, password, re_password: confirmPassword, username: nickname });
-            navigate('/signin');
+            setSuccessMessage("Account created successfully!"); // Ustawiamy komunikat o pomyślnym utworzeniu konta
         } catch (error: any) {
-            alert("Registration failed: " + error.message);
+            if (error.response?.status === 400) {
+                if (error.response.data?.email) {
+                    setEmailError("Email already taken");
+                } else if (error.response.data?.username) {
+                    setNicknameError("Nickname already taken");
+                } else {
+                    setEmailError("Registration failed, probably email already taken");
+                }
+            } else {
+                alert("Registration failed: " + error.message);
+            }
         }
+    };
+
+    const handleCloseAlert = () => {
+        setSuccessMessage(null);
+        navigate('/signin'); // Przechodzimy do strony logowania po zamknięciu alertu
     };
 
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
+                {successMessage && <Alert message={successMessage} onClose={handleCloseAlert} />} {/* Wyświetlamy alert */}
                 <Paper elevation={6} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 3, borderRadius: '30px' }}>
                     <Avatar sx={{ m: 1, width: 200, height: 200 }} src={logo} />
                     <Typography component="h1" variant="h4">
