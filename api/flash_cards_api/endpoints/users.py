@@ -11,7 +11,7 @@ from fastapi import (
     status,
     Request
 )
-from sqlalchemy import func, desc, case
+from sqlalchemy import func, desc, case, or_
 from sqlalchemy.orm import Session
 
 from flash_cards_api.database import get_db
@@ -127,6 +127,7 @@ async def get_users_ranking(
 
     page = query_params.get("page", None)
     per_page = query_params.get("per_page", None)
+    search = query_params.get("search", None)
 
     sub_q = db.query(
         Deck.user_id.label('user_id'),
@@ -152,12 +153,18 @@ async def get_users_ranking(
         Deck.user_id == User.id
     ).filter(
         Deck.is_deck_public
-    ).group_by(
+    )
+
+    if search:
+        q = q.filter(
+            func.lower(User.username).ilike(f"%{search.lower()}%")
+        )
+
+    q = q.group_by(
         User.username
     ).order_by(
         desc('shared_decks')
     )
-
     total = len(q.all())
 
     if page and per_page:

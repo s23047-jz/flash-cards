@@ -97,14 +97,18 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
     const [usersQuery, setUsersQuery] = useState({ search: '', page: 1, per_page: perPage });
     const [total, setTotal] = useState(0);
 
-    const setSearch = (value: string) => {
-        console.log("SEARHC VALUE", value)
+    const setSearch = async(value: string) => {
+        setLoading(true);
+        setData([]);
         setUsersQuery(prevState => (
             {
                 ...prevState,
-                search: value
+                search: value,
+                page: 1,
             }
         ))
+        await fetchUsers();
+        setLoading(false);
     }
 
     const fetchUsers = async() => {
@@ -126,8 +130,9 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
     useFocusEffect(
         useCallback(() => {
             try {
-                setUsersQuery({ search: '', page: 1, per_page: perPage });
                 setLoading(true);
+                setData([]);
+                setUsersQuery({ search: '', page: 1, per_page: perPage });
                 fetchUsers();
                 setLoading(false);
             } catch (error) {
