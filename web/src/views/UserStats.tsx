@@ -4,8 +4,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import DrawerAppBar from "../components/home_page/NavBar";
 import '../styles/profile/user_profile_styles.scss';
 import { UsersService } from "../services/users";
-import {ActiveUser} from "../services/user";
-import {AVATAR_MAPPING} from "../utils/avatars";
+import { ActiveUser } from "../services/user";
+import { AVATAR_MAPPING } from "../utils/avatars";
 
 const theme = createTheme();
 
@@ -13,22 +13,23 @@ const UserStatsPage: React.FC = () => {
     const [ranking, setRanking] = useState<number>(0);
     const [createdDecks, setCreatedDecks] = useState<number>(0);
     const [publicDecks, setPublicDecks] = useState<number>(0);
-    const [avatar, setAvatar] = useState("");
+    const [avatar, setAvatar] = useState<keyof typeof AVATAR_MAPPING>("Avatar_1"); // Zmieniono typ stanu avatar
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const userId = ActiveUser.getId()
-                if(userId) {
+                const userId = ActiveUser.getId();
+                if (userId) {
                     const userStats = await UsersService.getUsersStats(userId);
-                    // @ts-ignore
                     setRanking(userStats.rank);
-                    // @ts-ignore
                     setCreatedDecks(userStats.created_decks);
-                    // @ts-ignore
                     setPublicDecks(userStats.public_decks);
-                    // @ts-ignore
-                    setAvatar(userStats.avatar); // Assuming the avatar URL is part of the user stats response
+                    const userAvatar = userStats.avatar as keyof typeof AVATAR_MAPPING;
+                    if (AVATAR_MAPPING[userAvatar]) {
+                        setAvatar(userAvatar); // Ustawienie awatara tylko jeśli jest prawidłowy
+                    } else {
+                        console.warn(`Avatar ${userAvatar} is not in AVATAR_MAPPING`);
+                    }
                 }
             } catch (error) {
                 console.error("Failed to fetch user stats: ", error);
@@ -38,7 +39,6 @@ const UserStatsPage: React.FC = () => {
         fetchData();
     }, []);
 
-    // @ts-ignore
     return (
         <ThemeProvider theme={theme}>
             <DrawerAppBar />
@@ -55,7 +55,6 @@ const UserStatsPage: React.FC = () => {
                         alignItems="center"
                         sx={{ width: '100%', flex: 1 }}
                     >
-                        {/*// @ts-ignore*/}
                         <Avatar src={AVATAR_MAPPING[avatar]} sx={{ width: '50%', height: 'auto' }} />
                     </Stack>
                     <Stack

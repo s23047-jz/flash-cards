@@ -9,7 +9,7 @@ export const AUTH_ENDPOINTS = {
   updateNickname: `${BASE_API}/api/auth/update-nickname/`,
   updateEmail: `${BASE_API}/api/auth/update-email/`,
   updatePassword: `${BASE_API}/api/auth/update-password/`,
-  updateAvatar: `${BASE_API}/api/auth/update-avatar/`,
+  updateAvatar: (userId: string) => `${BASE_API}/api/users/update-avatar/${userId}/`,
   updateMe: `${BASE_API}/api/users/me/`,
   deleteAccount: `${BASE_API}/api/users/me/`,
   getUserStats: `${BASE_API}/api/auth/user-stats/`
@@ -97,12 +97,12 @@ class Auth {
     return response.data;
   }
 
-  public async updateAvatar(body: Object) {
+  public async updateAvatar(userId: string, body: Object) {
     const token = ActiveUser.getAuthorization();
 
     return await request({
-      url: AUTH_ENDPOINTS.updateAvatar,
-      method: 'POST',
+      url: AUTH_ENDPOINTS.updateAvatar(userId),
+      method: 'PUT', // Powinno być PUT, a nie POST
       headers: {
         'Authorization': `Bearer ${token}`,
       },

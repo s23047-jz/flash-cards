@@ -122,8 +122,8 @@ async def get_user_list(
     dependencies=[Depends(get_current_active_user)]
 )
 async def get_users_ranking(
-    request: Request,
-    db: Session = Depends(get_db)
+        request: Request,
+        db: Session = Depends(get_db)
 ):
     query_params = request.query_params
 
@@ -244,9 +244,9 @@ async def update_me(
 
 @router.delete("/me/", status_code=401)
 async def delete_me(
-    payload: SelfDelete,
-    user: User = Depends(get_current_active_user),
-    db: Session = Depends(get_db)
+        payload: SelfDelete,
+        user: User = Depends(get_current_active_user),
+        db: Session = Depends(get_db)
 ):
     payload = payload.dict()
     if user.verify_password(payload['password']) \
@@ -272,8 +272,8 @@ async def delete_me(
     response_model=UserStatsResponse
 )
 async def get_user_stats(
-    user_id: uuid.UUID,
-    db: Session = Depends(get_db)
+        user_id: uuid.UUID,
+        db: Session = Depends(get_db)
 ):
     sub_q = db.query(
         Deck.user_id.label('user_id'),
@@ -292,21 +292,33 @@ async def get_user_stats(
     ).outerjoin(
         Deck,
         Deck.user_id == User.id
-    ).join(
+    ).outerjoin(
         sub_q,
         sub_q.c.user_id == User.id
     ).filter(
         User.id == user_id
-    )
+    ).first()
 
-    return q.first()
+    if not q or not q.id:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    user_stats = {
+        "id": str(q.id),
+        "username": q.username,
+        "avatar": q.avatar,
+        "rank": q.rank if q.rank is not None else 0,
+        "created_decks": q.created_decks,
+        "public_decks": q.public_decks
+    }
+
+    return user_stats
 
 
 @router.put("/update-avatar/{user_id}/", status_code=200, dependencies=[Depends(get_current_active_user)])
 async def update_avatar(
-    user_id: uuid.UUID,
-    payload: UpdateAvatarPayloadScheme,
-    db: Session = Depends(get_db)
+        user_id: uuid.UUID,
+        payload: UpdateAvatarPayloadScheme,
+        db: Session = Depends(get_db)
 ):
     payload = payload.dict()
     user: User = db.query(User).filter(User.id == user_id).first()
@@ -376,4 +388,3 @@ async def update_user_details(
         return user
 
     raise HTTPException(status_code=404, detail="User not found")
-
