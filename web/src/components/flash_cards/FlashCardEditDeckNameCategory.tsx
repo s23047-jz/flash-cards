@@ -38,7 +38,7 @@ const FlashCardEditDeckNameCategory = ({deckName, deckCategory, onClose,
 
 
     return (
-        <div className="popup">
+        <div className="popup-options">
             <textarea
                 value={editedDeckName}
                 onChange={handleNameChange}

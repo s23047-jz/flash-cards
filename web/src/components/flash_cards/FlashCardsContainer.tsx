@@ -67,7 +67,7 @@ const FlashCardsContainer = () => {
     const handleSpeak = (text_front: string, text_back: string, index: number) => {
         if ('speechSynthesis' in window) {
             const text: string = text_front + "." + text_back
-            const sentences = text.split('.'); // Podziel tekst na zdania
+            const sentences = text.split('.');
 
             sentences.forEach((sentence, i) => {
                 const speech = new SpeechSynthesisUtterance(sentence.trim());
