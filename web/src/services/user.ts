@@ -54,8 +54,7 @@ class User {
             throw error;
         }
     }
-
-
+    
 
     getUserData(): UserInterface {
         return this.userData

@@ -35,43 +35,16 @@ const FlashCardCreator = (props) => {
     const [directorsArray, setDirectorsArray] = useState([{id: 0, value: ""}]);
     const textFieldRefs = useRef([null]);
     const [texts, setTexts] = useState<Record<string, any>>({});
-    const [isDictating, setIsDictating] = useState<Record<string, boolean>>({});
-    const recognitionInstances = useRef<{ [key: string]: any }>({});
     const [alertMessage, setAlertMessage] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
     const [boxOpen, setboxOpen] = useState(false);
     const [boxContent, setboxContent] = useState("");
     const [isChatGenerating, setIsChatGenerating] = useState(false);
-    const [isClickMicrophoneAllowed, setIsClickMicrophoneAllowed] = useState(true);
-    const recognition = useRef(null);
 
 
     useEffect(() => {
-        if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
-            // @ts-ignore
-            recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            // @ts-ignore
-            recognition.current.lang = 'en-GB';
-            // @ts-ignore
-            recognition.current.continuous = true;
-            // @ts-ignore
-            recognition.current.onresult = (event) => {
-                let finalTranscript = "";
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        finalTranscript += event.results[i][0].transcript + " ";
-                    }
-                }
-                setTexts(prevTexts => ({
-                    ...prevTexts,
-                    // @ts-ignore
-                    [event.target.id]: (prevTexts[event.target.id] || '') + finalTranscript
-                }));
-            };
-        } else {
-            alert("Your browser does not support the Speech Recognition API.");
-        }
+
 
         const timeout = setTimeout(() => {
 
@@ -80,73 +53,6 @@ const FlashCardCreator = (props) => {
 
         return () => clearTimeout(timeout);
     }, []);
-
-
-    // @ts-ignore
-    const toggleDictation = (id, isFrontSide) => {
-        if (isClickMicrophoneAllowed) {
-            setIsClickMicrophoneAllowed(false)
-            setTimeout(() => {
-                setIsClickMicrophoneAllowed(true)
-            }, 500);
-            const recognitionInstanceKey = `${isFrontSide ? 'front-' : 'back-'}${id}`;
-            const recognitionInstance = recognitionInstances.current[recognitionInstanceKey];
-
-            if (isDictating[recognitionInstanceKey]) {
-                recognitionInstance.stop();
-                setIsDictating(prevState => ({
-                    ...prevState,
-                    [recognitionInstanceKey]: false
-                }));
-                return;
-            }
-
-
-            setIsDictating(prevState => ({
-                ...prevState,
-                [recognitionInstanceKey]: true
-            }));
-
-
-            const recognitionForCard = recognitionInstance || new ((window as any).SpeechRecognition || (window as any).webkitSpeechRecognition)();
-            recognitionForCard.lang = 'en-US';
-            recognitionForCard.continuous = true;
-
-            recognitionForCard.onresult = (event: any) => {
-                let finalTranscript = "";
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        finalTranscript += event.results[i][0].transcript + " ";
-                    }
-                }
-                const maxLength = isFrontSide ? 256 : 512;
-                const currentText = texts[`${isFrontSide ? 'front-' : 'back-'}${id}`] || '';
-                const remainingSpace = maxLength - currentText.length;
-                let newText = finalTranscript;
-                if (finalTranscript.length + currentText.length > maxLength) {
-                    newText = finalTranscript.slice(0, maxLength - currentText.length);
-                }
-                setTexts(prevTexts => ({
-                    ...prevTexts,
-                    [`${isFrontSide ? 'front-' : 'back-'}${id}`]: currentText + newText
-                }));
-            };
-
-            recognitionForCard.onend = () => {
-                setTimeout(() => {
-                    setIsDictating(prevState => ({
-                        ...prevState,
-                        [recognitionInstanceKey]: false
-                    }));
-                }, 300);
-            };
-
-
-            recognitionForCard.start();
-
-            recognitionInstances.current[recognitionInstanceKey] = recognitionForCard;
-        }
-    }
 
 
     const appendInputDirector = () => {
@@ -372,13 +278,6 @@ const FlashCardCreator = (props) => {
                                                                     top: '14%',
                                                                     right: '0.1%'
                                                                 }}>
-                                                    <CustomIconButton
-                                                        onClick={() => toggleDictation(id, true)}
-                                                        src={isDictating[`front-${id}`] ? microphone_red : microphone_black}
-                                                        alt="microphone icon"
-                                                        width="30px"
-                                                        height="30px"
-                                                    />
                                                 </InputAdornment>
                                             )
                                         }}
@@ -417,13 +316,6 @@ const FlashCardCreator = (props) => {
                                                                     top: '14%',
                                                                     right: '0.1%'
                                                                 }}>
-                                                    <CustomIconButton
-                                                        onClick={() => toggleDictation(id, false)}
-                                                        src={isDictating[`back-${id}`] ? microphone_red : microphone_black}
-                                                        alt="microphone icon"
-                                                        width="30px"
-                                                        height="30px"
-                                                    />
                                                 </InputAdornment>
                                             )
                                         }}
