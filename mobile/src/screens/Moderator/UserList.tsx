@@ -9,17 +9,12 @@ import { UsersService } from "../../services/users";
 import { ScreenProps } from "../../interfaces/screen";
 import moment from "moment/moment";
 
-
-
 const styles = StyleSheet.create({
     card: {
         height: 150,
     },
     row: {
         height: 75
-    },
-    button: {
-        width: 150
     },
     avatar: {
         height: 50,
