@@ -2,7 +2,14 @@ import React, { useState, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import { UserListInterface } from "../../interfaces/decks";
-import { Button, Card, Col, Loader, LoadingCard, Row } from "../../components";
+import {
+    Button,
+    Card,
+    Col,
+    Loader,
+    LoadingCard,
+    Row
+} from "../../components";
 import { AVATAR_MAPPING } from "../../utils/avatars";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { UsersService } from "../../services/users";
@@ -25,7 +32,7 @@ const styles = StyleSheet.create({
     }
 });
 
-const UserCard: React.FC<UserListInterface> = ({ id, username, shared, created_at, avatar,  navigate }) => {
+const UserCard: React.FC<UserListInterface> = ({ id, username, shared, created_at, avatar }) => {
     const formatData = (date: Date) => {
         return moment(date).format("DD/MM/YYYY")
     }
@@ -34,7 +41,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, username, shared, created_a
         <TouchableOpacity
             className={'w-full h-full mr-auto ml-auto mb-7'}
             style={styles.card}
-            onPress={() => navigate(id)}
+            disabled={true}
         >
             <Card className={'w-full h-full'}>
                 <Row className={'w-full'}>
@@ -142,8 +149,15 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
             <View className="flex flex-container w-full mt-20 mb-5">
                 <Row className='w-full p-6' style={styles.row}>
-                    <Col className='w-full'>
-                        <Text className="text-2xl text-white font-bold text-right">
+                    <Col className='w-48 h-full justify-center align-middle'>
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
+                            <Text className='text-2xl text-white font-bold ml-4'>
+                                <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
+                            </Text>
+                        </TouchableOpacity>
+                    </Col>
+                    <Col className='w-44 h-full justify-center align-middle'>
+                        <Text className='text-2xl text-white font-bold text-right mr-4'>
                             Users
                         </Text>
                     </Col>
@@ -182,7 +196,6 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                                         username={item.username}
                                         avatar={item.avatar}
                                         shared={item.shared_decks}
-                                        navigate={() => {}}
                                     />
                                 )}
                             {fetchLoading ? [...Array(3)].map(() => <LoadingCard />) : null}

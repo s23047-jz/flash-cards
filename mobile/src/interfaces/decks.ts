@@ -16,5 +16,5 @@ export interface UserListInterface {
     username: string,
     shared: number,
     created_ad?: Date,
-    navigate?: (userId: string) => void
+    onPress?: (userId: string) => void
 }

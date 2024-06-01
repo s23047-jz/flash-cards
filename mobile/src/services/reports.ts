@@ -4,7 +4,8 @@ import { BASE_API } from "./config";
 import { request } from "../utils/request";
 
 export const REPORTS_ENDPOINTS = {
-    reported_decks_list: `${BASE_API}/reports/`
+    reported_decks_list: `${BASE_API}/reports/`,
+    delete_report:(deckId) => `${BASE_API}/reports/delete_reported_deck/${deckId}`
 }
 
 class Reports {
@@ -17,6 +18,13 @@ class Reports {
             navigation
         })
         return data;
+    }
+
+    public async deleteReport(deckId: string, navigation: NavigationProp<any>) {
+        return await request({
+            url: REPORTS_ENDPOINTS.delete_report(deckId),
+            navigation
+        })
     }
 
 }
