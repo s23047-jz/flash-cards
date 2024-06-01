@@ -16,6 +16,19 @@ const AddFlashcard = ({onClose,}) => {
     };
 
     const handleSaveCard = () => {
+         if (backText.length < 1 && frontText.length < 1 ) {
+            setFrontText('Front text must be at least 1 characters long.');
+            setBackText('Back text must be at least 1 characters long.');
+            return;
+        }
+         else if (frontText.length < 1 ){
+            setFrontText('Front text must be at least 1 characters long.');
+            return;
+        }
+          else if (backText.length < 1 ){
+            setBackText('Back text must be at least 1 characters long.');
+            return;
+        }
         const deckDataString = localStorage.getItem("deckData");
         // @ts-ignore
         const deckData = JSON.parse(deckDataString);
@@ -38,13 +51,13 @@ const AddFlashcard = ({onClose,}) => {
                 value={frontText}
                 onChange={handleFrontText}
                 placeholder="Front Side"
-                maxLength={29}
+                maxLength={255}
             />
             <textarea
                 value={backText}
                 onChange={handleBackText}
                 placeholder="Back Side"
-                maxLength={29}
+                maxLength={511}
             />
             <div className="button-container">
                 <button onClick={onClose}>Cancel</button>

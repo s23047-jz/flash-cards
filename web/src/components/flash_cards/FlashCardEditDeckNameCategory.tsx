@@ -17,6 +17,19 @@ const FlashCardEditDeckNameCategory = ({deckName, deckCategory, onClose,
     };
 
     const handleSaveCard = () => {
+         if (editedDeckName.length < 1 && editedDeckCategory.length < 1 ) {
+            setEditedDeckName('Deck name must be at least 1 characters long.');
+            setEditedDeckCategory('Deck category must be at least 1 characters long.');
+            return;
+        }
+         else if (editedDeckName.length < 1 ){
+            setEditedDeckName('Deck name must be at least 1 characters long.');
+            return;
+        }
+          else if (editedDeckCategory.length < 1 ){
+            setEditedDeckCategory('Deck category must be at least 1 characters long.');
+            return;
+        }
         const deckDataString = localStorage.getItem("deckData");
         // @ts-ignore
         const deckData = JSON.parse(deckDataString);
