@@ -11,15 +11,18 @@ import {
 } from "./index";
 import { ROUTES } from "../constants";
 
-import Lens from "../assets/images/Lens.png";
-import Lens_blue from "../assets/images/Lens_blue.png";
-import Profile from "../assets/images/Profile.png";
-import Profile_blue from "../assets/images/Profile_blue.png";
-import Study from "../assets/images/Study.png";
-import Study_blue from "../assets/images/Study_blue.png";
 import { useColorScheme } from "nativewind";
 import { ActiveUser } from "../services/user";
 import { ROLES_MAPPING } from "../utils/roles";
+
+import {
+    Lens,
+    Lens_blue,
+    Profile,
+    Profile_blue,
+    Study,
+    Study_blue
+} from "../assets/images";
 
 
 const Tab = createBottomTabNavigator();
@@ -63,7 +66,7 @@ export default function BottomTabNavigator() {
                         ]);
                     }
                 } catch (error) {
-                    console.error('Error checking authentication status:', error);
+                    console.error('Error checking user role:', error);
                 }
             };
             checkIsModeratorRole();

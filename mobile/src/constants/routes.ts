@@ -33,6 +33,7 @@ export default {
 
     // moderator screen
     MODERATOR_SCREEN: "ModeratorScreen",
+    MODERATOR_CONTROL: "ModeratorControl",
     MODERATOR_USERS_SCREEN: "ModeratorUsersScreen",
-    MODERATOR_DECKS_SCREEN: "ModeratorUsersDecks"
+    MODERATOR_REPORTED_DECKS_SCREEN: "ModeratorReportedDecksScreen"
 };

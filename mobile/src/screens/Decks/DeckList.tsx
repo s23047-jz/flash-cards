@@ -257,7 +257,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                             className='flex text-center align-middle w-full p-6 h-1/4'
                             scrollEventThrottle={16}
                         >
-                            { data.map((item, index) => selectedView === PAGES.DECKS ?
+                            { data.map((item) => selectedView === PAGES.DECKS ?
                                 <DeckCard
                                     key={item.id}
                                     id={item.id}

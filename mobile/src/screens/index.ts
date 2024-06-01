@@ -23,3 +23,8 @@ export { default as UserDelete } from "./Users/UserDelete";
 export { default as UserStats } from "./Users/UserStats";
 
 export { default as DeckList } from "./Decks/DeckList";
+
+// MODERATOR PANEL
+export { default as UserList } from "./Moderator/UserList";
+export { default as ControlView } from "./Moderator/ControlView";
+export { default as ReportedDecks } from "./Moderator/ReportedDecks";
