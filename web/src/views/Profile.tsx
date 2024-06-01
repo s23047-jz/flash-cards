@@ -26,6 +26,7 @@ const UserProfilePage: React.FC = () => {
     const [username, setUsername] = useState("");
     const [userEmail, setUserEmail] = useState("");
     const [userRole, setUserRole] = useState("");
+    const [userId, setUserId] = useState("");
 
     const navigate = useNavigate();
 
@@ -38,6 +39,7 @@ const UserProfilePage: React.FC = () => {
                 setUserEmail(user.email);
                 setUserRole(user.role);
                 setAvatar(getAvatarPath(user.avatar));
+                setUserId(user.id);  // ustaw userId tutaj
             } catch (error) {
                 console.error('Error fetching user data:', error);
             } finally {
@@ -127,7 +129,7 @@ const UserProfilePage: React.FC = () => {
     const handleAvatarSelect = async (selectedAvatar: string) => {
         setIsLoading(true);
         try {
-            await AuthService.updateAvatar(selectedAvatar);
+            await AuthService.updateAvatar(userId, { avatar: selectedAvatar });  // przekaż userId i avatar jako obiekt
             // @ts-ignore
             setAvatar(AVATAR_MAPPING[selectedAvatar]);
             console.log("Avatar updated successfully.");
@@ -140,6 +142,7 @@ const UserProfilePage: React.FC = () => {
             setIsLoading(false);
         }
     };
+
 
     const handleDeleteAccount = async () => {
         setIsLoading(true);
