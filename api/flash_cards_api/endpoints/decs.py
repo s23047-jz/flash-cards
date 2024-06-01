@@ -71,6 +71,7 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     user_id = query_params.get('user_id', None)
     page = query_params.get("page", None)
     per_page = query_params.get("per_page", None)
+    search = query_params.get("search", None)
 
     subquery = db.query(
         Deck.id.label('deck_id'),
@@ -100,6 +101,14 @@ async def get_public_decks(request: Request, db: Session = Depends(get_db)):
     if user_id:
         user_id = uuid.UUID(user_id)
         q = q.filter(User.id == user_id)
+
+    if search:
+        q = q.filter(
+            or_(
+                func.lower(Deck.title).ilike(f"%{search.lower()}%"),
+                func.lower(Deck.deck_category).ilike(f"%{search.lower()}%")
+            )
+        )
 
     q = q.order_by(desc(Deck.downloads))
 

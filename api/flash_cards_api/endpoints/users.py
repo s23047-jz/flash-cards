@@ -161,9 +161,11 @@ async def get_users_ranking(
         )
 
     q = q.group_by(
-        User.username
+        User.username,
+        User.id
     ).order_by(
-        desc('shared_decks')
+        sub_q.c.rank,
+        User.username
     )
     total = len(q.all())
 
