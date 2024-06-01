@@ -1,7 +1,7 @@
 import uuid
 
 from pydantic.main import BaseModel
-from typing import List, Optional, Union
+from typing import List, Optional
 from datetime import datetime
 
 from fastapi import (
@@ -11,7 +11,7 @@ from fastapi import (
     status,
     Request
 )
-from sqlalchemy import func, desc, case
+from sqlalchemy import func, desc, case, or_
 from sqlalchemy.orm import Session
 
 from flash_cards_api.database import get_db
@@ -26,9 +26,6 @@ from flash_cards_api.utils.auth import get_user_by_username, get_user
 
 from flash_cards_api.endpoints.auth import UserResponse
 
-from pydantic import BaseModel
-
-from pydantic import BaseModel
 
 router = APIRouter(
     prefix="/api/users",
@@ -58,6 +55,7 @@ class UserRanking(BaseModel):
     avatar: str
     shared_decks: int
     rank: int
+    created_at: datetime
 
 
 class UserRankingResponse(BaseModel):
@@ -129,6 +127,7 @@ async def get_users_ranking(
 
     page = query_params.get("page", None)
     per_page = query_params.get("per_page", None)
+    search = query_params.get("search", None)
 
     sub_q = db.query(
         Deck.user_id.label('user_id'),
@@ -141,6 +140,7 @@ async def get_users_ranking(
         User.id,
         User.username,
         User.avatar,
+        User.created_at,
         func.count(Deck.id).label('shared_decks'),
         sub_q.c.rank
     ).select_from(
@@ -153,12 +153,18 @@ async def get_users_ranking(
         Deck.user_id == User.id
     ).filter(
         Deck.is_deck_public
-    ).group_by(
+    )
+
+    if search:
+        q = q.filter(
+            func.lower(User.username).ilike(f"%{search.lower()}%")
+        )
+
+    q = q.group_by(
         User.username
     ).order_by(
         desc('shared_decks')
     )
-
     total = len(q.all())
 
     if page and per_page:
@@ -175,7 +181,8 @@ async def get_users_ranking(
             'username': user.username,
             'avatar': user.avatar,
             'shared_decks': user.shared_decks,
-            'rank': user.rank
+            'rank': user.rank,
+            'created_at': user.created_at
         }
         for user in q.all()
     ]

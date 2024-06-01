@@ -11,9 +11,10 @@ export interface DeckListInterface {
 
 export interface UserListInterface {
     id: string,
-    rank: number,
+    rank?: number,
     avatar?: string,
     username: string,
     shared: number,
-    navigate?: (userId: string) => void
+    created_ad?: Date,
+    onPress?: (userId: string) => void
 }

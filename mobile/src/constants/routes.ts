@@ -18,7 +18,7 @@ export default {
     DECK_SETTINGS: "DeckSettings",
     EDIT_DECK: "EditDeck",
     CREATE_FLASHCARD: "CreateFlashcard",
-    EDIT_FLSAHCARD: "EditFlashcard",
+    EDIT_FLASHCARD: "EditFlashcard",
     MEMORIZED_FLASHCARDS: "MemorizedFlashcards",
     UNMEMORIZED_FLASHCARDS: "UnmemorizedFlashcards",
 
@@ -26,8 +26,14 @@ export default {
     PUBLIC_DECKS: "PublicDecks",
 
     // user profile
-    USER_DETAILS: 'UserDetails',
-    USER_UPDATE: 'UserUpdate',
-    USER_DELETE: 'UserDelete',
+    USER_DETAILS: "UserDetails",
+    USER_UPDATE: "UserUpdate",
+    USER_DELETE: "UserDelete",
     USER_STATS: "UserStats",
-}
+
+    // moderator screen
+    MODERATOR_SCREEN: "ModeratorScreen",
+    MODERATOR_CONTROL: "ModeratorControl",
+    MODERATOR_USERS_SCREEN: "ModeratorUsersScreen",
+    MODERATOR_REPORTED_DECKS_SCREEN: "ModeratorReportedDecksScreen"
+};

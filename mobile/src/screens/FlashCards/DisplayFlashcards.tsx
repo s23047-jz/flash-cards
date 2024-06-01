@@ -95,7 +95,7 @@ const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
   };
   
   const handleEditFlashcard = (card) => {
-    navigation.navigate(ROUTES.EDIT_FLSAHCARD, { card });
+    navigation.navigate(ROUTES.EDIT_FLASHCARD, { card });
   };
   
   

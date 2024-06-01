@@ -1,4 +1,4 @@
-from sqlalchemy import select
+from sqlalchemy import select, distinct, func, or_
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
@@ -6,13 +6,14 @@ from flash_cards_api.database import get_db
 
 from pydantic.main import BaseModel
 
-from typing import Optional
+from typing import Optional, List
 
 from fastapi import (
     APIRouter,
     Depends,
     HTTPException,
-    status
+    status,
+    Request
 )
 
 from flash_cards_api.models.flash_card import FlashCard
@@ -26,6 +27,73 @@ router = APIRouter(prefix="/reports", tags=["reports"])
 class ReportModel(BaseModel):
     deck_id: uuid.UUID
     submitter_email: Optional[str] = None
+
+
+class ReportResponseModel(ReportModel):
+    deck_category: str
+    title: str
+
+
+class ReportResponse(BaseModel):
+    reports: List[ReportResponseModel]
+    total: int
+
+
+@router.get("/", status_code=status.HTTP_200_OK)
+async def get_reported_decks_list(
+    request: Request,
+    db: Session = Depends(get_db)
+):
+    """Return all reported decks"""
+
+    query_params = request.query_params
+
+    page = query_params.get("page", None)
+    per_page = query_params.get("per_page", None)
+    search = query_params.get("search", None)
+
+    q = db.query(
+        distinct(Deck.id),
+        Deck.deck_category,
+        Deck.title,
+        Reports.submitter_email
+    ).select_from(
+        Reports
+    ).join(
+        Deck,
+        Deck.id == Reports.deck_id
+    )
+
+    if search:
+        q = q.filter(
+            or_(
+                func.lower(Deck.title).ilike(f"%{search.lower()}%"),
+                func.lower(Deck.deck_category).ilike(f"%{search.lower()}%")
+            )
+        )
+
+    q = q.order_by(Deck.id)
+    total = len(q.all())
+
+    if page and per_page:
+        if isinstance(page, str) or isinstance(per_page, str):
+            page = int(page)
+            per_page = int(per_page)
+
+        offset = (page - 1) * per_page
+        q = q.limit(per_page).offset(offset)
+
+    reports = [
+        {
+            "id": report.id,
+            "deck_category": report.deck_category,
+            "title": report.title,
+            "submitter_email": report.submitter_email
+        }
+        for report in q.all()
+    ]
+
+    return ReportResponse(reports=reports, total=total)
 
 
 @router.get("/reported_decks", status_code=status.HTTP_200_OK)
@@ -92,6 +160,7 @@ async def delete_deck(
 
     db.query(Reports).filter(Reports.deck_id == deck_id).delete()
     db.commit()
+
 
 @router.delete("/delete_reported_deck_from_app/{deck_id}")
 async def delete_deck(

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState, useCallback } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { ROUTES } from "../constants";
@@ -21,11 +21,17 @@ export default function UserPanelNavigator() {
         {username: '', email: '', id: '', avatar: ''}
     );
 
-    useEffect(() => {
-        setLoading(true);
-        getUserData();
-    }, []);
-
+    useFocusEffect(
+        useCallback(() => {
+            setLoading(true);
+            try {
+                getUserData()
+            } catch (error) {
+                console.error('EError retrieving user data:', error);
+            };
+            return () => {};
+        }, [])
+    );
 
     const getUserData = async () => {
         try {

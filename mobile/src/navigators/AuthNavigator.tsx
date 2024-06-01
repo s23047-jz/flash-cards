@@ -22,13 +22,13 @@ export default function AuthNavigator() {
                 setIsAuthenticated(authenticated);
                 setLoading(false);
             } catch (error) {
-            console.error('Error checking authentication status:', error);
-            setIsAuthenticated(false);
-            setLoading(false);
-        }
-    };
-    checkAuthentication();
-  }, []);
+                console.error('Error checking authentication status:', error);
+                setIsAuthenticated(false);
+                setLoading(false);
+            }
+        };
+        checkAuthentication();
+    }, []);
 
     if (loading) {
         return (

@@ -78,12 +78,12 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
     )
 };
 
-const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, avatar,  navigate }) => {
+const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, avatar,  onPress }) => {
     return (
         <TouchableOpacity
             className={'w-full h-full mr-auto ml-auto mb-7'}
             style={styles.card}
-            onPress={() => navigate(id)}
+            onPress={() => onPress(id)}
         >
             <Card className={'w-full h-full'}>
                 <Row className={'w-full'}>
@@ -257,7 +257,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                             className='flex text-center align-middle w-full p-6 h-1/4'
                             scrollEventThrottle={16}
                         >
-                            { data.map((item, index) => selectedView === PAGES.DECKS ?
+                            { data.map((item) => selectedView === PAGES.DECKS ?
                                 <DeckCard
                                     key={item.id}
                                     id={item.id}
@@ -273,7 +273,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                                         username={item.username}
                                         avatar={item.avatar}
                                         shared={item.shared_decks}
-                                        navigate={handleNavigationToUserStats}
+                                        onPress={handleNavigationToUserStats}
                                     />
                                 )}
                             {fetchLoading ? [...Array(3)].map(() => <LoadingCard />) : null}
