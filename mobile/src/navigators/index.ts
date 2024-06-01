@@ -3,3 +3,4 @@ export { default as BottomTabNavigator } from "./BottomTabNavigator";
 export { default as HomeNavigator } from "./HomeNavigator";
 export { default as UserPanelNavigator } from "./UserPanelNavigator";
 export { default as PublicDecksNavigator } from "./PublicDecksNavigator";
+export { default as ModeratorNavigator } from "./ModeratorNavigator";

@@ -29,7 +29,7 @@ export default function HomeNavigator() {
       <Stack.Screen name={ROUTES.DECK_SETTINGS} component={DeckSettings} />
       <Stack.Screen name={ROUTES.EDIT_DECK} component={EditDeck} />
       <Stack.Screen name={ROUTES.CREATE_FLASHCARD} component={CreateFlashcard}/>
-      <Stack.Screen name={ROUTES.EDIT_FLSAHCARD} component={EditFlashcard} />
+      <Stack.Screen name={ROUTES.EDIT_FLASHCARD} component={EditFlashcard} />
       <Stack.Screen name={ROUTES.MEMORIZED_FLASHCARDS} component={MemorizedFlashcards} />
       <Stack.Screen name={ROUTES.UNMEMORIZED_FLASHCARDS} component={UnmemorizedFlashcards} />
     
