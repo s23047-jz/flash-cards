@@ -194,6 +194,7 @@ const PublicDecksFlashCardsContainer = () => {
                  <>
                     {isEditOpen && (
                         <FlashCardEditPopUp
+                            navigateToPath={"/users_moderator_panel"}
                             frontText={popupEditFrontText}
                             backText={popupEditBackText}
                             onSaveChanges={handleSaveChanges}

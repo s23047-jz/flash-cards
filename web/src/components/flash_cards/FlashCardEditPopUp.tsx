@@ -3,8 +3,7 @@ import '../../styles/flash_cards/flash_card_pop_up.scss';
 import {DeckService} from "../../services/decs";
 import {useNavigate} from 'react-router-dom';
 // @ts-ignore
-const FlashCardEditPopUp = ({frontText, backText, onSaveChanges, onDeleteCard, onClose, flashcardId, numberOfFlashcards
-                            }) => {
+const FlashCardEditPopUp = ({frontText, backText, onSaveChanges, onDeleteCard, onClose, flashcardId, numberOfFlashcards, navigateToPath}) => {
     const [editedFrontText, setEditedFrontText] = useState(frontText);
     const [editedBackText, setEditedBackText] = useState(backText);
     const navigate = useNavigate();
@@ -28,7 +27,7 @@ const FlashCardEditPopUp = ({frontText, backText, onSaveChanges, onDeleteCard, o
             const deckData = JSON.parse(deckDataString);
             const deckId = deckData.id;
             DeckService.deleteDeck(deckId)
-            navigate('/my_decks')
+            navigate(navigateToPath)
 
         }
 
