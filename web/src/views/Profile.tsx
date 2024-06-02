@@ -27,6 +27,10 @@ const UserProfilePage: React.FC = () => {
     const [userEmail, setUserEmail] = useState("");
     const [userRole, setUserRole] = useState("");
     const [userId, setUserId] = useState("");
+    const [nicknameError, setNicknameError] = useState<string>('');
+    const [emailError, setEmailError] = useState<string>('');
+    const [passwordError, setPasswordError] = useState<string>('');
+    const [confirmPasswordError, setConfirmPasswordError] = useState<string>('');
 
     const navigate = useNavigate();
 
@@ -39,11 +43,11 @@ const UserProfilePage: React.FC = () => {
                 setUserEmail(user.email);
                 setUserRole(user.role);
                 setAvatar(getAvatarPath(user.avatar));
-                setUserId(user.id);  // ustaw userId tutaj
+                setUserId(user.id);
             } catch (error) {
                 console.error('Error fetching user data:', error);
             } finally {
-                setIsLoading(false);
+                setTimeout(() => setIsLoading(false), 500);
             }
         };
 
@@ -79,42 +83,95 @@ const UserProfilePage: React.FC = () => {
         setConfirmPassword("");
     };
 
+    const validateNickname = (nickname: string): boolean => {
+        if (!/^[a-zA-Z0-9_]{3,20}$/.test(nickname)) {
+            setNicknameError("Nickname must be 3-20 characters long and contain only letters, numbers, or underscores.");
+            return false;
+        }
+        return true;
+    };
+
+    const validateEmail = (email: string): boolean => {
+        if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,})+$/.test(email)) {
+            setEmailError("Invalid email format.");
+            return false;
+        }
+        return true;
+    };
+
+    const validatePassword = (password: string): boolean => {
+        if (password.length < 8) {
+            setPasswordError("Password must be at least 8 characters long.");
+            return false;
+        }
+        return true;
+    };
+
     const handleSave = async (modalType: 'nickname' | 'email' | 'password') => {
         setIsLoading(true);
+        setNicknameError('');
+        setEmailError('');
+        setPasswordError('');
+        setConfirmPasswordError('');
+
+        let isValid = true;
+        if (modalType === 'nickname' && !validateNickname(nickname)) isValid = false;
+        if (modalType === 'email' && !validateEmail(email)) isValid = false;
+        if (modalType === 'password') {
+            if (!validatePassword(newPassword)) isValid = false;
+            if (newPassword !== confirmPassword) {
+                setConfirmPasswordError("Passwords do not match.");
+                isValid = false;
+            }
+        }
+
+        if (!isValid) {
+            setIsLoading(false);
+            return;
+        }
+
         try {
             if (modalType === 'nickname') {
                 await AuthService.updateAccount({
                     username: nickname,
                     current_password: currentPassword
                 });
-                console.log("Nickname updated successfully.");
                 handleClose('nickname');
-                window.location.reload();
+                setTimeout(() => {
+                    setUsername(nickname);
+                    setIsLoading(false);
+                }, 500);
             } else if (modalType === 'email') {
                 await AuthService.updateAccount({
                     email: email,
                     current_password: currentPassword
                 });
-                console.log("Email updated successfully.");
                 handleClose('email');
+                setTimeout(() => setIsLoading(false), 500);
             } else if (modalType === 'password') {
-                if (newPassword !== confirmPassword) {
-                    alert("Passwords do not match.");
-                    return;
-                }
                 await AuthService.updateAccount({
                     current_password: currentPassword,
                     password: newPassword,
                     re_password: confirmPassword
                 });
-                console.log("Password updated successfully.");
                 handleClose('password');
+                setTimeout(() => setIsLoading(false), 500);
             }
-        } catch (error) {
-            console.error('Error updating account:', error);
+        } catch (error: any) {
+            if (error.response?.status === 400) {
+                if (error.response.data?.email) {
+                    setEmailError("Email already taken");
+                } else if (error.response.data?.username) {
+                    setNicknameError("Nickname already taken");
+                } else {
+                    setPasswordError("Update failed, please try again.");
+                }
+            } else {
+                setPasswordError("Update failed: " + error.message);
+            }
+            setIsLoading(false);
         } finally {
             handleReset();
-            setIsLoading(false);
         }
     };
 
@@ -129,32 +186,28 @@ const UserProfilePage: React.FC = () => {
     const handleAvatarSelect = async (selectedAvatar: string) => {
         setIsLoading(true);
         try {
-            await AuthService.updateAvatar(userId, { avatar: selectedAvatar });  // przekaż userId i avatar jako obiekt
+            await AuthService.updateAvatar(userId, { avatar: selectedAvatar });
             // @ts-ignore
             setAvatar(AVATAR_MAPPING[selectedAvatar]);
-            console.log("Avatar updated successfully.");
             handleClose('avatar');
+            setTimeout(() => setIsLoading(false), 500);
         } catch (error) {
-            console.error("Update failed: ", error);
             // @ts-ignore
-            alert("Failed to update avatar: " + error.message);
-        } finally {
+            setPasswordError("Failed to update avatar: " + error.message);
             setIsLoading(false);
         }
     };
 
-
     const handleDeleteAccount = async () => {
         setIsLoading(true);
         try {
-            await AuthService.deleteAccount({ email: userEmail, current_password: currentPassword });
-            console.log("Account deleted successfully.");
+            await AuthService.deleteAccount({
+                current_password: currentPassword
+            });
             navigate('/signin');
         } catch (error) {
-            console.error("Delete account failed: ", error);
             // @ts-ignore
-            alert("Failed to delete account: " + error.message);
-        } finally {
+            setPasswordError("Failed to delete account: " + error.message);
             setIsLoading(false);
         }
     };
@@ -211,8 +264,29 @@ const UserProfilePage: React.FC = () => {
                 <Dialog open={openNickname} onClose={() => handleClose('nickname')}>
                     <DialogTitle>Change Nickname</DialogTitle>
                     <DialogContent>
-                        <TextField autoFocus margin="dense" id="nickname" label="New Nickname" type="text" fullWidth variant="standard" value={nickname} onChange={(e) => handleChange(e.target.value, 'nickname')} />
-                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField
+                            error={!!nicknameError}
+                            helperText={nicknameError}
+                            autoFocus
+                            margin="dense"
+                            id="nickname"
+                            label="New Nickname"
+                            type="text"
+                            fullWidth
+                            variant="standard"
+                            value={nickname}
+                            onChange={(e) => handleChange(e.target.value, 'nickname')}
+                        />
+                        <TextField
+                            margin="dense"
+                            id="currentPassword"
+                            label="Current Password"
+                            type="password"
+                            fullWidth
+                            variant="standard"
+                            value={currentPassword}
+                            onChange={(e) => handleChange(e.target.value, 'currentPassword')}
+                        />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('nickname')}>Cancel</Button>
@@ -222,8 +296,29 @@ const UserProfilePage: React.FC = () => {
                 <Dialog open={openEmail} onClose={() => handleClose('email')}>
                     <DialogTitle>Change Email</DialogTitle>
                     <DialogContent>
-                        <TextField autoFocus margin="dense" id="email" label="New Email" type="email" fullWidth variant="standard" value={email} onChange={(e) => handleChange(e.target.value, 'email')} />
-                        <TextField margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField
+                            error={!!emailError}
+                            helperText={emailError}
+                            autoFocus
+                            margin="dense"
+                            id="email"
+                            label="New Email"
+                            type="email"
+                            fullWidth
+                            variant="standard"
+                            value={email}
+                            onChange={(e) => handleChange(e.target.value, 'email')}
+                        />
+                        <TextField
+                            margin="dense"
+                            id="currentPassword"
+                            label="Current Password"
+                            type="password"
+                            fullWidth
+                            variant="standard"
+                            value={currentPassword}
+                            onChange={(e) => handleChange(e.target.value, 'currentPassword')}
+                        />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('email')}>Cancel</Button>
@@ -233,9 +328,43 @@ const UserProfilePage: React.FC = () => {
                 <Dialog open={openPassword} onClose={() => handleClose('password')}>
                     <DialogTitle>Change Password</DialogTitle>
                     <DialogContent>
-                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
-                        <TextField margin="dense" id="newPassword" label="New Password" type="password" fullWidth variant="standard" value={newPassword} onChange={(e) => handleChange(e.target.value, 'newPassword')} />
-                        <TextField margin="dense" id="confirmPassword" label="Confirm New Password" type="password" fullWidth variant="standard" value={confirmPassword} onChange={(e) => handleChange(e.target.value, 'confirmPassword')} />
+                        <TextField
+                            error={!!passwordError}
+                            helperText={passwordError}
+                            autoFocus
+                            margin="dense"
+                            id="currentPassword"
+                            label="Current Password"
+                            type="password"
+                            fullWidth
+                            variant="standard"
+                            value={currentPassword}
+                            onChange={(e) => handleChange(e.target.value, 'currentPassword')}
+                        />
+                        <TextField
+                            error={!!passwordError}
+                            helperText={passwordError}
+                            margin="dense"
+                            id="newPassword"
+                            label="New Password"
+                            type="password"
+                            fullWidth
+                            variant="standard"
+                            value={newPassword}
+                            onChange={(e) => handleChange(e.target.value, 'newPassword')}
+                        />
+                        <TextField
+                            error={!!confirmPasswordError}
+                            helperText={confirmPasswordError}
+                            margin="dense"
+                            id="confirmPassword"
+                            label="Confirm New Password"
+                            type="password"
+                            fullWidth
+                            variant="standard"
+                            value={confirmPassword}
+                            onChange={(e) => handleChange(e.target.value, 'confirmPassword')}
+                        />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('password')}>Cancel</Button>
@@ -259,7 +388,17 @@ const UserProfilePage: React.FC = () => {
                 <Dialog open={openDeleteAccount} onClose={() => handleClose('deleteAccount')}>
                     <DialogTitle>Delete Account</DialogTitle>
                     <DialogContent>
-                        <TextField autoFocus margin="dense" id="currentPassword" label="Current Password" type="password" fullWidth variant="standard" value={currentPassword} onChange={(e) => handleChange(e.target.value, 'currentPassword')} />
+                        <TextField
+                            autoFocus
+                            margin="dense"
+                            id="currentPassword"
+                            label="Current Password"
+                            type="password"
+                            fullWidth
+                            variant="standard"
+                            value={currentPassword}
+                            onChange={(e) => handleChange(e.target.value, 'currentPassword')}
+                        />
                     </DialogContent>
                     <DialogActions>
                         <Button onClick={() => handleClose('deleteAccount')}>Cancel</Button>

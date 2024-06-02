@@ -240,3 +240,17 @@ async def account_activation(
         db.commit()
     except Exception as e:
         logger.error(e)
+
+
+@router.delete("/me/")
+async def delete_user(
+    user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    try:
+        db.delete(user)
+        db.commit()
+        return {"detail": "User deleted successfully"}
+    except Exception as e:
+        logger.error(f"Error deleting user: {e}")
+        raise HTTPException(status_code=500, detail="Internal Server Error")

@@ -55,7 +55,7 @@ const RegistrationPage: React.FC = () => {
 
         try {
             await AuthService.register({ email, password, re_password: confirmPassword, username: nickname });
-            setSuccessMessage("Account created successfully!"); // Ustawiamy komunikat o pomyślnym utworzeniu konta
+            setSuccessMessage("Account created successfully!");
         } catch (error: any) {
             if (error.response?.status === 400) {
                 if (error.response.data?.email) {
@@ -63,7 +63,7 @@ const RegistrationPage: React.FC = () => {
                 } else if (error.response.data?.username) {
                     setNicknameError("Nickname already taken");
                 } else {
-                    setEmailError("Registration failed, probably email already taken");
+                    setEmailError("Registration failed, probably email or Nickname already taken");
                 }
             } else {
                 alert("Registration failed: " + error.message);
