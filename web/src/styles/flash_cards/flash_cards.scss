@@ -87,22 +87,29 @@ $flash-card-height: 35vh;
     font-size: 20px;
   }
 }
-
-@media screen and (max-width: 1005px) {
+@media screen and (max-width: 1300px) {
   .flashcard {
     font-size: 18px;
   }
 }
 
-@media screen and (max-width: 800px) {
+
+@media screen and (max-width: 1005px) {
   .flashcard {
     font-size: 14px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .flashcard {
     font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .flashcard {
+    font-weight: bold;
+    font-size: 9px;
 
     .front,
     .back {
