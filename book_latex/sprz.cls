@@ -123,7 +123,7 @@
 \newenvironment{requirementstab}[1][]{%
 \setkeys{pjatk}{#1}% Setting default key values
 \newcommand{\id}[1]{Identyfikator: & ##1 & }
-\newcommand{\priority}[1]{Priorytet: & ##1 \\ \hline}
+\newcommand{\priority}[1]{Priorytet: & \multicolumn{1}{|p{0.3\linewidth}|}{##1} \\ \hline} % Zwiększona szerokość kolumny, ale bez całej szerokości
 \newcommand{\name}[1]{Nazwa: & \multicolumn{3}{|p{0.6\linewidth}|}{##1}  \\ \hline}
 \newcommand{\descr}[1]{Opis: & \multicolumn{3}{|p{0.6\linewidth}|}{\parbox{0.99\linewidth}{##1}}  \\ \hline}
 \newcommand{\acceptcrit}[1]{Kryteria akceptacji: & \multicolumn{3}{|p{0.6\linewidth}|}{##1}  \\ \hline}
@@ -134,9 +134,9 @@
 \newcommand{\implementation}[1]{Szczegóły implementacji: & \multicolumn{3}{|p{0.6\linewidth}|}{##1}  \\ \hline}
 \newcommand{\sholder}[1]{Udziałowiec: & \multicolumn{3}{|p{0.6\linewidth}|}{##1}  \\ \hline}
 \newcommand{\reqrelated}[1]{Wymagania powiązane: & \multicolumn{3}{|p{0.6\linewidth}|}{##1}  \\ \hline}
-\table[h]
+\table[H]
 \centering
-\begin{tabular}{|>{\columncolor{lightgray}}l|l|>{\columncolor{lightgray}}l|p{0.1\linewidth}|}
+\begin{tabular}{|>{\columncolor{lightgray}}l|l|>{\columncolor{lightgray}}l|p{0.3\linewidth}|} % Zwiększona szerokość kolumny
 	\hline
 	\rowcolor{lightgray}\multicolumn{4}{|c|}{\textbf{KARTA WYMAGANIA}} \\
 	\hline
@@ -151,8 +151,9 @@
 
 
 
+
 \newcommand{\generalrequirement}[7]{
-	\begin{table}[h]
+	\begin{table}[H]
 		\centering
 		\begin{tabular}{|>{\columncolor{lightgray}}l|l|>{\columncolor{lightgray}}l|p{0.1\linewidth}|}
 			\hline
