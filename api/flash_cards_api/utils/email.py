@@ -2,7 +2,7 @@ import os.path
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-# from jinja2 import Template
+from jinja2 import Template
 from sqlalchemy.orm import Session
 
 from flash_cards_api.config import (
@@ -31,6 +31,7 @@ def send_email(to_email: str, subject: str, template_name: str, context: dict):
 		msg['To'] = to_email
 
 		msg.attach(MIMEText(render_html, 'html'))
+		print("SMTP_PASSWORD", SMTP_PASSWORD)
 
 		with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
 			server.starttls()
@@ -42,7 +43,7 @@ def send_email(to_email: str, subject: str, template_name: str, context: dict):
 
 def send_active_account_email(user_email: str, token: str, db: Session):
 	try:
-		user: User = db.query(User).where(User.email == user_email)
+		user: User = db.query(User).filter(User.email == user_email).first()
 		token_url = f"{WEBHOST}/account_activation/{token}"
 		logger.info(f"Sending active account email to {user_email}")
 		context = {
@@ -62,7 +63,7 @@ def send_active_account_email(user_email: str, token: str, db: Session):
 
 def send_password_reset_email(user_email: str, token: str, db: Session):
 	try:
-		user: User = db.query(User).where(User.email == user_email)
+		user: User = db.query(User).filter(User.email == user_email).first()
 		token_url = f"{WEBHOST}/reset_password/{token}"
 		logger.info(f"Sending active account email to {user_email}")
 
