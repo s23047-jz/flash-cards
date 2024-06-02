@@ -54,10 +54,11 @@ class Auth {
     });
   }
 
-  public async deleteAccount(body: Object) {
-    const token = ActiveUser.getAuthorization();
+public async deleteAccount(body: Object) {
+  const token = ActiveUser.getAuthorization();
 
-    return await request({
+  try {
+    const response = await request({
       url: AUTH_ENDPOINTS.deleteAccount,
       method: 'DELETE',
       headers: {
@@ -65,7 +66,13 @@ class Auth {
       },
       body
     });
+    return response;
+  } catch (error) {
+    console.error('Error deleting account:', error);
+    throw error;
   }
+}
+
 
   public async logout(token: string) {
     try {
@@ -108,6 +115,10 @@ class Auth {
       },
       body
     });
+  }
+
+  async resetPassword(param: {email: string}) {
+    
   }
 }
 
