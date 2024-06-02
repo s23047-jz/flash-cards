@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from jose import jwt, JWTError, jwt
+from jose import JWTError, jwt
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
@@ -14,7 +14,11 @@ from flash_cards_api.config import (
 )
 from flash_cards_api.database import get_db
 
-from flash_cards_api.utils.auth import get_user, check_if_token_is_expired
+from flash_cards_api.utils.auth import (
+    get_user,
+    check_if_token_is_expired,
+    decode_token
+)
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
@@ -36,7 +40,7 @@ async def get_current_user(
         ).filter(Blacklist_Tokens.token == token).first()
         if black_token is not None:
             raise credentials_exception
-        payload = jwt.decode(token, SECRET_KEY, algorithms=ALGORITHM)
+        payload = decode_token(token)
         if check_if_token_is_expired(payload):
             db.add(
                 Blacklist_Tokens(

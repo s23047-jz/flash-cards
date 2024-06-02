@@ -32,10 +32,6 @@ const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
         InputValidator("password", password) &&
         ConfirmPassValidator(password, confirmPassword)
         ){
-            {/* handle sign up with api */}
-            console.log('Nickname:', nickname)
-            console.log('Email:', email);
-            console.log('Password:', password);
         }
         const body = {
             email,
@@ -44,7 +40,13 @@ const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
             re_password: confirmPassword
         }
         const { res } = await AuthService.register(body, navigation);
-        if ([200, 201].includes(res.status)) navigation.navigate(ROUTES.LOGIN);
+        if ([200, 201].includes(res.status)) {
+            navigation.navigate(ROUTES.LOGIN);
+            setEmail("");
+            setNickName("");
+            setPassword("");
+            setConfirmPassword("");
+        }
     };
 
     return (
