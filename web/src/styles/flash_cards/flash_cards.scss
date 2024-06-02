@@ -96,13 +96,15 @@ $flash-card-height: 35vh;
 
 @media screen and (max-width: 1005px) {
   .flashcard {
-    font-size: 14px;
+    font-weight: bold;
+    font-size: 15px;
   }
 }
 
 @media screen and (max-width: 800px) {
   .flashcard {
-    font-size: 12px;
+    font-weight: bold;
+    font-size: 13px;
   }
 }
 
