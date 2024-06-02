@@ -13,18 +13,15 @@ import Alert from '../alert/Alert'
 import trashbin from "../../assets/Trashbin.png";
 // @ts-ignore
 import plus from "../../assets/Plus.png";
-// @ts-ignore
-import microphone_black from "../../assets/Microphone_black.png";
+
 // @ts-ignore
 import generate_text from '../../assets/Generate_text.png';
 // @ts-ignore
-import microphone_red from "../../assets/Microphone_red.png";
 import {DeckService} from "../../services/decs" ;
 // @ts-ignore
 import "../../styles/create_flash_cards_page/flash_card_style.scss";
 import {ActiveUser} from "../../services/user";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
-import CustomIconButton from "./CustomIconButton";
 // @ts-ignore
 import LoadingSpinnerChat from "../loading_spinner/LoadingSpinnerChat";
 import {ChatService} from "../../services/chat";

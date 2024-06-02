@@ -29,6 +29,7 @@ $flash-card-border-listening: 4px solid #FF2020;
 }
 
 .flashcard-voice-control .left-corner-text {
+
   position: absolute;
   top: 10px;
   left: 5px;
@@ -40,6 +41,9 @@ $flash-card-border-listening: 4px solid #FF2020;
 
 .flashcard-voice-control .front,
 .flashcard-voice-control .back {
+   overflow-wrap: break-word;
+  white-space: normal;
+  word-break: break-word;
   padding: 35px;
   position: absolute;
   height: 100%;
@@ -52,7 +56,7 @@ $flash-card-border-listening: 4px solid #FF2020;
   transition: $animation;
   border-radius: 15px;
   text-align: center;
-  overflow: hidden; /* Dodaj overflow: hidden, aby ukryć ikonę podczas animacji */
+  overflow: hidden;
   border: $flash-card-border;
 
 }

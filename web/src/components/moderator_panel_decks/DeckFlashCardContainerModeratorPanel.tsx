@@ -5,6 +5,7 @@ import speaker_blue from '../../assets/Speaker_blue.png';
 // @ts-ignore
 import React, {useEffect, useState} from "react";
 import FlashCard from "../flash_cards/FlashCard";
+import FlashCardField from "../flash_cards/FlashCardField";
 import PublicDeckFlashCardField from "../public_decks_flashcards/PublicDeckFlashCardField";
 import {DeckService} from '../../services/decs';
 import ButtonsContainerModeratorPanel from "./ButtonsContainerModeratorPanel";
@@ -13,6 +14,9 @@ import "../../styles/moderator_panel_decks/public_deck_all_flashcards_container_
 import {ReportService} from "../../services/report";
 
 import {useNavigate} from 'react-router-dom';
+// @ts-ignore
+import pencil from "../../assets/Pencil.png"
+import FlashCardEditPopUp from "../flash_cards/FlashCardEditPopUp";
 
 const PublicDecksFlashCardsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
@@ -23,6 +27,10 @@ const PublicDecksFlashCardsContainer = () => {
     const [isRotated, setIsRotated] = useState(false);
     const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
     const [deckTitle, setDeckTitle] = useState(false);
+    const [popupEditFrontText, setPopupEditFrontText] = useState("");
+    const [popupEditBackText, setPopupEditBackText] = useState("");
+    const [popupEditFlashCardId, setpopupEditFlashCardId] = useState("");
+    const [isEditOpen, setIsEditOpen] = useState(false);
     const numberOfFlashCards = flashcards.length
     const navigate = useNavigate();
 
@@ -143,7 +151,7 @@ const PublicDecksFlashCardsContainer = () => {
         navigate('/moderator_panel_decks')
     };
 
-    const handleDeleteDeckFromApp= () => {
+    const handleDeleteDeckFromApp = () => {
         const deckDataString = localStorage.getItem("deckData");
         const deckData = JSON.parse(deckDataString || "{}");
         let deck_id = deckData.id;
@@ -163,13 +171,39 @@ const PublicDecksFlashCardsContainer = () => {
         navigate('/moderator_panel_decks')
     }
 
+    const handleOpenPopup = (frontText: string, backText: string, flashcardId: string) => {
+        setPopupEditFrontText(frontText);
+        setPopupEditBackText(backText);
+        setpopupEditFlashCardId(flashcardId)
+        setIsEditOpen(true);
+    };
+
+     const handleSaveChanges = () => {
+        setIsEditOpen(false);
+    };
+
+    const handleDeleteCard = () => {
+        setIsEditOpen(false);
+    };
+
     return (
         <div className={"public-decks-all-flashcards-container-moderator-panel"}>
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
-
-                <>
+                 <>
+                    {isEditOpen && (
+                        <FlashCardEditPopUp
+                            navigateToPath={"/users_moderator_panel"}
+                            frontText={popupEditFrontText}
+                            backText={popupEditBackText}
+                            onSaveChanges={handleSaveChanges}
+                            onDeleteCard={handleDeleteCard}
+                            onClose={() => setIsEditOpen(false)}
+                            flashcardId={popupEditFlashCardId}
+                            numberOfFlashcards={numberOfFlashCards}
+                        />
+                    )}
 
                     <FlashCard
                         front_text={flashcards[currentBigCardIndex]['title']}
@@ -190,7 +224,9 @@ const PublicDecksFlashCardsContainer = () => {
                     <p className={"all-flashcards-text"}>All Flashcards</p>
                     {flashcards.map((flashcard, index) => (
 
-                        <PublicDeckFlashCardField
+                        <FlashCardField
+                            icon_pencil={pencil}
+                            onClickPencil={() => handleOpenPopup(flashcard['title'], flashcard['card text'], flashcard['id'])}
                             key={index}
                             front_text={flashcard['title']}
                             back_text={flashcard['card text']}

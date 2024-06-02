@@ -258,6 +258,7 @@ const FlashCardsContainer = () => {
                 <>
                     {isEditOpen && (
                         <FlashCardEditPopUp
+                            navigateToPath={"/my_decks"}
                             frontText={popupEditFrontText}
                             backText={popupEditBackText}
                             onSaveChanges={handleSaveChanges}

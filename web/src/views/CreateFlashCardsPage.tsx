@@ -7,8 +7,6 @@ import FlashCardCreator  from "../components/flash_cards_creator/FlashCardCreato
 
 const styles = {
     flashCardCategoryName: {
-        paddingRight: '50px',
-        paddingLeft: '2px',
         lineHeight: '2',
         letterSpacing: '0.4px',
         zIndex: '10',
@@ -16,17 +14,34 @@ const styles = {
         fontSize: "24px",
         fontWeight: "bold",
         textAlign: 'center',
+        ...(window.innerWidth < 750 && {
+            height: '12vh',
+            fontSize: "16px",
+        }),
+        ...(window.innerWidth < 1000 && {
+            height: '10vh',
+            fontSize: "18px",
+        }),
 
     },
     flashCardTextField: {
-        paddingRight: '50px',
-        paddingLeft: '2px',
         lineHeight: '1',
         letterSpacing: '0.4px',
         zIndex: '10',
         height: '20vh',
         fontSize: "15px",
         fontWeight: "bold",
+
+        ...(window.innerWidth < 750 && {
+            height: '26vh',
+            fontSize: "12px",
+        }),
+        ...(window.innerWidth < 1000 && {
+            height: '24vh',
+            fontSize: "18px",
+        }),
+
+
     }
 };
 

@@ -3,7 +3,7 @@
   position: relative;
   height: 70vh;
   width: 60vw;
-  overflow-y: auto;
+
   padding-right: 20px;
 
   .all-flashcards-text {
@@ -34,8 +34,8 @@
 
 @media screen and (max-width: 1650px) {
   .voice-control-container {
-
+    height: 80vh;
     width: 92vw;
-
   }
+
 }

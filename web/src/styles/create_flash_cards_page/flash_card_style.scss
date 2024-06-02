@@ -69,3 +69,12 @@ $flash-card-title-font-weight: bold;
   font-size: $flash-card-title-font-size;
   font-weight: $flash-card-title-font-weight;
 }
+
+@media screen and (max-width: 1000px) {
+  .texfields-container {
+  position: absolute;
+  top: 15%;
+  width: 90%;
+}
+
+}

@@ -3,8 +3,7 @@ import '../../styles/flash_cards/flash_card_pop_up.scss';
 import {DeckService} from "../../services/decs";
 import {useNavigate} from 'react-router-dom';
 // @ts-ignore
-const FlashCardEditPopUp = ({frontText, backText, onSaveChanges, onDeleteCard, onClose, flashcardId, numberOfFlashcards
-                            }) => {
+const FlashCardEditPopUp = ({frontText, backText, onSaveChanges, onDeleteCard, onClose, flashcardId, numberOfFlashcards, navigateToPath}) => {
     const [editedFrontText, setEditedFrontText] = useState(frontText);
     const [editedBackText, setEditedBackText] = useState(backText);
     const navigate = useNavigate();
@@ -28,19 +27,31 @@ const FlashCardEditPopUp = ({frontText, backText, onSaveChanges, onDeleteCard, o
             const deckData = JSON.parse(deckDataString);
             const deckId = deckData.id;
             DeckService.deleteDeck(deckId)
-            navigate('/my_decks')
+            navigate(navigateToPath)
 
         }
 
     };
 
     const handleSaveCard = () => {
+        if (editedFrontText.length < 1 && editedFrontText.length < 1) {
+            setEditedFrontText('Front text must be at least 1 characters long.');
+            setEditedBackText('Back text must be at least 1 characters long.');
+            return;
+        } else if (editedFrontText.length < 1) {
+            setEditedFrontText('Front text must be at least 1 characters long.');
+            return;
+        } else if (editedBackText.length < 1) {
+            setEditedBackText('Back text must be at least 1 characters long.');
+            return;
+        }
+
         const flashcard_body = {
-            card_title : editedFrontText,
-            card_text : editedBackText,
+            card_title: editedFrontText,
+            card_text: editedBackText,
         }
         // @ts-ignore
-        DeckService.update_single_flash_card(flashcardId,flashcard_body)
+        DeckService.update_single_flash_card(flashcardId, flashcard_body)
         window.location.reload();
     }
 

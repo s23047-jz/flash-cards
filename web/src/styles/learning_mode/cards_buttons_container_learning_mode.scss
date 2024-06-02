@@ -3,10 +3,12 @@
   position: relative;
   height: 70vh;
   width: 60vw;
-  overflow-y: auto;
-  padding-right: 20px;
+
 
   .all-flashcards-text {
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
     padding-top: 20px;
     color: white;
     font-size: 30px;
@@ -14,6 +16,7 @@
   }
 
   .no-flash-cards-text {
+
     position: absolute;
     top: 50%;
     left: 50%;
@@ -33,6 +36,11 @@
 }
 
 @media screen and (max-width: 1650px) {
+  .learning-mode-container{
+  position: relative;
+  height: 70vh;
+  width: 90vw;
+  }
   .voice-control-container {
 
     width: 92vw;
