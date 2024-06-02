@@ -21,7 +21,9 @@ import {
     Profile,
     Profile_blue,
     Study,
-    Study_blue
+    Study_blue,
+    Wrench,
+    Wrench_blue
 } from "../assets/images";
 
 
@@ -74,38 +76,28 @@ export default function BottomTabNavigator() {
             return () => {};
         }, [])
     );
+
+    const ICON_MAPPING = {
+        "HomeDecks": { focused: Study_blue, default: Study },
+        "PublicDecks": { focused: Lens_blue, default: Lens },
+        "User": { focused: Profile_blue, default: Profile },
+        "ModeratorScreen": { focused: Wrench_blue, default: Wrench },
+    }
   return (
     <Tab.Navigator
-      initialRouteName={ROUTES.HOME_DECKS}
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-          if (route.name === 'HomeDecks' && focused) {
-            iconName = <Image source={Study_blue} className={" object-scale-down w-10 h-10"}/>
-          } else if (route.name === 'HomeDecks' && !focused){
-            iconName = <Image source={Study} className={" object-scale-down w-10 h-10"}/>
-          }
-          if (route.name === 'PublicDecks' && focused) {
-            iconName = <Image source={Lens_blue} className={" object-scale-down w-10 h-10"}/>
-          }else if (route.name === 'PublicDecks' && !focused){
-            iconName = <Image source={Lens} className={" object-scale-down w-10 h-10"}/>
-          }
-          if (route.name === 'User' && focused) {
-            iconName = <Image source={Profile_blue} className={" object-scale-down w-10 h-10"}/>
-          }else if (route.name === 'User' && !focused){
-            iconName = <Image source={Profile} className={" object-scale-down w-10 h-10"}/>
-          }
-          // You can return any component that you like here!
-          return iconName;
-        },
-        tabBarShowLabel: false,
-        headerShown: false,
-        tabBarActiveTintColor: 'blue',
-        tabBarInactiveTintColor: 'gray',
-        tabBarActiveBackgroundColor: colorScheme === 'dark' ? '#3D6EF1' : '#4FC3F7',
-        tabBarInactiveBackgroundColor: colorScheme === 'dark' ? '#3D6EF1' : '#4FC3F7'
-      })}
-
+        initialRouteName={ROUTES.HOME_DECKS}
+        screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+                const iconSource = ICON_MAPPING[route.name][focused ? 'focused' : 'default'];
+                return <Image source={iconSource} className={"object-scale-down w-10 h-10"} />;
+            },
+            tabBarShowLabel: false,
+            headerShown: false,
+            tabBarActiveTintColor: 'blue',
+            tabBarInactiveTintColor: 'gray',
+            tabBarActiveBackgroundColor: colorScheme === 'dark' ? '#3D6EF1' : '#4FC3F7',
+            tabBarInactiveBackgroundColor: colorScheme === 'dark' ? '#3D6EF1' : '#4FC3F7'
+        })}
     >
         {screens.map(screen => (
             <Tab.Screen key={screen.id} name={screen.route} component={screen.component} />

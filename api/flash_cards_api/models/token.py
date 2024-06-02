@@ -1,9 +1,13 @@
 import uuid
+from datetime import datetime
+
 
 from sqlalchemy import (
     Column,
     String,
-    UUID
+    UUID,
+    DateTime,
+    func
 )
 
 from flash_cards_api.models import Base
@@ -16,6 +20,7 @@ class Token(Base):
     access_token = Column(String(300), nullable=False, unique=True)
     token_type = Column(String(10), nullable=False, default="Bearer")
     user_email = Column(String(50), nullable=False, unique=False)
+    created_at = Column(DateTime, default=datetime.now(), server_default=func.now())
 
     class Config:
         orm_mode = True
