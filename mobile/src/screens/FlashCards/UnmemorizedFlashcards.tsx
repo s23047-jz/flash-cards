@@ -1,54 +1,99 @@
-import React, {useCallback, useState} from 'react';
-import {View, Text, Image, FlatList} from 'react-native';
-import {MaterialCommunityIcons} from "@expo/vector-icons";
-import {ScreenProps} from "../../interfaces/screen";
-import {DeckListInterface} from "../../interfaces/decks";
-import {Button, FetchAllFlashcards} from "../../components";
-import Trashbin from "../../assets/images/Trashbin.png";
-import Pencil from "../../assets/images/Pencil.png";
-import {useFocusEffect} from "@react-navigation/native";
-import {DecksService} from "../../services/decks";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useFocusEffect } from "@react-navigation/native";
+import * as Speech from "expo-speech";
+import React, { useCallback, useState } from "react";
+import { View, Text, Image, FlatList, TouchableOpacity } from "react-native";
 
-const UnmemorizedFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
+import { Button, FetchAllFlashcards } from "../../components";
+import { DeckListInterface } from "../../interfaces/decks";
+import { ScreenProps } from "../../interfaces/screen";
+import { DecksService } from "../../services/decks";
+
+const UnmemorizedFlashcards: React.FC<ScreenProps> = ({
+  navigation,
+  route,
+}) => {
   const { deck } = route.params;
   const [flashCards, setFlashCards] = useState([]);
-  
+
   async function fetchUnmemorizedFlashcards(deckId, navigation) {
     try {
-      console.log('POBRANO KARTY Z TALII:', deckId);
-      const data = await DecksService.read_not_memorized_flash_cards_from_deck(deckId, navigation);
+      console.log("POBRANO KARTY Z TALII:", deckId);
+      const data = await DecksService.read_not_memorized_flash_cards_from_deck(
+        deckId,
+        navigation,
+      );
       return data;
     } catch (error) {
-      console.error('Error checking authentication status:', error);
-      throw new Error('Nie udało się pobrać kart z talii');
+      console.error("Error checking authentication status:", error);
+      throw new Error("Nie udało się pobrać kart z talii");
     }
   }
-  
+
   useFocusEffect(
     useCallback(() => {
-      fetchUnmemorizedFlashcards(deck.id, navigation,).then(data => {
-        setFlashCards(data);
-      }).catch(error => {
-        console.error('Error fetching decks:', error);}
-      );
-    }, [])
+      fetchUnmemorizedFlashcards(deck.id, navigation)
+        .then((data) => {
+          setFlashCards(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching decks:", error);
+        });
+    }, []),
   );
-  
-  const FlashCard: React.FC<DeckListInterface> = ({ card  }) => {
-    console.log(card)
+  const FlashCard: React.FC<DeckListInterface> = ({ card }) => {
+    const readTitleAloud = () => {
+      Speech.speak(card["card text"]);
+    };
+
+    const readTextAloud = () => {
+      Speech.speak(card.title);
+    };
+
     return (
       <View className="justify-center">
-        <Button className="p-3 m-3 w-64 h-auto justify-center mr-auto ml-auto rounded-1xl">
-          <Text className="ml-1 font-bold">{card.title}</Text>
-          <View className="border-black w-full h-1 border-b my-1"/>
-          <Text className="ml-1 font-bold">{card['card text']}</Text>
+        <Button
+          disabled
+          className="p-3 m-3 w-64 h-auto justify-center mr-auto ml-auto rounded-1xl"
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <View style={{ flex: 1 }}>
+              <Text className="ml-1 font-bold">{card.title}</Text>
+              <View className="border-black w-full h-1 border-b my-1" />
+              <Text className="ml-1 font-bold">{card["card text"]}</Text>
+            </View>
+            <TouchableOpacity
+              onPress={() => readTitleAloud()}
+              className="absolute right-0 bottom-0"
+            >
+              <MaterialCommunityIcons
+                size={18}
+                name="cellphone-sound"
+                color="black"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => readTextAloud()}
+              className="absolute right-0 top-0"
+            >
+              <MaterialCommunityIcons
+                size={18}
+                name="cellphone-sound"
+                color="black"
+              />
+            </TouchableOpacity>
+          </View>
         </Button>
       </View>
     );
   };
-  
-  
-  
+
   return (
     <View className="flex-1 bg-sky-500 dark:bg-blue-900 placeholder-gray-400 pb-4 items-center">
       <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-14">
@@ -63,14 +108,12 @@ const UnmemorizedFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => 
         />
       </View>
       <View className="flex-1 top-32 pb-28 w-full">
-      <FlatList
-        className="w-full"
-        data={flashCards}
-        renderItem={({ item }) => (
-          <FlashCard card={item}  />
-        )}
-        keyExtractor={(item) => item.id}
-      />
+        <FlatList
+          className="w-full"
+          data={flashCards}
+          renderItem={({ item }) => <FlashCard card={item} />}
+          keyExtractor={(item) => item.id}
+        />
       </View>
     </View>
   );

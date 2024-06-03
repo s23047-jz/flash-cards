@@ -57,13 +57,10 @@ const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
   
   const FlashCard: React.FC<DeckListInterface> = ({ card, onDeleteConfirmed }) => {
     return (
-      <View className="justify-center">
-        <Button className="p-3 m-3 w-64 h-auto justify-center mr-auto ml-auto rounded-1xl">
-          <Text className="ml-1 font-bold">{card.title}</Text>
-          <View className="border-black w-full h-1 border-b my-1"/>
-          <Text className="ml-1 font-bold">{card['card text']}</Text>
-        </Button>
-        <Button className="absolute left-2 w-14 h-14 justify-center items-center"
+      <View className="flex-row justify-center items-center">
+        
+        <View className="">
+        <Button className="w-14  m-2 h-14 justify-center items-center"
                 onPress={() => showConfirmDialog(card, onDeleteConfirmed)}>
           <Image
             className="h-10"
@@ -71,7 +68,20 @@ const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
             source={Trashbin}
           />
         </Button>
-        <Button className="absolute right-2 w-14 h-14 justify-center items-center"
+        </View>
+      <View className="justify-center items-center flex-row">
+        
+        <Button disabled={true} className="p-3 m-3 w-64 h-auto justify-center mr-auto ml-auto rounded-1xl">
+          <Text className="ml-1 font-bold">{card.title}</Text>
+          <View className="border-black w-full h-1 border-b my-1"/>
+          <Text className="ml-1 font-bold">{card['card text']}</Text>
+        </Button>
+      </View>
+        
+        
+        
+        <View className="">
+        <Button className="w-14 m-2 h-14 justify-center items-center"
                 onPress={() => handleEditFlashcard(card)}>
           <Image
             className="h-10"
@@ -79,6 +89,8 @@ const DisplayFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
             source={Pencil}
           />
         </Button>
+        </View>
+        
       </View>
     );
   };
