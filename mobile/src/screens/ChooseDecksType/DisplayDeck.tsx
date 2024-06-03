@@ -85,16 +85,17 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           color="white"
         />
       </View>
-      <View className="flex-1 top-36 pb-36">
-        <Text className="text-white font-bold scale-150 left-40">
+      
+      <View className="flex-1 items-center top-36 pb-36">
+        <Text className="text-white font-bold scale-150">
           {deck.title}
         </Text>
-        <Text className="text-white font-bold scale-125 left-28 mt-2 mb-1">
+        <Text className="text-white font-bold scale-125 mt-2 mb-1">
           Number of flashcards:{" "}
           {get_number_of_cards(deckList, selected_deck.id)}
         </Text>
         
-        <Text className="text-white font-bold scale-125 left-28 mb-4">
+        <Text className="text-white font-bold scale-125 mb-4">
           Deck status: {deck.is_deck_public ? 'public' : 'private'}
         </Text>
         

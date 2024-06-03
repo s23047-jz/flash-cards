@@ -1,11 +1,12 @@
 import React, {useCallback, useState} from 'react';
-import {View, Text, FlatList} from 'react-native';
+import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import {ScreenProps} from "../../interfaces/screen";
 import {DecksService} from "../../services/decks";
 import {useFocusEffect} from "@react-navigation/native";
 import {DeckListInterface} from "../../interfaces/decks";
 import {Button} from "../../components";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import * as Speech from "expo-speech";
 
 const MemorizedFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deck } = route.params;
@@ -32,14 +33,54 @@ const MemorizedFlashcards: React.FC<ScreenProps> = ({ navigation, route }) => {
     }, [])
   );
   
-  const FlashCard: React.FC<DeckListInterface> = ({ card  }) => {
-    console.log(card)
+  const FlashCard: React.FC<DeckListInterface> = ({ card }) => {
+    const readTitleAloud = () => {
+      Speech.speak(card["card text"]);
+    };
+    
+    const readTextAloud = () => {
+      Speech.speak(card.title);
+    };
+    
     return (
       <View className="justify-center">
-        <Button className="p-3 m-3 w-64 h-auto justify-center mr-auto ml-auto rounded-1xl">
-          <Text className="ml-1 font-bold">{card.title}</Text>
-          <View className="border-black w-full h-1 border-b my-1"/>
-          <Text className="ml-1 font-bold">{card['card text']}</Text>
+        <Button
+          disabled
+          className="p-3 m-3 w-64 h-auto justify-center mr-auto ml-auto rounded-1xl"
+        >
+          <View
+            style={{
+              flexDirection: "row",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <View style={{ flex: 1 }}>
+              <Text className="ml-1 font-bold">{card.title}</Text>
+              <View className="border-black w-full h-1 border-b my-1" />
+              <Text className="ml-1 font-bold">{card["card text"]}</Text>
+            </View>
+            <TouchableOpacity
+              onPress={() => readTitleAloud()}
+              className="absolute right-0 bottom-0"
+            >
+              <MaterialCommunityIcons
+                size={18}
+                name="cellphone-sound"
+                color="black"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => readTextAloud()}
+              className="absolute right-0 top-0"
+            >
+              <MaterialCommunityIcons
+                size={18}
+                name="cellphone-sound"
+                color="black"
+              />
+            </TouchableOpacity>
+          </View>
         </Button>
       </View>
     );
