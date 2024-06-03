@@ -1,121 +1,1612 @@
-This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian)  (format=lualatex 2024.4.1)  1 APR 2024 11:55
- restricted system commands enabled.
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  3 JUN 2024 11:44
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
 **engineer.tex
 (./engineer.tex
-LaTeX2e <2021-11-15> patch level 1
-[\directlua]:1: module 'luaotfload-main' not found:
-	no field package.preload['luaotfload-main']
-	[kpse lua searcher] file not found: 'luaotfload-main'
-Error in luaotfload: reverting to OT1 L3 programming layer <2022-01-21>
-Inserting `tracingstacklevels' at position 1 in `input_level_string'.
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-02-20>
 (./sprz.cls
 Document Class: sprz 2023/10/27 SPRZ
-(/usr/share/texlive/texmf-dist/tex/latex/base/report.cls
-Document Class: report 2021/10/04 v1.4n Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 5
-4.
-
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-))
-\c@part=\count183
-\c@chapter=\count184
-\c@section=\count185
-\c@subsection=\count186
-\c@subsubsection=\count187
-\c@paragraph=\count188
-\c@subparagraph=\count189
-\c@figure=\count190
-\c@table=\count191
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
-\bibindent=\dimen137
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+\c@part=\count184
+\c@chapter=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks16
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks17
 )
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2020/03/06 v1.0d TeX engine tests
+(/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count192
-\Gm@cntv=\count193
-\c@Gm@tempcnt=\count194
-\Gm@bindingoffset=\dimen138
-\Gm@wd@mp=\dimen139
-\Gm@odd@mp=\dimen140
-\Gm@even@mp=\dimen141
-\Gm@layoutwidth=\dimen142
-\Gm@layoutheight=\dimen143
-\Gm@layouthoffset=\dimen144
-\Gm@layoutvoffset=\dimen145
-\Gm@dimlist=\toks17
+\Gm@cnth=\count193
+\Gm@cntv=\count194
+\c@Gm@tempcnt=\count195
+\Gm@bindingoffset=\dimen141
+\Gm@wd@mp=\dimen142
+\Gm@odd@mp=\dimen143
+\Gm@even@mp=\dimen144
+\Gm@layoutwidth=\dimen145
+\Gm@layoutheight=\dimen146
+\Gm@layouthoffset=\dimen147
+\Gm@layoutvoffset=\dimen148
+\Gm@dimlist=\toks18
 )
-(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count195
-\lst@gtempboxa=\box50
-\lst@token=\toks18
-\lst@length=\count196
-\lst@currlwidth=\dimen146
-\lst@column=\count197
-\lst@pos=\count198
-\lst@lostspace=\dimen147
-\lst@width=\dimen148
-\lst@newlines=\count199
-\lst@lineno=\count266
-\lst@maxwidth=\dimen149
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count196
+\lst@gtempboxa=\box51
+\lst@token=\toks19
+\lst@length=\count197
+\lst@currlwidth=\dimen149
+\lst@column=\count198
+\lst@pos=\count199
+\lst@lostspace=\dimen150
+\lst@width=\dimen151
+\lst@newlines=\count266
+\lst@lineno=\count267
+\lst@maxwidth=\dimen152
 
-(/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-\c@lstnumber=\count267
-\lst@skipnumbers=\count268
-\lst@framebox=\box51
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/02/21 1.10 (Carsten Heinz)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2020/03/24 1.8d listings configuration
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/02/21 1.10 (Carsten Heinz)
+\c@lstnumber=\count268
+\lst@skipnumbers=\count269
+\lst@framebox=\box52
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/02/21 1.10 listings configuration
 ))
-Package: listings 2020/03/24 1.8d (Carsten Heinz)
+Package: listings 2024/02/21 1.10 (Carsten Heinz)
 
-(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
-Package: xcolor 2021/10/31 v2.13 LaTeX color extensions (UK)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: luatex.def on input line 227.
+Package xcolor Info: Driver file: xetex.def on input line 274.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/luatex.def
-File: luatex.def 2021/06/01 v1.2c Graphics/color driver for luatex
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-def/xetex.def
+File: xetex.def 2022/09/22 v5.0n Graphics/color driver for xetex
 )
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
-Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
+Package xcolor Info: Model `RGB' extended on input line 1366.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1368.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1370.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/02/20 v1.0g Color table columns (DPC)
 
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty
-Package: array 2021/10/04 v2.5f Tabular extension package (FMi)
-\col@sep=\dimen150
-\ar@mcellbox=\box52
-\extrarowheight=\dimen151
-\NC@list=\toks19
-\extratabsurround=\skip49
-\backup@length=\skip50
-\ar@cellbox=\box53
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/array.sty
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen153
+\ar@mcellbox=\box53
+\extrarowheight=\dimen154
+\NC@list=\toks20
+\extratabsurround=\skip50
+\backup@length=\skip51
+\ar@cellbox=\box54
 )
-\everycr=\toks20
-\minrowclearance=\skip51
+\everycr=\toks21
+\minrowclearance=\skip52
+\rownum=\count270
 )
-\rownum=\count269
-Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1352.
-Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1356.
-Package xcolor Info: Model `RGB' extended on input line 1368.
-Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1370.
-Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1371.
-Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1372.
-Package xcolor Info: M
+(/usr/local/texlive/2024/texmf-dist/tex/latex/algorithms/algorithmic.sty
+Invalid UTF-8 byte or sequence at line 11 replaced by U+FFFD.
+Package: algorithmic 2009/08/24 v0.1 Document Style `algorithmic'
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+\c@ALC@unique=\count271
+\c@ALC@line=\count272
+\c@ALC@rem=\count273
+\c@ALC@depth=\count274
+\ALC@tlm=\skip53
+\algorithmicindent=\skip54
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2021/02/14 v1.3d Input encoding file
+\inpenc@prehook=\toks22
+\inpenc@posthook=\toks23
+
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/polski/polski.sty
+Package: polski 2021/08/25 v1.3.6 Polish language package
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/tabularx.sty
+Package: tabularx 2023/07/08 v2.11c `tabularx' package (DPC)
+\TX@col@width=\dimen155
+\TX@old@table=\dimen156
+\TX@old@col=\dimen157
+\TX@target=\dimen158
+\TX@delta=\dimen159
+\TX@cols=\count275
+\TX@ftn=\toks24
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip16
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: xetex.def on input line 107.
+)
+\Gin@req@height=\dimen160
+\Gin@req@width=\dimen161
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/eso-pic/eso-pic.sty
+Package: eso-pic 2023/05/03 v3.0c eso-pic (RN)
+\ESO@tempdima=\dimen162
+\ESO@tempdimb=\dimen163
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip55
+\multirow@cntb=\count276
+\multirow@dima=\skip56
+\bigstrutjot=\dimen164
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
+
+(/usr/local/texlive/2024/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/local/texlive/2024/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode not found.
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count277
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count278
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+\c@tabx@nest=\count279
+\c@listtotal=\count280
+\c@listcount=\count281
+\c@liststart=\count282
+\c@liststop=\count283
+\c@citecount=\count284
+\c@citetotal=\count285
+\c@multicitecount=\count286
+\c@multicitetotal=\count287
+\c@instcount=\count288
+\c@maxnames=\count289
+\c@minnames=\count290
+\c@maxitems=\count291
+\c@minitems=\count292
+\c@citecounter=\count293
+\c@maxcitecounter=\count294
+\c@savedcitecounter=\count295
+\c@uniquelist=\count296
+\c@uniquename=\count297
+\c@refsection=\count298
+\c@refsegment=\count299
+\c@maxextratitle=\count300
+\c@maxextratitleyear=\count301
+\c@maxextraname=\count302
+\c@maxextradate=\count303
+\c@maxextraalpha=\count304
+\c@abbrvpenalty=\count305
+\c@highnamepenalty=\count306
+\c@lownamepenalty=\count307
+\c@maxparens=\count308
+\c@parenlevel=\count309
+\blx@tempcnta=\count310
+\blx@tempcntb=\count311
+\blx@tempcntc=\count312
+\c@blx@maxsection=\count313
+\blx@maxsegment@0=\count314
+\blx@notetype=\count315
+\blx@parenlevel@text=\count316
+\blx@parenlevel@foot=\count317
+\blx@sectionciteorder@0=\count318
+\blx@sectionciteorderinternal@0=\count319
+\blx@entrysetcounter=\count320
+\blx@biblioinstance=\count321
+\labelnumberwidth=\skip57
+\labelalphawidth=\skip58
+\biblabelsep=\skip59
+\bibitemsep=\skip60
+\bibnamesep=\skip61
+\bibinitsep=\skip62
+\bibparsep=\skip63
+\bibhang=\skip64
+\blx@bcfin=\read2
+\blx@bcfout=\write3
+\blx@langwohyphens=\language89
+\c@mincomprange=\count322
+\c@maxcomprange=\count323
+\c@mincompwidth=\count324
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'numeric.dbx' not found.
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count325
+\c@savedafterword=\count326
+\c@annotator=\count327
+\c@savedannotator=\count328
+\c@author=\count329
+\c@savedauthor=\count330
+\c@bookauthor=\count331
+\c@savedbookauthor=\count332
+\c@commentator=\count333
+\c@savedcommentator=\count334
+\c@editor=\count335
+\c@savededitor=\count336
+\c@editora=\count337
+\c@savededitora=\count338
+\c@editorb=\count339
+\c@savededitorb=\count340
+\c@editorc=\count341
+\c@savededitorc=\count342
+\c@foreword=\count343
+\c@savedforeword=\count344
+\c@holder=\count345
+\c@savedholder=\count346
+\c@introduction=\count347
+\c@savedintroduction=\count348
+\c@namea=\count349
+\c@savednamea=\count350
+\c@nameb=\count351
+\c@savednameb=\count352
+\c@namec=\count353
+\c@savednamec=\count354
+\c@translator=\count355
+\c@savedtranslator=\count356
+\c@shortauthor=\count357
+\c@savedshortauthor=\count358
+\c@shorteditor=\count359
+\c@savedshorteditor=\count360
+\c@labelname=\count361
+\c@savedlabelname=\count362
+\c@institution=\count363
+\c@savedinstitution=\count364
+\c@lista=\count365
+\c@savedlista=\count366
+\c@listb=\count367
+\c@savedlistb=\count368
+\c@listc=\count369
+\c@savedlistc=\count370
+\c@listd=\count371
+\c@savedlistd=\count372
+\c@liste=\count373
+\c@savedliste=\count374
+\c@listf=\count375
+\c@savedlistf=\count376
+\c@location=\count377
+\c@savedlocation=\count378
+\c@organization=\count379
+\c@savedorganization=\count380
+\c@origlocation=\count381
+\c@savedoriglocation=\count382
+\c@origpublisher=\count383
+\c@savedorigpublisher=\count384
+\c@publisher=\count385
+\c@savedpublisher=\count386
+\c@language=\count387
+\c@savedlanguage=\count388
+\c@origlanguage=\count389
+\c@savedoriglanguage=\count390
+\c@pageref=\count391
+\c@savedpageref=\count392
+\shorthandwidth=\skip65
+\shortjournalwidth=\skip66
+\shortserieswidth=\skip67
+\shorttitlewidth=\skip68
+\shortauthorwidth=\skip69
+\shorteditorwidth=\skip70
+\locallabelnumberwidth=\skip71
+\locallabelalphawidth=\skip72
+\localshorthandwidth=\skip73
+\localshortjournalwidth=\skip74
+\localshortserieswidth=\skip75
+\localshorttitlewidth=\skip76
+\localshortauthorwidth=\skip77
+\localshorteditorwidth=\skip78
+Package biblatex Info: Trying to load enhanced support for Unicode engines...
+Package biblatex Info: ... file 'blx-unicode.def' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-unicode.def)
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+\c@textcitecount=\count393
+\c@textcitetotal=\count394
+\c@textcitemaxnames=\count395
+\c@biburlbigbreakpenalty=\count396
+\c@biburlbreakpenalty=\count397
+\c@biburlnumpenalty=\count398
+\c@biburlucpenalty=\count399
+\c@biburllcpenalty=\count400
+\biburlbigskip=\muskip17
+\biburlnumskip=\muskip18
+\biburlucskip=\muskip19
+\biburllcskip=\muskip20
+\c@smartand=\count401
+)
+Package biblatex Info: Trying to load bibliography style 'numeric'...
+Package biblatex Info: ... file 'numeric.bbx' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/bbx/numeric.bbx
+File: numeric.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count402
+\c@bbx:relatedtotal=\count403
+))
+Package biblatex Info: Trying to load citation style 'numeric'...
+Package biblatex Info: ... file 'numeric.cbx' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/cbx/numeric.cbx
+File: numeric.cbx 2023/03/05 v3.19 biblatex citation style (PK/MW)
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\supercite'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\smartcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: XeTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Document encoding is UTF8 ....
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2024-02-20 L3 programming layer (loader) 
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-xetex.def
+File: l3backend-xetex.def 2024-02-20 L3 backend support: XeTeX
+\g__graphics_track_int=\count404
+\l__pdf_internal_box=\box55
+\g__pdf_backend_object_int=\count405
+\g__pdf_backend_annotation_int=\count406
+\g__pdf_backend_link_int=\count407
+))
+Package biblatex Info: ... and expl3
+(biblatex)             2024-02-20 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2024-02-18 L3 Experimental document command parser
+)
+Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/enumitem/enumitem.sty
+Package: enumitem 2019/06/20 v3.9 Customized lists
+\labelindent=\skip79
+\enit@outerparindent=\dimen165
+\enit@toks=\toks25
+\enit@inbox=\box56
+\enit@count@id=\count408
+\enitdp@description=\count409
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 11
+2.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/setspace/setspace.sty
+Package: setspace 2022/12/04 v6.7b set line spacing
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2023-11-01 v4.19 Multi-page Table package (DPC)
+\LTleft=\skip80
+\LTright=\skip81
+\LTpre=\skip82
+\LTpost=\skip83
+\LTchunksize=\count410
+\LTcapwidth=\dimen166
+\LT@head=\box57
+\LT@firsthead=\box58
+\LT@foot=\box59
+\LT@lastfoot=\box60
+\LT@gbox=\box61
+\LT@cols=\count411
+\LT@rows=\count412
+\c@LT@tables=\count413
+\c@LT@chunks=\count414
+\LT@p@ftn=\toks26
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count415
+\float@exts=\toks27
+\float@box=\box62
+\@float@everytoks=\toks28
+\@floatcapt=\box63
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/tools/indentfirst.sty
+Package: indentfirst 2023/07/02 v1.03 Indent first paragraph (DPC)
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/nowidow/nowidow.sty
+Package: nowidow 2011/09/20 1.0 Easily prevent widows and orphans
+Package: nowidow 
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/polyglossia/polyglossia.sty
+Package: polyglossia 2024/03/07 v2.1 Modern multilingual typesetting with XeLaT
+eX and LuaLaTeX
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
+
+(/usr/local/texlive/2024/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2024/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+\XKV@toks=\toks29
+\XKV@tempa@toks=\toks30
+)
+\XKV@depth=\count416
+File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/fontspec/fontspec.sty
+Package: fontspec 2024/02/13 v2.9a Font selection for XeLaTeX and LuaLaTeX
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
+Package: fontspec-xetex 2024/02/13 v2.9a Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count417
+\l__fontspec_language_int=\count418
+\l__fontspec_strnum_int=\count419
+\l__fontspec_tmp_int=\count420
+\l__fontspec_tmpa_int=\count421
+\l__fontspec_tmpb_int=\count422
+\l__fontspec_tmpc_int=\count423
+\l__fontspec_em_int=\count424
+\l__fontspec_emdef_int=\count425
+\l__fontspec_strong_int=\count426
+\l__fontspec_strongdef_int=\count427
+\l__fontspec_tmpa_dim=\dimen167
+\l__fontspec_tmpb_dim=\dimen168
+\l__fontspec_tmpc_dim=\dimen169
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/polyglossia/gloss-latex.ldf
+File: gloss-latex.ldf polyglossia: module for default language
+)
+Package polyglossia Info: Default language is latex.
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/polyglossia/gloss-polish.ldf
+File: gloss-polish.ldf polyglossia: module for Polish
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/polyglossia/babelsh.def
+File: babelsh.def 2022/06/21 Babel common definitions for shorthands
+ Taken verbatim from babel files (2022/06/06 v3.76)
+)
+Package babel Info: Making " an active character on input line 42.
+\polish@hyphen=\XeTeXcharclass1
+\polish@openpunctuation=\XeTeXcharclass2
+\polish@nonsyllabicpreposition=\XeTeXcharclass3
+)
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 ...ainlanguage[spacedguillemets=true]{polish}
+                                                  
+? 
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 ...ainlanguage[spacedguillemets=true]{polish}
+                                                  
+? 
+Package polyglossia Info: Default language is polish.
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 ...ainlanguage[spacedguillemets=true]{polish}
+                                                  
+? 
+
+! Package biblatex Error: 'polyglossia' loaded after biblatex.
+
+See the biblatex package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44 \begin{document}
+                     
+? 
+\@quotelevel=\count428
+\@quotereset=\count429
+(./engineer.aux)
+\openout1 = `engineer.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
+4.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(89.62709pt, 418.25368pt, 89.6271pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=418.25368pt
+* \textheight=591.5302pt
+* \oddsidemargin=17.3571pt
+* \evensidemargin=17.3571pt
+* \topmargin=-7.86334pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+\c@lstlisting=\count430
+Package biblatex Info: Trying to load language 'polish'...
+Package biblatex Info: ... file 'polish.lbx' found.
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/polish.lbx
+File: polish.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: XeTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout3 = `engineer.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'engineer.bbl' found.
+
+(./engineer.bbl)
+Package biblatex Info: Reference section=0 on input line 44.
+Package biblatex Info: Reference segment=0 on input line 44.
+
+Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
+(fontspec)             this).
+
+\symlegacymaths=\mathgroup4
+LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 44.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 44.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 44.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 44.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 44.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 44.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 44.
+LaTeX Font Info:    Redeclaring math accent \check on input line 44.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 44.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 44.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 44.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 44.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 44.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `normal' on input line 44.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 44.
+LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
+(Font)              `operators' in the math version `bold' on input line 44.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 44.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 44.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 44.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 44.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 44.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 44.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 44.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 44.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 44.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 44.
+
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44 \begin{document}
+                     
+? 
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44 \begin{document}
+                     
+? 
+LaTeX Info: Redefining \rmfamily on input line 44.
+LaTeX Info: Redefining \sffamily on input line 44.
+LaTeX Info: Redefining \ttfamily on input line 44.
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44 \begin{document}
+                     
+? 
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.44 \begin{document}
+                     
+? 
+File: sprz/pjatk.png Graphic file (type bmp)
+<sprz/pjatk.png>
+[1
+
+]
+File: sprz/pjatk.png Graphic file (type bmp)
+<sprz/pjatk.png>
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 48.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 48.
+
+Underfull \hbox (badness 10000) in paragraph at lines 48--48
+[]\TU/lmr/bx/n/10 Data ustalenia
+ []
+
+
+Overfull \hbox (25.19997pt too wide) in paragraph at lines 48--48
+ [] 
+ []
+
+
+Underfull \hbox (badness 4673) in paragraph at lines 48--48
+[]|\TU/lmr/bx/n/10 Numer albu-
+ []
+
+
+Overfull \hbox (24.90573pt too wide) in paragraph at lines 48--48
+ [] 
+ []
+
+[1] [2] [3] (./engineer.toc
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ...ctlanguage *[spacedguillemets=true]{polish}
+                                                  
+? 
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ...ctlanguage *[spacedguillemets=true]{polish}
+                                                  
+? 
+LaTeX Info: Redefining \rmfamily on input line 1.
+LaTeX Info: Redefining \sffamily on input line 1.
+LaTeX Info: Redefining \ttfamily on input line 1.
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ...ctlanguage *[spacedguillemets=true]{polish}
+                                                  
+? 
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ...ctlanguage *[spacedguillemets=true]{polish}
+                                                  
+? 
+[4
+
+] [5])
+\tf@toc=\write4
+\openout4 = `engineer.toc'.
+
+ (./chapters/chapter_1/main.tex [6]
+Rozdział 1.
+) (./chapters/chapter_2/main.tex [7
+
+]
+Rozdział 2.
+[8
+
+]
+File: chapters/chapter_2/rich_picture.png Graphic file (type bmp)
+<chapters/chapter_2/rich_picture.png>
+ [9]
+File: chapters/chapter_2/krzywa1.png Graphic file (type bmp)
+<chapters/chapter_2/krzywa1.png>
+ [10]
+File: chapters/chapter_2/krzywa2.png Graphic file (type bmp)
+<chapters/chapter_2/krzywa2.png>
+ [11] [12]) (./chapters/chapter_3/main.tex [13]
+Rozdział 3.
+[14
+
+]
+File: chapters/chapter_3/quizlet.png Graphic file (type bmp)
+<chapters/chapter_3/quizlet.png>
+ [15]
+File: chapters/chapter_3/fiszoteka.png Graphic file (type bmp)
+<chapters/chapter_3/fiszoteka.png>
+ [16] [17]
+File: chapters/chapter_3/gizmo.png Graphic file (type bmp)
+<chapters/chapter_3/gizmo.png>
+ [18]
+File: chapters/chapter_3/flashcards.png Graphic file (type bmp)
+<chapters/chapter_3/flashcards.png>
+ [19] [20] (./chapters/chapter_3/table.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+[]|\TU/lmr/bx/n/10 Zidentyfiko-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+[]|\TU/lmr/bx/n/10 Środki /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 pobiegawcze
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 i szacowa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 ny poziom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+[]|\TU/lmr/bx/n/10 Środki /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 Działania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 minimalizu-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 jące wpływ
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 już po jego
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 wystąpieniu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 i szacowa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 ny poziom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 wdrożenia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+[]|\TU/lmr/bx/n/10 Ranga ry-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 zyka (im
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 niższa, tym
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 mniejszy
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 negatywny
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--3
+\TU/lmr/bx/n/10 wpływ na
+ []
+
+
+Overfull \hbox (1.62859pt too wide) in paragraph at lines 3--4
+[]|\TU/lmr/bx/n/10 Prawdopodo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\TU/lmr/bx/n/10 - bieństwo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 3--4
+\TU/lmr/bx/n/10 wystąpienia
+ []
+
+
+Underfull \hbox (badness 1418) in paragraph at lines 5--5
+\TU/lmr/m/n/10 pilacji, wyniki
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+\TU/lmr/m/n/10 testów nie
+ []
+
+
+Underfull \hbox (badness 3312) in paragraph at lines 5--5
+\TU/lmr/m/n/10 pokrywają się
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+\TU/lmr/m/n/10 wykonywanie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+\TU/lmr/m/n/10 testów opro-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+\TU/lmr/m/n/10 testowanie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+\TU/lmr/m/n/10 na bieżąco
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+\TU/lmr/m/n/10 nowo imple-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+\TU/lmr/m/n/10 mentowanych
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
+\TU/lmr/m/n/10 funkcjonalno-
+ []
+
+
+Underfull \hbox (badness 5077) in paragraph at lines 7--7
+[]|\TU/lmr/m/n/10 Awaria sprzę-
+ []
+
+
+Underfull \hbox (badness 4608) in paragraph at lines 7--7
+\TU/lmr/m/n/10 tu deweloper-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
+[]|\TU/lmr/m/n/10 Sprzęt prze-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
+\TU/lmr/m/n/10 staje działać,
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 7--7
+\TU/lmr/m/n/10 brak możliwo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
+[]|\TU/lmr/m/n/10 Działanie na
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\TU/lmr/m/n/10 Niedobór
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/m/n/10 umiejętności
+ []
+
+
+Underfull \hbox (badness 1264) in paragraph at lines 9--9
+[]|\TU/lmr/m/n/10 Problemy jed-
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 9--9
+\TU/lmr/m/n/10 nostek w po-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/m/n/10 szczególnych
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\TU/lmr/m/n/10 Uzupełnianie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\TU/lmr/m/n/10 Pomoc in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]|\TU/lmr/m/n/10 Niezgodność
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]|\TU/lmr/m/n/10 Osoba blo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 kuje postęp
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 nad projek-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 tem poprzez
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 odpowiedzial-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 ność nad
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 kluczowym
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]|\TU/lmr/m/n/10 Wcześniejsze
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 zaplanowanie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]|\TU/lmr/m/n/10 Wspólna
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 praca nad
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 kluczowym
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 elementem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 zajęcie się
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 powiązanymi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\TU/lmr/m/n/10 Wybór nie-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 odpowiedniej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\TU/lmr/m/n/10 Planowane
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 rozwiązania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 nie są osią-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 galne przez
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 wykorzystywa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\TU/lmr/m/n/10 Dogłębna
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 analiza po-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 trzebnych
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 technologii
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\TU/lmr/m/n/10 Dopasowanie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 alternatyw-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 nych możli-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 wych rozwią-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\TU/lmr/m/n/10 Niedoszacowa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\TU/lmr/m/n/10 - nie budżetu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\TU/lmr/m/n/10 potrzebnego
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\TU/lmr/m/n/10 infrastruktury
+ []
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 15--15
+[]|\TU/lmr/m/n/10 Budżet zbliża
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\TU/lmr/m/n/10 pania przed
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\TU/lmr/m/n/10 zaplanowanym
+ []
+
+
+Underfull \hbox (badness 4013) in paragraph at lines 15--15
+\TU/lmr/m/n/10 ków wykorzy-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\TU/lmr/m/n/10 Próba po-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\TU/lmr/m/n/10 zyskania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\TU/lmr/m/n/10 inwestorów
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\TU/lmr/m/n/10 ChatGPT
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 3.5 generuje
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 bezsensowną
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 17--17
+\TU/lmr/m/n/10 treść dotyczą-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 użytkownika
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\TU/lmr/m/n/10 Generowane
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 treści nie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 nawiązują
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 do zagadnie-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 nia, o które
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 chat został
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\TU/lmr/m/n/10 Próba spre-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 cyzowania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 zapytania,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 które zosta-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 ło przesłane
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 do chatu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 w celu wy-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 generowania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 konkretniejszej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\TU/lmr/m/n/10 Użytkownik
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 może zaak-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 ceptować lub
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 odrzucić wy-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 generowaną
+ []
+
+
+Overfull \hbox (49.19481pt too wide) in alignment at lines 1--19
+ [] [] [] [] [] [] 
+ []
+
+[21] [22])) (./chapters/chapter_4/main.tex [23]
+Rozdział 4.
+) [24
+
+] (./chapters/chapter_5/main.tex
+
+! LaTeX Error: Environment chap5 undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.32 \begin{chap5}
+                  
+? 
+[25]
+Rozdział 5.
+[26
+
+] [27] [28] [29] [30] [31]
+
+! LaTeX Error: \begin{document} ended by \end{chap5}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.106 \end{chap5}
+                 
+? 
+) (./chapters/chapter_6/main.tex
+! Undefined control sequence.
+l.1 \newapage
+             
+? 
+Rozdział 6.
+File: chapters/chapter_6/diagram_przypadkow_uzycia.jpg Graphic file (type bmp)
+<chapters/chapter_6/diagram_przypadkow_uzycia.jpg>
+[32
+
+
+]
+File: chapters/chapter_6/erd.png Graphic file (type bmp)
+<chapters/chapter_6/erd.png>
+ [33]
+File: chapters/chapter_6/diagram_architektury.png Graphic file (type bmp)
+<chapters/chapter_6/diagram_architektury.png>
+File: chapters/chapter_6/diagram_sekwencji.png Graphic file (type bmp)
+<chapters/chapter_6/diagram_sekwencji.png>
+ [34] (./chapters/chapter_6/wymagania.tex [35] [36] [37] [38] [39]
+[40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52]))
+(./chapters/chapter_7/main.tex [53]
+Rozdział 7.
+File: chapters/chapter_7/github.png Graphic file (type bmp)
+<chapters/chapter_7/github.png>
+[54
+
+]
+File: chapters/chapter_7/jira.png Graphic file (type bmp)
+<chapters/chapter_7/jira.png>
+File: chapters/chapter_7/miro.png Graphic file (type bmp)
+<chapters/chapter_7/miro.png>
+File: chapters/chapter_7/google_drive.png Graphic file (type bmp)
+<chapters/chapter_7/google_drive.png>
+ [55]
+File: chapters/chapter_7/canva.png Graphic file (type bmp)
+<chapters/chapter_7/canva.png>
+ [56] [57] [58]) (./chapters/chapter_8/main.tex [59]
+Rozdział 8.
+(./chapters/chapter_8/faza_implementacji.tex [60
+
+]
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \penalty \@M \futurelet \@let@token \LT@@h...
+l.39 \hline
+           
+? 
+! Misplaced \omit.
+\multispan ->\omit 
+                   \@multispan 
+l.40 
+     
+? 
+! Extra alignment tab has been changed to \cr.
+<template> ... width\arrayrulewidth }\endtemplate 
+                                                  
+l.40 
+     
+? 
+[61] [62] [63] [64] [65] [66])
+(./chapters/chapter_8/szczegoly_implementacji.tex))
+(./chapters/chapter_9/main.tex [67]
+Rozdział 9.
+[68
+
+]
+File: chapters/chapter_9/testy1.png Graphic file (type bmp)
+<chapters/chapter_9/testy1.png>
+) [69]
+Overfull \hbox (9.18166pt too wide) in paragraph at lines 73--73
+\TU/lmr/m/n/10 ja 2024, godz. 7:00. Classics in the History of Psychology. 1885
+. \TU/lmr/m/sc/10 url\TU/lmr/m/n/10 : $[][][][][] [] [] [] [][][][][][][][][][]
+[][][] []
+ []
+
+[70
+
+] (./engineer.aux)
+ ***********
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-02-20>
+ ***********
+
+
+LaTeX Warning: There were undefined references.
+
+
+Package biblatex Warning: Please rerun LaTeX.
+
+Package logreq Info: Writing requests to 'engineer.run.xml'.
+\openout1 = `engineer.run.xml'.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 16625 strings out of 474773
+ 360014 string characters out of 5757724
+ 1945839 words of memory out of 5000000
+ 38525 multiletter control sequences out of 15000+600000
+ 563931 words of font info for 63 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 74i,13n,84p,1521b,5288s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on engineer.pdf (71 pages).
