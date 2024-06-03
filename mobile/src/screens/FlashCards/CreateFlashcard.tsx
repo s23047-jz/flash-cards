@@ -3,15 +3,11 @@ import React, { useState } from "react";
 import { View, Text, TextInput, Image } from "react-native";
 
 import GenerateText from "../../assets/images/Generate_text.png";
-import MicrophoneBlack from "../../assets/images/Microphone_black.png";
-import MicrophoneRed from "../../assets/images/Microphone_red.png";
-import Plus from "../../assets/images/Plus.png";
 import { Button } from "../../components";
 import { InputValidator } from "../../components/Validator/InputValidator";
-import { ROUTES } from "../../constants";
 import { ScreenProps } from "../../interfaces/screen";
-import { DecksService } from "../../services/decks";
-import {FlashCardsService} from "../../services/flashcards";
+import { ChatService} from "../../services/chat";
+import { FlashCardsService } from "../../services/flashcards";
 
 const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deck } = route.params;
@@ -41,6 +37,11 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
   };
   
+  const handleGenerate = async () => {
+    
+    ChatService.sent_message("siemka");
+  }
+  
   
   
   return (
@@ -68,16 +69,6 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
             multiline
             onChangeText={setSideA}
           />
-          <Button className="w-72 h-14 justify-center mr-auto ml-auto rounded-1xl">
-            <Text className="mb-1.5 font-bold top-1  text-right right-2">
-              Front side - dictate the content
-            </Text>
-            <Image
-              className="absolute h-10 -left-9"
-              resizeMode="contain"
-              source={MicrophoneBlack}
-            />
-          </Button>
         </View>
 
         <View className="m-3 pt-5">
@@ -90,17 +81,8 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
             multiline
             onChangeText={setSideB}
           />
-          <Button className="w-72 h-14 justify-center mr-auto ml-auto rounded-1xl">
-            <Text className="mb-1.5 font-bold top-1  text-right right-2">
-              Back side - dictate the content
-            </Text>
-            <Image
-              className="absolute h-10 -left-9"
-              resizeMode="contain"
-              source={MicrophoneBlack}
-            />
-          </Button>
-          <Button className="w-72 h-14 m-5 justify-center mr-auto ml-auto rounded-1xl">
+          <Button className="w-72 h-14 m-5 justify-center mr-auto ml-auto rounded-1xl"
+          onPress={handleGenerate}>
             <Text className="scale-125 mb-1.5 font-bold top-1 text-right right-11">
               Generate content with AI
             </Text>
