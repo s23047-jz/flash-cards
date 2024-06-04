@@ -1,20 +1,11 @@
 import React from "react";
 import Routes from "../../constants/routes";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { Button, Col, Row } from "../../components";
 import { ScreenProps } from "../../interfaces/screen";
+import { styles } from "../../assets/styles";
 
 const ControlView: React.FC<ScreenProps> = ({ navigation }) => {
-
-    const styles = StyleSheet.create({
-        row: {
-            height: 75
-        },
-        col: {
-            width: '50%'
-        },
-    })
-
     const options = [
         {
             label: "Users",

@@ -10,27 +10,13 @@ import { DecksService } from "../../services/decks";
 import { UsersService } from "../../services/users";
 import { ROUTES } from "../../constants";
 import { AVATAR_MAPPING } from "../../utils/avatars";
+import { styles as mainStyles } from "../../assets/styles";
 
 const styles = StyleSheet.create({
-    card: {
-        height: 150,
-        width: 350
-    },
-    row: {
-        height: 75
-    },
-    col: {
-        width: '50%'
-    },
-    button: {
-        width: 150
-    },
+    ...mainStyles,
     avatar: {
         height: 50,
         width: 50
-    },
-    loadBtn: {
-        maxWidth: 250
     }
 });
 
@@ -38,7 +24,7 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
     return (
         <Card className={'mr-auto ml-auto w-full mb-7'} style={styles.card}>
             <Row className={'w-full'}>
-                <Row className={'w-28 h-full'}>
+                <Row className={'h-full'} style={styles.cardRows}>
                     <Col className={'w-full justify-end'}>
                         <Text className={'text-center font-bold'}>
                             { title }
@@ -50,7 +36,7 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
                         </Text>
                     </Col>
                 </Row>
-                <Row className={'w-24 h-full'}>
+                <Row className={'h-full'} style={styles.cardRows}>
                     <Col className={'w-full text-center items-center justify-end'}>
                         <MaterialCommunityIcons name={'download'} size={40} className={'ml-auto mr-auto text-center'}/>
                     </Col>
@@ -63,7 +49,7 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
                         </Text>
                     </Col>
                 </Row>
-                <Row className={'w-28 h-full'}>
+                <Row className={'h-full'} style={styles.cardRows}>
                     <Col className={'w-full justify-center items-center'}>
                             <Image
                                 source={AVATAR_MAPPING[avatar]}
@@ -91,14 +77,14 @@ const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, ava
         >
             <Card className={'w-full h-full'}>
                 <Row className={'w-full'}>
-                    <Row className={'w-28 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full justify-center h-full'}>
                             <Text className={'text-center font-bold text-xl text-blue-800 dark:text-blue-100'}>
                                 { rank }
                             </Text>
                         </Col>
                     </Row>
-                    <Row className={'w-24 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full justify-center items-center'}>
                             <Image
                                 source={AVATAR_MAPPING[avatar]}
@@ -112,7 +98,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, rank, username, shared, ava
                             </Text>
                         </Col>
                     </Row>
-                    <Row className={'w-28 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'share'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>
@@ -216,10 +202,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     };
 
     const handleNavigationToUserStats = (userId: string) => {
-        navigation.navigate(ROUTES.USER, {
-            screen: ROUTES.USER_STATS,
-            params: { userId, routeFrom: ROUTES.PUBLIC_DECKS }
-        })
+        navigation.navigate(ROUTES.USER_STATS, { userId, ownStatistics: false })
     }
 
     useEffect(() => {

@@ -132,6 +132,8 @@ async def get_users_ranking(
     sub_q = db.query(
         Deck.user_id.label('user_id'),
         func.rank().over(order_by=desc(func.sum(Deck.downloads))).label('rank')
+    ).filter(
+        Deck.is_deck_public == True
     ).group_by(
         Deck.user_id
     ).subquery()
@@ -287,6 +289,8 @@ async def get_user_stats(
     sub_q = db.query(
         Deck.user_id.label('user_id'),
         func.rank().over(order_by=desc(func.sum(Deck.downloads))).label('rank')
+    ).filter(
+        Deck.is_deck_public == True
     ).group_by(
         Deck.user_id
     ).subquery()
@@ -301,14 +305,24 @@ async def get_user_stats(
     ).outerjoin(
         Deck,
         Deck.user_id == User.id
-    ).join(
+    ).outerjoin(
         sub_q,
         sub_q.c.user_id == User.id
     ).filter(
         User.id == user_id
     )
 
-    return q.first()
+    q = q.first()
+    user = {
+        "id": q.id,
+        "username": q.username,
+        "avatar": q.avatar,
+        "created_decks": q.created_decks or 0,
+        "public_decks": q.public_decks or 0,
+        "rank": q.rank or 0,
+    }
+
+    return user
 
 
 @router.put("/update-avatar/{user_id}/", status_code=200, dependencies=[Depends(get_current_active_user)])

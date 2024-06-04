@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Image, Text, ScrollView, TouchableOpacity, StyleSheet} from "react-native";
+import { View, Image, Text, ScrollView, TouchableOpacity } from "react-native";
 import { ScreenProps } from "../../interfaces/screen";
 
 import { Row, Col, Button, CModal } from "../../components";
@@ -12,17 +12,13 @@ import DarkMode from "../../components/DarkMode";
 import { ROUTES } from "../../constants";
 import { warning } from "../../assets/images";
 import { AVATAR_MAPPING } from "../../utils/avatars";
+import { styles } from "../../assets/styles";
 
 const UserPanelScreen: React.FC<ScreenProps> = ({ navigation, route}) => {
 
     const { userData, getUserData } = route.params;
     const [showModal, setShowModal] = useState(false);
     const [showAvatarModal, setShowAvatarModal] = useState(false);
-    const styles = StyleSheet.create({
-        col: {
-            width: '50%'
-        }
-});
 
     const options = [
         {
@@ -30,7 +26,7 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation, route}) => {
             routes: [
                 {
                     label: "Stats",
-                    to: Routes.USER_STATS
+                    to: Routes.USER_OWN_STATS
                 }
             ]
         },

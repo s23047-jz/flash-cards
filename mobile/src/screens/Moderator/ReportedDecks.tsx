@@ -6,25 +6,17 @@ import { useFocusEffect } from "@react-navigation/native";
 import { Button, Card, CModal, Col, Loader, LoadingCard, Row } from "../../components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ReportInterface } from "../../interfaces/reports";
+import { styles as mainStyles } from "../../assets/styles";
 
 const styles = StyleSheet.create({
-    card: {
-        height: 150,
-        width: 350
-    },
+    ...mainStyles,
     row: {
         height: 85
-    },
-    col: {
-        width: '50%'
     },
     avatar: {
         height: 50,
         width: 50
     },
-    loadBtn: {
-        maxWidth: 250
-    }
 });
 
 const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
@@ -139,8 +131,8 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                 { MenuModal() }
                 <Card className={'w-full h-full'}>
                     <Row className={'w-full'}>
-                        <Row className={'w-28 h-full'} />
-                        <Row className={'w-24 h-full'}>
+                        <Row className={'h-full'} style={styles.cardRows} />
+                        <Row className={'h-full'} style={styles.cardRows}>
                             <Col className={'w-full justify-center items-center'}>
                                 <Text className={'text-center font-bold'}>
                                     { title }
@@ -152,7 +144,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                                 </Text>
                             </Col>
                         </Row>
-                        <Row className={'w-28 h-full'} >
+                        <Row className={'h-full'} style={styles.cardRows}>
                             <Col className={'w-full'}>
                                 <Text className={'text-center font-bold'}>
                                     Submitter

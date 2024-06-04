@@ -57,7 +57,7 @@ export default function UserPanelNavigator() {
             <Stack.Screen name={ROUTES.USER_DETAILS} component={UserPanelScreen} initialParams={{userData, getUserData}}/>
             <Stack.Screen name={ROUTES.USER_UPDATE} component={UserUpdate} initialParams={{getUserData}} />
             <Stack.Screen name={ROUTES.USER_DELETE} component={UserDelete} initialParams={{userData}} />
-            <Stack.Screen name={ROUTES.USER_STATS} component={UserStats} initialParams={{userId: userData.id}} />
+            <Stack.Screen name={ROUTES.USER_OWN_STATS} component={UserStats} initialParams={{userId: userData.id, ownStatistics: true}} />
         </Stack.Navigator>
     )
 }

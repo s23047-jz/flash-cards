@@ -1,14 +1,8 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
-import { Col, Row, Card } from "./index";
+import { View } from "react-native";
+import { Col, Row } from "./index";
 import { Skeleton } from "moti/skeleton";
-
-const styles = StyleSheet.create({
-    card: {
-        height: 150,
-    }
-});
-
+import { styles } from "../assets/styles";
 
 const LoadingCard = () => {
     const background = '#e5e5e5'

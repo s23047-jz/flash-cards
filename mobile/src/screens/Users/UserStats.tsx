@@ -1,49 +1,22 @@
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { View, ScrollView, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 
 import { Row, Col, Loader, Button, Card, LoadingCard } from "../../components";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { UserStatsInterface } from "../../interfaces/user";
 import { DeckListInterface } from "../../interfaces/decks";
-import { ActiveUser } from "../../services/user";
 import { ROUTES } from "../../constants";
 import { UsersService } from "../../services/users";
 import { DecksService } from "../../services/decks";
 import { AVATAR_MAPPING } from "../../utils/avatars";
-
-
-const styles = StyleSheet.create({
-    card: {
-        height: 150,
-        width: 350
-    },
-    row: {
-        height: 75
-    },
-    col: {
-        width: '50%'
-    },
-    stats_row: {
-        height: 45
-    },
-    button: {
-        width: 150
-    },
-    avatar: {
-        height: 150,
-        width: 150
-    },
-    loadBtn: {
-        maxWidth: 250
-    }
-});
-
+import { styles } from "../../assets/styles";
 
 const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
-    const { userId, routeFrom } = route.params;
+    const { userId, ownStatistics } = route.params;
 
     const PAGES = {
         USER: 'user',
@@ -53,7 +26,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     const perPage = 4;
 
     const [loading, setLoading] = useState(true);
-    const [checkSelfData, setCheckSelfData] = useState(false);
+    const [checkOwnData, setCheckOwnData] = useState(false);
     const [selectedView, setSelectedView] = useState(PAGES.DECKS);
     const [userData, setUserData] = useState<UserStatsInterface>({});
     const [decksData, setDecksData] = useState([]);
@@ -104,25 +77,29 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         }, 1000)
     }
 
+    useFocusEffect(
+        useCallback(() => {
+            setLoading(true);
+            checkId();
+            return () => {};
+        }, [])
+    );
 
-    useEffect(() => {
-        setLoading(true);
-        const checkId = async () => {
-            if (!userId) navigation.navigate(ROUTES.HOME)
-            try {
-                const { id } = await ActiveUser.getUserData();
-                const show = id === userId
-                setQuery({ "user_id": userId, page: 1, per_page: perPage })
-                setCheckSelfData(show);
-                await changeView(PAGES.USER)
-                setLoading(false);
-            } catch (error) {
-                console.error('Error checking authentication status:', error);
-                setLoading(false);
+    const checkId = async () => {
+        try {
+            if (!userId) {
+                navigation.navigate(ROUTES.HOME)
+                return
             }
-        };
-        checkId();
-    }, []);
+            setQuery({ "user_id": userId, page: 1, per_page: perPage })
+            setCheckOwnData(ownStatistics);
+            await changeView(PAGES.USER)
+            setLoading(false);
+        } catch (error) {
+            console.error('Error checking authentication status:', error);
+            setLoading(false);
+        }
+    };
 
     const userView = () => {
         return (
@@ -141,15 +118,21 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                     </Row>
                     <Row className={'w-full'} style={styles.stats_row}>
                         <Text className={'text-white font-bold text-xl ml-4 h-full'}>Raking: </Text>
-                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{userData.rank}</Text>
+                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{
+                            userData.rank ? userData.rank : "No rank"
+                        }</Text>
                     </Row>
                     <Row className={'w-full'} style={styles.stats_row}>
                         <Text className={'text-white font-bold text-xl ml-4 h-full'}>Created Decks: </Text>
-                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{userData.created_decks}</Text>
+                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{
+                            userData.created_decks ? userData.created_decks : "No decks."
+                        }</Text>
                     </Row>
                     <Row className={'w-full'} style={styles.stats_row}>
                         <Text className={'text-white font-bold text-xl ml-4 h-full'}>Public Decks: </Text>
-                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{userData.public_decks}</Text>
+                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{
+                            userData.public_decks ? userData.public_decks : "No public decks."
+                        }</Text>
                     </Row>
                 </View>
                 :
@@ -168,7 +151,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         return (
             <Card className={'mr-auto ml-auto w-full mb-7'} style={styles.card}>
                 <Row className={'w-full'}>
-                    <Row className={'w-28 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full justify-end'}>
                             <Text className={'text-center font-bold'}>
                                 { title }
@@ -180,7 +163,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                             </Text>
                         </Col>
                     </Row>
-                    <Row className={'w-24 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'download'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>
@@ -193,7 +176,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                             </Text>
                         </Col>
                     </Row>
-                    <Row className={'w-28 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'calendar-month'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>
@@ -299,7 +282,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                         </Text>
                     </Col>
                 </Row>
-                { checkSelfData ? '' : sectionButtons() }
+                { checkOwnData ? '' : sectionButtons() }
                 <Row className="w-full h-4/5 mt-2">
                     { loading ? <Loader /> :
                         <ScrollView
