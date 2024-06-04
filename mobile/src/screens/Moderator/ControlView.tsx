@@ -9,7 +9,10 @@ const ControlView: React.FC<ScreenProps> = ({ navigation }) => {
     const styles = StyleSheet.create({
         row: {
             height: 75
-        }
+        },
+        col: {
+            width: '50%'
+        },
     })
 
     const options = [
@@ -37,8 +40,8 @@ const ControlView: React.FC<ScreenProps> = ({ navigation }) => {
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900 pb-14">
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
                 <Row className='w-full p-1' style={styles.row}>
-                    <Col className='w-24 h-full justify-center align-middle' />
-                    <Col className='w-72 h-full justify-end align-middle'>
+                    <Col className='h-full justify-center align-middle' style={styles.col} />
+                    <Col className='h-full justify-end align-middle' style={styles.col}>
                         <Text className='text-2xl text-white font-bold text-right mr-4'>
                             Moderator control
                         </Text>

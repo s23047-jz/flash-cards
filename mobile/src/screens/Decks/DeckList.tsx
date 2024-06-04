@@ -14,9 +14,13 @@ import { AVATAR_MAPPING } from "../../utils/avatars";
 const styles = StyleSheet.create({
     card: {
         height: 150,
+        width: 350
     },
     row: {
         height: 75
+    },
+    col: {
+        width: '50%'
     },
     button: {
         width: 150
@@ -237,34 +241,36 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                     </Col>
                 </Row>
                 <Row className="w-full mt-5 justify-center text-center">
-                    <Col className='w-full'>
-                        <TextInput
-                            className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
-                            placeholder="Search..."
-                            value={selectedView === PAGES.USERS ? usersQuery.search : decksQuery.search}
-                            onChangeText={handleSearchUpdate}
-                            autoCapitalize="none"
-                        />
-                        <MaterialCommunityIcons
-                            position="absolute"
-                            right="15%"
-                            top="10%"
-                            size={30}
-                            className="w-max h-max"
-                            name="magnify"
-                            color="black"
-                        />
+                    <Col className='w-full items-center justify-center'>
+                        <Row>
+                            <TextInput
+                                className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
+                                placeholder="Search..."
+                                value={selectedView === PAGES.USERS ? usersQuery.search : decksQuery.search}
+                                onChangeText={handleSearchUpdate}
+                                autoCapitalize="none"
+                            />
+                            <MaterialCommunityIcons
+                                position="absolute"
+                                right="1%"
+                                top="10%"
+                                size={30}
+                                className="w-max h-max"
+                                name="magnify"
+                                color="black"
+                            />
+                        </Row>
                     </Col>
                 </Row>
-                <Row className="w-full" style={styles.row}>
-                    <Col className={'w-48 h-full justify-center items-center'}>
+                <Row className="w-full mt-3" style={styles.row}>
+                    <Col className={'h-full justify-center items-center'} style={styles.col}>
                         <Button style={styles.button} className={`p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={async() => changeView(PAGES.DECKS)}>
                             <Text className='text-lg ml-auto mr-auto font-bold'>
                                 Decks
                             </Text>
                         </Button>
                     </Col>
-                    <Col className={'w-48 h-full justify-center items-center'}>
+                    <Col className={'h-full justify-center items-center'} style={styles.col}>
                         <Button style={styles.button} className={`p-4 ${selectedView === PAGES.USERS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={async() => changeView(PAGES.USERS)}>
                             <Text className='text-lg ml-auto mr-auto font-bold'>
                                 Users
