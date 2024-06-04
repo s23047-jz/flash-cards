@@ -80,6 +80,23 @@ class Report {
         }
     }
 
+      public async delete_deck_user_from_app(user_id: string) {
+        try {
+            const url = `${BASE_API}/reports/delete_user/${user_id}`;
+            return await request({
+                url,
+                method: 'DELETE',
+                headers: {
+                    'Authorization': `${token}`
+                },
+            });
+        } catch (error) {
+            // @ts-ignore
+            console.error(error.message);
+            throw error;
+        }
+    }
+
 }
 
 // @ts-ignore

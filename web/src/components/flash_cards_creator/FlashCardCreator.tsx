@@ -118,7 +118,7 @@ const FlashCardCreator = (props) => {
 
         try {
             const createdDeck = await DeckService.create_deck(deck_body);
-
+            let flashcards = []
             for (const {id} of directorsArray) {
                 const frontSideText = texts[`front-${id}`] || '';
                 const backSideText = texts[`back-${id}`] || '';
@@ -129,11 +129,13 @@ const FlashCardCreator = (props) => {
                         card_text: backSideText,
                         is_memorized: false
                     };
-
-                    await DeckService.create_flash_card(flash_card_body);
+                    flashcards.push(flash_card_body)
+                    // await DeckService.create_flash_card(flash_card_body);
                 }
 
+
             }
+            await DeckService.create_multiple_flashcard(flashcards)
 
             setDeckTitle('');
             setCategory('');

@@ -66,6 +66,20 @@ async def create_flash_card(
     return flash_card_model
 
 
+@router.post("/create_multiple_flashcards", status_code=status.HTTP_201_CREATED)
+async def create_multiple_flashcards(
+        flashcards: List[FlashCardCreate],
+        db: Session = Depends(get_db)
+):
+    """Create a new flash card"""
+    for flashcard in flashcards:
+        flash_card_model = FlashCard(**flashcard.dict())
+        db.add(flash_card_model)
+        db.commit()
+        db.refresh(flash_card_model)
+    return flashcards
+
+
 @router.put("/update_flash_card_text/{flash_card_id}")
 async def update_flash_card_text(
     flash_card_id: uuid.UUID,

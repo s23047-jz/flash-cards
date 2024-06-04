@@ -47,9 +47,15 @@ $flash-card-border: 3px solid #000000;
 }
 
 @media screen and (max-width: 1005px) {
+  .public-deck-flashcard-field {
+  font-size: 12px;
+
+  }
+
   .flashcard-field {
     .flashcard-field-grid {
       .front {
+
         grid-row: 1;
         grid-column: 1;
       }
@@ -63,7 +69,5 @@ $flash-card-border: 3px solid #000000;
     }
   }
 
-  .flashcard-field {
-    font-size: 12px;
-  }
+
 }
