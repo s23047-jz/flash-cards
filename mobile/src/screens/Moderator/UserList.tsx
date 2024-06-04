@@ -38,7 +38,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, username, shared, created_a
         >
             <Card className={'w-full h-full'}>
                 <Row className={'w-full'}>
-                    <Row className={'w-28 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'calendar-month'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>
@@ -51,7 +51,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, username, shared, created_a
                             </Text>
                         </Col>
                     </Row>
-                    <Row className={'w-24 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full justify-center items-center'}>
                             <Image
                                 source={AVATAR_MAPPING[avatar]}
@@ -65,7 +65,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, username, shared, created_a
                             </Text>
                         </Col>
                     </Row>
-                    <Row className={'w-28 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'share'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>

@@ -131,8 +131,8 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                 { MenuModal() }
                 <Card className={'w-full h-full'}>
                     <Row className={'w-full'}>
-                        <Row className={'w-28 h-full'} />
-                        <Row className={'w-24 h-full'}>
+                        <Row className={'h-full'} style={styles.cardRows} />
+                        <Row className={'h-full'} style={styles.cardRows}>
                             <Col className={'w-full justify-center items-center'}>
                                 <Text className={'text-center font-bold'}>
                                     { title }
@@ -144,7 +144,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                                 </Text>
                             </Col>
                         </Row>
-                        <Row className={'w-28 h-full'} >
+                        <Row className={'h-full'} style={styles.cardRows}>
                             <Col className={'w-full'}>
                                 <Text className={'text-center font-bold'}>
                                     Submitter

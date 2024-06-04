@@ -13,7 +13,11 @@ export const styles = StyleSheet.create({
     },
     card: {
         height: 150,
-        width: 330
+        width: '100%',
+        maxWidth: 600
+    },
+    cardRows: {
+        width: '33%'
     },
     button: {
         width: 150

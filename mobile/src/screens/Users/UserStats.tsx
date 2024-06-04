@@ -1,5 +1,6 @@
 import moment from "moment";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 
@@ -76,23 +77,29 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         }, 1000)
     }
 
+    useFocusEffect(
+        useCallback(() => {
+            setLoading(true);
+            checkId();
+            return () => {};
+        }, [])
+    );
 
-    useEffect(() => {
-        setLoading(true);
-        const checkId = async () => {
-            if (!userId) navigation.navigate(ROUTES.HOME)
-            try {
-                setQuery({ "user_id": userId, page: 1, per_page: perPage })
-                setCheckOwnData(ownStatistics);
-                await changeView(PAGES.USER)
-                setLoading(false);
-            } catch (error) {
-                console.error('Error checking authentication status:', error);
-                setLoading(false);
+    const checkId = async () => {
+        try {
+            if (!userId) {
+                navigation.navigate(ROUTES.HOME)
+                return
             }
-        };
-        checkId();
-    }, []);
+            setQuery({ "user_id": userId, page: 1, per_page: perPage })
+            setCheckOwnData(ownStatistics);
+            await changeView(PAGES.USER)
+            setLoading(false);
+        } catch (error) {
+            console.error('Error checking authentication status:', error);
+            setLoading(false);
+        }
+    };
 
     const userView = () => {
         return (
@@ -144,7 +151,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         return (
             <Card className={'mr-auto ml-auto w-full mb-7'} style={styles.card}>
                 <Row className={'w-full'}>
-                    <Row className={'w-28 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full justify-end'}>
                             <Text className={'text-center font-bold'}>
                                 { title }
@@ -156,7 +163,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                             </Text>
                         </Col>
                     </Row>
-                    <Row className={'w-24 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'download'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>
@@ -169,7 +176,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                             </Text>
                         </Col>
                     </Row>
-                    <Row className={'w-28 h-full'}>
+                    <Row className={'h-full'} style={styles.cardRows}>
                         <Col className={'w-full text-center items-center justify-end'}>
                             <MaterialCommunityIcons name={'calendar-month'} size={40} className={'ml-auto mr-auto text-center'}/>
                         </Col>
