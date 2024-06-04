@@ -60,6 +60,10 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
     navigation.navigate(ROUTES.MEMORIZED_FLASHCARDS, { deck });
   };
   
+  const handleLearningMode = async () => {
+    navigation.navigate(ROUTES.LEARNING_MODE, { deck });
+  }
+  
   const handleUnmemorizedFlashcards = async () => {
     navigation.navigate(ROUTES.UNMEMORIZED_FLASHCARDS, { deck });
   };
@@ -91,12 +95,12 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           {deck.title}
         </Text>
         <Text className="text-white font-bold scale-125 mt-2 mb-1">
-          Number of flashcards:{" "}
-          {get_number_of_cards(deckList, selected_deck.id)}
+          
+          {get_number_of_cards(deckList, selected_deck.id)} flashcards
         </Text>
         
         <Text className="text-white font-bold scale-125 mb-4">
-          Deck status: {deck.is_deck_public ? 'public' : 'private'}
+          {deck.is_deck_public ? 'public' : 'private'} deck
         </Text>
         
         
@@ -112,7 +116,8 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           </Text>
         </Button>
 
-        <Button className="p-3 m-3 w-72 h-16 bg-pink-500 justify-center mr-auto ml-auto rounded-1xl">
+        <Button className="p-3 m-3 w-72 h-16 bg-pink-500 justify-center mr-auto ml-auto rounded-1xl"
+        onPress={handleLearningMode}>
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
             Learn with flashcards
           </Text>

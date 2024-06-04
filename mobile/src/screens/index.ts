@@ -15,6 +15,7 @@ export { default as EditDeck } from "./ChooseDecksType/EditDeck";
 export { default as DisplayFlashcards } from "./FlashCards/DisplayFlashcards";
 export { default as CreateFlashcard } from "./FlashCards/CreateFlashcard";
 export { default as EditFlashcard } from "./FlashCards/EditFlashcard";
+export { default as LearningMode } from "./FlashCards/LearningMode"
 
 //USER PANEL
 export { default as UserPanelScreen } from "./Users/UserPanelScreen";

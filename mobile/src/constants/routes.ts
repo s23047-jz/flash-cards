@@ -21,6 +21,7 @@ export default {
     EDIT_FLASHCARD: "EditFlashcard",
     MEMORIZED_FLASHCARDS: "MemorizedFlashcards",
     UNMEMORIZED_FLASHCARDS: "UnmemorizedFlashcards",
+    LEARNING_MODE: "LearningMode",
 
     //  public decks tab
     PUBLIC_DECKS: "PublicDecks",
