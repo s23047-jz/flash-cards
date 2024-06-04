@@ -8,7 +8,7 @@ import {
   MyPrivateDecks,
   CreateDeck,
   DisplayFlashcards,
-  CreateFlashcard, EditFlashcard, EditDeck,
+  CreateFlashcard, EditFlashcard, EditDeck, LearningMode,
 } from "../screens";
 import DisplayDeck from "../screens/ChooseDecksType/DisplayDeck";
 import DeckSettings from "../screens/ChooseDecksType/DeckSettings";
@@ -32,6 +32,8 @@ export default function HomeNavigator() {
       <Stack.Screen name={ROUTES.EDIT_FLASHCARD} component={EditFlashcard} />
       <Stack.Screen name={ROUTES.MEMORIZED_FLASHCARDS} component={MemorizedFlashcards} />
       <Stack.Screen name={ROUTES.UNMEMORIZED_FLASHCARDS} component={UnmemorizedFlashcards} />
+      <Stack.Screen name={ROUTES.LEARNING_MODE} component={LearningMode} />
+    
     
     </Stack.Navigator>
   );

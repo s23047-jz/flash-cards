@@ -10,7 +10,6 @@ export const DECKS_ENDPOINTS = {
   update_deck_title_category: (deck_id) => `${BASE_API}/decks/update_deck/category_and_title/${deck_id}`,
   update_deck_is_public: (deck_id) => `${BASE_API}/decks/update_deck/is_public/${deck_id}`,
   update_deck_is_memorized_false: (deck_id) => `${BASE_API}/decks/update_deck/flashcards_is_memorized/${deck_id}`,
-  update_deck: (deck_id) => `${BASE_API}/decks/update_deck/${deck_id}`, //COŚ TU NIE CHODZI JBC XD
   read_deck_cards_by_id: (deck_id) => `${BASE_API}/decks/${deck_id}/flash_cards`,
   read_memorized_flash_cards_from_deck: (deck_id) => `${BASE_API}/decks/${deck_id}/memorized_flash_cards`,
   read_not_memorized_flash_cards_from_deck: (deck_id) => `${BASE_API}/decks/${deck_id}/not_memorized_flash_cards`,
@@ -101,17 +100,6 @@ class Decks {
     });
   }
   
-  public async update_deck(
-    deck_id: any,
-    body: any,
-  ) {
-    console.log(DECKS_ENDPOINTS.update_deck(deck_id));
-    return await request({
-      url: DECKS_ENDPOINTS.update_deck(deck_id),
-      method: "PUT",
-      body,
-    });
-  }
 
   public async getPublicDecks(query: object, navigation: NavigationProp<any>) {
     const { data } = await request({
