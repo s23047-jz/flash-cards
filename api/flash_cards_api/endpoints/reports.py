@@ -19,7 +19,10 @@ from fastapi import (
 from flash_cards_api.models.flash_card import FlashCard
 from flash_cards_api.models.reports import Reports
 from flash_cards_api.models.deck_of_flash_cards import Deck
+from flash_cards_api.models.users import User
 import uuid
+
+
 
 router = APIRouter(prefix="/reports", tags=["reports"])
 
@@ -181,3 +184,26 @@ async def delete_deck(
     db.query(FlashCard).filter(FlashCard.deck_id == deck_id).delete()
     db.query(Deck).filter(Deck.id == deck_id).delete()
     db.commit()
+
+
+@router.delete("/delete_user/{user_id}", status_code=204)
+async def delete_user(
+        user_id: int,
+        db: Session = Depends(get_db)
+):
+
+
+
+    user_to_delete = db.query(User).filter(User.id == user_id).first()
+
+    if user_to_delete is None:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    try:
+        db.delete(user_to_delete)
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(status_code=500, detail="An error occurred while deleting the user")
+
+    return {"detail": "User deleted successfully"}
