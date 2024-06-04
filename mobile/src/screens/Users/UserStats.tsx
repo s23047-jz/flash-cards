@@ -1,7 +1,7 @@
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { View, ScrollView, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
+import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 
 import { Row, Col, Loader, Button, Card, LoadingCard } from "../../components";
 
@@ -12,34 +12,7 @@ import { ROUTES } from "../../constants";
 import { UsersService } from "../../services/users";
 import { DecksService } from "../../services/decks";
 import { AVATAR_MAPPING } from "../../utils/avatars";
-
-
-const styles = StyleSheet.create({
-    card: {
-        height: 150,
-        width: 350
-    },
-    row: {
-        height: 75
-    },
-    col: {
-        width: '50%'
-    },
-    stats_row: {
-        height: 45
-    },
-    button: {
-        width: 150
-    },
-    avatar: {
-        height: 150,
-        width: 150
-    },
-    loadBtn: {
-        maxWidth: 250
-    }
-});
-
+import { styles } from "../../assets/styles";
 
 const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     const { userId, ownStatistics } = route.params;
@@ -138,15 +111,21 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                     </Row>
                     <Row className={'w-full'} style={styles.stats_row}>
                         <Text className={'text-white font-bold text-xl ml-4 h-full'}>Raking: </Text>
-                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{userData.rank}</Text>
+                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{
+                            userData.rank ? userData.rank : "No rank"
+                        }</Text>
                     </Row>
                     <Row className={'w-full'} style={styles.stats_row}>
                         <Text className={'text-white font-bold text-xl ml-4 h-full'}>Created Decks: </Text>
-                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{userData.created_decks}</Text>
+                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{
+                            userData.created_decks ? userData.created_decks : "No decks."
+                        }</Text>
                     </Row>
                     <Row className={'w-full'} style={styles.stats_row}>
                         <Text className={'text-white font-bold text-xl ml-4 h-full'}>Public Decks: </Text>
-                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{userData.public_decks}</Text>
+                        <Text className={'text-blue-950 dark:text-yellow-400 font-bold text-xl h-full'}>{
+                            userData.public_decks ? userData.public_decks : "No public decks."
+                        }</Text>
                     </Row>
                 </View>
                 :

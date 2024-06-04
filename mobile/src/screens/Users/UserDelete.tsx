@@ -8,6 +8,7 @@ import { UpdateUserInterface } from "../../interfaces/user";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { UsersService } from "../../services/users";
 import { warning } from "../../assets/images";
+import { styles } from "../../assets/styles";
 
 const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
     const [userData, setUserData] = useState<UpdateUserInterface>({});
@@ -36,14 +37,18 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
             <ScrollView className="flex flex-container w-full mt-20 mb-5">
-                <Row className='w-full p-6'>
-                    <Col className='w-full'>
+                <Row className='w-full p-6' style={styles.row}>
+                    <Col className='h-full justify-center align-middle' style={styles.col}>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <Text className='text-2xl text-white font-bold'>
                                 <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
-                                User Delete
                             </Text>
                         </TouchableOpacity>
+                    </Col>
+                    <Col className='h-full justify-center align-middle' style={styles.col}>
+                        <Text className='text-2xl text-white font-bold text-right'>
+                            User Delete
+                        </Text>
                     </Col>
                 </Row>
                 <Row className='w-full p-6'>
@@ -63,9 +68,10 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
                     </Col>
                 </Row>
                 <Row className='w-full p-6'>
-                    <Col className='w-full h-14'>
+                    <Col className='w-full h-14 justify-center items-center'>
                         <TextInput
                             className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
+                            style={styles.textField}
                             placeholder={'Email'}
                             placeholderTextColor='rgba(0, 0, 0, 0.5)'
                             autoCapitalize={"none"}
@@ -75,9 +81,10 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
                     </Col>
                 </Row>
                 <Row className='w-full p-6'>
-                    <Col className='w-full h-14'>
+                    <Col className='w-full h-14 justify-center items-center'>
                         <TextInput
                             className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
+                            style={styles.textField}
                             placeholder={'Password'}
                             placeholderTextColor='rgba(0, 0, 0, 0.5)'
                             autoCapitalize={"none"}

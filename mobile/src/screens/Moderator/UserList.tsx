@@ -1,6 +1,6 @@
 import React, { useState, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
+import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { UserListInterface } from "../../interfaces/decks";
 import {
     Button,
@@ -15,24 +15,13 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { UsersService } from "../../services/users";
 import { ScreenProps } from "../../interfaces/screen";
 import moment from "moment/moment";
+import { styles as mainStyles } from "../../assets/styles";
 
 const styles = StyleSheet.create({
-    card: {
-        height: 150,
-        width: 350
-    },
-    row: {
-        height: 75
-    },
-    col: {
-        width: '50%'
-    },
+    ...mainStyles,
     avatar: {
         height: 50,
         width: 50
-    },
-    loadBtn: {
-        maxWidth: 250
     }
 });
 

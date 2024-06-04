@@ -10,27 +10,13 @@ import { DecksService } from "../../services/decks";
 import { UsersService } from "../../services/users";
 import { ROUTES } from "../../constants";
 import { AVATAR_MAPPING } from "../../utils/avatars";
+import { styles as mainStyles } from "../../assets/styles";
 
 const styles = StyleSheet.create({
-    card: {
-        height: 150,
-        width: 350
-    },
-    row: {
-        height: 75
-    },
-    col: {
-        width: '50%'
-    },
-    button: {
-        width: 150
-    },
+    ...mainStyles,
     avatar: {
         height: 50,
         width: 50
-    },
-    loadBtn: {
-        maxWidth: 250
     }
 });
 

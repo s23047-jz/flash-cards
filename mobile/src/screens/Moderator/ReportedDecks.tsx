@@ -6,25 +6,17 @@ import { useFocusEffect } from "@react-navigation/native";
 import { Button, Card, CModal, Col, Loader, LoadingCard, Row } from "../../components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ReportInterface } from "../../interfaces/reports";
+import { styles as mainStyles } from "../../assets/styles";
 
 const styles = StyleSheet.create({
-    card: {
-        height: 150,
-        width: 350
-    },
+    ...mainStyles,
     row: {
         height: 85
-    },
-    col: {
-        width: '50%'
     },
     avatar: {
         height: 50,
         width: 50
     },
-    loadBtn: {
-        maxWidth: 250
-    }
 });
 
 const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
