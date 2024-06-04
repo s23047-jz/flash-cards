@@ -131,7 +131,7 @@ const UsersRankingContainer = () => {
                         </div>
                         <div className="users-container">
                             {users.map((user, index) => {
-                                let avatar = `../../assets/avatars/${user['shared_decks']}.png`
+
                                 return (
                                     <div className="users-button" key={index}>
                                         <ButtonUserRanking

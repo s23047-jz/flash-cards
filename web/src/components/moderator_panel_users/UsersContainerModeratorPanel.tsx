@@ -17,7 +17,21 @@ import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 // @ts-ignore
 import avatar from "../../assets/avatars/Avatar_1.png"
 import {ReportService} from "../../services/report";
+// @ts-ignore
+import avatar_1 from "../../assets/avatars/Avatar_1.png"
+// @ts-ignore
+import avatar_2 from "../../assets/avatars/Avatar_2.png"
+// @ts-ignore
+import avatar_3 from "../../assets/avatars/Avatar_3.png"
+// @ts-ignore
+import avatar_4 from "../../assets/avatars/Avatar_4.png"
 
+const avatarsDict = {
+    "Avatar_1": avatar_1,
+    "Avatar_2": avatar_2,
+    "Avatar_3": avatar_3,
+    "Avatar_4": avatar_4,
+};
 
 const UsersContainerModeratorPanel = () => {
     const navigate = useNavigate();
@@ -51,7 +65,7 @@ const UsersContainerModeratorPanel = () => {
             // @ts-ignore
             const filteredUsers = response['users'].filter(user => {
                 const nameMatches = !filterString || user.username.toLowerCase().includes(filterString.toLowerCase());
-                return nameMatches ;
+                return nameMatches;
             });
             setUsers(filteredUsers);
         } catch (error) {
@@ -59,7 +73,7 @@ const UsersContainerModeratorPanel = () => {
         }
     };
 
-    const navigateReportedDecks = () =>{
+    const navigateReportedDecks = () => {
         navigate("/moderator_panel_decks")
     }
 
@@ -81,13 +95,14 @@ const UsersContainerModeratorPanel = () => {
     return (
         <div className="website-container-users-moderator-panel">
             <p className="web-title">Users Panel</p>
-            {isLoadingFetchUsers? (
-                <LoadingSpinner />
+            {isLoadingFetchUsers ? (
+                <LoadingSpinner/>
             ) : (
                 <>
                     <div className="filter-container">
                         <FormControl variant="filled">
-                            <InputLabel htmlFor="component-filled" sx={{ backgroundColor: fields_color, color: 'white' }}>Filter Users</InputLabel>
+                            <InputLabel htmlFor="component-filled" sx={{backgroundColor: fields_color, color: 'white'}}>Filter
+                                Users</InputLabel>
                             <FilledInput
                                 id="component-filled"
                                 defaultValue=""
@@ -124,11 +139,12 @@ const UsersContainerModeratorPanel = () => {
                                 <ButtonUser
                                     frontTextUpper={`${user['username']}`}
                                     frontTextLower={`Public decks: ${user['shared_decks']}`}
-                                    image={avatar}
+                                    image={avatarsDict[`${user['avatar']}`]}
                                     backText={`username: ${user['username']}`}
-                                    onClick={()=> handleUserClick(user['id'])}
+                                    onClick={() => handleUserClick(user['id'])}
                                 />
                             </div>
+
                         ))}
                     </div>
                 </>
@@ -136,7 +152,7 @@ const UsersContainerModeratorPanel = () => {
             {showDeletePopup && (
                 <DeleteUserPopUpBox
                     text="Do you want to delete user from app?"
-                    onClickAccept={()=>handleDeleteUser(selectedUserId)}
+                    onClickAccept={() => handleDeleteUser(selectedUserId)}
                     onClickCancel={handleCancelDeleteUser}
                 />
             )}
