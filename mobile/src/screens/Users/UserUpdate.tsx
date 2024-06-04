@@ -14,6 +14,13 @@ const styles = StyleSheet.create({
     row: {
         height: 75
     },
+    col: {
+        width: '50%'
+    },
+    textField: {
+        maxWidth: 500,
+        width: '100%'
+    }
 });
 
 
@@ -67,10 +74,11 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                                 Confirm password
                             </Text>
                         </Col>
-                        <Col className={'w-full h-14'}>
+                        <Col className={'w-full h-14 justify-center items-center'}>
                             <TextInput
                                 className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
                                 placeholder={'current password'}
+                                style={styles.textField}
                                 placeholderTextColor='rgba(0, 0, 0, 0.5)'
                                 autoCapitalize={"none"}
                                 accessibilityElementsHidden={true}
@@ -98,14 +106,14 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
             </CModal>
             <ScrollView className={'w-full mt-20'}>
                 <Row className='w-full p-1' style={styles.row}>
-                    <Col className='w-48 h-full justify-center align-middle'>
+                    <Col className='h-full justify-center align-middle' style={styles.col}>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <Text className='text-2xl text-white font-bold ml-4'>
                                 <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
                             </Text>
                         </TouchableOpacity>
                     </Col>
-                    <Col className='w-48 h-full justify-center align-middle'>
+                    <Col className='h-full justify-center align-middle' style={styles.col}>
                         <Text className='text-2xl text-white font-bold text-right mr-4'>
                             User profile
                         </Text>
@@ -120,9 +128,10 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                         </Col>
                     </Row>
                     <Row className={'w-full mt-10'}>
-                        <Col className='w-full h-14'>
+                        <Col className='w-full h-14 justify-center items-center'>
                             <TextInput
                                 className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
+                                style={styles.textField}
                                 placeholder={`${updateField}`}
                                 placeholderTextColor='rgba(0, 0, 0, 0.5)'
                                 autoCapitalize={"none"}
@@ -133,9 +142,10 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
                             />
                         </Col>
                         { updateField === 'password' ?
-                            <Col className='w-full h-14'>
+                            <Col className='w-full h-14 justify-center items-center'>
                                 <TextInput
                                     className={`border border-gray-300 rounded-xl px-3 mb-3 flex-1 text-black bg-white`}
+                                    style={styles.textField}
                                     placeholder={'repeat password'}
                                     placeholderTextColor='rgba(0, 0, 0, 0.5)'
                                     autoCapitalize={"none"}
