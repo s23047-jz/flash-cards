@@ -16,6 +16,7 @@ import {useNavigate} from "react-router-dom";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 // @ts-ignore
 import avatar from "../../assets/avatars/Avatar_1.png"
+import {ReportService} from "../../services/report";
 
 
 const UsersContainerModeratorPanel = () => {
@@ -67,9 +68,10 @@ const UsersContainerModeratorPanel = () => {
         setShowDeletePopup(true);
     };
 
-    const handleDeleteUser = () => {
-
+    const handleDeleteUser = (user_id: string) => {
+        ReportService.delete_deck_user_from_app(user_id)
         setShowDeletePopup(false);
+        window.location.reload()
     };
 
     const handleCancelDeleteUser = () => {
@@ -134,7 +136,7 @@ const UsersContainerModeratorPanel = () => {
             {showDeletePopup && (
                 <DeleteUserPopUpBox
                     text="Do you want to delete user from app?"
-                    onClickAccept={handleDeleteUser}
+                    onClickAccept={()=>handleDeleteUser(selectedUserId)}
                     onClickCancel={handleCancelDeleteUser}
                 />
             )}
