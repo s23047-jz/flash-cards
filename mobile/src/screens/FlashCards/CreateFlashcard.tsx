@@ -38,9 +38,20 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   };
   
   const handleGenerate = async () => {
+    // Alert the user that the AI-generated content may not be accurate
+    alert("Please note that the response from the AI chat may not be accurate.");
+    const messageToSend = `Please limit the response to 500 characters: ${sideA}`;
     
-    ChatService.sent_message("siemka");
+    try {
+      const response = await ChatService.sent_message(messageToSend);
+      setSideB(response); // Assuming the response from sent_message is the text you want to set in sideB
+    } catch (error) {
+      console.error("Failed to generate content with AI:", error);
+      // Display an alert if there is an error
+      alert("Failed to generate content with AI. Please try again.");
+    }
   }
+  
   
   
   
@@ -68,6 +79,7 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
             autoCapitalize="sentences"
             multiline
             onChangeText={setSideA}
+            value={sideA}
           />
         </View>
 
@@ -79,6 +91,7 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
             className="h-24 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white"
             autoCapitalize="sentences"
             multiline
+            value={sideB}
             onChangeText={setSideB}
           />
           <Button className="w-72 h-14 m-5 justify-center mr-auto ml-auto rounded-1xl"
