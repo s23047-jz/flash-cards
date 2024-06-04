@@ -191,19 +191,25 @@ async def delete_user(
         user_id: int,
         db: Session = Depends(get_db)
 ):
-
-
-
+    """Delete user from paths and all linked records"""
     user_to_delete = db.query(User).filter(User.id == user_id).first()
 
     if user_to_delete is None:
         raise HTTPException(status_code=404, detail="User not found")
 
     try:
+        decks_to_delete = db.query(Deck).filter(Deck.user_id == user_id).all()
+        for deck in decks_to_delete:
+            db.query(FlashCard).filter(FlashCard.deck_id == deck.id).delete()
+
+        db.query(Deck).filter(Deck.user_id == user_id).delete()
+
         db.delete(user_to_delete)
+
         db.commit()
     except Exception as e:
         db.rollback()
         raise HTTPException(status_code=500, detail="An error occurred while deleting the user")
 
-    return {"detail": "User deleted successfully"}
+
+
