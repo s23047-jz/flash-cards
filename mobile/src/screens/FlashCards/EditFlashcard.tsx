@@ -9,6 +9,7 @@ import { ROUTES } from "../../constants";
 import { ScreenProps } from "../../interfaces/screen";
 import { DecksService } from "../../services/decks";
 import {FlashCardsService} from "../../services/flashcards";
+import {ChatService} from "../../services/chat";
 
 const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { card } = route.params;
@@ -32,6 +33,21 @@ const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
       }
     } else {
       alert("Flashcards fields must not be empty.");
+    }
+  }
+  
+  const handleGenerate = async () => {
+    // Alert the user that the AI-generated content may not be accurate
+    alert("Please note that the response from the AI chat may not be accurate.");
+    const messageToSend = `Please limit the response to 500 characters: ${sideA}`;
+    
+    try {
+      const response = await ChatService.sent_message(messageToSend);
+      setSideB(response); // Assuming the response from sent_message is the text you want to set in sideB
+    } catch (error) {
+      console.error("Failed to generate content with AI:", error);
+      // Display an alert if there is an error
+      alert("Failed to generate content with AI. Please try again.");
     }
   }
   
@@ -74,7 +90,8 @@ const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
             value={sideB}
             onChangeText={setSideB}
           />
-          <Button className="w-72 h-14 m-5 justify-center mr-auto ml-auto rounded-1xl">
+          <Button className="w-72 h-14 m-5 justify-center mr-auto ml-auto rounded-1xl"
+                  onPress={handleGenerate}>
             <Text className="scale-125 mb-1.5 font-bold top-1 text-right right-11">
               Generate content with AI
             </Text>
