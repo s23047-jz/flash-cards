@@ -39,16 +39,21 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   
   const handleGenerate = async () => {
     // Alert the user that the AI-generated content may not be accurate
-    alert("Please note that the response from the AI chat may not be accurate.");
-    const messageToSend = `Please limit the response to 500 characters: ${sideA}`;
     
-    try {
-      const response = await ChatService.sent_message(messageToSend);
-      setSideB(response); // Assuming the response from sent_message is the text you want to set in sideB
-    } catch (error) {
-      console.error("Failed to generate content with AI:", error);
-      // Display an alert if there is an error
-      alert("Failed to generate content with AI. Please try again.");
+    
+    if (sideA.length != 0) {
+      alert("Please note that the response from the AI chat may not be accurate.");
+      const messageToSend = `Please limit the response to 500 characters: ${sideA}`;
+      try {
+        const response = await ChatService.sent_message(messageToSend);
+        setSideB(response); // Assuming the response from sent_message is the text you want to set in sideB
+      } catch (error) {
+        console.error("Failed to generate content with AI:", error);
+        // Display an alert if there is an error
+        alert("Failed to generate content with AI. Please try again.");
+      }
+    } else {
+      alert("Flashcard front side field must not be empty.")
     }
   }
   
