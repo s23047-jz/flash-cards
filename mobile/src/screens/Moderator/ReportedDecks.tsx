@@ -10,9 +10,13 @@ import { ReportInterface } from "../../interfaces/reports";
 const styles = StyleSheet.create({
     card: {
         height: 150,
+        width: 350
     },
     row: {
         height: 85
+    },
+    col: {
+        width: '50%'
     },
     avatar: {
         height: 50,
@@ -170,37 +174,39 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
             <View className="flex flex-container w-full mt-20 mb-5">
                 <Row className='w-full p-6' style={styles.row}>
-                    <Col className='w-48 h-full justify-center align-middle'>
+                    <Col className='h-full justify-center align-middle' style={styles.col}>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <Text className='text-2xl text-white font-bold ml-4'>
                                 <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
                             </Text>
                         </TouchableOpacity>
                     </Col>
-                    <Col className='w-44 h-full justify-center align-middle'>
+                    <Col className='h-full justify-center align-middle' style={styles.col}>
                         <Text className='text-2xl text-white font-bold text-right mr-4'>
                             Reports
                         </Text>
                     </Col>
                 </Row>
                 <Row className="w-full mt-5 justify-center text-center">
-                    <Col className='w-full'>
-                        <TextInput
-                            className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
-                            placeholder="Search..."
-                            value={reportsQuery.search}
-                            onChangeText={setSearch}
-                            autoCapitalize="none"
-                        />
-                        <MaterialCommunityIcons
-                            position="absolute"
-                            right="15%"
-                            top="10%"
-                            size={30}
-                            className="w-max h-max"
-                            name="magnify"
-                            color="black"
-                        />
+                    <Col className='w-full items-center justify-center'>
+                        <Row>
+                            <TextInput
+                                className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
+                                placeholder="Search..."
+                                value={reportsQuery.search}
+                                onChangeText={setSearch}
+                                autoCapitalize="none"
+                            />
+                            <MaterialCommunityIcons
+                                position="absolute"
+                                right="1%"
+                                top="10%"
+                                size={30}
+                                className="w-max h-max"
+                                name="magnify"
+                                color="black"
+                            />
+                        </Row>
                     </Col>
                 </Row>
                 <Row className="w-full h-4/6 mt-2">

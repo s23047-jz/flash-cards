@@ -17,9 +17,13 @@ import { AVATAR_MAPPING } from "../../utils/avatars";
 const styles = StyleSheet.create({
     card: {
         height: 150,
+        width: 350
     },
     row: {
         height: 75
+    },
+    col: {
+        width: '50%'
     },
     stats_row: {
         height: 45
@@ -255,14 +259,14 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     const sectionButtons = () => {
         return (
             <Row className='w-full mb-4' style={styles.row}>
-                <Col className={'w-48 h-full justify-center items-center'}>
+                <Col className={'h-full justify-center items-center'} style={styles.col}>
                     <Button style={styles.button} className={`p-4 ${selectedView === PAGES.USER ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.USER)}>
                         <Text className='text-lg ml-auto mr-auto font-bold'>
                             User Data
                         </Text>
                     </Button>
                 </Col>
-                <Col className={'w-48 h-full justify-center items-center'}>
+                <Col className={'h-full justify-center items-center'} style={styles.col}>
                     <Button style={styles.button} className={`p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={() => changeView(PAGES.DECKS)}>
                         <Text className='text-lg ml-auto mr-auto font-bold'>
                             Public Decks
@@ -279,14 +283,14 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                 className="flex flex-container w-full mt-20 mb-5"
             >
                 <Row className='w-full p-1' style={styles.row}>
-                    <Col className='w-48 h-full justify-center align-middle'>
+                    <Col className='w-48 h-full justify-center align-middle' style={styles.col}>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
                             <Text className='text-2xl text-white font-bold ml-4'>
                                 <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
                             </Text>
                         </TouchableOpacity>
                     </Col>
-                    <Col className='w-48 h-full justify-center align-middle'>
+                    <Col className='h-full justify-center align-middle' style={styles.col}>
                         <Text className='text-2xl text-white font-bold text-right mr-4'>
                             Stats
                         </Text>
