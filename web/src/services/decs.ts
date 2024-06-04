@@ -8,6 +8,7 @@ import {DeckData, DeckInterface, FlashCardInterface, FlashCardInterfaceMemorized
 export const AUTH_ENDPOINTS = {
     create_deck: `${BASE_API}/decks/create_deck`,
     create_flash_card: `${BASE_API}/flash_card/create_flash_card`,
+    create_multiple_flashcards: `${BASE_API}/flash_card/create_multiple_flashcards`,
 };
 
 const token = ActiveUser.getAuthorization();
@@ -281,6 +282,17 @@ class Deck {
         // @ts-ignore
         return await request({
             url: AUTH_ENDPOINTS.create_flash_card,
+            method: 'POST', body,
+            headers: {
+                    'Authorization': `${token}`
+                },
+        });
+    }
+
+      public async create_multiple_flashcard(body: object) {
+        // @ts-ignore
+        return await request({
+            url: AUTH_ENDPOINTS.create_multiple_flashcards,
             method: 'POST', body,
             headers: {
                     'Authorization': `${token}`
