@@ -12,17 +12,21 @@ import { FlashCardsService } from "../../services/flashcards";
 const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deck } = route.params;
   
+  
+  
   useState();
   const [sideA, setSideA] = useState("");
   const [sideB, setSideB] = useState("");
   
   const handleCreate = async () => {
+    const trimmedSideA = sideA.substring(0, 511);
+    const trimmedSideB = sideB.substring(0, 511);
     // Assuming sideA and sideB are the titles and texts for the flashcard
-    if (InputValidator("deck", sideA) && InputValidator("deck", sideB)) {
+    if (InputValidator("deck", trimmedSideA) && InputValidator("deck", trimmedSideB)) {
       const flashcardData = {
         deck_id: deck.id,
-        card_title: sideA,
-        card_text: sideB,
+        card_title: trimmedSideA,
+        card_text: trimmedSideB,
       };
       
       try {
