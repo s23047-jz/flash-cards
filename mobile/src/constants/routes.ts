@@ -25,12 +25,13 @@ export default {
 
     //  public decks tab
     PUBLIC_DECKS: "PublicDecks",
+    USER_STATS: "UserStats",
 
     // user profile
     USER_DETAILS: "UserDetails",
     USER_UPDATE: "UserUpdate",
     USER_DELETE: "UserDelete",
-    USER_STATS: "UserStats",
+    USER_OWN_STATS: "UserOwnStats",
 
     // moderator screen
     MODERATOR_SCREEN: "ModeratorScreen",

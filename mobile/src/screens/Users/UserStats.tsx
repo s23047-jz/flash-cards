@@ -8,7 +8,6 @@ import { Row, Col, Loader, Button, Card, LoadingCard } from "../../components";
 import { ScreenProps } from "../../interfaces/screen";
 import { UserStatsInterface } from "../../interfaces/user";
 import { DeckListInterface } from "../../interfaces/decks";
-import { ActiveUser } from "../../services/user";
 import { ROUTES } from "../../constants";
 import { UsersService } from "../../services/users";
 import { DecksService } from "../../services/decks";
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
 
 
 const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
-    const { userId, routeFrom } = route.params;
+    const { userId, ownStatistics } = route.params;
 
     const PAGES = {
         USER: 'user',
@@ -49,7 +48,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     const perPage = 4;
 
     const [loading, setLoading] = useState(true);
-    const [checkSelfData, setCheckSelfData] = useState(false);
+    const [checkOwnData, setCheckOwnData] = useState(false);
     const [selectedView, setSelectedView] = useState(PAGES.DECKS);
     const [userData, setUserData] = useState<UserStatsInterface>({});
     const [decksData, setDecksData] = useState([]);
@@ -106,10 +105,8 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         const checkId = async () => {
             if (!userId) navigation.navigate(ROUTES.HOME)
             try {
-                const { id } = await ActiveUser.getUserData();
-                const show = id === userId
                 setQuery({ "user_id": userId, page: 1, per_page: perPage })
-                setCheckSelfData(show);
+                setCheckOwnData(ownStatistics);
                 await changeView(PAGES.USER)
                 setLoading(false);
             } catch (error) {
@@ -283,7 +280,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
             >
                 <Row className='w-full p-1' style={styles.row}>
                     <Col className='w-48 h-full justify-center align-middle'>
-                        <TouchableOpacity onPress={() => routeFrom ? navigation.navigate(routeFrom) : navigation.goBack()}>
+                        <TouchableOpacity onPress={() => navigation.goBack()}>
                             <Text className='text-2xl text-white font-bold ml-4'>
                                 <MaterialCommunityIcons name={'arrow-left-bold'} size={24}/>
                             </Text>
@@ -295,7 +292,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                         </Text>
                     </Col>
                 </Row>
-                { checkSelfData ? '' : sectionButtons() }
+                { checkOwnData ? '' : sectionButtons() }
                 <Row className="w-full h-4/5 mt-2">
                     { loading ? <Loader /> :
                         <ScrollView

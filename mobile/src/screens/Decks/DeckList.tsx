@@ -212,9 +212,8 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     };
 
     const handleNavigationToUserStats = (userId: string) => {
-        navigation.navigate(ROUTES.USER, {
-            screen: ROUTES.USER_STATS,
-            params: { userId, routeFrom: ROUTES.PUBLIC_DECKS }
+        navigation.navigate(ROUTES.USER_STATS, {
+            params: { userId, ownStatistics: false }
         })
     }
 

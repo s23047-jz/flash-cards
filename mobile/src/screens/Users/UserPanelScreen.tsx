@@ -30,7 +30,7 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation, route}) => {
             routes: [
                 {
                     label: "Stats",
-                    to: Routes.USER_STATS
+                    to: Routes.USER_OWN_STATS
                 }
             ]
         },
