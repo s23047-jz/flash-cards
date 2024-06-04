@@ -19,10 +19,12 @@ const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   const [sideB, setSideB] = useState(card["card text"] || ""); // Inicjalizacja sideB wartością card text z card
   
   const handleEdit = async () => {
-    if (InputValidator("deck", sideA) && InputValidator("deck", sideB)) {
+    const trimmedSideA = sideA.substring(0, 511);
+    const trimmedSideB = sideB.substring(0, 511);
+    if (InputValidator("deck", trimmedSideA) && InputValidator("deck", trimmedSideB)) {
       const flashCardData = {
-        card_title: sideA,
-        card_text: sideB,
+        card_title: trimmedSideA,
+        card_text: trimmedSideB,
       };
       try {
         await FlashCardsService.updateFlashcard(card.id, flashCardData, navigation);
