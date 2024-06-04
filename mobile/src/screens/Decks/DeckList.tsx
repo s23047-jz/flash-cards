@@ -14,9 +14,13 @@ import { AVATAR_MAPPING } from "../../utils/avatars";
 const styles = StyleSheet.create({
     card: {
         height: 150,
+        width: 350
     },
     row: {
         height: 75
+    },
+    col: {
+        width: '50%'
     },
     button: {
         width: 150
@@ -258,15 +262,15 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                         </Row>
                     </Col>
                 </Row>
-                <Row className="w-full bg-red-700" style={styles.row}>
-                    <Col className={'w-48 h-full justify-center items-center bg-black'}>
+                <Row className="w-full mt-3" style={styles.row}>
+                    <Col className={'h-full justify-center items-center'} style={styles.col}>
                         <Button style={styles.button} className={`p-4 ${selectedView === PAGES.DECKS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={async() => changeView(PAGES.DECKS)}>
                             <Text className='text-lg ml-auto mr-auto font-bold'>
                                 Decks
                             </Text>
                         </Button>
                     </Col>
-                    <Col className={'w-48 h-full justify-center items-center bg-white'}>
+                    <Col className={'h-full justify-center items-center'} style={styles.col}>
                         <Button style={styles.button} className={`p-4 ${selectedView === PAGES.USERS ? 'bg-sky-300' : 'bg-sky-700 border-black'}`} onPress={async() => changeView(PAGES.USERS)}>
                             <Text className='text-lg ml-auto mr-auto font-bold'>
                                 Users
