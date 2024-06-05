@@ -7,7 +7,7 @@ import {
     Card,
     Col,
     Loader,
-    LoadingCard,
+    DotsLoader,
     Row
 } from "../../components";
 import { AVATAR_MAPPING } from "../../utils/avatars";
@@ -138,6 +138,12 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
         }, [])
     )
 
+    if (loading) {
+        return (
+            <Loader />
+        )
+    }
+
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
             <View className="flex flex-container w-full mt-20 mb-5">
@@ -178,7 +184,7 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                     </Col>
                 </Row>
                 <Row className="w-full h-4/6 mt-2">
-                    { loading ? <Loader /> : data && data.length ? (
+                    { data && data.length ? (
                         <ScrollView
                             className='flex text-center align-middle w-full p-6 h-1/4'
                             scrollEventThrottle={16}
@@ -193,7 +199,7 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                                         shared={item.shared_decks}
                                     />
                                 )}
-                            {fetchLoading ? [...Array(3)].map(() => <LoadingCard />) : null}
+                            {fetchLoading ? <Row className={'w-full mt-2 mb-2'}><DotsLoader /></Row> : null}
                             {
                                 ((data.length % 4 === 0) && !(data.length === total)) ?
                                     <Row className={'w-full'}>

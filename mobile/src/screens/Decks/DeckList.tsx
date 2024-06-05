@@ -4,7 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { DeckListInterface, UserListInterface } from "../../interfaces/decks";
-import { Row, Button, Col, Card, Loader, LoadingCard } from "../../components";
+import { Row, Button, Col, Card, Loader, DotsLoader } from "../../components";
 
 import { DecksService } from "../../services/decks";
 import { UsersService } from "../../services/users";
@@ -127,7 +127,8 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     const [selectedView, setSelectedView] = useState(PAGES.USERS);
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [fetchLoading, setFetchLoading] = useState(false);
+    const [firstFetchLoading, setFirstFetchLoading] = useState(false);
+    const [fetchLoading, setFetchLoading] = useState(true);
     const [total, setTotal] = useState(0);
     const [usersQuery, setUsersQuery] = useState({ search: '', page: 1, per_page: perPage });
     const [decksQuery, setDecksQuery] = useState({ search: '', page: 1, per_page: perPage });
@@ -153,6 +154,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const handleSearchUpdate = async(value: string) => {
         setLoading(true);
+        setFirstFetchLoading(true);
         setData([]);
         setTotal(0);
         if (selectedView === PAGES.USERS) {
@@ -175,7 +177,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const changeView = async(view: string) => {
         if (view !== selectedView) {
-            setLoading(true);
+            setFirstFetchLoading(true);
             setData([]);
             setTotal(0);
             setSelectedView(view);
@@ -186,7 +188,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                 await fetchDecks();
                 setUsersQuery({ search: '', page: 1, per_page: perPage });
             }
-            setLoading(false);
+            setFirstFetchLoading(false);
         }
     }
 
@@ -212,6 +214,12 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
         };
         fetchData();
     }, [])
+
+    if (loading) {
+        return (
+            <Loader />
+        )
+    }
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
@@ -262,7 +270,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                     </Col>
                 </Row>
                 <Row className="w-full h-3/5 mt-2">
-                    { loading ? <Loader /> : data && data.length ? (
+                    { firstFetchLoading ? <DotsLoader /> : data && data.length ? (
                         <ScrollView
                             className='flex text-center align-middle w-full p-6 h-1/4'
                             scrollEventThrottle={16}
@@ -286,7 +294,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                                         onPress={handleNavigationToUserStats}
                                     />
                                 )}
-                            {fetchLoading ? [...Array(3)].map(() => <LoadingCard />) : null}
+                            {fetchLoading ? <Row className={'w-full mt-2 mb-2'}><DotsLoader /></Row> : null}
                             {
                                 ((data.length % 4 === 0) && !(data.length === total)) ?
                                     <Row className={'w-full'}>
