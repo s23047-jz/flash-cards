@@ -64,9 +64,9 @@ const UnmemorizedFlashcards: React.FC<ScreenProps> = ({
             }}
           >
             <View style={{ flex: 1 }}>
-              <Text className="ml-1 font-bold">{card.title}</Text>
+              <Text className="ml-1 w-48 font-bold">{card.title}</Text>
               <View className="border-black w-full h-1 border-b my-1" />
-              <Text className="ml-1 font-bold">{card["card text"]}</Text>
+              <Text className="ml-1 w-48 font-bold">{card["card text"]}</Text>
             </View>
             <TouchableOpacity
               onPress={() => readTitleAloud()}
