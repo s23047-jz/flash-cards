@@ -4,7 +4,7 @@ import { useFocusEffect } from "@react-navigation/native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { View, ScrollView, Text, Image, TouchableOpacity } from "react-native";
 
-import { Row, Col, Loader, Button, Card, LoadingCard } from "../../components";
+import { Row, Col, Loader, Button, Card, DotsLoader } from "../../components";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { UserStatsInterface } from "../../interfaces/user";
@@ -26,6 +26,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
     const perPage = 4;
 
     const [loading, setLoading] = useState(true);
+    const [firstFetchLoading, setFirstFetchLoading] = useState(true);
     const [checkOwnData, setCheckOwnData] = useState(false);
     const [selectedView, setSelectedView] = useState(PAGES.DECKS);
     const [userData, setUserData] = useState<UserStatsInterface>({});
@@ -55,9 +56,8 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const changeView = async(view: string) => {
         if (view !== selectedView) {
-            setLoading(true);
+            setFirstFetchLoading(true);
             setTotal(0)
-            setLoading(true);
             setDecksData([]);
             setSelectedView(view);
             if (view === PAGES.USER) {
@@ -66,7 +66,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                 await fetchDecks();
                 setQuery({ "user_id": userId, page: 1, per_page: perPage });
             }
-            setLoading(false);
+            setFirstFetchLoading(false);
         }
     }
 
@@ -211,7 +211,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                             created_at={deck.created_at}
                         />
                     ))}
-                    {fetchLoading ? [...Array(3)].map(() => <LoadingCard />) : null}
+                    {fetchLoading ? <Row className={'w-full mt-2 mb-2'}><DotsLoader /></Row> : null}
                     {
                         ((decksData.length % 4 === 0) &&
                             !(decksData.length === total) &&
@@ -242,6 +242,12 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
         )
     }
 
+    if (loading) {
+        return (
+            <Loader />
+        )
+    }
+
     const sectionButtons = () => {
         return (
             <Row className='w-full mb-4' style={styles.row}>
@@ -265,9 +271,7 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
-            <ScrollView
-                className="flex flex-container w-full mt-20 mb-5"
-            >
+            <View className="flex flex-container w-full mt-20 mb-5">
                 <Row className='w-full p-1' style={styles.row}>
                     <Col className='w-48 h-full justify-center align-middle' style={styles.col}>
                         <TouchableOpacity onPress={() => navigation.goBack()}>
@@ -278,22 +282,22 @@ const UserStats: React.FC<ScreenProps> = ({ navigation, route }) => {
                     </Col>
                     <Col className='h-full justify-center align-middle' style={styles.col}>
                         <Text className='text-2xl text-white font-bold text-right mr-4'>
-                            Stats
+                            { ownStatistics ? 'Stats' : 'User'}
                         </Text>
                     </Col>
                 </Row>
                 { checkOwnData ? '' : sectionButtons() }
-                <Row className="w-full h-4/5 mt-2">
-                    { loading ? <Loader /> :
+                <Row className={"w-full mt-2 h-4/6"}>
+                    { firstFetchLoading ? <DotsLoader /> :
                         <ScrollView
-                            className={'w-full p-6 h-1/4'}
+                            className={'w-full flex text-center align-middle p-6 h-1/4'}
                             scrollEventThrottle={16}
                         >
                             { selectedView === PAGES.DECKS ? decksView() : userView() }
                         </ScrollView>
                     }
                 </Row>
-            </ScrollView>
+            </View>
         </View>
     )
 }
