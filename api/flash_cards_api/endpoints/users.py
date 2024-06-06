@@ -323,20 +323,25 @@ async def update_avatar(
     payload: UpdateAvatarPayloadScheme,
     db: Session = Depends(get_db)
 ):
-    payload = payload.dict()
-    user: User = db.query(User).filter(User.id == user_id).first()
+    try:
+        payload = payload.dict()
+        user: User = db.query(User).filter(User.id == user_id).first()
 
-    if not user:
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_404_NOT_FOUND,
+                detail="User not found"
+            )
+
+        user.avatar = payload['avatar']
+        db.commit()
+        db.refresh(user)
+    except Exception as e:
+        print(e)
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found"
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=str(e)
         )
-
-    user.avatar = payload['avatar']
-    db.commit()
-    db.refresh(user)
-
-    return {"detail": "Avatar updated successfully"}
 
 
 @router.get(

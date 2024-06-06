@@ -56,7 +56,7 @@ class Users {
     }
 
     public async updateUserAvatar(userId: string, avatar: string, navigation: NavigationProp<any>) {
-        return request({
+        return await request({
             url: USERS_ENDPOINTS.update_avatar(userId),
             method: 'put',
             body: {avatar},

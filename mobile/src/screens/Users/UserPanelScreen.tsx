@@ -65,11 +65,14 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation, route}) => {
     }
 
     const handleUpdateAvatar = async(avatar: string) => {
-        await UsersService.updateUserAvatar(userData.id, avatar, navigation);
-        const getMeData = await UsersService.getMe(navigation)
-        await ActiveUser.updateUserData(getMeData);
-        await getUserData();
-        setShowAvatarModal(false);
+        const { res } = await UsersService.updateUserAvatar(userData.id, avatar, navigation);
+        if ([200, 201].includes(res.status)) {
+            const getMeData = await UsersService.getMe(navigation)
+            await ActiveUser.updateUserData(getMeData);
+            await getUserData();
+            alert("Successfully updated avatar")
+            setShowAvatarModal(false);
+        }
     }
 
     const splitRows = (rowSize: number = 2) => {

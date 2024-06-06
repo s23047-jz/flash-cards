@@ -10,6 +10,7 @@ import { ScreenProps } from "../../interfaces/screen";
 import { UsersService } from "../../services/users";
 import { ActiveUser } from "../../services/user";
 import { styles } from "../../assets/styles";
+import {AuthService} from "../../services/auth";
 
 
 const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
@@ -35,6 +36,11 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
         return !userData[updateField]
     }
 
+    const logout = async () => {
+        await AuthService.logout(navigation);
+        await ActiveUser.clean();
+    }
+
     const updateUser = () => {
         if (!userData[updateField]) return
         setShowModal(true);
@@ -45,7 +51,9 @@ const UserUpdate: React.FC<ScreenProps> = ({ navigation, route }) => {
         if ([200, 201].includes(res.status)) {
             await ActiveUser.updateUserData(data);
             setShowModal(false);
+            alert(`Successfully updated ${updateField}.${updateField === 'email' ? ' Log in to your account again' : ''}`)
             await getUserData();
+            await logout();
         }
     }
     return (
