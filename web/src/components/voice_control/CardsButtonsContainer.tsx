@@ -23,7 +23,8 @@ const CardsButtonsContainer = () => {
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
-    const numberOfFlashCards = flashcards.length;
+    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(2);
+    const numberOfFlashCards = flashcards.length
     const recognition = useRef(null);
     const navigate = useNavigate();
 
@@ -43,7 +44,7 @@ const CardsButtonsContainer = () => {
                             const response = await DeckService.get_flash_cards_from_deck(deck_id);
                             // @ts-ignore
                             setFlashcards(response);
-
+                            setNumberOfFlashCardsState(flashcards.length)
                             setIsLoading(false)
                         }, 300);
                     }
@@ -54,6 +55,8 @@ const CardsButtonsContainer = () => {
             }
         };
         fetchFlashCards();
+
+
 
         if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
             // @ts-ignore
@@ -88,7 +91,9 @@ const CardsButtonsContainer = () => {
                 //
                 // console.log(trimmedText)
                 // console.log(chat_question)
-                nlpModelControl(trimmedText)
+                if (trimmedText.length > 3){
+                    nlpModelControl(trimmedText)
+                }
 
 
             };
@@ -98,7 +103,7 @@ const CardsButtonsContainer = () => {
         }
 
 
-    }, [isSpeakingBigCard, currentBigCardIndex]);
+    }, [isSpeakingBigCard, currentBigCardIndex, isRotated]);
 
 
     useEffect(() => {
@@ -177,7 +182,7 @@ const CardsButtonsContainer = () => {
     const handleNextClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
-        if (currentBigCardIndex < flashcards.length - 1) {
+        if (currentBigCardIndex < numberOfFlashCardsState - 1) {
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
@@ -193,13 +198,15 @@ const CardsButtonsContainer = () => {
     };
 
     const handleRotateClick = () => {
-        window.speechSynthesis.cancel();
         setIsRotated(!isRotated);
+
+        window.speechSynthesis.cancel();
         if (isSpeakingBigCard) {
             window.speechSynthesis.cancel();
             setIsSpeakingBigCard(false);
         }
     };
+
 
     const handleRotateRead = () => {
         handleRotateClick();
@@ -238,8 +245,8 @@ const CardsButtonsContainer = () => {
         // @ts-ignore
         let number = command[text]
         console.log("NUMBERRRRRRRRRRRRRRRRRRRRRR", number, text)
+        console.log("isSpeakingBigCard): ", isSpeakingBigCard)
         if (!isSpeakingBigCard) {
-
             switch (number) {
                 case 0:
                     handlePrevClick();
@@ -251,9 +258,7 @@ const CardsButtonsContainer = () => {
                     handleRotateClick();
                     break;
                 case 3:
-                    console.log("before read")
                     handleSpeakerBigCardClick();
-                    console.log("after read")
                     break;
                 case 4:
                     handleStopControl();
@@ -290,10 +295,13 @@ const CardsButtonsContainer = () => {
             let body = {
                 text : text
             }
+
             const nlp_answer = await NlpService.sent_message(body)
             console.log("commnad", text)
             // @ts-ignore
             voiceControl(nlp_answer?.data);
+
+
         } catch (error) {
             console.error("Error:", error);
         }
