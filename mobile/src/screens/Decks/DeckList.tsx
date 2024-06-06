@@ -183,7 +183,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
         }
     }
 
-    const handleSearchUpdate = async() => {
+    const handleSearch = async() => {
         setFirstFetchLoading(true);
         setData([]);
         setTotal(0);
@@ -258,7 +258,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                                 placeholder="Search..."
                                 value={selectedView === PAGES.USERS ? usersQuery.search : decksQuery.search}
                                 onChangeText={handleSearchValueUpdate}
-                                onBlur={() => handleSearchUpdate()}
+                                onBlur={() => handleSearch()}
                                 autoCapitalize="none"
                             />
                             <MaterialCommunityIcons
