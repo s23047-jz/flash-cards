@@ -39,13 +39,17 @@ const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
             username: nickname,
             re_password: confirmPassword
         }
-        const { res } = await AuthService.register(body, navigation);
-        if ([200, 201].includes(res.status)) {
+        const { res, data } = await AuthService.register(body, navigation);
+        if ([401, 400].includes(res.status) && data.detail) {
+            alert(data.detail);
+        }
+        else if ([200, 201].includes(res.status)) {
             navigation.navigate(ROUTES.LOGIN);
             setEmail("");
             setNickName("");
             setPassword("");
             setConfirmPassword("");
+            alert("Successfully created an account. We have sent you an activation link to your e-mail.")
         }
     };
 

@@ -152,27 +152,29 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
         setFetchLoading(false)
     }
 
-    const handleSearchUpdate = async(value: string) => {
-        setLoading(true);
-        setFirstFetchLoading(true);
-        setData([]);
-        setTotal(0);
+    const handleSearchValueUpdate = (value: string) => {
         if (selectedView === PAGES.USERS) {
             setUsersQuery(prevState => ({
                 ...prevState,
                 page: 1,
                 search: value
             }));
-            await fetchUsers();
         } else {
             setDecksQuery(prevState => ({
                 ...prevState,
                 page: 1,
                 search: value
             }));
-            await fetchDecks();
         }
-        setLoading(false);
+    }
+
+    const handleSearchUpdate = async() => {
+        setFirstFetchLoading(true);
+        setData([]);
+        setTotal(0);
+        if (selectedView === PAGES.USERS) await fetchUsers();
+        else await fetchDecks();
+        setFirstFetchLoading(false);
     }
 
     const changeView = async(view: string) => {
@@ -208,10 +210,12 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     useEffect(() => {
+        setLoading(true);
         const view = PAGES.DECKS;
         const fetchData = async () => {
             await changeView(view);
         };
+        setLoading(false);
         fetchData();
     }, [])
 
@@ -238,7 +242,8 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                                 className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
                                 placeholder="Search..."
                                 value={selectedView === PAGES.USERS ? usersQuery.search : decksQuery.search}
-                                onChangeText={handleSearchUpdate}
+                                onChangeText={handleSearchValueUpdate}
+                                onBlur={() => handleSearchUpdate()}
                                 autoCapitalize="none"
                             />
                             <MaterialCommunityIcons

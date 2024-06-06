@@ -31,8 +31,10 @@ const LoginScreen: React.FC<Props> = ({ navigation, LoginMode }) => {
     ) {
 
       const { res, data } = await AuthService.login({email, password}, navigation);
-
-      if ([200, 201].includes(res.status)) {
+      if ([401, 400].includes(res.status) && data.detail) {
+        alert(data.detail);
+      }
+      else if ([200, 201].includes(res.status)) {
         await ActiveUser.set(data);
         navigation.navigate(ROUTES.HOME);
         setEmail("");
