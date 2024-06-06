@@ -270,7 +270,7 @@ async def delete_me(
             print(e)
             raise HTTPException(status_code=500, detail=str(e))
 
-        raise HTTPException(status_code=401)
+        raise HTTPException(status_code=401, detail="User deleted successfully")
 
     else:
         raise HTTPException(status_code=404, detail="Credentials are not valid")
