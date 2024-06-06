@@ -34,14 +34,6 @@ router = APIRouter(
 )
 
 
-class SelfUserUpdate(BaseModel):
-    email: Optional[str] = ''
-    username: Optional[str] = ''
-    current_password: str
-    password: Optional[str] = ''
-    re_password: Optional[str] = ''
-
-
 class UserDetailsResponse(BaseModel):
     id: uuid.UUID
     username: str
@@ -68,7 +60,7 @@ class UserUpdateModel(BaseModel):
     username: Optional[str] = ''
 
 
-class SelfUserUpdate(UserUpdateModel):
+class UpdateMe(UserUpdateModel):
     current_password: str
     password: Optional[str] = ''
     re_password: Optional[str] = ''
@@ -206,7 +198,7 @@ async def get_me(
 
 @router.put("/me/", response_model=UserResponse, status_code=200)
 async def update_me(
-        payload: SelfUserUpdate,
+        payload: UpdateMe,
         user: User = Depends(get_current_active_user),
         db: Session = Depends(get_db)
 ):
