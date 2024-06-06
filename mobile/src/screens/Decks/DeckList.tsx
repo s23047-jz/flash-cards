@@ -1,10 +1,25 @@
 import React, { useState, useEffect } from "react";
-import { Text, TextInput, View, ScrollView, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+    Text,
+    TextInput,
+    View,
+    ScrollView,
+    StyleSheet,
+    TouchableOpacity,
+    Image
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { DeckListInterface, UserListInterface } from "../../interfaces/decks";
-import { Row, Button, Col, Card, Loader, DotsLoader } from "../../components";
+import {
+    Row,
+    Button,
+    Col,
+    Card,
+    Loader,
+    DotsLoader
+} from "../../components";
 
 import { DecksService } from "../../services/decks";
 import { UsersService } from "../../services/users";

@@ -3,7 +3,15 @@ import { ScreenProps } from "../../interfaces/screen";
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { ReportsService } from "../../services/reports";
 import { useFocusEffect } from "@react-navigation/native";
-import { Button, Card, CModal, Col, DotsLoader, Loader, Row} from "../../components";
+import {
+    Button,
+    Card,
+    CModal,
+    Col,
+    DotsLoader,
+    Loader,
+    Row
+} from "../../components";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { ReportInterface } from "../../interfaces/reports";
 import { styles as mainStyles } from "../../assets/styles";
@@ -23,6 +31,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
     const perPage = 4;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [firstFetchLoading, setFirstFetchLoading] = useState(false);
     const [fetchLoading, setFetchLoading] = useState(false);
     const [reportsQuery, setReportsQuery] = useState({ search: '', page: 1, per_page: perPage });
     const [total, setTotal] = useState(0);
@@ -36,9 +45,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
         setFetchLoading(false);
     }
 
-    const setSearch = async(value: string) => {
-        setLoading(true);
-        setData([]);
+    const setSearch = (value: string) => {
         setReportsQuery(prevState => (
             {
                 ...prevState,
@@ -46,8 +53,13 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                 page: 1,
             }
         ))
+    }
+
+    const handleSearch = async() => {
+        setFirstFetchLoading(true);
+        setData([]);
         await fetchReports();
-        setLoading(false);
+        setFirstFetchLoading(false);
     }
 
     const handleFetchMoreData = async() => {
@@ -61,10 +73,12 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
         useCallback(() => {
             try {
                 setLoading(true);
+                setFirstFetchLoading(true);
                 setData([]);
                 setReportsQuery({ search: '', page: 1, per_page: perPage });
                 fetchReports();
                 setLoading(false);
+                setFirstFetchLoading(false);
             } catch (error) {
                 console.error('Error fetching users:', error);
             }
@@ -193,6 +207,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                                 placeholder="Search..."
                                 value={reportsQuery.search}
                                 onChangeText={setSearch}
+                                onBlur={() => handleSearch()}
                                 autoCapitalize="none"
                             />
                             <MaterialCommunityIcons
@@ -208,7 +223,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                     </Col>
                 </Row>
                 <Row className="w-full h-4/6 mt-2">
-                    { data && data.length ? (
+                    { firstFetchLoading ? <DotsLoader /> : data && data.length ? (
                         <ScrollView
                             className='flex text-center align-middle w-full p-6 h-1/4'
                             scrollEventThrottle={16}
