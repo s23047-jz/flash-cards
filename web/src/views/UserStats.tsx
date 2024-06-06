@@ -26,7 +26,7 @@ const UserStatsPage: React.FC = () => {
                     setPublicDecks(userStats.public_decks);
                     const userAvatar = userStats.avatar as keyof typeof AVATAR_MAPPING;
                     if (AVATAR_MAPPING[userAvatar]) {
-                        setAvatar(userAvatar); // Ustawienie awatara tylko jeśli jest prawidłowy
+                        setAvatar(userAvatar);
                     } else {
                         console.warn(`Avatar ${userAvatar} is not in AVATAR_MAPPING`);
                     }

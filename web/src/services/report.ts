@@ -32,6 +32,7 @@ class Report {
         }
     }
 
+    // @ts-ignore
        public async report_deck(body: object) {
         const url = `${BASE_API}/reports/add_reported_deck`
 

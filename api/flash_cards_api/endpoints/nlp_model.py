@@ -17,34 +17,44 @@ class SimilarityText(BaseModel):
 
 embedding = TransformerDocumentEmbeddings('bert-base-uncased')
 
-
 qa_pairs = [
-    {"q": "Please show me next card", "a": "next"},
-    {"q": "Please show me forward card", "a": "next"},
-    {"q": "Please show me Subsequent card", "a": "next"},
-    {"q": "next card", "a": "next"},
-    {"q": "show next flashcard", "a": "next"},
-    {"q": "Show me next flashcard", "a": "next"},
     {"q": "next", "a": "next"},
-    {"q": "Please show me previous  card", "a": "previous"},
-    {"q": "Please show me pior card", "a": "previous"},
-    {"q": "Please show me preceding card", "a": "previous"},
-    {"q": "Please show me former card", "a": "previous"},
-    {"q": "show me previous flashcard", "a": "previous"},
-    {"q": "show me previous card", "a": "previous"},
+    {"q": "next card", "a": "next"},
+    {"q": "next flashcard", "a": "next"},
+    {"q": "show next card", "a": "next"},
+    {"q": "show me next card", "a": "next"},
+    {"q": "show next flashcard", "a": "next"},
+    {"q": "show me next flashcard", "a": "next"},
+    {"q": "please show me next card", "a": "next"},
+    {"q": "please show me forward card", "a": "next"},
+    {"q": "please show me Subsequent card", "a": "next"},
+    {"q": "previous", "a": "previous"},
     {"q": "previous card", "a": "previous"},
-    {"q": "Please rotate card", "a": "rotate"},
-    {"q": "Please spin card", "a": "rotate"},
-    {"q": "Please turn card", "a": "rotate"},
-    {"q": "rotate card", "a": "rotate"},
-    {"q": "rotate", "a": "rotate"},
+    {"q": "previous flashcard", "a": "previous"},
+    {"q": "show me previous card", "a": "previous"},
+    {"q": "please show me pior card", "a": "previous"},
+    {"q": "please show me former card", "a": "previous"},
+    {"q": "show me previous flashcard", "a": "previous"},
+    {"q": "please show me previous  card", "a": "previous"},
+    {"q": "please show me preceding card", "a": "previous"},
+    {"q": "turn", "a": "rotate"},
     {"q": "spin", "a": "rotate"},
-    {"q": "read the text", "a": "read"},
+    {"q": "rotate", "a": "rotate"},
+    {"q": "turn card", "a": "rotate"},
+    {"q": "spin card", "a": "rotate"},
+    {"q": "rotate card", "a": "rotate"},
+    {"q": "spin flashcard", "a": "rotate"},
+    {"q": "rotate flashcard", "a": "rotate"},
+    {"q": "please turn card", "a": "rotate"},
+    {"q": "rotate flashcard", "a": "rotate"},
+    {"q": "please rotate card", "a": "rotate"},
+    {"q": "please spin card", "a": "rotate"},
     {"q": "read", "a": "read"},
+    {"q": "read text", "a": "read"},
+    {"q": "read the text", "a": "read"},
     {"q": "read flashcard text", "a": "read"},
     {"q": "please read flashcard text", "a": "read"},
 ]
-
 
 
 def vectorize_text(text):
@@ -87,11 +97,13 @@ questions = [
 async def calculate_semantic_similarity(
         text: SimilarityText
 ):
+    try:
         answer = get_most_similar_answer(text.text, qa_pairs)
         print(text.text)
         print(answer)
-
         return answer
+    except :
+        return "not found command"
 
 
 

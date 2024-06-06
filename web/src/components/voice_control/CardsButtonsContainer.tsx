@@ -10,7 +10,7 @@ import {DeckService} from '../../services/decs';
 import ButtonsContainerVoiceMode from "./ButtonsContainerVoiceMode";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/voice_control_page/cards_buttons_container.scss"
-import {ChatService} from "../../services/chat";
+import {NlpService} from "../../services/nlp";
 import {useNavigate} from 'react-router-dom';
 
 const CardsButtonsContainer = () => {
@@ -77,18 +77,18 @@ const CardsButtonsContainer = () => {
                 if (isSpeakingBigCard) {
                     trimmedText = ''
                 }
-                const commands = `['previous', 'next', 'twist', 'reading', 'quiet','rotate card and read text',
-                'go next and read front text', 'go next and read back text',
-                'back/previous and read front text', 'back/previous and read back text']`;
-                const chat_question = `[${commands}]
-                    I have the commands mapped and I have the sentence ${trimmedText},
-                    which of these commands suits you best semantically compare to text?
-                    Return the index number, starting from zero. It does not expand,
-                    I want the index number.`;
-
-                console.log(trimmedText)
-                console.log(chat_question)
-                chatControl(chat_question)
+                // const commands = `['previous', 'next', 'twist', 'reading', 'quiet','rotate card and read text',
+                // 'go next and read front text', 'go next and read back text',
+                // 'back/previous and read front text', 'back/previous and read back text']`;
+                // const chat_question = `[${commands}]
+                //     I have the commands mapped and I have the sentence ${trimmedText},
+                //     which of these commands suits you best semantically compare to text?
+                //     Return the index number, starting from zero. It does not expand,
+                //     I want the index number.`;
+                //
+                // console.log(trimmedText)
+                // console.log(chat_question)
+                nlpModelControl(trimmedText)
 
 
             };
@@ -134,7 +134,7 @@ const CardsButtonsContainer = () => {
             speech.rate = 0.9;
             speech.pitch = 1.2;
             speech.volume = 1.0;
-
+            console.log("handle text:", text)
             setIsSpeakingBigCard(true);
             speech.onend = () => {
                 setIsSpeakingBigCard(false);
@@ -153,6 +153,7 @@ const CardsButtonsContainer = () => {
             let currentBigFlashCard = flashcards[currentBigCardIndex];
             if (!isRotated) {
                 handleSpeak(currentBigFlashCard['title']);
+                console.log("handle speak: flash card: ", currentBigFlashCard)
             } else {
                 handleSpeak(currentBigFlashCard['card text']);
             }
@@ -228,9 +229,15 @@ const CardsButtonsContainer = () => {
     const voiceControl = (text: string) => {
 
 
-        console.log(text)
+        const command = {
+            "previous": 0,
+            "next": 1,
+            "rotate":2,
+            'read': 3
+        }
         // @ts-ignore
-        let number = parseInt(text.match(/\d+/)[0]);
+        let number = command[text]
+        console.log("NUMBERRRRRRRRRRRRRRRRRRRRRR", number, text)
         if (!isSpeakingBigCard) {
 
             switch (number) {
@@ -244,7 +251,9 @@ const CardsButtonsContainer = () => {
                     handleRotateClick();
                     break;
                 case 3:
+                    console.log("before read")
                     handleSpeakerBigCardClick();
+                    console.log("after read")
                     break;
                 case 4:
                     handleStopControl();
@@ -275,13 +284,16 @@ const CardsButtonsContainer = () => {
      const navigatePrevSide = () => {
         navigate('/my_deck_learning_modes')
     }
-    const chatControl = async (text: string) => {
-        console.log(text)
+    const nlpModelControl = async (text: string) => {
+
         try {
-            const chat_answer = await ChatService.sent_message(text);
-            console.log("chat answer", chat_answer)
+            let body = {
+                text : text
+            }
+            const nlp_answer = await NlpService.sent_message(body)
+            console.log("commnad", text)
             // @ts-ignore
-            voiceControl(chat_answer);
+            voiceControl(nlp_answer?.data);
         } catch (error) {
             console.error("Error:", error);
         }
