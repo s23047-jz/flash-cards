@@ -118,7 +118,7 @@ const CardsButtonsContainer = () => {
 
 
     const handleStopControl = () => {
-
+        console.log(flashcards)
         if (isClickVoiceControlAllowed) {
             setIsClickVoiceControlAllowed(false)
             setTimeout(() => {
@@ -133,6 +133,7 @@ const CardsButtonsContainer = () => {
     };
 
     const handleSpeak = (text: string) => {
+        console.log("active speach")
         if ('speechSynthesis' in window) {
             const speech = new SpeechSynthesisUtterance(text);
             speech.lang = 'en-GB';
@@ -154,11 +155,12 @@ const CardsButtonsContainer = () => {
 
     const handleSpeakerBigCardClick = () => {
         setIsSpeakingBigCard(true);
-        if (flashcards.length > 0) {
+        console.log(flashcards, numberOfFlashCardsState)
+        if (numberOfFlashCardsState >= 0) {
             let currentBigFlashCard = flashcards[currentBigCardIndex];
             if (!isRotated) {
                 handleSpeak(currentBigFlashCard['title']);
-                console.log("handle speak: flash card: ", currentBigFlashCard)
+                console.log("handle speak: flash card: ", currentBigFlashCard['title'])
             } else {
                 handleSpeak(currentBigFlashCard['card text']);
             }
