@@ -44,7 +44,6 @@ const CardsButtonsContainer = () => {
                             const response = await DeckService.get_flash_cards_from_deck(deck_id);
                             // @ts-ignore
                             setFlashcards(response);
-                            setNumberOfFlashCardsState(flashcards.length)
                             setIsLoading(false)
                         }, 300);
                     }
@@ -189,7 +188,9 @@ const CardsButtonsContainer = () => {
     const handleNextClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
-        if (currentBigCardIndex < numberOfFlashCardsState - 1) {
+        console.log(numberOfFlashCardsState)
+        if (currentBigCardIndex < numberOfFlashCardsState ) {
+
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
@@ -248,7 +249,8 @@ const CardsButtonsContainer = () => {
             "previous": 0,
             "next": 1,
             "rotate":2,
-            'read': 3
+            'read': 3,
+            'next/read': 6
         }
         // @ts-ignore
         let number = command[text]

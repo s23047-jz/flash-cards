@@ -54,6 +54,7 @@ qa_pairs = [
     {"q": "read the text", "a": "read"},
     {"q": "read flashcard text", "a": "read"},
     {"q": "please read flashcard text", "a": "read"},
+    {"q": "show next flashcard and read text", "a": "next/read"},
 ]
 
 
