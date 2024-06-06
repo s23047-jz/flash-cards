@@ -74,7 +74,7 @@ class AvatarUpdatePayload(BaseModel):
     avatar: str
 
 
-class SelfDelete(BaseModel):
+class DeleteMe(BaseModel):
     email: str
     password: str
 
@@ -247,7 +247,7 @@ async def update_me(
 
 @router.delete("/me/", status_code=401)
 async def delete_me(
-    payload: SelfDelete,
+    payload: DeleteMe,
     user: User = Depends(get_current_active_user),
     db: Session = Depends(get_db)
 ):
