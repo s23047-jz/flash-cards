@@ -90,10 +90,10 @@ const CardsButtonsContainer = () => {
                 //     I want the index number.`;
                 //
                 // console.log(trimmedText)
-                // console.log(chat_question)
-                if (trimmedText.length > 3){
-                    nlpModelControl(trimmedText)
-                }
+                // // console.log(chat_question)
+                // if (trimmedText.length > 3){
+                //     nlpModelControl(trimmedText)
+                // }
 
 
             };
@@ -103,8 +103,13 @@ const CardsButtonsContainer = () => {
         }
 
 
-    }, [isSpeakingBigCard, currentBigCardIndex, isRotated]);
+    }, [isSpeakingBigCard, isRotated]);
 
+    useEffect(() => {
+        if (textControl.length > 0) {
+            nlpModelControl(textControl);
+        }
+    }, [textControl]);
 
     useEffect(() => {
         if (isListening) {
@@ -114,7 +119,7 @@ const CardsButtonsContainer = () => {
             // @ts-ignore
             recognition.current.stop();
         }
-    }, [isListening, isSpeakingBigCard, currentBigCardIndex]);
+    }, [isListening, isSpeakingBigCard]);
 
 
     const handleStopControl = () => {
@@ -200,8 +205,9 @@ const CardsButtonsContainer = () => {
     };
 
     const handleRotateClick = () => {
+        console.log(isRotated)
         setIsRotated(!isRotated);
-
+        console.log(isRotated)
         window.speechSynthesis.cancel();
         if (isSpeakingBigCard) {
             window.speechSynthesis.cancel();
@@ -257,7 +263,9 @@ const CardsButtonsContainer = () => {
                     handleNextClick();
                     break;
                 case 2:
+                    console.log("rotate voice:", isRotated)
                     handleRotateClick();
+                    console.log("rotate voice:", isRotated)
                     break;
                 case 3:
                     handleSpeakerBigCardClick();
@@ -314,6 +322,7 @@ const CardsButtonsContainer = () => {
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
+
                 <>
                     <FlashCardVoiceMode
                         front_text={flashcards[currentBigCardIndex]['title']}
