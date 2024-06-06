@@ -1,6 +1,14 @@
 import React, { useState, useCallback } from "react";
 import { useFocusEffect } from "@react-navigation/native";
-import { Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View
+} from "react-native";
 import { UserListInterface } from "../../interfaces/decks";
 import {
     Button,
@@ -88,13 +96,12 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
     const perPage = 4;
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(false);
+    const [firstFetchLoading, setFirstFetchLoading] = useState(false);
     const [fetchLoading, setFetchLoading] = useState(false);
     const [usersQuery, setUsersQuery] = useState({ search: '', page: 1, per_page: perPage });
     const [total, setTotal] = useState(0);
 
-    const setSearch = async(value: string) => {
-        setLoading(true);
-        setData([]);
+    const setSearch = (value: string) => {
         setUsersQuery(prevState => (
             {
                 ...prevState,
@@ -102,8 +109,13 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                 page: 1,
             }
         ))
+    }
+
+    const handleSearch = async() => {
+        setFirstFetchLoading(true);
+        setData([]);
         await fetchUsers();
-        setLoading(false);
+        setFirstFetchLoading(false);
     }
 
     const fetchUsers = async() => {
@@ -126,9 +138,11 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
         useCallback(() => {
             try {
                 setLoading(true);
+                setFirstFetchLoading(true);
                 setData([]);
                 setUsersQuery({ search: '', page: 1, per_page: perPage });
                 fetchUsers();
+                setFirstFetchLoading(false);
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching users:', error);
@@ -169,6 +183,7 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                                 placeholder="Search..."
                                 value={usersQuery.search}
                                 onChangeText={setSearch}
+                                onBlur={() => handleSearch()}
                                 autoCapitalize="none"
                             />
                             <MaterialCommunityIcons
@@ -184,7 +199,7 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                     </Col>
                 </Row>
                 <Row className="w-full h-4/6 mt-2">
-                    { data && data.length ? (
+                    { firstFetchLoading ? <DotsLoader /> : data && data.length ? (
                         <ScrollView
                             className='flex text-center align-middle w-full p-6 h-1/4'
                             scrollEventThrottle={16}
