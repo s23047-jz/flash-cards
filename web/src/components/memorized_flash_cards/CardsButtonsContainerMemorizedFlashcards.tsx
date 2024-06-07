@@ -13,7 +13,7 @@ import {ChatService} from "../../services/chat";
 import ButtonContainerNotMemorizedFlashcards from "../not_memorized_flashcards/ButtonContainerNotMemorizedFlashcards";
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 import {useNavigate} from 'react-router-dom';
-
+import {NlpService} from "../../services/nlp";
 const CardsButtonsContainerMemorizedFlashcards = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -24,6 +24,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
+    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(2);
     const numberOfFlashCards = flashcards.length;
     const recognition = useRef(null);
     const navigate = useNavigate();
@@ -78,19 +79,6 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
                 if (isSpeakingBigCard) {
                     trimmedText = ''
                 }
-                const commands = `['previous', 'next', 'twist', 'reading', 'quiet','rotate card and read text',
-                'go next and read front text', 'go next and read back text',
-                'back/previous and read front text', 'back/previous and read back text']`;
-                const chat_question = `[${commands}]
-                    I have the commands mapped and I have the sentence ${trimmedText},
-                    which of these commands suits you best semantically compare to text?
-                    Return the index number, starting from zero. It does not expand,
-                    I want the index number.`;
-
-                console.log(trimmedText)
-                console.log(chat_question)
-                chatControl(chat_question)
-
 
             };
 
@@ -99,8 +87,13 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
         }
 
 
-    }, [isSpeakingBigCard, currentBigCardIndex]);
+    }, [isSpeakingBigCard, isRotated]);
 
+     useEffect(() => {
+        if (textControl.length > 0) {
+            nlpModelControl(textControl);
+        }
+    }, [textControl]);
 
     useEffect(() => {
         if (isListening) {
@@ -110,7 +103,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
             // @ts-ignore
             recognition.current.stop();
         }
-    }, [isListening, isSpeakingBigCard, currentBigCardIndex]);
+    }, [isListening, isSpeakingBigCard]);
 
 
     const handleStopControl = () => {
@@ -149,11 +142,13 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     };
 
     const handleSpeakerBigCardClick = () => {
-        setIsSpeakingBigCard(true);
-        if (flashcards.length > 0) {
+         setIsSpeakingBigCard(true);
+        console.log(flashcards, numberOfFlashCardsState)
+        if (numberOfFlashCardsState >= 0) {
             let currentBigFlashCard = flashcards[currentBigCardIndex];
             if (!isRotated) {
                 handleSpeak(currentBigFlashCard['title']);
+                console.log("handle speak: flash card: ", currentBigFlashCard['title'])
             } else {
                 handleSpeak(currentBigFlashCard['card text']);
             }
@@ -177,7 +172,9 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     const handleNextClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
-        if (currentBigCardIndex < flashcards.length - 1) {
+        console.log(numberOfFlashCardsState)
+        if (currentBigCardIndex < numberOfFlashCardsState ) {
+
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
@@ -193,8 +190,9 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     };
 
     const handleRotateClick = () => {
-        window.speechSynthesis.cancel();
         setIsRotated(!isRotated);
+        console.log(isRotated)
+        window.speechSynthesis.cancel();
         if (isSpeakingBigCard) {
             window.speechSynthesis.cancel();
             setIsSpeakingBigCard(false);
@@ -231,13 +229,16 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
 
 
     const voiceControl = (text: string) => {
-
-
-        console.log(text)
+const command = {
+            "previous": 0,
+            "next": 1,
+            "rotate":2,
+            'read': 3,
+            'stop': 4,
+        }
         // @ts-ignore
-        let number = parseInt(text.match(/\d+/)[0]);
+        let number = command[text]
         if (!isSpeakingBigCard) {
-
             switch (number) {
                 case 0:
                     handlePrevClick();
@@ -277,13 +278,18 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
         }
     };
 
-    const chatControl = async (text: string) => {
-        console.log(text)
+    const nlpModelControl = async (text: string) => {
         try {
-            const chat_answer = await ChatService.sent_message(text);
-            console.log("chat answer", chat_answer)
+            let body = {
+                text : text
+            }
+
+            const nlp_answer = await NlpService.sent_message(body)
+            console.log("commnad", text)
             // @ts-ignore
-            voiceControl(chat_answer);
+            voiceControl(nlp_answer?.data);
+
+
         } catch (error) {
             console.error("Error:", error);
         }
