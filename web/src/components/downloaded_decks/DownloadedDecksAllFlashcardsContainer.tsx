@@ -162,7 +162,7 @@ const DownloadedDecksAllFlashcardsContainer = () => {
         navigate('/memorized_flash_cards')
     };
     const handleBackToDecks = () => {
-        navigate('/my_decks')
+        navigate('/public_decks')
     };
 
     const handleLearningMode = () => {
@@ -234,7 +234,7 @@ const DownloadedDecksAllFlashcardsContainer = () => {
                 <>
                     {isEditOpen && (
                         <FlashCardEditPopUp
-                            navigateToPath={"/my_decks"}
+                            navigateToPath={"/public_decks"}
                             frontText={popupEditFrontText}
                             backText={popupEditBackText}
                             onSaveChanges={handleSaveChanges}
