@@ -15,6 +15,8 @@ export const DECKS_ENDPOINTS = {
   read_not_memorized_flash_cards_from_deck: (deck_id) => `${BASE_API}/decks/${deck_id}/not_memorized_flash_cards`,
   get_user_decks: (user_id) => `${BASE_API}/decks/${user_id}/decks/`,
   delete_deck: (deck_id) => `${BASE_API}/decks/delete_deck/${deck_id}`,
+  download_deck: (deck_id, user_id) => `${BASE_API}/decks/copy_deck/${deck_id}/${user_id}`,
+  get_downloaded_decks: (user_id) => `${BASE_API}/decks/${user_id}/imported/decks/`
 };
 
 class Decks {
@@ -136,6 +138,25 @@ class Decks {
     });
     return data;
   }
+  
+  public async download_deck(deck_id: any, user_id: any, navigation: NavigationProp<any>) {
+    console.log(DECKS_ENDPOINTS.download_deck(deck_id, user_id));
+    return await request({
+      url: DECKS_ENDPOINTS.download_deck(deck_id, user_id),
+      method: "POST",
+      navigation,
+    });
+  }
+  
+  public async get_downloaded_decks(user_id: any, navigation: NavigationProp<any>) {
+    console.log(DECKS_ENDPOINTS.get_downloaded_decks(user_id));
+    return await request({
+      url: DECKS_ENDPOINTS.get_downloaded_decks(user_id),
+      navigation,
+    });
+  }
+  
+  
 }
 
 export const DecksService = new Decks();

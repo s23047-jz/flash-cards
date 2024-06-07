@@ -14,6 +14,7 @@ import DisplayDeck from "../screens/ChooseDecksType/DisplayDeck";
 import DeckSettings from "../screens/ChooseDecksType/DeckSettings";
 import UnmemorizedFlashcards from "../screens/FlashCards/UnmemorizedFlashcards";
 import MemorizedFlashcards from "../screens/FlashCards/MemorizedFlashcards";
+import DisplayDownloadedDeck from "../screens/DownloadedDecks/DisplayDownloadedDeck";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +26,7 @@ export default function HomeNavigator() {
       <Stack.Screen name={ROUTES.MY_PRIVATE_DECKS} component={MyPrivateDecks} />
       <Stack.Screen name={ROUTES.MY_PUBLIC_DECKS} component={MyPublicDecks} />
       <Stack.Screen name={ROUTES.DISPLAY_MY_DECK} component={DisplayDeck} />
+      <Stack.Screen name={ROUTES.DISPLAY_DOWNLOADED_DECK} component={DisplayDownloadedDeck} />
       <Stack.Screen name={ROUTES.DISPLAY_FLASHCARDS} component={DisplayFlashcards}/>
       <Stack.Screen name={ROUTES.DECK_SETTINGS} component={DeckSettings} />
       <Stack.Screen name={ROUTES.EDIT_DECK} component={EditDeck} />

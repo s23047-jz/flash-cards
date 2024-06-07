@@ -1,3 +1,5 @@
+import DisplayPublicDeck from "../screens/Decks/DisplayPublicDeck";
+
 export default {
     LOGIN: "Login",
     REGISTER: "Register",
@@ -14,6 +16,7 @@ export default {
     MY_PRIVATE_DECKS: "MyPrivateDecks",
     CREATE_DECK: "CreateDeck",
     DISPLAY_MY_DECK: "DisplayDeck",
+    DISPLAY_DOWNLOADED_DECK: "DisplayDownloadedDeck",
     DISPLAY_FLASHCARDS: "DisplayFlashcards",
     DECK_SETTINGS: "DeckSettings",
     EDIT_DECK: "EditDeck",
@@ -26,6 +29,7 @@ export default {
     //  public decks tab
     PUBLIC_DECKS: "PublicDecks",
     USER_STATS: "UserStats",
+    DISPLAY_PUBLIC_DECK: "DisplayPublicDeck",
 
     // user profile
     USER_DETAILS: "UserDetails",

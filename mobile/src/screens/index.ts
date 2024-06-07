@@ -10,6 +10,7 @@ export { default as MyPublicDecks } from "./ChooseDecksType/MyPublicDecks";
 export { default as CreateDeck } from "./ChooseDecksType/CreateDeck";
 export { default as DeckSettings } from "./ChooseDecksType/DeckSettings";
 export { default as EditDeck } from "./ChooseDecksType/EditDeck";
+export { default as DisplayDownloadedDeck } from "./DownloadedDecks/DisplayDownloadedDeck"
 
 //FLASHCARDS / LEARNING
 export { default as DisplayFlashcards } from "./FlashCards/DisplayFlashcards";
@@ -22,7 +23,7 @@ export { default as UserPanelScreen } from "./Users/UserPanelScreen";
 export { default as UserUpdate } from "./Users/UserUpdate";
 export { default as UserDelete } from "./Users/UserDelete";
 export { default as UserStats } from "./Users/UserStats";
-
+export { default as DisplayPublicDeck } from "./Decks/DisplayPublicDeck"
 export { default as DeckList } from "./Decks/DeckList";
 
 // MODERATOR PANEL

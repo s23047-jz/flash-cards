@@ -6,7 +6,8 @@ export interface DeckListInterface {
     username?: string
     avatar?: string
     created_at?: Date,
-    navigate?: () => void
+    navigate?: () => void,
+    onPress?: (deckId: string, title: string, deck_category: string) => void
 }
 
 export interface UserListInterface {

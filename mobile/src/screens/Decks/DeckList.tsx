@@ -35,8 +35,13 @@ const styles = StyleSheet.create({
     }
 });
 
-const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downloads, username, avatar }) => {
+const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downloads, username, avatar, onPress  }) => {
     return (
+      <TouchableOpacity
+        className={'w-full h-full mr-auto ml-auto mb-7'}
+        style={styles.card}
+        onPress={() => onPress(id, title, deck_category)}
+      >
         <Card className={'mr-auto ml-auto w-full mb-7'} style={styles.card}>
             <Row className={'w-full'}>
                 <Row className={'h-full'} style={styles.cardRows}>
@@ -80,6 +85,7 @@ const DeckCard: React.FC<DeckListInterface> = ({ id, title, deck_category, downl
                 </Row>
             </Row>
         </Card>
+      </TouchableOpacity>
     )
 };
 
@@ -239,7 +245,11 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
             <Loader />
         )
     }
-
+    const handleNavigationToPublicDeckDeatils = (deckId: string, title: string, deck_category: string) => {
+        //navigation.navigate(ROUTES.USER_STATS, { deckId, ownStatistics: false })
+        navigation.navigate(ROUTES.DISPLAY_PUBLIC_DECK, { deckId, title, deck_category })
+    }
+    
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
             <View className="flex flex-container w-full mt-20 mb-5">
@@ -304,6 +314,8 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                                     downloads={item.downloads}
                                     username={item.username}
                                     avatar={item.avatar}
+                                    onPress={handleNavigationToPublicDeckDeatils}
+                                
                                 /> : <UserCard
                                         key={item.id}
                                         id={item.id}
