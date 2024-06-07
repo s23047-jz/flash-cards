@@ -3,20 +3,22 @@ import React from 'react';
 import DrawerAppBar from "../components/home_page/NavBar";
 // @ts-ignore
 import {ActiveUser} from "../services/user";
-import DownloadedDecksNotMemorizedContainer from "../components/downloaded_decks/DownloadedDecksNotMemorizedContainer";
-const DownloadedDecksNotMemorized = () => {
+import DownloadedDeckLearningModeContainer from "../components/downloaded_decks/DownloadedDeckLearningModeContainer";
+
+
+const DownloadedDecksLearningMode = () => {
     ActiveUser.getUserData();
     return (
         <>
             <nav>
                 <DrawerAppBar/>
             </nav>
-            <main className="main-container-not-memorized">
-                <DownloadedDecksNotMemorizedContainer/>
+            <main className="main-container-learning-mode">
+                <DownloadedDeckLearningModeContainer/>
 
             </main>
         </>
     );
 };
 
-export default DownloadedDecksNotMemorized;
+export default DownloadedDecksLearningMode;

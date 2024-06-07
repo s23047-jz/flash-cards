@@ -152,21 +152,21 @@ const DownloadedDecksAllFlashcardsContainer = () => {
     };
 
     const handleLearnModeClick = () => {
-        navigate('/voice_control')
+        navigate('/downloaded_decks_voice_control')
     };
 
     const handleNotMemorizedFlashcardsClick = () => {
-        navigate('/not_memorized_flash_cards')
+        navigate('/downloaded_decks_not_memorized_flashcards')
     };
     const handleMemorizedFlashcardsClick = () => {
-        navigate('/memorized_flash_cards')
+        navigate('/downloaded_decks_memorized_flashcards')
     };
     const handleBackToDecks = () => {
         navigate('/public_decks')
     };
 
     const handleLearningMode = () => {
-        navigate('/learning_mode')
+        navigate('/downloaded_decks_learning_mode')
     };
 
     const handleOpenOptions = () => {

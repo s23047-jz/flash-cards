@@ -7,7 +7,7 @@ import React, {useEffect, useRef, useState} from "react";
 import FlashCardVoiceMode from "../voice_control/FlashCardVoiceMode";
 import {DeckService} from '../../services/decs';
 // @ts-ignore
-import ButtonsContainerVoiceMode from "./ButtonsContainerVoiceMode";
+import ButtonsContainerVoiceMode from "../voice_control/ButtonsContainerVoiceMode";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/voice_control_page/cards_buttons_container.scss"
 import {NlpService} from "../../services/nlp";
