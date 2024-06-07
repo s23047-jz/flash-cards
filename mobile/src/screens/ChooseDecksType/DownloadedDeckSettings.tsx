@@ -10,7 +10,10 @@ import { DecksService } from "../../services/decks";
 import { FlashCardsService } from "../../services/flashcards";
 import deckList from "../Decks/DeckList";
 
-const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
+const DownloadedDeckSettings: React.FC<ScreenProps> = ({
+  navigation,
+  route,
+}) => {
   const { deck: selected_deck } = route.params;
   const [deck, setDeck] = useState(selected_deck);
   const [isDeckPublic, setIsDeckPublic] = useState(deck.is_deck_public);
@@ -84,19 +87,6 @@ const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
     );
   };
 
-  const toggleDeckVisibility = async () => {
-    const deck_data = { is_deck_public: !isDeckPublic };
-    try {
-      await DecksService.update_deck_is_public(deck.id, deck_data, navigation);
-      setIsDeckPublic(!isDeckPublic); // Toggle the visibility state
-      fetchAll();
-      //NIE MOŻE MIEĆ 0 FISZEK ZEBY GO UDOSYTEPNIC
-    } catch (error) {
-      console.error("Failed to change deck visibility:", error);
-      alert("Failed to change deck visibility.");
-    }
-  };
-
   const handleDeckReset = () => {
     Alert.alert(
       "Reset Deck",
@@ -158,20 +148,6 @@ const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
       </Button>
 
       <Button
-        onPress={toggleDeckVisibility}
-        className="p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl"
-      >
-        <Text className="scale-125 mb-1.5 font-bold text-center">
-          {isDeckPublic ? "Make deck private" : "Make deck public"}
-        </Text>
-        <Text className="font-bold text-center">
-          {isDeckPublic
-            ? "so only you can access it"
-            : "so everybody can download it"}
-        </Text>
-      </Button>
-
-      <Button
         className="p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl"
         onPress={handleDeckReset}
       >
@@ -186,4 +162,4 @@ const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
   );
 };
 
-export default DeckSettings;
+export default DownloadedDeckSettings;

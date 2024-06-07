@@ -1,15 +1,23 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import {View, Text, Image, TouchableOpacity, FlatList, Alert} from 'react-native';
-import {ScreenProps} from "../../interfaces/screen";
-import {MaterialCommunityIcons} from "@expo/vector-icons";
-import Download from "../../assets/images/Download.png";
-import {Button, FetchAllFlashcards} from "../../components";
-import {ROUTES} from "../../constants";
-import {useFocusEffect} from "@react-navigation/native";
-import {DeckListInterface} from "../../interfaces/decks";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useFocusEffect } from "@react-navigation/native";
 import * as Speech from "expo-speech";
-import {ActiveUser} from "../../services/user";
-import {DecksService} from "../../services/decks";
+import React, { useCallback, useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  TouchableOpacity,
+  FlatList,
+  Alert,
+} from "react-native";
+
+import Download from "../../assets/images/Download.png";
+import { Button, FetchAllFlashcards } from "../../components";
+import { ROUTES } from "../../constants";
+import { DeckListInterface } from "../../interfaces/decks";
+import { ScreenProps } from "../../interfaces/screen";
+import { DecksService } from "../../services/decks";
+import { ActiveUser } from "../../services/user";
 
 const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deckId } = route.params;
@@ -17,27 +25,37 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deck_category } = route.params;
   const [flashCards, setFlashCards] = useState([]);
   const [user_id, setUserId] = useState([]);
-  
+
   const fetchUserId = async () => {
-      const { id } = await ActiveUser.getUserData();
-      setUserId(id)
-  }
-  
+    const { id } = await ActiveUser.getUserData();
+    setUserId(id);
+  };
+
   useEffect(() => {
     fetchUserId();
   }, []);
-  
-  console.log("XDD", deckId)
-  console.log(flashCards)
-  console.log(title, deck_category)
-  console.log("UsER", user_id)
-  
+
+  console.log("XDD", deckId);
+  console.log(flashCards);
+  console.log(title, deck_category);
+  console.log("UsER", user_id);
+
   const handleDownloadDeck = async () => {
     if (user_id && deckId) {
       try {
-        const response = await DecksService.download_deck(deckId, user_id, navigation);
+        const response = await DecksService.download_deck(
+          deckId,
+          user_id,
+          navigation,
+        );
         console.log("Deck downloaded successfully:", response);
-        Alert.alert("Download Success", "Deck has been successfully downloaded.");
+        Alert.alert(
+          "Download Success",
+          "Deck has been successfully downloaded.",
+        );
+        navigation.goBack();
+        navigation.navigate(ROUTES.HOME_DECKS);
+        navigation.navigate(ROUTES.MY_PUBLIC_DECKS);
       } catch (error) {
         console.error("Failed to download deck:", error);
         Alert.alert("Download Error", "Failed to download the deck.");
@@ -46,18 +64,19 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
       Alert.alert("Missing Information", "User ID or Deck ID is missing.");
     }
   };
-  
+
   useFocusEffect(
     useCallback(() => {
-      FetchAllFlashcards(deckId, navigation,).then(data => {
-        setFlashCards(data);
-      }).catch(error => {
-        console.error('Error fetching decks:', error);}
-      );
-    }, [])
+      FetchAllFlashcards(deckId, navigation)
+        .then((data) => {
+          setFlashCards(data);
+        })
+        .catch((error) => {
+          console.error("Error fetching decks:", error);
+        });
+    }, []),
   );
-  
-  
+
   const showConfirmDialog = () => {
     return Alert.alert(
       "Report deck",
@@ -65,30 +84,30 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
       [
         {
           text: "Cancel",
-          style: "cancel"
+          style: "cancel",
         },
         {
           text: "Report",
           onPress: () => {
             //deleteCardFromApi(card)
-            console.log("REPORT DECK")
+            console.log("REPORT DECK");
           },
-          style: 'destructive'
-        }
+          style: "destructive",
+        },
       ],
-      { cancelable: false }
+      { cancelable: false },
     );
   };
-  
+
   const FlashCard: React.FC<DeckListInterface> = ({ card }) => {
     const readTitleAloud = () => {
       Speech.speak(card["card text"]);
     };
-    
+
     const readTextAloud = () => {
       Speech.speak(card.title);
     };
-    
+
     return (
       <View className="justify-center">
         <Button
@@ -132,9 +151,7 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
       </View>
     );
   };
-  
-  
-  
+
   return (
     <View className="flex-1 bg-sky-500 dark:bg-blue-900 placeholder-gray-400 items-center">
       <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-12">
@@ -156,36 +173,31 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           onPress={handleDownloadDeck}
           className="w-60 h-16 justify-center m-1 rounded-3xl"
         >
-          <Text className="mx-8 scale-125 font-bold text-center right-6">Download deck!</Text>
+          <Text className="mx-8 scale-125 font-bold text-center right-6">
+            Download deck!
+          </Text>
           <Image
             className="absolute flex-grow h-10 -right-3"
             resizeMode="contain"
             source={Download}
           />
         </Button>
-        <Button className="w-20 h-16 items-center justify-center m-1 rounded-3xl"
-                onPress={() => showConfirmDialog()}
-                  >
-          <MaterialCommunityIcons
-            size={40}
-            name="alert"
-            color="black"
-          />
+        <Button
+          className="w-20 h-16 items-center justify-center m-1 rounded-3xl"
+          onPress={() => showConfirmDialog()}
+        >
+          <MaterialCommunityIcons size={40} name="alert" color="black" />
         </Button>
       </View>
       <View className="flex-1 pt-10 w-full">
-      
-      <FlatList
-        className="w-full"
-        data={flashCards}
-        renderItem={({ item }) => (
-          <FlashCard card={item}  />
-        )}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
-      
+        <FlatList
+          className="w-full"
+          data={flashCards}
+          renderItem={({ item }) => <FlashCard card={item} />}
+          keyExtractor={(item) => item.id}
+        />
       </View>
+    </View>
   );
 };
 

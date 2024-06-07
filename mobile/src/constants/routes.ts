@@ -19,6 +19,7 @@ export default {
     DISPLAY_DOWNLOADED_DECK: "DisplayDownloadedDeck",
     DISPLAY_FLASHCARDS: "DisplayFlashcards",
     DECK_SETTINGS: "DeckSettings",
+    DOWNLOADED_DECK_SETTINGS: "DownloadedDeckSettings",
     EDIT_DECK: "EditDeck",
     CREATE_FLASHCARD: "CreateFlashcard",
     EDIT_FLASHCARD: "EditFlashcard",
