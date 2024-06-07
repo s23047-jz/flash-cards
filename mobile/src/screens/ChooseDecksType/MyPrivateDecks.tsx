@@ -22,6 +22,8 @@ import { ScreenProps } from "../../interfaces/screen";
 import { DecksService } from "../../services/decks";
 import { ActiveUser } from "../../services/user";
 
+
+
 const DeckCard: React.FC<DeckListInterface> = ({
   id,
   title,
@@ -48,7 +50,8 @@ const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
   useState();
   const [search, setSearch] = useState("");
   const [deckList, setDeckList] = useState("");
-
+  const [userId, setUserId] = useState("");
+  
   useFocusEffect(
     useCallback(() => {
       FetchAllDecks()
@@ -60,7 +63,21 @@ const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
         });
     }, []), // Pusta tablica zależności oznacza, że hook będzie reagować na każde zmiany focusu
   );
-
+  
+  const handleSearch = async() => {
+    try {
+      const response = await DecksService.get_filtered_decks(search);
+      setDeckList(response);
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  
+  
+  
+  
+  
   return (
     <View className="flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
       <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
@@ -80,6 +97,7 @@ const MyPrivateDecks: React.FC<ScreenProps> = ({ navigation, route }) => {
           placeholder="Search"
           value={search}
           onChangeText={setSearch}
+          onBlur={() => handleSearch()}
           autoCapitalize="none"
         />
         <MaterialCommunityIcons

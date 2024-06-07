@@ -39,3 +39,19 @@ class Auth {
 }
 
 export const AuthService = new Auth();
+
+export interface UserInterface {
+  id?: string;
+  email?: string;
+  username?: string;
+  password?: string;
+  created_at?: Date;
+  updated_at?: Date;
+  rank?: number;
+  created_decks?: number;
+  public_decks?: number,
+  avatar?: string;
+  active?: boolean;
+  role?: string;
+  is_superuser?: boolean;
+}
