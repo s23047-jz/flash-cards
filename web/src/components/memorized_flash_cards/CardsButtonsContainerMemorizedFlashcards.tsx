@@ -14,6 +14,7 @@ import ButtonContainerNotMemorizedFlashcards from "../not_memorized_flashcards/B
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 import {useNavigate} from 'react-router-dom';
 import {NlpService} from "../../services/nlp";
+import VoiceControlInstruction from "../alert/VoiceControlInstruction";
 const CardsButtonsContainerMemorizedFlashcards = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -24,8 +25,9 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
-    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(2);
-    const numberOfFlashCards = flashcards.length;
+    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(1);
+    const [showAlert, setShowAlert] = useState(false);
+    const numberOfFlashCards = flashcards.length
     const recognition = useRef(null);
     const navigate = useNavigate();
 
@@ -57,45 +59,38 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
         };
         fetchFlashCards();
 
-        if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
-            // @ts-ignore
-            recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            // @ts-ignore
-            recognition.current.lang = 'en-GB';
-            // @ts-ignore
-            recognition.current.continuous = true;
-            // @ts-ignore
-            recognition.current.onresult = (event) => {
+       if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+        // @ts-ignore
+        recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        // @ts-ignore
+        recognition.current.lang = 'en-GB';
+        // @ts-ignore
+        recognition.current.continuous = true;
 
 
-                let finalTranscriptText = "";
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        finalTranscriptText += event.results[i][0].transcript + " ";
-                    }
+            // @ts-ignore
+        recognition.current.onresult = (event) => {
+            let finalTranscriptText = "";
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscriptText += event.results[i][0].transcript + " ";
                 }
-                let trimmedText = finalTranscriptText.trim();
-                setTextControl(isSpeakingBigCard ? '' : trimmedText);
-                if (isSpeakingBigCard) {
-                    trimmedText = ''
-                }
-
-            };
-
-            if (isListening) {
-                    // @ts-ignore
-                    recognition.current.start();
             }
+            let trimmedText = finalTranscriptText.trim();
+            setTextControl(isSpeakingBigCard ? '' : trimmedText);
+            if (isSpeakingBigCard) {
+                trimmedText = ''
+            }
+        };
 
         } else {
             alert("Your browser does not support the Speech Recognition API.");
         }
 
+    }, [isSpeakingBigCard, isRotated, isListening]);
 
-    }, [isSpeakingBigCard, isRotated]);
-
-     useEffect(() => {
-        if (textControl.length > 0) {
+    useEffect(() => {
+        if (textControl.length > 2) {
             nlpModelControl(textControl);
         }
     }, [textControl]);
@@ -112,12 +107,17 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
 
 
     const handleStopControl = () => {
+        if(!isListening){
+            setShowAlert(true)
+        }
         if (isClickVoiceControlAllowed) {
             setIsClickVoiceControlAllowed(false);
             setTimeout(() => {
             setIsClickVoiceControlAllowed(true);
         }, 300);
-        setIsListening(!isListening);
+            if (isListening){
+                setIsListening(false)
+            }
         }
     };
 
@@ -128,27 +128,27 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
             speech.rate = 0.9;
             speech.pitch = 1.2;
             speech.volume = 1.0;
-
             setIsSpeakingBigCard(true);
-            speech.onend = () => {
-                setIsSpeakingBigCard(false);
-                setTextControl('');
-            };
-
             window.speechSynthesis.speak(speech);
+
+        speech.onend = () => {
+            setIsSpeakingBigCard(false);
+            setTextControl('');
+            console.log(isSpeakingBigCard);
+        };
+
         } else {
             console.log('Speech synthesis not supported.');
         }
+
     };
 
     const handleSpeakerBigCardClick = () => {
-         setIsSpeakingBigCard(true);
-        console.log(flashcards, numberOfFlashCardsState)
+        setIsSpeakingBigCard(true);
         if (numberOfFlashCardsState >= 0) {
             let currentBigFlashCard = flashcards[currentBigCardIndex];
             if (!isRotated) {
                 handleSpeak(currentBigFlashCard['title']);
-                console.log("handle speak: flash card: ", currentBigFlashCard['title'])
             } else {
                 handleSpeak(currentBigFlashCard['card text']);
             }
@@ -173,11 +173,12 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
         console.log(numberOfFlashCardsState)
-        if (currentBigCardIndex < numberOfFlashCardsState ) {
+        if (currentBigCardIndex < numberOfFlashCardsState -1 ) {
 
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
+        setNumberOfFlashCardsState(flashcards.length)
     };
 
     const handlePrevClick = () => {
@@ -190,6 +191,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     };
 
     const handleRotateClick = () => {
+        console.log(isRotated)
         setIsRotated(!isRotated);
         console.log(isRotated)
         window.speechSynthesis.cancel();
@@ -199,37 +201,11 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
         }
     };
 
-    const handleRotateRead = () => {
-        handleRotateClick();
-        handleNextRead();
-    }
-    const handleNextRead = () => {
-        handleNextClick()
-        handleSpeakerBigCardClick()
-    }
-    const handleNextRotateRead = () => {
-        handleNextClick()
-        handleRotateClick()
-        handleSpeakerBigCardClick()
-    }
-
-    const handlePrevRead = () => {
-        handlePrevClick()
-        handleSpeakerBigCardClick()
-    }
-    const handlePrevRotateRead = () => {
-        handlePrevClick()
-        handleRotateClick()
-        handleSpeakerBigCardClick()
-    }
-
-    const navigatePrevSide = () => {
-        navigate('/my_deck_learning_modes')
-    }
-
 
     const voiceControl = (text: string) => {
-const command = {
+
+
+        const command = {
             "previous": 0,
             "next": 1,
             "rotate":2,
@@ -255,21 +231,6 @@ const command = {
                 case 4:
                     handleStopControl();
                     break;
-                case 5:
-                    handleRotateRead();
-                    break;
-                case 6:
-                    handleNextRead();
-                    break;
-                case 7:
-                    handleNextRotateRead();
-                    break;
-                case 8:
-                    handlePrevRead();
-                    break;
-                case 9:
-                    handlePrevRotateRead();
-                    break;
                 default:
                     handleSpeakerNotRecognized();
                     console.log('command not found');
@@ -278,7 +239,11 @@ const command = {
         }
     };
 
+     const navigatePrevSide = () => {
+        navigate('/my_deck_learning_modes')
+    }
     const nlpModelControl = async (text: string) => {
+
         try {
             let body = {
                 text : text
@@ -295,6 +260,11 @@ const command = {
         }
     };
 
+     const handleCloseAlert = () => {
+        setShowAlert(false);
+        setIsListening(true)
+     };
+
     return (
         <div className={"voice-control-container"}>
             {isLoading ? (
@@ -303,6 +273,7 @@ const command = {
                 <>
                     {flashcards.length === 0 ? (
                         <>
+
                             <p className={"no-flash-cards-text"}>No Flashcards</p>
                             <div className={'button-back-to-deck'}>
                                 <ButtonNotMemorizedFlashCards onClick={navigatePrevSide} text={'Back To Deck'}
@@ -312,6 +283,7 @@ const command = {
                         </>
                     ) : (
                         <>
+                            {showAlert && <VoiceControlInstruction onClose={handleCloseAlert}/>}
                             <FlashCardVoiceMode
                                 front_text={flashcards[currentBigCardIndex]['title']}
                                 back_text={flashcards[currentBigCardIndex]['card text']}

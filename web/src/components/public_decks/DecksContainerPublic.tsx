@@ -86,7 +86,7 @@ const DecksContainerPublic = () => {
     };
 
     const navigateToDeckFlashcards = async (deck_id: string) => {
-        navigate("/my_deck_learning_modes")
+        navigate("/downloaded_decks_all_flashcards")
         DeckService.get_deck_by_id(deck_id)
 
     }

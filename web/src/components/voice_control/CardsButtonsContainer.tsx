@@ -12,7 +12,7 @@ import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/voice_control_page/cards_buttons_container.scss"
 import {NlpService} from "../../services/nlp";
 import {useNavigate} from 'react-router-dom';
-
+import VoiceControlInstruction from "../alert/VoiceControlInstruction";
 const CardsButtonsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -23,7 +23,8 @@ const CardsButtonsContainer = () => {
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
-    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(2);
+    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(1);
+    const [showAlert, setShowAlert] = useState(false);
     const numberOfFlashCards = flashcards.length
     const recognition = useRef(null);
     const navigate = useNavigate();
@@ -58,44 +59,37 @@ const CardsButtonsContainer = () => {
 
 
         if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
-            // @ts-ignore
-            recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            // @ts-ignore
-            recognition.current.lang = 'en-GB';
-            // @ts-ignore
-            recognition.current.continuous = true;
-            // @ts-ignore
-            recognition.current.onresult = (event) => {
+        // @ts-ignore
+        recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        // @ts-ignore
+        recognition.current.lang = 'en-GB';
+        // @ts-ignore
+        recognition.current.continuous = true;
 
 
-                let finalTranscriptText = "";
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        finalTranscriptText += event.results[i][0].transcript + " ";
-                    }
+            // @ts-ignore
+        recognition.current.onresult = (event) => {
+            let finalTranscriptText = "";
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscriptText += event.results[i][0].transcript + " ";
                 }
-                let trimmedText = finalTranscriptText.trim();
-                setTextControl(isSpeakingBigCard ? '' : trimmedText);
-                if (isSpeakingBigCard) {
-                    trimmedText = ''
-                }
-
-            };
-
-            if (isListening) {
-                // @ts-ignore
-                recognition.current.start();
             }
+            let trimmedText = finalTranscriptText.trim();
+            setTextControl(isSpeakingBigCard ? '' : trimmedText);
+            if (isSpeakingBigCard) {
+                trimmedText = ''
+            }
+        };
 
         } else {
             alert("Your browser does not support the Speech Recognition API.");
         }
 
-
-    }, [isSpeakingBigCard, isRotated]);
+    }, [isSpeakingBigCard, isRotated, isListening]);
 
     useEffect(() => {
-        if (textControl.length > 0) {
+        if (textControl.length > 2) {
             nlpModelControl(textControl);
         }
     }, [textControl]);
@@ -112,44 +106,48 @@ const CardsButtonsContainer = () => {
 
 
     const handleStopControl = () => {
+        if(!isListening){
+            setShowAlert(true)
+        }
         if (isClickVoiceControlAllowed) {
             setIsClickVoiceControlAllowed(false);
             setTimeout(() => {
             setIsClickVoiceControlAllowed(true);
         }, 300);
-        setIsListening(!isListening);
+            if (isListening){
+                setIsListening(false)
+            }
         }
     };
 
     const handleSpeak = (text: string) => {
-        console.log("active speach")
         if ('speechSynthesis' in window) {
             const speech = new SpeechSynthesisUtterance(text);
             speech.lang = 'en-GB';
             speech.rate = 0.9;
             speech.pitch = 1.2;
             speech.volume = 1.0;
-            console.log("handle text:", text)
             setIsSpeakingBigCard(true);
-            speech.onend = () => {
-                setIsSpeakingBigCard(false);
-                setTextControl('');
-            };
-
             window.speechSynthesis.speak(speech);
+
+        speech.onend = () => {
+            setIsSpeakingBigCard(false);
+            setTextControl('');
+            console.log(isSpeakingBigCard);
+        };
+
         } else {
             console.log('Speech synthesis not supported.');
         }
+
     };
 
     const handleSpeakerBigCardClick = () => {
         setIsSpeakingBigCard(true);
-        console.log(flashcards, numberOfFlashCardsState)
         if (numberOfFlashCardsState >= 0) {
             let currentBigFlashCard = flashcards[currentBigCardIndex];
             if (!isRotated) {
                 handleSpeak(currentBigFlashCard['title']);
-                console.log("handle speak: flash card: ", currentBigFlashCard['title'])
             } else {
                 handleSpeak(currentBigFlashCard['card text']);
             }
@@ -174,11 +172,12 @@ const CardsButtonsContainer = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
         console.log(numberOfFlashCardsState)
-        if (currentBigCardIndex < numberOfFlashCardsState ) {
+        if (currentBigCardIndex < numberOfFlashCardsState -1 ) {
 
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
+        setNumberOfFlashCardsState(flashcards.length)
     };
 
     const handlePrevClick = () => {
@@ -200,31 +199,6 @@ const CardsButtonsContainer = () => {
             setIsSpeakingBigCard(false);
         }
     };
-
-
-    const handleRotateRead = () => {
-        handleRotateClick();
-        handleNextRead();
-    }
-    const handleNextRead = () => {
-        handleNextClick()
-        handleSpeakerBigCardClick()
-    }
-    const handleNextRotateRead = () => {
-        handleNextClick()
-        handleRotateClick()
-        handleSpeakerBigCardClick()
-    }
-
-    const handlePrevRead = () => {
-        handlePrevClick()
-        handleSpeakerBigCardClick()
-    }
-    const handlePrevRotateRead = () => {
-        handlePrevClick()
-        handleRotateClick()
-        handleSpeakerBigCardClick()
-    }
 
 
     const voiceControl = (text: string) => {
@@ -256,21 +230,6 @@ const CardsButtonsContainer = () => {
                 case 4:
                     handleStopControl();
                     break;
-                case 5:
-                    handleRotateRead();
-                    break;
-                case 6:
-                    handleNextRead();
-                    break;
-                case 7:
-                    handleNextRotateRead();
-                    break;
-                case 8:
-                    handlePrevRead();
-                    break;
-                case 9:
-                    handlePrevRotateRead();
-                    break;
                 default:
                     handleSpeakerNotRecognized();
                     console.log('command not found');
@@ -300,6 +259,11 @@ const CardsButtonsContainer = () => {
         }
     };
 
+     const handleCloseAlert = () => {
+        setShowAlert(false);
+        setIsListening(true)
+     };
+
     return (
         <div className={"voice-control-container"}>
             {isLoading ? (
@@ -307,6 +271,7 @@ const CardsButtonsContainer = () => {
             ) : (
 
                 <>
+                    {showAlert && <VoiceControlInstruction onClose={handleCloseAlert}/>}
                     <FlashCardVoiceMode
                         front_text={flashcards[currentBigCardIndex]['title']}
                         back_text={flashcards[currentBigCardIndex]['card text']}
