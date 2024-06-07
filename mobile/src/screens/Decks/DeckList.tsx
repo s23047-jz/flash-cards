@@ -245,8 +245,8 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
             <View className="flex flex-container w-full mt-20 mb-5">
                 <Row className='w-full p-6' style={styles.row}>
                     <Col className='w-full'>
-                        <Text className="text-2xl text-white font-bold text-right">
-                            Public Decks
+                        <Text className="text-2xl h-12 text-white font-bold text-right">
+                            { selectedView === PAGES.USERS ? "Users ranking" : "Public decks" }
                         </Text>
                     </Col>
                 </Row>

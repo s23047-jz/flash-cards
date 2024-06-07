@@ -197,7 +197,7 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                         </Row>
                     </Col>
                 </Row>
-                <Row className="w-full h-full mb-16 mt-2">
+                <Row className="w-full h-4/5 pb-16 mt-2">
                     { firstFetchLoading ? <DotsLoader /> : data && data.length ? (
                         <ScrollView
                             className='flex text-center align-middle w-full p-6 h-1/4'
