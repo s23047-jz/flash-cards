@@ -45,7 +45,8 @@ def register_routers():
         decs,
         flash_card,
         chat_gpt,
-        reports
+        reports,
+        nlp_model
     )
 
     app.include_router(auth.router)
@@ -54,7 +55,7 @@ def register_routers():
     app.include_router(flash_card.router)
     app.include_router(chat_gpt.router)
     app.include_router(reports.router)
-
+    app.include_router(nlp_model.router)
 
 def run_dev_server():
     uvicorn.run(

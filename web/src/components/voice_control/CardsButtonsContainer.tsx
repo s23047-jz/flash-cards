@@ -10,7 +10,7 @@ import {DeckService} from '../../services/decs';
 import ButtonsContainerVoiceMode from "./ButtonsContainerVoiceMode";
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/voice_control_page/cards_buttons_container.scss"
-import {ChatService} from "../../services/chat";
+import {NlpService} from "../../services/nlp";
 import {useNavigate} from 'react-router-dom';
 
 const CardsButtonsContainer = () => {
@@ -23,7 +23,8 @@ const CardsButtonsContainer = () => {
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
-    const numberOfFlashCards = flashcards.length;
+    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(2);
+    const numberOfFlashCards = flashcards.length
     const recognition = useRef(null);
     const navigate = useNavigate();
 
@@ -43,7 +44,6 @@ const CardsButtonsContainer = () => {
                             const response = await DeckService.get_flash_cards_from_deck(deck_id);
                             // @ts-ignore
                             setFlashcards(response);
-
                             setIsLoading(false)
                         }, 300);
                     }
@@ -54,6 +54,8 @@ const CardsButtonsContainer = () => {
             }
         };
         fetchFlashCards();
+
+
 
         if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
             // @ts-ignore
@@ -77,29 +79,26 @@ const CardsButtonsContainer = () => {
                 if (isSpeakingBigCard) {
                     trimmedText = ''
                 }
-                const commands = `['previous', 'next', 'twist', 'reading', 'quiet','rotate card and read text',
-                'go next and read front text', 'go next and read back text',
-                'back/previous and read front text', 'back/previous and read back text']`;
-                const chat_question = `[${commands}]
-                    I have the commands mapped and I have the sentence ${trimmedText},
-                    which of these commands suits you best semantically compare to text?
-                    Return the index number, starting from zero. It does not expand,
-                    I want the index number.`;
-
-                console.log(trimmedText)
-                console.log(chat_question)
-                chatControl(chat_question)
-
 
             };
+
+            if (isListening) {
+                // @ts-ignore
+                recognition.current.start();
+            }
 
         } else {
             alert("Your browser does not support the Speech Recognition API.");
         }
 
 
-    }, [isSpeakingBigCard, currentBigCardIndex]);
+    }, [isSpeakingBigCard, isRotated]);
 
+    useEffect(() => {
+        if (textControl.length > 0) {
+            nlpModelControl(textControl);
+        }
+    }, [textControl]);
 
     useEffect(() => {
         if (isListening) {
@@ -109,32 +108,28 @@ const CardsButtonsContainer = () => {
             // @ts-ignore
             recognition.current.stop();
         }
-    }, [isListening, isSpeakingBigCard, currentBigCardIndex]);
+    }, [isListening, isSpeakingBigCard]);
 
 
     const handleStopControl = () => {
-
         if (isClickVoiceControlAllowed) {
-            setIsClickVoiceControlAllowed(false)
+            setIsClickVoiceControlAllowed(false);
             setTimeout(() => {
-                setIsClickVoiceControlAllowed(true)
-            }, 300);
-            if (isListening) {
-                setIsListening(false);
-            } else {
-                setIsListening(true);
-            }
+            setIsClickVoiceControlAllowed(true);
+        }, 300);
+        setIsListening(!isListening);
         }
     };
 
     const handleSpeak = (text: string) => {
+        console.log("active speach")
         if ('speechSynthesis' in window) {
             const speech = new SpeechSynthesisUtterance(text);
             speech.lang = 'en-GB';
             speech.rate = 0.9;
             speech.pitch = 1.2;
             speech.volume = 1.0;
-
+            console.log("handle text:", text)
             setIsSpeakingBigCard(true);
             speech.onend = () => {
                 setIsSpeakingBigCard(false);
@@ -149,10 +144,12 @@ const CardsButtonsContainer = () => {
 
     const handleSpeakerBigCardClick = () => {
         setIsSpeakingBigCard(true);
-        if (flashcards.length > 0) {
+        console.log(flashcards, numberOfFlashCardsState)
+        if (numberOfFlashCardsState >= 0) {
             let currentBigFlashCard = flashcards[currentBigCardIndex];
             if (!isRotated) {
                 handleSpeak(currentBigFlashCard['title']);
+                console.log("handle speak: flash card: ", currentBigFlashCard['title'])
             } else {
                 handleSpeak(currentBigFlashCard['card text']);
             }
@@ -176,7 +173,9 @@ const CardsButtonsContainer = () => {
     const handleNextClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
-        if (currentBigCardIndex < flashcards.length - 1) {
+        console.log(numberOfFlashCardsState)
+        if (currentBigCardIndex < numberOfFlashCardsState ) {
+
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
@@ -192,13 +191,16 @@ const CardsButtonsContainer = () => {
     };
 
     const handleRotateClick = () => {
-        window.speechSynthesis.cancel();
+        console.log(isRotated)
         setIsRotated(!isRotated);
+        console.log(isRotated)
+        window.speechSynthesis.cancel();
         if (isSpeakingBigCard) {
             window.speechSynthesis.cancel();
             setIsSpeakingBigCard(false);
         }
     };
+
 
     const handleRotateRead = () => {
         handleRotateClick();
@@ -228,11 +230,16 @@ const CardsButtonsContainer = () => {
     const voiceControl = (text: string) => {
 
 
-        console.log(text)
+        const command = {
+            "previous": 0,
+            "next": 1,
+            "rotate":2,
+            'read': 3,
+            'stop': 4,
+        }
         // @ts-ignore
-        let number = parseInt(text.match(/\d+/)[0]);
+        let number = command[text]
         if (!isSpeakingBigCard) {
-
             switch (number) {
                 case 0:
                     handlePrevClick();
@@ -275,13 +282,19 @@ const CardsButtonsContainer = () => {
      const navigatePrevSide = () => {
         navigate('/my_deck_learning_modes')
     }
-    const chatControl = async (text: string) => {
-        console.log(text)
+    const nlpModelControl = async (text: string) => {
+
         try {
-            const chat_answer = await ChatService.sent_message(text);
-            console.log("chat answer", chat_answer)
+            let body = {
+                text : text
+            }
+
+            const nlp_answer = await NlpService.sent_message(body)
+            console.log("commnad", text)
             // @ts-ignore
-            voiceControl(chat_answer);
+            voiceControl(nlp_answer?.data);
+
+
         } catch (error) {
             console.error("Error:", error);
         }
@@ -292,6 +305,7 @@ const CardsButtonsContainer = () => {
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
+
                 <>
                     <FlashCardVoiceMode
                         front_text={flashcards[currentBigCardIndex]['title']}
