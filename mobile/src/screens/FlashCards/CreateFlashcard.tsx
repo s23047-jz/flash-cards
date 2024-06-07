@@ -19,8 +19,8 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   const [sideB, setSideB] = useState("");
   
   const handleCreate = async () => {
-    const trimmedSideA = sideA.substring(0, 511);
-    const trimmedSideB = sideB.substring(0, 511);
+    const trimmedSideA = sideA.substring(0, 254);
+    const trimmedSideB = sideB.substring(0, 510);
     // Assuming sideA and sideB are the titles and texts for the flashcard
     if (InputValidator("deck", trimmedSideA) && InputValidator("deck", trimmedSideB)) {
       const flashcardData = {
