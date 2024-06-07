@@ -12,10 +12,12 @@ import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/voice_control_page/cards_buttons_container.scss"
 import {NlpService} from "../../services/nlp";
 import {useNavigate} from 'react-router-dom';
+import VoiceControlInstruction from "../alert/VoiceControlInstruction";
 
 const CardsButtonsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [showAlert, setShowAlert] = useState(false);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
     const [isRotated, setIsRotated] = useState(false);
     const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
@@ -112,6 +114,7 @@ const CardsButtonsContainer = () => {
 
 
     const handleStopControl = () => {
+        setShowAlert(true);
         if (isClickVoiceControlAllowed) {
             setIsClickVoiceControlAllowed(false);
             setTimeout(() => {
@@ -300,6 +303,10 @@ const CardsButtonsContainer = () => {
         }
     };
 
+     const handleCloseAlert = () => {
+        setShowAlert(false);
+     };
+
     return (
         <div className={"voice-control-container"}>
             {isLoading ? (
@@ -307,6 +314,7 @@ const CardsButtonsContainer = () => {
             ) : (
 
                 <>
+                    {showAlert && <VoiceControlInstruction onClose={handleCloseAlert}/>}
                     <FlashCardVoiceMode
                         front_text={flashcards[currentBigCardIndex]['title']}
                         back_text={flashcards[currentBigCardIndex]['card text']}
