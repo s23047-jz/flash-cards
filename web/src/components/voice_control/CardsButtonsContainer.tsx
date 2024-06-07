@@ -79,21 +79,6 @@ const CardsButtonsContainer = () => {
                 if (isSpeakingBigCard) {
                     trimmedText = ''
                 }
-                // const commands = `['previous', 'next', 'twist', 'reading', 'quiet','rotate card and read text',
-                // 'go next and read front text', 'go next and read back text',
-                // 'back/previous and read front text', 'back/previous and read back text']`;
-                // const chat_question = `[${commands}]
-                //     I have the commands mapped and I have the sentence ${trimmedText},
-                //     which of these commands suits you best semantically compare to text?
-                //     Return the index number, starting from zero. It does not expand,
-                //     I want the index number.`;
-                //
-                // console.log(trimmedText)
-                // // console.log(chat_question)
-                // if (trimmedText.length > 3){
-                //     nlpModelControl(trimmedText)
-                // }
-
 
             };
 
@@ -250,12 +235,10 @@ const CardsButtonsContainer = () => {
             "next": 1,
             "rotate":2,
             'read': 3,
-            'next/read': 6
+            'stop': 4,
         }
         // @ts-ignore
         let number = command[text]
-        console.log("NUMBERRRRRRRRRRRRRRRRRRRRRR", number, text)
-        console.log("isSpeakingBigCard): ", isSpeakingBigCard)
         if (!isSpeakingBigCard) {
             switch (number) {
                 case 0:
@@ -265,9 +248,7 @@ const CardsButtonsContainer = () => {
                     handleNextClick();
                     break;
                 case 2:
-                    console.log("rotate voice:", isRotated)
                     handleRotateClick();
-                    console.log("rotate voice:", isRotated)
                     break;
                 case 3:
                     handleSpeakerBigCardClick();

@@ -5,6 +5,9 @@ $fontPositionHorizontal: 5px;
 $fontColor: gold;
 
 .button-container-deck-moderator-panel {
+  overflow-wrap: break-word;
+  white-space: normal;
+  word-break: break-word;
   position: relative;
   height: 50vh;
   width: 14vw;
@@ -18,7 +21,6 @@ $fontColor: gold;
 
   button {
     transition: 1s;
-
 
 
     p {
@@ -49,10 +51,16 @@ $fontColor: gold;
   }
 
   button:hover {
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
     opacity: 1;
     background-color: #0fa2f7;
 
     p {
+      overflow-wrap: break-word;
+      white-space: normal;
+      word-break: break-word;
       opacity: 0;
       z-index: 0;
       transition: 0.5s;
@@ -60,6 +68,9 @@ $fontColor: gold;
   }
 
   p {
+    overflow-wrap: break-word;
+    white-space: normal;
+    word-break: break-word;
     position: absolute;
     z-index: 2;
     font-size: 22px;
