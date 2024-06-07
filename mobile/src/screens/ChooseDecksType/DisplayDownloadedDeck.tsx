@@ -4,7 +4,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { View, Text, Image } from "react-native";
 
 import GreenCards from "../../assets/images/greencards.png";
-import { Button } from "../../components";
+import {Button, FetchDownloadedDecks} from "../../components";
 import FetchAllDecks from "../../components/ApiCompononets/FetchAllDecks";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import { ROUTES } from "../../constants";
@@ -38,9 +38,9 @@ const DisplayDownloadedDeck: React.FC<ScreenProps> = ({ navigation, route }) => 
   
   useFocusEffect(
     useCallback(() => {
-      FetchAllDecks()
+      FetchDownloadedDecks()
       .then((data) => {
-        setDeckList(data);
+        setDeckList(data.data);
       })
       .catch((error) => {
         console.error("Error fetching decks:", error);
@@ -53,7 +53,7 @@ const DisplayDownloadedDeck: React.FC<ScreenProps> = ({ navigation, route }) => 
   };
   
   const handleDeckSettings = async () => {
-    navigation.navigate(ROUTES.DECK_SETTINGS, { deck });
+    navigation.navigate(ROUTES.DOWNLOADED_DECK_SETTINGS, { deck });
   };
   
   const handleMemorizedFlashcards = async () => {
@@ -97,10 +97,6 @@ const DisplayDownloadedDeck: React.FC<ScreenProps> = ({ navigation, route }) => 
         <Text className="text-white font-bold scale-125 mt-2 mb-1">
           
           {get_number_of_cards(deckList, selected_deck.id)} flashcards
-        </Text>
-        
-        <Text className="text-white font-bold scale-125 mb-4">
-          {deck.is_deck_public ? 'public' : 'private'} deck
         </Text>
         
         

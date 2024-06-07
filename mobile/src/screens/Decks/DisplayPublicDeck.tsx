@@ -38,6 +38,9 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
         const response = await DecksService.download_deck(deckId, user_id, navigation);
         console.log("Deck downloaded successfully:", response);
         Alert.alert("Download Success", "Deck has been successfully downloaded.");
+        navigation.goBack()
+        navigation.navigate(ROUTES.HOME_DECKS)
+        navigation.navigate(ROUTES.MY_PUBLIC_DECKS)
       } catch (error) {
         console.error("Failed to download deck:", error);
         Alert.alert("Download Error", "Failed to download the deck.");
