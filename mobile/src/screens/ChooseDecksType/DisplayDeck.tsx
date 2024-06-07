@@ -55,15 +55,15 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const handleDeckSettings = async () => {
     navigation.navigate(ROUTES.DECK_SETTINGS, { deck });
   };
-  
+
   const handleMemorizedFlashcards = async () => {
     navigation.navigate(ROUTES.MEMORIZED_FLASHCARDS, { deck });
   };
-  
+
   const handleLearningMode = async () => {
     navigation.navigate(ROUTES.LEARNING_MODE, { deck });
-  }
-  
+  };
+
   const handleUnmemorizedFlashcards = async () => {
     navigation.navigate(ROUTES.UNMEMORIZED_FLASHCARDS, { deck });
   };
@@ -89,21 +89,17 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           color="white"
         />
       </View>
-      
+
       <View className="flex-1 items-center top-36 pb-36">
-        <Text className="text-white font-bold scale-150">
-          {deck.title}
-        </Text>
+        <Text className="text-white font-bold scale-150">{deck.title}</Text>
         <Text className="text-white font-bold scale-125 mt-2 mb-1">
-          
           {get_number_of_cards(deckList, selected_deck.id)} flashcards
         </Text>
-        
+
         <Text className="text-white font-bold scale-125 mb-4">
-          {deck.is_deck_public ? 'public' : 'private'} deck
+          {deck.is_deck_public ? "public" : "private"} deck
         </Text>
-        
-        
+
         <Button
           className="p-3 m-3 w-72 h-16 bg-cyan-400 justify-center mr-auto ml-auto rounded-1xl"
           onPress={handleDisplayFlashcards}
@@ -116,8 +112,10 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           </Text>
         </Button>
 
-        <Button className="p-3 m-3 w-72 h-16 bg-pink-500 justify-center mr-auto ml-auto rounded-1xl"
-        onPress={handleLearningMode}>
+        <Button
+          className="p-3 m-3 w-72 h-16 bg-pink-500 justify-center mr-auto ml-auto rounded-1xl"
+          onPress={handleLearningMode}
+        >
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
             Learn with flashcards
           </Text>
@@ -135,8 +133,10 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           </Text>
         </Button>
 
-        <Button className="p-3 m-3 w-72 h-16 bg-green-400 justify-center mr-auto ml-auto rounded-1xl"
-                onPress={handleMemorizedFlashcards}>
+        <Button
+          className="p-3 m-3 w-72 h-16 bg-green-400 justify-center mr-auto ml-auto rounded-1xl"
+          onPress={handleMemorizedFlashcards}
+        >
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
             Memorized flashcards
           </Text>
@@ -145,8 +145,10 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           </Text>
         </Button>
 
-        <Button className="p-3 m-3 w-72 h-16 bg-red-600 mr-auto ml-auto rounded-1xl"
-                onPress={handleUnmemorizedFlashcards}>
+        <Button
+          className="p-3 m-3 w-72 h-16 bg-red-600 mr-auto ml-auto rounded-1xl"
+          onPress={handleUnmemorizedFlashcards}
+        >
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
             Unremembered flashcards
           </Text>
@@ -155,8 +157,10 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           </Text>
         </Button>
 
-        <Button className="p-3 m-3 w-72 h-16 bg-amber-300 mr-auto ml-auto rounded-1xl"
-        onPress={handleDeckSettings}>
+        <Button
+          className="p-3 m-3 w-72 h-16 bg-amber-300 mr-auto ml-auto rounded-1xl"
+          onPress={handleDeckSettings}
+        >
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
             Settings
           </Text>
