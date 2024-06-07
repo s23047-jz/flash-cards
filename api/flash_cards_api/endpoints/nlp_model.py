@@ -84,18 +84,6 @@ def get_most_similar_answer(user_question, qa_pairs):
     return qa_pairs[most_similar_index]['a']
 
 
-questions = [
-    "Read text",
-    "Show me next flashcard",
-    "Please rotate card",
-    "Show me previous card",
-    "show me prior card",
-    "show me please previous card"
-
-]
-
-
-
 @router.post("/calculate_similarity", status_code=status.HTTP_200_OK)
 async def calculate_semantic_similarity(
         text: SimilarityText
