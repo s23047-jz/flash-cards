@@ -6,6 +6,7 @@ async function FetchDownloadedDecks(navigation) {
     console.log('Pobrano pobrane talie');
     const { id } = await ActiveUser.getUserData();
     const data = await DecksService.get_downloaded_decks(id, navigation);
+    
     return data; // Zwrócenie pobranych danych
     console.log(data)
   } catch (error) {

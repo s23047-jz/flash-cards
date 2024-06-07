@@ -76,6 +76,10 @@ class User {
         await AsyncStorage.removeItem("tokenData");
         this.tokenData = this.userData = {};
     }
+    
+    public getId(): string | undefined {
+        return this.userData.id;
+    }
 }
 
 export const ActiveUser = new User();

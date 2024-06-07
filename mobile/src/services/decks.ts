@@ -2,6 +2,7 @@ import { NavigationProp } from "@react-navigation/native";
 
 import { BASE_API } from "./config";
 import { request } from "../utils/request";
+import {ActiveUser} from "./user";
 
 export const DECKS_ENDPOINTS = {
   public_decks: `${BASE_API}/decks/public_decks/`,
@@ -14,12 +15,14 @@ export const DECKS_ENDPOINTS = {
   read_memorized_flash_cards_from_deck: (deck_id) => `${BASE_API}/decks/${deck_id}/memorized_flash_cards`,
   read_not_memorized_flash_cards_from_deck: (deck_id) => `${BASE_API}/decks/${deck_id}/not_memorized_flash_cards`,
   get_user_decks: (user_id) => `${BASE_API}/decks/${user_id}/decks/`,
+  get_downloaded_decks: (user_id) => `${BASE_API}/decks/${user_id}/imported/decks/`,
   delete_deck: (deck_id) => `${BASE_API}/decks/delete_deck/${deck_id}`,
   download_deck: (deck_id, user_id) => `${BASE_API}/decks/copy_deck/${deck_id}/${user_id}`,
-  get_downloaded_decks: (user_id) => `${BASE_API}/decks/${user_id}/imported/decks/`
 };
 
 class Decks {
+  
+  
   constructor() {}
   public async read_deck_by_id(deck_id: any, navigation: NavigationProp<any>) {
     const { data } = await request({
@@ -148,12 +151,87 @@ class Decks {
     });
   }
   
+  public async filter_imported_decks_by_user_id(user_id: any, filterString: string, navigation: NavigationProp<any>) {
+    const encodedFilterString = encodeURIComponent(filterString || '');
+    const url = `${BASE_API}/decks/${user_id}/filtered_imported_decks/?filter_string=${encodedFilterString}`;
+    console.log("Requesting URL:", url);
+    return await request({
+      url,
+      navigation,
+    });
+  }
+  
   public async get_downloaded_decks(user_id: any, navigation: NavigationProp<any>) {
     console.log(DECKS_ENDPOINTS.get_downloaded_decks(user_id));
     return await request({
       url: DECKS_ENDPOINTS.get_downloaded_decks(user_id),
       navigation,
     });
+  }
+  
+  
+  public async read_filtered_decks_by_user_id(user_id: any, filterString: string = '', navigation: NavigationProp<any>) {
+    console.log("Requesting URL:", DECKS_ENDPOINTS.read_filtered_decks_by_user_id(user_id, filterString));
+    return await request({
+      url: DECKS_ENDPOINTS.read_filtered_decks_by_user_id(user_id, filterString),
+      navigation,
+    });
+  }
+  
+  
+  
+  public async read_filtered_decks_by_user_id(user_id: any, filter: string, navigation: NavigationProp<any>) {
+    console.log(DECKS_ENDPOINTS.read_filtered_decks_by_user_id(user_id, filter));
+    return await request({
+      url: `${DECKS_ENDPOINTS.get_user_decks(user_id)}/filtered_decks?filter_string=${encodeURIComponent(filter)}`,
+      navigation,
+    });
+  }
+  
+  public async get_filtered_decks(filterString: string): Promise<any> {
+    const token = await ActiveUser.getAuthorization();
+    const user_id = ActiveUser.getId();
+    const url = `${BASE_API}/decks/${user_id}/filtered_decks/?filter_string=${filterString}`;
+    console.log(token)
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': `${token}`
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
+  }
+  
+  public async get_filtered_imported_decks(filterString: string): Promise<any> {
+    const token = await ActiveUser.getAuthorization();
+    const user_id = ActiveUser.getId();
+    const url = `${BASE_API}/decks/${user_id}/filtered_imported_decks/?filter_string=${filterString}`;
+    
+    try {
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Authorization': `${token}`
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error:', error);
+      throw error;
+    }
   }
   
   

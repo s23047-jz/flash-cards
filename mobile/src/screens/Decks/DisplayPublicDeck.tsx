@@ -24,7 +24,7 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { title } = route.params;
   const { deck_category } = route.params;
   const [flashCards, setFlashCards] = useState([]);
-  const [user_id, setUserId] = useState([]);
+  const [user_id, setUserId] = useState(null); // or useState('') if ID is a string
 
   const fetchUserId = async () => {
     const { id } = await ActiveUser.getUserData();
@@ -39,23 +39,14 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   console.log(flashCards);
   console.log(title, deck_category);
   console.log("UsER", user_id);
-
+  
   const handleDownloadDeck = async () => {
-    if (user_id && deckId) {
+    if (user_id && deckId) { // Make sure user_id is appropriately checked
       try {
-        const response = await DecksService.download_deck(
-          deckId,
-          user_id,
-          navigation,
-        );
+        const response = await DecksService.download_deck(deckId, user_id, navigation);
         console.log("Deck downloaded successfully:", response);
-        Alert.alert(
-          "Download Success",
-          "Deck has been successfully downloaded.",
-        );
+        Alert.alert("Download Success", "Deck has been successfully downloaded.");
         navigation.goBack();
-        navigation.navigate(ROUTES.HOME_DECKS);
-        navigation.navigate(ROUTES.MY_PUBLIC_DECKS);
       } catch (error) {
         console.error("Failed to download deck:", error);
         Alert.alert("Download Error", "Failed to download the deck.");
@@ -64,17 +55,23 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
       Alert.alert("Missing Information", "User ID or Deck ID is missing.");
     }
   };
-
+  
   useFocusEffect(
     useCallback(() => {
+      let isActive = true; // Flag to manage the response handling
+      
       FetchAllFlashcards(deckId, navigation)
-        .then((data) => {
-          setFlashCards(data);
-        })
-        .catch((error) => {
-          console.error("Error fetching decks:", error);
-        });
-    }, []),
+      .then((data) => {
+        if (isActive) setFlashCards(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching decks:", error);
+      });
+      
+      return () => {
+        isActive = false;
+      };
+    }, [deckId, navigation])
   );
 
   const showConfirmDialog = () => {
