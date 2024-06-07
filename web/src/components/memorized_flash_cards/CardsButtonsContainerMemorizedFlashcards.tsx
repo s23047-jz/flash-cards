@@ -82,6 +82,11 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
 
             };
 
+            if (isListening) {
+                    // @ts-ignore
+                    recognition.current.start();
+            }
+
         } else {
             alert("Your browser does not support the Speech Recognition API.");
         }
@@ -107,17 +112,12 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
 
 
     const handleStopControl = () => {
-
         if (isClickVoiceControlAllowed) {
-            setIsClickVoiceControlAllowed(false)
+            setIsClickVoiceControlAllowed(false);
             setTimeout(() => {
-                setIsClickVoiceControlAllowed(true)
-            }, 300);
-            if (isListening) {
-                setIsListening(false);
-            } else {
-                setIsListening(true);
-            }
+            setIsClickVoiceControlAllowed(true);
+        }, 300);
+        setIsListening(!isListening);
         }
     };
 
