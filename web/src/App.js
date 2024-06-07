@@ -23,6 +23,7 @@ import PublicDecksAllFlashcardsFromUserRanking from "./views/PublicDecksAllFlash
 import ModeratorPanelDecks from "./views/ModeratorPanelDecks";
 import ModeratorPanelDeckAllFlashCards from "./views/ModeratorPanelDeckAllFlashCards";
 import ModeratorPanelUsers from "./views/ModeratorPanelUsers";
+import DownloadedDecksAllFlashcards from "./views/DownloadedDecksAllFlashcards";
 function App() {
     return (
         <Router>
@@ -47,6 +48,7 @@ function App() {
                         <Route path="/moderator_panel_decks" element={<ModeratorPanelDecks />}/>
                         <Route path="/reported_Deck" element={<ModeratorPanelDeckAllFlashCards/>}/>
                         <Route path="/users_moderator_panel" element={<ModeratorPanelUsers/>}/>
+                        <Route path="/downloaded_decks_all_flashcards" element={<DownloadedDecksAllFlashcards/>}/>
                     </Route>
                     <Route path="/flashcards_from_user_ranking" element={< PublicDecksAllFlashcardsFromUserRanking/>}/>
                     <Route path="/signin" element={<SignIn/>}/>
