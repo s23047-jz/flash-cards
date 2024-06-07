@@ -9,7 +9,6 @@ import {DeckService} from '../../services/decs';
 // @ts-ignore
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/not_memorized_flash_cards/cards_buttons_container_not_memorized.scss"
-import {ChatService} from "../../services/chat";
 import ButtonContainerNotMemorizedFlashcards from "./ButtonContainerNotMemorizedFlashcards";
 import {useNavigate} from 'react-router-dom';
 import ButtonNotMemorizedFlashCards from "./ButtonNotMemorizedFlashCards";
@@ -25,7 +24,7 @@ const CardsButtonsContainerNotMemorized = () => {
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
-    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(2);
+    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(1);
     const numberOfFlashCards = flashcards.length;
     const recognition = useRef(null);
     const navigate = useNavigate();
@@ -170,14 +169,15 @@ const CardsButtonsContainerNotMemorized = () => {
     }
 
 
-    const handleNextClick = () => {
+     const handleNextClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
-        if (currentBigCardIndex < numberOfFlashCardsState ) {
-
+        if (currentBigCardIndex < numberOfFlashCardsState -1) {
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
+
         }
+        setNumberOfFlashCardsState(flashcards.length)
     };
 
     const handlePrevClick = () => {

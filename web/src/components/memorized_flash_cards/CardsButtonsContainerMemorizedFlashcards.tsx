@@ -14,6 +14,8 @@ import ButtonContainerNotMemorizedFlashcards from "../not_memorized_flashcards/B
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 import {useNavigate} from 'react-router-dom';
 import {NlpService} from "../../services/nlp";
+import VoiceControlInstruction from "../alert/VoiceControlInstruction";
+import ButtonsContainerVoiceMode from "../voice_control/ButtonsContainerVoiceMode";
 const CardsButtonsContainerMemorizedFlashcards = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -23,8 +25,9 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     const [deckTitle, setDeckTitle] = useState(false);
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
+    const [showAlert, setShowAlert] = useState(false);
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
-    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(2);
+    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(1);
     const numberOfFlashCards = flashcards.length;
     const recognition = useRef(null);
     const navigate = useNavigate();
@@ -112,23 +115,29 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
 
 
     const handleStopControl = () => {
+        if(!isListening){
+            setShowAlert(true)
+        }
         if (isClickVoiceControlAllowed) {
             setIsClickVoiceControlAllowed(false);
             setTimeout(() => {
             setIsClickVoiceControlAllowed(true);
         }, 300);
-        setIsListening(!isListening);
+            if (isListening){
+                setIsListening(false)
+            }
         }
     };
 
     const handleSpeak = (text: string) => {
+        console.log("active speach")
         if ('speechSynthesis' in window) {
             const speech = new SpeechSynthesisUtterance(text);
             speech.lang = 'en-GB';
             speech.rate = 0.9;
             speech.pitch = 1.2;
             speech.volume = 1.0;
-
+            console.log("handle text:", text)
             setIsSpeakingBigCard(true);
             speech.onend = () => {
                 setIsSpeakingBigCard(false);
@@ -142,7 +151,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     };
 
     const handleSpeakerBigCardClick = () => {
-         setIsSpeakingBigCard(true);
+        setIsSpeakingBigCard(true);
         console.log(flashcards, numberOfFlashCardsState)
         if (numberOfFlashCardsState >= 0) {
             let currentBigFlashCard = flashcards[currentBigCardIndex];
@@ -169,15 +178,15 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     }
 
 
-    const handleNextClick = () => {
+      const handleNextClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
-        console.log(numberOfFlashCardsState)
-        if (currentBigCardIndex < numberOfFlashCardsState ) {
-
+        if (currentBigCardIndex < numberOfFlashCardsState -1) {
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
+
         }
+        setNumberOfFlashCardsState(flashcards.length)
     };
 
     const handlePrevClick = () => {
@@ -190,6 +199,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     };
 
     const handleRotateClick = () => {
+        console.log(isRotated)
         setIsRotated(!isRotated);
         console.log(isRotated)
         window.speechSynthesis.cancel();
@@ -198,6 +208,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
             setIsSpeakingBigCard(false);
         }
     };
+
 
     const handleRotateRead = () => {
         handleRotateClick();
@@ -223,13 +234,11 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
         handleSpeakerBigCardClick()
     }
 
-    const navigatePrevSide = () => {
-        navigate('/my_deck_learning_modes')
-    }
-
 
     const voiceControl = (text: string) => {
-const command = {
+
+
+        const command = {
             "previous": 0,
             "next": 1,
             "rotate":2,
@@ -278,7 +287,11 @@ const command = {
         }
     };
 
+     const navigatePrevSide = () => {
+        navigate('/my_deck_learning_modes')
+    }
     const nlpModelControl = async (text: string) => {
+
         try {
             let body = {
                 text : text
@@ -295,42 +308,36 @@ const command = {
         }
     };
 
+     const handleCloseAlert = () => {
+        setShowAlert(false);
+        setIsListening(true);
+     };
+
     return (
         <div className={"voice-control-container"}>
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
+
                 <>
-                    {flashcards.length === 0 ? (
-                        <>
-                            <p className={"no-flash-cards-text"}>No Flashcards</p>
-                            <div className={'button-back-to-deck'}>
-                                <ButtonNotMemorizedFlashCards onClick={navigatePrevSide} text={'Back To Deck'}
-                                                              color={'#e05a12'}
-                                                              border={'3px solid black'}/>
-                            </div>
-                        </>
-                    ) : (
-                        <>
-                            <FlashCardVoiceMode
-                                front_text={flashcards[currentBigCardIndex]['title']}
-                                back_text={flashcards[currentBigCardIndex]['card text']}
-                                left_corner_text={`${currentBigCardIndex + 1}/${numberOfFlashCards} ${deckTitle}`}
-                                icon={isSpeakingBigCard ? speaker_blue : speaker}
-                                isRotated={isRotated}
-                                onIconClick={handleSpeakerBigCardClick}
-                                isMicrophoneListening={isListening}
-                            />
-                            <ButtonContainerNotMemorizedFlashcards
-                                onClickPrev={handlePrevClick}
-                                onClickNext={handleNextClick}
-                                onClickRotate={handleRotateClick}
-                                onClickStopControl={handleStopControl}
-                                onClickPrevSide={navigatePrevSide}
-                                isMicrophoneListening={isListening}
-                            />
-                        </>
-                    )}
+                    {showAlert && <VoiceControlInstruction onClose={handleCloseAlert}/>}
+                    <FlashCardVoiceMode
+                        front_text={flashcards[currentBigCardIndex]['title']}
+                        back_text={flashcards[currentBigCardIndex]['card text']}
+                        left_corner_text={`${currentBigCardIndex + 1}/${numberOfFlashCards} ${deckTitle}`}
+                        icon={isSpeakingBigCard ? speaker_blue : speaker}
+                        isRotated={isRotated}
+                        onIconClick={handleSpeakerBigCardClick}
+                        isMicrophoneListening={isListening}
+                    />
+                    <ButtonsContainerVoiceMode
+                        onClickPrev={handlePrevClick}
+                        onClickNext={handleNextClick}
+                        onClickRotate={handleRotateClick}
+                        onClickStopControl={handleStopControl}
+                        onClickPrevSide={navigatePrevSide}
+                        isMicrophoneListening={isListening}
+                    />
                 </>
             )}
         </div>

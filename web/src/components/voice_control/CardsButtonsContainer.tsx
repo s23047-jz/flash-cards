@@ -12,12 +12,10 @@ import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/voice_control_page/cards_buttons_container.scss"
 import {NlpService} from "../../services/nlp";
 import {useNavigate} from 'react-router-dom';
-import VoiceControlInstruction from "../alert/VoiceControlInstruction";
 
 const CardsButtonsContainer = () => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [showAlert, setShowAlert] = useState(false);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
     const [isRotated, setIsRotated] = useState(false);
     const [isSpeakingBigCard, setIsSpeakingBigCard] = useState(false);
@@ -29,6 +27,7 @@ const CardsButtonsContainer = () => {
     const numberOfFlashCards = flashcards.length
     const recognition = useRef(null);
     const navigate = useNavigate();
+    let silenceTimer = 0;
 
     useEffect(() => {
         const fetchFlashCards = async () => {
@@ -60,34 +59,65 @@ const CardsButtonsContainer = () => {
 
 
         if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
-            // @ts-ignore
-            recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
-            // @ts-ignore
-            recognition.current.lang = 'en-GB';
-            // @ts-ignore
-            recognition.current.continuous = true;
-            // @ts-ignore
-            recognition.current.onresult = (event) => {
+        // @ts-ignore
+        recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        // @ts-ignore
+        recognition.current.lang = 'en-GB';
+        // @ts-ignore
+        recognition.current.continuous = true;
 
 
-                let finalTranscriptText = "";
-                for (let i = event.resultIndex; i < event.results.length; ++i) {
-                    if (event.results[i].isFinal) {
-                        finalTranscriptText += event.results[i][0].transcript + " ";
-                    }
+            // @ts-ignore
+        recognition.current.onresult = (event) => {
+            let finalTranscriptText = "";
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+                if (event.results[i].isFinal) {
+                    finalTranscriptText += event.results[i][0].transcript + " ";
                 }
-                let trimmedText = finalTranscriptText.trim();
-                setTextControl(isSpeakingBigCard ? '' : trimmedText);
-                if (isSpeakingBigCard) {
-                    trimmedText = ''
-                }
-
-            };
-
-            if (isListening) {
-                // @ts-ignore
-                recognition.current.start();
             }
+            let trimmedText = finalTranscriptText.trim();
+            setTextControl(isSpeakingBigCard ? '' : trimmedText);
+            if (isSpeakingBigCard) {
+                trimmedText = ''
+            }
+
+
+            // clearTimeout(silenceTimer);
+            //      // @ts-ignore
+            // silenceTimer = setTimeout(() => {
+            //     handleStopControl();
+            // }, 8000); // Zatrzymaj nasłuchiwanie po 8 sekundach ciszy
+        };
+
+        // Funkcja wywoływana przy zakończeniu nagrywania
+                 // @ts-ignore
+        // recognition.current.onend = () => {
+        //     console.log("Recognition ended");
+        //     // Jeśli mikrofon nadal aktywny, uruchamiamy ponownie nasłuchiwanie
+        //     if (isListening) {
+        //         console.log("Starting listening again...");
+        //              // @ts-ignore
+        //         recognition.current.start();
+        //     }
+        // };
+        //
+        // // Funkcja wywoływana, gdy mikrofon jest aktywny
+        //          // @ts-ignore
+        // recognition.current.onaudiostart = () => {
+        //     console.log("Microphone is active");
+        //     setIsListening(true);
+        // };
+        //
+        // // Funkcja wywoływana, gdy mikrofon jest nieaktywny
+        //          // @ts-ignore
+        // recognition.current.onaudioend = () => {
+        //     console.log("Microphone is inactive");
+        //     setIsListening(false);
+        //     // Uruchamiamy ponownie nasłuchiwanie po 8 sekundach ciszy
+        //          // @ts-ignore
+        //     silenceTimer = setTimeout(() => {
+        //     }, 8000);
+        // };
 
         } else {
             alert("Your browser does not support the Speech Recognition API.");
@@ -114,15 +144,14 @@ const CardsButtonsContainer = () => {
 
 
     const handleStopControl = () => {
-        setShowAlert(true);
-        if (isClickVoiceControlAllowed) {
-            setIsClickVoiceControlAllowed(false);
-            setTimeout(() => {
+    if (isClickVoiceControlAllowed) {
+        setIsClickVoiceControlAllowed(false);
+        setTimeout(() => {
             setIsClickVoiceControlAllowed(true);
         }, 300);
         setIsListening(!isListening);
-        }
-    };
+    }
+};
 
     const handleSpeak = (text: string) => {
         console.log("active speach")
@@ -184,6 +213,13 @@ const CardsButtonsContainer = () => {
         }
     };
 
+    // @ts-ignore
+    silenceTimer = setTimeout(() => {
+        if(isListening){
+            setIsListening(false)
+        }
+
+        }, 8000); // Zatrzymaj nasłuchiwanie po 8 sekundach ciszy
     const handlePrevClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
@@ -303,10 +339,6 @@ const CardsButtonsContainer = () => {
         }
     };
 
-     const handleCloseAlert = () => {
-        setShowAlert(false);
-     };
-
     return (
         <div className={"voice-control-container"}>
             {isLoading ? (
@@ -314,7 +346,6 @@ const CardsButtonsContainer = () => {
             ) : (
 
                 <>
-                    {showAlert && <VoiceControlInstruction onClose={handleCloseAlert}/>}
                     <FlashCardVoiceMode
                         front_text={flashcards[currentBigCardIndex]['title']}
                         back_text={flashcards[currentBigCardIndex]['card text']}
