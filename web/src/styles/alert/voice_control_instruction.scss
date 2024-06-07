@@ -2,17 +2,21 @@
   border: 2px solid black;
   position: fixed;
   top: 30vh;
-  left: 40%;
+  left: 50%;
+  transform: translate(-50%);
   background-color: #2196F3;
-  width: 350px;
+  width: 450px;
   padding: 15px;
   border-radius: 4px;
   z-index: 999;
-  color: white;
+
   font-weight: bold;
   font-size: 14px;
 }
+.voice-control-instruction   .commands{
+  color: white;
 
+}
 .closeButtonVoiceControlInstruction {
   position: relative;
   background-color: #0b7dda;
@@ -25,6 +29,15 @@
   left: 50%;
 }
 
-.closeButtonVoiceControlInstruction:hover {
-  background-color: #0a6ebf
+@media screen and (max-width: 700px) {
+  .voice-control-instruction{
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .voice-control-instruction{
+    font-size: 11px;
+    width: 350px;
+  }
 }
