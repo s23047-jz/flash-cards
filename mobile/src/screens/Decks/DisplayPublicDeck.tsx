@@ -24,29 +24,41 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { title } = route.params;
   const { deck_category } = route.params;
   const [flashCards, setFlashCards] = useState([]);
-  const [user_id, setUserId] = useState(null); // or useState('') if ID is a string
-
+  const [user_id, setUserId] = useState([]);
+  
   const fetchUserId = async () => {
     const { id } = await ActiveUser.getUserData();
     setUserId(id);
   };
-
+  
   useEffect(() => {
     fetchUserId();
   }, []);
-
+  
   console.log("XDD", deckId);
   console.log(flashCards);
   console.log(title, deck_category);
   console.log("UsER", user_id);
   
   const handleDownloadDeck = async () => {
-    if (user_id && deckId) { // Make sure user_id is appropriately checked
+    if (user_id && deckId) {
       try {
-        const response = await DecksService.download_deck(deckId, user_id, navigation);
-        console.log("Deck downloaded successfully:", response);
-        Alert.alert("Download Success", "Deck has been successfully downloaded.");
-        navigation.goBack();
+        const response = await DecksService.download_deck(
+          deckId,
+          user_id,
+          navigation,
+        );
+        console.log("Deck downloaded successfully:", response?.data);
+        Alert.alert(
+          "Download Success",
+          "Deck has been successfully downloaded. Go to \"Downloaded Decks\" ",
+          [
+            {
+              text: "OK",
+              onPress: () => navigation.goBack(),
+            }
+          ]
+        );
       } catch (error) {
         console.error("Failed to download deck:", error);
         Alert.alert("Download Error", "Failed to download the deck.");
@@ -58,22 +70,16 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   
   useFocusEffect(
     useCallback(() => {
-      let isActive = true; // Flag to manage the response handling
-      
       FetchAllFlashcards(deckId, navigation)
       .then((data) => {
-        if (isActive) setFlashCards(data);
+        setFlashCards(data);
       })
       .catch((error) => {
         console.error("Error fetching decks:", error);
       });
-      
-      return () => {
-        isActive = false;
-      };
-    }, [deckId, navigation])
+    }, []),
   );
-
+  
   const showConfirmDialog = () => {
     return Alert.alert(
       "Report deck",
@@ -95,16 +101,16 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
       { cancelable: false },
     );
   };
-
+  
   const FlashCard: React.FC<DeckListInterface> = ({ card }) => {
     const readTitleAloud = () => {
       Speech.speak(card["card text"]);
     };
-
+    
     const readTextAloud = () => {
       Speech.speak(card.title);
     };
-
+    
     return (
       <View className="justify-center">
         <Button
@@ -148,7 +154,7 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
       </View>
     );
   };
-
+  
   return (
     <View className="flex-1 bg-sky-500 dark:bg-blue-900 placeholder-gray-400 items-center">
       <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-12">

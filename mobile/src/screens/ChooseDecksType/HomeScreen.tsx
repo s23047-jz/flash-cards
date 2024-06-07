@@ -39,7 +39,7 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
           })
         }
 
-        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-64"
       >
         <Text className="mx-5 font-bold">Create new one</Text>
 
@@ -56,7 +56,7 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
             screen: "MyPrivateDecks",
           })
         }
-        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-64"
       >
         <Text className="mx-5 font-bold">My Decks</Text>
 
@@ -72,9 +72,9 @@ const HomeScreen: React.FC<ScreenProps> = ({ navigation, route }) => {
             screen: "MyPublickDecks",
         })
         }
-        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-60"
+        className="flex flex-row items-center justify-left bg-cyan-400 dark:bg-blue-500 border-sky-600 dark:border-blue-600 border-2 m-2 rounded-3xl object-scale-down h-24 w-64"
       >
-        <Text className="mx-5 font-bold">Public Decks</Text>
+        <Text className="mx-5 font-bold">Downloaded Decks</Text>
 
         <Image
           className="absolute flex-grow h-16 -right-6"
