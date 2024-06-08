@@ -13,3 +13,18 @@ export interface ModalInterface extends ComponentsInterface {
     animationType: string,
     transparent: boolean
 }
+
+interface VoiceControlInstructionItemDataInterface {
+    id: string
+    title: string
+    description: string
+}
+
+export interface VoiceControlInstructionItemInterface {
+    item: VoiceControlInstructionItemDataInterface
+}
+
+export interface PaginatorInterface {
+    data: object[]
+    scrollX: any
+}
