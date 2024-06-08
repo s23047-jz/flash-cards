@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, useRef } from "react";
 import { ScreenProps } from "../../interfaces/screen";
 import { ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { ReportsService } from "../../services/reports";
@@ -33,26 +33,16 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
     const [loading, setLoading] = useState(false);
     const [firstFetchLoading, setFirstFetchLoading] = useState(false);
     const [fetchLoading, setFetchLoading] = useState(false);
-    const [reportsQuery, setReportsQuery] = useState({ search: '', page: 1, per_page: perPage });
+    const [search, setSearch] = useState("")
+    const reportsQuery = useRef({ page: 1, per_page: perPage })
     const [total, setTotal] = useState(0);
 
     const fetchReports = async() => {
-        const reports_data = await ReportsService.getReportedDecksList(reportsQuery, navigation)
+        const reports_data = await ReportsService.getReportedDecksList({ ...reportsQuery, search }, navigation)
         if(data && data.length) setData(prevData => [...prevData, ...reports_data.reports]);
         else setData(reports_data.reports);
-        setReportsQuery(prevState => ({ ...prevState, page: prevState.page + 1 }))
         setTotal(reports_data.total)
         setFetchLoading(false);
-    }
-
-    const setSearch = (value: string) => {
-        setReportsQuery(prevState => (
-            {
-                ...prevState,
-                search: value,
-                page: 1,
-            }
-        ))
     }
 
     const handleSearch = async() => {
@@ -64,9 +54,8 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
 
     const handleFetchMoreData = async() => {
         setFetchLoading(true);
-        setTimeout(() => {
-            fetchReports();
-        }, 1000)
+        reportsQuery.current = { ...reportsQuery.current, page: 1 };
+        await fetchReports();
     };
 
     useFocusEffect(
@@ -74,8 +63,9 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
             try {
                 setLoading(true);
                 setFirstFetchLoading(true);
+                reportsQuery.current = { page: 1, per_page: perPage };
                 setData([]);
-                setReportsQuery({ search: '', page: 1, per_page: perPage });
+                setSearch("")
                 fetchReports();
                 setLoading(false);
                 setFirstFetchLoading(false);
@@ -87,11 +77,11 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
         }, [])
     )
 
-    const handleDeleteUser = async(deckId: string) => {
+    const handleDeleteReport = async(deckId: string) => {
         await ReportsService.deleteReport(deckId, navigation);
         setLoading(true);
+        reportsQuery.current = { page: 1, per_page: perPage };
         setData([]);
-        setReportsQuery({ search: '', page: 1, per_page: perPage });
         await fetchReports();
         setLoading(false);
     }
@@ -110,7 +100,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                         <ScrollView>
                             <Row className={'w-full mt-5'}>
                                 <Col className={'w-full mb-4 text-center'}>
-                                    <Button onPress={() => handleDeleteUser(id)}
+                                    <Button onPress={() => handleDeleteReport(id)}
                                             className={'p-1 w-52 text-center mr-auto ml-auto'}>
                                         <Text className={'text-lg ml-auto mr-auto font-bold'}>
                                             Delete
@@ -205,7 +195,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                             <TextInput
                                 className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
                                 placeholder="Search..."
-                                value={reportsQuery.search}
+                                value={search}
                                 onChangeText={setSearch}
                                 onBlur={() => handleSearch()}
                                 autoCapitalize="none"

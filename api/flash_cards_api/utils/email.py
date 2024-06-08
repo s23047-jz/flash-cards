@@ -2,7 +2,7 @@ import os.path
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-# from jinja2 import Template
+from jinja2 import Template
 from sqlalchemy.orm import Session
 
 from flash_cards_api.config import (
@@ -31,8 +31,6 @@ def send_email(to_email: str, subject: str, template_name: str, context: dict):
 		msg['To'] = to_email
 
 		msg.attach(MIMEText(render_html, 'html'))
-		print("SMTP_PASSWORD", SMTP_PASSWORD)
-
 		with smtplib.SMTP(SMTP_SERVER, SMTP_PORT) as server:
 			server.starttls()
 			server.login(SMTP_LOGIN, SMTP_PASSWORD)
@@ -48,7 +46,7 @@ def send_active_account_email(user_email: str, token: str, db: Session):
 		logger.info(f"Sending active account email to {user_email}")
 		context = {
 			'username': user.username,
-			'token_url': token_url
+			'url': token_url
 		}
 
 		send_email(
@@ -69,7 +67,7 @@ def send_password_reset_email(user_email: str, token: str, db: Session):
 
 		context = {
 			'username': user.username,
-			'token_url': token_url
+			'url': token_url
 		}
 
 		send_email(
