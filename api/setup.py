@@ -36,7 +36,7 @@ requirements = [
     "PyYAML==6.0.1",
     "requests==2.31.0",
     "rsa==4.9",
-    "scipy==1.10.1"
+    "scipy==1.10.1",
     "six==1.16.0",
     "sniffio==1.3.0",
     "SQLAlchemy==2.0.25",
@@ -44,7 +44,7 @@ requirements = [
     "tomli==2.0.1",
     "torch==2.3.0",
     "typing-extensions==4.9.0",
-    "urllib3==2.2.1",
+    "urllib3==1.26.18",
     "uvicorn==0.25.0",
     "uvloop==0.19.0",
     "watchfiles==0.21.0",

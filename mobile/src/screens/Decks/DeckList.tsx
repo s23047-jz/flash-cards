@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
     Text,
     TextInput,
@@ -151,39 +151,32 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
     const [firstFetchLoading, setFirstFetchLoading] = useState(false);
     const [fetchLoading, setFetchLoading] = useState(true);
     const [total, setTotal] = useState(0);
-    const [usersQuery, setUsersQuery] = useState({ search: '', page: 1, per_page: perPage });
-    const [decksQuery, setDecksQuery] = useState({ search: '', page: 1, per_page: perPage });
+    const [searchUsers, setSearchUsers] = useState('')
+    const [searchDecks, setSearchDecks] = useState('')
+    const usersQueryRef = useRef({ page: 1, per_page: perPage });
+    const decksQueryRef = useRef({ page: 1, per_page: perPage });
 
     const fetchDecks = async() => {
-        const deck_list = await DecksService.getPublicDecks(decksQuery, navigation);
+        const deck_list = await DecksService.getPublicDecks({ ...decksQueryRef.current, search: searchDecks }, navigation);
         if(data && data.length) setData(prevData => [...prevData, ...deck_list.decks]);
         else setData(deck_list.decks);
-        setDecksQuery(prevState => ({ ...prevState, page: prevState.page + 1 }))
         setTotal(deck_list.total)
         setFetchLoading(false)
     }
 
     const fetchUsers = async() => {
-        const user_list = await UsersService.getUsersRanking(usersQuery, navigation);
+        const user_list = await UsersService.getUsersRanking( { ...usersQueryRef.current, search: searchUsers }, navigation);
         if(data && data.length) setData(prevData => [...prevData, ...user_list.users]);
         else setData(user_list.users);
-        setUsersQuery(prevState => ({ ...prevState, page: prevState.page + 1 }))
-
         setTotal(user_list.total)
         setFetchLoading(false)
     }
 
     const handleSearchValueUpdate = (value: string) => {
         if (selectedView === PAGES.USERS) {
-            setUsersQuery(prevState => ({
-                ...prevState,
-                search: value
-            }));
+            setSearchUsers(value)
         } else {
-            setDecksQuery(prevState => ({
-                ...prevState,
-                search: value
-            }));
+            setSearchDecks(value)
         }
     }
 
@@ -192,17 +185,11 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
         setData([]);
         setTotal(0);
         if (selectedView === PAGES.USERS) {
-            setUsersQuery(prevState => ({
-                ...prevState,
-                page: 1
-            }));
+            usersQueryRef.current = { ...usersQueryRef.current, page: 1 };
             await fetchUsers();
         }
         else {
-            setDecksQuery(prevState => ({
-                ...prevState,
-                page: 1
-            }));
+            decksQueryRef.current = { ...decksQueryRef.current, page: 1 };
             await fetchDecks();
         }
         setFirstFetchLoading(false);
@@ -216,10 +203,12 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
             setSelectedView(view);
             if (view === PAGES.USERS) {
                 await fetchUsers();
-                setDecksQuery({ search: '', page: 1, per_page: perPage });
+                decksQueryRef.current = { page: 1, per_page: perPage };
+                setSearchDecks("")
             } else {
                 await fetchDecks();
-                setUsersQuery({ search: '', page: 1, per_page: perPage });
+                usersQueryRef.current = { page: 1, per_page: perPage };
+                setSearchUsers("")
             }
             setFirstFetchLoading(false);
         }
@@ -227,13 +216,13 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const handleFetchMoreData = async() => {
         setFetchLoading(true);
-        setTimeout(() => {
-            if (selectedView === PAGES.USERS) {
-                fetchUsers();
-            } else {
-                fetchDecks();
-            }
-        }, 1000)
+        if (selectedView === PAGES.USERS) {
+            usersQueryRef.current = { ...usersQueryRef.current, page: usersQueryRef.current.page + 1 };
+            await fetchUsers();
+        } else {
+            decksQueryRef.current = { ...decksQueryRef.current, page: decksQueryRef.current.page + 1 };
+            await fetchDecks();
+        }
     };
 
     const handleNavigationToUserStats = (userId: string) => {
@@ -276,7 +265,7 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
                             <TextInput
                                 className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
                                 placeholder="Search..."
-                                value={selectedView === PAGES.USERS ? usersQuery.search : decksQuery.search}
+                                value={selectedView === PAGES.USERS ? searchUsers : searchDecks}
                                 onChangeText={handleSearchValueUpdate}
                                 onBlur={() => handleSearch()}
                                 autoCapitalize="none"
