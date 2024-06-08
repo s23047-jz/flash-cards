@@ -6,10 +6,28 @@ export interface ComponentsInterface {
     className?: string,
     disabled?: boolean,
     onPress?: () => void
+    onLayout?: () => void
 }
 
 export interface ModalInterface extends ComponentsInterface {
     visible: boolean,
     animationType: string,
     transparent: boolean
+}
+
+interface VoiceControlInstructionItemDataInterface {
+    id: string
+    title: string
+    description: string
+}
+
+export interface VoiceControlInstructionItemInterface {
+    item: VoiceControlInstructionItemDataInterface,
+    parentWidth?: number
+}
+
+export interface PaginatorInterface {
+    data: object[]
+    scrollX: any,
+    parentWidth?: number
 }

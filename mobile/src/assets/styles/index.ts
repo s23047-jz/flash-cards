@@ -31,5 +31,13 @@ export const styles = StyleSheet.create({
     },
     stats_row: {
         height: 45
+    },
+    paginator: {
+        height: 65,
+    },
+    paginatorDots: {
+        height: 10,
+        borderRadius: 5,
+        marginHorizontal: 8,
     }
 });

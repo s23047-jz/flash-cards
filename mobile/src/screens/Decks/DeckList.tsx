@@ -177,13 +177,11 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
         if (selectedView === PAGES.USERS) {
             setUsersQuery(prevState => ({
                 ...prevState,
-                page: 1,
                 search: value
             }));
         } else {
             setDecksQuery(prevState => ({
                 ...prevState,
-                page: 1,
                 search: value
             }));
         }
@@ -193,8 +191,20 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
         setFirstFetchLoading(true);
         setData([]);
         setTotal(0);
-        if (selectedView === PAGES.USERS) await fetchUsers();
-        else await fetchDecks();
+        if (selectedView === PAGES.USERS) {
+            setUsersQuery(prevState => ({
+                ...prevState,
+                page: 1
+            }));
+            await fetchUsers();
+        }
+        else {
+            setDecksQuery(prevState => ({
+                ...prevState,
+                page: 1
+            }));
+            await fetchDecks();
+        }
         setFirstFetchLoading(false);
     }
 
