@@ -6,6 +6,7 @@ export interface ComponentsInterface {
     className?: string,
     disabled?: boolean,
     onPress?: () => void
+    onLayout?: () => void
 }
 
 export interface ModalInterface extends ComponentsInterface {
@@ -21,10 +22,12 @@ interface VoiceControlInstructionItemDataInterface {
 }
 
 export interface VoiceControlInstructionItemInterface {
-    item: VoiceControlInstructionItemDataInterface
+    item: VoiceControlInstructionItemDataInterface,
+    parentWidth?: number
 }
 
 export interface PaginatorInterface {
     data: object[]
-    scrollX: any
+    scrollX: any,
+    parentWidth?: number
 }

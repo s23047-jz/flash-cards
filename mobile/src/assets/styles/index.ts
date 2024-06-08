@@ -38,7 +38,6 @@ export const styles = StyleSheet.create({
     paginatorDots: {
         height: 10,
         borderRadius: 5,
-        backgroundColor: '#493d8a',
         marginHorizontal: 8,
     }
 });

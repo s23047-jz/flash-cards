@@ -1,15 +1,13 @@
 import React from "react";
-import { Animated, useWindowDimensions } from "react-native";
+import { Animated, View } from "react-native";
 import { PaginatorInterface } from "../interfaces/components";
-import { Row } from "./index";
 import { styles } from "../assets/styles";
 
-const Paginator: React.FC<PaginatorInterface> = ({ data, scrollX }) => {
-    const { width} = useWindowDimensions();
+const Paginator: React.FC<PaginatorInterface> = ({ data, scrollX, parentWidth }) => {
     return (
-        <Row className={'justify-center align-middle items-center'} style={styles.paginator}>
+        <View className={'justify-center align-middle items-center flex-row'} style={styles.paginator}>
             { data.map((_, i) => {
-                const inputRange = [(i-1) * width, i * width, (i + 1) * width];
+                const inputRange = [(i-1) * parentWidth, i * parentWidth, (i + 1) * parentWidth];
                 const dotWidth = scrollX.interpolate({
                     inputRange,
                     outputRange: [10, 20, 10],
@@ -22,9 +20,13 @@ const Paginator: React.FC<PaginatorInterface> = ({ data, scrollX }) => {
                     extrapolate: 'clamp'
                 })
 
-                return <Animated.View key={i.toString()} style={[styles.paginatorDots, { width: dotWidth, opacity }]}/>
+                return <Animated.View
+                    key={i.toString()}
+                    style={[styles.paginatorDots, { width: dotWidth, opacity }]}
+                    className={'dark:bg-sky-500 bg-blue-900'}
+                />
             })}
-        </Row>
+        </View>
     )
 }
 

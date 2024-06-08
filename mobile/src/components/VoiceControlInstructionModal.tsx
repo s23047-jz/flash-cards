@@ -7,7 +7,9 @@ import {
 import {
     CModal,
     VoiceControlInstructionItem,
-    Paginator
+    Paginator,
+    Row,
+    Col
 } from "./index";
 import voiceControlData from "../data/voiceControlData";
 
@@ -18,8 +20,14 @@ const VoiceControlInstructionModal = ({ visible }: { visible: boolean }) => {
     const viewableItemsChanged = useRef(({ viewableItems }) => {
         setCurrentIndex(viewableItems[0].index)
     }).current
+    const [parentWidth, setParentWidth] = useState(0);
 
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50}).current
+
+    const onParentLayout = (event) => {
+        const { width } = event.nativeEvent.layout;
+        setParentWidth(width);
+    };
 
     return (
         <CModal
@@ -27,25 +35,34 @@ const VoiceControlInstructionModal = ({ visible }: { visible: boolean }) => {
             animationType={'fade'}
             transparent={true}
         >
-            <View className={'flex-1'}>
-                <FlatList
-                    data={voiceControlData}
-                    renderItem={({ item }) => <VoiceControlInstructionItem item={item} /> }
-                    horizontal
-                    showsHorizontalScrollIndicator
-                    pagingEnabled
-                    bounces={false}
-                    keyExtractor={(item) => item.id}
-                    onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }],
-                        { useNativeDriver: false }
-                    )}
-                    scrollEventThrottle={32}
-                    viewabilityConfig={viewConfig}
-                    onViewableItemsChanged={viewableItemsChanged}
-                    ref={instructionRef}
-                />
+            <View className={'bg-sky-500 dark:bg-blue-900 w-full rounded-xl p-4'}>
+                <Row className={'w-full'}>
+                    <Col className={'w-full'} onLayout={onParentLayout}>
+                        <FlatList
+                            data={voiceControlData}
+                            initialNumToRender={7}
+                            renderItem={({ item }) => <VoiceControlInstructionItem item={item} parentWidth={parentWidth} />}
+                            horizontal
+                            showsHorizontalScrollIndicator
+                            pagingEnabled
+                            bounces={false}
+                            keyExtractor={(item) => item.id}
+                            onScroll={Animated.event([{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                                { useNativeDriver: false }
+                            )}
+                            scrollEventThrottle={32}
+                            viewabilityConfig={viewConfig}
+                            onViewableItemsChanged={viewableItemsChanged}
+                            ref={instructionRef}
+                        />
+                        </Col>
+                </Row>
+                <Row className={'w-full mt-2'} >
+                    <Col className={'w-full'}>
+                        <Paginator data={voiceControlData} scrollX={scrollX} parentWidth={parentWidth} />
+                    </Col>
+                </Row>
             </View>
-            <Paginator data={voiceControlData} scrollX={scrollX} />
         </CModal>
     )
 }
