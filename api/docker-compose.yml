@@ -15,25 +15,25 @@ services:
     networks:
       - fc_db_net
 
-#  fc_api:
-#    container_name: 'fc_api'
-#    image: fc_api
-#    ports:
-#      - 8000:8000
-#    build:
-#      context: .
-#    restart: always
-#    env_file:
-#      - .env.development
-#    volumes:
-#      - .:/fc_api
-#      - media:/media
-#    networks:
-#      - fc_api_net
-#      - fc_db_net
-#    command: sh docker-entrypoint.sh
-#    depends_on:
-#      - fc_db
+  fc_api:
+    container_name: 'fc_api'
+    image: fc_api
+    ports:
+      - 8000:8000
+    build:
+      context: .
+    restart: always
+    env_file:
+      - .env.development
+    volumes:
+      - .:/fc_api
+      - media:/media
+    networks:
+      - fc_api_net
+      - fc_db_net
+    command: sh docker-entrypoint.sh
+    depends_on:
+      - fc_db
 
 networks:
   fc_db_net:
