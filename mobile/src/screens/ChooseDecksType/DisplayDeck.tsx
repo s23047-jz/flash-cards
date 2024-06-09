@@ -19,6 +19,8 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { selected_deck } = route.params;
   const [deckList, setDeckList] = useState([]);
   const [deck, setDeck] = useState([]);
+  const [numberOfCards, setNumberOfCards] = useState(0);  // New state variable
+
 
   const fetchAll = useCallback(async () => {
     try {
@@ -47,13 +49,20 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
         });
     }, []),
   );
-
+  
+  useEffect(() => {
+    const numCards = get_number_of_cards(deckList, selected_deck.id);
+    setNumberOfCards(numCards);
+    console.log("Updated numberOfCards:", numCards); // To check if it's updated correctly
+  }, [deckList]); // This effect runs whenever deckList changes
+  
   const handleDisplayFlashcards = async () => {
     navigation.navigate(ROUTES.DISPLAY_FLASHCARDS, { deck });
   };
 
   const handleDeckSettings = async () => {
-    navigation.navigate(ROUTES.DECK_SETTINGS, { deck });
+    
+    navigation.navigate(ROUTES.DECK_SETTINGS, { deck, numberOfCards });
   };
 
   const handleMemorizedFlashcards = async () => {
@@ -68,6 +77,7 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
     navigation.navigate(ROUTES.UNMEMORIZED_FLASHCARDS, { deck });
   };
 
+  
   function get_number_of_cards(decks, id) {
     // Znajdź obiekt w tablicy, który ma podane ID
     const deck = decks.find((deck) => deck.id === id);
