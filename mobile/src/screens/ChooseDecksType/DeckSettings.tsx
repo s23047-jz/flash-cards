@@ -11,10 +11,11 @@ import { FlashCardsService } from "../../services/flashcards";
 import deckList from "../Decks/DeckList";
 
 const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
-  const { deck: selected_deck } = route.params;
+  const { deck: selected_deck } = route.params; // Ensure you receive numberOfCards from route
+  const { numberOfCards } = route.params;
   const [deck, setDeck] = useState(selected_deck);
   const [isDeckPublic, setIsDeckPublic] = useState(deck.is_deck_public);
-
+  
   const fetchAll = useCallback(async () => {
     try {
       const data = await DecksService.read_deck_by_id(deck.id);
@@ -30,9 +31,6 @@ const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
       fetchAll();
     }, [fetchAll]),
   );
-
-  console.log(deck);
-
   const handleEditDeck = async () => {
     navigation.navigate(ROUTES.EDIT_DECK, { deck });
   };
@@ -83,17 +81,20 @@ const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
       { cancelable: false },
     );
   };
-
+  
   const toggleDeckVisibility = async () => {
-    const deck_data = { is_deck_public: !isDeckPublic };
-    try {
-      await DecksService.update_deck_is_public(deck.id, deck_data, navigation);
-      setIsDeckPublic(!isDeckPublic); // Toggle the visibility state
-      fetchAll();
-      //NIE MOŻE MIEĆ 0 FISZEK ZEBY GO UDOSYTEPNIC
-    } catch (error) {
-      console.error("Failed to change deck visibility:", error);
-      alert("Failed to change deck visibility.");
+    // Add logic to prevent toggle when numberOfCards is 0
+    if (numberOfCards > 0) {
+      const deck_data = { is_deck_public: !isDeckPublic };
+      try {
+        await DecksService.update_deck_is_public(deck.id, deck_data, navigation);
+        setIsDeckPublic(!isDeckPublic);
+      } catch (error) {
+        console.error("Failed to change deck visibility:", error);
+        alert("Failed to change deck visibility.");
+      }
+    } else {
+      alert("Cannot make deck public with 0 flashcards.");
     }
   };
 
@@ -156,18 +157,19 @@ const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
           permanently from your account
         </Text>
       </Button>
-
+      
       <Button
         onPress={toggleDeckVisibility}
-        className="p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl"
+        disabled={numberOfCards === 0} // Disable button based on numberOfCards
+        className={`p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl ${numberOfCards === 0 ? 'bg-gray-500' : 'bg-cyan-400'}`}
       >
         <Text className="scale-125 mb-1.5 font-bold text-center">
-          {isDeckPublic ? "Make deck private" : "Make deck public"}
+          {numberOfCards === 0 ? "Make deck public" :
+            (isDeckPublic ? "Make deck private" : "Make deck public")}
         </Text>
         <Text className="font-bold text-center">
-          {isDeckPublic
-            ? "so only you can access it"
-            : "so everybody can download it"}
+          {numberOfCards === 0 ? "Add flashcards to make public" :
+            (isDeckPublic ? "so only you can access it" : "so everybody can download it")}
         </Text>
       </Button>
 
