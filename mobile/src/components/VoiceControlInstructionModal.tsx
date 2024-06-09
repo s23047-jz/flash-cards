@@ -4,13 +4,11 @@ import {
     Animated,
     View
 } from "react-native";
-import {
-    CModal,
-    VoiceControlInstructionItem,
-    Paginator,
-    Row,
-    Col
-} from "./index";
+import Row from "./Row";
+import Col from "./Col";
+import Paginator from "./Paginator";
+import VoiceControlInstructionItem from "./VoiceControlInstructionItem";
+import CModal from "./CModal";
 import voiceControlData from "../data/voiceControlData";
 
 const VoiceControlInstructionModal = ({ visible }: { visible: boolean }) => {

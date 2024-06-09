@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { useFocusEffect } from "@react-navigation/native";
 import {
     Image,
@@ -98,37 +98,29 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
     const [loading, setLoading] = useState(false);
     const [firstFetchLoading, setFirstFetchLoading] = useState(false);
     const [fetchLoading, setFetchLoading] = useState(false);
-    const [usersQuery, setUsersQuery] = useState({ search: '', page: 1, per_page: perPage });
+    const usersQuery = useRef({ page: 1, per_page: perPage });
+    const [search, setSearch] = useState("");
     const [total, setTotal] = useState(0);
-
-    const setSearch = (value: string) => {
-        setUsersQuery(prevState => (
-            {
-                ...prevState,
-                search: value,
-                page: 1,
-            }
-        ))
-    }
 
     const handleSearch = async() => {
         setFirstFetchLoading(true);
+        usersQuery.current = { ...usersQuery.current, page: 1 };
         setData([]);
         await fetchUsers();
         setFirstFetchLoading(false);
     }
 
     const fetchUsers = async() => {
-        const users_data = await UsersService.getUsersRanking(usersQuery, navigation)
+        const users_data = await UsersService.getUsersRanking({ ...usersQuery.current, search }, navigation)
         if(data && data.length) setData(prevData => [...prevData, ...users_data.users]);
         else setData(users_data.users);
-        setUsersQuery(prevState => ({ ...prevState, page: prevState.page + 1 }))
         setTotal(users_data.total)
         setFetchLoading(false);
     }
 
     const handleFetchMoreData = async() => {
         setFetchLoading(true);
+        usersQuery.current = { ...usersQuery.current, page: usersQuery.current.page + 1 };
         setTimeout(() => {
             fetchUsers();
         }, 1000)
@@ -140,7 +132,7 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                 setLoading(true);
                 setFirstFetchLoading(true);
                 setData([]);
-                setUsersQuery({ search: '', page: 1, per_page: perPage });
+                usersQuery.current = { page: 1, per_page: perPage };
                 fetchUsers();
                 setFirstFetchLoading(false);
                 setLoading(false);
@@ -181,8 +173,9 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                             <TextInput
                                 className="h-10 w-72 border border-gray-300 rounded-xl px-3 mb-3 text-gray-700 bg-white mr-auto ml-auto"
                                 placeholder="Search..."
-                                value={usersQuery.search}
+                                value={search}
                                 onChangeText={setSearch}
+                                onBlur={() => handleSearch()}
                                 autoCapitalize="none"
                             />
                             <MaterialCommunityIcons
