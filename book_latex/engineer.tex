@@ -1,5 +1,7 @@
 \documentclass{sprz}
-\usepackage[backend=biber,style=numeric,sorting=none]{biblatex}
+\usepackage[backend=biber,style=numeric-comp,sorting=none]{biblatex}
+%\usepackage[backend=biber, style=numeric-comp, autocite=footnote]{biblatex}
+
 \usepackage{enumitem}
 \usepackage[T1]{fontenc}
 \usepackage{setspace}
@@ -34,7 +36,7 @@
 \projlimitations{Zdalny charakter pracy nad projektem, budżet, brak doświadczenia w pracy nad projektem o zadanej złożoności, nauka i wykorzystanie nowych technologii.}
 \date{\today}
 \nabstract{
-    DO ZROBIENiA NA KOŃCU - NA RÓWNI ZE WSTĘPEM
+    TBC
 }
 
 
@@ -56,7 +58,7 @@
 
     \input{chapters/chapter_3/main}
 
-    \input{chapters/chapter_4/main}
+  %  \input{chapters/chapter_4/main} TRESC PRZENIESIONA DO ROZDZIALU 3
 
     \input{chapters/chapter_5/main}
 
@@ -64,7 +66,11 @@
 
     \input{chapters/chapter_7/main}
 
+    \input{chapters/chapter_8/main}
 
-    %\printbibliography[title={Bibliografia}, heading=bibintoc]
+    \input{chapters/chapter_9/main}
+
+    \printbibliography[title={Bibliografia}]
+%    \printbibliography[title={Bibliografia}, heading=bibintoc]
 
 \end{document}

@@ -4,7 +4,7 @@ if [ ! -d "out" ]; then
   mkdir "out"
 fi
 
-pdflatex ./main.tex
+pdflatex ./engineer.tex
 
 extensions=("aux" "bcf" "log" "pdf" "run.xml" "loc" "toc")
 
