@@ -105,7 +105,7 @@
 	\newcommand{\viewpoint}[1]{Punkt widzenia:: & ##1 \\ \hline}
 	\newcommand{\limitations}[1]{Ograniczenia:: & ##1 \\ \hline}
 	\newcommand{\requ}[1]{Wymagania:: & ##1 \\ \hline}
-	\table[h]
+	\table[H]
 	\centering
 	\begin{tabular}{|>{\columncolor{lightgray}}c|p{0.6\linewidth}|}
 		\hline
