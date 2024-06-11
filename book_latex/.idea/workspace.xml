@@ -5,19 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
+      <change beforePath="$PROJECT_DIR$/../api/env.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../api/env.sh" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bibliography.bib" beforeDir="false" afterPath="$PROJECT_DIR$/bibliography.bib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_2/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_2/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/table.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/table.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_5/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_9/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_9/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bbl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.bcf" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.blg" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.blg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.log" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.run.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.toc" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mobile/src/screens/Decks/DisplayPublicDeck.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/src/screens/Decks/DisplayPublicDeck.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mobile/src/services/reports.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/src/services/reports.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,28 +34,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;BibTeX.engineer bibliography.executor&quot;: &quot;Run&quot;,
-    &quot;LaTeX.engineer.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/daniel/WebstormProjects/flash-cards/book_latex&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "BibTeX.engineer bibliography.executor": "Run",
+    "LaTeX.engineer.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "full.screen.before.presentation.mode": "false",
+    "git-widget-placeholder": "FC-156-MOBILE-spiąć-z-api-zgłaszanie-decku",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/daniel/WebstormProjects/flash-cards/book_latex",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.editor",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/chapters/chapter_2" />
@@ -186,6 +177,7 @@
       <workItem from="1714967775359" duration="4407000" />
       <workItem from="1715276147075" duration="149000" />
       <workItem from="1716309485552" duration="15000" />
+      <workItem from="1718135064720" duration="88000" />
     </task>
     <task id="LOCAL-00001" summary="poprawki">
       <option name="closed" value="true" />
@@ -211,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718122326648</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718134495913</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1718134495913</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

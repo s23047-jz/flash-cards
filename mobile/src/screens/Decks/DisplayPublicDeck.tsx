@@ -18,6 +18,7 @@ import { DeckListInterface } from "../../interfaces/decks";
 import { ScreenProps } from "../../interfaces/screen";
 import { DecksService } from "../../services/decks";
 import { ActiveUser } from "../../services/user";
+import {ReportsService} from "../../services/reports";
 
 const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deckId } = route.params;
@@ -25,13 +26,20 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deck_category } = route.params;
   const [flashCards, setFlashCards] = useState([]);
   const [user_id, setUserId] = useState([]);
+  const [user_email, setUserEmail] = useState([]);
   
   const fetchUserId = async () => {
     const { id } = await ActiveUser.getUserData();
     setUserId(id);
   };
   
+  const fetchEmail = async () => {
+    const { email } = await ActiveUser.getUserData();
+    setUserEmail(email);
+  };
+  
   useEffect(() => {
+    fetchEmail();
     fetchUserId();
   }, []);
   
@@ -91,9 +99,13 @@ const DisplayPublicDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
         },
         {
           text: "Report",
-          onPress: () => {
-            //deleteCardFromApi(card)
-            console.log("REPORT DECK");
+          onPress: async () => {
+            const report_body = {
+              submitter_email: user_email,
+              deck_id: deckId
+            }
+            console.log("PATRZ TERA: ", report_body)
+            await ReportsService.reportDeck(report_body, navigation)
           },
           style: "destructive",
         },
