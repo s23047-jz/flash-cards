@@ -1,9 +1,9 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { View, Text, TextInput, Image } from "react-native";
+import {View, Text, TextInput, Image, Alert} from "react-native";
 
 import GenerateText from "../../assets/images/Generate_text.png";
-import { Button } from "../../components";
+import {Button, Loader} from "../../components";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import { ROUTES } from "../../constants";
 import { ScreenProps } from "../../interfaces/screen";
@@ -17,6 +17,7 @@ const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   
   const [sideA, setSideA] = useState(card.title || ""); // Inicjalizacja sideA wartością title z card
   const [sideB, setSideB] = useState(card["card text"] || ""); // Inicjalizacja sideB wartością card text z card
+  const [loading, setLoading] = useState(false);
   
   const handleEdit = async () => {
     const trimmedSideA = sideA.substring(0, 254);
@@ -39,23 +40,35 @@ const EditFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   }
   
   const handleGenerate = async () => {
-    // Alert the user that the AI-generated content may not be accurate
-    
-    
-    if (sideA.length != 0) {
-      alert("Please note that the response from the AI chat may not be accurate.");
+    if (sideA.length !== 0) {
       const messageToSend = `Please limit the response to 500 characters: ${sideA}`;
       try {
+        setLoading(true);
         const response = await ChatService.sent_message(messageToSend);
-        setSideB(response); // Assuming the response from sent_message is the text you want to set in sideB
+        setLoading(false);
+        
+        Alert.alert(
+          "Confirm Generated Content",
+          "Please note that the response from the AI chat may not be accurate.\n\n" + response,
+          [
+            { text: "Cancel", style: "cancel" },
+            { text: "Accept", onPress: () => setSideB(response) }
+          ],
+          { cancelable: false }
+        );
       } catch (error) {
         console.error("Failed to generate content with AI:", error);
-        // Display an alert if there is an error
         alert("Failed to generate content with AI. Please try again.");
       }
     } else {
-      alert("Flashcard front side field must not be empty.")
+      alert("Flashcard front side field must not be empty.");
     }
+  };
+  
+  if (loading) {
+    return (
+      <Loader />
+    )
   }
   
   return (
