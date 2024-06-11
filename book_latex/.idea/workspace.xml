@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_09_05_2024,_19_37_[Changes]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bibliography.bib" beforeDir="false" afterPath="$PROJECT_DIR$/bibliography.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/table.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/table.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_5/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/main.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
