@@ -104,7 +104,7 @@ Generowanie treści fiszki na podstawie słów kluczowych (WF16)
     \preconditions{Użytkownik musi posiadać adres email}
     \postconditions{Utworzenie konta użytkownika}
     \exceptions{Brak łączności z bazą danych. Wprowadzenie dane przez użytkownika istnieją już w bazie danych.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.1}
     \sholder{Zespół projektowy (UOB 01)
 Użytkownik systemu (UOB 03) }
     \reqrelated{Logowanie do systemu (WF02) \newline
@@ -126,7 +126,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
     \preconditions{Posiadane konto użytkownika, konto musi być aktywne.}
     \postconditions{Dostęp do systemu}
     \exceptions{Brak łączności z bazą danych. Wprowadzenie niepoprawnych danych logowania, co uniemożliwia zalogowanie do systemu.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.2}
     \sholder{Zespół projektowy (UOB 01) }
     \reqrelated{Rejestracja konta użytkownika (WF01) \newline
 Wylogowanie z systemu (WF03) \newline
@@ -147,7 +147,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
     \preconditions{Użytkownik zalogowany do systemu}
     \postconditions{Wylogowanie z systemu}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.3}
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Rejestracja konta użytkownika (WF01) \newline
 Logowanie do systemu (WF02) \newline
@@ -168,7 +168,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
     \preconditions{Posiadane konto użytkownika, użytkownik zalogowany do systemu.}
     \postconditions{Zmienione parametry logowania}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą. Wprowadzenie niepoprawnych danych co uniemożliwia zmianę parametrów użytkownika.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.4}
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Rejestracja konta użytkownika (WF01) \newline
 Logowanie do systemu (WF02) \newline
@@ -189,7 +189,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
     \preconditions{Posiadane konto użytkownika, użytkownik zalogowany do systemu.}
     \postconditions{Konto użytkownika usunięte z systemu}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą. Wprowadzenie niepoprawnych danych, co uniemożliwia usunięcie konta użytkownika.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.5}
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Rejestracja konta użytkownika (WF01) \newline
 Logowanie do systemu (WF02) \newline
@@ -588,6 +588,55 @@ Logowanie do systemu (WF02)}
     \sholder{Zespół projektowy (UOB 01) }
     \reqrelated{ŚD03 \newline ŚD04 \newline ŚD05 \newline ŚD06}
 \end{requirementstab}
+
+     \section{Udziałowcy}
+
+    \begin{stakeholder}[caption={Zespół projektowy jako udziałowiec.}],
+    \id{UOB 01}
+    \name{Zespół projektowy}
+    \descr{Zespół wytwarzający system}
+    \type{Ożywiony bezpośredni}
+    \viewpoint{Wytworzenie aplikacji mobilnej, strony internetowej, zaplecza technicznego systemu; zarządzanie, utrzymanie i rozwój systemu}
+    \limitations{Czynniki ludzkie organizacyjne, deadline i czas}
+    \requ{WF01, WF02, WF09}
+\end{stakeholder}
+
+Administrator - zarządza utrzymaniem systemu i jego środowiska technicznego, ma dostęp do kodu źródłowego oraz serwerów systemu, odpowiada za bazy danych oraz ciągłość funkcji.
+
+\begin{stakeholder}[caption={Administrator systemu jako udziałowiec.}]
+    \id{UOB 02}
+    \name{Administrator systemu}
+    \descr{Administrator wytworzonego systemu projektowego}
+    \type{Ożywiony bezpośredni}
+    \viewpoint{Nadzór i techniczne utrzymanie systemu, administracja środowiskiem systemowym}
+    \limitations{Koszty utrzymaniowe - budżet chmury, parametry techniczne środowiska systemowego}
+    \requ{{tu tylko symbole wymagań wyspecyfikowanych w rozdziale 3}}
+\end{stakeholder}
+
+Użytkownik systemu - osoba używająca systemu oraz wszystkich wytworzonych funkcjonalności użytkowych. Brak narzuconych ograniczeń ilościowych, prototyp projektu zakłada wstępną obsługę maksymalnie kilkuset użytkowników (200 - 300).
+
+\begin{stakeholder}[caption={Użytkownik systemu jako udziałowiec.}]
+    \id{UOB 03}
+    \name{Użytkownik systemu}
+    \descr{Osoba korzystająca z systemu za pośrednictwem aplikacji mobilnej lub strony web}
+    \type{Ożywiony bezpośredni}
+    \viewpoint{Korzystanie z systemu: tworzenie talii fiszek, wykorzystywanie ich do nauki, udostępnianie talii innym}
+    \limitations{Wytworzone funkcjonalności}
+    \requ{WF03, WF04, WF05,  WF06,  WF07,  WF08, WF10, WF11}
+\end{stakeholder}
+
+\begin{stakeholder}[caption={Dostawca technologii chmury jako udziałowiec.}]
+    \id{UOB 04}
+    \name{Dostawca technologii chmury}
+    \descr{Firma świadcząca usługi chmurowe}
+    \type{Ożywiony bezpośredni}
+    \viewpoint{Dostarczeczenie infrastruktury i środowiska technicznego w którym działa system projektowy.}
+    \limitations{Budżet projektowy, parametry techniczne środowiska}
+    \requ{{tu tylko symbole wymagań wyspecyfikowanych w rozdziale 3}}
+\end{stakeholder}
+
+
+
 
 
 

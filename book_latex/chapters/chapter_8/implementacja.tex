@@ -1,0 +1,222 @@
+
+\subsection{Rejestracja konta użytkownika}
+Funkcjonalność umożliwiająca rejestrację w aplikacji.
+
+\subsubsection{Backend}
+Po wysłaniu requesta na przez aplikacje webową lub mobilną api wyciąga przesłane dane, weryfikuje je. Do weryfikacji należy:
+
+\begin{itemize}
+    \item Czy użytkownik z wprowadzonym email istnieje już w bazie
+    \item Czy użytkownika z wprowadzoną nazwą użytkownika istnieje już w bazie
+    \item Czy przesłane hasła są równe
+\end{itemize}
+
+W przypadku błędnej weryfikacji zwraca odpowiednią wiadomość z błędem dla użytkownika np. “Wprowadzony email jest już zajęty”. Natomiast jeśli weryfikacja przebiegnie pomyślnie, użytkownik zostanie dodany do bazy, a system wyśle mu wiadomość email z prośbą o aktywację konta.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/rejestracja_backend}
+    \caption{Implementacja kodu rejestracji użytkownika w backendzie.}
+    \label{img:rejestracja_backend}
+\end{figure}
+
+\subsubsection{Aplikacja moblina i aplikacja webowa}
+Aby założyć konto, użytkownik musi wypełnić formularz rejestracyjny wymagający podania nazwy użytkownika, adresu email oraz hasła wpisanego jednakowego do dwóch pól w celach jego walidacji. Aplikacja pozwoli na utworzenie konta jedynie jeżeli:
+
+\begin{itemize}
+    \item Pseudonim zawiera od 3 do 20 znaków i składa się wyłącznie z liter, cyfr, lub podkreślników
+    \item Adres e-mail jest dostarczony w prawidłowym dla niego formacie
+    \item Hasło posiada co najmniej 8 znaków
+    \item Hasło wpisane oba pola walidacyjne jest w nich takie samo
+    \item Adres e-mail i nazwa użytkownika są unikalne (czyli w bazie danych nie są przypisane do żadnego innego konta)
+\end{itemize}
+
+Po zatwierdzeniu prawidłowych danych aplikacja informuje komunikatem o udanym utworzeniu konta. Użytkownik zostaje przeniesiony do strony logowania. W przypadku podania nieprawidłowych danych, użytkownik nie zostanie zarejestrowany i zostanie powiadomiony komunikatem w aplikacji o błędzie.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/rejestracja_mobile}
+    \caption{Metoda “register” w serwisie Auth zastosowana w aplikacji mobilnej.}
+    \label{img:rejestracja_mobile}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/rejestracja_web}
+    \caption{Metoda “register” w serwisie AuthService zastosowana w aplikacji webowej.}
+    \label{img:rejestracja_web}
+\end{figure}
+
+Powyższe funkcję wysyłają asynchroniczne żądanie POST do serwera w celu rejestracji nowego użytkownika. Metoda przekazuje dane rejestracyjne w treści żądania, a następnie zwraca czy żądanie zostało obsłużone.
+
+\subsection{Logowanie do systemu}
+Funkcjonalność umożliwiająca logowanie do aplikacji
+
+\subsubsection{Backend}
+Po wysłaniu requesta na przez aplikację webową lub mobilną api wyciąga przesłane dane, weryfikuje je.
+Weryfikacja odbywa się za pomocą funkcji \texttt{authenticate\_user} zaimportowaną z utils’ów.
+Ta najpierw próbuje wyciągnąć z użytkownika z bazy, który posiada wysłany e-mail. Potem, jeżeli użytkownik istnieje, sprawdzamy hasło metodą klasową \texttt{verify\_password}. Jeśli wszystko przebiegło pomyślnie, użytkownikowi zostanie zwrócony token autoryzacji i dane użytkownika. W przeciwnym razie zwrócona wiadomość i błędnie wprowadzonych danych.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/logowanie_backend}
+    \caption{Implementacja kodu logowania użytkownika w backendzie.}
+    \label{img:logowanie_backend}
+\end{figure}
+
+\subsubsection{Aplikacja mobilna i aplikacja webowa}
+Na stronie logowania, użytkownik musi wypełnić formularz wymagający uzupełnienia pól adres email oraz hasło. Po zatwierdzeniu danych i ich weryfikacji pojawia się komunikat o zalogowaniu użytkownika, a następnie użytkownik zostanie przeniesiony na stronę główną. W przypadku podania nieprawidłowych danych, użytkownik nie zostanie zalogowany i zostanie poinformowany komunikatem o błędzie.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/logowanie_mobile}
+    \caption{Metoda “login” zastosowana w aplikacji mobilnej.}
+    \label{img:logowanie_mobile}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/logowanie_web}
+    \caption{Metoda “login” zastosowana w aplikacji webowej.}
+    \label{img:logowanie_web}
+\end{figure}
+
+Użyta w powyższych metodach funkcja \texttt{ActiveUser.set(data)} zapisuje dane zalogowanego użytkownika w lokalnym stanie aplikacji. Dzięki temu, informacje o użytkowniku, takie jak token autoryzacyjny, mogą być łatwo dostępne w całej aplikacji. Pozwala to na:
+
+\begin{itemize}
+    \item Personalizację interfejsu użytkownika (np. wyświetlanie nazwy użytkownika)
+    \item Umożliwienie dostępu do zasobów, które wymagają uwierzytelnienia
+    \item Przechowywanie sesji użytkownika, aby mógł pozostać zalogowany pomiędzy różnymi wizytami na stronie
+\end{itemize}
+
+\subsection{Wylogowanie z systemu}
+Funkcjonalność pozwalająca na wylogowanie użytkownika.
+
+\subsubsection{Backend}
+Po kliknięciu wyloguj w aplikacji mobilnej czy w webowej, zostaje wysłany request na api, który dodaje aktualnie używany token do listy nieaktualnych tokenów.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/wylogowanie_backend}
+    \caption{Implementacja kodu wylogowania użytkownika w backendzie.}
+    \label{img:wylogowanie_backend}
+\end{figure}
+
+\subsubsection{Aplikacja mobilna i aplikacja webowa}
+Aby wylogować się z aplikacji, użytkownik musi kliknąć w nawigacji logout. Po kliknięciu przycisku, dane użytkownika zostaną usunięte z pamięci lokalnej. Token autoryzacyjny użytkownika utworzony przy logowaniu zostanie dodany w bazie danych do tabeli zawierającej nieaktywne tokeny.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/wylogowanie_mobile}
+    \caption{Metoda “logout” zastosowana w aplikacji mobilnej.}
+    \label{img:wylogowanie_mobile}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/wylogowanie_web}
+    \caption{Metoda “logout” zastosowana w aplikacji webowej.}
+    \label{img:wylogowanie_web}
+\end{figure}
+
+Powyższe fragmenty serwisu odpowiadają za usunięcie danych użytkownika z pamięci lokalnej wykorzystujący endpoint dezaktywujący token autoryzacji.
+
+\subsection{Edycja danych użytkownika}
+Funkcjonalność umożliwiająca  edycję danych użytkownika.
+
+\subsubsection{Backend}
+Aplikacje frontendowe wysyłają dane do aktualizacji np. email. Jedynym obowiązkowym atrybutem przy aktualizacji jest \texttt{current\_password}. Bo zweryfikowaniu zgodności hasła, system przystępuje do zmiany danych wprowadzonych przez użytkownika. Na koniec zostają zwrócone użytkownika z poprawionym polami.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{chapters/chapter_8/screens/edit_user_backend_1}
+    \caption{Implementacja klas modeli "UserUpdateModel" i "UpdateMe" w backendzie.}
+    \label{img:edit_user_backend_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/edit_user_backend_2}
+    \caption{Implementacja kodu zmiany danych użytkownika w backendzie.}
+    \label{img:edit_user_backend_2}
+\end{figure}
+
+\subsubsection{Aplikacja mobilna i aplikacja webowa}
+W celu zmiany danych użytkownika, takich jak avatar, nickname, adres email czy hasło, użytkownik może skorzystać z odpowiednich formularzy dostępnych na stronie profilu użytkownika. Każda zmiana (za wyjątkiem zmiany avatara) wymaga uwierzytelnienia przez podanie aktualnego hasła. Poniżej opisane są poszczególne procesy.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/edit_user_mobile}
+    \caption{Komponent “handleAvatarSelect” zastosowany w aplikacji mobilnej.}
+    \label{img:edit_user_mobile}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/edit_user_web}
+    \caption{Komponent “handleAvatarSelect” zastosowany w aplikacji webowej.}
+    \label{img:edit_user_web}
+\end{figure}
+
+\textbf{Zmiana avatara}\\
+Aby zmienić avatar, użytkownik musi wybrać nowy avatar z dostępnych opcji. Po dokonaniu wyboru aplikacja wysyła żądanie do serwera w celu aktualizacji avatara. Po pomyślnej aktualizacji użytkownik zobaczy nowy avatar na stronie profilu oraz w widoku statystyk.\\
+
+
+\textbf{Zmiana pseudonimu}\\
+Aby zmienić pseudonim, użytkownik musi wprowadzić nowy pseudonim oraz aktualne hasło w odpowiednim formularzu. Po zatwierdzeniu formularza dane są walidowane:
+\begin{itemize}
+    \item Pseudonim musi zawierać 3-20 znaków i składać się wyłącznie z liter, cyfr lub podkreślników
+    \item Aktualne hasło musi być poprawne
+\end{itemize}
+Jeśli dane są poprawne, aplikacja wysyła żądanie do serwera w celu aktualizacji pseudonimu. Po pomyślnej aktualizacji nowy pseudonim będzie wyświetlany na stronie profilu.\\
+
+
+\textbf{Zmiana adresu email}\\
+Aby zmienić adres email, użytkownik musi wprowadzić nowy adres email oraz aktualne hasło w odpowiednim formularzu. Po zatwierdzeniu formularza dane są walidowane:
+\begin{itemize}
+    \item Adres email musi mieć poprawny format
+    \item Aktualne hasło musi być poprawne
+\end{itemize}
+Jeśli dane są poprawne, aplikacja wysyła żądanie do serwera w celu aktualizacji adresu email. Po pomyślnej aktualizacji użytkownik będzie logował się nowym adresem email.\\
+
+
+\textbf{Zmiana hasła}\\
+Aby zmienić hasło, użytkownik musi wprowadzić aktualne hasło, nowe hasło oraz potwierdzenie nowego hasła w odpowiednim formularzu. Po zatwierdzeniu formularza dane są walidowane:
+\begin{itemize}
+    \item Nowe hasło musi mieć co najmniej 8 znaków
+    \item Potwierdzenie nowego hasła musi być zgodne z nowym hasłem
+    \item Aktualne hasło musi być poprawne
+\end{itemize}
+Jeśli dane są poprawne, aplikacja wysyła żądanie do serwera w celu aktualizacji hasła.
+
+\subsection{Usunięcie konta użytkownika}
+Funkcjonalność umożliwiająca usunięcie konta użytkownika.
+
+\subsubsection{Backend}
+Aplikacje frontendowe wysyłają na api email użytkownika i hasło. Api sprawdza poprawność danych, następnie usuwa konto użytkownika.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_user_backend}
+    \caption{Implementacja kodu usunięcia użytkownika w backendzie.}
+    \label{img:delete_user_backend}
+\end{figure}
+
+\subsubsection{Aplikacja moblina}
+Użytkownik jest proszony o potwierdzenie czy aby na pewno chce usunąć konto. Po zatwierdzeniu zostaje przekierowany do formularza gdzie podaje email oraz hasło, które po zatwierdzeniu zostają wysłane na api.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_user_mobile_1}
+    \caption{Wywołanie komponentu “handleDelete” zastosowanego w aplikacji mobilnej.}
+    \label{img:delete_user_mobile_1}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_user_mobile_2}
+    \caption{Komponent “handleDelete” zastosowany w aplikacji mobilnej.}
+    \label{img:delete_user_mobile_2}
+\end{figure}
+
+
