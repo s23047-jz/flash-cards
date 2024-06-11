@@ -1,12 +1,13 @@
-import React, { useState, useRef } from "react";
+import React, {
+    useState,
+    useRef,
+    useEffect
+} from "react";
 import {
-    Text,
     TouchableOpacity,
     View,
     Animated
 } from "react-native";
-import { Button } from "./index";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FlashCardInterface } from "../interfaces/components";
 
 const FlashCard: React.FC<FlashCardInterface> = (
@@ -45,9 +46,12 @@ const FlashCard: React.FC<FlashCardInterface> = (
         }).start();
     };
 
+    useEffect(() => {
+        toggleTextAndBackgroundColor();
+    }, [showFrontCard]);
 
     return (
-        <View className="flex-1 w-full" style={{ width }}>
+        <View className="flex-1 w-full" style={{ width, maxHeight: 515 }}>
             <Animated.View
                 style={{
                   transform: [{ rotateX }],
@@ -59,7 +63,7 @@ const FlashCard: React.FC<FlashCardInterface> = (
                   alignItems: 'center',
                 }}
             >
-                <TouchableOpacity className={'w-full h-full border flex-1 mx-10 rounded-3xl items-center justify-center'} onPress={toggleTextAndBackgroundColor}>
+                <TouchableOpacity className={'w-full h-full border flex-1 mx-10 rounded-3xl items-center justify-center'}>
                     <Animated.Text style={{ fontSize: 18, fontWeight: 'bold', opacity: opacityFront }}>
                         {title}
                     </Animated.Text>
