@@ -13,22 +13,34 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
 import { DecksService } from "../../services/decks";
-import { FlashCardsService } from "../../services/flashcards";
 import { NlpService } from "../../services/nlp";
+import { LearningFlashCardsModeInterface } from "../../interfaces/flash_cards";
 import {
     Loader,
     FlashCard,
-    MicrophoneModal
+    MicrophoneButton
 } from "../../components";
+import { useVoiceRecognition } from "../../utils/voice_recogniotion";
 
 const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const { deck } = route.params;
 
+    const {
+        state,
+        startRecognizing,
+        stopRecognizing,
+        destroyRecognizing
+    } = useVoiceRecognition();
     const [loading, setLoading] = useState(true);
     const [flashCards, setFlashCards] = useState([]);
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const [memorizedCards, setMemorizedCards] = useState([]);
     const [alertShown, setAlertShown] = useState(true);
+    const showFrontCard= useRef(true);
+
+    // voice control
+    const [activeVoiceRecognition, setActiveVoiceRecognition] = useState(false);
+    const [showMicrophoneModal, setShowMicrophoneModal] = useState(false);
 
     const scrollX = useRef(new Animated.Value(0)).current
     const flatListRef = useRef(null);
@@ -45,26 +57,47 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const handlePrevClick = () => {
-
+        showFrontCard.current = true;
+        flatListRef.current.scrollToIndex({ animated: true, index: currentCardIndex - 1 });
     }
 
     const handleNextClick = () => {
-
+        showFrontCard.current = true;
+        flatListRef.current.scrollToIndex({ animated: true, index: currentCardIndex + 1 });
     }
 
     const handleRotateClick = () => {
-
+        showFrontCard.current = !showFrontCard.current;
     }
 
     const handleSpeakerClick = () => {
-
+        if (currentCardIndex < flashCards.length - 1) {
+            const currentCard: LearningFlashCardsModeInterface = flashCards[currentCardIndex];
+            handleSpeech(showFrontCard ? currentCard.title : currentCard.description);
+        }
     }
 
-    const handleStopControl = () => {
-
+    const handleStopControl = async() => {
+        await stopRecognizing();
+        setActiveVoiceRecognition(false);
     }
 
-    const handleVoiceControl = (command: string) => {
+    const toggleMicrophoneStatus = async() => {
+        setActiveVoiceRecognition(!activeVoiceRecognition);
+        if (activeVoiceRecognition) {
+
+        } else {
+            // await handleStopControl()
+        }
+    }
+
+    const handleEndRecognizing = async() => {
+        await destroyRecognizing();
+        setActiveVoiceRecognition(false);
+        setShowMicrophoneModal(false);
+    }
+
+    const handleVoiceControl = async(command: string) => {
         switch(command) {
             case "previous":
                 handlePrevClick();
@@ -79,12 +112,28 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 handleSpeakerClick();
                 break;
             case "stop":
-                handleStopControl();
+                await handleStopControl();
                 break;
             default:
                 handleSpeech("Sorry, I didn't recognize the command");
                 console.warn('Command not found');
                 break;
+        }
+    }
+
+    const viewableItemsChanged = useRef(({ viewableItems }) => {
+        setCurrentCardIndex(viewableItems[0].index)
+    }).current
+
+    const calculateSimilarity = async(text: string) => {
+        try {
+            const { data } = await NlpService.calculateSimilarity(
+                { text },
+                navigation
+            )
+            handleVoiceControl(data)
+        }catch (err) {
+            console.error("Something went wrong during the calculation", err)
         }
     }
 
@@ -95,12 +144,10 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         } : null;
 
         if (index < flashCards.length - 1) {
-            setCurrentCardIndex(index + 1);
             if (memorizedCard) {
                 setMemorizedCards(prevMemorizedCards => [...prevMemorizedCards, memorizedCard]);
             }
             // @ts-ignore
-            flatListRef.current.scrollToIndex({ animated: true, index: index + 1 });
         } else {
             const updatedMemorizedCards = memorizedCard ? [...memorizedCards, memorizedCard] : memorizedCards;
             Alert.alert(
@@ -145,6 +192,8 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             setLoading(true);
             fetchUnmemorizedFlashcards();
             setAlertShown(flashCards.length > 0)
+            setShowMicrophoneModal(true);
+
             setLoading(false);
         }, []),
     );
@@ -155,7 +204,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         )
     }
 
-    if (!flashCards.length || alertShown) {
+    if (!flashCards.length || !(flashCards.length && currentCardIndex < flashCards.length - 1)) {
         return (
             <View className="flex-1 bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
                 <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
@@ -187,6 +236,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 handleCardNavigation={handleCardNavigation}
                 index={index}
                 width={parentWidth}
+                showFrontCard={showFrontCard.current}
             />
         );
     };
@@ -196,7 +246,11 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
                 Learning Voice Mode
             </Text>
-            <MicrophoneModal active={true} show={true} />
+            <MicrophoneButton
+                active={activeVoiceRecognition}
+                show={showMicrophoneModal}
+                toggleMicrophoneStatus={toggleMicrophoneStatus}
+            />
             <View className="top-14 absolute left-6">
                 <MaterialCommunityIcons
                     onPress={() => navigation.goBack()}
@@ -226,6 +280,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                     scrollEventThrottle={32}
                     scrollEnabled={false}
                     viewabilityConfig={viewConfig}
+                    onViewableItemsChanged={viewableItemsChanged}
                 />
             </View>
         </View>

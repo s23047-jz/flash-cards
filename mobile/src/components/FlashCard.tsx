@@ -13,12 +13,11 @@ const FlashCard: React.FC<FlashCardInterface> = (
     {
         title,
         description,
-        handleCardNavigation,
         index,
-        width
+        width,
+        showFrontCard
     }
     ) => {
-    const [showText, setShowText] = useState(false);
     const [bgColor, setBgColor] = useState("#dc84f1");
     const rotation = useRef(new Animated.Value(0)).current;
 
@@ -38,10 +37,9 @@ const FlashCard: React.FC<FlashCardInterface> = (
     });
 
     const toggleTextAndBackgroundColor = () => {
-        setShowText(!showText);
         setBgColor(bgColor === "#dc84f1" ? "#ffdc11" : "#dc84f1");
         Animated.timing(rotation, {
-            toValue: showText ? 0 : 1,
+            toValue: showFrontCard ? 0 : 1,
             duration: 500,
             useNativeDriver: true,
         }).start();
@@ -70,24 +68,6 @@ const FlashCard: React.FC<FlashCardInterface> = (
                     </Animated.Text>
                 </TouchableOpacity>
             </Animated.View>
-
-            <View className="flex-row items-center justify-center">
-                <Button onPress={() => handleCardNavigation(false, index)} className="w-32 h-16 bg-red-600 dark:bg-red-600 items-center justify-center m-3">
-                    <MaterialCommunityIcons
-                        size={60}
-                        name="close-thick"
-                        color="black"
-                    />
-                </Button>
-
-                <Button onPress={() => handleCardNavigation(true, index)} className="w-32 h-16 bg-green-400 dark:bg-green-400 items-center justify-center m-3">
-                    <MaterialCommunityIcons
-                        size={60}
-                        name="check-bold"
-                        color="black"
-                    />
-                </Button>
-            </View>
         </View>
     )
 };

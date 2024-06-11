@@ -38,5 +38,6 @@ export interface FlashCardInterface {
     description?: string
     handleCardNavigation: (memorized: boolean, index: number) => void;
     width?: number
+    showFrontCard: boolean
 
 }
