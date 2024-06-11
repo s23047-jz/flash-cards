@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {
+    useState,
+    useEffect,
+    useRef,
+    useCallback
+} from "react";
+import { useFocusEffect } from "@react-navigation/native";
 import {
     Text,
     TextInput,
@@ -229,15 +235,14 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
         navigation.navigate(ROUTES.USER_STATS, { userId, ownStatistics: false })
     }
 
-    useEffect(() => {
-        setLoading(true);
+    useFocusEffect(
+        useCallback(() => {
+            setLoading(true);
         const view = PAGES.DECKS;
-        const fetchData = async () => {
-            await changeView(view);
-        };
+        changeView(view);
         setLoading(false);
-        fetchData();
-    }, [])
+        }, [])
+    )
 
     if (loading) {
         return (

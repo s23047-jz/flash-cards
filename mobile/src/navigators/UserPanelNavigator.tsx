@@ -27,7 +27,7 @@ export default function UserPanelNavigator() {
             try {
                 getUserData()
             } catch (error) {
-                console.error('EError retrieving user data:', error);
+                console.error('Error retrieving user data:', error);
             };
             return () => {};
         }, [])

@@ -31,3 +31,12 @@ export interface PaginatorInterface {
     scrollX: any,
     parentWidth?: number
 }
+
+export interface FlashCardInterface {
+    index: number
+    title: string
+    description?: string
+    handleCardNavigation: (memorized: boolean, index: number) => void;
+    width?: number
+
+}

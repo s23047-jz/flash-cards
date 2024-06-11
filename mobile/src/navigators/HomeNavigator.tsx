@@ -42,8 +42,6 @@ export default function HomeNavigator() {
       <Stack.Screen name={ROUTES.UNMEMORIZED_FLASHCARDS} component={UnmemorizedFlashcards} />
       <Stack.Screen name={ROUTES.LEARNING_MODE} component={LearningMode} />
       <Stack.Screen name={ROUTES.LEARNING_VOICE_MODE} component={LearningVoiceMode} />
-
-    
     </Stack.Navigator>
   );
 }
