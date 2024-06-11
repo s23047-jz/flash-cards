@@ -6,8 +6,18 @@
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.tex" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sprz.cls" beforeDir="false" afterPath="$PROJECT_DIR$/sprz.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bibliography.bib" beforeDir="false" afterPath="$PROJECT_DIR$/bibliography.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_2/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_2/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/table.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/table.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_5/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_9/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_9/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bbl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.bcf" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.blg" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.blg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.log" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.toc" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.toc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,7 +203,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718120373630</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718122326648</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1718122326648</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

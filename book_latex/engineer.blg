@@ -1,14 +1,14 @@
 [0] Config.pm:307> INFO - This is Biber 2.19
 [0] Config.pm:310> INFO - Logfile is 'engineer.blg'
-[31] biber-darwin:340> INFO - === Mon Jun 10, 2024, 17:08:52
-[39] Biber.pm:419> INFO - Reading 'engineer.bcf'
-[72] Biber.pm:979> INFO - Found 6 citekeys in bib section 0
-[79] Biber.pm:4419> INFO - Processing section 0
-[85] Biber.pm:4610> INFO - Looking for bibtex file 'bibliography.bib' for section 0
-[85] bibtex.pm:1713> INFO - LaTeX decoding ...
-[88] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliography.bib'
-[114] UCollate.pm:68> INFO - Overriding locale 'pl-PL' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[114] UCollate.pm:68> INFO - Overriding locale 'pl-PL' defaults 'variable = shifted' with 'variable = non-ignorable'
-[114] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'pl-PL'
-[119] bbl.pm:660> INFO - Writing 'engineer.bbl' with encoding 'UTF-8'
-[120] bbl.pm:763> INFO - Output to engineer.bbl
+[31] biber-darwin:340> INFO - === Tue Jun 11, 2024, 21:31:17
+[40] Biber.pm:419> INFO - Reading 'engineer.bcf'
+[73] Biber.pm:979> INFO - Found 8 citekeys in bib section 0
+[81] Biber.pm:4419> INFO - Processing section 0
+[87] Biber.pm:4610> INFO - Looking for bibtex file 'bibliography.bib' for section 0
+[87] bibtex.pm:1713> INFO - LaTeX decoding ...
+[91] bibtex.pm:1519> INFO - Found BibTeX data source 'bibliography.bib'
+[120] UCollate.pm:68> INFO - Overriding locale 'pl-PL' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[120] UCollate.pm:68> INFO - Overriding locale 'pl-PL' defaults 'variable = shifted' with 'variable = non-ignorable'
+[120] Biber.pm:4239> INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'pl-PL'
+[126] bbl.pm:660> INFO - Writing 'engineer.bbl' with encoding 'UTF-8'
+[127] bbl.pm:763> INFO - Output to engineer.bbl

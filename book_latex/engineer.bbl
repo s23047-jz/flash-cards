@@ -21,27 +21,27 @@
   \datalist[entry]{none/global//global/global}
     \entry{ebbinghausMemoryCurve}{online}{}
       \name{author}{1}{}{%
-        {{hash=5d7a6e7e0e82bcc144f01ac47862fe2f}{%
-           family={Ebbinghaus},
-           familyi={E\bibinitperiod},
-           given={Hermann},
-           giveni={H\bibinitperiod}}}%
+        {{hash=a88f1e5305842db7d684b26d0a6b7c1e}{%
+           family={C.},
+           familyi={C\bibinitperiod},
+           given={Green},
+           giveni={G\bibinitperiod}}}%
       }
       \list{organization}{1}{%
         {Classics in the History of Psychology}%
       }
-      \strng{namehash}{5d7a6e7e0e82bcc144f01ac47862fe2f}
-      \strng{fullhash}{5d7a6e7e0e82bcc144f01ac47862fe2f}
-      \strng{bibnamehash}{5d7a6e7e0e82bcc144f01ac47862fe2f}
-      \strng{authorbibnamehash}{5d7a6e7e0e82bcc144f01ac47862fe2f}
-      \strng{authornamehash}{5d7a6e7e0e82bcc144f01ac47862fe2f}
-      \strng{authorfullhash}{5d7a6e7e0e82bcc144f01ac47862fe2f}
+      \strng{namehash}{a88f1e5305842db7d684b26d0a6b7c1e}
+      \strng{fullhash}{a88f1e5305842db7d684b26d0a6b7c1e}
+      \strng{bibnamehash}{a88f1e5305842db7d684b26d0a6b7c1e}
+      \strng{authorbibnamehash}{a88f1e5305842db7d684b26d0a6b7c1e}
+      \strng{authornamehash}{a88f1e5305842db7d684b26d0a6b7c1e}
+      \strng{authorfullhash}{a88f1e5305842db7d684b26d0a6b7c1e}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Dostęp: 11 maja 2024, godz. 7:00}
-      \field{title}{Memory: A Contribution to Experimental Psychology}
+      \field{title}{Classics in the History of Psychology}
       \field{urlday}{11}
       \field{urlmonth}{5}
       \field{urlyear}{2024}
@@ -86,16 +86,18 @@
     \endentry
     \entry{ablyGamification}{online}{}
       \name{author}{1}{}{%
-        {{hash=141ee2d4cc415ca555e3bf2380c57ecc}{%
+        {{hash=6578bb9f58984d0dfa20dd752735c090}{%
            family={Ably},
-           familyi={A\bibinitperiod}}}%
+           familyi={A\bibinitperiod},
+           given={Redakcja},
+           giveni={R\bibinitperiod}}}%
       }
-      \strng{namehash}{141ee2d4cc415ca555e3bf2380c57ecc}
-      \strng{fullhash}{141ee2d4cc415ca555e3bf2380c57ecc}
-      \strng{bibnamehash}{141ee2d4cc415ca555e3bf2380c57ecc}
-      \strng{authorbibnamehash}{141ee2d4cc415ca555e3bf2380c57ecc}
-      \strng{authornamehash}{141ee2d4cc415ca555e3bf2380c57ecc}
-      \strng{authorfullhash}{141ee2d4cc415ca555e3bf2380c57ecc}
+      \strng{namehash}{6578bb9f58984d0dfa20dd752735c090}
+      \strng{fullhash}{6578bb9f58984d0dfa20dd752735c090}
+      \strng{bibnamehash}{6578bb9f58984d0dfa20dd752735c090}
+      \strng{authorbibnamehash}{6578bb9f58984d0dfa20dd752735c090}
+      \strng{authornamehash}{6578bb9f58984d0dfa20dd752735c090}
+      \strng{authorfullhash}{6578bb9f58984d0dfa20dd752735c090}
       \field{sortinit}{3}
       \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
@@ -116,18 +118,18 @@
     \endentry
     \entry{chatGptRisk}{online}{}
       \name{author}{1}{}{%
-        {{hash=eb9fdfbd7988d5b07f74626f532f93c0}{%
-           family={Radziszewski},
-           familyi={R\bibinitperiod},
-           given={Bartosz},
-           giveni={B\bibinitperiod}}}%
+        {{hash=15492db0b0728dcf6f2196e42ef0237e}{%
+           family={Bartosz},
+           familyi={B\bibinitperiod},
+           given={R},
+           giveni={R\bibinitperiod}}}%
       }
-      \strng{namehash}{eb9fdfbd7988d5b07f74626f532f93c0}
-      \strng{fullhash}{eb9fdfbd7988d5b07f74626f532f93c0}
-      \strng{bibnamehash}{eb9fdfbd7988d5b07f74626f532f93c0}
-      \strng{authorbibnamehash}{eb9fdfbd7988d5b07f74626f532f93c0}
-      \strng{authornamehash}{eb9fdfbd7988d5b07f74626f532f93c0}
-      \strng{authorfullhash}{eb9fdfbd7988d5b07f74626f532f93c0}
+      \strng{namehash}{15492db0b0728dcf6f2196e42ef0237e}
+      \strng{fullhash}{15492db0b0728dcf6f2196e42ef0237e}
+      \strng{bibnamehash}{15492db0b0728dcf6f2196e42ef0237e}
+      \strng{authorbibnamehash}{15492db0b0728dcf6f2196e42ef0237e}
+      \strng{authornamehash}{15492db0b0728dcf6f2196e42ef0237e}
+      \strng{authorfullhash}{15492db0b0728dcf6f2196e42ef0237e}
       \field{sortinit}{4}
       \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
@@ -146,22 +148,46 @@
       \verb https://dfe.org.pl/ryzyka-chatgpt/
       \endverb
     \endentry
-    \entry{mielnikIntegrationTests}{online}{}
+    \entry{roger2004}{book}{}
       \name{author}{1}{}{%
-        {{hash=5f2dee7c9f882e1d6f1f32abfe5b17a5}{%
-           family={Mielnik},
-           familyi={M\bibinitperiod},
-           given={Tomasz},
-           giveni={T\bibinitperiod}}}%
+        {{hash=a87f6da668c19cc25d2d42abd49cbd7d}{%
+           family={P},
+           familyi={P\bibinitperiod},
+           given={Roger},
+           giveni={R\bibinitperiod}}}%
       }
-      \strng{namehash}{5f2dee7c9f882e1d6f1f32abfe5b17a5}
-      \strng{fullhash}{5f2dee7c9f882e1d6f1f32abfe5b17a5}
-      \strng{bibnamehash}{5f2dee7c9f882e1d6f1f32abfe5b17a5}
-      \strng{authorbibnamehash}{5f2dee7c9f882e1d6f1f32abfe5b17a5}
-      \strng{authornamehash}{5f2dee7c9f882e1d6f1f32abfe5b17a5}
-      \strng{authorfullhash}{5f2dee7c9f882e1d6f1f32abfe5b17a5}
+      \list{location}{1}{%
+        {Warszawa}%
+      }
+      \strng{namehash}{a87f6da668c19cc25d2d42abd49cbd7d}
+      \strng{fullhash}{a87f6da668c19cc25d2d42abd49cbd7d}
+      \strng{bibnamehash}{a87f6da668c19cc25d2d42abd49cbd7d}
+      \strng{authorbibnamehash}{a87f6da668c19cc25d2d42abd49cbd7d}
+      \strng{authornamehash}{a87f6da668c19cc25d2d42abd49cbd7d}
+      \strng{authorfullhash}{a87f6da668c19cc25d2d42abd49cbd7d}
       \field{sortinit}{5}
       \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Praktyczne podejście do inżynierii oprogramowania}
+      \field{year}{2004}
+    \endentry
+    \entry{mielnikIntegrationTests}{online}{}
+      \name{author}{1}{}{%
+        {{hash=9196f7dbbb9765bd6d8b20898237f884}{%
+           family={T},
+           familyi={T\bibinitperiod},
+           given={Mielnik},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{9196f7dbbb9765bd6d8b20898237f884}
+      \strng{fullhash}{9196f7dbbb9765bd6d8b20898237f884}
+      \strng{bibnamehash}{9196f7dbbb9765bd6d8b20898237f884}
+      \strng{authorbibnamehash}{9196f7dbbb9765bd6d8b20898237f884}
+      \strng{authornamehash}{9196f7dbbb9765bd6d8b20898237f884}
+      \strng{authorfullhash}{9196f7dbbb9765bd6d8b20898237f884}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Dostęp: 31 maja 2024, godz. 14:00}
@@ -178,6 +204,30 @@
       \verb https://testerzy.pl/baza-wiedzy/artykuly/testy-integracyjne
       \endverb
     \endentry
+    \entry{oliveira2018}{book}{}
+      \name{author}{1}{}{%
+        {{hash=e14c8f99a5c662fff05b01360c10216f}{%
+           family={B},
+           familyi={B\bibinitperiod},
+           given={Oliveira},
+           giveni={O\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Birmingham}%
+      }
+      \strng{namehash}{e14c8f99a5c662fff05b01360c10216f}
+      \strng{fullhash}{e14c8f99a5c662fff05b01360c10216f}
+      \strng{bibnamehash}{e14c8f99a5c662fff05b01360c10216f}
+      \strng{authorbibnamehash}{e14c8f99a5c662fff05b01360c10216f}
+      \strng{authornamehash}{e14c8f99a5c662fff05b01360c10216f}
+      \strng{authorfullhash}{e14c8f99a5c662fff05b01360c10216f}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{pytest Quick Start Guide}
+      \field{year}{2018}
+    \endentry
     \entry{acceptanceTesting}{online}{}
       \name{author}{1}{}{%
         {{hash=1b3b993f495e14148d73fa1278dd624a}{%
@@ -192,8 +242,8 @@
       \strng{authorbibnamehash}{1b3b993f495e14148d73fa1278dd624a}
       \strng{authornamehash}{1b3b993f495e14148d73fa1278dd624a}
       \strng{authorfullhash}{1b3b993f495e14148d73fa1278dd624a}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Dostęp: 31 maja 2024, godz. 15:00}

@@ -1,8 +1,8 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  10 JUN 2024 17:09
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  11 JUN 2024 21:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**engineer.tex
+**engineer
 (./engineer.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
@@ -618,35 +618,45 @@ See the biblatex package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.44 \begin{document}
+l.47 \begin{document}
                      
 ? 
 \@quotelevel=\count432
 \@quotereset=\count433
-No file engineer.aux.
+(./engineer.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+)
 \openout1 = `engineer.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
-4.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
+7.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -655,21 +665,21 @@ LaTeX Font Info:    ... okay on input line 44.
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(89.62709pt, 418.25368pt, 89.6271pt)
-* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* modes: twoside heightrounded 
+* h-part:(L,W,R)=(85.35826pt, 455.24411pt, 56.9055pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=418.25368pt
-* \textheight=591.5302pt
-* \oddsidemargin=17.3571pt
-* \evensidemargin=17.3571pt
-* \topmargin=-7.86334pt
+* \textwidth=455.24411pt
+* \textheight=706.0pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-38.1381pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=65.0pt
+* \marginparwidth=56.9055pt
 * \marginparsep=11.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
@@ -677,8 +687,8 @@ LaTeX Font Info:    ... okay on input line 44.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
+* \@twosidetrue
+* \@mparswitchtrue
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
@@ -698,65 +708,65 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'engineer.bbl' found.
 
 (./engineer.bbl)
-Package biblatex Info: Reference section=0 on input line 44.
-Package biblatex Info: Reference segment=0 on input line 44.
+Package biblatex Info: Reference section=0 on input line 47.
+Package biblatex Info: Reference segment=0 on input line 47.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 44.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 44.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 44.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 44.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 44.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 44.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 44.
-LaTeX Font Info:    Redeclaring math accent \check on input line 44.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 44.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 44.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 44.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 44.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 44.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 47.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 47.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 47.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 47.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 47.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 47.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 47.
+LaTeX Font Info:    Redeclaring math accent \check on input line 47.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 47.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 47.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 47.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 47.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 47.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 44.
+(Font)              `operators' in the math version `normal' on input line 47.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 44.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 47.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 44.
+(Font)              `operators' in the math version `bold' on input line 47.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 44.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 47.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 44.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 47.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 44.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 47.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 44.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 47.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 44.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 47.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 44.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 47.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 44.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 47.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 44.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 47.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 44.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 47.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 44.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 47.
 
 
 ! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
@@ -765,7 +775,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.44 \begin{document}
+l.47 \begin{document}
                      
 ? 
 
@@ -775,12 +785,12 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.44 \begin{document}
+l.47 \begin{document}
                      
 ? 
-LaTeX Info: Redefining \rmfamily on input line 44.
-LaTeX Info: Redefining \sffamily on input line 44.
-LaTeX Info: Redefining \ttfamily on input line 44.
+LaTeX Info: Redefining \rmfamily on input line 47.
+LaTeX Info: Redefining \sffamily on input line 47.
+LaTeX Info: Redefining \ttfamily on input line 47.
 
 ! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
 
@@ -788,7 +798,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.44 \begin{document}
+l.47 \begin{document}
                      
 ? 
 
@@ -798,7 +808,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.44 \begin{document}
+l.47 \begin{document}
                      
 ? 
 File: sprz/pjatk.png Graphic file (type bmp)
@@ -809,644 +819,782 @@ File: sprz/pjatk.png Graphic file (type bmp)
 File: sprz/pjatk.png Graphic file (type bmp)
 <sprz/pjatk.png>
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 48.
+(Font)              <7> on input line 51.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 48.
+(Font)              <5> on input line 51.
 
-Underfull \hbox (badness 10000) in paragraph at lines 48--48
-[]\TU/lmr/bx/n/10 Data ustalenia
- []
-
-
-Overfull \hbox (25.19997pt too wide) in paragraph at lines 48--48
+Overfull \hbox (25.19997pt too wide) in paragraph at lines 51--51
  [] 
  []
 
 
-Underfull \hbox (badness 4673) in paragraph at lines 48--48
-[]|\TU/lmr/bx/n/10 Numer albu-
- []
-
-
-Overfull \hbox (24.90573pt too wide) in paragraph at lines 48--48
+Overfull \hbox (22.6864pt too wide) in paragraph at lines 51--51
  [] 
  []
 
-[1] [2] [3]
-No file engineer.toc.
+[2] [3] (./engineer.toc
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ...ctlanguage *[spacedguillemets=true]{polish}
+                                                  
+? 
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ...ctlanguage *[spacedguillemets=true]{polish}
+                                                  
+? 
+LaTeX Info: Redefining \rmfamily on input line 1.
+LaTeX Info: Redefining \sffamily on input line 1.
+LaTeX Info: Redefining \ttfamily on input line 1.
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ...ctlanguage *[spacedguillemets=true]{polish}
+                                                  
+? 
+
+! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
+
+See the xkeyval package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 ...ctlanguage *[spacedguillemets=true]{polish}
+                                                  
+? 
+[4
+
+] [5])
 \tf@toc=\write4
 \openout4 = `engineer.toc'.
 
-(./chapters/chapter_1/main.tex [4
-
-]
+ (./chapters/chapter_1/main.tex [6]
 Rozdział 1.
-) (./chapters/chapter_2/main.tex [5
+) (./chapters/chapter_2/main.tex [7
 
 ]
 Rozdział 2.
-[6
+[8
 
 ]
 File: chapters/chapter_2/rich_picture.png Graphic file (type bmp)
 <chapters/chapter_2/rich_picture.png>
- [7]
+ [9]
 File: chapters/chapter_2/krzywa1.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa1.png>
- [8]
 File: chapters/chapter_2/krzywa2.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa2.png>
- [9] [10]) (./chapters/chapter_3/main.tex [11]
+ [10] [11]) (./chapters/chapter_3/main.tex [12]
 Rozdział 3.
-[12
+[13
 
 ]
 File: chapters/chapter_3/quizlet.png Graphic file (type bmp)
 <chapters/chapter_3/quizlet.png>
- [13]
+ [14]
 File: chapters/chapter_3/fiszoteka.png Graphic file (type bmp)
 <chapters/chapter_3/fiszoteka.png>
- [14] [15]
+ [15]
 File: chapters/chapter_3/gizmo.png Graphic file (type bmp)
 <chapters/chapter_3/gizmo.png>
  [16]
 File: chapters/chapter_3/flashcards.png Graphic file (type bmp)
 <chapters/chapter_3/flashcards.png>
- [17] [18] (./chapters/chapter_3/table.tex
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+ [17] (./chapters/chapter_3/table.tex [18]
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 []|\TU/lmr/bx/n/10 Zidentyfiko-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 []|\TU/lmr/bx/n/10 Środki /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 pobiegawcze
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 i szacowa-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 ny poziom
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 []|\TU/lmr/bx/n/10 Środki /
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 Działania
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 minimalizu-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 jące wpływ
  []
 
 
-Underfull \hbox (badness 1789) in paragraph at lines 3--3
+Underfull \hbox (badness 1789) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 już po jego
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 wystąpieniu
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 i szacowa-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 ny poziom
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 wdrożenia
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 []|\TU/lmr/bx/n/10 Ranga ry-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 zyka (im
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 niższa, tym
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 mniejszy
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 negatywny
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--3
+Underfull \hbox (badness 10000) in paragraph at lines 5--5
 \TU/lmr/bx/n/10 wpływ na
  []
 
 
-Overfull \hbox (1.62859pt too wide) in paragraph at lines 3--4
+Overfull \hbox (1.62859pt too wide) in paragraph at lines 5--6
 []|\TU/lmr/bx/n/10 Prawdopodo-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
 \TU/lmr/bx/n/10 - bieństwo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 3--4
+Underfull \hbox (badness 10000) in paragraph at lines 5--6
 \TU/lmr/bx/n/10 wystąpienia
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 5--5
+Underfull \hbox (badness 1418) in paragraph at lines 7--7
 \TU/lmr/m/n/10 pilacji, wyniki
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
 \TU/lmr/m/n/10 testów nie
  []
 
 
-Underfull \hbox (badness 3312) in paragraph at lines 5--5
+Underfull \hbox (badness 3312) in paragraph at lines 7--7
 \TU/lmr/m/n/10 pokrywają się
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
 \TU/lmr/m/n/10 wykonywanie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
 \TU/lmr/m/n/10 testów opro-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
 \TU/lmr/m/n/10 testowanie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
 \TU/lmr/m/n/10 na bieżąco
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
 \TU/lmr/m/n/10 nowo imple-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
 \TU/lmr/m/n/10 mentowanych
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
+Underfull \hbox (badness 10000) in paragraph at lines 7--7
 \TU/lmr/m/n/10 funkcjonalno-
  []
 
 
-Underfull \hbox (badness 5077) in paragraph at lines 7--7
+Underfull \hbox (badness 5077) in paragraph at lines 9--9
 []|\TU/lmr/m/n/10 Awaria sprzę-
  []
 
 
-Underfull \hbox (badness 4608) in paragraph at lines 7--7
+Underfull \hbox (badness 4608) in paragraph at lines 9--9
 \TU/lmr/m/n/10 tu deweloper-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
 []|\TU/lmr/m/n/10 Sprzęt prze-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
 \TU/lmr/m/n/10 staje działać,
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 7--7
+Underfull \hbox (badness 1142) in paragraph at lines 9--9
 \TU/lmr/m/n/10 brak możliwo-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
 []|\TU/lmr/m/n/10 Działanie na
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
 []|\TU/lmr/m/n/10 Niedobór
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
 \TU/lmr/m/n/10 umiejętności
  []
 
 
-Underfull \hbox (badness 1264) in paragraph at lines 9--9
+Underfull \hbox (badness 1264) in paragraph at lines 11--11
 []|\TU/lmr/m/n/10 Problemy jed-
  []
 
 
-Underfull \hbox (badness 2158) in paragraph at lines 9--9
+Underfull \hbox (badness 2158) in paragraph at lines 11--11
 \TU/lmr/m/n/10 nostek w po-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
 \TU/lmr/m/n/10 szczególnych
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
 []|\TU/lmr/m/n/10 Uzupełnianie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
 []|\TU/lmr/m/n/10 Pomoc in-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 []|\TU/lmr/m/n/10 Niezgodność
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 []|\TU/lmr/m/n/10 Osoba blo-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 kuje postęp
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 nad projek-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 tem poprzez
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 odpowiedzial-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 ność nad
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 kluczowym
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 []|\TU/lmr/m/n/10 Wcześniejsze
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 zaplanowanie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 []|\TU/lmr/m/n/10 Wspólna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 praca nad
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 kluczowym
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 elementem
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 zajęcie się
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
 \TU/lmr/m/n/10 powiązanymi
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 []|\TU/lmr/m/n/10 Wybór nie-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 odpowiedniej
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 []|\TU/lmr/m/n/10 Planowane
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 rozwiązania
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 nie są osią-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 galne przez
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 wykorzystywa-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 []|\TU/lmr/m/n/10 Dogłębna
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 analiza po-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 trzebnych
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 technologii
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 []|\TU/lmr/m/n/10 Dopasowanie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 alternatyw-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 nych możli-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
 \TU/lmr/m/n/10 wych rozwią-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 []|\TU/lmr/m/n/10 Niedoszacowa-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 \TU/lmr/m/n/10 - nie budżetu
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 \TU/lmr/m/n/10 potrzebnego
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 \TU/lmr/m/n/10 infrastruktury
  []
 
 
-Underfull \hbox (badness 5008) in paragraph at lines 15--15
+Underfull \hbox (badness 5008) in paragraph at lines 17--17
 []|\TU/lmr/m/n/10 Budżet zbliża
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 \TU/lmr/m/n/10 pania przed
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 \TU/lmr/m/n/10 zaplanowanym
  []
 
 
-Underfull \hbox (badness 4013) in paragraph at lines 15--15
+Underfull \hbox (badness 4013) in paragraph at lines 17--17
 \TU/lmr/m/n/10 ków wykorzy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 []|\TU/lmr/m/n/10 Próba po-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 \TU/lmr/m/n/10 zyskania
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
 \TU/lmr/m/n/10 inwestorów
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 []|\TU/lmr/m/n/10 ChatGPT
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 3.5 generuje
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 bezsensowną
  []
 
 
-Underfull \hbox (badness 2426) in paragraph at lines 17--17
+Underfull \hbox (badness 2426) in paragraph at lines 19--19
 \TU/lmr/m/n/10 treść dotyczą-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 użytkownika
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 []|\TU/lmr/m/n/10 Generowane
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 treści nie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 nawiązują
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 do zagadnie-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 nia, o które
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 chat został
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 []|\TU/lmr/m/n/10 Próba spre-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 cyzowania
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 zapytania,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 które zosta-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 ło przesłane
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 do chatu
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 w celu wy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 generowania
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 konkretniejszej
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 []|\TU/lmr/m/n/10 Użytkownik
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 może zaak-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 ceptować lub
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 odrzucić wy-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 \TU/lmr/m/n/10 generowaną
  []
 
 
-Overfull \hbox (49.19481pt too wide) in alignment at lines 1--19
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Przeglądarka
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 niepoprawnie
+ []
+
+
+Underfull \hbox (badness 1365) in paragraph at lines 21--21
+\TU/lmr/m/n/10 wczytuje stro-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Style strony
+ []
+
+
+Underfull \hbox (badness 2951) in paragraph at lines 21--21
+\TU/lmr/m/n/10 nie wyglądają
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 21--21
+\TU/lmr/m/n/10 tak samo jak
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 na stronie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 uruchomionej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 lokalnie lub
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 na innych
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 przeglądar-
+ []
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 21--21
+\TU/lmr/m/n/10 kach. Pozycje
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 elementów
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 na stronie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 są inaczej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Próba dosto-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 sowania styli
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 lub funkcjo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 nalności do
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 konkretnej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Uruchomienie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 przeglądarce
+ []
+
+
+Overfull \hbox (12.20438pt too wide) in alignment at lines 3--24
  [] [] [] [] [] [] 
  []
 
-[19] [20])) (./chapters/chapter_4/main.tex [21]
-Rozdział 4.
-) [22
-
-] (./chapters/chapter_5/main.tex
+[19])) [20] (./chapters/chapter_5/main.tex
 
 ! LaTeX Error: Environment chap5 undefined.
 
@@ -1457,11 +1605,11 @@ Type  H <return>  for immediate help.
 l.31 \begin{chap5}
                   
 ? 
-[23]
-Rozdział 5.
-[24
+[21]
+Rozdział 4.
+[22
 
-] [25] [26] [27] [28] [29]
+]
 
 ! LaTeX Error: \begin{document} ended by \end{chap5}.
 
@@ -1469,65 +1617,166 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.101 \end{chap5}
-                 
+l.57 \end{chap5}
+                
 ? 
-[30] [31]) (./chapters/chapter_6/main.tex
+[23]) (./chapters/chapter_6/main.tex
 ! Undefined control sequence.
 l.1 \newapage
              
 ? 
-[32]
-Rozdział 6.
+[24]
+Rozdział 5.
 File: chapters/chapter_6/diagram_przypadkow_uzycia.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_przypadkow_uzycia.png>
 File: chapters/chapter_6/erd.png Graphic file (type bmp)
 <chapters/chapter_6/erd.png>
-[33
+[25
 
 ]
 File: chapters/chapter_6/diagram_architektury.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_architektury.png>
- [34]
-File: chapters/chapter_6/diagram_sekwencji.png Graphic file (type bmp)
-<chapters/chapter_6/diagram_sekwencji.png>
- (./chapters/chapter_6/wymagania.tex [35] [36] [37] [38] [39] [40]
-[41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52]))
-(./chapters/chapter_7/main.tex [53]
-Rozdział 7.
+File: chapters/chapter_6/diagram_sekwencji_1.png Graphic file (type bmp)
+<chapters/chapter_6/diagram_sekwencji_1.png>
+ [26]
+File: chapters/chapter_6/diagram_sekwencji_2.png Graphic file (type bmp)
+<chapters/chapter_6/diagram_sekwencji_2.png>
+ [27] (./chapters/chapter_6/wymagania.tex [28]
+Underfull \hbox (badness 2495) in paragraph at lines 89--89
+\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
+ []
+
+[29] [30] [31] [32] [33] [34] [35] [36]
+Underfull \hbox (badness 2495) in paragraph at lines 377--377
+[]|\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
+ []
+
+[37] [38] [39] [40] [41]
+! Undefined control sequence.
+<argument> \string \newlabel {\tablabel 
+                                        }{{\@currentlabel }{\thepage }{\@cur...
+l.602 \end{stakeholder}
+                       
+? 
+[42]
+! Undefined control sequence.
+<argument> \string \newlabel {\tablabel 
+                                        }{{\@currentlabel }{\thepage }{\@cur...
+l.614 \end{stakeholder}
+                       
+? 
+! Undefined control sequence.
+<argument> \string \newlabel {\tablabel 
+                                        }{{\@currentlabel }{\thepage }{\@cur...
+l.626 \end{stakeholder}
+                       
+? 
+
+Underfull \hbox (badness 4531) in paragraph at lines 633--633
+[]|\TU/lmr/m/n/10 Dostarczeczenie infrastruktury i środowiska technicznego
+ []
+
+! Undefined control sequence.
+<argument> \string \newlabel {\tablabel 
+                                        }{{\@currentlabel }{\thepage }{\@cur...
+l.636 \end{stakeholder}
+                       
+? 
+[43])) (./chapters/chapter_7/main.tex [44]
+Rozdział 6.
 File: chapters/chapter_7/github.png Graphic file (type bmp)
 <chapters/chapter_7/github.png>
-[54
-
-]
 File: chapters/chapter_7/jira.png Graphic file (type bmp)
 <chapters/chapter_7/jira.png>
+[45
+
+]
 File: chapters/chapter_7/miro.png Graphic file (type bmp)
 <chapters/chapter_7/miro.png>
 File: chapters/chapter_7/google_drive.png Graphic file (type bmp)
 <chapters/chapter_7/google_drive.png>
- [55]
+ [46]
 File: chapters/chapter_7/canva.png Graphic file (type bmp)
 <chapters/chapter_7/canva.png>
- [56] [57] [58]) (./chapters/chapter_8/main.tex [59]
-Rozdział 8.
-) (./chapters/chapter_9/main.tex [60
+ [47] [48]) (./chapters/chapter_8/main.tex [49]
+Rozdział 7.
+(./chapters/chapter_8/sprinty.tex [50
 
-]
-Rozdział 9.
-[61
+] [51] [52] [53] [54] [55])
+(./chapters/chapter_8/implementacja.tex [56]
+File: chapters/chapter_8/screens/rejestracja_backend.png Graphic file (type bmp
+)
+<chapters/chapter_8/screens/rejestracja_backend.png>
+ [57] [58]
+File: chapters/chapter_8/screens/rejestracja_mobile.png Graphic file (type bmp)
 
-]
-File: chapters/chapter_9/testy1.png Graphic file (type bmp)
-<chapters/chapter_9/testy1.png>
-) [62]
-Overfull \hbox (9.18166pt too wide) in paragraph at lines 73--73
-\TU/lmr/m/n/10 ja 2024, godz. 7:00. Classics in the History of Psychology. 1885
-. \TU/lmr/m/sc/10 url\TU/lmr/m/n/10 : $[][][][][] [] [] [] [][][][][][][][][][]
-[][][] []
+<chapters/chapter_8/screens/rejestracja_mobile.png>
+File: chapters/chapter_8/screens/rejestracja_web.png Graphic file (type bmp)
+<chapters/chapter_8/screens/rejestracja_web.png>
+File: chapters/chapter_8/screens/logowanie_backend.png Graphic file (type bmp)
+<chapters/chapter_8/screens/logowanie_backend.png>
+ [59]
+File: chapters/chapter_8/screens/logowanie_mobile.png Graphic file (type bmp)
+<chapters/chapter_8/screens/logowanie_mobile.png>
+File: chapters/chapter_8/screens/logowanie_web.png Graphic file (type bmp)
+<chapters/chapter_8/screens/logowanie_web.png>
+ [60]
+File: chapters/chapter_8/screens/wylogowanie_backend.png Graphic file (type bmp
+)
+<chapters/chapter_8/screens/wylogowanie_backend.png>
+ [61]
+File: chapters/chapter_8/screens/wylogowanie_mobile.png Graphic file (type bmp)
+
+<chapters/chapter_8/screens/wylogowanie_mobile.png>
+File: chapters/chapter_8/screens/wylogowanie_web.png Graphic file (type bmp)
+<chapters/chapter_8/screens/wylogowanie_web.png>
+ [62]
+File: chapters/chapter_8/screens/edit_user_backend_1.png Graphic file (type bmp
+)
+<chapters/chapter_8/screens/edit_user_backend_1.png>
+File: chapters/chapter_8/screens/edit_user_backend_2.png Graphic file (type bmp
+)
+<chapters/chapter_8/screens/edit_user_backend_2.png>
+
+[63]
+File: chapters/chapter_8/screens/edit_user_mobile.png Graphic file (type bmp)
+<chapters/chapter_8/screens/edit_user_mobile.png>
+ [64]
+File: chapters/chapter_8/screens/edit_user_web.png Graphic file (type bmp)
+<chapters/chapter_8/screens/edit_user_web.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 161--163
+
  []
 
-[63
+
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 180--181
+
+ []
+
+[65]
+File: chapters/chapter_8/screens/delete_user_backend.png Graphic file (type bmp
+)
+<chapters/chapter_8/screens/delete_user_backend.png>
+File: chapters/chapter_8/screens/delete_user_mobile_1.png Graphic file (type bm
+p)
+<chapters/chapter_8/screens/delete_user_mobile_1.png>
+ [66]
+File: chapters/chapter_8/screens/delete_user_mobile_2.png Graphic file (type bm
+p)
+<chapters/chapter_8/screens/delete_user_mobile_2.png>
+)) (./chapters/chapter_9/main.tex [67]
+Rozdział 8.
+File: chapters/chapter_9/testy1.png Graphic file (type bmp)
+<chapters/chapter_9/testy1.png>
+[68
+
+]) [69] [70] [71] [72] [73] [74] [75] [76
 
 ] (./engineer.aux)
  ***********
@@ -1536,27 +1785,19 @@ L3 programming layer <2024-02-20>
  ***********
 
 
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                engineer
-(biblatex)                and rerun LaTeX afterwards.
+LaTeX Warning: There were multiply-defined labels.
 
 Package logreq Info: Writing requests to 'engineer.run.xml'.
 \openout1 = `engineer.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16555 strings out of 474773
- 357185 string characters out of 5757724
- 1944839 words of memory out of 5000000
- 38463 multiletter control sequences out of 15000+600000
+ 16919 strings out of 474773
+ 375109 string characters out of 5757724
+ 1975839 words of memory out of 5000000
+ 38802 multiletter control sequences out of 15000+600000
  563931 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 74i,13n,84p,1764b,4991s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,13n,84p,1760b,4991s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on engineer.pdf (64 pages).
+Output written on engineer.pdf (76 pages).
