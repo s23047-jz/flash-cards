@@ -1,34 +1,36 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { View, Text, TextInput, Image } from "react-native";
+import {View, Text, TextInput, Image, Alert} from "react-native";
 
 import GenerateText from "../../assets/images/Generate_text.png";
-import { Button } from "../../components";
+import {Button, Loader} from "../../components";
 import { InputValidator } from "../../components/Validator/InputValidator";
 import { ScreenProps } from "../../interfaces/screen";
-import { ChatService} from "../../services/chat";
+import { ChatService } from "../../services/chat";
 import { FlashCardsService } from "../../services/flashcards";
 
 const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deck } = route.params;
-  
-  
-  
+
   useState();
   const [sideA, setSideA] = useState("");
   const [sideB, setSideB] = useState("");
-  
+  const [loading, setLoading] = useState(false);
+
   const handleCreate = async () => {
     const trimmedSideA = sideA.substring(0, 254);
     const trimmedSideB = sideB.substring(0, 510);
-    // Assuming sideA and sideB are the titles and texts for the flashcard
-    if (InputValidator("deck", trimmedSideA) && InputValidator("deck", trimmedSideB)) {
+
+    if (
+      InputValidator("deck", trimmedSideA) &&
+      InputValidator("deck", trimmedSideB)
+    ) {
       const flashcardData = {
         deck_id: deck.id,
         card_title: trimmedSideA,
         card_text: trimmedSideB,
       };
-      
+
       try {
         await FlashCardsService.createFlashcard(flashcardData, navigation);
         navigation.goBack();
@@ -42,27 +44,36 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
   };
   
   const handleGenerate = async () => {
-    // Alert the user that the AI-generated content may not be accurate
-    
-    
-    if (sideA.length != 0) {
-      alert("Please note that the response from the AI chat may not be accurate.");
+    if (sideA.length !== 0) {
       const messageToSend = `Please limit the response to 500 characters: ${sideA}`;
       try {
+        setLoading(true);
         const response = await ChatService.sent_message(messageToSend);
-        setSideB(response); // Assuming the response from sent_message is the text you want to set in sideB
+        setLoading(false);
+        
+        Alert.alert(
+          "Confirm Generated Content",
+          "Please note that the response from the AI chat may not be accurate.\n\n" + response,
+          [
+            { text: "Cancel", style: "cancel" },
+            { text: "Accept", onPress: () => setSideB(response) }
+          ],
+          { cancelable: false }
+        );
       } catch (error) {
         console.error("Failed to generate content with AI:", error);
-        // Display an alert if there is an error
         alert("Failed to generate content with AI. Please try again.");
       }
     } else {
-      alert("Flashcard front side field must not be empty.")
+      alert("Flashcard front side field must not be empty.");
     }
+  };
+  
+  if (loading) {
+    return (
+      <Loader />
+    )
   }
-  
-  
-  
   
   return (
     <View className="flex-1 items-center justify-center bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
@@ -103,8 +114,10 @@ const CreateFlashcard: React.FC<ScreenProps> = ({ navigation, route }) => {
             value={sideB}
             onChangeText={setSideB}
           />
-          <Button className="w-72 h-14 m-5 justify-center mr-auto ml-auto rounded-1xl"
-          onPress={handleGenerate}>
+          <Button
+            className="w-72 h-14 m-5 justify-center mr-auto ml-auto rounded-1xl"
+            onPress={handleGenerate}
+          >
             <Text className="scale-125 mb-1.5 font-bold top-1 text-right right-11">
               Generate content with AI
             </Text>
