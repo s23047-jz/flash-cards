@@ -62,10 +62,10 @@ const FlashCard: React.FC<FlashCardInterface> = (
                 }}
             >
                 <TouchableOpacity className={'w-full h-full border flex-1 mx-10 rounded-3xl items-center justify-center'} onPress={toggleTextAndBackgroundColor}>
-                    <Animated.Text style={{ fontSize: 18, fontWeight: 'bold', backgroundColor: 'blue', opacity: opacityFront }}>
+                    <Animated.Text style={{ fontSize: 18, fontWeight: 'bold', opacity: opacityFront }}>
                         {title}
                     </Animated.Text>
-                    <Animated.Text style={{ fontSize: 18, fontWeight: 'bold', backgroundColor: 'blue', opacity: opacityBack, position: 'absolute', transform: [{ rotateX: '180deg'}] }}>
+                    <Animated.Text style={{ fontSize: 18, fontWeight: 'bold', opacity: opacityBack, position: 'absolute', transform: [{ rotateX: '180deg'}] }}>
                         {description}
                     </Animated.Text>
                 </TouchableOpacity>

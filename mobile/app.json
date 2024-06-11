@@ -15,13 +15,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSMicrophoneUsageDescription": "We need access to your microphone for speech recognition"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "src/assets/favicon.png"

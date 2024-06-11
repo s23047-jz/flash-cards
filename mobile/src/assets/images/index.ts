@@ -8,3 +8,6 @@ export { default as Study } from "./Study.png";
 export { default as Study_blue } from "./Study_blue.png";
 export { default as Wrench } from "./Wrench.png";
 export { default as Wrench_blue } from "./Wrench_blue.png";
+export { default as Microphone_red } from "./Microphone_red.png";
+export { default as Microphone_black } from "./Microphone_black.png";
+export { default as Microphone } from "./Microphone.png";

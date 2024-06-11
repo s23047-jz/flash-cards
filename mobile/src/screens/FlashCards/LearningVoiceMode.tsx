@@ -7,13 +7,18 @@ import {
     Alert,
     Animated
 } from "react-native";
+
+import * as Speech from "expo-speech";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import { ScreenProps } from "../../interfaces/screen";
 import { DecksService } from "../../services/decks";
 import { FlashCardsService } from "../../services/flashcards";
+import { NlpService } from "../../services/nlp";
 import {
     Loader,
-    FlashCard
+    FlashCard,
+    MicrophoneModal
 } from "../../components";
 
 const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
@@ -34,6 +39,54 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         const { width } = event.nativeEvent.layout;
         setParentWidth(width);
     };
+
+    const handleSpeech = (text: string) => {
+        Speech.speak(text);
+    }
+
+    const handlePrevClick = () => {
+
+    }
+
+    const handleNextClick = () => {
+
+    }
+
+    const handleRotateClick = () => {
+
+    }
+
+    const handleSpeakerClick = () => {
+
+    }
+
+    const handleStopControl = () => {
+
+    }
+
+    const handleVoiceControl = (command: string) => {
+        switch(command) {
+            case "previous":
+                handlePrevClick();
+                break;
+            case "next":
+                handleNextClick();
+                break;
+            case "rotate":
+                handleRotateClick();
+                break;
+            case "read":
+                handleSpeakerClick();
+                break;
+            case "stop":
+                handleStopControl();
+                break;
+            default:
+                handleSpeech("Sorry, I didn't recognize the command");
+                console.warn('Command not found');
+                break;
+        }
+    }
 
     const handleCardNavigation = (memorized: boolean, index: number) => {
         const memorizedCard = memorized ? {
@@ -143,6 +196,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
                 Learning Voice Mode
             </Text>
+            <MicrophoneModal active={true} show={true} />
             <View className="top-14 absolute left-6">
                 <MaterialCommunityIcons
                     onPress={() => navigation.goBack()}
@@ -156,7 +210,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                     {(flashCards.length - currentCardIndex)} flashcards left
                 </Text>
             </View>
-            <View className="flex-1 bg-black" onLayout={onParentLayout}>
+            <View className="flex-1" onLayout={onParentLayout}>
                 <FlatList
                     ref={flatListRef}
                     data={flashCards}
