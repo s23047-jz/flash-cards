@@ -25,7 +25,7 @@ const LoginPage: React.FC = () => {
 
         let regMail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
         if (!regMail.test(email)) {
-            setAlertMessage("Email is not correct");
+            setAlertMessage("Email has wrong format");
             return;
         }
 
@@ -40,7 +40,12 @@ const LoginPage: React.FC = () => {
             window.location.reload();
         } catch (error) {
             // @ts-ignore
-            setAlertMessage("Login failed: " + error.message);
+            if (error.response && error.response.status === 401) {
+                setAlertMessage("Wrong email or password");
+            } else {
+                // @ts-ignore
+                setAlertMessage(error.message);
+            }
         }
     };
 
@@ -54,8 +59,8 @@ const LoginPage: React.FC = () => {
 
     const handleClose = () => {
         setOpen(false);
-        setResetEmail(''); // Clear reset email field
-        setEmailError(null); // Clear email error message
+        setResetEmail('');
+        setEmailError(null);
     };
 
     const handleSendReset = async () => {
@@ -131,9 +136,9 @@ const LoginPage: React.FC = () => {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2" onClick={handleClickOpen}>
-                                    Forgot password?
-                                </Link>
+                                {/*<Link href="#" variant="body2" onClick={handleClickOpen}>*/}
+                                {/*    Forgot password?*/}
+                                {/*</Link>*/}
                             </Grid>
                             <Grid item>
                                 <Link href="/registration" variant="body2">
@@ -162,10 +167,10 @@ const LoginPage: React.FC = () => {
                             value={resetEmail}
                             onChange={(e) => {
                                 setResetEmail(e.target.value);
-                                setEmailError(null); // Clear email error on change
+                                setEmailError(null);
                             }}
-                            error={!!emailError} // Show error state
-                            helperText={emailError} // Display error message
+                            error={!!emailError}
+                            helperText={emailError}
                         />
                     </DialogContent>
                     <DialogActions>

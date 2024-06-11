@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Avatar, Button, CssBaseline, TextField, Link, Paper, Box, Grid, Typography, Container, ThemeProvider } from '@mui/material';
 import { createTheme } from '@mui/material/styles';
 import { AuthService } from '../services/auth';
-import Alert from '../components/alert/Alert'; // Importujemy komponent Alert
+import Alert from '../components/alert/Alert';
 // @ts-ignore
 import logo from '../assets/images/logo.png';
 import { useNavigate } from 'react-router-dom';
@@ -18,7 +18,7 @@ const RegistrationPage: React.FC = () => {
     const [nicknameError, setNicknameError] = useState<string>('');
     const [passwordError, setPasswordError] = useState<string>('');
     const [confirmPasswordError, setConfirmPasswordError] = useState<string>('');
-    const [successMessage, setSuccessMessage] = useState<string | null>(null); // Stan dla komunikatu o pomyślnym utworzeniu konta
+    const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
     const navigate = useNavigate();
 
@@ -73,14 +73,14 @@ const RegistrationPage: React.FC = () => {
 
     const handleCloseAlert = () => {
         setSuccessMessage(null);
-        navigate('/signin'); // Przechodzimy do strony logowania po zamknięciu alertu
+        navigate('/signin');
     };
 
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
                 <CssBaseline />
-                {successMessage && <Alert message={successMessage} onClose={handleCloseAlert} />} {/* Wyświetlamy alert */}
+                {successMessage && <Alert message={successMessage} onClose={handleCloseAlert} />}
                 <Paper elevation={6} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 3, borderRadius: '30px' }}>
                     <Avatar sx={{ m: 1, width: 200, height: 200 }} src={logo} />
                     <Typography component="h1" variant="h4">

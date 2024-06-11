@@ -7,6 +7,7 @@ import { AVATAR_MAPPING } from "../utils/avatars";
 import '../styles/profile/user_profile_styles.scss';
 import { AuthService } from "../services/auth";
 import LoadingSpinner from "../components/loading_spinner/LoadingSpinner";
+import Alert from '../components/alert/Alert';
 
 const theme = createTheme();
 
@@ -31,6 +32,7 @@ const UserProfilePage: React.FC = () => {
     const [emailError, setEmailError] = useState<string>('');
     const [passwordError, setPasswordError] = useState<string>('');
     const [confirmPasswordError, setConfirmPasswordError] = useState<string>('');
+    const [alertMessage, setAlertMessage] = useState<string | null>(null);
 
     const navigate = useNavigate();
 
@@ -147,7 +149,10 @@ const UserProfilePage: React.FC = () => {
                     current_password: currentPassword
                 });
                 handleClose('email');
-                setTimeout(() => setIsLoading(false), 500);
+                setTimeout(() => {
+                    setIsLoading(false);
+                    setAlertMessage("Email changed, please sign in with new login");
+                }, 500);
             } else if (modalType === 'password') {
                 await AuthService.updateAccount({
                     current_password: currentPassword,
@@ -199,31 +204,38 @@ const UserProfilePage: React.FC = () => {
     };
 
     const handleDeleteAccount = async () => {
-        setIsLoading(true);
         try {
-            await AuthService.deleteAccount({
-                current_password: currentPassword
-            });
-            navigate('/signin');
-        } catch (error) {
-            // @ts-ignore
-            setPasswordError("Failed to delete account: " + error.message);
-            setIsLoading(false);
+            await AuthService.deleteAccount({ email: userEmail, password: currentPassword });
+        } catch (error: any) {
+            if (error.response?.status === 401) {
+                setAlertMessage("Account deleted");
+                setOpenDeleteAccount(false);
+            } else {
+                setPasswordError("Incorrect password");
+                setCurrentPassword("");
+            }
         }
     };
 
     const handleUserStatsClick = () => {
+        setIsLoading(true);
         navigate('/user-stats');
+        setTimeout(() => setIsLoading(false), 500);
     };
 
     const handleModeratorPanelClick = () => {
         navigate('/users_moderator_panel');
     };
 
+    const handleCloseAlert = async () => {
+        setAlertMessage(null);
+        navigate('/signin');
+    };
+
     return (
         <ThemeProvider theme={theme}>
             <DrawerAppBar />
-            <Container component="main" className="user-profile-page">
+            <Container component="main" className="user-profile-page" sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                 {isLoading ? (
                     <LoadingSpinner />
                 ) : (
@@ -398,6 +410,8 @@ const UserProfilePage: React.FC = () => {
                             variant="standard"
                             value={currentPassword}
                             onChange={(e) => handleChange(e.target.value, 'currentPassword')}
+                            error={!!passwordError}
+                            helperText={passwordError}
                         />
                     </DialogContent>
                     <DialogActions>
@@ -405,9 +419,11 @@ const UserProfilePage: React.FC = () => {
                         <Button onClick={handleDeleteAccount}>Delete</Button>
                     </DialogActions>
                 </Dialog>
+                {alertMessage && <Alert message={alertMessage} onClose={handleCloseAlert} />}
             </Container>
         </ThemeProvider>
     );
 };
 
 export default UserProfilePage;
+

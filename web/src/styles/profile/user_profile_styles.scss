@@ -116,6 +116,10 @@
         .stat-number {
             color: yellow;
             font-size: 2em;
+
+            &.no-rank {
+                font-size: 1em;
+            }
         }
     }
 }
