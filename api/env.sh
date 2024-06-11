@@ -12,3 +12,8 @@ export MARIADB_PORT=3306
 export MYSQL_ROOT_PASSWORD=Fla5hcard5r00t
 export MOBILE_HOST="exp://192.168.1.117:19000"
 export BACKEND_HOST=192.168.1.117
+export SMTP_SERVER="smtp.gmail.com"
+export SMTP_PORT="587"
+export SMTP_LOGIN="flashcardsteam@gmail.com"
+export SMTP_PASSWORD="pxsg zcvy qggj llsp" 
+
