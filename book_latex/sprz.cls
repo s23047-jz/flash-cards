@@ -8,7 +8,7 @@
 \ProvidesClass{sprz}[2023/10/27 SPRZ]
 \LoadClass{report}
 
-\RequirePackage[a4paper]{geometry}
+\usepackage[a4paper,inner=30mm,outer=20mm,top=25mm,bottom=25mm,marginparwidth=20mm,heightrounded,twoside]{geometry}
 \RequirePackage{listings} %Aby dało się umieszczać kody źródłowe programów
 \RequirePackage[table]{xcolor}
 \RequirePackage{algorithmic} %Aby dało się umieszczać algorytmy
