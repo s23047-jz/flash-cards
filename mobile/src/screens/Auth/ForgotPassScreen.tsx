@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
-import {ROUTES} from "../../constants"
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Alert
+} from "react-native";
+import { ROUTES } from "../../constants";
 
 // @ts-ignore
 import Logo from "../../assets/images/logo.png";
@@ -19,7 +26,7 @@ const ForgotPassScreen: React.FC<ScreenProps> = ({ navigation }) => {
       {
         /* handle recovery with api */
       }
-      alert("Password recovery sent to your email!");
+      Alert.alert("Check email", "Password recovery sent to your email!");
     }
   };
 

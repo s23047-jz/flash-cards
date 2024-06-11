@@ -3,12 +3,17 @@ import React, { useState } from "react";
 
 import { ROUTES } from "../constants";
 import {
-  HomeScreen,
-  MyPublicDecks,
-  MyPrivateDecks,
-  CreateDeck,
-  DisplayFlashcards,
-  CreateFlashcard, EditFlashcard, EditDeck, LearningMode, DownloadedDeckSettings,
+    HomeScreen,
+    MyPublicDecks,
+    MyPrivateDecks,
+    CreateDeck,
+    DisplayFlashcards,
+    CreateFlashcard,
+    EditFlashcard,
+    EditDeck,
+    LearningMode,
+    DownloadedDeckSettings,
+    LearningVoiceMode
 } from "../screens";
 import DisplayDeck from "../screens/ChooseDecksType/DisplayDeck";
 import DeckSettings from "../screens/ChooseDecksType/DeckSettings";
@@ -36,7 +41,8 @@ export default function HomeNavigator() {
       <Stack.Screen name={ROUTES.MEMORIZED_FLASHCARDS} component={MemorizedFlashcards} />
       <Stack.Screen name={ROUTES.UNMEMORIZED_FLASHCARDS} component={UnmemorizedFlashcards} />
       <Stack.Screen name={ROUTES.LEARNING_MODE} component={LearningMode} />
-    
+      <Stack.Screen name={ROUTES.LEARNING_VOICE_MODE} component={LearningVoiceMode} />
+
     
     </Stack.Navigator>
   );

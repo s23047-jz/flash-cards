@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Image, Text, ScrollView, TouchableOpacity } from "react-native";
+import {
+    View,
+    Image,
+    Text,
+    ScrollView,
+    TouchableOpacity,
+    Alert
+} from "react-native";
 import { ScreenProps } from "../../interfaces/screen";
 
 import { Row, Col, Button, CModal } from "../../components";
@@ -70,7 +77,7 @@ const UserPanelScreen: React.FC<ScreenProps> = ({ navigation, route}) => {
             const getMeData = await UsersService.getMe(navigation)
             await ActiveUser.updateUserData(getMeData);
             await getUserData();
-            alert("Successfully updated avatar")
+            Alert.alert("Success", "Successfully updated avatar")
             setShowAvatarModal(false);
         }
     }

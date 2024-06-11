@@ -11,20 +11,21 @@ export { default as CreateDeck } from "./ChooseDecksType/CreateDeck";
 export { default as DeckSettings } from "./ChooseDecksType/DeckSettings";
 export { default as DownloadedDeckSettings } from "./ChooseDecksType/DownloadedDeckSettings";
 export { default as EditDeck } from "./ChooseDecksType/EditDeck";
-export { default as DisplayDownloadedDeck } from "./ChooseDecksType/DisplayDownloadedDeck"
+export { default as DisplayDownloadedDeck } from "./ChooseDecksType/DisplayDownloadedDeck";
 
 //FLASHCARDS / LEARNING
 export { default as DisplayFlashcards } from "./FlashCards/DisplayFlashcards";
 export { default as CreateFlashcard } from "./FlashCards/CreateFlashcard";
 export { default as EditFlashcard } from "./FlashCards/EditFlashcard";
-export { default as LearningMode } from "./FlashCards/LearningMode"
+export { default as LearningMode } from "./FlashCards/LearningMode";
+export { default as LearningVoiceMode } from "./FlashCards/LearningVoiceMode";
 
 //USER PANEL
 export { default as UserPanelScreen } from "./Users/UserPanelScreen";
 export { default as UserUpdate } from "./Users/UserUpdate";
 export { default as UserDelete } from "./Users/UserDelete";
 export { default as UserStats } from "./Users/UserStats";
-export { default as DisplayPublicDeck } from "./Decks/DisplayPublicDeck"
+export { default as DisplayPublicDeck } from "./Decks/DisplayPublicDeck";
 export { default as DeckList } from "./Decks/DeckList";
 
 // MODERATOR PANEL

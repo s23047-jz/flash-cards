@@ -134,7 +134,10 @@ const DisplayDeck: React.FC<ScreenProps> = ({ navigation, route }) => {
           </Text>
         </Button>
 
-        <Button className="p-3 m-3 w-72 h-16 bg-blue-500 justify-center mr-auto ml-auto rounded-1xl">
+        <Button
+            className="p-3 m-3 w-72 h-16 bg-blue-500 justify-center mr-auto ml-auto rounded-1xl"
+            onPress={() => navigation.navigate(ROUTES.LEARNING_VOICE_MODE, { deck })}
+        >
           <Text className="scale-125 mb-1.5 font-bold text-center justify-center">
             Voice control
           </Text>
