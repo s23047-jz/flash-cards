@@ -1,6 +1,13 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useState } from "react";
-import { View, Text, Image, TextInput, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  Alert
+} from "react-native";
 import { ScreenProps } from "../../interfaces/screen";
 
 // @ts-ignore
@@ -32,7 +39,10 @@ const LoginScreen: React.FC<Props> = ({ navigation, LoginMode }) => {
 
       const { res, data } = await AuthService.login({email, password}, navigation);
       if ([401, 400].includes(res.status) && data.detail) {
-        alert(data.detail);
+        Alert.alert(
+            "Login failed",
+            data.detail
+        );
       }
       else if ([200, 201].includes(res.status)) {
         await ActiveUser.set(data);

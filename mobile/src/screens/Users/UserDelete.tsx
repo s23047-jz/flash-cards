@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { ScrollView, Text, TextInput, TouchableOpacity, View, Image } from "react-native";
+import {
+    ScrollView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+    Image,
+    Alert
+} from "react-native";
 
 import { Button, Col, Row } from "../../components";
 
@@ -25,7 +33,7 @@ const UserDelete: React.FC<ScreenProps> = ({ navigation }) => {
         for (const field of ['email', 'password']) {
             if (!userData[field]) {
                 allowToDelete = false;
-                alert(`The ${field} is required`);
+                Alert.alert("Error", `The ${field} is required`);
                 break;
             }
         }

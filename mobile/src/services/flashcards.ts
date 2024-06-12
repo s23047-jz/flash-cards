@@ -1,7 +1,6 @@
 import { NavigationProp } from "@react-navigation/native";
 
 import { BASE_API } from "./config";
-import { DECKS_ENDPOINTS } from "./decks";
 import { request } from "../utils/request";
 
 export const FLASHCARDS_ENDPOINTS = {

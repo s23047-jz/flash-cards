@@ -3,17 +3,17 @@ import { useFocusEffect } from "@react-navigation/native";
 import React, { useCallback, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 
-import { Button, FetchAllFlashcards } from "../../components";
-import { FlashCardsService } from "../../services/flashcards"; // Zaimportuj usługę FlashCardsService
+import { Button } from "../../components";
+import { FlashCardsService } from "../../services/flashcards";
 import { ScreenProps } from "../../interfaces/screen";
-import {DecksService} from "../../services/decks";
+import { DecksService } from "../../services/decks";
 
 const LearningMode: React.FC<ScreenProps> = ({ navigation, route }) => {
   const { deck } = route.params;
   const [flashCards, setFlashCards] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [memorizedCards, setMemorizedCards] = useState([]);
-  const [alertShown, setAlertShown] = useState(false);  // Nowy stan do śledzenia wyświetlenia alertu
+  const [alertShown, setAlertShown] = useState(false);
   
   
   
@@ -72,7 +72,7 @@ const LearningMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             }
           } }]
       );
-      setAlertShown(true);  // Ustawienie stanu alertShown na true
+      setAlertShown(true);
     }
   };
   
@@ -81,22 +81,22 @@ const LearningMode: React.FC<ScreenProps> = ({ navigation, route }) => {
   
   const FlashCard = () => {
     const [showText, setShowText] = useState(false);
-    const [bgColor, setBgColor] = useState("#dc84f1");  // Fioletowy jako domyślny kolor tła
+    const [bgColor, setBgColor] = useState("#dc84f1");
     
     const toggleTextAndBackgroundColor = () => {
       setShowText(!showText);
-      setBgColor(bgColor === "#dc84f1" ? "#ffdc11" : "#dc84f1");  // Przełączanie między fioletowym a pomarańczowym
+      setBgColor(bgColor === "#dc84f1" ? "#ffdc11" : "#dc84f1");
     };
     
-    if (flashCards.length > 0 && currentIndex < flashCards.length && !alertShown) {  // Sprawdzenie, czy alert nie został jeszcze wyświetlony
+    if (flashCards.length > 0 && currentIndex < flashCards.length && !alertShown) {
       const card = flashCards[currentIndex];
       return (
         <View className="flex-1 mt-28">
           <Text className="text-white font-extrabold mb-3 scale-150 font-bold text-center ">{(flashCards.length - currentIndex)} flashcards left</Text>
           <TouchableOpacity
             className="border flex-1 mx-10 rounded-3xl items-center justify-center"
-            style={{ backgroundColor: bgColor }}  // Stosowanie dynamicznego koloru tła
-            onPress={toggleTextAndBackgroundColor}  // Przełącznik stanu na kliknięcie
+            style={{ backgroundColor: bgColor }}
+            onPress={toggleTextAndBackgroundColor}
           >
             <Text style={{ padding: 10, fontSize: 18 }} className="font-bold">{!showText ? card.title : card["card text"]}</Text>
           </TouchableOpacity>
