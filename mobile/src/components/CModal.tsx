@@ -1,6 +1,6 @@
 import React from "react";
 
-import {Modal, View} from "react-native";
+import { Modal, View } from "react-native";
 import { ModalInterface } from "../interfaces/components";
 
 const CModal: React.FC<ModalInterface> = ({ className, visible, animationType, transparent, children }) => {
@@ -8,7 +8,7 @@ const CModal: React.FC<ModalInterface> = ({ className, visible, animationType, t
         <Modal
             className={`${className}`}
             visible={visible}
-            transparent={true}
+            transparent={transparent}
             animationType={animationType}
         >
             <View

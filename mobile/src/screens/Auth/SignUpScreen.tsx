@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
+import {
+    View,
+    Text,
+    Image,
+    TextInput,
+    TouchableOpacity,
+    Alert
+} from 'react-native';
 // @ts-ignore
 import Logo from '../../assets/images/logo.png';
 import {MaterialCommunityIcons} from "@expo/vector-icons";
@@ -41,7 +48,10 @@ const SignUpScreen: React.FC<ScreenProps> = ({navigation}) => {
         }
         const { res, data } = await AuthService.register(body, navigation);
         if ([401, 400].includes(res.status) && data.detail) {
-            alert(data.detail);
+            Alert.alert(
+                "Registration failed",
+                data.detail
+            );
         }
         else if ([200, 201].includes(res.status)) {
             navigation.navigate(ROUTES.LOGIN);
