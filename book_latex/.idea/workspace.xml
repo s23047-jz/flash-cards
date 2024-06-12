@@ -5,10 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
-      <change beforePath="$PROJECT_DIR$/../api/env.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../api/env.sh" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chapters/chapter_11/wykres.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../api/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../api/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mobile/src/screens/Decks/DisplayPublicDeck.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/src/screens/Decks/DisplayPublicDeck.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mobile/src/services/reports.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/src/services/reports.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_10/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_10/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_11/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_11/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_12/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_12/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_4/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_4/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_5/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_6/wymagania.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_6/wymagania.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_9/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_9/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.tex" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprz.cls" beforeDir="false" afterPath="$PROJECT_DIR$/sprz.cls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,7 +29,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="poprawki_ogl_2-4" />
+        <entry key="$PROJECT_DIR$/.." value="FC-154-MOBILE-Dodac-sterowanie-glosem" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -44,9 +55,9 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "FC-156-MOBILE-spiąć-z-api-zgłaszanie-decku",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/daniel/WebstormProjects/flash-cards/book_latex",
+    "last_opened_file_path": "/Users/daniel/Repos/flash-cards/book_latex/chapters/chapter_11",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -57,7 +68,12 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chapters/chapter_11" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chapters/chapter_11" />
+      <recent name="$PROJECT_DIR$/chapters/chapter_10" />
       <recent name="$PROJECT_DIR$/chapters/chapter_2" />
     </key>
   </component>

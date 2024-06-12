@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="918b3363-e033-46dd-86b6-86c2eaf43058" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/flash_cards_api/endpoints/decs.py" beforeDir="false" afterPath="$PROJECT_DIR$/flash_cards_api/endpoints/decs.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/components/decks_ranking/DecksRankingContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/components/decks_ranking/DecksRankingContainer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../web/src/services/decs.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../web/src/services/decs.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,9 +19,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2ga7D7S74FgP3VhxhLJbj6WY7fp" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -29,8 +31,13 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "FC-95-WEB-ranking-uzytkownikow",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "FC-154-MOBILE-Dodac-sterowanie-glosem",
     "last_opened_file_path": "//wsl$/Ubuntu/home/user/project/flash-cards",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -51,6 +58,8 @@
       <option name="presentableId" value="Default" />
       <updated>1715923712887</updated>
       <workItem from="1715923714537" duration="27000" />
+      <workItem from="1718135154478" duration="1454000" />
+      <workItem from="1718183541000" duration="60000" />
     </task>
     <servers />
   </component>

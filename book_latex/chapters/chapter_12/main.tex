@@ -1,1 +1,55 @@
-\chapter{Nakład pracy}
+\chapter{Podsumowanie}
+
+Tworzenie projektu postawiło przed każdym członkiem zespołu nowe wyzwania programistyczne i grupowe. Pozwoliło nam to na poszerzenie naszych umiejętności programistycznych, analitycznych i twórczych. Różne podejście członków zespołu pozwoliło nam na poprawienie naszych umiejętności współpracy.
+
+\section{Problemy i wyzwania}
+Realizacja rozległego projektu informatycznego obejmującego równoczesną implementację działających ze sobą nawzajem systemów jest skomplikowanym przedsięwzięciem, które niesie ze sobą szereg problemów i wyzwań. Te w podjętym projekcie wynikały głównie ze specyfiki zastosowanych technologii oraz w dużej mierze z braku wcześniejszego doświadczenia członków zespołu z taką skalą projektu. W niniejszym rozdziale przybliżone zostaną najważniejsze problemy i wyzwania napotkane w trakcie implementacji.
+
+\subsection{Pycharm Community Edition}
+Pierwszym poważnym napotkanych problemów były ograniczone możliwości PyCharm Community Edition, środowisko w wersji bezpłatne nie ma możliwości połączenia się z WSL (Windows Subsystem for Linux), na którym znajdowało się środowisko Ubuntu wraz z projektem do uruchomienia. Rozwiązaniem problem było skorzystanie z pełnej wersji PyCharm.
+
+\subsection{Kontener bazy danych}
+Następnym problemem było skonfigurowanie u Wiktora aplikacji. W momencie w którym była dokonywana próba uruchomienia kontenera dockerowego dla bazy danych pojawiał się błąd związany z brakiem połączenia z mysql. Po 3 dniowej analizie problem okazało się, że hasło do bazy danych w zmiennych środowiskowych było nieaktualne i różniło się od poprzedniego hasła jednym znakiem.
+
+\subsection{Loader w aplikacji mobilnej}
+Loader dla aplikacji mobilnej, głównym problemem jest paczka Moti, która z jakiegoś powodu wyświetla useContext is null i przeszkadza w kompilacji aplikacji na iOS. Możliwym rozwiązaniem naprawienia tego błędu jest użycie innej paczki.
+
+\subsection{WSL i model nlp}
+Model nlp nie działa na wsl. Po dodaniu do aplikacji modelu nlp okazało się, że aplikacja nie przestaje działać. Backend się zawiesza i zostaje zwrócona informacja segmentation fault, który oznacza brak dostępu do pamięci. Prawdopodobnym powodem wystąpienia problemu jest brak dostępu wsl do pełnych zasobów komputera. Jedynym rozwiązaniem było uruchomienie projektu na komputerze z zainstalowanym linuxem.
+
+\subsection{Obsługa przy pomocy Mozilla Firefox}
+Strona internetowa nie działa poprawnie w przeglądarce Mozilla Firefox. Z nieznanych przyczyn pozycjonowanie talli i użytkowników nie wczytuje się poprawnie i talie wychodzą poza ekran. Firefox ma ograniczone wsparcie dla Web Speech API,  co uniemożliwia korzystanie z funkcjonalności pozwalającej sterować talię fiszek używając komend głosowych.
+
+\subsection{Api i HTTPS}
+Dla rozproszonej infrastruktury wewnątrz serwera, trudna okazała się implementacja pełnego HTTPS. Strona korzysta w protokołu HTTPS, jednak łączy się z api przez protokół HTTP. Przeglądarki internetowe mogą traktować taką zawartość jako “niebezpieczną”. Wymagane jest wtedy wyłączenie zabezpieczeń przeglądarki aby korzystanie ze strony było możliwe. Rozwiązanie tego problemu wymagałoby szczegółowej analizy kodu, ponieważ po przekonfigurowaniu API tak, aby korzystało z certyfikatów SSL i obsługiwało HTTPS - część endpointów nie działa. Może wiązać się to ze specyfiką implementacji HTTPS w FastAPI.
+
+
+\section{Zmiany w trakcie realizacji}
+Proces planowania i projektowania podjętego w projekcie systemu informatycznego wyprzedził o kilka miesięcy implementacje kluczowych funkcjonalności i założeń. Z powodu napotkanych wyzwań oraz nieprzewidzianych problemów doszło do konfrontacji rzeczywistości ze sprecyzowanymi wcześniej założeniami. Z tego powodu w projekcie musiało dojść do kilku opisanych w niniejszej sekcji zmian.
+
+\subsection{Limit logowań}
+Priorytet wymagania dotyczący limitu logowania został zmniejszony z must na should, ze względu na to, że aplikacja nie przechowuje żadnych danych wrażliwych użytkowników i zamiast tego wymagania został podniesiony priorytet generowania treści fiszek na podstawie słów kluczowych.
+
+\subsection{Generowanie definicji przez ChatGTP}
+Opis wymagania dotyczącego generowania treści przez chat został zmieniony. W pierwotnej wersji ta funkcjonalność miała działać tak, że użytkownik wpisywał w pole kilka słów i kluczowych i na tej podstawie ChatGPT miał zwrócić treść, ale takie podejście doprowadziłoby do generowania losowych treści. Zmieniona funkcjonalność działa tak, że użytkownik wpisuje w fiszek cokolwiek by chciał następnie aby wygenerować odpowiedź od chatu klika przycisk generuj i treść wpisana w fiszkę jest wysyłana do chatu i ten na podstawie otrzymanej wiadomości zwraca odpowiedzi w postaci wygenerowanego tekstu odnoszącego się do zawartości fiszki.
+
+\subsection{System operacyjny w infrastrukturze serwerowej}
+W trakcie implementacji infrastruktury serwerowej i przenoszeniem projektu do chmury zmieniono wymagania dotyczące docelowego systemu operacyjnego. W fazie planowanie wybrano system CentOS 8. W późnej fazie projektu przy wdrażaniu wirtualnej maszyny na platformie chmurowej okazało się, że Azure proponuje jedynie starsze wersje CentOS 7 których wsparcie kończy się w czerwcu 2024. Z tego powodu zdecydowano się wybrać system Ubuntu 20.04 z możliwością podniesienia wersji do Ubuntu 22.04 ze znacznie dłuższym okresem wsparcia.
+
+
+\section{Porzucone pomysły}
+Założenie dużego projektu informatycznego wygenerowało wiele pomysłów i rozwiązań. Niektóre nie znalazły finalnego zastosowania. Te zostały opisane w niniejszej sekcji.
+
+\subsection{Dyktowanie treści fiszki}
+Zespół rozważał możliwość dodania funkcji dyktowanie treści fiszki przy użyciu mowy. Użytkownik po kliknięciu ikony mikrofonu miał by możliwość dyktowania treści fiszki. Zespół zrezygnował z tego pomysłu ze względu na problemy z poprawnym przekonwertowaniem mowy na tekst. Utworzony tekst nie zawsze odpowiadał temu co mówi użytkownik.
+
+\subsection{Sterowanie głosowe przez ChatGPT}
+Przy pierwszym podejściu do sterowania talii przy użyciu komend głosowych został wykorzystany ChatGPT. Po przetworzeniu na tekstu słów wypowiedzianych przez użytkownika, treść była wysyłana do chatu. Chat oprócz wypowiedzianych przez użytkownika słów otrzymywał również zestaw komend, na podstawie otrzymanych informacji miał za zadanie zwrócić komendę, która najbardziej pasuje semantycznie do wypowiedzianych przez użytkownika słów. Na podstawie otrzymanej informacji zwrotnej aplikacja wykonywała określoną akcję. Przy kilku pierwszych wysłanych requestach to podejście się sprawdzało, niestety jeżeli użytkownik w zbyt krótkim czasie wykonał za kilka komend głosowych, to request wysyłane do chatu były blokowane i zwracany był status error 500. To ograniczenie zmusiło nas do zrezygnowania z używania czatu do sterowania głosowego.
+
+\subsection{Aktywacja konta i reset hasła}
+W końcowej fazie projektu zrezygnowaliśmy również z aktywacji konta i resetu hasła. Funkcjonalności te zostały pozostawione na koniec i choć ich implementacja nie powinna stanowić wyzwania, częściowo były nawet zaimplementowane w projekcie,  uznaliśmy o ich odrzuceniu z uwagi na naglący czas i chęć skupienia na dopracowaniu istotniejszych funkcjonalności
+
+
+\section{Przyszłość projektu}
+
+Brak planów komercjalizacji projektu, ze względu na inne bardziej priorytetowe aktywności członków projektu. w związku z tym system nie będzie dalej rozwijany  o nowe funkcjonalności. W przypadku zmiany decyzji przez zespół aplikacja zostanie rozbudowana o nowe funkcjonalności. Zostanie dodana możliwość zresetowania hasła w przypadku gdy użytkownik zapomni hasła do logowania.Dodanie achievementów związanych z tworzeniem, udostępnianiem i ilością pobranych talii,  jest to kolejna mechanika, która ma na celu zwiększenie aktywności użytkowników. Następnym rozpatrywanym ulepszeniem aplikacji jest dodanie narzędzi sztucznej inteligencji, które pozwolą na  generowanie talii fiszek z dokumentów przesłanych przez użytkownika. Użytkownika będzie miał możliwość wrzucenia dokumentu w formacie pdf, csv lub xml  i na podstawie zawartości dokumentu zostanie utworzona talia fiszek.
