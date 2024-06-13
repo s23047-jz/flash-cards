@@ -27,6 +27,88 @@ const styles = StyleSheet.create({
     },
 });
 
+interface MenuModalInterface {
+    showMenuModal: boolean
+    handleConfirmDeleteReport: () => Promise<void>
+    setShowMenuModal: (val: boolean) => void
+}
+
+const MenuModal: React.FC<MenuModalInterface> = ({ showMenuModal, handleConfirmDeleteReport, setShowMenuModal }) => {
+    return (
+        <CModal
+            visible={showMenuModal}
+            animationType={'fade'}
+            transparent={true}
+        >
+            <View className={'bg-sky-500 dark:bg-blue-900 w-full p-4 rounded-xl'}>
+                <ScrollView>
+                    <Row className={'w-full mt-5'}>
+                        <Col className={'w-full mb-4 text-center'}>
+                            <Button onPress={async() => {await handleConfirmDeleteReport()}}
+                                    className={'p-1 w-52 text-center mr-auto ml-auto'}>
+                                <Text className={'text-lg ml-auto mr-auto font-bold'}>
+                                    Delete
+                                </Text>
+                            </Button>
+                        </Col>
+                        <Col className={'w-full mb-4 text-center'}>
+                            <TouchableOpacity
+                                className={'p-1 w-52 text-center mr-auto ml-auto'}
+                                onPress={() => setShowMenuModal(false)}
+                                disabled={false}
+                            >
+                                <Text className={'text-lg ml-auto mr-auto font-bold'}>
+                                    Cancel
+                                </Text>
+                            </TouchableOpacity>
+                        </Col>
+                    </Row>
+                </ScrollView>
+            </View>
+        </CModal>
+    )
+}
+
+const ReportCard: React.FC<ReportInterface> = ({ id, deck_category, title, submitter_email, handleDeleteReport }) => {
+    return (
+        <TouchableOpacity
+            className={'w-full h-full mr-auto ml-auto mb-7'}
+            style={styles.card}
+            onLongPress={() => handleDeleteReport(id)}
+        >
+            <Card className={'w-full h-full'}>
+                <Row className={'w-full'}>
+                    <Row className={'h-full'} style={styles.cardRows} />
+                    <Row className={'h-full'} style={styles.cardRows}>
+                        <Col className={'w-full justify-center items-center'}>
+                            <Text className={'text-center font-bold'}>
+                                { title }
+                            </Text>
+                        </Col>
+                        <Col className={'w-full'}>
+                            <Text className={'text-center'}>
+                                { deck_category }
+                            </Text>
+                        </Col>
+                    </Row>
+                    <Row className={'h-full'} style={styles.cardRows}>
+                        <Col className={'w-full'}>
+                            <Text className={'text-center font-bold'}>
+                                Submitter
+                            </Text>
+                        </Col>
+                        <Col className={'w-full'}>
+                            <Text className={'text-center'}>
+                                { submitter_email }
+                            </Text>
+                        </Col>
+                    </Row>
+                </Row>
+            </Card>
+        </TouchableOpacity>
+    )
+};
+
 const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
     const perPage = 4;
     const [data, setData] = useState([]);
@@ -36,6 +118,8 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
     const [search, setSearch] = useState("")
     const reportsQuery = useRef({ page: 1, per_page: perPage })
     const [total, setTotal] = useState(0);
+    const [showModal, setShowModal] = useState(false);
+    const [idToDelete, setIdToDelete] = useState('');
 
     const fetchReports = async() => {
         const reports_data = await ReportsService.getReportedDecksList({ ...reportsQuery, search }, navigation)
@@ -58,6 +142,21 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
         await fetchReports();
     };
 
+    const handleDeleteReport = (deckId: string) => {
+        setIdToDelete(deckId);
+        setShowModal(true);
+    }
+
+    const handeConfirmDeleteReport = async() => {
+        await ReportsService.deleteReport(idToDelete, navigation);
+        setShowModal(false);
+        setLoading(true);
+        reportsQuery.current = { page: 1, per_page: perPage };
+        setData([]);
+        await fetchReports();
+        setLoading(false);
+    }
+
     useFocusEffect(
         useCallback(() => {
             try {
@@ -77,95 +176,6 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
         }, [])
     )
 
-    const handleDeleteReport = async(deckId: string) => {
-        await ReportsService.deleteReport(deckId, navigation);
-        setLoading(true);
-        reportsQuery.current = { page: 1, per_page: perPage };
-        setData([]);
-        await fetchReports();
-        setLoading(false);
-    }
-
-    const ReportCard: React.FC<ReportInterface> = ({ id, deck_category, title, submitter_email }) => {
-        const [showMenuModal, setShowMenuModal] = useState(false);
-
-        const MenuModal = () => {
-            return (
-                <CModal
-                    visible={showMenuModal}
-                    animationType={'fade'}
-                    transparent={true}
-                >
-                    <View className={'bg-sky-500 dark:bg-blue-900 w-full p-4 rounded-xl'}>
-                        <ScrollView>
-                            <Row className={'w-full mt-5'}>
-                                <Col className={'w-full mb-4 text-center'}>
-                                    <Button onPress={() => handleDeleteReport(id)}
-                                            className={'p-1 w-52 text-center mr-auto ml-auto'}>
-                                        <Text className={'text-lg ml-auto mr-auto font-bold'}>
-                                            Delete
-                                        </Text>
-                                    </Button>
-                                </Col>
-                                <Col className={'w-full mb-4 text-center'}>
-                                    <TouchableOpacity
-                                        className={'p-1 w-52 text-center mr-auto ml-auto'}
-                                        onPress={() => setShowMenuModal(false)}
-                                        disabled={false}
-                                    >
-                                        <Text className={'text-lg ml-auto mr-auto font-bold'}>
-                                            Cancel
-                                        </Text>
-                                    </TouchableOpacity>
-                                </Col>
-                            </Row>
-                        </ScrollView>
-                    </View>
-                </CModal>
-            )
-        }
-
-        return (
-            <TouchableOpacity
-                className={'w-full h-full mr-auto ml-auto mb-7'}
-                style={styles.card}
-                onPress={() => {}}
-                onLongPress={() => setShowMenuModal(true)}
-            >
-                { MenuModal() }
-                <Card className={'w-full h-full'}>
-                    <Row className={'w-full'}>
-                        <Row className={'h-full'} style={styles.cardRows} />
-                        <Row className={'h-full'} style={styles.cardRows}>
-                            <Col className={'w-full justify-center items-center'}>
-                                <Text className={'text-center font-bold'}>
-                                    { title }
-                                </Text>
-                            </Col>
-                            <Col className={'w-full'}>
-                                <Text className={'text-center'}>
-                                    { deck_category }
-                                </Text>
-                            </Col>
-                        </Row>
-                        <Row className={'h-full'} style={styles.cardRows}>
-                            <Col className={'w-full'}>
-                                <Text className={'text-center font-bold'}>
-                                    Submitter
-                                </Text>
-                            </Col>
-                            <Col className={'w-full'}>
-                                <Text className={'text-center'}>
-                                    { submitter_email }
-                                </Text>
-                            </Col>
-                        </Row>
-                    </Row>
-                </Card>
-            </TouchableOpacity>
-        )
-    };
-
     if (loading) {
         return (
             <Loader />
@@ -174,6 +184,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
+            <MenuModal showMenuModal={showModal} handleConfirmDeleteReport={handeConfirmDeleteReport} setShowMenuModal={setShowModal} />
             <View className="flex flex-container w-full mt-20 mb-5">
                 <Row className='w-full p-6' style={styles.row}>
                     <Col className='h-full justify-center align-middle' style={styles.col}>
@@ -225,6 +236,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                                         deck_category={item.deck_category}
                                         title={item.title}
                                         submitter_email={item.submitter_email}
+                                        handleDeleteReport={handleDeleteReport}
                                     />
                                 )}
                             {fetchLoading ? <Row className={'w-full mt-2 mb-2'}><DotsLoader /></Row> : null}

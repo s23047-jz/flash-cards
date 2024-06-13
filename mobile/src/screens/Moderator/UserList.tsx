@@ -16,7 +16,7 @@ import {
     Col,
     Loader,
     DotsLoader,
-    Row
+    Row, CModal
 } from "../../components";
 import { AVATAR_MAPPING } from "../../utils/avatars";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -33,7 +33,51 @@ const styles = StyleSheet.create({
     }
 });
 
-const UserCard: React.FC<UserListInterface> = ({ id, username, shared, created_at, avatar }) => {
+interface MenuModalInterface {
+    showMenuModal: boolean
+    handleConfirmDeleteUser: () => Promise<void>
+    setShowMenuModal: (val: boolean) => void
+}
+
+const MenuModal: React.FC<MenuModalInterface> = ({ showMenuModal, handleConfirmDeleteUser, setShowMenuModal }) => {
+    return (
+        <CModal
+            visible={showMenuModal}
+            animationType={'fade'}
+            transparent={true}
+        >
+            <View className={'bg-sky-500 dark:bg-blue-900 w-full p-4 rounded-xl'}>
+                <ScrollView>
+                    <Row className={'w-full mt-5'}>
+                        <Col className={'w-full mb-4 text-center'}>
+                            <Button
+                                onPress={async () => {await handleConfirmDeleteUser()}}
+                                className={'p-1 w-52 text-center mr-auto ml-auto'}
+                            >
+                                <Text className={'text-lg ml-auto mr-auto font-bold'}>
+                                    Delete
+                                </Text>
+                            </Button>
+                        </Col>
+                        <Col className={'w-full mb-4 text-center'}>
+                            <TouchableOpacity
+                                className={'p-1 w-52 text-center mr-auto ml-auto'}
+                                onPress={() => setShowMenuModal(false)}
+                                disabled={false}
+                            >
+                                <Text className={'text-lg ml-auto mr-auto font-bold'}>
+                                    Cancel
+                                </Text>
+                            </TouchableOpacity>
+                        </Col>
+                    </Row>
+                </ScrollView>
+            </View>
+        </CModal>
+    )
+}
+
+const UserCard: React.FC<UserListInterface> = ({ id, username, shared, created_at, avatar, handleDeleteUser }) => {
     const formatData = (date: Date) => {
         return moment(date).format("DD/MM/YYYY")
     }
@@ -42,7 +86,7 @@ const UserCard: React.FC<UserListInterface> = ({ id, username, shared, created_a
         <TouchableOpacity
             className={'w-full h-full mr-auto ml-auto mb-7'}
             style={styles.card}
-            disabled={true}
+            onLongPress={() => handleDeleteUser(id)}
         >
             <Card className={'w-full h-full'}>
                 <Row className={'w-full'}>
@@ -101,6 +145,8 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
     const usersQuery = useRef({ page: 1, per_page: perPage });
     const [search, setSearch] = useState("");
     const [total, setTotal] = useState(0);
+    const [showModal, setShowModal] = useState(false);
+    const [idToDelete, setIdToDelete] = useState('');
 
     const handleSearch = async() => {
         setFirstFetchLoading(true);
@@ -125,6 +171,21 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
             fetchUsers();
         }, 1000)
     };
+
+    const handleDeleteUser = (userId: string) => {
+        setIdToDelete(userId);
+        setShowModal(true);
+    }
+
+    const handeConfirmDeleteUser = async() => {
+        await UsersService.deleteUser(idToDelete, navigation);
+        setShowModal(false);
+        setLoading(true);
+        usersQuery.current = { page: 1, per_page: perPage };
+        setData([]);
+        await fetchUsers();
+        setLoading(false);
+    }
 
     useFocusEffect(
         useCallback(() => {
@@ -152,6 +213,7 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
 
     return (
         <View className="flex h-screen w-full bg-sky-500 dark:bg-blue-900">
+            <MenuModal showMenuModal={showModal} handleConfirmDeleteUser={handeConfirmDeleteUser} setShowMenuModal={setShowModal} />
             <View className="flex flex-container w-full mt-20 mb-5">
                 <Row className='w-full p-6' style={styles.row}>
                     <Col className='h-full justify-center align-middle' style={styles.col}>
@@ -204,6 +266,7 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                                         username={item.username}
                                         avatar={item.avatar}
                                         shared={item.shared_decks}
+                                        handleDeleteUser={handleDeleteUser}
                                     />
                                 )}
                             {fetchLoading ? <Row className={'w-full mt-2 mb-2'}><DotsLoader /></Row> : null}
