@@ -397,3 +397,22 @@ async def update_user_details(
 
     raise HTTPException(status_code=404, detail="User not found")
 
+
+@router.delete(
+    "/{user_id}/",
+    status_code=200,
+    dependencies=[Depends(RoleAccessChecker([UserRoles.MODERATOR, UserRoles.ADMIN]))]
+)
+async def delete_me(
+    user_id: uuid.UUID,
+    db: Session = Depends(get_db)
+):
+    try:
+        user_to_delete = db.query(User).filter(User.id == user_id).first()
+        db.delete(user_to_delete)
+        db.commit()
+    except Exception as e:
+        print(e)
+        raise HTTPException(status_code=500, detail=str(e))
+
+    return "User deleted successfully"
