@@ -3,4 +3,5 @@ export interface ReportInterface {
     deck_category: string
     title: string
     submitter_email?: string
+    handleDeleteReport: (id: string) => void;
 };

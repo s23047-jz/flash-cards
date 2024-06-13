@@ -6,7 +6,8 @@ export const USERS_ENDPOINTS = {
     me: `${BASE_API}/api/users/me/`,
     users_ranking: `${BASE_API}/api/users/users_ranking/`,
     users_stats: (userId) => `${BASE_API}/api/users/user_stats/${userId}/`,
-    update_avatar: (userId) => `${BASE_API}/api/users/update-avatar/${userId}/`
+    update_avatar: (userId) => `${BASE_API}/api/users/update-avatar/${userId}/`,
+    user_details: (userId) => `${BASE_API}/api/users/${userId}/`
 };
 
 class Users {
@@ -60,6 +61,14 @@ class Users {
             url: USERS_ENDPOINTS.update_avatar(userId),
             method: 'put',
             body: {avatar},
+            navigation
+        })
+    }
+
+    public async deleteUser(userId: string, navigation: NavigationProp<any>) {
+        return await request({
+            url: USERS_ENDPOINTS.user_details(userId),
+            method: 'delete',
             navigation
         })
     }

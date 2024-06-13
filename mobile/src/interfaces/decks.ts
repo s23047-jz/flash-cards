@@ -17,5 +17,5 @@ export interface UserListInterface {
     username: string,
     shared: number,
     created_ad?: Date,
-    onPress?: (userId: string) => void
+    handleDeleteUser: (userId: string) => void;
 }
