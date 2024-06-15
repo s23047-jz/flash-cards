@@ -14,7 +14,8 @@ import {useNavigate} from 'react-router-dom';
 import ButtonNotMemorizedFlashCards from "./ButtonNotMemorizedFlashCards";
 import {NlpService} from "../../services/nlp";
 import VoiceControlInstruction from "../alert/VoiceControlInstruction";
-const CardsButtonsContainerNotMemorized = () => {
+// @ts-ignore
+const CardsButtonsContainerNotMemorized = ({backToDeckPath}) => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
@@ -239,7 +240,7 @@ const CardsButtonsContainerNotMemorized = () => {
     };
 
      const navigatePrevSide = () => {
-        navigate('/my_deck_learning_modes')
+        navigate(backToDeckPath)
     }
     const nlpModelControl = async (text: string) => {
 

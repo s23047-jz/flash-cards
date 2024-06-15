@@ -43,8 +43,8 @@ function App() {
                         <Route path="/user-stats" element={<UserStatsPage />} />
                         <Route path="/my_deck_learning_modes" element={<DeckAllFlashcards/>}/>
                         <Route path="/voice_control" element={<VoiceControlMode pathToBack={'/my_deck_learning_modes'}/>}/>
-                        <Route path="/not_memorized_flash_cards" element={<NotMemorizedFlashCards/>}/>
-                        <Route path="/memorized_flash_cards" element={<MemorizedFlashCards/>}/>
+                        <Route path="/not_memorized_flash_cards" element={<NotMemorizedFlashCards backToDeckPath={'/my_deck_learning_modes'}/>}/>
+                        <Route path="/memorized_flash_cards" element={<MemorizedFlashCards backToDeckPath={'/my_deck_learning_modes'}/>}/>
                         <Route path="/learning_mode" element={<LearningMode backToDeckPath={'/my_deck_learning_modes'}/>}/>
                         <Route path="/users_ranking" element={<UsersRanking/>}/>
                         <Route path="/decks_ranking" element={<DecksRanking/>}/>
@@ -55,8 +55,8 @@ function App() {
                         <Route path="/users_moderator_panel" element={<ModeratorPanelUsers/>}/>
                         <Route path="/downloaded_decks_all_flashcards" element={<DownloadedDecksAllFlashcards/>}/>
                         <Route path="/downloaded_decks_voice_control" element={<VoiceControlMode pathToBack={'/downloaded_decks_all_flashcards'}/>}/>
-                        <Route path="/downloaded_decks_not_memorized_flashcards" element={<DownloadedDecksNotMemorizedContainer/>}/>
-                        <Route path="/downloaded_decks_memorized_flashcards" element={<DownloadedDeckMemorizedFlashcardsContainer/>}/>
+                        <Route path="/downloaded_decks_not_memorized_flashcards" element={<NotMemorizedFlashCards backToDeckPath={'/downloaded_decks_all_flashcards'}/>}/>
+                        <Route path="/downloaded_decks_memorized_flashcards" element={<MemorizedFlashCards backToDeckPath={'/downloaded_decks_all_flashcards'}/>}/>
                         <Route path="/downloaded_decks_learning_mode" element={<LearningMode backToDeckPath={'/downloaded_decks_all_flashcards'}/>}/>
                     </Route>
                     <Route path="/flashcards_from_user_ranking" element={< PublicDecksAllFlashcardsFromUserRanking/>}/>

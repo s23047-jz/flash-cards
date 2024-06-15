@@ -9,13 +9,13 @@ import {DeckService} from '../../services/decs';
 // @ts-ignore
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/not_memorized_flash_cards/cards_buttons_container_not_memorized.scss"
-import {ChatService} from "../../services/chat";
 import ButtonContainerNotMemorizedFlashcards from "../not_memorized_flashcards/ButtonContainerNotMemorizedFlashcards";
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 import {useNavigate} from 'react-router-dom';
 import {NlpService} from "../../services/nlp";
 import VoiceControlInstruction from "../alert/VoiceControlInstruction";
-const CardsButtonsContainerMemorizedFlashcards = () => {
+// @ts-ignore
+const CardsButtonsContainerMemorizedFlashcards = ({backToDeckPath}) => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
@@ -240,7 +240,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     };
 
      const navigatePrevSide = () => {
-        navigate('/my_deck_learning_modes')
+        navigate(backToDeckPath)
     }
     const nlpModelControl = async (text: string) => {
 

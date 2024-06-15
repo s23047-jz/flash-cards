@@ -6,7 +6,8 @@ import {ActiveUser} from "../services/user";
 import CardsButtonsContainerMemorizedFlashcards
     from "../components/memorized_flash_cards/CardsButtonsContainerMemorizedFlashcards";
 
-const MyDecks = () => {
+// @ts-ignore
+const MemorizedFlashCards = ({backToDeckPath}) => {
     ActiveUser.getUserData();
     return (
         <>
@@ -14,11 +15,11 @@ const MyDecks = () => {
                 <DrawerAppBar/>
             </nav>
             <main className="main-container-not-memorized">
-                <CardsButtonsContainerMemorizedFlashcards/>
+                <CardsButtonsContainerMemorizedFlashcards backToDeckPath={backToDeckPath}/>
 
             </main>
         </>
     );
 };
 
-export default MyDecks;
+export default MemorizedFlashCards;
