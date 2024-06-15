@@ -1,15 +1,24 @@
+import os.path
+
 import numpy as np
 from pydantic import BaseModel
 from flair.embeddings import TransformerDocumentEmbeddings
 from flair.data import Sentence
 from scipy.spatial.distance import cosine
+import speech_recognition as sr
+
+from flash_cards_api.config import AUDIO_DIR
 
 from fastapi import (
     APIRouter,
     status,
+    UploadFile,
+    File,
+    HTTPException
 )
 
 router = APIRouter(prefix="/nlp", tags=["nlp_model"])
+
 
 class SimilarityText(BaseModel):
     text: str
@@ -69,16 +78,15 @@ def vectorize_text(text):
 for pair in qa_pairs:
     pair['q_vectorized'] = vectorize_text(pair['q'])
 
+
 def get_most_similar_answer(user_question, qa_pairs):
 
     user_question_vectorized = vectorize_text(user_question)
-
 
     similarities = []
     for pair in qa_pairs:
         similarity = 1 - cosine(user_question_vectorized, pair['q_vectorized'])
         similarities.append(similarity)
-
 
     most_similar_index = np.argmax(similarities)
     return qa_pairs[most_similar_index]['a']
@@ -93,10 +101,31 @@ async def calculate_semantic_similarity(
         print(text.text)
         print(answer)
         return answer
-    except :
+    except Exception:
         return "not found command"
 
 
+@router.post("/calculate_similarity_audio/", status_code=status.HTTP_200_OK)
+async def calculate_semantic_similarity_audio(
+    file: UploadFile = File(...)
+):
+    audio_path = os.path.join(
+        AUDIO_DIR, file.filename
+    )
 
+    with open(audio_path, 'wb') as audio_file:
+        audio_file.write(await file.read())
 
-
+    recognizer = sr.Recognizer()
+    try:
+        with sr.AudioFile(audio_path) as source:
+            audio = recognizer.record(source)
+            text = recognizer.recognize_google(audio, language='en-GB')
+            command = get_most_similar_answer(text.lower(), qa_pairs)
+            return {"command": command}
+    except sr.UnknownValueError:
+        raise HTTPException(status_code=400, detail="Could not understand the audio")
+    except sr.RequestError:
+        raise HTTPException(status_code=500, detail="Could not request results from the speech recognition service")
+    finally:
+        os.remove(audio_path)

@@ -7,6 +7,7 @@ HERE = os.getcwd()
 FLASH_CARDS_API_DIR = os.path.join(HERE, "flash_cards_api")
 FIXTURES_DIR = os.path.join(FLASH_CARDS_API_DIR, "fixtures")
 TEMPLATES_DIR = os.path.join(FLASH_CARDS_API_DIR, "templates")
+AUDIO_DIR = os.path.join(FLASH_CARDS_API_DIR, "audio")
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 ALGORITHM = os.environ.get("ALGORITHM")
