@@ -19,7 +19,7 @@ const Options = ({isOpen, isDeckPublic, onShareDeck, onResetDeck, onDeleteDeck, 
     const closeDeleteDialog = () => {
         setIsDeleteDialogOpen(false);
     };
-   const handleAddFlashcard = () => {
+    const handleAddFlashcard = () => {
         setIsAddFlashcard(!isAddFlashcard)
     }
 
@@ -42,9 +42,10 @@ const Options = ({isOpen, isDeckPublic, onShareDeck, onResetDeck, onDeleteDeck, 
                         <button className="options-button" onClick={onCloseBox}>Close Options</button>
                     </div>
                     {isChangeDeck && (
-                        <FlashCardEditDeckNameCategory deckCategory={deck_category} deckName={deck_title} onClose={handleChangeDeck}/>)}
+                        <FlashCardEditDeckNameCategory deckCategory={deck_category} deckName={deck_title}
+                                                       onClose={handleChangeDeck}/>)}
                     {isAddFlashcard && (
-                        <AddFlashcard  onClose={handleAddFlashcard}/>)}
+                        <AddFlashcard onClose={handleAddFlashcard}/>)}
                     {isDeleteDialogOpen && (
                         <div className="delete-dialog">
                             <p>Are you sure you want to delete this deck?</p>

@@ -5,8 +5,8 @@ import DrawerAppBar from "../components/home_page/NavBar";
 import {ActiveUser} from "../services/user";
 import CardsButtonsContainerLearningMode from "../components/learning_mode/CardsButtonsContainerLearningMode";
 
-
-const MyDecks = () => {
+// @ts-ignore
+const LearningMode = ({backToDeckPath}) => {
     ActiveUser.getUserData();
     return (
         <>
@@ -14,11 +14,11 @@ const MyDecks = () => {
                 <DrawerAppBar/>
             </nav>
             <main className="main-container-learning-mode">
-                <CardsButtonsContainerLearningMode/>
+                <CardsButtonsContainerLearningMode backToDeckPath={backToDeckPath}/>
 
             </main>
         </>
     );
 };
 
-export default MyDecks;
+export default LearningMode;

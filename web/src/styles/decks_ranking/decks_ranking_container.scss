@@ -13,10 +13,12 @@
   align-content: space-around;
 
 }
+
 .decks-container .decks-card {
   position: absolute;
   width: calc((100% - 200px) / 3);
 }
+
 .filter-container {
   position: absolute;
   display: flex;
@@ -29,6 +31,7 @@
 }
 
 .web-title {
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   position: absolute;
   color: white;
   font-size: 52px;
@@ -65,7 +68,7 @@
     width: 100%;
 
   }
-  .web-title{
+  .web-title {
     font-size: 35px;
     top: 12%;
   }

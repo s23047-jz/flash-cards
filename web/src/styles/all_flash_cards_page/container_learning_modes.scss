@@ -9,7 +9,7 @@
 }
 
 @media screen and (max-width: 1005px) {
-  .grid-container-buttons-learning-modes{
+  .grid-container-buttons-learning-modes {
     top: -60px;
     padding: 60px 2%;
     display: grid;
@@ -23,7 +23,7 @@
 @media screen and (max-width: 600px) {
   .grid-container-buttons-learning-modes {
     padding: 70px 20%;
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
   }
 
 }

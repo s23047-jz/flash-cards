@@ -12,10 +12,12 @@
   align-content: space-around;
 
 }
+
 .decks-container .deck-card {
   position: absolute;
   width: calc((100% - 200px) / 3);
 }
+
 .filter-container {
   position: absolute;
   display: flex;

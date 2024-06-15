@@ -9,13 +9,13 @@ import {DeckService} from '../../services/decs';
 // @ts-ignore
 import LoadingSpinner from "../loading_spinner/LoadingSpinner";
 import "../../styles/not_memorized_flash_cards/cards_buttons_container_not_memorized.scss"
-import {ChatService} from "../../services/chat";
 import ButtonContainerNotMemorizedFlashcards from "../not_memorized_flashcards/ButtonContainerNotMemorizedFlashcards";
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 import {useNavigate} from 'react-router-dom';
 import {NlpService} from "../../services/nlp";
 import VoiceControlInstruction from "../alert/VoiceControlInstruction";
-const CardsButtonsContainerMemorizedFlashcards = () => {
+// @ts-ignore
+const CardsButtonsContainerMemorizedFlashcards = ({backToDeckPath}) => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
@@ -32,34 +32,36 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchFlashCards = async () => {
-            try {
-                let deck_id: string;
+    const fetchFlashCards = async () => {
+        try {
+            let deck_id: string;
 
-                const intervalId = setInterval(() => {
-                    const deckDataString = localStorage.getItem("deckData");
-                    const deckData = JSON.parse(deckDataString || "{}");
-                    deck_id = deckData.id;
-                    setDeckTitle(deckData.title);
-                    if (deck_id) {
-                        clearInterval(intervalId);
-                        setTimeout(async () => {
-                            const response = await DeckService.get_memorized_flash_cards_from_deck(deck_id);
-                            // @ts-ignore
-                            setFlashcards(response);
+            const intervalId = setInterval(() => {
+                const deckDataString = localStorage.getItem("deckData");
+                const deckData = JSON.parse(deckDataString || "{}");
+                deck_id = deckData.id;
+                setDeckTitle(deckData.title);
+                if (deck_id) {
+                    clearInterval(intervalId);
+                    setTimeout(async () => {
+                        const response = await DeckService.get_memorized_flash_cards_from_deck(deck_id);
+                        // @ts-ignore
+                        setFlashcards(response);
+                        setIsLoading(false);
+                    }, 300);
+                }
+            }, 100);
 
-                            setIsLoading(false)
-                        }, 300);
-                    }
-                }, 100);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchFlashCards();
+    fetchFlashCards();
+}, []);
 
-       if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+    useEffect(() => {
+    if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
         // @ts-ignore
         recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         // @ts-ignore
@@ -67,8 +69,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
         // @ts-ignore
         recognition.current.continuous = true;
 
-
-            // @ts-ignore
+        // @ts-ignore
         recognition.current.onresult = (event) => {
             let finalTranscriptText = "";
             for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -79,15 +80,29 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
             let trimmedText = finalTranscriptText.trim();
             setTextControl(isSpeakingBigCard ? '' : trimmedText);
             if (isSpeakingBigCard) {
-                trimmedText = ''
+                trimmedText = '';
             }
         };
 
-        } else {
-            alert("Your browser does not support the Speech Recognition API.");
-        }
+        // @ts-ignore
+        recognition.current.addEventListener('end', () => {
+            if (isListening) {
+                // @ts-ignore
+                recognition.current.start();
+            }
+        });
 
-    }, [isSpeakingBigCard, isRotated, isListening]);
+        return () => {
+            if (recognition.current) {
+                // @ts-ignore
+                recognition.current.stop();
+            }
+        };
+
+    } else {
+        alert("Browser not support (Speech Recognition API).");
+    }
+}, [isSpeakingBigCard, isRotated, isListening]);
 
     useEffect(() => {
         if (textControl.length > 2) {
@@ -100,17 +115,19 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
             // @ts-ignore
             recognition.current.start();
         } else {
+            window.speechSynthesis.cancel()
             // @ts-ignore
             recognition.current.stop();
+
         }
-    }, [isListening, isSpeakingBigCard]);
+    }, [isListening]);
 
 
     const handleStopControl = () => {
-        if(!isListening){
-            setShowAlert(true)
-        }
-        if (isClickVoiceControlAllowed) {
+    if (!isListening) {
+        setShowAlert(true);
+    }
+    if (isClickVoiceControlAllowed) {
             setIsClickVoiceControlAllowed(false);
             setTimeout(() => {
             setIsClickVoiceControlAllowed(true);
@@ -119,11 +136,13 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
                 setIsListening(false)
             }
         }
-    };
+
+};
 
     const handleSpeak = (text: string) => {
         if ('speechSynthesis' in window) {
             const speech = new SpeechSynthesisUtterance(text);
+            console.log(text);
             speech.lang = 'en-GB';
             speech.rate = 0.9;
             speech.pitch = 1.2;
@@ -131,16 +150,24 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
             setIsSpeakingBigCard(true);
             window.speechSynthesis.speak(speech);
 
-        speech.onend = () => {
-            setIsSpeakingBigCard(false);
-            setTextControl('');
-            console.log(isSpeakingBigCard);
-        };
+            speech.onend = () => {
+                setIsSpeakingBigCard(false);
+                setTextControl('');
+                console.log(isSpeakingBigCard);
+            };
+
+            let read_text = setInterval(() => {
+                if (!speechSynthesis.speaking) {
+                    clearInterval(read_text);
+                } else {
+                    speechSynthesis.pause();
+                    speechSynthesis.resume();
+                }
+            }, 14000);
 
         } else {
             console.log('Speech synthesis not supported.');
         }
-
     };
 
     const handleSpeakerBigCardClick = () => {
@@ -172,7 +199,6 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     const handleNextClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
-        console.log(numberOfFlashCardsState)
         if (currentBigCardIndex < numberOfFlashCardsState -1 ) {
 
             setCurrentBigCardIndex(currentBigCardIndex + 1);
@@ -191,14 +217,18 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     };
 
     const handleRotateClick = () => {
-        console.log(isRotated)
+        setNumberOfFlashCardsState(flashcards.length)
         setIsRotated(!isRotated);
-        console.log(isRotated)
         window.speechSynthesis.cancel();
         if (isSpeakingBigCard) {
             window.speechSynthesis.cancel();
             setIsSpeakingBigCard(false);
         }
+    };
+
+     const handleRotateClickVoiceControl = () => {
+        setNumberOfFlashCardsState(flashcards.length)
+        setIsRotated(!isRotated);
     };
 
 
@@ -223,7 +253,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
                     handleNextClick();
                     break;
                 case 2:
-                    handleRotateClick();
+                    handleRotateClickVoiceControl();
                     break;
                 case 3:
                     handleSpeakerBigCardClick();
@@ -240,7 +270,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     };
 
      const navigatePrevSide = () => {
-        navigate('/my_deck_learning_modes')
+        navigate(backToDeckPath)
     }
     const nlpModelControl = async (text: string) => {
 
@@ -250,7 +280,6 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
             }
 
             const nlp_answer = await NlpService.sent_message(body)
-            console.log("commnad", text)
             // @ts-ignore
             voiceControl(nlp_answer?.data);
 
@@ -261,6 +290,7 @@ const CardsButtonsContainerMemorizedFlashcards = () => {
     };
 
      const handleCloseAlert = () => {
+        setNumberOfFlashCardsState(flashcards.length)
         setShowAlert(false);
         setIsListening(true)
      };

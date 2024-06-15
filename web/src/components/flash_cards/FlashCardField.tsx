@@ -1,14 +1,21 @@
 import React from 'react';
 import '../../styles/flash_cards/flash_card_field.scss';
 
-const FlashCard: React.FC<{ front_text: string; back_text: string; icon: string; icon_pencil: string; onClick?: () => void; onClickPencil: () => void }> = ({
-    front_text,
-    back_text,
-    icon,
-    icon_pencil,
-    onClick,
-    onClickPencil
-}) => {
+const FlashCard: React.FC<{
+    front_text: string;
+    back_text: string;
+    icon: string;
+    icon_pencil: string;
+    onClick?: () => void;
+    onClickPencil: () => void
+}> = ({
+          front_text,
+          back_text,
+          icon,
+          icon_pencil,
+          onClick,
+          onClickPencil
+      }) => {
 
     const handleClick = () => {
         if (onClick) {

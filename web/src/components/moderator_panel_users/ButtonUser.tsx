@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import '../../styles/moderator_panel_users/button_users.scss';
 
 // @ts-ignore
-const ButtonUserModeratorPanel = ({ frontTextUpper, frontTextLower, image, backText, onClick}) => {
+const ButtonUserModeratorPanel = ({frontTextUpper, frontTextLower, image, backText, onClick}) => {
     const [hovered, setHovered] = useState(false);
 
     return (

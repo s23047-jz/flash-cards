@@ -34,7 +34,7 @@ const FlashCardEditPopUp = ({frontText, backText, onSaveChanges, onDeleteCard, o
     };
 
     const handleSaveCard = () => {
-        if (editedFrontText.length < 1 && editedFrontText.length < 1) {
+        if (editedFrontText.length < 1 && editedBackText.length < 1) {
             setEditedFrontText('Front text must be at least 1 characters long.');
             setEditedBackText('Back text must be at least 1 characters long.');
             return;

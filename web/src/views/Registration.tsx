@@ -1,11 +1,23 @@
-import React, { useState } from 'react';
-import { Avatar, Button, CssBaseline, TextField, Link, Paper, Box, Grid, Typography, Container, ThemeProvider } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import { AuthService } from '../services/auth';
+import React, {useState} from 'react';
+import {
+    Avatar,
+    Button,
+    CssBaseline,
+    TextField,
+    Link,
+    Paper,
+    Box,
+    Grid,
+    Typography,
+    Container,
+    ThemeProvider
+} from '@mui/material';
+import {createTheme} from '@mui/material/styles';
+import {AuthService} from '../services/auth';
 import Alert from '../components/alert/Alert';
 // @ts-ignore
 import logo from '../assets/images/logo.png';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const theme = createTheme();
 
@@ -54,7 +66,7 @@ const RegistrationPage: React.FC = () => {
         }
 
         try {
-            await AuthService.register({ email, password, re_password: confirmPassword, username: nickname });
+            await AuthService.register({email, password, re_password: confirmPassword, username: nickname});
             setSuccessMessage("Account created successfully!");
         } catch (error: any) {
             if (error.response?.status === 400) {
@@ -79,14 +91,20 @@ const RegistrationPage: React.FC = () => {
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
-                {successMessage && <Alert message={successMessage} onClose={handleCloseAlert} />}
-                <Paper elevation={6} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: 3, borderRadius: '30px' }}>
-                    <Avatar sx={{ m: 1, width: 200, height: 200 }} src={logo} />
+                <CssBaseline/>
+                {successMessage && <Alert message={successMessage} onClose={handleCloseAlert}/>}
+                <Paper elevation={6} sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    padding: 3,
+                    borderRadius: '30px'
+                }}>
+                    <Avatar sx={{m: 1, width: 200, height: 200}} src={logo}/>
                     <Typography component="h1" variant="h4">
                         Sign Up
                     </Typography>
-                    <Box component="form" noValidate sx={{ mt: 1 }}>
+                    <Box component="form" noValidate sx={{mt: 1}}>
                         <TextField
                             error={!!nicknameError}
                             helperText={nicknameError}
@@ -149,7 +167,7 @@ const RegistrationPage: React.FC = () => {
                             type="button"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                             onClick={handleSignUp}
                         >
                             Sign Up
