@@ -24,23 +24,19 @@ import {
     FlashCard,
     MicrophoneButton
 } from "../../components";
-import { useVoiceRecognition } from "../../utils/voice_recogniotion";
 
 const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const { deck } = route.params;
 
+    const PERMISSIONS_MAPPING = {
+        GRANTED: 'granted'
+    }
     const VOICE_CONTROL_STAGES = {
         RUN: "run",
         STOP: "stop",
         END: "end",
     }
 
-    const {
-        state,
-        startRecognizing,
-        stopRecognizing,
-        destroyRecognizing
-    } = useVoiceRecognition();
     const [loading, setLoading] = useState(true);
     const [flashCards, setFlashCards] = useState([]);
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
@@ -93,7 +89,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const handleStopControl = async() => {
-        await stopRecognizing();
+        // await stopRecognizing();
         setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
     }
 
@@ -106,7 +102,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const handleEndRecognizing = async() => {
-        await destroyRecognizing();
+        // await destroyRecognizing();
         setActiveVoiceControlMode(VOICE_CONTROL_STAGES.END);
         setShowMicrophoneModal(false);
     }
@@ -151,21 +147,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         }
     }
 
-    const handleVoiceVoiceControl = async() => {
-        if (activeVoiceControlMode === VOICE_CONTROL_STAGES.RUN) {
-            await startRecognizing()
-            // Hold for 5 seconds
-            await new Promise(resolve => setTimeout(resolve, 5000));
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP)
-            if (state.results && state.results.length) {
-                setTimeout(() => {
-                    stopRecognizing()
-                    calculateSimilarity(state.results.join(" "))
-                }, 10000)
-            }
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.RUN)
-        }
-    }
+    const handleVoiceVoiceControl = async() => {}
 
     async function fetchUnmemorizedFlashcards() {
         try {
@@ -242,7 +224,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 Learning Voice Mode
             </Text>
             <MicrophoneButton
-                active={state.isRecording}
+                active={true}
                 show={showMicrophoneModal}
                 toggleMicrophoneStatus={toggleMicrophoneStatus}
             />
