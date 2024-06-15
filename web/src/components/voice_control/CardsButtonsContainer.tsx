@@ -24,7 +24,7 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
-    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(1);
+    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(2);
     const [showAlert, setShowAlert] = useState(false);
     const numberOfFlashCards = flashcards.length
     const recognition = useRef(null);
@@ -124,24 +124,33 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
     const handleSpeak = (text: string) => {
         if ('speechSynthesis' in window) {
             const speech = new SpeechSynthesisUtterance(text);
-            console.log(text)
+            console.log(text);
             speech.lang = 'en-GB';
-            speech.rate = 1.0;
+            speech.rate = 0.9;
             speech.pitch = 1.2;
             speech.volume = 1.0;
             setIsSpeakingBigCard(true);
             window.speechSynthesis.speak(speech);
 
-        speech.onend = () => {
-            setIsSpeakingBigCard(false);
-            setTextControl('');
-            console.log(isSpeakingBigCard);
-        };
+            speech.onend = () => {
+                setIsSpeakingBigCard(false);
+                setTextControl('');
+                console.log(isSpeakingBigCard);
+            };
+
+            let read_text = setInterval(() => {
+                console.log(speechSynthesis.speaking);
+                if (!speechSynthesis.speaking) {
+                    clearInterval(read_text);
+                } else {
+                    speechSynthesis.pause();
+                    speechSynthesis.resume();
+                }
+            }, 14000);
 
         } else {
             console.log('Speech synthesis not supported.');
         }
-
     };
 
     const handleSpeakerBigCardClick = () => {
@@ -174,8 +183,9 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
         console.log(numberOfFlashCardsState)
+        console.log(currentBigCardIndex)
         if (currentBigCardIndex < numberOfFlashCardsState -1 ) {
-
+            console.log("inside ",currentBigCardIndex)
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
@@ -251,7 +261,6 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
             }
 
             const nlp_answer = await NlpService.sent_message(body)
-            console.log("commnad", text)
             // @ts-ignore
             voiceControl(nlp_answer?.data);
 

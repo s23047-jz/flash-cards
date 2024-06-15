@@ -131,16 +131,23 @@ const CardsButtonsContainerNotMemorized = ({backToDeckPath}) => {
             setIsSpeakingBigCard(true);
             window.speechSynthesis.speak(speech);
 
-        speech.onend = () => {
-            setIsSpeakingBigCard(false);
-            setTextControl('');
-            console.log(isSpeakingBigCard);
-        };
+            speech.onend = () => {
+                setIsSpeakingBigCard(false);
+                setTextControl('');
+            };
+
+            let read_text = setInterval(() => {
+                if (!speechSynthesis.speaking) {
+                    clearInterval(read_text);
+                } else {
+                    speechSynthesis.pause();
+                    speechSynthesis.resume();
+                }
+            }, 14000);
 
         } else {
             console.log('Speech synthesis not supported.');
         }
-
     };
 
     const handleSpeakerBigCardClick = () => {

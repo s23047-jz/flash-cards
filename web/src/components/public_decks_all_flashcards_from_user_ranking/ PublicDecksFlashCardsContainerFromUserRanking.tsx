@@ -56,36 +56,42 @@ const PublicDecksFlashCardsContainerFromUserRanking = () => {
     }, []);
     const handleSpeak = (text_front: string, text_back: string, index: number) => {
         if ('speechSynthesis' in window) {
-            const text: string = text_front + "." + text_back
-            const sentences = text.split('.'); // Podziel tekst na zdania
+            const text: string = text_front + ". " + text_back;
+            const speech = new SpeechSynthesisUtterance(text);
+            speech.lang = 'en-GB';
+            speech.rate = 0.9;
+            speech.pitch = 1.2;
+            speech.volume = 1.0;
 
-            sentences.forEach((sentence, i) => {
-                const speech = new SpeechSynthesisUtterance(sentence.trim());
-                speech.lang = 'en-GB';
-                speech.rate = 0.9;
-                speech.pitch = 1.2;
-                speech.volume = 1.0;
+            const handleSpeechPauseResume = () => {
+                let intervalId = setInterval(() => {
 
-                speech.onstart = () => {
-                    setCurrentCardIndex(index);
-                    setIsSpeaking(true);
-                };
-
-                if (i === sentences.length - 1) {
-                    speech.onend = () => {
-                        setCurrentCardIndex(-1);
-                        setIsSpeaking(false);
-                    };
+                if (!speechSynthesis.speaking) {
+                    clearInterval(intervalId);
+                } else {
+                    speechSynthesis.pause();
+                    setTimeout(() => {
+                        speechSynthesis.resume();
+                    }, 50);
                 }
+            }, 14000);
+        };
 
-                window.speechSynthesis.speak(speech);
-            });
-            if (isSpeakingBigCard) {
-                setCurrentCardIndex(flashcards.length);
-            }
+            speech.onstart = () => {
+                setCurrentCardIndex(index);
+                setIsSpeaking(true);
+                handleSpeechPauseResume();
+            };
+
+            speech.onend = () => {
+                setCurrentCardIndex(-1);
+                setIsSpeaking(false);
+            };
+
+            window.speechSynthesis.speak(speech);
 
         } else {
-            console.log('Speech synthesis not supported.');
+        console.log('Speech synthesis not supported.');
         }
     };
 
