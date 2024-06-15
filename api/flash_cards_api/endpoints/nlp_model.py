@@ -109,6 +109,9 @@ async def calculate_semantic_similarity(
 async def calculate_semantic_similarity_audio(
     file: UploadFile = File(...)
 ):
+    if not os.path.exists(AUDIO_DIR):
+        os.mkdir(AUDIO_DIR)
+
     audio_path = os.path.join(
         AUDIO_DIR, file.filename
     )
