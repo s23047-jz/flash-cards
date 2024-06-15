@@ -1,7 +1,7 @@
 FROM python:3.10 as build-python
 
 # Update the package list and install required dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends
+RUN apt-get update && apt-get install -y --no-install-recommends && sudo apt install ffmpeg
 
 COPY ./requirements.txt ./fc_api/
 

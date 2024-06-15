@@ -67,7 +67,9 @@ export const request = async ({
   const token = await ActiveUser.getAuthorization();
 
   if (token) headers.Authorization = token;
-  headers["Content-Type"] = "application/json";
+  if (!headers.hasOwnProperty('Content-Type')) {
+    headers["Content-Type"] = "application/json";
+  }
 
   if (query) url = `${url}?${encodeQuery(query)}`;
 

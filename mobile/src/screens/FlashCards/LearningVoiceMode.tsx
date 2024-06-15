@@ -13,8 +13,10 @@ import {
     Button
 } from "react-native";
 
-import * as Speech from "expo-speech";
+import { Platform } from "react-native";
 import { Audio } from "expo-av";
+import * as Speech from "expo-speech";
+import * as FileSystem from 'expo-file-system';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
@@ -82,13 +84,22 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 await recording.stopAndUnloadAsync();
                 setRecording(null);
             }
-            await Audio.setAudioModeAsync({
-                allowsRecordingIOS: true,
-                playsInSilentModeIOS: true,
-            });
+            if (Platform.OS === 'ios') {
+                await Audio.setAudioModeAsync({
+                    allowsRecordingIOS: true,
+                    playsInSilentModeIOS: true,
+                    staysActiveInBackground: true,
+                });
+            } else {
+                await Audio.setAudioModeAsync({
+                    staysActiveInBackground: true,
+                });
+            }
             console.log('Starting recording...');
             const recordingInstance = new Audio.Recording();
-            await recordingInstance.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+            await recordingInstance.prepareToRecordAsync(
+                Audio.RecordingOptionsPresets.HIGH_QUALITY
+            );
             await recordingInstance.startAsync();
             setRecording(recordingInstance);
             console.log('Recording started');
@@ -104,10 +115,18 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 await recording.stopAndUnloadAsync();
                 await Audio.setAudioModeAsync({
                     allowsRecordingIOS: false,
+                    playsInSilentModeIOS: false,
+                    staysActiveInBackground: false,
                 });
                 const uri = recording.getURI();
                 setRecording(null);
-                console.log('Recording stopped and stored at', uri);
+                if (uri) {
+                    console.log(
+                        uri,
+                        typeof(uri)
+                    )
+                    await calculateSimilarity(uri)
+                }
             } else {
                 console.error('No recording instance found');
             }
@@ -195,13 +214,33 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         setCurrentCardIndex(viewableItems[0].index)
     }).current
 
-    const calculateSimilarity = async(text: string) => {
+    const calculateSimilarity = async(recordingURI: string) => {
+        if (!recordingURI) {
+            console.error('No recording URI to upload');
+            return;
+        }
         try {
-            const { data } = await NlpService.calculateSimilarity(
-                { text },
+            const fileInfo = await FileSystem.getInfoAsync(recordingURI);
+                if (!fileInfo.exists) {
+                console.error('File does not exist at the given URI');
+                return;
+            }
+                const fileUri = fileInfo.uri;
+                const formData = new FormData();
+                formData.append('file', {
+                    uri: fileUri,
+                    name: 'recording.m4a',
+                    type: 'audio/m4a',
+                });
+            const { res, data } = await NlpService.calculateSimilarityByFile(
+                formData,
                 navigation
             )
-            await handleCommands(data)
+            await FileSystem.deleteAsync(recordingURI);
+            if ([200, 201].includes(res.status)) {
+                console.log('File uploaded successfully');
+                await handleCommands(data.command)
+            }
         }catch (err) {
             console.error("Something went wrong during the calculation", err)
         }

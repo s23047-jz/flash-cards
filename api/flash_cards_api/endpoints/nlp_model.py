@@ -6,6 +6,7 @@ from flair.embeddings import TransformerDocumentEmbeddings
 from flair.data import Sentence
 from scipy.spatial.distance import cosine
 import speech_recognition as sr
+from pydub import AudioSegment
 
 from flash_cards_api.config import AUDIO_DIR
 
@@ -92,6 +93,13 @@ def get_most_similar_answer(user_question, qa_pairs):
     return qa_pairs[most_similar_index]['a']
 
 
+def convert_m4a_to_wav(file_path: str) -> str:
+    audio = AudioSegment.from_file(file_path, format="m4a")
+    wav_file = file_path.replace(".m4a", ".wav")
+    audio.export(wav_file, format="wav")
+    return wav_file
+
+
 @router.post("/calculate_similarity", status_code=status.HTTP_200_OK)
 async def calculate_semantic_similarity(
         text: SimilarityText
@@ -112,6 +120,7 @@ async def calculate_semantic_similarity_audio(
     if not os.path.exists(AUDIO_DIR):
         os.mkdir(AUDIO_DIR)
 
+    print("FILE", file.filename)
     audio_path = os.path.join(
         AUDIO_DIR, file.filename
     )
@@ -119,16 +128,23 @@ async def calculate_semantic_similarity_audio(
     with open(audio_path, 'wb') as audio_file:
         audio_file.write(await file.read())
 
+    old_audio_path = audio_path
+    audio_path = convert_m4a_to_wav(audio_path)
+    # os.remove(old_audio_path)
+    print("audio_path", audio_path)
     recognizer = sr.Recognizer()
     try:
         with sr.AudioFile(audio_path) as source:
             audio = recognizer.record(source)
+            print("AUDIO", audio)
             text = recognizer.recognize_google(audio, language='en-GB')
+            print("TEXT", text)
             command = get_most_similar_answer(text.lower(), qa_pairs)
+            print("command", command)
             return {"command": command}
     except sr.UnknownValueError:
         raise HTTPException(status_code=400, detail="Could not understand the audio")
     except sr.RequestError:
         raise HTTPException(status_code=500, detail="Could not request results from the speech recognition service")
-    finally:
-        os.remove(audio_path)
+    # finally:
+        # os.remove(audio_path)
