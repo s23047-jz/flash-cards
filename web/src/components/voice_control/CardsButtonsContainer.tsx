@@ -24,7 +24,7 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
     const [textControl, setTextControl] = useState('');
     const [isListening, setIsListening] = useState(false);
     const [isClickVoiceControlAllowed, setIsClickVoiceControlAllowed] = useState(true);
-    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(2);
+    const [numberOfFlashCardsState, setNumberOfFlashCardsState] = useState(1);
     const [showAlert, setShowAlert] = useState(false);
     const numberOfFlashCards = flashcards.length
     const recognition = useRef(null);
@@ -216,6 +216,7 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
     };
 
     const handleRotateClick = () => {
+        setNumberOfFlashCardsState(flashcards.length)
         setIsRotated(!isRotated);
         window.speechSynthesis.cancel();
         if (isSpeakingBigCard) {
@@ -225,6 +226,7 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
     };
 
      const handleRotateClickVoiceControl = () => {
+        setNumberOfFlashCardsState(flashcards.length)
         setIsRotated(!isRotated);
     };
 
@@ -287,6 +289,7 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
     };
 
      const handleCloseAlert = () => {
+        setNumberOfFlashCardsState(flashcards.length)
         setShowAlert(false);
         setIsListening(true)
      };
