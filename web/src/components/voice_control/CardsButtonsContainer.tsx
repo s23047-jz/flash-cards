@@ -31,35 +31,36 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchFlashCards = async () => {
-            try {
-                let deck_id: string;
+    const fetchFlashCards = async () => {
+        try {
+            let deck_id: string;
 
-                const intervalId = setInterval(() => {
-                    const deckDataString = localStorage.getItem("deckData");
-                    const deckData = JSON.parse(deckDataString || "{}");
-                    deck_id = deckData.id;
-                    setDeckTitle(deckData.title);
-                    if (deck_id) {
-                        clearInterval(intervalId);
-                        setTimeout(async () => {
-                            const response = await DeckService.get_flash_cards_from_deck(deck_id);
-                            // @ts-ignore
-                            setFlashcards(response);
-                            setIsLoading(false)
-                        }, 300);
-                    }
-                }, 100);
+            const intervalId = setInterval(() => {
+                const deckDataString = localStorage.getItem("deckData");
+                const deckData = JSON.parse(deckDataString || "{}");
+                deck_id = deckData.id;
+                setDeckTitle(deckData.title);
+                if (deck_id) {
+                    clearInterval(intervalId);
+                    setTimeout(async () => {
+                        const response = await DeckService.get_flash_cards_from_deck(deck_id);
+                        // @ts-ignore
+                        setFlashcards(response);
+                        setIsLoading(false);
+                    }, 300);
+                }
+            }, 100);
 
-            } catch (error) {
-                console.error(error);
-            }
-        };
-        fetchFlashCards();
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
+    fetchFlashCards();
+}, []);
 
-
-        if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
+    useEffect(() => {
+    if ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) {
         // @ts-ignore
         recognition.current = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
         // @ts-ignore
@@ -67,8 +68,8 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
         // @ts-ignore
         recognition.current.continuous = true;
 
-
-            // @ts-ignore
+        // Obsługa wyników rozpoznania mowy
+        // @ts-ignore
         recognition.current.onresult = (event) => {
             let finalTranscriptText = "";
             for (let i = event.resultIndex; i < event.results.length; ++i) {
@@ -79,15 +80,31 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
             let trimmedText = finalTranscriptText.trim();
             setTextControl(isSpeakingBigCard ? '' : trimmedText);
             if (isSpeakingBigCard) {
-                trimmedText = ''
+                trimmedText = '';
             }
         };
 
-        } else {
-            alert("Your browser does not support the Speech Recognition API.");
-        }
+        // Dodanie event listenera 'end' do restartowania rozpoznawania mowy
+        // @ts-ignore
+        recognition.current.addEventListener('end', () => {
+            if (isListening) {
+                // @ts-ignore
+                recognition.current.start();
+            }
+        });
 
-    }, [isSpeakingBigCard, isRotated, isListening]);
+        // Czyszczenie po sobie - zatrzymywanie rozpoznawania mowy przy odmontowaniu komponentu
+        return () => {
+            if (recognition.current) {
+                // @ts-ignore
+                recognition.current.stop();
+            }
+        };
+
+    } else {
+        alert("Twoja przeglądarka nie obsługuje interfejsu rozpoznawania mowy (Speech Recognition API).");
+    }
+}, [isSpeakingBigCard, isRotated, isListening]);
 
     useEffect(() => {
         if (textControl.length > 2) {
@@ -100,8 +117,10 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
             // @ts-ignore
             recognition.current.start();
         } else {
+            window.speechSynthesis.cancel();
             // @ts-ignore
             recognition.current.stop();
+
         }
     }, [isListening, isSpeakingBigCard]);
 
@@ -139,7 +158,6 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
             };
 
             let read_text = setInterval(() => {
-                console.log(speechSynthesis.speaking);
                 if (!speechSynthesis.speaking) {
                     clearInterval(read_text);
                 } else {
@@ -182,10 +200,8 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
     const handleNextClick = () => {
         window.speechSynthesis.cancel();
         setIsSpeakingBigCard(false);
-        console.log(numberOfFlashCardsState)
-        console.log(currentBigCardIndex)
         if (currentBigCardIndex < numberOfFlashCardsState -1 ) {
-            console.log("inside ",currentBigCardIndex)
+
             setCurrentBigCardIndex(currentBigCardIndex + 1);
             setIsRotated(false)
         }
@@ -202,14 +218,16 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
     };
 
     const handleRotateClick = () => {
-        console.log(isRotated)
         setIsRotated(!isRotated);
-        console.log(isRotated)
         window.speechSynthesis.cancel();
         if (isSpeakingBigCard) {
             window.speechSynthesis.cancel();
             setIsSpeakingBigCard(false);
         }
+    };
+
+     const handleRotateClickVoiceControl = () => {
+        setIsRotated(!isRotated);
     };
 
 
@@ -234,7 +252,7 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
                     handleNextClick();
                     break;
                 case 2:
-                    handleRotateClick();
+                    handleRotateClickVoiceControl();
                     break;
                 case 3:
                     handleSpeakerBigCardClick();
