@@ -3,7 +3,6 @@ import '../../styles/flash_cards/flash_card_pop_up.scss';
 import {DeckService} from "../../services/decs";
 import {ChatService} from "../../services/chat";
 import GenerateContentChatPopUpBox from "../flash_cards_creator/GenerateContebtChatPopUpBox";
-import AlertChatGenerate from "../alert/AlertChatGenerate";
 import LoadingSpinnerChat from "../loading_spinner/LoadingSpinnerChat";
 import Alert from "../alert/Alert";
 
