@@ -68,7 +68,6 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
         // @ts-ignore
         recognition.current.continuous = true;
 
-        // Obsługa wyników rozpoznania mowy
         // @ts-ignore
         recognition.current.onresult = (event) => {
             let finalTranscriptText = "";
@@ -84,7 +83,6 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
             }
         };
 
-        // Dodanie event listenera 'end' do restartowania rozpoznawania mowy
         // @ts-ignore
         recognition.current.addEventListener('end', () => {
             if (isListening) {
@@ -93,7 +91,6 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
             }
         });
 
-        // Czyszczenie po sobie - zatrzymywanie rozpoznawania mowy przy odmontowaniu komponentu
         return () => {
             if (recognition.current) {
                 // @ts-ignore
@@ -102,7 +99,7 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
         };
 
     } else {
-        alert("Twoja przeglądarka nie obsługuje interfejsu rozpoznawania mowy (Speech Recognition API).");
+        alert("Browser not support (Speech Recognition API).");
     }
 }, [isSpeakingBigCard, isRotated, isListening]);
 
@@ -117,19 +114,19 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
             // @ts-ignore
             recognition.current.start();
         } else {
-            window.speechSynthesis.cancel();
+            window.speechSynthesis.cancel()
             // @ts-ignore
             recognition.current.stop();
 
         }
-    }, [isListening, isSpeakingBigCard]);
+    }, [isListening]);
 
 
     const handleStopControl = () => {
-        if(!isListening){
-            setShowAlert(true)
-        }
-        if (isClickVoiceControlAllowed) {
+    if (!isListening) {
+        setShowAlert(true);
+    }
+    if (isClickVoiceControlAllowed) {
             setIsClickVoiceControlAllowed(false);
             setTimeout(() => {
             setIsClickVoiceControlAllowed(true);
@@ -138,7 +135,8 @@ const CardsButtonsContainer = ({backToDeckPath}) => {
                 setIsListening(false)
             }
         }
-    };
+
+};
 
     const handleSpeak = (text: string) => {
         if ('speechSynthesis' in window) {
