@@ -3,8 +3,9 @@ import '../../styles/flash_cards/flash_card_pop_up.scss';
 import {DeckService} from "../../services/decs";
 import {ChatService} from "../../services/chat";
 import GenerateContentChatPopUpBox from "../flash_cards_creator/GenerateContebtChatPopUpBox";
-import Alert from '../alert/Alert'
+import AlertChatGenerate from "../alert/AlertChatGenerate";
 import LoadingSpinnerChat from "../loading_spinner/LoadingSpinnerChat";
+import Alert from "../alert/Alert";
 
 // @ts-ignore
 const AddFlashcard = ({onClose,}) => {
@@ -66,7 +67,8 @@ const AddFlashcard = ({onClose,}) => {
     };
 
     const handleGenerateText = async () => {
-        if (frontText.length > 2) {
+        setShowAlert(false)
+        if (frontText.length > 1) {
             setIsChatGenerating(true);
             try {
                 let chat_answer = await ChatService.sent_message(frontText)
@@ -108,12 +110,13 @@ const AddFlashcard = ({onClose,}) => {
                 <button onClick={handleGenerateText}>Generate text</button>
                 {isChatGenerating ? <LoadingSpinnerChat/> : null}
 
-                {showAlert && <Alert message={alertMessage} onClose={handleCloseAlert}/>}
-                <GenerateContentChatPopUpBox acceptContent={() => handleAcceptChatContent(0)}
+
+
+            </div>
+            {showAlert && <Alert message={alertMessage} onClose={handleCloseAlert}/>}
+            <GenerateContentChatPopUpBox acceptContent={() => handleAcceptChatContent(0)}
                                                          rejectContent={handleRejectChatContent} boxOpen={boxOpen}
                                                          boxContent={boxContent} id={0}/>
-            </div>
-
         </div>
     );
 };

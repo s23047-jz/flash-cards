@@ -1,0 +1,38 @@
+.alert-box-chat {
+  border: 2px solid black;
+  position: fixed;
+  top: 18vh;
+  background-color: #ffffff;
+  width: 300px;
+  height: 150px;
+  padding: 15px;
+  border-radius: 4px;
+  z-index: 999;
+  font-weight: bold;
+
+  .text-alert-chat{
+    font-size: 16px;
+  }
+
+    .button-alert-chat {
+    position: absolute;
+    background-color: #2196F3;
+      margin-top: 60px;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    padding: 5px 10px;
+    transform: translate(-50%);
+    left: 50%;
+  }
+
+  .button-alert-chat:hover {
+    background-color: #0b7dda;
+  }
+
+}
+
+
+
+
