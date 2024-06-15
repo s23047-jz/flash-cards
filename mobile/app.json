@@ -17,24 +17,17 @@
     "ios": {
       "supportsTablet": true,
       "infoPlist": {
-        "NSMicrophoneUsageDescription": "We need access to your microphone for speech recognition"
+        "NSMicrophoneUsageDescription": "We need access to your microphone for speech recognition",
+        "UIBackgroundModes": [
+          "audio"
+        ]
       }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "src/assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "permissions": [
-        "RECORD_AUDIO",
-        [
-          "@react-native-voice/voice",
-          {
-            "microphonePermission": "CUSTOM: Allow $(PRODUCT_NAME) to access the microphone",
-            "speechRecognitionPermission": "CUSTOM: Allow $(PRODUCT_NAME) to securely recognize user speech"
-          }
-        ]
-      ]
+      }
     },
     "web": {
       "favicon": "src/assets/favicon.png"

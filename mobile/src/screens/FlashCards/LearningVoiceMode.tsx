@@ -9,10 +9,12 @@ import {
     View,
     Text,
     FlatList,
-    Animated
+    Animated,
+    Button
 } from "react-native";
 
 import * as Speech from "expo-speech";
+import { Audio } from "expo-av";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
@@ -42,6 +44,12 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const showFrontCard= useRef(true);
 
+    // Audio
+    const [recording, setRecording] = useState<Audio.Recording | null>(null);
+
+    // Permissions
+    const [permissionResponse, requestPermission] = Audio.usePermissions();
+
     // voice control
     const [activeVoiceControlMode, setActiveVoiceControlMode] = useState(VOICE_CONTROL_STAGES.STOP);
     const [showMicrophoneModal, setShowMicrophoneModal] = useState(false);
@@ -54,6 +62,58 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const onParentLayout = (event) => {
         const { width } = event.nativeEvent.layout;
         setParentWidth(width);
+    };
+
+    const handleCheckIfPermissionGranted = async() => {
+        try {
+            if (permissionResponse?.status !== PERMISSIONS_MAPPING.GRANTED) {
+                console.log('Requesting permission...');
+                await requestPermission();
+            }
+        } catch (err) {
+            console.error('Failed to get permissions', err);
+        }
+    }
+
+    const startRecording = async () => {
+        try {
+            if (recording) {
+                console.log('Stopping existing recording before starting a new one.');
+                await recording.stopAndUnloadAsync();
+                setRecording(null);
+            }
+            await Audio.setAudioModeAsync({
+                allowsRecordingIOS: true,
+                playsInSilentModeIOS: true,
+            });
+            console.log('Starting recording...');
+            const recordingInstance = new Audio.Recording();
+            await recordingInstance.prepareToRecordAsync(Audio.RECORDING_OPTIONS_PRESET_HIGH_QUALITY);
+            await recordingInstance.startAsync();
+            setRecording(recordingInstance);
+            console.log('Recording started');
+        } catch (err) {
+            console.error('Failed to start recording', err);
+        }
+    };
+
+    const stopRecording = async () => {
+        try {
+            console.log('Stopping recording...');
+            if (recording) {
+                await recording.stopAndUnloadAsync();
+                await Audio.setAudioModeAsync({
+                    allowsRecordingIOS: false,
+                });
+                const uri = recording.getURI();
+                setRecording(null);
+                console.log('Recording stopped and stored at', uri);
+            } else {
+                console.error('No recording instance found');
+            }
+        } catch (err) {
+            console.error('Failed to stop recording', err);
+        }
     };
 
     const handleSpeech = (text: string) => {
@@ -169,6 +229,8 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             setShowMicrophoneModal(true);
             setLoading(false);
             setActiveVoiceControlMode(VOICE_CONTROL_STAGES.RUN)
+            handleCheckIfPermissionGranted();
+            stopRecording();
         }, []),
     );
 
@@ -240,6 +302,10 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 <Text className="text-white font-extrabold mb-3 scale-150 font-bold text-center ">
                     {(flashCards.length - currentCardIndex)} flashcards left
                 </Text>
+                <Button
+                    title={recording ? 'Stop Recording' : 'Start Recording'}
+                    onPress={recording ? stopRecording : startRecording}
+                />
             </View>
             <View className="flex-1" onLayout={onParentLayout}>
                 <FlatList
