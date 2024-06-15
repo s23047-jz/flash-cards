@@ -1,8 +1,7 @@
 import React from 'react';
 import {withStyles} from "@material-ui/core/styles";
 import DrawerAppBar from "../components/home_page/NavBar";
-import FlashCardCreator  from "../components/flash_cards_creator/FlashCardCreator";
-
+import FlashCardCreator from "../components/flash_cards_creator/FlashCardCreator";
 
 
 const styles = {

@@ -20,7 +20,6 @@ $fontColor: gold;
     transition: 1s;
 
 
-
     p {
       padding: 15px;
       overflow-wrap: break-word;
@@ -31,7 +30,7 @@ $fontColor: gold;
   }
 
 
-  .position-container p{
+  .position-container p {
     color: $fontColor;
     font-size: $fontRankingSize;
   }

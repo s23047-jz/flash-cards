@@ -1,11 +1,27 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 // @ts-ignore
 import logo from '../assets/images/logo.png';
-import { Avatar, Button, CssBaseline, TextField, Link, Paper, Box, Grid, Typography, Container, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AuthService } from "../services/auth";
-import { useNavigate } from 'react-router-dom';
-import { ActiveUser } from "../services/user";
+import {
+    Avatar,
+    Button,
+    CssBaseline,
+    TextField,
+    Link,
+    Paper,
+    Box,
+    Grid,
+    Typography,
+    Container,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogContentText,
+    DialogTitle
+} from '@mui/material';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {AuthService} from "../services/auth";
+import {useNavigate} from 'react-router-dom';
+import {ActiveUser} from "../services/user";
 import Alert from '../components/alert/Alert';
 
 const theme = createTheme();
@@ -72,7 +88,7 @@ const LoginPage: React.FC = () => {
 
         // Logic for sending reset email
         try {
-            await AuthService.resetPassword({ email: resetEmail });
+            await AuthService.resetPassword({email: resetEmail});
             setAlertMessage("Reset link sent to your email.");
             handleClose();
         } catch (error) {
@@ -84,7 +100,7 @@ const LoginPage: React.FC = () => {
     return (
         <ThemeProvider theme={theme}>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
+                <CssBaseline/>
                 <Paper
                     elevation={6}
                     sx={{
@@ -95,11 +111,11 @@ const LoginPage: React.FC = () => {
                         borderRadius: '30px',
                     }}
                 >
-                    <Avatar sx={{ m: 1, width: 200, height: 200 }} src={logo} />
+                    <Avatar sx={{m: 1, width: 200, height: 200}} src={logo}/>
                     <Typography component="h1" variant="h4">
                         Sign in
                     </Typography>
-                    <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleLogin}>
+                    <Box component="form" noValidate sx={{mt: 1}} onSubmit={handleLogin}>
                         <TextField
                             variant="outlined"
                             margin="normal"
@@ -130,7 +146,7 @@ const LoginPage: React.FC = () => {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
+                            sx={{mt: 3, mb: 2}}
                         >
                             Log In
                         </Button>
@@ -148,7 +164,7 @@ const LoginPage: React.FC = () => {
                         </Grid>
                     </Box>
                 </Paper>
-                {alertMessage && <Alert message={alertMessage} onClose={handleCloseAlert} />}
+                {alertMessage && <Alert message={alertMessage} onClose={handleCloseAlert}/>}
 
                 <Dialog open={open} onClose={handleClose}>
                     <DialogTitle>Reset Password</DialogTitle>

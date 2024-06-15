@@ -4,7 +4,7 @@ import DrawerAppBar from "../components/home_page/NavBar";
 // @ts-ignore
 import PublicDecksFlashCardsContainer from "../components/public_decks_flashcards/PublicDecksFlashCardsContainer";
 
-const PublicDecksFlashCards= () => {
+const PublicDecksFlashCards = () => {
 
     return (
         <>

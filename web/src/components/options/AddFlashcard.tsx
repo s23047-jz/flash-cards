@@ -34,16 +34,14 @@ const AddFlashcard = ({onClose,}) => {
     };
 
     const handleSaveCard = () => {
-         if (backText.length < 1 && frontText.length < 1 ) {
+        if (backText.length < 1 && frontText.length < 1) {
             setFrontText('Front text must be at least 1 characters long.');
             setBackText('Back text must be at least 1 characters long.');
             return;
-        }
-         else if (frontText.length < 1 ){
+        } else if (frontText.length < 1) {
             setFrontText('Front text must be at least 1 characters long.');
             return;
-        }
-          else if (backText.length < 1 ){
+        } else if (backText.length < 1) {
             setBackText('Back text must be at least 1 characters long.');
             return;
         }
@@ -61,7 +59,7 @@ const AddFlashcard = ({onClose,}) => {
         DeckService.create_flash_card(flashcard_body)
         window.location.reload();
     }
-      const handleCloseAlert = () => {
+    const handleCloseAlert = () => {
         setShowAlert(false);
     };
 
@@ -110,12 +108,11 @@ const AddFlashcard = ({onClose,}) => {
                 {isChatGenerating ? <LoadingSpinnerChat/> : null}
 
 
-
             </div>
             {showAlert && <Alert message={alertMessage} onClose={handleCloseAlert}/>}
             <GenerateContentChatPopUpBox acceptContent={() => handleAcceptChatContent(0)}
-                                                         rejectContent={handleRejectChatContent} boxOpen={boxOpen}
-                                                         boxContent={boxContent} id={0}/>
+                                         rejectContent={handleRejectChatContent} boxOpen={boxOpen}
+                                         boxContent={boxContent} id={0}/>
         </div>
     );
 };

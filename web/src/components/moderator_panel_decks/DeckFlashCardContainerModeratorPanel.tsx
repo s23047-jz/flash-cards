@@ -74,16 +74,16 @@ const PublicDecksFlashCardsContainer = () => {
             const handleSpeechPauseResume = () => {
                 let intervalId = setInterval(() => {
 
-                if (!speechSynthesis.speaking) {
-                    clearInterval(intervalId);
-                } else {
-                    speechSynthesis.pause();
-                    setTimeout(() => {
-                        speechSynthesis.resume();
-                    }, 50);
-                }
-            }, 14000);
-        };
+                    if (!speechSynthesis.speaking) {
+                        clearInterval(intervalId);
+                    } else {
+                        speechSynthesis.pause();
+                        setTimeout(() => {
+                            speechSynthesis.resume();
+                        }, 50);
+                    }
+                }, 14000);
+            };
 
             speech.onstart = () => {
                 setCurrentCardIndex(index);
@@ -99,7 +99,7 @@ const PublicDecksFlashCardsContainer = () => {
             window.speechSynthesis.speak(speech);
 
         } else {
-        console.log('Speech synthesis not supported.');
+            console.log('Speech synthesis not supported.');
         }
     };
 
@@ -185,7 +185,7 @@ const PublicDecksFlashCardsContainer = () => {
         setIsEditOpen(true);
     };
 
-     const handleSaveChanges = () => {
+    const handleSaveChanges = () => {
         setIsEditOpen(false);
     };
 
@@ -198,7 +198,7 @@ const PublicDecksFlashCardsContainer = () => {
             {isLoading ? (
                 <LoadingSpinner/>
             ) : (
-                 <>
+                <>
                     {isEditOpen && (
                         <FlashCardEditPopUp
                             navigateToPath={"/users_moderator_panel"}

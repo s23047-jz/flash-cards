@@ -15,7 +15,7 @@ $flash-card-border: 3px solid #000000;
     padding: 10px;
 
     .front, .back-side {
-       overflow-wrap: break-word;
+      overflow-wrap: break-word;
       white-space: normal;
       word-break: break-word;
       padding: 10px 35px;
@@ -48,7 +48,7 @@ $flash-card-border: 3px solid #000000;
 
 @media screen and (max-width: 1005px) {
   .public-deck-flashcard-field {
-  font-size: 12px;
+    font-size: 12px;
 
   }
 

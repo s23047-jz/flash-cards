@@ -76,16 +76,16 @@ const FlashCardsContainer = () => {
             const handleSpeechPauseResume = () => {
                 let intervalId = setInterval(() => {
 
-                if (!speechSynthesis.speaking) {
-                    clearInterval(intervalId);
-                } else {
-                    speechSynthesis.pause();
-                    setTimeout(() => {
-                        speechSynthesis.resume();
-                    }, 50);
-                }
-            }, 14000);
-        };
+                    if (!speechSynthesis.speaking) {
+                        clearInterval(intervalId);
+                    } else {
+                        speechSynthesis.pause();
+                        setTimeout(() => {
+                            speechSynthesis.resume();
+                        }, 50);
+                    }
+                }, 14000);
+            };
 
             speech.onstart = () => {
                 setCurrentCardIndex(index);
@@ -101,7 +101,7 @@ const FlashCardsContainer = () => {
             window.speechSynthesis.speak(speech);
 
         } else {
-        console.log('Speech synthesis not supported.');
+            console.log('Speech synthesis not supported.');
         }
     };
 

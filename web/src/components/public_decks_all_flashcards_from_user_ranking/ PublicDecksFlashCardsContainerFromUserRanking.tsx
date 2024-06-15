@@ -66,16 +66,16 @@ const PublicDecksFlashCardsContainerFromUserRanking = () => {
             const handleSpeechPauseResume = () => {
                 let intervalId = setInterval(() => {
 
-                if (!speechSynthesis.speaking) {
-                    clearInterval(intervalId);
-                } else {
-                    speechSynthesis.pause();
-                    setTimeout(() => {
-                        speechSynthesis.resume();
-                    }, 50);
-                }
-            }, 14000);
-        };
+                    if (!speechSynthesis.speaking) {
+                        clearInterval(intervalId);
+                    } else {
+                        speechSynthesis.pause();
+                        setTimeout(() => {
+                            speechSynthesis.resume();
+                        }, 50);
+                    }
+                }, 14000);
+            };
 
             speech.onstart = () => {
                 setCurrentCardIndex(index);
@@ -91,7 +91,7 @@ const PublicDecksFlashCardsContainerFromUserRanking = () => {
             window.speechSynthesis.speak(speech);
 
         } else {
-        console.log('Speech synthesis not supported.');
+            console.log('Speech synthesis not supported.');
         }
     };
 
@@ -162,7 +162,7 @@ const PublicDecksFlashCardsContainerFromUserRanking = () => {
         navigate('/decks_ranking')
     }
 
-     const handleReportDeck = () => {
+    const handleReportDeck = () => {
         const deckDataString = localStorage.getItem("deckData");
         const deckData = JSON.parse(deckDataString || "{}");
         let deck_id = deckData.id;

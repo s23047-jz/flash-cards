@@ -1,5 +1,4 @@
 
-
 .loading-spinner-chat-container {
   position: fixed;
   z-index: 1100;
@@ -10,6 +9,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
   .loading-spinner {
     position: absolute;
     border: 8px solid #f3f3f3;
@@ -21,12 +21,13 @@
     animation: spin 1.6s linear infinite;
 
 
-    .img-spinner{
+    .img-spinner {
       height: 20vh;
       width: 20vh;
     }
   }
-  .loading-text{
+
+  .loading-text {
     position: absolute;
     margin-top: 36vh;
     color: white;

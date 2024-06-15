@@ -1,11 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import { Avatar, Button, Stack, Container, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Box, Typography } from '@mui/material';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {
+    Avatar,
+    Button,
+    Stack,
+    Container,
+    Dialog,
+    DialogActions,
+    DialogContent,
+    DialogTitle,
+    TextField,
+    Box,
+    Typography
+} from '@mui/material';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {useNavigate} from 'react-router-dom';
 import DrawerAppBar from "../components/home_page/NavBar";
-import { AVATAR_MAPPING } from "../utils/avatars";
+import {AVATAR_MAPPING} from "../utils/avatars";
 import '../styles/profile/user_profile_styles.scss';
-import { AuthService } from "../services/auth";
+import {AuthService} from "../services/auth";
 import LoadingSpinner from "../components/loading_spinner/LoadingSpinner";
 import Alert from '../components/alert/Alert';
 
@@ -191,7 +203,7 @@ const UserProfilePage: React.FC = () => {
     const handleAvatarSelect = async (selectedAvatar: string) => {
         setIsLoading(true);
         try {
-            await AuthService.updateAvatar(userId, { avatar: selectedAvatar });
+            await AuthService.updateAvatar(userId, {avatar: selectedAvatar});
             // @ts-ignore
             setAvatar(AVATAR_MAPPING[selectedAvatar]);
             handleClose('avatar');
@@ -205,7 +217,7 @@ const UserProfilePage: React.FC = () => {
 
     const handleDeleteAccount = async () => {
         try {
-            await AuthService.deleteAccount({ email: userEmail, password: currentPassword });
+            await AuthService.deleteAccount({email: userEmail, password: currentPassword});
         } catch (error: any) {
             if (error.response?.status === 401) {
                 setAlertMessage("Account deleted");
@@ -234,41 +246,55 @@ const UserProfilePage: React.FC = () => {
 
     return (
         <ThemeProvider theme={theme}>
-            <DrawerAppBar />
-            <Container component="main" className="user-profile-page" sx={{ height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <DrawerAppBar/>
+            <Container component="main" className="user-profile-page"
+                       sx={{height: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 {isLoading ? (
-                    <LoadingSpinner />
+                    <LoadingSpinner/>
                 ) : (
                     <Stack
-                        direction={{ xs: 'column', sm: 'row' }}
+                        direction={{xs: 'column', sm: 'row'}}
                         justifyContent="space-between"
                         alignItems="center"
-                        sx={{ height: '100%', width: '100%' }}
+                        sx={{height: '100%', width: '100%'}}
                     >
                         <Stack
                             direction="column"
                             justifyContent="center"
                             alignItems="center"
-                            sx={{ width: '100%', flex: 1 }}
+                            sx={{width: '100%', flex: 1}}
                         >
-                            <Avatar src={avatar} sx={{ width: '50%', height: 'auto', cursor: 'pointer' }} onClick={() => handleOpen('avatar')} />
+                            <Avatar src={avatar} sx={{width: '50%', height: 'auto', cursor: 'pointer'}}
+                                    onClick={() => handleOpen('avatar')}/>
                             <Typography variant="h6" className="username">{username}</Typography>
                         </Stack>
                         <Stack
                             direction="column"
                             justifyContent="center"
                             alignItems="center"
-                            sx={{ width: '100%', flex: 1 }}
+                            sx={{width: '100%', flex: 1}}
                         >
-                            <div style={{ width: '100%', maxWidth: '480px' }}>
+                            <div style={{width: '100%', maxWidth: '480px'}}>
                                 {(userRole === 'Admin' || userRole === 'Moderator') && (
-                                    <Button variant="contained" fullWidth className="moderator-panel-button" sx={{ marginBottom: '24px', padding: '20px 0' }} onClick={handleModeratorPanelClick}>Moderator Panel</Button>
+                                    <Button variant="contained" fullWidth className="moderator-panel-button"
+                                            sx={{marginBottom: '24px', padding: '20px 0'}}
+                                            onClick={handleModeratorPanelClick}>Moderator Panel</Button>
                                 )}
-                                <Button variant="contained" fullWidth className="user-stats-button" sx={{ marginBottom: '24px', padding: '20px 0' }} onClick={handleUserStatsClick}>User Stats</Button>
-                                <Button variant="contained" fullWidth className="change-nickname-button" sx={{ marginBottom: '24px', padding: '20px 0' }} onClick={() => handleOpen('nickname')}>Change Nickname</Button>
-                                <Button variant="contained" fullWidth className="change-email-button" sx={{ marginBottom: '24px', padding: '20px 0' }} onClick={() => handleOpen('email')}>Change Email</Button>
-                                <Button variant="contained" fullWidth className="change-password-button" sx={{ marginBottom: '24px', padding: '20px 0' }} onClick={() => handleOpen('password')}>Change Password</Button>
-                                <Button variant="contained" fullWidth className="delete-account-button" sx={{ padding: '20px 0' }} onClick={() => handleOpen('deleteAccount')}>Delete Account</Button>
+                                <Button variant="contained" fullWidth className="user-stats-button"
+                                        sx={{marginBottom: '24px', padding: '20px 0'}} onClick={handleUserStatsClick}>User
+                                    Stats</Button>
+                                <Button variant="contained" fullWidth className="change-nickname-button"
+                                        sx={{marginBottom: '24px', padding: '20px 0'}}
+                                        onClick={() => handleOpen('nickname')}>Change Nickname</Button>
+                                <Button variant="contained" fullWidth className="change-email-button"
+                                        sx={{marginBottom: '24px', padding: '20px 0'}}
+                                        onClick={() => handleOpen('email')}>Change Email</Button>
+                                <Button variant="contained" fullWidth className="change-password-button"
+                                        sx={{marginBottom: '24px', padding: '20px 0'}}
+                                        onClick={() => handleOpen('password')}>Change Password</Button>
+                                <Button variant="contained" fullWidth className="delete-account-button"
+                                        sx={{padding: '20px 0'}} onClick={() => handleOpen('deleteAccount')}>Delete
+                                    Account</Button>
                             </div>
                         </Stack>
                     </Stack>
@@ -386,11 +412,21 @@ const UserProfilePage: React.FC = () => {
                 <Dialog open={openAvatarSelection} onClose={() => handleClose('avatar')} maxWidth="md" fullWidth>
                     <DialogTitle>Select Avatar</DialogTitle>
                     <DialogContent dividers>
-                        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 2, overflowY: { xs: 'scroll', sm: 'unset' }, maxHeight: { xs: 400, sm: 'unset' } }}>
-                            <Avatar src={AVATAR_MAPPING.Avatar_1} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect('Avatar_1')} />
-                            <Avatar src={AVATAR_MAPPING.Avatar_2} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect('Avatar_2')} />
-                            <Avatar src={AVATAR_MAPPING.Avatar_3} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect('Avatar_3')} />
-                            <Avatar src={AVATAR_MAPPING.Avatar_4} sx={{ cursor: 'pointer', width: 200, height: 200 }} onClick={() => handleAvatarSelect('Avatar_4')} />
+                        <Box sx={{
+                            display: 'grid',
+                            gridTemplateColumns: {xs: '1fr', sm: '1fr 1fr'},
+                            gap: 2,
+                            overflowY: {xs: 'scroll', sm: 'unset'},
+                            maxHeight: {xs: 400, sm: 'unset'}
+                        }}>
+                            <Avatar src={AVATAR_MAPPING.Avatar_1} sx={{cursor: 'pointer', width: 200, height: 200}}
+                                    onClick={() => handleAvatarSelect('Avatar_1')}/>
+                            <Avatar src={AVATAR_MAPPING.Avatar_2} sx={{cursor: 'pointer', width: 200, height: 200}}
+                                    onClick={() => handleAvatarSelect('Avatar_2')}/>
+                            <Avatar src={AVATAR_MAPPING.Avatar_3} sx={{cursor: 'pointer', width: 200, height: 200}}
+                                    onClick={() => handleAvatarSelect('Avatar_3')}/>
+                            <Avatar src={AVATAR_MAPPING.Avatar_4} sx={{cursor: 'pointer', width: 200, height: 200}}
+                                    onClick={() => handleAvatarSelect('Avatar_4')}/>
                         </Box>
                     </DialogContent>
                     <DialogActions>
@@ -419,7 +455,7 @@ const UserProfilePage: React.FC = () => {
                         <Button onClick={handleDeleteAccount}>Delete</Button>
                     </DialogActions>
                 </Dialog>
-                {alertMessage && <Alert message={alertMessage} onClose={handleCloseAlert} />}
+                {alertMessage && <Alert message={alertMessage} onClose={handleCloseAlert}/>}
             </Container>
         </ThemeProvider>
     );

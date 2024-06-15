@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import '../../styles/flash_cards/flash_cards.scss';
 
 interface FlashCardProps {
@@ -10,7 +10,14 @@ interface FlashCardProps {
     onIconClick: () => void;
 }
 
-const FlashCard: React.FC<FlashCardProps> = ({ front_text, back_text, icon, isRotated, onIconClick, left_corner_text}) => {
+const FlashCard: React.FC<FlashCardProps> = ({
+                                                 front_text,
+                                                 back_text,
+                                                 icon,
+                                                 isRotated,
+                                                 onIconClick,
+                                                 left_corner_text
+                                             }) => {
 
     return (
         <div className={`flashcard ${isRotated ? 'flipped' : ''}`}>

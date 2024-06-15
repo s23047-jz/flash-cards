@@ -12,7 +12,6 @@ $flash-card-height: 35vh;
   font-size: 24px;
 
 
-
   .front {
     background-color: $bg-color-front;
 
@@ -87,6 +86,7 @@ $flash-card-height: 35vh;
     font-size: 20px;
   }
 }
+
 @media screen and (max-width: 1300px) {
   .flashcard {
     font-size: 18px;
