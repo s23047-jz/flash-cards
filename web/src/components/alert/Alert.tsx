@@ -5,8 +5,8 @@ import '../../styles/alert/alert.scss';
 const Alert = ({ message, onClose }) => {
   return (
     <div className="alert">
-      <p>{message}</p>
-      <button className="closeButton" onClick={onClose}>Close</button>
+      <p className='text-alert'>{message}</p>
+      <button className="button-alert" onClick={onClose}>Close</button>
     </div>
   );
 };

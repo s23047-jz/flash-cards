@@ -1,38 +1,39 @@
-.dialog {
+.dialog-chat {
     display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1000;
+    z-index: 10000;
     font-weight: bold;
     color: white;
 }
 
-.dialog.open {
+.dialog-chat.open {
     display: block;
 }
 
-.dialog-overlay {
+.dialog-overlay-chat {
+
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.1);
     opacity: 0;
     transition: opacity 0.3s ease;
 }
 
-.dialog.open .dialog-overlay {
+.dialog-chat.open .dialog-overlay-chat {
     opacity: 1;
 }
 
-.dialog-box {
+.dialog-box-chat {
     position: absolute;
     top: 50%;
     left: 50%;
+
     transform: translate(-50%, -50%);
     background-color: #0b9de6;
     padding: 20px;
@@ -40,7 +41,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-.dialog-header {
+.dialog-header-chat {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,26 +49,31 @@
     padding-right: 20px;
 }
 
-.dialog-header h2 {
+.dialog-header-chat h2 {
     margin: 0;
 }
 
-.close-btn {
+.close-btn-chat {
     background: none;
     border: none;
     cursor: pointer;
 }
 
-.dialog-content {
-    margin-bottom: 20px;
+.dialog-content-chat {
+    margin-bottom: 100px;
 }
 
-.dialog-actions {
+.dialog-content-chat p{
+    color: white;
+    font-size: 16px;
+}
+
+.dialog-actions-chat {
     display: flex;
     justify-content: flex-end;
 }
 
-.dialog-actions button {
+.dialog-actions-chat button {
     margin-right: 50px;
     border: 1px solid black;
     border-radius: 5px;
@@ -75,18 +81,20 @@
     cursor: pointer;
 }
 
-.accept-btn {
+.accept-btn-chat {
     background-color: #00cc00;
 }
 
-.reject-btn {
+.reject-btn-chat {
     background-color: #cc0000;
 }
 
-.accept-btn:hover {
+.accept-btn-chat:hover {
     background-color: #00ff00;
 }
 
-.reject-btn:hover {
+.reject-btn-chat:hover {
     background-color: #ff0000;
 }
+
+
