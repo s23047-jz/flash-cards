@@ -13,7 +13,8 @@ import "../../styles/voice_control_page/cards_buttons_container.scss"
 import {NlpService} from "../../services/nlp";
 import {useNavigate} from 'react-router-dom';
 import VoiceControlInstruction from "../alert/VoiceControlInstruction";
-const CardsButtonsContainer = () => {
+// @ts-ignore
+const CardsButtonsContainer = ({backToDeckPath}) => {
     const [flashcards, setFlashcards] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [currentBigCardIndex, setCurrentBigCardIndex] = useState(0);
@@ -123,8 +124,9 @@ const CardsButtonsContainer = () => {
     const handleSpeak = (text: string) => {
         if ('speechSynthesis' in window) {
             const speech = new SpeechSynthesisUtterance(text);
+            console.log(text)
             speech.lang = 'en-GB';
-            speech.rate = 0.9;
+            speech.rate = 1.0;
             speech.pitch = 1.2;
             speech.volume = 1.0;
             setIsSpeakingBigCard(true);
@@ -239,7 +241,7 @@ const CardsButtonsContainer = () => {
     };
 
      const navigatePrevSide = () => {
-        navigate('/my_deck_learning_modes')
+        navigate(backToDeckPath)
     }
     const nlpModelControl = async (text: string) => {
 

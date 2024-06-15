@@ -4,9 +4,9 @@ import DrawerAppBar from "../components/home_page/NavBar";
 // @ts-ignore
 import {ActiveUser} from "../services/user";
 import CardsButtonsContainer from "../components/voice_control/CardsButtonsContainer";
-;
 
-const MyDecks = () => {
+// @ts-ignore
+const VoiceControl = ({pathToBack}) => {
     ActiveUser.getUserData();
     return (
         <>
@@ -14,11 +14,11 @@ const MyDecks = () => {
                 <DrawerAppBar/>
             </nav>
             <main className="main-container-voice-mode">
-                <CardsButtonsContainer/>
+                <CardsButtonsContainer backToDeckPath={pathToBack}/>
 
             </main>
         </>
     );
 };
 
-export default MyDecks;
+export default VoiceControl;
