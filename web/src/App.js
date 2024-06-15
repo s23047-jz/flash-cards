@@ -24,11 +24,6 @@ import ModeratorPanelDecks from "./views/ModeratorPanelDecks";
 import ModeratorPanelDeckAllFlashCards from "./views/ModeratorPanelDeckAllFlashCards";
 import ModeratorPanelUsers from "./views/ModeratorPanelUsers";
 import DownloadedDecksAllFlashcards from "./views/DownloadedDecksAllFlashcards";
-import DownloadedDecksVoiceControlContainer from "./components/downloaded_decks/DownloadedDecksVoiceControlContainer";
-import DownloadedDecksNotMemorizedContainer from "./components/downloaded_decks/DownloadedDecksNotMemorizedContainer";
-import DownloadedDeckMemorizedFlashcardsContainer
-    from "./components/downloaded_decks/DownloadedDecksMemorizedFlashcardsContainer";
-import DownloadedDeckLearningMode from "./views/DownloadedDeckLearningMode";
 function App() {
     return (
         <Router>
