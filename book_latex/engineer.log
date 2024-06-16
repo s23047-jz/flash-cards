@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  11 JUN 2024 21:31
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  16 JUN 2024 22:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -623,17 +623,7 @@ l.47 \begin{document}
 ? 
 \@quotelevel=\count432
 \@quotereset=\count433
-(./engineer.aux
-
-LaTeX Warning: Label `' multiply defined.
-
-
-LaTeX Warning: Label `' multiply defined.
-
-
-LaTeX Warning: Label `' multiply defined.
-
-)
+No file engineer.aux.
 \openout1 = `engineer.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
@@ -647,7 +637,7 @@ LaTeX Font Info:    ... okay on input line 47.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
 7.
- (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 47.
@@ -665,21 +655,21 @@ LaTeX Font Info:    ... okay on input line 47.
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: twoside heightrounded 
-* h-part:(L,W,R)=(85.35826pt, 455.24411pt, 56.9055pt)
-* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* modes: 
+* h-part:(L,W,R)=(89.62709pt, 418.25368pt, 89.6271pt)
+* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=455.24411pt
-* \textheight=706.0pt
-* \oddsidemargin=13.08827pt
-* \evensidemargin=-15.36449pt
-* \topmargin=-38.1381pt
+* \textwidth=418.25368pt
+* \textheight=591.5302pt
+* \oddsidemargin=17.3571pt
+* \evensidemargin=17.3571pt
+* \topmargin=-7.86334pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=56.9055pt
+* \marginparwidth=65.0pt
 * \marginparsep=11.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
@@ -687,8 +677,8 @@ LaTeX Font Info:    ... okay on input line 47.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidetrue
-* \@mparswitchtrue
+* \@twosidefalse
+* \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
@@ -823,16 +813,26 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 51.
 
+Underfull \hbox (badness 10000) in paragraph at lines 51--51
+[]\TU/lmr/bx/n/10 Data ustalenia
+ []
+
+
 Overfull \hbox (25.19997pt too wide) in paragraph at lines 51--51
  [] 
  []
 
 
-Overfull \hbox (22.6864pt too wide) in paragraph at lines 51--51
+Underfull \hbox (badness 4673) in paragraph at lines 51--51
+[]|\TU/lmr/bx/n/10 Numer albu-
+ []
+
+
+Overfull \hbox (24.90573pt too wide) in paragraph at lines 51--51
  [] 
  []
 
-[2] [3] (./engineer.toc
+[1] [2] [3] (./engineer.toc
 
 ! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
 
@@ -884,717 +884,44 @@ l.1 ...ctlanguage *[spacedguillemets=true]{polish}
 
  (./chapters/chapter_1/main.tex [6]
 Rozdział 1.
-) (./chapters/chapter_2/main.tex [7
+[7
 
-]
+]) (./chapters/chapter_2/main.tex [8]
 Rozdział 2.
-[8
+[9
 
 ]
 File: chapters/chapter_2/rich_picture.png Graphic file (type bmp)
 <chapters/chapter_2/rich_picture.png>
- [9]
+ [10]
 File: chapters/chapter_2/krzywa1.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa1.png>
+ [11]
 File: chapters/chapter_2/krzywa2.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa2.png>
- [10] [11]) (./chapters/chapter_3/main.tex [12]
+ [12] [13]) (./chapters/chapter_3/main.tex [14]
 Rozdział 3.
-[13
+[15
 
 ]
 File: chapters/chapter_3/quizlet.png Graphic file (type bmp)
 <chapters/chapter_3/quizlet.png>
- [14]
+ [16]
 File: chapters/chapter_3/fiszoteka.png Graphic file (type bmp)
 <chapters/chapter_3/fiszoteka.png>
- [15]
+ [17] [18]
 File: chapters/chapter_3/gizmo.png Graphic file (type bmp)
 <chapters/chapter_3/gizmo.png>
- [16]
+ [19]
 File: chapters/chapter_3/flashcards.png Graphic file (type bmp)
 <chapters/chapter_3/flashcards.png>
- [17] (./chapters/chapter_3/table.tex [18]
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-[]|\TU/lmr/bx/n/10 Zidentyfiko-
+ [20] [21] [22])
+Overfull \hbox (6.23636pt too wide) in paragraph at lines 175--63
+[]\TU/lmr/m/n/10 System fiszki ma możliwość generowania definicji na podstawie 
+słowa, wykorzystując ChatGPT.
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-[]|\TU/lmr/bx/n/10 Środki /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 pobiegawcze
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 i szacowa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 ny poziom
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-[]|\TU/lmr/bx/n/10 Środki /
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 Działania
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 minimalizu-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 jące wpływ
- []
-
-
-Underfull \hbox (badness 1789) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 już po jego
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 wystąpieniu
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 i szacowa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 ny poziom
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 wdrożenia
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-[]|\TU/lmr/bx/n/10 Ranga ry-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 zyka (im
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 niższa, tym
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 mniejszy
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 negatywny
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--5
-\TU/lmr/bx/n/10 wpływ na
- []
-
-
-Overfull \hbox (1.62859pt too wide) in paragraph at lines 5--6
-[]|\TU/lmr/bx/n/10 Prawdopodo-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
-\TU/lmr/bx/n/10 - bieństwo
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 5--6
-\TU/lmr/bx/n/10 wystąpienia
- []
-
-
-Underfull \hbox (badness 1418) in paragraph at lines 7--7
-\TU/lmr/m/n/10 pilacji, wyniki
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
-\TU/lmr/m/n/10 testów nie
- []
-
-
-Underfull \hbox (badness 3312) in paragraph at lines 7--7
-\TU/lmr/m/n/10 pokrywają się
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
-\TU/lmr/m/n/10 wykonywanie
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
-\TU/lmr/m/n/10 testów opro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
-\TU/lmr/m/n/10 testowanie
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
-\TU/lmr/m/n/10 na bieżąco
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
-\TU/lmr/m/n/10 nowo imple-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
-\TU/lmr/m/n/10 mentowanych
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 7--7
-\TU/lmr/m/n/10 funkcjonalno-
- []
-
-
-Underfull \hbox (badness 5077) in paragraph at lines 9--9
-[]|\TU/lmr/m/n/10 Awaria sprzę-
- []
-
-
-Underfull \hbox (badness 4608) in paragraph at lines 9--9
-\TU/lmr/m/n/10 tu deweloper-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-[]|\TU/lmr/m/n/10 Sprzęt prze-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-\TU/lmr/m/n/10 staje działać,
- []
-
-
-Underfull \hbox (badness 1142) in paragraph at lines 9--9
-\TU/lmr/m/n/10 brak możliwo-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-[]|\TU/lmr/m/n/10 Działanie na
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-[]|\TU/lmr/m/n/10 Niedobór
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-\TU/lmr/m/n/10 umiejętności
- []
-
-
-Underfull \hbox (badness 1264) in paragraph at lines 11--11
-[]|\TU/lmr/m/n/10 Problemy jed-
- []
-
-
-Underfull \hbox (badness 2158) in paragraph at lines 11--11
-\TU/lmr/m/n/10 nostek w po-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-\TU/lmr/m/n/10 szczególnych
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-[]|\TU/lmr/m/n/10 Uzupełnianie
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-[]|\TU/lmr/m/n/10 Pomoc in-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-[]|\TU/lmr/m/n/10 Niezgodność
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-[]|\TU/lmr/m/n/10 Osoba blo-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 kuje postęp
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 nad projek-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 tem poprzez
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 odpowiedzial-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 ność nad
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 kluczowym
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-[]|\TU/lmr/m/n/10 Wcześniejsze
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 zaplanowanie
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-[]|\TU/lmr/m/n/10 Wspólna
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 praca nad
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 kluczowym
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 elementem
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 zajęcie się
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 powiązanymi
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-[]|\TU/lmr/m/n/10 Wybór nie-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 odpowiedniej
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-[]|\TU/lmr/m/n/10 Planowane
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 rozwiązania
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 nie są osią-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 galne przez
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 wykorzystywa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-[]|\TU/lmr/m/n/10 Dogłębna
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 analiza po-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 trzebnych
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 technologii
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-[]|\TU/lmr/m/n/10 Dopasowanie
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 alternatyw-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 nych możli-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 wych rozwią-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-[]|\TU/lmr/m/n/10 Niedoszacowa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 - nie budżetu
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 potrzebnego
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 infrastruktury
- []
-
-
-Underfull \hbox (badness 5008) in paragraph at lines 17--17
-[]|\TU/lmr/m/n/10 Budżet zbliża
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 pania przed
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 zaplanowanym
- []
-
-
-Underfull \hbox (badness 4013) in paragraph at lines 17--17
-\TU/lmr/m/n/10 ków wykorzy-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-[]|\TU/lmr/m/n/10 Próba po-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 zyskania
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 inwestorów
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-[]|\TU/lmr/m/n/10 ChatGPT
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 3.5 generuje
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 bezsensowną
- []
-
-
-Underfull \hbox (badness 2426) in paragraph at lines 19--19
-\TU/lmr/m/n/10 treść dotyczą-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 użytkownika
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-[]|\TU/lmr/m/n/10 Generowane
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 treści nie
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 nawiązują
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 do zagadnie-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 nia, o które
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 chat został
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-[]|\TU/lmr/m/n/10 Próba spre-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 cyzowania
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 zapytania,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 które zosta-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 ło przesłane
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 do chatu
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 w celu wy-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 generowania
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 konkretniejszej
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-[]|\TU/lmr/m/n/10 Użytkownik
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 może zaak-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 ceptować lub
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 odrzucić wy-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 generowaną
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-[]|\TU/lmr/m/n/10 Przeglądarka
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 niepoprawnie
- []
-
-
-Underfull \hbox (badness 1365) in paragraph at lines 21--21
-\TU/lmr/m/n/10 wczytuje stro-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-[]|\TU/lmr/m/n/10 Style strony
- []
-
-
-Underfull \hbox (badness 2951) in paragraph at lines 21--21
-\TU/lmr/m/n/10 nie wyglądają
- []
-
-
-Underfull \hbox (badness 1968) in paragraph at lines 21--21
-\TU/lmr/m/n/10 tak samo jak
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 na stronie
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 uruchomionej
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 lokalnie lub
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 na innych
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 przeglądar-
- []
-
-
-Underfull \hbox (badness 5008) in paragraph at lines 21--21
-\TU/lmr/m/n/10 kach. Pozycje
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 elementów
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 na stronie
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 są inaczej
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-[]|\TU/lmr/m/n/10 Próba dosto-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 sowania styli
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 lub funkcjo-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 nalności do
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 konkretnej
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-[]|\TU/lmr/m/n/10 Uruchomienie
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 przeglądarce
- []
-
-
-Overfull \hbox (12.20438pt too wide) in alignment at lines 3--24
- [] [] [] [] [] [] 
- []
-
-[19])) [20] (./chapters/chapter_5/main.tex
+(./chapters/chapter_5/main.tex
 
 ! LaTeX Error: Environment chap5 undefined.
 
@@ -1605,9 +932,9 @@ Type  H <return>  for immediate help.
 l.31 \begin{chap5}
                   
 ? 
-[21]
+[23]
 Rozdział 4.
-[22
+[24
 
 ]
 
@@ -1617,48 +944,723 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.57 \end{chap5}
+l.65 \end{chap5}
                 
 ? 
-[23]) (./chapters/chapter_6/main.tex
+[25] [26] (./chapters/chapter_5/analiza_ryzyka.tex
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\TU/lmr/bx/n/10 Zidentyfiko-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\TU/lmr/bx/n/10 Środki /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 pobiegawcze
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 i szacowa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 ny poziom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\TU/lmr/bx/n/10 Środki /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 Działania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 minimalizu-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 jące wpływ
+ []
+
+
+Underfull \hbox (badness 1789) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 już po jego
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 wystąpieniu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 i szacowa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 ny poziom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 wdrożenia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\TU/lmr/bx/n/10 Ranga ry-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 zyka (im
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 niższa, tym
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 mniejszy
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 negatywny
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 wpływ na
+ []
+
+
+Overfull \hbox (1.62859pt too wide) in paragraph at lines 9--10
+[]|\TU/lmr/bx/n/10 Prawdopodo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+\TU/lmr/bx/n/10 - bieństwo
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--10
+\TU/lmr/bx/n/10 wystąpienia
+ []
+
+
+Underfull \hbox (badness 1418) in paragraph at lines 11--11
+\TU/lmr/m/n/10 pilacji, wyniki
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 testów nie
+ []
+
+
+Underfull \hbox (badness 3312) in paragraph at lines 11--11
+\TU/lmr/m/n/10 pokrywają się
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 wykonywanie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 testów opro-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 testowanie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 na bieżąco
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 nowo imple-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 mentowanych
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 funkcjonalno-
+ []
+
+
+Underfull \hbox (badness 5077) in paragraph at lines 13--13
+[]|\TU/lmr/m/n/10 Awaria sprzę-
+ []
+
+
+Underfull \hbox (badness 4608) in paragraph at lines 13--13
+\TU/lmr/m/n/10 tu deweloper-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\TU/lmr/m/n/10 Sprzęt prze-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 staje działać,
+ []
+
+
+Underfull \hbox (badness 1142) in paragraph at lines 13--13
+\TU/lmr/m/n/10 brak możliwo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\TU/lmr/m/n/10 Działanie na
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\TU/lmr/m/n/10 Niedobór
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\TU/lmr/m/n/10 umiejętności
+ []
+
+
+Underfull \hbox (badness 1264) in paragraph at lines 15--15
+[]|\TU/lmr/m/n/10 Problemy jed-
+ []
+
+
+Underfull \hbox (badness 2158) in paragraph at lines 15--15
+\TU/lmr/m/n/10 nostek w po-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+\TU/lmr/m/n/10 szczególnych
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\TU/lmr/m/n/10 Uzupełnianie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\TU/lmr/m/n/10 Pomoc in-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\TU/lmr/m/n/10 Niezgodność
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\TU/lmr/m/n/10 Osoba blo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 kuje postęp
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 nad projek-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 tem poprzez
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 odpowiedzial-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 ność nad
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 kluczowym
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\TU/lmr/m/n/10 Wcześniejsze
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 zaplanowanie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+[]|\TU/lmr/m/n/10 Wspólna
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 praca nad
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 kluczowym
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 elementem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 zajęcie się
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 17--17
+\TU/lmr/m/n/10 powiązanymi
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\TU/lmr/m/n/10 Wybór nie-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 odpowiedniej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\TU/lmr/m/n/10 Planowane
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 rozwiązania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 nie są osią-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 galne przez
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 wykorzystywa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\TU/lmr/m/n/10 Dogłębna
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 analiza po-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 trzebnych
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 technologii
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+[]|\TU/lmr/m/n/10 Dopasowanie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 alternatyw-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 nych możli-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 wych rozwią-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Niedoszacowa-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 - nie budżetu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 potrzebnego
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 infrastruktury
+ []
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Budżet zbliża
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 pania przed
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 zaplanowanym
+ []
+
+
+Underfull \hbox (badness 4013) in paragraph at lines 21--21
+\TU/lmr/m/n/10 ków wykorzy-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Próba po-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 zyskania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 inwestorów
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\TU/lmr/m/n/10 ChatGPT
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 3.5 generuje
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 bezsensowną
+ []
+
+
+Underfull \hbox (badness 2426) in paragraph at lines 23--23
+\TU/lmr/m/n/10 treść dotyczą-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 użytkownika
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\TU/lmr/m/n/10 Generowane
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 treści nie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 nawiązują
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 do zagadnie-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 nia, o które
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 chat został
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\TU/lmr/m/n/10 Próba spre-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 cyzowania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 zapytania,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 które zosta-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 ło przesłane
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 do chatu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 w celu wy-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 generowania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 konkretniejszej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\TU/lmr/m/n/10 Użytkownik
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 może zaak-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 ceptować lub
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 odrzucić wy-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 generowaną
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+[]|\TU/lmr/m/n/10 Przeglądarka
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 niepoprawnie
+ []
+
+
+Underfull \hbox (badness 1365) in paragraph at lines 25--25
+\TU/lmr/m/n/10 wczytuje stro-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+[]|\TU/lmr/m/n/10 Style strony
+ []
+
+
+Underfull \hbox (badness 2951) in paragraph at lines 25--25
+\TU/lmr/m/n/10 nie wyglądają
+ []
+
+
+Underfull \hbox (badness 1968) in paragraph at lines 25--25
+\TU/lmr/m/n/10 tak samo jak
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 na stronie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 uruchomionej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 lokalnie lub
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 na innych
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 przeglądar-
+ []
+
+
+Underfull \hbox (badness 5008) in paragraph at lines 25--25
+\TU/lmr/m/n/10 kach. Pozycje
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 elementów
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 na stronie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 są inaczej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+[]|\TU/lmr/m/n/10 Próba dosto-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 sowania styli
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 lub funkcjo-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 nalności do
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 konkretnej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+[]|\TU/lmr/m/n/10 Uruchomienie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 przeglądarce
+ []
+
+
+Overfull \hbox (49.19481pt too wide) in alignment at lines 7--28
+ [] [] [] [] [] [] 
+ []
+
+[27])) (./chapters/chapter_6/main.tex
 ! Undefined control sequence.
 l.1 \newapage
              
 ? 
-[24]
+[28]
 Rozdział 5.
 File: chapters/chapter_6/diagram_przypadkow_uzycia.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_przypadkow_uzycia.png>
 File: chapters/chapter_6/erd.png Graphic file (type bmp)
 <chapters/chapter_6/erd.png>
-[25
+[29
 
 ]
 File: chapters/chapter_6/diagram_architektury.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_architektury.png>
 File: chapters/chapter_6/diagram_sekwencji_1.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_sekwencji_1.png>
- [26]
+ [30]
 File: chapters/chapter_6/diagram_sekwencji_2.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_sekwencji_2.png>
- [27] (./chapters/chapter_6/wymagania.tex [28]
-Underfull \hbox (badness 2495) in paragraph at lines 89--89
-\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
+ [31] (./chapters/chapter_6/wymagania.tex [32] [33] [34] [35] [36]
+[37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49]
+Underfull \hbox (badness 1199) in paragraph at lines 599--599
+\TU/lmr/m/n/10 plecza technicznego systemu; zarządzanie, utrzymanie
  []
 
-[29] [30] [31] [32] [33] [34] [35] [36]
-Underfull \hbox (badness 2495) in paragraph at lines 377--377
-[]|\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
- []
-
-[37] [38] [39] [40] [41]
 ! Undefined control sequence.
 <argument> \string \newlabel {\tablabel 
                                         }{{\@currentlabel }{\thepage }{\@cur...
 l.602 \end{stakeholder}
                        
 ? 
-[42]
+[50]
 ! Undefined control sequence.
 <argument> \string \newlabel {\tablabel 
                                         }{{\@currentlabel }{\thepage }{\@cur...
@@ -1671,77 +1673,84 @@ l.614 \end{stakeholder}
 l.626 \end{stakeholder}
                        
 ? 
-
-Underfull \hbox (badness 4531) in paragraph at lines 633--633
-[]|\TU/lmr/m/n/10 Dostarczeczenie infrastruktury i środowiska technicznego
- []
-
 ! Undefined control sequence.
 <argument> \string \newlabel {\tablabel 
                                         }{{\@currentlabel }{\thepage }{\@cur...
 l.636 \end{stakeholder}
                        
 ? 
-[43])) (./chapters/chapter_7/main.tex [44]
+[51])) (./chapters/chapter_7/main.tex [52]
 Rozdział 6.
 File: chapters/chapter_7/github.png Graphic file (type bmp)
 <chapters/chapter_7/github.png>
-File: chapters/chapter_7/jira.png Graphic file (type bmp)
-<chapters/chapter_7/jira.png>
-[45
+[53
 
 ]
+File: chapters/chapter_7/jira.png Graphic file (type bmp)
+<chapters/chapter_7/jira.png>
 File: chapters/chapter_7/miro.png Graphic file (type bmp)
 <chapters/chapter_7/miro.png>
+ [54]
 File: chapters/chapter_7/google_drive.png Graphic file (type bmp)
 <chapters/chapter_7/google_drive.png>
- [46]
 File: chapters/chapter_7/canva.png Graphic file (type bmp)
 <chapters/chapter_7/canva.png>
- [47] [48]) (./chapters/chapter_8/main.tex [49]
+ [55] [56] [57]) (./chapters/chapter_8/main.tex [58]
 Rozdział 7.
-(./chapters/chapter_8/sprinty.tex [50
 
-] [51] [52] [53] [54] [55])
-(./chapters/chapter_8/implementacja.tex [56]
+LaTeX Warning: Citation 'osborn1953' on page 59 undefined on input line 7.
+
+[59
+
+] (./chapters/chapter_8/sprinty.tex [60] [61] [62] [63] [64]
+Overfull \vbox (10.32458pt too high) has occurred while \output is active []
+
+
+[65]
+Overfull \hbox (25.19997pt too wide) in alignment at lines 296--435
+ [] [] 
+ []
+
+[66] [67]) (./chapters/chapter_8/implementacja.tex [68]
 File: chapters/chapter_8/screens/rejestracja_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/rejestracja_backend.png>
- [57] [58]
+ [69]
 File: chapters/chapter_8/screens/rejestracja_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/rejestracja_mobile.png>
 File: chapters/chapter_8/screens/rejestracja_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/rejestracja_web.png>
+ [70]
 File: chapters/chapter_8/screens/logowanie_backend.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_backend.png>
- [59]
+ [71]
 File: chapters/chapter_8/screens/logowanie_mobile.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_mobile.png>
 File: chapters/chapter_8/screens/logowanie_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_web.png>
- [60]
+ [72]
 File: chapters/chapter_8/screens/wylogowanie_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/wylogowanie_backend.png>
- [61]
+
+[73]
 File: chapters/chapter_8/screens/wylogowanie_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/wylogowanie_mobile.png>
 File: chapters/chapter_8/screens/wylogowanie_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/wylogowanie_web.png>
- [62]
+ [74]
 File: chapters/chapter_8/screens/edit_user_backend_1.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/edit_user_backend_1.png>
+ [75]
 File: chapters/chapter_8/screens/edit_user_backend_2.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/edit_user_backend_2.png>
-
-[63]
+ [76] [77]
 File: chapters/chapter_8/screens/edit_user_mobile.png Graphic file (type bmp)
 <chapters/chapter_8/screens/edit_user_mobile.png>
- [64]
 File: chapters/chapter_8/screens/edit_user_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/edit_user_web.png>
 
@@ -1749,7 +1758,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 161--163
 
  []
 
-
+[78]
 Underfull \hbox (badness 10000) in paragraph at lines 171--172
 
  []
@@ -1759,24 +1768,40 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
-[65]
 File: chapters/chapter_8/screens/delete_user_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/delete_user_backend.png>
+[79]
 File: chapters/chapter_8/screens/delete_user_mobile_1.png Graphic file (type bm
 p)
 <chapters/chapter_8/screens/delete_user_mobile_1.png>
- [66]
 File: chapters/chapter_8/screens/delete_user_mobile_2.png Graphic file (type bm
 p)
 <chapters/chapter_8/screens/delete_user_mobile_2.png>
-)) (./chapters/chapter_9/main.tex [67]
+ [80])) (./chapters/chapter_9/main.tex [81]
 Rozdział 8.
+[82
+
+]
 File: chapters/chapter_9/testy1.png Graphic file (type bmp)
 <chapters/chapter_9/testy1.png>
-[68
+ [83]) (./chapters/chapter_10/main.tex [84] [85] [86] [87] [88] [89]
+[90] [91]
+Rozdział 9.
+) (./chapters/chapter_11/main.tex [92
 
-]) [69] [70] [71] [72] [73] [74] [75] [76
+]
+Rozdział 10.
+File: chapters/chapter_11/naklad_pracy_wykres.png Graphic file (type bmp)
+<chapters/chapter_11/naklad_pracy_wykres.png>
+[93
+
+] [94] [95] [96] [97] [98] [99] [100] [101]) (./chapters/chapter_12/main.tex [1
+02]
+Rozdział 11.
+[103
+
+] [104] [105]) [106] [107] [108
 
 ] (./engineer.aux)
  ***********
@@ -1785,19 +1810,27 @@ L3 programming layer <2024-02-20>
  ***********
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                engineer
+(biblatex)                and rerun LaTeX afterwards.
 
 Package logreq Info: Writing requests to 'engineer.run.xml'.
 \openout1 = `engineer.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16919 strings out of 474773
- 375109 string characters out of 5757724
+ 16963 strings out of 474773
+ 376850 string characters out of 5757724
  1975839 words of memory out of 5000000
- 38802 multiletter control sequences out of 15000+600000
+ 38837 multiletter control sequences out of 15000+600000
  563931 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 74i,13n,84p,1760b,4991s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,13n,84p,1757b,4991s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on engineer.pdf (76 pages).
+Output written on engineer.pdf (109 pages).

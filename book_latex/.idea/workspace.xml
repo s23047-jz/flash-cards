@@ -6,24 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bibliography.bib" beforeDir="false" afterPath="$PROJECT_DIR$/bibliography.bib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_1/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_1/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_10/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_10/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_11/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_11/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_12/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_12/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_2/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_2/main.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_3/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/table.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/analiza_ryzyka.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_5/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_7/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_7/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.tex" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mobile/src/screens/FlashCards/LearningVoiceMode.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/src/screens/FlashCards/LearningVoiceMode.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mobile/src/services/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/src/services/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bbl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.bcf" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bcf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.blg" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.blg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.log" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.run.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.toc" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.toc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,28 +38,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "BibTeX.engineer bibliography.executor": "Run",
-    "LaTeX.engineer.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/daniel/Repos/flash-cards/book_latex/chapters/chapter_11",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;BibTeX.engineer bibliography.executor&quot;: &quot;Run&quot;,
+    &quot;LaTeX.engineer.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/daniel/Repos/flash-cards/book_latex/chapters/chapter_11&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/chapters/chapter_11" />
@@ -201,6 +190,8 @@
       <workItem from="1716309485552" duration="15000" />
       <workItem from="1718135064720" duration="88000" />
       <workItem from="1718565891073" duration="4857000" />
+      <workItem from="1718571349943" duration="184000" />
+      <workItem from="1718572768661" duration="745000" />
     </task>
     <task id="LOCAL-00001" summary="poprawki">
       <option name="closed" value="true" />

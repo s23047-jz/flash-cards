@@ -1,116 +1,142 @@
 \selectlanguage *[spacedguillemets=true]{polish}
 \contentsline {chapter}{\numberline {1}Wstęp}{7}{}%
 \contentsline {section}{\numberline {1.1}O projekcie}{7}{}%
-\contentsline {chapter}{\numberline {2}Omówienie problemu}{8}{}%
-\contentsline {section}{\numberline {2.1}Czym są fiszki?}{8}{}%
-\contentsline {section}{\numberline {2.2}Przedstawienie problemu}{8}{}%
-\contentsline {section}{\numberline {2.3}Zalety nauki z wykorzystaniem metody fiszek}{9}{}%
-\contentsline {subsection}{\numberline {2.3.1}Krzywa zapomnienia Hermanna Ebbinghausa}{10}{}%
-\contentsline {subsection}{\numberline {2.3.2}Przykłady praktycznych zastosowań fiszek}{11}{}%
-\contentsline {subsection}{\numberline {2.3.3}Personalizacja fiszek}{12}{}%
-\contentsline {section}{\numberline {2.4}Słownik pojęć}{12}{}%
-\contentsline {chapter}{\numberline {3}Projekt w kontekście}{13}{}%
-\contentsline {section}{\numberline {3.1}Omówienie zakresu projektu}{13}{}%
-\contentsline {section}{\numberline {3.2}Proponowane rozwiązanie}{13}{}%
-\contentsline {section}{\numberline {3.3}Grupa docelowa}{13}{}%
-\contentsline {section}{\numberline {3.4}Analiza rozwiązań konkurencji}{14}{}%
-\contentsline {subsection}{\numberline {3.4.1}Quizlet}{14}{}%
-\contentsline {subsection}{\numberline {3.4.2}Fiszkoteka}{15}{}%
-\contentsline {subsection}{\numberline {3.4.3}Gizmo}{16}{}%
-\contentsline {subsection}{\numberline {3.4.4}Audio Flashcards}{17}{}%
-\contentsline {section}{\numberline {3.5}Analiza szans oraz zalet względem konkurencyjnych rozwiązań}{18}{}%
-\contentsline {subsection}{\numberline {3.5.1}Szanse/Zalety względem konkurencyjnych rozwiązań}{18}{}%
-\contentsline {subsection}{\numberline {3.5.2}Wady względem konkurencyjnych rozwiązań}{18}{}%
-\contentsline {section}{\numberline {3.6}Analiza ryzyka}{18}{}%
-\contentsline {section}{\numberline {3.7}Społeczny aspekt projektu}{20}{}%
-\contentsline {subsection}{\numberline {3.7.1}Gamifikacja w kontekście produktu}{20}{}%
-\contentsline {subsection}{\numberline {3.7.2}Ryzyko związane z nauką przy pomocy systemu Fishki}{21}{}%
-\contentsline {chapter}{\numberline {4}Organizacja pracy}{22}{}%
-\contentsline {section}{\numberline {4.1}Harmonogram pracy}{22}{}%
-\contentsline {section}{\numberline {4.2}Wybrana metodyka}{23}{}%
-\contentsline {section}{\numberline {4.3}Zespół i podział obowiązków}{23}{}%
-\contentsline {chapter}{\numberline {5}Analiza wymagań}{25}{}%
-\contentsline {section}{\numberline {5.1}Diagramy}{25}{}%
-\contentsline {section}{\numberline {5.2}Wymagania ogólne}{28}{}%
-\contentsline {subsection}{\numberline {5.2.1}Moduł autoryzacji}{28}{}%
-\contentsline {subsection}{\numberline {5.2.2}Moduł zarządzania talią}{29}{}%
-\contentsline {subsection}{\numberline {5.2.3}Moduł uczenia}{29}{}%
-\contentsline {subsection}{\numberline {5.2.4}Moduł udogodnień}{29}{}%
-\contentsline {subsection}{\numberline {5.2.5}Moduł wspomagania tworzenia talii}{30}{}%
-\contentsline {section}{\numberline {5.3}Wymagania funkcjonalne}{30}{}%
-\contentsline {subsection}{\numberline {5.3.1}Rejestracja konta użytkownika}{30}{}%
-\contentsline {subsection}{\numberline {5.3.2}Logowanie do systemu}{31}{}%
-\contentsline {subsection}{\numberline {5.3.3}Wylogowanie z systemu}{31}{}%
-\contentsline {subsection}{\numberline {5.3.4}Edycja danych użytkownika}{32}{}%
-\contentsline {subsection}{\numberline {5.3.5}Usunięcie konta użytkownika}{32}{}%
-\contentsline {subsection}{\numberline {5.3.6}Tworzenie talii fiszek}{33}{}%
-\contentsline {subsection}{\numberline {5.3.7}Usunięcie talii fiszek}{33}{}%
-\contentsline {subsection}{\numberline {5.3.8}Edycja talii fiszek}{34}{}%
-\contentsline {subsection}{\numberline {5.3.9}Tryb uczenia się z talii fiszek}{34}{}%
-\contentsline {subsection}{\numberline {5.3.10}Sterowanie talią przy użyciu mowy}{35}{}%
-\contentsline {subsection}{\numberline {5.3.11}Import talii innych użytkowników}{35}{}%
-\contentsline {subsection}{\numberline {5.3.12}Tryb dark mode i light mode}{36}{}%
-\contentsline {subsection}{\numberline {5.3.13}Kalendarz śledzący aktywność}{36}{}%
-\contentsline {subsection}{\numberline {5.3.14}Weryfikacja konta użytkownika poprzez email}{37}{}%
-\contentsline {subsection}{\numberline {5.3.15}Tworzenie talii fiszek poprzez zeskanowanie dokumentu}{37}{}%
-\contentsline {subsection}{\numberline {5.3.16}Generowanie treści fiszki na podstawie słów kluczowych}{38}{}%
-\contentsline {subsection}{\numberline {5.3.17}Resetowanie hasła na konta}{38}{}%
-\contentsline {section}{\numberline {5.4}Interfejs z otoczeniem}{39}{}%
-\contentsline {section}{\numberline {5.5}Wymagania pozafunkcjonalne}{39}{}%
-\contentsline {subsection}{\numberline {5.5.1}Instrukcja korzystania z trybu sterowania głosem}{39}{}%
-\contentsline {subsection}{\numberline {5.5.2}Limit błędów dotyczących logowania}{39}{}%
-\contentsline {subsection}{\numberline {5.5.3}Dostępność systemu}{40}{}%
-\contentsline {subsection}{\numberline {5.5.4}Responsywność}{40}{}%
-\contentsline {subsection}{\numberline {5.5.5}Kompatybilność}{40}{}%
-\contentsline {subsection}{\numberline {5.5.6}Hashowanie haseł}{40}{}%
-\contentsline {section}{\numberline {5.6}Wymagania na środowisko docelowe}{41}{}%
-\contentsline {subsection}{\numberline {5.6.1}Przeglądarka}{41}{}%
-\contentsline {subsection}{\numberline {5.6.2}System Android 10 i iOS 16}{41}{}%
-\contentsline {subsection}{\numberline {5.6.3}Kontenery dockerowe}{41}{}%
-\contentsline {subsection}{\numberline {5.6.4}Baza danych}{41}{}%
-\contentsline {subsection}{\numberline {5.6.5}Python}{42}{}%
-\contentsline {subsection}{\numberline {5.6.6}Node.js}{42}{}%
-\contentsline {subsection}{\numberline {5.6.7}System operacyjny}{42}{}%
-\contentsline {section}{\numberline {5.7}Udziałowcy}{43}{}%
-\contentsline {chapter}{\numberline {6}Architektura projektu i użyte technologie}{45}{}%
-\contentsline {section}{\numberline {6.1}Narzędzia organizacji pracy}{45}{}%
-\contentsline {section}{\numberline {6.2}Aplikacja webowa}{48}{}%
-\contentsline {section}{\numberline {6.3}Aplikacja mobilna}{48}{}%
-\contentsline {section}{\numberline {6.4}Backend aplikacji}{48}{}%
-\contentsline {section}{\numberline {6.5}Baza danych}{48}{}%
-\contentsline {section}{\numberline {6.6}Infrastruktura serwerowa}{49}{}%
-\contentsline {section}{\numberline {6.7}Narzędzia programistyczne}{49}{}%
-\contentsline {chapter}{\numberline {7}Implementacja}{50}{}%
-\contentsline {section}{\numberline {7.1}Faza planowania}{50}{}%
-\contentsline {section}{\numberline {7.2}Faza implementacji}{50}{}%
-\contentsline {subsection}{\numberline {7.2.1}Sprint 1}{51}{}%
-\contentsline {subsubsection}{\numberline {7.2.1.1}Wykonane zadania:}{51}{}%
-\contentsline {subsection}{\numberline {7.2.2}Sprint 2}{51}{}%
-\contentsline {subsubsection}{\numberline {7.2.2.1}Wykonane zadania:}{52}{}%
-\contentsline {subsection}{\numberline {7.2.3}Sprint 3}{52}{}%
-\contentsline {subsubsection}{\numberline {7.2.3.1}Wykonane zadania:}{53}{}%
-\contentsline {subsection}{\numberline {7.2.4}Sprint 4}{53}{}%
-\contentsline {subsubsection}{\numberline {7.2.4.1}Wykonane zadania:}{54}{}%
-\contentsline {subsection}{\numberline {7.2.5}Sprint 5}{54}{}%
-\contentsline {subsubsection}{\numberline {7.2.5.1}Wykonane zadania:}{55}{}%
-\contentsline {subsection}{\numberline {7.2.6}Sprint 6}{55}{}%
-\contentsline {subsubsection}{\numberline {7.2.6.1}Wykonane zadania:}{56}{}%
-\contentsline {section}{\numberline {7.3}Szczegóły implementacji}{56}{}%
-\contentsline {subsection}{\numberline {7.3.1}Rejestracja konta użytkownika}{57}{}%
-\contentsline {subsubsection}{\numberline {7.3.1.1}Backend}{57}{}%
-\contentsline {subsubsection}{\numberline {7.3.1.2}Aplikacja moblina i aplikacja webowa}{58}{}%
-\contentsline {subsection}{\numberline {7.3.2}Logowanie do systemu}{59}{}%
-\contentsline {subsubsection}{\numberline {7.3.2.1}Backend}{59}{}%
-\contentsline {subsubsection}{\numberline {7.3.2.2}Aplikacja mobilna i aplikacja webowa}{60}{}%
-\contentsline {subsection}{\numberline {7.3.3}Wylogowanie z systemu}{61}{}%
-\contentsline {subsubsection}{\numberline {7.3.3.1}Backend}{61}{}%
-\contentsline {subsubsection}{\numberline {7.3.3.2}Aplikacja mobilna i aplikacja webowa}{62}{}%
-\contentsline {subsection}{\numberline {7.3.4}Edycja danych użytkownika}{63}{}%
-\contentsline {subsubsection}{\numberline {7.3.4.1}Backend}{63}{}%
-\contentsline {subsubsection}{\numberline {7.3.4.2}Aplikacja mobilna i aplikacja webowa}{64}{}%
-\contentsline {subsection}{\numberline {7.3.5}Usunięcie konta użytkownika}{66}{}%
-\contentsline {subsubsection}{\numberline {7.3.5.1}Backend}{66}{}%
-\contentsline {subsubsection}{\numberline {7.3.5.2}Aplikacja moblina}{66}{}%
-\contentsline {chapter}{\numberline {8}Testy}{68}{}%
-\contentsline {section}{\numberline {8.1}Testy integracyjne}{68}{}%
-\contentsline {section}{\numberline {8.2}Testy akceptacyjne}{69}{}%
+\contentsline {chapter}{\numberline {2}Omówienie problemu}{9}{}%
+\contentsline {section}{\numberline {2.1}Czym są fiszki?}{9}{}%
+\contentsline {section}{\numberline {2.2}Przedstawienie problemu}{10}{}%
+\contentsline {section}{\numberline {2.3}Zalety nauki z wykorzystaniem metody fiszek}{11}{}%
+\contentsline {subsection}{\numberline {2.3.1}Krzywa zapominania Hermanna Ebbinghausa}{11}{}%
+\contentsline {subsection}{\numberline {2.3.2}Przykłady praktycznych zastosowań fiszek}{13}{}%
+\contentsline {subsection}{\numberline {2.3.3}Personalizacja fiszek}{14}{}%
+\contentsline {section}{\numberline {2.4}Słownik pojęć}{14}{}%
+\contentsline {chapter}{\numberline {3}Projekt w kontekście}{15}{}%
+\contentsline {section}{\numberline {3.1}Omówienie zakresu projektu}{15}{}%
+\contentsline {section}{\numberline {3.2}Proponowane rozwiązanie}{15}{}%
+\contentsline {section}{\numberline {3.3}Grupa docelowa}{16}{}%
+\contentsline {section}{\numberline {3.4}Analiza rozwiązań konkurencji}{16}{}%
+\contentsline {subsection}{\numberline {3.4.1}Quizlet}{16}{}%
+\contentsline {subsection}{\numberline {3.4.2}Fiszkoteka}{18}{}%
+\contentsline {subsection}{\numberline {3.4.3}Gizmo}{19}{}%
+\contentsline {subsection}{\numberline {3.4.4}Audio Flashcards}{20}{}%
+\contentsline {section}{\numberline {3.5}Analiza szans oraz zalet względem konkurencyjnych rozwiązań}{22}{}%
+\contentsline {subsection}{\numberline {3.5.1}Szanse/Zalety względem konkurencyjnych rozwiązań}{22}{}%
+\contentsline {subsection}{\numberline {3.5.2}Wady względem konkurencyjnych rozwiązań}{22}{}%
+\contentsline {section}{\numberline {3.6}Społeczny aspekt projektu}{22}{}%
+\contentsline {subsection}{\numberline {3.6.1}Gamifikacja w kontekście produktu}{23}{}%
+\contentsline {subsection}{\numberline {3.6.2}Ryzyko związane z nauką przy pomocy systemu Fishki}{23}{}%
+\contentsline {chapter}{\numberline {4}Organizacja pracy}{24}{}%
+\contentsline {section}{\numberline {4.1}Harmonogram pracy}{24}{}%
+\contentsline {section}{\numberline {4.2}Wybrana metodyka}{25}{}%
+\contentsline {section}{\numberline {4.3}Zespół i podział obowiązków}{26}{}%
+\contentsline {section}{\numberline {4.4}Analiza ryzyka}{27}{}%
+\contentsline {chapter}{\numberline {5}Analiza wymagań}{29}{}%
+\contentsline {section}{\numberline {5.1}Diagramy}{29}{}%
+\contentsline {section}{\numberline {5.2}Wymagania ogólne}{33}{}%
+\contentsline {subsection}{\numberline {5.2.1}Moduł autoryzacji}{33}{}%
+\contentsline {subsection}{\numberline {5.2.2}Moduł zarządzania talią}{33}{}%
+\contentsline {subsection}{\numberline {5.2.3}Moduł uczenia}{34}{}%
+\contentsline {subsection}{\numberline {5.2.4}Moduł udogodnień}{34}{}%
+\contentsline {subsection}{\numberline {5.2.5}Moduł wspomagania tworzenia talii}{35}{}%
+\contentsline {section}{\numberline {5.3}Wymagania funkcjonalne}{35}{}%
+\contentsline {subsection}{\numberline {5.3.1}Rejestracja konta użytkownika}{35}{}%
+\contentsline {subsection}{\numberline {5.3.2}Logowanie do systemu}{36}{}%
+\contentsline {subsection}{\numberline {5.3.3}Wylogowanie z systemu}{36}{}%
+\contentsline {subsection}{\numberline {5.3.4}Edycja danych użytkownika}{37}{}%
+\contentsline {subsection}{\numberline {5.3.5}Usunięcie konta użytkownika}{38}{}%
+\contentsline {subsection}{\numberline {5.3.6}Tworzenie talii fiszek}{38}{}%
+\contentsline {subsection}{\numberline {5.3.7}Usunięcie talii fiszek}{39}{}%
+\contentsline {subsection}{\numberline {5.3.8}Edycja talii fiszek}{39}{}%
+\contentsline {subsection}{\numberline {5.3.9}Tryb uczenia się z talii fiszek}{40}{}%
+\contentsline {subsection}{\numberline {5.3.10}Sterowanie talią przy użyciu mowy}{41}{}%
+\contentsline {subsection}{\numberline {5.3.11}Import talii innych użytkowników}{42}{}%
+\contentsline {subsection}{\numberline {5.3.12}Tryb dark mode i light mode}{42}{}%
+\contentsline {subsection}{\numberline {5.3.13}Kalendarz śledzący aktywność}{43}{}%
+\contentsline {subsection}{\numberline {5.3.14}Weryfikacja konta użytkownika poprzez email}{43}{}%
+\contentsline {subsection}{\numberline {5.3.15}Tworzenie talii fiszek poprzez zeskanowanie dokumentu}{44}{}%
+\contentsline {subsection}{\numberline {5.3.16}Generowanie treści fiszki na podstawie słów kluczowych}{44}{}%
+\contentsline {subsection}{\numberline {5.3.17}Resetowanie hasła na konta}{45}{}%
+\contentsline {section}{\numberline {5.4}Interfejs z otoczeniem}{45}{}%
+\contentsline {section}{\numberline {5.5}Wymagania pozafunkcjonalne}{46}{}%
+\contentsline {subsection}{\numberline {5.5.1}Instrukcja korzystania z trybu sterowania głosem}{46}{}%
+\contentsline {subsection}{\numberline {5.5.2}Limit błędów dotyczących logowania}{46}{}%
+\contentsline {subsection}{\numberline {5.5.3}Dostępność systemu}{47}{}%
+\contentsline {subsection}{\numberline {5.5.4}Responsywność}{47}{}%
+\contentsline {subsection}{\numberline {5.5.5}Kompatybilność}{47}{}%
+\contentsline {subsection}{\numberline {5.5.6}Hashowanie haseł}{48}{}%
+\contentsline {section}{\numberline {5.6}Wymagania na środowisko docelowe}{48}{}%
+\contentsline {subsection}{\numberline {5.6.1}Przeglądarka}{48}{}%
+\contentsline {subsection}{\numberline {5.6.2}System Android 10 i iOS 16}{48}{}%
+\contentsline {subsection}{\numberline {5.6.3}Kontenery dockerowe}{49}{}%
+\contentsline {subsection}{\numberline {5.6.4}Baza danych}{49}{}%
+\contentsline {subsection}{\numberline {5.6.5}Python}{49}{}%
+\contentsline {subsection}{\numberline {5.6.6}Node.js}{50}{}%
+\contentsline {subsection}{\numberline {5.6.7}System operacyjny}{50}{}%
+\contentsline {section}{\numberline {5.7}Udziałowcy}{51}{}%
+\contentsline {chapter}{\numberline {6}Architektura projektu i użyte technologie}{53}{}%
+\contentsline {section}{\numberline {6.1}Narzędzia organizacji pracy}{53}{}%
+\contentsline {section}{\numberline {6.2}Aplikacja webowa}{56}{}%
+\contentsline {section}{\numberline {6.3}Aplikacja mobilna}{57}{}%
+\contentsline {section}{\numberline {6.4}Backend aplikacji}{57}{}%
+\contentsline {section}{\numberline {6.5}Baza danych}{57}{}%
+\contentsline {section}{\numberline {6.6}Infrastruktura serwerowa}{58}{}%
+\contentsline {section}{\numberline {6.7}Narzędzia programistyczne}{58}{}%
+\contentsline {chapter}{\numberline {7}Implementacja}{59}{}%
+\contentsline {section}{\numberline {7.1}Faza planowania}{59}{}%
+\contentsline {section}{\numberline {7.2}Faza implementacji}{60}{}%
+\contentsline {subsection}{\numberline {7.2.1}Sprint 1}{60}{}%
+\contentsline {subsubsection}{\numberline {7.2.1.1}Wykonane zadania:}{60}{}%
+\contentsline {subsection}{\numberline {7.2.2}Sprint 2}{60}{}%
+\contentsline {subsubsection}{\numberline {7.2.2.1}Wykonane zadania:}{61}{}%
+\contentsline {subsection}{\numberline {7.2.3}Sprint 3}{61}{}%
+\contentsline {subsubsection}{\numberline {7.2.3.1}Wykonane zadania:}{62}{}%
+\contentsline {subsection}{\numberline {7.2.4}Sprint 4}{62}{}%
+\contentsline {subsubsection}{\numberline {7.2.4.1}Wykonane zadania:}{63}{}%
+\contentsline {subsection}{\numberline {7.2.5}Sprint 5}{63}{}%
+\contentsline {subsubsection}{\numberline {7.2.5.1}Wykonane zadania:}{64}{}%
+\contentsline {subsection}{\numberline {7.2.6}Sprint 6}{64}{}%
+\contentsline {subsubsection}{\numberline {7.2.6.1}Wykonane zadania:}{65}{}%
+\contentsline {subsection}{\numberline {7.2.7}Sprint 7}{66}{}%
+\contentsline {subsubsection}{\numberline {7.2.7.1}Wykonane zadania:}{66}{}%
+\contentsline {section}{\numberline {7.3}Szczegóły implementacji}{68}{}%
+\contentsline {subsection}{\numberline {7.3.1}Rejestracja konta użytkownika}{68}{}%
+\contentsline {subsubsection}{\numberline {7.3.1.1}Backend}{68}{}%
+\contentsline {subsubsection}{\numberline {7.3.1.2}Aplikacja moblina i aplikacja webowa}{70}{}%
+\contentsline {subsection}{\numberline {7.3.2}Logowanie do systemu}{71}{}%
+\contentsline {subsubsection}{\numberline {7.3.2.1}Backend}{71}{}%
+\contentsline {subsubsection}{\numberline {7.3.2.2}Aplikacja mobilna i aplikacja webowa}{72}{}%
+\contentsline {subsection}{\numberline {7.3.3}Wylogowanie z systemu}{73}{}%
+\contentsline {subsubsection}{\numberline {7.3.3.1}Backend}{73}{}%
+\contentsline {subsubsection}{\numberline {7.3.3.2}Aplikacja mobilna i aplikacja webowa}{74}{}%
+\contentsline {subsection}{\numberline {7.3.4}Edycja danych użytkownika}{75}{}%
+\contentsline {subsubsection}{\numberline {7.3.4.1}Backend}{75}{}%
+\contentsline {subsubsection}{\numberline {7.3.4.2}Aplikacja mobilna i aplikacja webowa}{78}{}%
+\contentsline {subsection}{\numberline {7.3.5}Usunięcie konta użytkownika}{79}{}%
+\contentsline {subsubsection}{\numberline {7.3.5.1}Backend}{79}{}%
+\contentsline {subsubsection}{\numberline {7.3.5.2}Aplikacja moblina}{80}{}%
+\contentsline {chapter}{\numberline {8}Testy}{82}{}%
+\contentsline {section}{\numberline {8.1}Testy integracyjne}{82}{}%
+\contentsline {section}{\numberline {8.2}Testy akceptacyjne}{83}{}%
+\contentsline {chapter}{\numberline {9}Prezentacja projektu}{92}{}%
+\contentsline {section}{\numberline {9.1}TBC}{92}{}%
+\contentsline {chapter}{\numberline {10}Nakład pracy}{93}{}%
+\contentsline {subsection}{\numberline {10.0.1}Oliwier Kossak}{94}{}%
+\contentsline {subsection}{\numberline {10.0.2}Wiktor Krieger}{96}{}%
+\contentsline {subsection}{\numberline {10.0.3}Jakub Żurawski}{98}{}%
+\contentsline {subsection}{\numberline {10.0.4}Daniel Klimowski}{100}{}%
+\contentsline {chapter}{\numberline {11}Podsumowanie}{103}{}%
+\contentsline {section}{\numberline {11.1}Problemy i wyzwania}{103}{}%
+\contentsline {subsection}{\numberline {11.1.1}Pycharm Community Edition}{103}{}%
+\contentsline {subsection}{\numberline {11.1.2}Kontener bazy danych}{104}{}%
+\contentsline {subsection}{\numberline {11.1.3}Loader w aplikacji mobilnej}{104}{}%
+\contentsline {subsection}{\numberline {11.1.4}WSL i model nlp}{104}{}%
+\contentsline {subsection}{\numberline {11.1.5}Obsługa przy pomocy Mozilla Firefox}{104}{}%
+\contentsline {subsection}{\numberline {11.1.6}Api i HTTPS}{104}{}%
+\contentsline {section}{\numberline {11.2}Zmiany w trakcie realizacji}{105}{}%
+\contentsline {subsection}{\numberline {11.2.1}Limit logowań}{105}{}%
+\contentsline {subsection}{\numberline {11.2.2}Generowanie definicji przez ChatGTP}{105}{}%
+\contentsline {subsection}{\numberline {11.2.3}System operacyjny w infrastrukturze serwerowej}{105}{}%
+\contentsline {section}{\numberline {11.3}Porzucone pomysły}{106}{}%
+\contentsline {subsection}{\numberline {11.3.1}Dyktowanie treści fiszki}{106}{}%
+\contentsline {subsection}{\numberline {11.3.2}Sterowanie głosowe przez ChatGPT}{106}{}%
+\contentsline {subsection}{\numberline {11.3.3}Aktywacja konta i reset hasła}{106}{}%
+\contentsline {section}{\numberline {11.4}Przyszłość projektu}{107}{}%
