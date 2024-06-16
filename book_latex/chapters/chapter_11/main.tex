@@ -1,15 +1,13 @@
 \chapter{Nakład pracy}
 
-Rozdział opisuje wkład i zadania poczynione przez każdego członka zespołu, które zostały wykonane w celu ukończenia projektu.
-Pierwszy semestr był poświęcony na wypełnianiu dokumentacji, określeniu wymagań i tworzeniu mockupów aplikacji w celu wypracowania
-wspólnej wizji projektu. W drugim semestrze zespół zajmował się implementacją aplikacji.
+Rozdział opisuje wkład i zadania poczynione przez każdego członka zespołu, które zostały wykonane w celu ukończenia projektu. Pierwszy semestr był poświęcony na wypełnianiu dokumentacji, określeniu wymagań i tworzeniu mockupów aplikacji w celu wypracowania wspólnej wizji projektu. W drugim semestrze zespół zajmował się implementacją aplikacji.
 
-\indent Wykres przedstawiający czas jaki członkowie zespołu spędzili nad projektem
+\indent Poniżej za pomocą wykresu, przestawiono czas jaki członkowie zespołu spędzili nad projektem:
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{chapters/chapter_11/naklad_pracy_wykres}
-    \caption{Wykres nakładu pracy.}
+    \caption{Wykres ilustrujący łączny nakład pracy.}
     \label{img:wykres_nakładu_pracy}
 \end{figure}
 
@@ -21,7 +19,7 @@ Następnie zająłem się wypełnianiem wymagań w specyfikacji wymagań wstępn
 Gdy wymagania funkcjonalne zostały określone zacząłem tworzyć w canvie atrapę aplikacji mobilnej.
 Kreowanie atrapy pozwoliło na konsolidację informacji i na ponownę analizę niektórych wymagań.
 Byłem też osobą odpowiedzialną za konsultowanie naszych wymagań i rozwiązań z promotorem, co czyniło mnie w pewnym
-sensie team leadera.
+sensie leaderem projektu.
 \par W drugim semestrze pisania pracy byłem odpowiedzialny za backend, frontend, testy i pisanie pracy
 inżynierskiej. Przy pisaniu backendu byłem odpowiedzialny za implementację modeli fiszek, talii, i zgłoszeń.
 Po utworzeniu modeli zabrałem się za napisanie do nich metod CRUD.
@@ -55,11 +53,7 @@ Zaimplementowane przez mnie funkcjonalności na stronie internetowej to:
     \item Syntezator mowy.
 \end{itemize}
 
-Byłem też osobą odpowiedzialną za wykonywanie testów.
-Gdy, któryś z członków zespołu dodawał nowy widok lub funkcjonalność do aplikacji wykonywałem
-testy akceptacyjne w celu sprawdzenia czy nowy element aplikacji zachowywał się zgodnie z
-oczekiwaniami. Oprócz testów akceptacyjnych wykonałem także testy integracyjne w celu
-sprawdzenia czy endpointy komunikują się z bazą danych. W książce napisałem poniższe rozdziały:
+Byłem też osobą odpowiedzialną za wykonywanie testów. Gdy, któryś z członków zespołu dodawał nowy widok lub funkcjonalność do aplikacji wykonywałem testy akceptacyjne w celu sprawdzenia czy nowy element aplikacji zachowywał się zgodnie z oczekiwaniami. Oprócz testów akceptacyjnych wykonałem także testy integracyjne w celu sprawdzenia czy endpointy komunikują się z bazą danych. W książce napisałem poniższe rozdziały:
 
 
 \begin{itemize}
@@ -72,9 +66,9 @@ sprawdzenia czy endpointy komunikują się z bazą danych. W książce napisałe
     \item 7.2 Faza implementacji;
     \item Opisy sprintów w rozdziale 7;
     \item Szczegóły implementacji w rozdziale 7;
-    \item Rozdział 8;
-    \item Rozdział 10;
-    \item Rozdział 11;
+    \item Rozdział 8 - Testy;
+    \item Rozdział 10 - Nakład pracy;
+    \item Rozdział 11 - Podsumowanie;
     \item Bibliografia.
 \end{itemize}
 
@@ -117,8 +111,8 @@ Zaimplementowane przez mnie funkcjonalności na stronie internetowej to:
 \end{itemize}
 
 Aby zwizualizować nasz indywidualny wkład wykorzystałem dane zbierane przez cały czas pracy nad projektem i
-dostosowałem je tak aby stworzyć czytelny wykres widoczny na początku tego rozdziału.
-Oprócz tego w książce napisałem poniższe rozdziały:
+dostosowałem je tak, aby stworzyć czytelny wykres widoczny na początku tego rozdziału.
+Oprócz tego, w książce napisałem poniższe rozdziały:
 
 \begin{itemize}
     \item 7.3.1.2 Rejestracja (web)
@@ -132,7 +126,7 @@ Oprócz tego w książce napisałem poniższe rozdziały:
 
 W pierwszym semestrze, od momentu rozpoczętych prac nad projektem, byłem głównie odpowiedzialny za diagramy oraz część
 dokumentu założeń wstępnych i część dokumentu specyfikacji wymagań technicznych. W dokumencie założeń wstępnych byłem
-odpowiedzialny za rozdziały takie jakie opis problemu, cele systemu i kontekst systemu. Z kolei w dokumencie
+odpowiedzialny za rozdziały takie jak: opis problemu, cele systemu i kontekst systemu. Z kolei w dokumencie
 specyfikacji wymagań systemowych byłem odpowiedzialny za wymagania ogólne i dziedzinowe, wymagania pozafunkcjonalne
 oraz wymagania na środowisko docelowe. Po ukończeniu wyżej opisanych rozdziałów, przystąpiłem to tworzenie diagramu
 przypadków użycia. Początkowo zakładałem, że pierwszy lepszy program wystarczy do tego, niestety później stwierdziliśmy,
@@ -146,11 +140,11 @@ tworzenia aplikacji mobilnej uniemożliwiły mi pełnienie tej roli. W początko
 autoryzacji. Zacząłem od utworzenia modeli bazy danych dla tokenów, zużytych tokenów i użytkownika. Następnie
 utworzyłem dependencje do dekodowania tokenu użytkownika i weryfikacji jego ważności. Następnie zabrałem się tworzenie
 kolejnej dependencji “RoleAccessChecker”, która jak nazwa wskazuje miała sprawdzać rolę użytkownika i blokować dostęp
-użytkownikom bez uprawnień.Kolejnym krokiem było zabezpieczeniem api przed nieautoryzowanym aplikacjami, adresami czy
+użytkownikom bez uprawnień. Kolejnym krokiem było zabezpieczeniem api przed nieautoryzowanym aplikacjami, adresami czy
 headerami. W tym celu utworzyłem customowe middleware’y. Do middleware’ów dodałem również sprawdzanie czy token
 użytkownika nie znajduję sie tabeli zużytych tokenów. Gdy bezpieczeństwo było już gotowe, zająłem się tworzeniem
 widoków do autoryzacji i użytkowników, w celu przetestowania bezpieczeństwa, funkcjonalności i poprawy błędów.
-Po zaimplementowaniu wstępnych fukcjonalności na backendzie, zająłem się aplikacja mobilną, gdzię odpowiedzialny byłem
+Po zaimplementowaniu wstępnych fukcjonalności na backendzie, zająłem się aplikacją mobilną, gdzię odpowiedzialny byłem
 za weryfikacje czy użytkownik jest zalogowany, a także utworzeniu następujących paneli i widoków jak:
 
 \begin{itemize}
@@ -179,9 +173,9 @@ Z zaimplementowanych funkcjonalności w aplikacji mogę wymienić:
 Podczas pisania książki byłem odpowiedzialny za rozdziały:
 
 \begin{itemize}
-    \item Rozdział 4;
-    \item Rozdział 7;
-    \item Rozdział 11;
+    \item Rozdział 4 - Organizacja pracy;
+    \item Rozdział 7 - Implementacja;
+    \item Rozdział 11 - Podsumowanie;
     \item Implementacja w LaTeX.
 \end{itemize}
 
@@ -237,13 +231,15 @@ w tych trzech obszarach:
 
 \begin{itemize}
     \item Wstęp;
-    \item Rozdział I;
-    \item Rozdział II;
-    \item Rozdział III sekcja 3.1 i sekcja 3.2;
-    \item Rozdział V;
-    \item Rozdział VI - uzupełnienie;
-    \item Rozdział VII - uzupełnienie;
-    \item Rozdział IX - uzupełnienie;
+    \item Rozdział 1 - Wstęp;
+    \item Rozdział 2 - Omówienie problemu;
+    \item Rozdział 3 - Projekt w kontekście - sekcja 3.1 i sekcja 3.2;
+    \item Rozdział 5 - Analiza wymagań;
+    \item Rozdział 6 - Architektura projektu i użyte technologie;
+    \item Rozdział 7 - Implementacja;
+    \item Rozdział 9 - Prezentacja projektu;
+    \item Rozdział 10 - Nakład pracy;
+    \item Rozdział 11 - Podsumowanie;
     \item Generalne poprawki tekstu;
     \item Implementacja w LaTeX.
 \end{itemize}

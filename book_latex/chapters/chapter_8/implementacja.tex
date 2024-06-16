@@ -7,7 +7,7 @@ Po wysłaniu requesta na przez aplikacje webową lub mobilną api wyciąga przes
 
 \begin{itemize}
     \item Czy użytkownik z wprowadzonym email istnieje już w bazie
-    \item Czy użytkownika z wprowadzoną nazwą użytkownika istnieje już w bazie
+    \item Czy użytkownik z wprowadzoną nazwą użytkownika istnieje już w bazie
     \item Czy przesłane hasła są równe
 \end{itemize}
 
@@ -125,7 +125,7 @@ Powyższe fragmenty serwisu odpowiadają za usunięcie danych użytkownika z pam
 Funkcjonalność umożliwiająca  edycję danych użytkownika.
 
 \subsubsection{Backend}
-Aplikacje frontendowe wysyłają dane do aktualizacji np. email. Jedynym obowiązkowym atrybutem przy aktualizacji jest \texttt{current\_password}. Bo zweryfikowaniu zgodności hasła, system przystępuje do zmiany danych wprowadzonych przez użytkownika. Na koniec zostają zwrócone użytkownika z poprawionym polami.
+Aplikacje frontendowe wysyłają dane do aktualizacji np. email. Jedynym obowiązkowym atrybutem przy aktualizacji jest \texttt{current\_password}. Po zweryfikowaniu zgodności hasła, system przystępuje do zmiany danych wprowadzonych przez użytkownika. Na koniec zostają zwrócone użytkownika z poprawionym polami.
 
 \begin{figure}[H]
     \centering

@@ -5,11 +5,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bibliography.bib" beforeDir="false" afterPath="$PROJECT_DIR$/bibliography.bib" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_1/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_1/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_10/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_10/main.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_11/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_11/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_11/wykres.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_12/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_12/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_12/naklad_pracy_wykres.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_11/naklad_pracy_wykres.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_13/main.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_2/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_2/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/table.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/analiza_ryzyka.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_5/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_7/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_7/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.tex" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mobile/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mobile/src/screens/FlashCards/LearningVoiceMode.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/src/screens/FlashCards/LearningVoiceMode.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mobile/src/services/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/src/services/config.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +33,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="FC-154-MOBILE-Dodac-sterowanie-glosem" />
+        <entry key="$PROJECT_DIR$/.." value="MOBILE-voiceControl" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -62,6 +76,7 @@
       <recent name="$PROJECT_DIR$/chapters/chapter_11" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chapters/chapter_5" />
       <recent name="$PROJECT_DIR$/chapters/chapter_12" />
       <recent name="$PROJECT_DIR$/chapters/chapter_11" />
       <recent name="$PROJECT_DIR$/chapters/chapter_10" />
@@ -185,6 +200,7 @@
       <workItem from="1715276147075" duration="149000" />
       <workItem from="1716309485552" duration="15000" />
       <workItem from="1718135064720" duration="88000" />
+      <workItem from="1718565891073" duration="4857000" />
     </task>
     <task id="LOCAL-00001" summary="poprawki">
       <option name="closed" value="true" />

@@ -25,6 +25,8 @@ import {
     MicrophoneButton
 } from "../../components";
 import { useVoiceRecognition } from "../../utils/voice_recogniotion";
+import { Audio } from 'expo-av';
+
 
 const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const { deck } = route.params;
@@ -55,6 +57,16 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50}).current
 
     const [parentWidth, setParentWidth] = useState(0);
+    
+    useEffect(() => {
+        (async () => {
+            const { status } = await Audio.requestPermissionsAsync();
+            if (status !== 'granted') {
+                alert('Sorry, we need audio permissions to make this work!');
+            }
+        })();
+    }, []);
+    
     const onParentLayout = (event) => {
         const { width } = event.nativeEvent.layout;
         setParentWidth(width);
