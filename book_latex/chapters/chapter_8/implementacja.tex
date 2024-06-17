@@ -286,7 +286,7 @@ Funkcjonalność umożliwiająca usunięcie talii fiszek.
 
 \subsubsection{Backend}
 
-Został utworzony endpoint delete_deck, która pozwala na usunięcie talii o podanym id wraz z wszystkimi powiązanymi fiszkami.
+Został utworzony endpoint \texttt{delete_deck}, która pozwala na usunięcie talii o podanym id wraz z wszystkimi powiązanymi fiszkami.
 
 \begin{figure}[H]
     \centering
@@ -315,4 +315,102 @@ Użytkownik aby usunąć talię klika w opcje, następnie wybiera delete deck. P
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_deck_web}
     \caption{Funkcja serwisu odpowiedzialna za komunikację z endpointem do usuwania decku.}
     \label{img:delete_deck_web}
+\end{figure}
+
+\subsection{Edycja talii fiszek}
+
+Funkcjonalność umożliwiająca aktualizowanie zawartości talii fiszek.
+
+\subsubsection{Backend}
+
+Zostały utworzone metody put, pozwalające na komunikację z bazą danych w celu aktualizacji informacji o fiszkach i taliach.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_deck_backend}
+    \caption{Endpoint odpowiedzialny za aktualizację danych talii o podanym id}
+    \label{img:update_deck_backend}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_flash_card_text_backend}
+    \caption{Endpoint odpowiedzialny za aktualizację danych fiszki o podanym id}
+    \label{img:update_flash_card_backend}
+\end{figure}
+
+% TODO daniel
+\subsubsection{Aplikacja moblina}
+\subsubsection{Aplikacja webowa}
+
+Użytkownik w celu zmiany nazwy talii lub kategorii musi otworzyć okno opcji następnie klika w przycisk zmiany danych. Po wykonanie tych operacji pojawia się formularz do zmiany nazwy talii i kategorii. Użytkownik może podać nowe dane i kliknąć przycisk accept. Nowe dane zostają przekazane do funkcji zmiany nazwy i kategorii następnie przechwycone dane zostają przekazane do serwisu, który łączy się z backendowym endpointem. Następnie endpoint łączy się z bazą danych w celu aktualizacji talii o otrzymane dane. Tak samo wygląda proces aktualizacji danych fiszki, po kliknięciu w ołówek znajdujący się na fiszce pojawia się formularz do aktualizacji danych fiszki.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_deck_web}
+    \caption{Service służący do komunikacji z backendowym endpointem do aktualizacji danych talii}
+    \label{img:update_deck_web}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_flash_card_text_web}
+    \caption{Service służący do komunikacji z backendowym endpointem do aktualizacji danych fiszki}
+    \label{img:update_flash_card_web}
+\end{figure}
+
+\subsection{Tryb uczenia się z talii fiszek}
+
+\subsubsection{Backend}
+
+Model fiszki zawiera kolumnę \texttt{is_memorized}, która przy tworzeniu fiszki jest domyślnie ustawiona na false, wartość ta oznacza, że użytkownika jeszcze nie nauczył się danej treści fiszki. Jeżeli użytkownik uzna, że fiszka została przez niego zapamiętana, to wartość kolumny \texttt{is_memorized} po zakończonym uczeniu się zostanie zaktualizowana na wartość true. Do aktualizacji danych fiszek została wykorzystany endpoint, który przyjmuje listę fiszek i następnie aktualizuje dane wszystkich fiszek zawartych w przesłanej liście.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_flash_card_memorized_backend}
+    \caption{Logika aktualizacji przesłanych fiszek}
+    \label{img:update_flash_card_memorized_backend}
+\end{figure}
+
+\subsubsection{Aplikacja moblina}
+
+Po wejściu na widok nauki, aplikacja ściąga fiszki użytkownika. W trakcie nauki użytkownik może wybrać dwie opcje remember lub not remember. W momencie kliknięcia przycisku remember informacje o fiszce zostaną dodane do listy nauczonych fiszek, które potem zostaną zaktualizowane w bazie. Po zakończeniu trybu nauki, aplikacja ściąga na nowo listę fiszek i filtruje je po polu ‘\texttt{is_memorized} ‘. Fiszki które mają ustawione \texttt{is_memorized} na true, nie zostaną ponownie wyświetlone w trybie nauki.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/get_unmemorized_flash_cards_mobile}
+    \caption{Funkcja ściągająca niezapamiętane fiszki}
+    \label{img:get_unmemorized_flash_cards_mobile}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile}
+    \caption{Funkcja aktualizacji zapamiętanych fiszek}
+    \label{img:update_unmemorized_flash_cards_mobile}
+\end{figure}
+
+\subsubsection{Aplikacja webowe}
+
+Po uruchomieniu trybu uczenia użytkownik widząc fiszkę może kliknąć przycisk remember lub not remember. W przypadku kliknięcia przycisku remember informacje o fiszce zostaną dodane do listy fiszek, które zostaną zaktualizowane. Po zakończeniu trybu uczenia list z fiszkami, które zostały oznaczone jako zapamiętane zostaje przekazana do serwisuje, który następnie przekazuje dane do bakcendowego endpointu w celu aktualizacji danych fiszek w bazie danych. Kolumna \texttt{is_memorized} wszystkich przekazanych fiszek zostaje ustawiona na wartość true. Fiszki, których kolumna \texttt{is_memorized} jest ustawiona na true nie wyświetlają się w trybie uczenia.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/get_unmemorized_flash_cards_web}
+    \caption{Funkcja ściągająca niezapamiętane fiszki}
+    \label{img:get_unmemorized_flash_cards_web}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/pass_unmemorized_flash_cards_web}
+    \caption{Funkcja aktualizacji zapamiętanych fiszek}
+    \label{img:pass_unmemorized_flash_cards_web}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_unmemorized_flash_cards_web}
+    \caption{Funkcja aktualizacji zapamiętanych fiszek}
+    \label{img:update_unmemorized_flash_cards_web}
 \end{figure}
