@@ -240,6 +240,8 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             if ([200, 201].includes(res.status)) {
                 console.log('File uploaded successfully');
                 await handleCommands(data.command)
+            } else {
+                await handleCommands("Unknown")
             }
         }catch (err) {
             console.error("Something went wrong during the calculation", err)
