@@ -147,14 +147,14 @@ W celu zmiany danych użytkownika, takich jak avatar, nickname, adres email czy 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/edit_user_mobile}
-    \caption{Komponent “handleAvatarSelect” zastosowany w aplikacji mobilnej.}
+    \caption{Funkcja “handleAvatarSelect” zastosowany w aplikacji mobilnej.}
     \label{img:edit_user_mobile}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/edit_user_web}
-    \caption{Komponent “handleAvatarSelect” zastosowany w aplikacji webowej.}
+    \caption{Funkcja “handleAvatarSelect” zastosowany w aplikacji webowej.}
     \label{img:edit_user_web}
 \end{figure}
 
@@ -252,9 +252,15 @@ Utworzono metodę post, która umożliwia tworzenie talii o podanej nazwie i kat
     \label{img:create_flash_card_backend}
 \end{figure}
 
-% TODO @daniel
 \subsubsection{Aplikacja mobilna}
+Dodanie fiszki jest możliwe po przejściu do widoku jej tworzenia z podglądu wybranej talii. Wymagane jest uzupełnienie pól przedniej i tylnej strony fiszki. Tworzenie odbywa się przez wysłanie danych do odpowiedniego endpointu.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/create_deck_mobile}
+    \caption{Funkcja obsługująca tworzenie nowej fiszki..}
+    \label{img:create_deck_mobile}
+\end{figure}
 
 \subsubsection{Aplikacja webowa}
 
@@ -289,8 +295,16 @@ Został utworzony endpoint delete_deck, która pozwala na usunięcie talii o pod
     \label{img:delete_deck_backend}
 \end{figure}
 
-% TODO @daniel
+
 \subsubsection{Aplikacja moblina}
+Usunięcie talii jest możliwe z poziomu jej opcji. Po wybraniu tej opcji do api zostaje wysłane zapytanie o usunięcie talii. W zapytaniu przekazywane jest id decku.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_deck_mobile}
+    \caption{Funkcja odpowiedzialna za obsługę usunięcia decku.}
+    \label{img:delete_deck_mobile}
+\end{figure}
 
 \subsubsection{Aplikacja webowa}
 
