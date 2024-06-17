@@ -208,15 +208,97 @@ Użytkownik jest proszony o potwierdzenie czy aby na pewno chce usunąć konto. 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_user_mobile_1}
-    \caption{Wywołanie komponentu “handleDelete” zastosowanego w aplikacji mobilnej.}
+    \caption{Wywołanie funkcji “handleDelete” zastosowanego w aplikacji mobilnej.}
     \label{img:delete_user_mobile_1}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_user_mobile_2}
-    \caption{Komponent “handleDelete” zastosowany w aplikacji mobilnej.}
+    \caption{Funkcja “handleDelete” zastosowany w aplikacji mobilnej.}
     \label{img:delete_user_mobile_2}
 \end{figure}
 
+\subsubsection{Aplikacja webowa}
 
+Jeżeli po potwierdzeniu wyboru prawidłowym hasłem, funkcja wykryje error 401 (Unauthorized), oznaczać to będzie że konto zostało usunięte. Następnie pojawia się komunikat o usunięciu który przekierowuje do strony logowania
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_user_web}
+    \caption{Funkcja “handleDelete” zastosowany w aplikacji webowej.}
+    \label{img:delete_user_web}
+\end{figure}
+
+\subsection{Tworzenie talii fiszek}
+
+Funkcjonalność umożliwiająca tworzenie talii fiszek.
+
+\subsubsection{Backend}
+
+Utworzono metodę post, która umożliwia tworzenie talii o podanej nazwie i kategorii. Do tworzenia fiszki używana jest osobna metoda post, która przyjmuje treść dla przedniej i tylnej strony karty, a także id talii do, której utworzona fiszka zostanie przypisana.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/create_deck_backend}
+    \caption{Logika tworzenia decku po stronie serwera.}
+    \label{img:create_deck_backend}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/create_flash_card_backend}
+    \caption{Logika tworzenia fiszek po stronie serwera.}
+    \label{img:create_flash_card_backend}
+\end{figure}
+
+% TODO @daniel
+\subsubsection{Aplikacja mobilna}
+
+
+\subsubsection{Aplikacja webowa}
+
+Użytkownik aby utworzyć talię musi wypełnić pole tekstowe dla nazwy i kategorii talii, następnie musi uzupełnić treść dla przedniej i tylnej strony fiszki. Po kliknięciu create deck dane z formularzy zostają przekazane do funkcji, która zebrane dane przekazuje do serwisu odpowiedzialnego za komunikację z endpointem do tworzenia talii i endpointem do tworzenia fiszki.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/create_deck_web}
+    \caption{Funkcja serwisu odpowiedzialna za komunikację z endpointem do tworzenia decku.}
+    \label{img:create_deck_web}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/create_flash_card_web}
+    \caption{Funkcja serwisu odpowiedzialna za komunikację z endpointem do tworzenia fiszki.}
+    \label{img:create_flash_card_web}
+\end{figure}
+
+\subsection{Usunięcie talii fiszek}
+
+Funkcjonalność umożliwiająca usunięcie talii fiszek.
+
+\subsubsection{Backend}
+
+Został utworzony endpoint delete_deck, która pozwala na usunięcie talii o podanym id wraz z wszystkimi powiązanymi fiszkami.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_deck_backend}
+    \caption{Logika usuwająca talie i wszystkie należące do niej fiszki.}
+    \label{img:delete_deck_backend}
+\end{figure}
+
+% TODO @daniel
+\subsubsection{Aplikacja moblina}
+
+\subsubsection{Aplikacja webowa}
+
+Użytkownik aby usunąć talię klika w opcje, następnie wybiera delete deck. Po kliknięciu id aktualnej talii zostaje pobrane z pamięci lokalnej i przekazane do serwisu, który łączy się z bakcendowym endpoint em do usuwania talii. Endpoint usuwa z bazy danych talię o podanym id i wszystkie należące do niego fiszki.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_deck_web}
+    \caption{Funkcja serwisu odpowiedzialna za komunikację z endpointem do usuwania decku.}
+    \label{img:delete_deck_web}
+\end{figure}
