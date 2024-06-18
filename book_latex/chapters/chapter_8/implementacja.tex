@@ -269,7 +269,7 @@ Użytkownik aby utworzyć talię musi wypełnić pole tekstowe dla nazwy i kateg
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/create_deck_web}
-    \caption{Funkcja serwisu odpowiedzialna za komunikację z endpointem do tworzenia decku.}
+    \caption{Funkcja odpowiedzialna za komunikację z endpointem do tworzenia decku.}
     \label{img:create_deck_web}
 \end{figure}
 
@@ -357,14 +357,14 @@ Użytkownik w celu zmiany nazwy talii lub kategorii musi otworzyć okno opcji na
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_deck_web}
-    \caption{Service służący do komunikacji z backendowym endpointem do aktualizacji danych talii.}
+    \caption{Funkcja służąca do komunikacji z backendowym endpointem do aktualizacji danych talii.}
     \label{img:update_deck_web}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_flash_card_text_web}
-    \caption{Service służący do komunikacji z backendowym endpointem do aktualizacji danych fiszki.}
+    \caption{Funkcja służąca do komunikacji z backendowym endpointem do aktualizacji danych fiszki.}
     \label{img:update_flash_card_web}
 \end{figure}
 
@@ -447,9 +447,38 @@ Do wczytania modelu nlp została wykorzystana biblioteka "flair". Do zamiany tek
     \label{img:backend_nlp_usage}
 \end{figure}
 
-
-% TODO
 \subsubsection{Aplikacja mobilna}
+Aby obsłużyć głosowy tryb nauki, aplikacja mobilna korzysta z biblioteki "expo-speech” i “expo-av”. Po naciśnięciu przycisku z ikoną mikrofonu aplikacja zaczyna nasłuchiwać komend. Z powodu ograniczeń związanych ze środowiskiem Expo, głos nie jest strumieniowany bezpośrednio do modelu nlp który obsługuje backend. Aplikacja w trakcie nasłuchiwania wykonuje krótkie nagrania, które są tymczasowo zapisywane i wysyłane jako plik audo m4a do backendu. Po ich zinterpretowaniu backend odsyła komendę do której przypisuje znaczenie treści nagrania. Następnie komenda jest wykonywana w widoku nauki.
+
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/mobile_start_recording}
+    \caption{Funkcja "startRecording" odpowiedzialna za rozpoczęcie nasłuchiwania.}
+    \label{img:mobile_start_recording}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/mobile_stop_recording}
+    \caption{Funkcja "stopRecording" odpowiedzialna za zakończenie nasłuchiwania.}
+    \label{img:mobile_stop_recording}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/mobile_handle_similarity}
+    \caption{Funkcja "calculateSimilarity" obsługująca wysłanie nagrania głosowego do modelu nlp.}
+    \label{img:mobile_handle_similarity}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/mobile_handle_voice_commands}
+    \caption{Funkcja "handleCommands" obsługująca nawigację w trybie nauki głosowej.}
+    \label{img:mobile_handle_voice_commands}
+\end{figure}
 
 \subsubsection{Aplikacja webowa}
 Do zamiany mowy na tekst, który potem jest analizowany przez model nlp w celu wybrania komendy została wykorzystana biblioteka web speech api. Na początku została utworzona referencja recognition do przechowywania instancji SpeechRecognintion. Po kliknięciu przycisku "start listening" zmienna "isListening" zostaje ustawiona na true rozpoczyna się nasłuchiwanie mowy przy użyciu \texttt{recognition.current.start()}. To co mówi użytkownik jest zapisywane w zmiennej "textControl". Następnie gdy wartość \texttt{textControl} zostaje wypełniona treścią wypowiedzianą przez użytkownika zostanie to przekazane do funkcji \texttt{nlpModelControl()}. Funkcja ta wysyła wypowiedź użytkownika do modelu nlp na backendzie, model nlp analizy treści i dopasowuje  zdanie, które jest najbliższe semantycznie do wypowiedzi użytkownika. Następnie sprawdzana jest komenda,która przypisana jest do wybranego zdania. Komenda zostaje przesłana na frontend i przekazana do funkcji \texttt{voiceControl()}, która zawiera switch case, przesłana komenda uruchamia odpowiednią akcję na stronie internetowej.
@@ -533,7 +562,7 @@ Funkcja przekazuje do serwisu dane, takie jak identyfikator wybranej talii oraz 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/mobile_deck_download_service}
-    \caption{Funkcja serwisu odpowiedzialnego za pobieranie / kopiowanie talii.}
+    \caption{Funkcja odpowiedzialna za pobieranie / kopiowanie talii.}
     \label{img:mobile_deck_download_service}
 \end{figure}
 
@@ -603,6 +632,6 @@ Został utworzony service, który pozwala na połączenie z bakcendowym endpoint
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/web_chat_2}
-    \caption{Service służący do komunikacji backendowym endpointem do wysyłania wiadomości do ChatGPT.}
+    \caption{Funkcja służąca do komunikacji backendowym endpointem do wysyłania wiadomości do ChatGPT.}
     \label{img:web_chat_2}
 \end{figure}

@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_10/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_10/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_12/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_12/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../mobile/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/package-lock.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,28 +35,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "BibTeX.engineer bibliography.executor": "Run",
-    "LaTeX.engineer.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/daniel/Repos/flash-cards/book_latex/chapters/chapter_11",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.editor",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;BibTeX.engineer bibliography.executor&quot;: &quot;Run&quot;,
+    &quot;LaTeX.engineer.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;full.screen.before.presentation.mode&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/daniel/Repos/flash-cards/book_latex/chapters/chapter_11&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.editor&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/chapters/chapter_11" />
@@ -191,6 +195,7 @@
       <workItem from="1718661188236" duration="26000" />
       <workItem from="1718701602019" duration="10294000" />
       <workItem from="1718713110561" duration="489000" />
+      <workItem from="1718739910451" duration="1662000" />
     </task>
     <task id="LOCAL-00001" summary="poprawki">
       <option name="closed" value="true" />
