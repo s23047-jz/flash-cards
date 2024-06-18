@@ -42,7 +42,9 @@ class ReportResponse(BaseModel):
     total: int
 
 
-@router.get("/", status_code=status.HTTP_200_OK)
+@router.get(
+    "/", status_code=status.HTTP_200_OK, response_model=ReportResponse
+)
 async def get_reported_decks_list(
     request: Request,
     db: Session = Depends(get_db)
@@ -56,7 +58,7 @@ async def get_reported_decks_list(
     search = query_params.get("search", None)
 
     q = db.query(
-        distinct(Deck.id),
+        Reports.deck_id,
         Deck.deck_category,
         Deck.title,
         Reports.submitter_email
@@ -75,7 +77,7 @@ async def get_reported_decks_list(
             )
         )
 
-    q = q.order_by(Deck.id)
+    q = q.order_by(Reports.deck_id)
     total = len(q.all())
 
     if page and per_page:
@@ -88,7 +90,7 @@ async def get_reported_decks_list(
 
     reports = [
         {
-            "id": report.id,
+            "deck_id": report.deck_id,
             "deck_category": report.deck_category,
             "title": report.title,
             "submitter_email": report.submitter_email
@@ -118,7 +120,7 @@ async def read_all_reported_decks(db: Session = Depends(get_db)):
             first_submitter = None
 
         result.append({
-            "id": deck.id,
+            "deck_id": deck.id,
             "title": deck.title,
             "deck_category": deck.deck_category,
             "submitter": first_submitter

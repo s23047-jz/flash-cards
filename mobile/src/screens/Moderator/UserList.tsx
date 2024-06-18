@@ -201,6 +201,8 @@ const UserList: React.FC<ScreenProps> = ({ navigation}) => {
                 console.error('Error fetching users:', error);
             }
             return () => {
+                usersQuery.current = { page: 1, per_page: perPage };
+                setSearch('');
             };
         }, [])
     )

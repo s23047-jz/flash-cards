@@ -19,6 +19,9 @@ export const styles = StyleSheet.create({
     cardRows: {
         width: '33%'
     },
+    reportCardRows: {
+        width: '50%'
+    },
     button: {
         width: 150
     },
