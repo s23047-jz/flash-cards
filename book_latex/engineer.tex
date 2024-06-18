@@ -1,6 +1,6 @@
 \documentclass{sprz}
-\usepackage[backend=biber,style=numeric-comp,sorting=none]{biblatex}
 %\usepackage[backend=biber, style=numeric-comp, autocite=footnote]{biblatex}
+\usepackage[backend=biber,style=numeric-comp,sorting=none]{biblatex}
 
 \usepackage{enumitem}
 \usepackage[T1]{fontenc}
@@ -8,6 +8,8 @@
 \usepackage{longtable}
 \usepackage{float}
 \usepackage{indentfirst}
+\usepackage{csquotes}
+\DeclareQuoteAlias{german}{polish}
 \usepackage[all]{nowidow}
 \usepackage{polyglossia}
 \setmainlanguage[spacedguillemets=true]{polish}
@@ -39,7 +41,7 @@
 \projlimitations{Zdalny charakter pracy nad projektem, budżet, brak doświadczenia w pracy nad projektem o zadanej złożoności, nauka i wykorzystanie nowych technologii.}
 \date{\today}
 \nabstract{
-    TBC
+Bieżący dokument stanowi prace dyplomową projektu Fishki, którego celem było wytworzenie aplikacji umożliwiającej naukę przez powtórki z wykorzystaniem nowoczesnych technologii. W tekście omówiono problematykę w oparciu o którą zdefiniowane zostały założenia projektu. Udokumentowane zostały: proces planowania, analiza otoczenia, definicja wymagań, implementacja, testy i prezentacja wypracowanego systemu. Uzyskanymi produktami jest aplikacja mobilna dla systemów Android i iOS oraz aplikacja webowa dostępna z poziomu przeglądarki internetowej. System działa w oparciu o chmurową infrastrukture serwerową, obsługującą i utrzymującą działanie aplikacji.
 }
 
 
@@ -72,6 +74,8 @@
     \input{chapters/chapter_8/main}
 
     \input{chapters/chapter_9/main}
+
+    \input{chapters/chapter_10/main}
 
     \input{chapters/chapter_11/main}
 

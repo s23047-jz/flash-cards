@@ -109,35 +109,13 @@ public async deleteAccount(body: Object) {
 
     return await request({
       url: AUTH_ENDPOINTS.updateAvatar(userId),
-      method: 'PUT', // Powinno być PUT, a nie POST
+      method: 'PUT',
       headers: {
         'Authorization': `Bearer ${token}`,
       },
       body
     });
   }
-
-//   public async deleteAccount(body: { password: string }) {
-//     const token = ActiveUser.getAuthorization();
-//
-//     try {
-//       const response = await request({
-//             url: AUTH_ENDPOINTS.deleteAccount,
-//             method: 'DELETE',
-//             headers: {
-//                 'Authorization': `Bearer ${token}`,
-//                 'Content-Type': 'application/json',
-//             },
-//         // @ts-ignore
-//             body: JSON.stringify(body),
-//         });
-//         ActiveUser.clean(); // Clean up user data after successful deletion
-//         return response;
-//     } catch (error) {
-//         console.error('Error deleting account:', error);
-//         throw error;
-//     }
-// }
 
 
   async resetPassword(param: {email: string}) {

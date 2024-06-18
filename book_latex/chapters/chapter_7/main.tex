@@ -1,4 +1,5 @@
 \chapter{Architektura projektu i użyte technologie}
+Podjęty projekt cechuje się wysokim stopniem złożoności oraz potrzebą ciągłej komunikacji i współpracy w zespole. Efektywne zarządzanie infrastrukturą kodu, dokumentacji oraz organizacją prac nakłada obowiązek korzystania z rozwiązań, które umożliwią wspólne planowanie, monitorowanie oraz realizację postępów. W tym rodziale zostaną omówione kluczowe narzędzia użyte w projekcie w ujęciu zarówno narzędzi organizacji pracy - jak i wykorzystanych technologi oraz narzędzi programistycznych.
 
 \section{Narzędzia organizacji pracy}
 
@@ -6,7 +7,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{chapters/chapter_7/github.png}
+    \includegraphics[width=0.9\textwidth]{chapters/chapter_7/github}
     \caption{Repozytorium projektu umieszone na GitHub.}
     \label{img:github}
 \end{figure}
@@ -16,7 +17,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{chapters/chapter_7/jira.png}
+    \includegraphics[width=0.9\textwidth]{chapters/chapter_7/jira}
     \caption{Sprint rozpisany przy pomocy Jira.}
     \label{img:jira}
 \end{figure}
@@ -26,7 +27,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{chapters/chapter_7/miro.png}
+    \includegraphics[width=0.9\textwidth]{chapters/chapter_7/miro}
     \caption{Tablica w Miro z interaktywnymi mockupami projektu.}
     \label{img:miro}
 \end{figure}
@@ -36,7 +37,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{chapters/chapter_7/google_drive.png}
+    \includegraphics[width=0.9\textwidth]{chapters/chapter_7/google_drive}
     \caption{Dokumenty przechowywane na Google Drive.}
     \label{img:google_drive}
 \end{figure}
@@ -46,7 +47,7 @@
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.3\textwidth]{chapters/chapter_7/canva.png}
+    \includegraphics[width=0.3\textwidth]{chapters/chapter_7/canva}
     \caption{Grafika mockupu wykonana w Canva.}
     \label{img:canva}
 \end{figure}
@@ -114,6 +115,8 @@ wysoką wydajność, a także otwartoźródłowy charakter systemu.
 \section{Infrastruktura serwerowa}
 
 \textbf{Microsoft Azure} Platforma chmurowa pozwalająca wdrożyć wirtualną infrastrukturę IT. Wykorzystana na rzecz utrzymania środowiska projektowego tj. kontenera z Api, backend aplikacji webowej i bazę danych w oparciu o wirtualną maszynę z systemem operacyjnym Ubuntu server.
+
+\textbf{Serwer Nginx} Zaawansowany serwer WWW i serwer PROXY. Wykorzystany w celu pełnej konfiguracji aplikacji webowej, HTTPS i przekierowania ruchu ze strony do API.
 
 \section{Narzędzia programistyczne}
 

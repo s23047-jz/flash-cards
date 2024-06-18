@@ -44,7 +44,6 @@ const DecksContainer = () => {
     const [isFilterDecks, setIsFilterDecks] = useState(false)
 
 
-
     useEffect(() => {
         const fetchDecks = async () => {
             try {
@@ -92,31 +91,34 @@ const DecksContainer = () => {
 
     }
 
-    const navigateHomePage = () =>{
+    const navigateHomePage = () => {
         navigate("/create_deck")
     }
 
 
 // @ts-ignore
- return (
+    return (
         <div className="website-container">
             <p className="web-title">My Decks</p>
             {isLoadingFetchDecks ? (
-                <LoadingSpinner />
+                <LoadingSpinner/>
             ) : (
                 <>
                     {decks.length === 0 && !isFilterDecks ? (
                         <div className={'no-decks-container'}>
                             <p className={"no-decks-cards-text"}>No Decks</p>
                             <div className={'button-create-deck'}>
-                                <ButtonNotMemorizedFlashCards onClick={navigateHomePage} text={'Create Deck'} color={'#e05a12'} border={'3px solid black'}/>
+                                <ButtonNotMemorizedFlashCards onClick={navigateHomePage} text={'Create Deck'}
+                                                              color={'#e05a12'} border={'3px solid black'}/>
                             </div>
                         </div>
                     ) : (
                         <>
                             <div className="filter-container">
                                 <FormControl variant="filled">
-                                    <InputLabel htmlFor="component-filled" sx={{ backgroundColor: fields_color, color: 'white' }}>Filter Decks</InputLabel>
+                                    <InputLabel htmlFor="component-filled"
+                                                sx={{backgroundColor: fields_color, color: 'white'}}>Filter
+                                        Decks</InputLabel>
                                     <FilledInput
                                         id="component-filled"
                                         defaultValue=""

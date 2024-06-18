@@ -9,10 +9,14 @@ const ButtonsContainer = ({onClickPrev, onClickNext, onClickRotate, onClickBackT
     const border = '3px solid black'
     return (
         <div className={"grid-container-buttons"}>
-            <ButtonFlashAllFlashCards onClick={onClickPrev} text={texts[0]} color={button_colors[0]} border={border}></ButtonFlashAllFlashCards>
-            <ButtonFlashAllFlashCards onClick={onClickNext} text={texts[1]} color={button_colors[1]} border={border}></ButtonFlashAllFlashCards>
-            <ButtonFlashAllFlashCards onClick={onClickRotate} text={texts[2]} color={button_colors[2]} border={border}></ButtonFlashAllFlashCards>
-            <ButtonFlashAllFlashCards onClick={onClickBackToDecks} text={texts[3]} color={button_colors[3]} border={border}></ButtonFlashAllFlashCards>
+            <ButtonFlashAllFlashCards onClick={onClickPrev} text={texts[0]} color={button_colors[0]}
+                                      border={border}></ButtonFlashAllFlashCards>
+            <ButtonFlashAllFlashCards onClick={onClickNext} text={texts[1]} color={button_colors[1]}
+                                      border={border}></ButtonFlashAllFlashCards>
+            <ButtonFlashAllFlashCards onClick={onClickRotate} text={texts[2]} color={button_colors[2]}
+                                      border={border}></ButtonFlashAllFlashCards>
+            <ButtonFlashAllFlashCards onClick={onClickBackToDecks} text={texts[3]} color={button_colors[3]}
+                                      border={border}></ButtonFlashAllFlashCards>
         </div>
     );
 };

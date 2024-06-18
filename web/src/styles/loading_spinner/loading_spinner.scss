@@ -3,6 +3,7 @@
   justify-content: center;
   align-items: center;
   height: 50vh;
+
   .loading-spinner {
     position: absolute;
     border: 8px solid #f3f3f3;
@@ -12,12 +13,13 @@
     height: 30vh;
     animation: spin 1.6s linear infinite;
 
-    .img-spinner{
+    .img-spinner {
       height: 30vh;
       width: 30vh;
     }
   }
-  .loading-text{
+
+  .loading-text {
     position: absolute;
     margin-top: 36vh;
     color: white;

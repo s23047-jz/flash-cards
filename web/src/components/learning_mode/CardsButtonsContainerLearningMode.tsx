@@ -13,8 +13,8 @@ import ButtonsContainerLearningMode from "./ButtonsContainerLearningMode";
 import {useNavigate} from 'react-router-dom';
 import ButtonNotMemorizedFlashCards from "../not_memorized_flashcards/ButtonNotMemorizedFlashCards";
 
-
-const CardsButtonsContainerLearningMode = () => {
+// @ts-ignore
+const CardsButtonsContainerLearningMode = ({backToDeckPath}) => {
     const [flashcards, setFlashcards] = useState([]);
     const [flashcardsUpdated, setFlashcardsUpdated] = useState([])
     const [isLoading, setIsLoading] = useState(true);
@@ -116,7 +116,7 @@ const CardsButtonsContainerLearningMode = () => {
     };
 
     const navigatePrevSide = () => {
-        navigate('/my_deck_learning_modes')
+        navigate(backToDeckPath)
     }
 
 
@@ -124,7 +124,7 @@ const CardsButtonsContainerLearningMode = () => {
         handleNextClick()
 
         if (currentBigCardIndex == flashcards.length - 1) {
-            navigate('/my_deck_learning_modes')
+            navigate(backToDeckPath)
         }
     }
 
@@ -142,7 +142,7 @@ const CardsButtonsContainerLearningMode = () => {
             const updatedState = [...prevState, flashcard_body];
             if (currentBigCardIndex === flashcards.length - 1) {
                 DeckService.update_multiple_flash_card(updatedState);
-                navigate('/my_deck_learning_modes');
+                navigate(backToDeckPath);
             }
             return updatedState;
         });
@@ -151,7 +151,7 @@ const CardsButtonsContainerLearningMode = () => {
     const saveDeck = () => {
         // @ts-ignore
         DeckService.update_multiple_flash_card(flashcardsUpdated)
-        navigate('/my_deck_learning_modes')
+        navigate(backToDeckPath)
 
 
     }

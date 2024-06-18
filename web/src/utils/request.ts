@@ -1,4 +1,4 @@
-import { ActiveUser } from "../services/user";
+import {ActiveUser} from "../services/user";
 
 export const redirectIfNotAuthenticated = (res: Response) => {
     if (res.status === 401) {
@@ -8,15 +8,15 @@ export const redirectIfNotAuthenticated = (res: Response) => {
     }
 };
 
-export const request = async({
-    url,
-    query,
-    headers={},
-    method="GET",
-    body,
-    formData,
-    skipRedirect=false
-}: {
+export const request = async ({
+                                  url,
+                                  query,
+                                  headers = {},
+                                  method = "GET",
+                                  body,
+                                  formData,
+                                  skipRedirect = false
+                              }: {
     url: string;
     query?: object;
     headers?: Record<string, string>;
@@ -67,7 +67,7 @@ export const request = async({
         const errorData = await res.json();
         const error = new Error('Request failed');
         // @ts-ignore
-        error.response = { status: res.status, data: errorData };
+        error.response = {status: res.status, data: errorData};
         throw error;
     }
 

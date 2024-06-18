@@ -1,4 +1,4 @@
-const passwordValidator = ({ password }: { password: string }) => {
+const passwordValidator = ({password}: { password: string }) => {
     const uppercaseRegex = /[A-Z]/;
     const lowercaseRegex = /[a-z]/;
     const numberRegex = /[0-9]/;

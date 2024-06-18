@@ -1,12 +1,17 @@
 import React from 'react';
 import '../../styles/public_deck_flashcards/public_deck_flash_card_field.scss';
 
-const PublicDeckFlashCardField: React.FC<{ front_text: string; back_text: string; icon: string; onClick?: () => void; }> = ({
-    front_text,
-    back_text,
-    icon,
-    onClick,
-}) => {
+const PublicDeckFlashCardField: React.FC<{
+    front_text: string;
+    back_text: string;
+    icon: string;
+    onClick?: () => void;
+}> = ({
+          front_text,
+          back_text,
+          icon,
+          onClick,
+      }) => {
 
     const handleClick = () => {
         if (onClick) {

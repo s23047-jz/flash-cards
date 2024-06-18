@@ -224,6 +224,7 @@
 			\end{tabularx}
 
 			\vspace{1cm}
+			\newpage
 			\textbf{\\Streszczenie:} \\
 			\@nabstract
 

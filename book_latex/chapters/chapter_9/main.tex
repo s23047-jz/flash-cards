@@ -6,20 +6,20 @@ Testy integracyjne mają na celu sprawdzenie, czy interfejsy pomiędzy komponent
 Przetestowane zostały poniższe funkcjonalności systemu:
 
 \begin{itemize}
-    \item Utworzenie fiszki
-    \item Zwrócenie danych fiszki na podstawie id
-    \item Aktualizacja danych fiszki
-    \item Usunięcie fiszki
-    \item Otrzymanie odpowiedzi od chatu GPT
-    \item Tworzenie talii
-    \item Zwrócenie danych talii na podstawie id
-    \item Zwrócenie danych wszystkich talii należących do użytkownika
-    \item Aktualizacja danych talii
-    \item Usunięcie talii
-    \item Zwrócenie rankingu talii
-    \item Utworzenie konta użytkownika
-    \item Logowanie do systemu
-    \item Zwrócenie danych użytkownika
+    \item Utworzenie fiszki;
+    \item Zwrócenie danych fiszki na podstawie identyfikatora;
+    \item Aktualizacja danych fiszki;
+    \item Usunięcie fiszki;
+    \item Otrzymanie odpowiedzi od ChatGPT;
+    \item Tworzenie talii;
+    \item Zwrócenie danych talii na podstawie identyfikatora;
+    \item Zwrócenie danych wszystkich talii należących do użytkownika;
+    \item Aktualizacja danych talii;
+    \item Usunięcie talii;
+    \item Zwrócenie rankingu talii;
+    \item Utworzenie konta użytkownika;
+    \item Logowanie do systemu;
+    \item Zwrócenie danych użytkownika.
 \end{itemize}
 
 \begin{figure}[H]
@@ -80,7 +80,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Warunki końcowe:} & dostęp do strony domowej \\
     \hline
-    \textbf{Dane wejściowe:} & email, hasło \\
+    \textbf{Dane wejściowe:} & e-mail, hasło \\
     \hline
     \textbf{Oczekiwany wynik:} & Użytkownik po poprawnym zalogowaniu przechodzi do strony domowej. \\
     \hline
@@ -111,7 +111,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Warunki końcowe:} & Użytkownik po kliknięciu przycisku wylogowania zostaje przekierowany do strony logowania i nie ma dostęp do strony domowej bez ponownego zalogowania \\
     \hline
-    \textbf{Dane wejściowe:} & email, hasło \\
+    \textbf{Dane wejściowe:} & e-mail, hasło \\
     \hline
     \textbf{Oczekiwany wynik:} & Brak dostępu do strony domowej \\
     \hline
@@ -134,9 +134,9 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
 \centering
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.3\textwidth}|X|}
     \hline
-    \textbf{Opis przypadku:} & Edycja adresu email \\
+    \textbf{Opis przypadku:} & Edycja adresu e-mail \\
     \hline
-    \textbf{Cel przypadku:} & Sprawdzenie czy użytkownik może zmienić email \\
+    \textbf{Cel przypadku:} & Sprawdzenie czy użytkownik może zmienić e-mail \\
     \hline
     \textbf{Testowane wymagania:} & 3.2.4 Edycja danych użytkownika \\
     \hline
@@ -144,9 +144,9 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Warunki końcowe:} & Dane użytkownika zostaną zaktualizowane \\
     \hline
-    \textbf{Dane wejściowe:} & email, hasło \\
+    \textbf{Dane wejściowe:} & e-mail, hasło \\
     \hline
-    \textbf{Oczekiwany wynik:} & Użytkownik po zmianie email zostaje wylogowany, a email zostanie zaktualizowany. \\
+    \textbf{Oczekiwany wynik:} & Użytkownik po zmianie e-mail zostaje wylogowany, a e-mail zostanie zaktualizowany. \\
     \hline
     \textbf{Kroki procedury:} &
         1. Uruchomienie przeglądarki - \textbf{Pozytywny} \newline
@@ -154,7 +154,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
         3. Wypełnienie formularza logowania - \textbf{Pozytywny} \newline
         4. Użytkownik zostaje przekierowany do strony domowej - \textbf{Pozytywny} \newline
         5. Kliknięcie w profil użytkownika - \textbf{Pozytywny} \newline
-        6. Kliknięcie w przycisk zmiany email - \textbf{Pozytywny} \newline
+        6. Kliknięcie w przycisk zmiany e-mail - \textbf{Pozytywny} \newline
         7. Wypełnienie formularza i kliknięcie zapisu - \textbf{Pozytywny} \newline
         8. Przekierowanie do strony logowania - \textbf{Pozytywny} \newline
         9. Zalogowanie się przy użyciu nowych danych - \textbf{Pozytywny} \\
@@ -162,7 +162,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \textbf{Wynik:} & \textbf{Pozytywny} \\
     \hline
 \end{tabularx}
-    \caption{Test zmiany adresu email użytkownika.}
+    \caption{Test zmiany adresu e-mail użytkownika.}
 \end{table}
 
 
@@ -180,7 +180,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Warunki końcowe:} & usunięte konto użytkownika, brak możliwości zalogowania \\
     \hline
-    \textbf{Dane wejściowe:} & email, hasło \\
+    \textbf{Dane wejściowe:} & e-mail, hasło \\
     \hline
     \textbf{Oczekiwany wynik:} & Użytkownik po usunięciu konta zostaje wylogowany z aplikacji. \\
     \hline

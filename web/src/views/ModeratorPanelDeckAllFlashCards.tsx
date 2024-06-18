@@ -22,4 +22,4 @@ const ModeratorPanelDeckAllFlashCards = () => {
     );
 };
 
-export default ModeratorPanelDeckAllFlashCards ;
+export default ModeratorPanelDeckAllFlashCards;

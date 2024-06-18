@@ -66,7 +66,7 @@ const DecksRankingContainer = () => {
         navigate("/users_ranking")
     }
 
-      const navigatePublicDecksFlashCards = async (deck_id: string) => {
+    const navigatePublicDecksFlashCards = async (deck_id: string) => {
         DeckService.get_deck_by_id(deck_id)
         navigate("/public_decks_flashcards")
     }
@@ -80,55 +80,56 @@ const DecksRankingContainer = () => {
                 <LoadingSpinner/>
             ) : (
                 <>
-                        <>
-                            <div className="filter-container">
-                                <FormControl variant="filled">
-                                    <InputLabel htmlFor="component-filled"
-                                                sx={{backgroundColor: fields_color, color: 'white'}}>Filter Decks</InputLabel>
-                                    <FilledInput
-                                        id="component-filled"
-                                        defaultValue=""
-                                        sx={{
-                                            "& input": {
-                                                backgroundColor: fields_color,
-                                                color: 'white',
-                                                borderRadius: '10px',
-                                                border: '2px solid black',
-                                            }
-                                        }}
-                                        disableUnderline
-                                        onChange={(e) => setFilterString(e.target.value)}
+                    <>
+                        <div className="filter-container">
+                            <FormControl variant="filled">
+                                <InputLabel htmlFor="component-filled"
+                                            sx={{backgroundColor: fields_color, color: 'white'}}>Filter
+                                    Decks</InputLabel>
+                                <FilledInput
+                                    id="component-filled"
+                                    defaultValue=""
+                                    sx={{
+                                        "& input": {
+                                            backgroundColor: fields_color,
+                                            color: 'white',
+                                            borderRadius: '10px',
+                                            border: '2px solid black',
+                                        }
+                                    }}
+                                    disableUnderline
+                                    onChange={(e) => setFilterString(e.target.value)}
+                                />
+                            </FormControl>
+                            <ButtonCreateFlashCardPage
+                                color={fields_color}
+                                text={'Filter'}
+                                border={'2px solid black'}
+                                image={filter}
+                                onClick={handleFilterDecks}
+                            />
+                            <ButtonCreateFlashCardPage
+                                color={decks_button_color}
+                                text={'Users Ranking'}
+                                border={'2px solid black'}
+                                image={profile}
+                                onClick={navigateUsersRanking}
+                            />
+                        </div>
+                        <div className="decks-container">
+                            {decks.slice(0, 20).map((deck, index) => (
+                                <div className="decks-button" key={index}>
+                                    <ButtonDeckRanking
+                                        rankingPosition={`${deck['ranking']}`}
+                                        frontTextUpper={`${deck['title']}`}
+                                        frontTextLower={`${deck['deck_category']}`}
+                                        backText={`Downloads: ${deck['downloads']}`}
+                                        onClick={() => navigatePublicDecksFlashCards(deck['id'])}
                                     />
-                                </FormControl>
-                                <ButtonCreateFlashCardPage
-                                    color={fields_color}
-                                    text={'Filter'}
-                                    border={'2px solid black'}
-                                    image={filter}
-                                    onClick={handleFilterDecks}
-                                />
-                                <ButtonCreateFlashCardPage
-                                    color={decks_button_color}
-                                    text={'Users Ranking'}
-                                    border={'2px solid black'}
-                                    image={profile}
-                                    onClick={navigateUsersRanking}
-                                />
-                            </div>
-                            <div className="decks-container">
-                                {decks.slice(0, 20).map((deck, index) => (
-                                    <div className="decks-button" key={index}>
-                                        <ButtonDeckRanking
-                                            rankingPosition={`${deck['ranking']}`}
-                                            frontTextUpper={`${deck['title']}`}
-                                            frontTextLower={`${deck['deck_category']}`}
-                                            backText={`Downloads: ${deck['downloads']}`}
-                                            onClick={() => navigatePublicDecksFlashCards(deck['id'])}
-                                        />
-                                    </div>
-                                ))}
-                            </div>
-                        </>
+                                </div>
+                            ))}
+                        </div>
+                    </>
                 </>
             )}
         </div>

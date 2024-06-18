@@ -21,7 +21,7 @@ Logowanie do systemu (WF02) \newline
 Wylogowanie z systemu (WF03) \newline
 Edycja danych użytkownika (WF04) \newline
 Usunięcie konta użytkownika (WF05) \newline
-Weryfikacja konta użytkownika poprzez email  (WF14)
+Weryfikacja konta użytkownika poprzez e-mail  (WF14)
 }
 
 \end{requirementstab}
@@ -100,8 +100,8 @@ Generowanie treści fiszki na podstawie słów kluczowych (WF16)
     \name{Rejestracja nowego użytkownika w systemie}
     \descr{Użytkownik musi utworzyć konto aby móc korzystać z aplikacji.}
     \acceptcrit{Nowy użytkownik dodany do systemu}
-    \inputdata{nickname, email, hasło}
-    \preconditions{Użytkownik musi posiadać adres email}
+    \inputdata{nickname, e-mail, hasło}
+    \preconditions{Użytkownik musi posiadać adres e-mail}
     \postconditions{Utworzenie konta użytkownika}
     \exceptions{Brak łączności z bazą danych. Wprowadzenie dane przez użytkownika istnieją już w bazie danych.}
     \implementation{Punkt 7.3.1}
@@ -111,7 +111,7 @@ Użytkownik systemu (UOB 03) }
 Wylogowanie z systemu (WF03) \newline
 Edycja danych użytkownika (WF04) \newline
 Usunięcie konta użytkownika (WF05) \newline
-Weryfikacja konta użytkownika poprzez email (WF14)}
+Weryfikacja konta użytkownika poprzez e-mail (WF14)}
 \end{requirementstab}
 
     \subsection{Logowanie do systemu}
@@ -122,7 +122,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
     \name{Logowanie do systemu}
     \descr{Użytkownik musi zalogować się do systemu, aby mieć dostęp do systemu.}
     \acceptcrit{Pomyślne zalogowanie do systemu}
-    \inputdata{email i hasło}
+    \inputdata{e-mail i hasło}
     \preconditions{Posiadane konto użytkownika, konto musi być aktywne.}
     \postconditions{Dostęp do systemu}
     \exceptions{Brak łączności z bazą danych. Wprowadzenie niepoprawnych danych logowania, co uniemożliwia zalogowanie do systemu.}
@@ -132,7 +132,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
 Wylogowanie z systemu (WF03) \newline
 Edycja danych użytkownika (WF04) \newline
 Usunięcie konta użytkownika (WF05) \newline
-Weryfikacja konta użytkownika poprzez email (WF14)}
+Weryfikacja konta użytkownika poprzez e-mail (WF14)}
 \end{requirementstab}
 
     \subsection{Wylogowanie z systemu}
@@ -153,7 +153,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
 Logowanie do systemu (WF02) \newline
 Edycja danych użytkownika (WF04) \newline
 Usunięcie konta użytkownika (WF05) \newline
-Weryfikacja konta użytkownika poprzez email (WF14)}
+Weryfikacja konta użytkownika poprzez e-mail (WF14)}
 \end{requirementstab}
 
     \subsection{Edycja danych użytkownika}
@@ -162,7 +162,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
     \id{WF04}
     \priority{M – must}
     \name{Edycja danych użytkownika}
-    \descr{Jako użytkownik muszę mieć możliwość zmiany hasła lub email ponieważ mogę stracić dostęp do konta email lub moje hasło z różnych powodów może stać się jawne.}
+    \descr{Jako użytkownik muszę mieć możliwość zmiany hasła lub e-mail ponieważ mogę stracić dostęp do konta e-mail lub moje hasło z różnych powodów może stać się jawne.}
     \acceptcrit{Zmienione parametry logowania}
     \inputdata{Użytkownik podaje nowy parametr wraz z hasłem, w celu edycji danych użytkownika}
     \preconditions{Posiadane konto użytkownika, użytkownik zalogowany do systemu.}
@@ -174,7 +174,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
 Logowanie do systemu (WF02) \newline
 Wylogowanie z systemu (WF03) \newline
 Usunięcie konta użytkownika (WF05) \newline
-Weryfikacja konta użytkownika poprzez email (WF14)}
+Weryfikacja konta użytkownika poprzez e-mail (WF14)}
 \end{requirementstab}
 
     \subsection{Usunięcie konta użytkownika}
@@ -185,7 +185,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
     \name{Usunięcie konta użytkownika}
     \descr{Jako użytkownik chcę mieć możliwość usunięcia swojego konta, gdy przestanę korzystać z aplikacji.}
     \acceptcrit{Usunięte konto użytkownika}
-    \inputdata{email i hasło}
+    \inputdata{e-mail i hasło}
     \preconditions{Posiadane konto użytkownika, użytkownik zalogowany do systemu.}
     \postconditions{Konto użytkownika usunięte z systemu}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą. Wprowadzenie niepoprawnych danych, co uniemożliwia usunięcie konta użytkownika.}
@@ -195,7 +195,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
 Logowanie do systemu (WF02) \newline
 Wylogowanie z systemu (WF03) \newline
 Edycja danych użytkownika (WF04) \newline
-Weryfikacja konta użytkownika poprzez email (WF14)}
+Weryfikacja konta użytkownika poprzez e-mail (WF14)}
 \end{requirementstab}
 
     \subsection{Tworzenie talii fiszek}
@@ -210,7 +210,7 @@ Weryfikacja konta użytkownika poprzez email (WF14)}
     \preconditions{Posiadane konto użytkownika, użytkownik zalogowany do systemu.}
     \postconditions{Utworzona nowa talia fiszek.}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą. Puste pole z nazwą talii uniemożliwia tworzenie talii. Pusty tytuł fiszki lub pusta treść uniemożliwia utworzenie fiszki.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.6}
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Usunięcie talii fiszek (WF07) \newline
 Edycja talii fiszek (WF08) \newline
@@ -229,7 +229,7 @@ Import talii innych użytkowników (WF11)}
     \preconditions{Posiadane konto użytkownika, użytkownik zalogowany do systemu. Utworzona talia fiszek, którą można usunąć.}
     \postconditions{Talia fiszek zostaje usunięta.}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.7}
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Tworzenie talii fiszek (WF06) \newline
 Edycja talii fiszek (WF08) \newline
@@ -248,7 +248,7 @@ Import talii innych użytkowników (WF11)}
     \preconditions{Talia fiszek, która będzie edytowana.}
     \postconditions{Talia fiszek zostaje zaktualizowana o nowe informacje.}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą. Puste pole dotyczące tytułu talii uniemożliwia zapisanie zmian.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.8}
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Tworzenie talii fiszek (WF06) \newline
 Usunięcie talii fiszek (WF07) \newline
@@ -267,7 +267,7 @@ Import talii innych użytkowników (WF11)}
     \preconditions{Utworzona talia fiszek lub pobrana talia fiszek, która zostanie wykorzystana do nauki.}
     \postconditions{Talia fiszek zostaje podzielona na dwa zbiory, fiszki zapamiętane i nie zapamiętane.}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.9}
     \sholder{Zespół projektowy (UOB 01) }
     \reqrelated{Sterowanie talią przy użyciu mowy (WF10)}
 \end{requirementstab}
@@ -284,7 +284,7 @@ Import talii innych użytkowników (WF11)}
     \preconditions{Utworzona talia fiszek}
     \postconditions{Talia fiszek pozostaje niezmieniona}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą danych. Hałas, który aplikacja może przechwytywać, przez co komendy głosowe mogą działać niepoprawnie. Fiszki utworzone w innym języku niż angielski co może spowodować trudności w odczytaniu ich zawartości przez syntezator mowy.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.10}
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Tryb uczenia się z talii fiszek (WF09)}
 \end{requirementstab}
@@ -301,7 +301,7 @@ Import talii innych użytkowników (WF11)}
     \preconditions{Talia którą użytkownik może pobrać.}
     \postconditions{Talia dodana do zakładki talii pobranych od innych użytkowników.}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą danych.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.11}
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Tworzenie talii fiszek (WF06) \newline
 Usunięcie talii fiszek (WF07) \newline
@@ -320,7 +320,7 @@ Edycja talii fiszek (WF08)}
     \preconditions{Posiadane konto użytkownika, użytkownik zalogowany do systemu.}
     \postconditions{Zmiana koloru interfejsu aplikacji.}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą danych.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.12}
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Kalendarz śledzący aktywność (WF13)}
 \end{requirementstab}
@@ -337,24 +337,24 @@ Edycja talii fiszek (WF08)}
     \preconditions{Posiadane konto użytkownika, użytkownik zalogowany do systemu.}
     \postconditions{Dzień oznaczony w kalendarzu.}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą danych.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{ Brak }
     \sholder{Zespół projektowy (UOB 01) }
     \reqrelated{Tryb dark mode i light mode (WF12)}
 \end{requirementstab}
 
-    \subsection{Weryfikacja konta użytkownika poprzez email}
+    \subsection{Weryfikacja konta użytkownika poprzez e-mail}
 
-\begin{requirementstab}[label={tab:requirements:email_verification},caption={Wymagania na interfejs z otoczeniem dla weryfikacji konta użytkownika poprzez email}]
+\begin{requirementstab}[label={tab:requirements:e-mail_verification},caption={Wymagania na interfejs z otoczeniem dla weryfikacji konta użytkownika poprzez e-mail}]
     \id{WF14}
     \priority{C – could}
-    \name{Weryfikacja konta użytkownika poprzez email}
-    \descr{Użytkownik po pomyślnej rejestracji, otrzyma na email wiadomość z linkiem przekierowującym na stronę webową, gdzie nastąpi wysłanie żądania o aktywację konta użytkownika.}
-    \acceptcrit{Wiadomość dostarczona na wskazany email, poprawnie działająca aktywacja konta, poprawne przekierowanie.}
+    \name{Weryfikacja konta użytkownika poprzez e-mail}
+    \descr{Użytkownik po pomyślnej rejestracji, otrzyma na e-mail wiadomość z linkiem przekierowującym na stronę webową, gdzie nastąpi wysłanie żądania o aktywację konta użytkownika.}
+    \acceptcrit{Wiadomość dostarczona na wskazany e-mail, poprawnie działająca aktywacja konta, poprawne przekierowanie.}
     \inputdata{Token autoryzujący}
-    \preconditions{Użytkownik musi posiadać istniejący adres email, na który przyjdzie wiadomość z linkiem aktywującym konto.}
+    \preconditions{Użytkownik musi posiadać istniejący adres e-mail, na który przyjdzie wiadomość z linkiem aktywującym konto.}
     \postconditions{Użytkownik aktywuje konto.}
-    \exceptions{Awaria bazy danych lub brak połączenia z bazą danych. Użytkownik nie ma dostępu do podanego przez siebie adresu email lub podany adres jest błędny. Wiadomość nie dotarła do użytkownika.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \exceptions{Awaria bazy danych lub brak połączenia z bazą danych. Użytkownik nie ma dostępu do podanego przez siebie adresu e-mail lub podany adres jest błędny. Wiadomość nie dotarła do użytkownika.}
+    \implementation{ Brak }
     \sholder{Zespół projektowy (UOB 01) }
     \reqrelated{Rejestracja konta użytkownika (WF01) \newline
 Logowanie do systemu (WF02)}
@@ -372,7 +372,7 @@ Logowanie do systemu (WF02)}
     \preconditions{Posiadane konto użytkownika, użytkownik zalogowany do systemu, dokument do analizy.}
     \postconditions{Utworzona talia fiszek.}
     \exceptions{Awaria bazy danych lub brak połączenia z bazą danych. Dokument nie zdatny do odczytu.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{ Brak }
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Generowanie treści fiszki na podstawie słów kluczowych (WF16)}
 \end{requirementstab}
@@ -389,7 +389,7 @@ Logowanie do systemu (WF02)}
     \preconditions{Utworzone konto użytkownika.}
     \postconditions{Treść fiszki wygenerowana na podstawie zawartości wpisanej w pole przedniej strony karty.}
     \exceptions{Awaria API lub połączenia z API. Podanie przez użytkownika zdania nie mającego sensu.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{ Punkt 7.3.13 }
     \sholder{Użytkownik systemu (UOB 03) }
     \reqrelated{Tworzenie talii fiszek przez analizę dokumentu (WF15)}
 \end{requirementstab}
@@ -400,13 +400,13 @@ Logowanie do systemu (WF02)}
     \id{WF017}
     \priority{S – should}
     \name{Resetowanie hasła na konta}
-    \descr{Użytkownik po podaniu adresu mailowego połączonego z kontem, otrzyma na email wiadomość z linkiem przekierowującym na stronę webową, gdzie będzie mógł podać nowe hasło.}
+    \descr{Użytkownik po podaniu adresu mailowego połączonego z kontem, otrzyma na e-mail wiadomość z linkiem przekierowującym na stronę webową, gdzie będzie mógł podać nowe hasło.}
     \acceptcrit{Pomyślna zmiana hasła.}
     \inputdata{Token autoryzujący, nowe hasło}
-    \preconditions{Użytkownik musi posiadać istniejący adres email, na który przyjdzie wiadomość z linkiem przekierowującym na widok strony internetowej.}
+    \preconditions{Użytkownik musi posiadać istniejący adres e-mail, na który przyjdzie wiadomość z linkiem przekierowującym na widok strony internetowej.}
     \postconditions{Użytkownik pomyślnie zmienia hasło.}
-    \exceptions{Awaria bazy danych lub brak połączenia z bazą danych. Użytkownik nie ma dostępu do podanego przez siebie adresu email lub podany adres jest błędny. Wiadomość nie dotarła do użytkownika.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \exceptions{Awaria bazy danych lub brak połączenia z bazą danych. Użytkownik nie ma dostępu do podanego przez siebie adresu e-mail lub podany adres jest błędny. Wiadomość nie dotarła do użytkownika.}
+    \implementation{ Brak }
     \sholder{Zespół projektowy (UOB 01) }
     \reqrelated{Logowanie do systemu (WF02)}
 \end{requirementstab}
@@ -417,15 +417,15 @@ Logowanie do systemu (WF02)}
     \id{I01}
     \priority{S – should}
     \name{ChatGPT 3.5}
-    \descr{Aplikacja zostaje połączona z API chatu GPT, aby użytkownik miał możliwość wygenerowania treści fiszki na podstawie podanego słowa.}
+    \descr{Aplikacja zostaje połączona z API ChatGPT, aby użytkownik miał możliwość wygenerowania treści fiszki na podstawie podanego słowa.}
     \acceptcrit{Prawidłowo generuje definicje dla wysyłanych słów kluczowych.}
     \inputdata{Słowo podane przez użytkownika.}
-    \preconditions{Aplikacja połączona z API chatu GPT.}
+    \preconditions{Aplikacja połączona z API ChatGPT.}
     \postconditions{ChatGPT zwraca definicję podanego słowa.}
     \exceptions{Brak połączenia z ChatGPT.}
-    \implementation{uzupełniane w trakcie sprintu – opis sposobu realizacji}
+    \implementation{Punkt 7.3.13}
     \sholder{Zespół projektowy - UOB 01 }
-    \reqrelated{}
+    \reqrelated{Generowanie treści fiszki na podstawie słów kluczowych (WF16)}
 \end{requirementstab}
 
     \section{Wymagania pozafunkcjonalne}
@@ -448,8 +448,8 @@ Logowanie do systemu (WF02)}
     \id{WN02}
     \priority{S – should}
     \name{Limit błędów dotyczących logowania}
-    \descr{Po wpisaniu 3 razy niepoprawnych danych logowania w aplikacji pojawi się okienko informujące o blokadzie aplikacji na 1 minutę, okienko zawiera przycisk zmiany hasła. Przycisk przekierowuje do podstrony zawierającej pole do podania email na które przyjdzie wiadomość dotycząca zmiany hasła.}
-    \acceptcrit{Użytkownik otrzymuje wiadomość email, która przekierowuje go do formularza zmiany hasła.}
+    \descr{Po wpisaniu 3 razy niepoprawnych danych logowania w aplikacji pojawi się okienko informujące o blokadzie aplikacji na 1 minutę, okienko zawiera przycisk zmiany hasła. Przycisk przekierowuje do podstrony zawierającej pole do podania e-mail na które przyjdzie wiadomość dotycząca zmiany hasła.}
+    \acceptcrit{Użytkownik otrzymuje wiadomość e-mail, która przekierowuje go do formularza zmiany hasła.}
     \sholder{Zespół projektowy (UOB 01) }
     \reqrelated{Resetowanie hasła (WF017)}
 \end{requirementstab}

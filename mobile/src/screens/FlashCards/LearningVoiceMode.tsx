@@ -9,8 +9,7 @@ import {
     View,
     Text,
     FlatList,
-    Animated,
-    Button
+    Animated
 } from "react-native";
 
 import { Platform } from "react-native";

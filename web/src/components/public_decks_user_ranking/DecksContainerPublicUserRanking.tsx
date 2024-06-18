@@ -89,7 +89,7 @@ const DecksContainerPublicUserRanking = () => {
         }
     };
 
-   const navigatePublicDecksFlashCards = async (deck_id: string) => {
+    const navigatePublicDecksFlashCards = async (deck_id: string) => {
         DeckService.get_deck_by_id(deck_id)
         navigate("/flashcards_from_user_ranking")
     }

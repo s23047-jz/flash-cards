@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_11/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_11/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_11/wykres.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_12/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_12/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_12/naklad_pracy_wykres.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_11/naklad_pracy_wykres.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_13/main.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_10/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_10/main.tex" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,7 +15,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/.." value="FC-154-MOBILE-Dodac-sterowanie-glosem" />
+        <entry key="$PROJECT_DIR$/.." value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -62,6 +58,7 @@
       <recent name="$PROJECT_DIR$/chapters/chapter_11" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/chapters/chapter_5" />
       <recent name="$PROJECT_DIR$/chapters/chapter_12" />
       <recent name="$PROJECT_DIR$/chapters/chapter_11" />
       <recent name="$PROJECT_DIR$/chapters/chapter_10" />
@@ -145,6 +142,7 @@
         <item itemvalue="LaTeX.engineer" />
         <item itemvalue="LaTeX.engineer" />
         <item itemvalue="LaTeX.engineer" />
+        <item itemvalue="LaTeX.engineer" />
       </list>
     </recent_temporary>
   </component>
@@ -185,6 +183,14 @@
       <workItem from="1715276147075" duration="149000" />
       <workItem from="1716309485552" duration="15000" />
       <workItem from="1718135064720" duration="88000" />
+      <workItem from="1718565891073" duration="4857000" />
+      <workItem from="1718571349943" duration="184000" />
+      <workItem from="1718572768661" duration="786000" />
+      <workItem from="1718573732387" duration="79000" />
+      <workItem from="1718643685637" duration="390000" />
+      <workItem from="1718661188236" duration="26000" />
+      <workItem from="1718701602019" duration="10294000" />
+      <workItem from="1718713110561" duration="489000" />
     </task>
     <task id="LOCAL-00001" summary="poprawki">
       <option name="closed" value="true" />
@@ -226,7 +232,47 @@
       <option name="project" value="LOCAL" />
       <updated>1718206683602</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718573533245</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1718573533245</updated>
+    </task>
+    <task id="LOCAL-00007" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718656916307</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1718656916307</updated>
+    </task>
+    <task id="LOCAL-00008" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718658487499</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1718658487499</updated>
+    </task>
+    <task id="LOCAL-00009" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718713464203</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718713464203</updated>
+    </task>
+    <task id="LOCAL-00010" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718717896804</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1718717896804</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
