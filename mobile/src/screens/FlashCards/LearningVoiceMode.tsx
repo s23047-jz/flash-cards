@@ -12,7 +12,10 @@ import {
     Animated
 } from "react-native";
 
+import { Platform } from "react-native";
+import { Audio } from "expo-av";
 import * as Speech from "expo-speech";
+import * as FileSystem from 'expo-file-system';
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { ScreenProps } from "../../interfaces/screen";
@@ -24,29 +27,29 @@ import {
     FlashCard,
     MicrophoneButton
 } from "../../components";
-import { useVoiceRecognition } from "../../utils/voice_recogniotion";
-import { Audio } from 'expo-av';
-
 
 const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const { deck } = route.params;
 
+    const PERMISSIONS_MAPPING = {
+        GRANTED: 'granted'
+    }
     const VOICE_CONTROL_STAGES = {
-        RUN: "run",
+        START: "start",
         STOP: "stop",
         END: "end",
     }
 
-    const {
-        state,
-        startRecognizing,
-        stopRecognizing,
-        destroyRecognizing
-    } = useVoiceRecognition();
     const [loading, setLoading] = useState(true);
     const [flashCards, setFlashCards] = useState([]);
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const showFrontCard= useRef(true);
+
+    // Audio
+    const recording = useRef(null);
+
+    // Permissions
+    const [permissionResponse, requestPermission] = Audio.usePermissions();
 
     // voice control
     const [activeVoiceControlMode, setActiveVoiceControlMode] = useState(VOICE_CONTROL_STAGES.STOP);
@@ -57,19 +60,77 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const viewConfig = useRef({ viewAreaCoveragePercentThreshold: 50}).current
 
     const [parentWidth, setParentWidth] = useState(0);
-    
-    useEffect(() => {
-        (async () => {
-            const { status } = await Audio.requestPermissionsAsync();
-            if (status !== 'granted') {
-                alert('Sorry, we need audio permissions to make this work!');
-            }
-        })();
-    }, []);
-    
     const onParentLayout = (event) => {
         const { width } = event.nativeEvent.layout;
         setParentWidth(width);
+    };
+
+    const handleCheckIfPermissionGranted = async() => {
+        try {
+            if (permissionResponse?.status !== PERMISSIONS_MAPPING.GRANTED) {
+                console.log('Requesting permission...');
+                const permission = await requestPermission();
+                console.log("PER", permission)
+                if (!permission.granted && permission.status === 'denied') navigation.goBack()
+            }
+        } catch (err) {
+            console.error('Failed to get permissions', err);
+        }
+    }
+
+    const startRecording = async () => {
+        try {
+            if (Platform.OS === 'ios') {
+                await Audio.setAudioModeAsync({
+                    allowsRecordingIOS: true,
+                    playsInSilentModeIOS: true,
+                    staysActiveInBackground: true,
+                });
+            } else {
+                await Audio.setAudioModeAsync({
+                    staysActiveInBackground: true,
+                });
+            }
+            console.log('Starting recording...');
+            const recordingInstance = new Audio.Recording();
+            await recordingInstance.prepareToRecordAsync(
+                Audio.RecordingOptionsPresets.HIGH_QUALITY
+            );
+            await recordingInstance.startAsync();
+            recording.current = recordingInstance;
+            console.log('Recording started');
+        } catch (err) {
+            console.error('Failed to start recording', err);
+        }
+    };
+
+    const stopRecording = async () => {
+        try {
+            console.log('Stopping recording...', recording);
+            if (recording.current) {
+                await recording.current.stopAndUnloadAsync();
+                await Audio.setAudioModeAsync({
+                    allowsRecordingIOS: false,
+                    playsInSilentModeIOS: false,
+                    staysActiveInBackground: false,
+                });
+                const uri = recording.current.getURI();
+                recording.current = null;
+                setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
+                if (uri) {
+                    console.log(
+                        uri,
+                        typeof(uri)
+                    )
+                    await calculateSimilarity(uri)
+                }
+            } else {
+                setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
+                console.error('No recording instance found');
+            }
+        } catch (err) {
+            console.error('Failed to stop recording', err);
+        }
     };
 
     const handleSpeech = (text: string) => {
@@ -105,20 +166,19 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const handleStopControl = async() => {
-        await stopRecognizing();
-        setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
+        await stopRecording();
     }
 
     const toggleMicrophoneStatus = async() => {
         if (activeVoiceControlMode === VOICE_CONTROL_STAGES.STOP) {
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.RUN);
+            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START);
         } else {
-            await handleStopControl()
+            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
+            await stopRecording();
         }
     }
 
     const handleEndRecognizing = async() => {
-        await destroyRecognizing();
         setActiveVoiceControlMode(VOICE_CONTROL_STAGES.END);
         setShowMicrophoneModal(false);
     }
@@ -151,31 +211,49 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         setCurrentCardIndex(viewableItems[0].index)
     }).current
 
-    const calculateSimilarity = async(text: string) => {
+    const calculateSimilarity = async(recordingURI: string) => {
+        if (!recordingURI) {
+            console.error('No recording URI to upload');
+            return;
+        }
         try {
-            const { data } = await NlpService.calculateSimilarity(
-                { text },
+            const fileInfo = await FileSystem.getInfoAsync(recordingURI);
+                if (!fileInfo.exists) {
+                console.error('File does not exist at the given URI');
+                return;
+            }
+                const fileUri = fileInfo.uri;
+                const formData = new FormData();
+                formData.append('file', {
+                    uri: fileUri,
+                    name: 'recording.m4a',
+                    type: 'audio/m4a',
+                });
+            const { res, data } = await NlpService.calculateSimilarityByFile(
+                formData,
                 navigation
             )
-            await handleCommands(data)
+            await FileSystem.deleteAsync(recordingURI);
+            if ([200, 201].includes(res.status)) {
+                console.log('File uploaded successfully');
+                await handleCommands(data.command)
+                if (data.command || data.command !== 'stop') {
+                    setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START)
+                }
+            } else {
+                await handleCommands("Unknown")
+            }
         }catch (err) {
             console.error("Something went wrong during the calculation", err)
         }
     }
 
     const handleVoiceVoiceControl = async() => {
-        if (activeVoiceControlMode === VOICE_CONTROL_STAGES.RUN) {
-            await startRecognizing()
-            // Hold for 5 seconds
-            await new Promise(resolve => setTimeout(resolve, 5000));
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP)
-            if (state.results && state.results.length) {
-                setTimeout(() => {
-                    stopRecognizing()
-                    calculateSimilarity(state.results.join(" "))
-                }, 10000)
-            }
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.RUN)
+        if (activeVoiceControlMode === VOICE_CONTROL_STAGES.START) {
+            await startRecording();
+            setTimeout( async () => {
+                await stopRecording();
+            }, 6000)
         }
     }
 
@@ -194,11 +272,22 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     useFocusEffect(
         useCallback(() => {
+            if (recording.current) {
+                console.log('Stopping existing recording before starting a new one.');
+                recording.current.stopAndUnloadAsync();
+                recording.current = null;
+                Audio.setAudioModeAsync({
+                    allowsRecordingIOS: false,
+                    playsInSilentModeIOS: false,
+                    staysActiveInBackground: false,
+                });
+            }
             setLoading(true);
             fetchUnmemorizedFlashcards();
             setShowMicrophoneModal(true);
             setLoading(false);
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.RUN)
+            handleCheckIfPermissionGranted();
+            stopRecording();
         }, []),
     );
 
@@ -254,9 +343,9 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 Learning Voice Mode
             </Text>
             <MicrophoneButton
-                active={state.isRecording}
+                active={activeVoiceControlMode === VOICE_CONTROL_STAGES.START}
                 show={showMicrophoneModal}
-                toggleMicrophoneStatus={toggleMicrophoneStatus}
+                onPress={toggleMicrophoneStatus}
             />
             <View className="top-14 absolute left-6">
                 <MaterialCommunityIcons

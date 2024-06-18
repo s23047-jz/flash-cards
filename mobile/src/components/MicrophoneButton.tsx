@@ -5,14 +5,14 @@ import {
     Microphone
 } from "../assets/images";
 
-const MicrophoneButton = ({ show, active, toggleMicrophoneStatus }: { show: boolean, active: boolean, toggleMicrophoneStatus: () => Promise<void> }) => {
+const MicrophoneButton = ({ show, active, onPress }: { show: boolean, active: boolean, onPress: () => Promise<void> }) => {
     return (
         <View
             style={[{ opacity: show ? 1 : 0, position: 'absolute', bottom: 0, zIndex: 120 }]}
             className={'w-full items-center'}
         >
             <TouchableOpacity
-                onPress={async () => {await toggleMicrophoneStatus();}}
+                onPress={async () => {await onPress();}}
                 className={'w-full dark:bg-sky-500 bg-blue-900 p-2 rounded-xl justify-center items-center'}
                 style={{maxWidth: 300}}
             >
