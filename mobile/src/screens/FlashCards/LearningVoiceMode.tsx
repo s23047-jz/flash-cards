@@ -36,7 +36,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         GRANTED: 'granted'
     }
     const VOICE_CONTROL_STAGES = {
-        RUN: "run",
+        START: "start",
         STOP: "stop",
         END: "end",
     }
@@ -48,6 +48,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     // Audio
     const [recording, setRecording] = useState<Audio.Recording | null>(null);
+    // const recording = useRef(null);
 
     // Permissions
     const [permissionResponse, requestPermission] = Audio.usePermissions();
@@ -70,7 +71,9 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         try {
             if (permissionResponse?.status !== PERMISSIONS_MAPPING.GRANTED) {
                 console.log('Requesting permission...');
-                await requestPermission();
+                const permission = await requestPermission();
+                console.log("PER", permission)
+                if (!permission.granted && permission.status === 'denied') navigation.goBack()
             }
         } catch (err) {
             console.error('Failed to get permissions', err);
@@ -79,11 +82,6 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const startRecording = async () => {
         try {
-            if (recording) {
-                console.log('Stopping existing recording before starting a new one.');
-                await recording.stopAndUnloadAsync();
-                setRecording(null);
-            }
             if (Platform.OS === 'ios') {
                 await Audio.setAudioModeAsync({
                     allowsRecordingIOS: true,
@@ -110,7 +108,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const stopRecording = async () => {
         try {
-            console.log('Stopping recording...');
+            console.log('Stopping recording...', recording);
             if (recording) {
                 await recording.stopAndUnloadAsync();
                 await Audio.setAudioModeAsync({
@@ -168,20 +166,19 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const handleStopControl = async() => {
-        // await stopRecognizing();
-        setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
+        await stopRecording();
     }
 
     const toggleMicrophoneStatus = async() => {
         if (activeVoiceControlMode === VOICE_CONTROL_STAGES.STOP) {
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.RUN);
+            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START);
         } else {
-            await handleStopControl()
+            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
+            await stopRecording();
         }
     }
 
     const handleEndRecognizing = async() => {
-        // await destroyRecognizing();
         setActiveVoiceControlMode(VOICE_CONTROL_STAGES.END);
         setShowMicrophoneModal(false);
     }
@@ -240,6 +237,9 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             if ([200, 201].includes(res.status)) {
                 console.log('File uploaded successfully');
                 await handleCommands(data.command)
+                if (data.command || data.command !== 'stop') {
+                    setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START)
+                }
             } else {
                 await handleCommands("Unknown")
             }
@@ -248,7 +248,14 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         }
     }
 
-    const handleVoiceVoiceControl = async() => {}
+    const handleVoiceVoiceControl = async() => {
+        if (activeVoiceControlMode === VOICE_CONTROL_STAGES.START) {
+            await startRecording();
+            setTimeout( async () => {
+                await stopRecording();
+            }, 1000)
+        }
+    }
 
     async function fetchUnmemorizedFlashcards() {
         try {
@@ -265,11 +272,21 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     useFocusEffect(
         useCallback(() => {
+            if (recording) {
+                console.log('Stopping existing recording before starting a new one.');
+                recording.stopAndUnloadAsync();
+                setRecording(null);
+                Audio.setAudioModeAsync({
+                    allowsRecordingIOS: false,
+                    playsInSilentModeIOS: false,
+                    staysActiveInBackground: false,
+                });
+            }
             setLoading(true);
             fetchUnmemorizedFlashcards();
             setShowMicrophoneModal(true);
             setLoading(false);
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.RUN)
+            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START)
             handleCheckIfPermissionGranted();
             stopRecording();
         }, []),
@@ -327,9 +344,9 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 Learning Voice Mode
             </Text>
             <MicrophoneButton
-                active={true}
+                active={recording ? true : false}
                 show={showMicrophoneModal}
-                toggleMicrophoneStatus={toggleMicrophoneStatus}
+                onPress={toggleMicrophoneStatus}
             />
             <View className="top-14 absolute left-6">
                 <MaterialCommunityIcons
@@ -343,10 +360,6 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 <Text className="text-white font-extrabold mb-3 scale-150 font-bold text-center ">
                     {(flashCards.length - currentCardIndex)} flashcards left
                 </Text>
-                <Button
-                    title={recording ? 'Stop Recording' : 'Start Recording'}
-                    onPress={recording ? stopRecording : startRecording}
-                />
             </View>
             <View className="flex-1" onLayout={onParentLayout}>
                 <FlatList
