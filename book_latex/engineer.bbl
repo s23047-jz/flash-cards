@@ -199,6 +199,32 @@
       \field{title}{Applied Imagination: Principles and Procedures of Creative Problem-Solving}
       \field{year}{1953}
     \endentry
+    \entry{dataMining}{book}{}
+      \name{author}{1}{}{%
+        {{hash=77407172421b29e2ee403dc134598d40}{%
+           family={Han\bibnamedelima J},
+           familyi={H\bibinitperiod\bibinitdelim J\bibinitperiod},
+           given={Pei\bibnamedelima J},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod},
+           suffix={Kamber\bibnamedelima M},
+           suffixi={K\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Morgan Kaufmann Publishers, an imprint of Elsevier}%
+      }
+      \strng{namehash}{77407172421b29e2ee403dc134598d40}
+      \strng{fullhash}{77407172421b29e2ee403dc134598d40}
+      \strng{bibnamehash}{77407172421b29e2ee403dc134598d40}
+      \strng{authorbibnamehash}{77407172421b29e2ee403dc134598d40}
+      \strng{authornamehash}{77407172421b29e2ee403dc134598d40}
+      \strng{authorfullhash}{77407172421b29e2ee403dc134598d40}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Data Mining: Concepts and Techniques}
+      \field{year}{2012}
+    \endentry
     \entry{mielnikIntegrationTests}{online}{}
       \name{author}{1}{}{%
         {{hash=9196f7dbbb9765bd6d8b20898237f884}{%
@@ -213,8 +239,8 @@
       \strng{authorbibnamehash}{9196f7dbbb9765bd6d8b20898237f884}
       \strng{authornamehash}{9196f7dbbb9765bd6d8b20898237f884}
       \strng{authorfullhash}{9196f7dbbb9765bd6d8b20898237f884}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Dostęp: 31 maja 2024, godz. 14:00}
@@ -248,8 +274,8 @@
       \strng{authorbibnamehash}{e14c8f99a5c662fff05b01360c10216f}
       \strng{authornamehash}{e14c8f99a5c662fff05b01360c10216f}
       \strng{authorfullhash}{e14c8f99a5c662fff05b01360c10216f}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{pytest Quick Start Guide}
@@ -269,8 +295,8 @@
       \strng{authorbibnamehash}{1b3b993f495e14148d73fa1278dd624a}
       \strng{authornamehash}{1b3b993f495e14148d73fa1278dd624a}
       \strng{authorfullhash}{1b3b993f495e14148d73fa1278dd624a}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Dostęp: 31 maja 2024, godz. 15:00}

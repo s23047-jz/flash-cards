@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  16 JUN 2024 22:54
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  18 JUN 2024 12:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -623,7 +623,17 @@ l.47 \begin{document}
 ? 
 \@quotelevel=\count432
 \@quotereset=\count433
-No file engineer.aux.
+(./engineer.aux
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+
+LaTeX Warning: Label `' multiply defined.
+
+)
 \openout1 = `engineer.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
@@ -637,7 +647,7 @@ LaTeX Font Info:    ... okay on input line 47.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
 7.
-(/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 47.
@@ -697,7 +707,15 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'engineer.bbl' found.
 
-(./engineer.bbl)
+(./engineer.bbl
+
+Package biblatex Warning: The following entry could not be found
+(biblatex)                in the database:
+(biblatex)                Han2012DataMining
+(biblatex)                Please verify the spelling and rerun
+(biblatex)                LaTeX afterwards.
+
+)
 Package biblatex Info: Reference section=0 on input line 47.
 Package biblatex Info: Reference segment=0 on input line 47.
 
@@ -805,7 +823,7 @@ File: sprz/pjatk.png Graphic file (type bmp)
 <sprz/pjatk.png>
 [1
 
-]
+] [2]
 File: sprz/pjatk.png Graphic file (type bmp)
 <sprz/pjatk.png>
 LaTeX Font Info:    External font `cmex10' loaded for size
@@ -878,50 +896,50 @@ l.1 ...ctlanguage *[spacedguillemets=true]{polish}
 ? 
 [4
 
-] [5])
+] [5] [6] [7])
 \tf@toc=\write4
 \openout4 = `engineer.toc'.
 
- (./chapters/chapter_1/main.tex [6]
+ (./chapters/chapter_1/main.tex [8]
 Rozdział 1.
-[7
-
-]) (./chapters/chapter_2/main.tex [8]
-Rozdział 2.
 [9
+
+]) (./chapters/chapter_2/main.tex [10]
+Rozdział 2.
+[11
 
 ]
 File: chapters/chapter_2/rich_picture.png Graphic file (type bmp)
 <chapters/chapter_2/rich_picture.png>
- [10]
+ [12]
 File: chapters/chapter_2/krzywa1.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa1.png>
- [11]
+ [13]
 File: chapters/chapter_2/krzywa2.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa2.png>
- [12] [13]) (./chapters/chapter_3/main.tex [14]
+ [14] [15]) (./chapters/chapter_3/main.tex [16]
 Rozdział 3.
-[15
+[17
 
 ]
 File: chapters/chapter_3/quizlet.png Graphic file (type bmp)
 <chapters/chapter_3/quizlet.png>
- [16]
+ [18]
 File: chapters/chapter_3/fiszoteka.png Graphic file (type bmp)
 <chapters/chapter_3/fiszoteka.png>
- [17] [18]
+ [19] [20]
 File: chapters/chapter_3/gizmo.png Graphic file (type bmp)
 <chapters/chapter_3/gizmo.png>
- [19]
+ [21]
 File: chapters/chapter_3/flashcards.png Graphic file (type bmp)
 <chapters/chapter_3/flashcards.png>
- [20] [21] [22])
-Overfull \hbox (6.23636pt too wide) in paragraph at lines 175--63
+ [22] [23] [24]
+Overfull \hbox (6.23636pt too wide) in paragraph at lines 175--176
 []\TU/lmr/m/n/10 System fiszki ma możliwość generowania definicji na podstawie 
 słowa, wykorzystując ChatGPT.
  []
 
-(./chapters/chapter_5/main.tex
+) [25] (./chapters/chapter_5/main.tex
 
 ! LaTeX Error: Environment chap5 undefined.
 
@@ -932,9 +950,9 @@ Type  H <return>  for immediate help.
 l.31 \begin{chap5}
                   
 ? 
-[23]
+[26]
 Rozdział 4.
-[24
+[27
 
 ]
 
@@ -947,7 +965,7 @@ Type  H <return>  for immediate help.
 l.65 \end{chap5}
                 
 ? 
-[25] [26] (./chapters/chapter_5/analiza_ryzyka.tex
+[28] [29] (./chapters/chapter_5/analiza_ryzyka.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--9
 []|\TU/lmr/bx/n/10 Zidentyfiko-
  []
@@ -1627,29 +1645,29 @@ Overfull \hbox (49.19481pt too wide) in alignment at lines 7--28
  [] [] [] [] [] [] 
  []
 
-[27])) (./chapters/chapter_6/main.tex
+[30])) (./chapters/chapter_6/main.tex
 ! Undefined control sequence.
 l.1 \newapage
              
 ? 
-[28]
+[31]
 Rozdział 5.
 File: chapters/chapter_6/diagram_przypadkow_uzycia.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_przypadkow_uzycia.png>
 File: chapters/chapter_6/erd.png Graphic file (type bmp)
 <chapters/chapter_6/erd.png>
-[29
+[32
 
 ]
 File: chapters/chapter_6/diagram_architektury.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_architektury.png>
 File: chapters/chapter_6/diagram_sekwencji_1.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_sekwencji_1.png>
- [30]
+ [33]
 File: chapters/chapter_6/diagram_sekwencji_2.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_sekwencji_2.png>
- [31] (./chapters/chapter_6/wymagania.tex [32] [33] [34] [35] [36]
-[37] [38] [39] [40] [41] [42] [43] [44] [45] [46] [47] [48] [49]
+ [34] (./chapters/chapter_6/wymagania.tex [35] [36] [37] [38] [39]
+[40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52]
 Underfull \hbox (badness 1199) in paragraph at lines 599--599
 \TU/lmr/m/n/10 plecza technicznego systemu; zarządzanie, utrzymanie
  []
@@ -1660,7 +1678,7 @@ Underfull \hbox (badness 1199) in paragraph at lines 599--599
 l.602 \end{stakeholder}
                        
 ? 
-[50]
+[53]
 ! Undefined control sequence.
 <argument> \string \newlabel {\tablabel 
                                         }{{\@currentlabel }{\thepage }{\@cur...
@@ -1679,76 +1697,73 @@ l.626 \end{stakeholder}
 l.636 \end{stakeholder}
                        
 ? 
-[51])) (./chapters/chapter_7/main.tex [52]
+[54])) (./chapters/chapter_7/main.tex [55]
 Rozdział 6.
 File: chapters/chapter_7/github.png Graphic file (type bmp)
 <chapters/chapter_7/github.png>
-[53
+[56
 
 ]
 File: chapters/chapter_7/jira.png Graphic file (type bmp)
 <chapters/chapter_7/jira.png>
 File: chapters/chapter_7/miro.png Graphic file (type bmp)
 <chapters/chapter_7/miro.png>
- [54]
+ [57]
 File: chapters/chapter_7/google_drive.png Graphic file (type bmp)
 <chapters/chapter_7/google_drive.png>
 File: chapters/chapter_7/canva.png Graphic file (type bmp)
 <chapters/chapter_7/canva.png>
- [55] [56] [57]) (./chapters/chapter_8/main.tex [58]
+ [58] [59] [60]) (./chapters/chapter_8/main.tex [61]
 Rozdział 7.
+[62
 
-LaTeX Warning: Citation 'osborn1953' on page 59 undefined on input line 7.
-
-[59
-
-] (./chapters/chapter_8/sprinty.tex [60] [61] [62] [63] [64]
+] (./chapters/chapter_8/sprinty.tex [63] [64] [65] [66] [67]
 Overfull \vbox (10.32458pt too high) has occurred while \output is active []
 
 
-[65]
+[68]
 Overfull \hbox (25.19997pt too wide) in alignment at lines 296--435
  [] [] 
  []
 
-[66] [67]) (./chapters/chapter_8/implementacja.tex [68]
+[69] [70]) (./chapters/chapter_8/implementacja.tex [71]
 File: chapters/chapter_8/screens/rejestracja_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/rejestracja_backend.png>
- [69]
+ [72]
 File: chapters/chapter_8/screens/rejestracja_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/rejestracja_mobile.png>
 File: chapters/chapter_8/screens/rejestracja_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/rejestracja_web.png>
- [70]
+ [73]
 File: chapters/chapter_8/screens/logowanie_backend.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_backend.png>
- [71]
+ [74]
 File: chapters/chapter_8/screens/logowanie_mobile.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_mobile.png>
 File: chapters/chapter_8/screens/logowanie_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_web.png>
- [72]
+ [75]
 File: chapters/chapter_8/screens/wylogowanie_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/wylogowanie_backend.png>
 
-[73]
+[76]
 File: chapters/chapter_8/screens/wylogowanie_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/wylogowanie_mobile.png>
 File: chapters/chapter_8/screens/wylogowanie_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/wylogowanie_web.png>
- [74]
+ [77]
 File: chapters/chapter_8/screens/edit_user_backend_1.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/edit_user_backend_1.png>
- [75]
+ [78]
 File: chapters/chapter_8/screens/edit_user_backend_2.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/edit_user_backend_2.png>
- [76] [77]
+ [79] [80]
 File: chapters/chapter_8/screens/edit_user_mobile.png Graphic file (type bmp)
 <chapters/chapter_8/screens/edit_user_mobile.png>
 File: chapters/chapter_8/screens/edit_user_web.png Graphic file (type bmp)
@@ -1758,7 +1773,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 161--163
 
  []
 
-[78]
+[81]
 Underfull \hbox (badness 10000) in paragraph at lines 171--172
 
  []
@@ -1771,37 +1786,259 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--181
 File: chapters/chapter_8/screens/delete_user_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/delete_user_backend.png>
-[79]
+[82]
 File: chapters/chapter_8/screens/delete_user_mobile_1.png Graphic file (type bm
 p)
 <chapters/chapter_8/screens/delete_user_mobile_1.png>
 File: chapters/chapter_8/screens/delete_user_mobile_2.png Graphic file (type bm
 p)
 <chapters/chapter_8/screens/delete_user_mobile_2.png>
- [80])) (./chapters/chapter_9/main.tex [81]
+ [83]
+File: chapters/chapter_8/screens/delete_user_web.png Graphic file (type bmp)
+<chapters/chapter_8/screens/delete_user_web.png>
+File: chapters/chapter_8/screens/create_deck_backend.png Graphic file (type bmp
+)
+<chapters/chapter_8/screens/create_deck_backend.png>
+ [84]
+File: chapters/chapter_8/screens/create_flash_card_backend.png Graphic file (ty
+pe bmp)
+<chapters/chapter_8/screens/create_flash_card_backend.png>
+File: chapters/chapter_8/screens/create_deck_mobile.png Graphic file (type bmp)
+
+<chapters/chapter_8/screens/create_deck_mobile.png>
+ [85]
+File: chapters/chapter_8/screens/create_deck_web.png Graphic file (type bmp)
+<chapters/chapter_8/screens/create_deck_web.png>
+File: chapters/chapter_8/screens/create_flash_card_web.png Graphic file (type b
+mp)
+<chapters/chapter_8/screens/create_flash_card_web.png>
+ [86]
+File: chapters/chapter_8/screens/delete_deck_backend.png Graphic file (type bmp
+)
+<chapters/chapter_8/screens/delete_deck_backend.png>
+File: chapters/chapter_8/screens/delete_deck_mobile.png Graphic file (type bmp)
+
+<chapters/chapter_8/screens/delete_deck_mobile.png>
+ [87]
+File: chapters/chapter_8/screens/delete_deck_web.png Graphic file (type bmp)
+<chapters/chapter_8/screens/delete_deck_web.png>
+ [88]
+File: chapters/chapter_8/screens/update_deck_backend.png Graphic file (type bmp
+)
+<chapters/chapter_8/screens/update_deck_backend.png>
+File: chapters/chapter_8/screens/update_flash_card_text_backend.png Graphic fil
+e (type bmp)
+<chapters/chapter_8/screens/update_flash_card_text_backend.png>
+ [89]
+File: chapters/chapter_8/screens/update_deck_mobile.png Graphic file (type bmp)
+
+<chapters/chapter_8/screens/update_deck_mobile.png>
+ [90]
+File: chapters/chapter_8/screens/update_deck_web.png Graphic file (type bmp)
+<chapters/chapter_8/screens/update_deck_web.png>
+File: chapters/chapter_8/screens/update_flash_card_text_web.png Graphic file (t
+ype bmp)
+<chapters/chapter_8/screens/update_flash_card_text_web.png>
+ [91]
+File: chapters/chapter_8/screens/update_flash_card_memorized_backend.png Graphi
+c file (type bmp)
+<chapters/chapter_8/screens/update_flash_card_memorized_backend.png>
+ [92]
+File: chapters/chapter_8/screens/get_unmemorized_flash_cards_mobile.png Graphic
+ file (type bmp)
+<chapters/chapter_8/screens/get_unmemorized_flash_cards_mobile.png>
+File: chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile.png Grap
+hic file (type bmp)
+<chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile.png>
+ [93]
+File: chapters/chapter_8/screens/get_unmemorized_flash_cards_web.png Graphic fi
+le (type bmp)
+<chapters/chapter_8/screens/get_unmemorized_flash_cards_web.png>
+ [94]
+File: chapters/chapter_8/screens/pass_unmemorized_flash_cards_web.png Graphic f
+ile (type bmp)
+<chapters/chapter_8/screens/pass_unmemorized_flash_cards_web.png>
+File: chapters/chapter_8/screens/update_unmemorized_flash_cards_web.png Graphic
+ file (type bmp)
+<chapters/chapter_8/screens/update_unmemorized_flash_cards_web.png>
+ [95]
+
+LaTeX Warning: Citation 'dataMining' on page 96 undefined on input line 431.
+
+)) (./chapters/chapter_9/main.tex [96] [97]
 Rozdział 8.
-[82
+[98
 
 ]
 File: chapters/chapter_9/testy1.png Graphic file (type bmp)
 <chapters/chapter_9/testy1.png>
- [83]) (./chapters/chapter_10/main.tex [84] [85] [86] [87] [88] [89]
-[90] [91]
+ [99]) (./chapters/chapter_10/main.tex [100] [101] [102] [103] [104]
+[105] [106] [107]
 Rozdział 9.
-) (./chapters/chapter_11/main.tex [92
+File: chapters/chapter_10/images_web/web_login.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_login.png>
+[108
 
 ]
+File: chapters/chapter_10/images_web/web_login_2.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_login_2.png>
+File: chapters/chapter_10/images_web/web_register.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_register.png>
+ [109]
+File: chapters/chapter_10/images_web/web_register_2.png Graphic file (type bmp)
+
+<chapters/chapter_10/images_web/web_register_2.png>
+ [110]
+File: chapters/chapter_10/images_web/web_home.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_home.png>
+File: chapters/chapter_10/images_web/web_profile.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_profile.png>
+ [111]
+File: chapters/chapter_10/images_web/web_stats.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_stats.png>
+File: chapters/chapter_10/images_web/web_create_deck.png Graphic file (type bmp
+)
+<chapters/chapter_10/images_web/web_create_deck.png>
+ [112]
+File: chapters/chapter_10/images_web/web_chat.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_chat.png>
+ [113]
+File: chapters/chapter_10/images_web/web_my_decks.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_my_decks.png>
+ [114]
+File: chapters/chapter_10/images_web/web_deck.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_deck.png>
+File: chapters/chapter_10/images_web/web_learn.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_learn.png>
+ [115]
+File: chapters/chapter_10/images_web/web_voice_1.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_voice_1.png>
+File: chapters/chapter_10/images_web/web_voice_2.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_voice_2.png>
+ [116]
+File: chapters/chapter_10/images_web/web_settings.png Graphic file (type bmp)
+<chapters/chapter_10/images_web/web_settings.png>
+File: chapters/chapter_10/images_web/web_public_decks.png Graphic file (type bm
+p)
+<chapters/chapter_10/images_web/web_public_decks.png>
+ [117]
+File: chapters/chapter_10/images_web/web_user_ranking.png Graphic file (type bm
+p)
+<chapters/chapter_10/images_web/web_user_ranking.png>
+File: chapters/chapter_10/images_web/web_decks_ranking.png Graphic file (type b
+mp)
+<chapters/chapter_10/images_web/web_decks_ranking.png>
+ [118]
+File: chapters/chapter_10/images_web/web_public_deck.png Graphic file (type bmp
+)
+<chapters/chapter_10/images_web/web_public_deck.png>
+File: chapters/chapter_10/images_web/web_moderator_profile.png Graphic file (ty
+pe bmp)
+<chapters/chapter_10/images_web/web_moderator_profile.png>
+ [119]
+File: chapters/chapter_10/images_web/web_moderator_delete_user.png Graphic file
+ (type bmp)
+<chapters/chapter_10/images_web/web_moderator_delete_user.png>
+File: chapters/chapter_10/images_web/web_reported_decks.png Graphic file (type 
+bmp)
+<chapters/chapter_10/images_web/web_reported_decks.png>
+
+[120]
+File: chapters/chapter_10/images_web/web_reported_deck_2.png Graphic file (type
+ bmp)
+<chapters/chapter_10/images_web/web_reported_deck_2.png>
+ [121]
+File: chapters/chapter_10/images_mobile/mobile_login.png Graphic file (type bmp
+)
+<chapters/chapter_10/images_mobile/mobile_login.png>
+ [122]
+File: chapters/chapter_10/images_mobile/mobile_register.png Graphic file (type 
+bmp)
+<chapters/chapter_10/images_mobile/mobile_register.png>
+ [123]
+File: chapters/chapter_10/images_mobile/mobile_home.png Graphic file (type bmp)
+
+<chapters/chapter_10/images_mobile/mobile_home.png>
+ [124]
+Underfull \hbox (badness 10000) in paragraph at lines 312--315
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 312--315
+
+ []
+
+[125]
+File: chapters/chapter_10/images_mobile/mobile_my_decks.png Graphic file (type 
+bmp)
+<chapters/chapter_10/images_mobile/mobile_my_decks.png>
+File: chapters/chapter_10/images_mobile/mobile_my_decks_2.png Graphic file (typ
+e bmp)
+<chapters/chapter_10/images_mobile/mobile_my_decks_2.png>
+ [126] [127]
+File: chapters/chapter_10/images_mobile/mobile_deck_preview.png Graphic file (t
+ype bmp)
+<chapters/chapter_10/images_mobile/mobile_deck_preview.png>
+ [128]
+File: chapters/chapter_10/images_mobile/mobile_flashcards_preview.png Graphic f
+ile (type bmp)
+<chapters/chapter_10/images_mobile/mobile_flashcards_preview.png>
+ [129]
+File: chapters/chapter_10/images_mobile/mobile_create_flashcards.png Graphic fi
+le (type bmp)
+<chapters/chapter_10/images_mobile/mobile_create_flashcards.png>
+ [130]
+File: chapters/chapter_10/images_mobile/mobile_chat.png Graphic file (type bmp)
+
+<chapters/chapter_10/images_mobile/mobile_chat.png>
+ [131]
+File: chapters/chapter_10/images_mobile/mobile_learn.png Graphic file (type bmp
+)
+<chapters/chapter_10/images_mobile/mobile_learn.png>
+ [132]
+File: chapters/chapter_10/images_mobile/mobile_learn_2.png Graphic file (type b
+mp)
+<chapters/chapter_10/images_mobile/mobile_learn_2.png>
+ [133]
+File: chapters/chapter_10/images_mobile/mobile_memorized.png Graphic file (type
+ bmp)
+<chapters/chapter_10/images_mobile/mobile_memorized.png>
+ [134] [135]
+File: chapters/chapter_10/images_mobile/mobile_deck_settings.png Graphic file (
+type bmp)
+<chapters/chapter_10/images_mobile/mobile_deck_settings.png>
+ [136]
+File: chapters/chapter_10/images_mobile/mobile_ranking.png Graphic file (type b
+mp)
+<chapters/chapter_10/images_mobile/mobile_ranking.png>
+File: chapters/chapter_10/images_mobile/mobile_public_deck.png Graphic file (ty
+pe bmp)
+<chapters/chapter_10/images_mobile/mobile_public_deck.png>
+
+[137]
+File: chapters/chapter_10/images_mobile/mobile_other_user.png Graphic file (typ
+e bmp)
+<chapters/chapter_10/images_mobile/mobile_other_user.png>
+ [138] [139]
+File: chapters/chapter_10/images_mobile/mobile_profile.png Graphic file (type b
+mp)
+<chapters/chapter_10/images_mobile/mobile_profile.png>
+File: chapters/chapter_10/images_mobile/moderator_panel.png Graphic file (type 
+bmp)
+<chapters/chapter_10/images_mobile/moderator_panel.png>
+ [140]) (./chapters/chapter_11/main.tex [141]
 Rozdział 10.
 File: chapters/chapter_11/naklad_pracy_wykres.png Graphic file (type bmp)
 <chapters/chapter_11/naklad_pracy_wykres.png>
-[93
+[142
 
-] [94] [95] [96] [97] [98] [99] [100] [101]) (./chapters/chapter_12/main.tex [1
-02]
+] [143] [144] [145] [146] [147] [148] [149] [150])
+(./chapters/chapter_12/main.tex [151]
 Rozdział 11.
-[103
+[152
 
-] [104] [105]) [106] [107] [108
+] [153] [154] [155]) [156] [157
 
 ] (./engineer.aux)
  ***********
@@ -1813,7 +2050,7 @@ L3 programming layer <2024-02-20>
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
 
 Package biblatex Warning: Please (re)run Biber on the file:
@@ -1825,12 +2062,12 @@ Package logreq Info: Writing requests to 'engineer.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 16963 strings out of 474773
- 376850 string characters out of 5757724
+ 18282 strings out of 474773
+ 446091 string characters out of 5757724
  1975839 words of memory out of 5000000
- 38837 multiletter control sequences out of 15000+600000
+ 40091 multiletter control sequences out of 15000+600000
  563931 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 74i,13n,84p,1757b,4991s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,13n,84p,1882b,4991s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on engineer.pdf (109 pages).
+Output written on engineer.pdf (159 pages).
