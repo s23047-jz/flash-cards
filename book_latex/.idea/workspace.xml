@@ -5,28 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bibliography.bib" beforeDir="false" afterPath="$PROJECT_DIR$/bibliography.bib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_10/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_10/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_11/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_11/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_12/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_12/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_2/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_2/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_3/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_5/analiza_ryzyka.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/analiza_ryzyka.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_6/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_6/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_6/wymagania.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_6/wymagania.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_9/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_9/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bbl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.bcf" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.blg" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.blg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.log" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engineer.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.tex" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.toc" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.toc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../mobile/src/screens/ChooseDecksType/EditDeck.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../mobile/src/screens/ChooseDecksType/EditDeck.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +190,7 @@
       <workItem from="1718643685637" duration="390000" />
       <workItem from="1718661188236" duration="26000" />
       <workItem from="1718701602019" duration="10294000" />
-      <workItem from="1718713110561" duration="311000" />
+      <workItem from="1718713110561" duration="489000" />
     </task>
     <task id="LOCAL-00001" summary="poprawki">
       <option name="closed" value="true" />
@@ -277,7 +256,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718658487499</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718713464203</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1718713464203</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
