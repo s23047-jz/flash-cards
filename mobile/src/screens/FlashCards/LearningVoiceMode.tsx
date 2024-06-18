@@ -47,8 +47,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const showFrontCard= useRef(true);
 
     // Audio
-    const [recording, setRecording] = useState<Audio.Recording | null>(null);
-    // const recording = useRef(null);
+    const recording = useRef(null);
 
     // Permissions
     const [permissionResponse, requestPermission] = Audio.usePermissions();
@@ -99,7 +98,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 Audio.RecordingOptionsPresets.HIGH_QUALITY
             );
             await recordingInstance.startAsync();
-            setRecording(recordingInstance);
+            recording.current = recordingInstance;
             console.log('Recording started');
         } catch (err) {
             console.error('Failed to start recording', err);
@@ -109,15 +108,16 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const stopRecording = async () => {
         try {
             console.log('Stopping recording...', recording);
-            if (recording) {
-                await recording.stopAndUnloadAsync();
+            if (recording.current) {
+                await recording.current.stopAndUnloadAsync();
                 await Audio.setAudioModeAsync({
                     allowsRecordingIOS: false,
                     playsInSilentModeIOS: false,
                     staysActiveInBackground: false,
                 });
-                const uri = recording.getURI();
-                setRecording(null);
+                const uri = recording.current.getURI();
+                recording.current = null;
+                setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
                 if (uri) {
                     console.log(
                         uri,
@@ -126,6 +126,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                     await calculateSimilarity(uri)
                 }
             } else {
+                setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
                 console.error('No recording instance found');
             }
         } catch (err) {
@@ -253,7 +254,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             await startRecording();
             setTimeout( async () => {
                 await stopRecording();
-            }, 1000)
+            }, 6000)
         }
     }
 
@@ -272,10 +273,10 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     useFocusEffect(
         useCallback(() => {
-            if (recording) {
+            if (recording.current) {
                 console.log('Stopping existing recording before starting a new one.');
-                recording.stopAndUnloadAsync();
-                setRecording(null);
+                recording.current.stopAndUnloadAsync();
+                recording.current = null;
                 Audio.setAudioModeAsync({
                     allowsRecordingIOS: false,
                     playsInSilentModeIOS: false,
@@ -286,7 +287,6 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             fetchUnmemorizedFlashcards();
             setShowMicrophoneModal(true);
             setLoading(false);
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START)
             handleCheckIfPermissionGranted();
             stopRecording();
         }, []),
@@ -344,7 +344,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 Learning Voice Mode
             </Text>
             <MicrophoneButton
-                active={recording ? true : false}
+                active={activeVoiceControlMode === VOICE_CONTROL_STAGES.START}
                 show={showMicrophoneModal}
                 onPress={toggleMicrophoneStatus}
             />
