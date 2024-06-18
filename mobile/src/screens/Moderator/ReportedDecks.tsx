@@ -69,17 +69,16 @@ const MenuModal: React.FC<MenuModalInterface> = ({ showMenuModal, handleConfirmD
     )
 }
 
-const ReportCard: React.FC<ReportInterface> = ({ id, deck_category, title, submitter_email, handleDeleteReport }) => {
+const ReportCard: React.FC<ReportInterface> = ({ deck_id, deck_category, title, submitter_email, handleDeleteReport }) => {
     return (
         <TouchableOpacity
             className={'w-full h-full mr-auto ml-auto mb-7'}
             style={styles.card}
-            onLongPress={() => handleDeleteReport(id)}
+            onLongPress={() => handleDeleteReport(deck_id)}
         >
             <Card className={'w-full h-full'}>
                 <Row className={'w-full'}>
-                    <Row className={'h-full'} style={styles.cardRows} />
-                    <Row className={'h-full'} style={styles.cardRows}>
+                    <Row className={'h-full'} style={styles.reportCardRows}>
                         <Col className={'w-full justify-center items-center'}>
                             <Text className={'text-center font-bold'}>
                                 { title }
@@ -91,8 +90,8 @@ const ReportCard: React.FC<ReportInterface> = ({ id, deck_category, title, submi
                             </Text>
                         </Col>
                     </Row>
-                    <Row className={'h-full'} style={styles.cardRows}>
-                        <Col className={'w-full'}>
+                    <Row className={'h-full'} style={styles.reportCardRows}>
+                        <Col className={'w-full justify-center items-center'}>
                             <Text className={'text-center font-bold'}>
                                 Submitter
                             </Text>
@@ -122,7 +121,7 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
     const [idToDelete, setIdToDelete] = useState('');
 
     const fetchReports = async() => {
-        const reports_data = await ReportsService.getReportedDecksList({ ...reportsQuery, search }, navigation)
+        const reports_data = await ReportsService.getReportedDecksList({ ...reportsQuery.current, search }, navigation)
         if(data && data.length) setData(prevData => [...prevData, ...reports_data.reports]);
         else setData(reports_data.reports);
         setTotal(reports_data.total)
@@ -172,6 +171,8 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                 console.error('Error fetching users:', error);
             }
             return () => {
+                reportsQuery.current = { page: 1, per_page: perPage };
+                setSearch('');
             };
         }, [])
     )
@@ -231,8 +232,8 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
                         >
                             { data.map((item) =>
                                     <ReportCard
-                                        key={item.id}
-                                        id={item.id}
+                                        key={item.deck_id}
+                                        id={item.deck_id}
                                         deck_category={item.deck_category}
                                         title={item.title}
                                         submitter_email={item.submitter_email}

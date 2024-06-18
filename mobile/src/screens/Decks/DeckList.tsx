@@ -241,6 +241,13 @@ const DeckList: React.FC<ScreenProps> = ({ navigation, route }) => {
         const view = PAGES.DECKS;
         changeView(view);
         setLoading(false);
+
+        return () => {
+            decksQueryRef.current = { page: 1, per_page: perPage };
+            usersQueryRef.current = { page: 1, per_page: perPage };
+            setSearchUsers('');
+            setSearchDecks('')
+        }
         }, [])
     )
 
