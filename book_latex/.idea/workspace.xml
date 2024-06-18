@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_10/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_10/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_11/naklad_pracy_wykres.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_11/naklad_pracy_wykres.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_2/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_2/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_6/diagram_architektury.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_6/diagram_architektury.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprz.cls" beforeDir="false" afterPath="$PROJECT_DIR$/sprz.cls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +45,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "full.screen.before.presentation.mode": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "book__finisz",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/daniel/Repos/flash-cards/book_latex/chapters/chapter_11",
     "node.js.detected.package.eslint": "true",
@@ -191,6 +195,7 @@
       <workItem from="1718661188236" duration="26000" />
       <workItem from="1718701602019" duration="10294000" />
       <workItem from="1718713110561" duration="489000" />
+      <workItem from="1718739910451" duration="4654000" />
     </task>
     <task id="LOCAL-00001" summary="poprawki">
       <option name="closed" value="true" />
@@ -272,7 +277,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718717896804</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718741599317</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1718741599317</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

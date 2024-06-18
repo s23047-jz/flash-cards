@@ -23,6 +23,12 @@ Strona internetowa nie działa poprawnie w przeglądarce Mozilla Firefox. Z niez
 \subsection{Api i HTTPS}
 Przy realizacji rozproszonej infrastruktury wewnątrz serwera, trudna okazała się implementacja pełnego HTTPS. Strona korzystała w protokołu HTTPS, jednak łączyła się z api przez protokół HTTP. Przeglądarki internetowe mogą traktować taką zawartość jako “niebezpieczną”. Wymagane jest wtedy wyłączenie zabezpieczeń przeglądarki aby korzystanie ze strony było możliwe. Rozwiązanie tego problemu wymagało zaimplementowania zaawansowanej konfiguracji Nginx która pozwoliła przekierowywać cały ruch z domeny po https na api.
 
+\subsection{Zatrzymanie nasłuchiwania mikrofonu}
+Na stronie webowej po zatrzymaniu trybu sterowania głosem mikrofon jest jeszcze aktywny przez kilka sekund i strona reaguje na wypowiedziane przez użytkownika komendy głosowe. Próby zmiany zachowania działania mikrofonu tak żeby po zatrzymaniu kontroli głosowej przestał od razu nasłuchiwać nie przyniosły oczekiwanych rezultatów.
+
+\subsection{Strumieniowanie głosu w aplikacji Expo Go}
+W późnym etapie projektu napotkano problem związany ze strumieniowaniem głosu w aplikacji mobilnej. Przy pomocy platformy Expo Go nie jest to możliwe. Aby rozwiązać ten problem zdecydowano się na implementację obsługi głosowej za pomocą przetwarzania powtarzanych co kilka sekund nagrań. Implementacja rozwiązania ze strumieniem głosu bezpośrednio musiałoby wiązać się z gruntowną przebodową całego środowiska aplikacji mobilnej.
+
 \section{Zmiany w trakcie realizacji}
 Proces planowania i projektowania podjętego w projekcie systemu informatycznego wyprzedził o kilka miesięcy implementacje kluczowych funkcjonalności i założeń. Z powodu napotkanych wyzwań oraz nieprzewidzianych problemów doszło do konfrontacji rzeczywistości ze sprecyzowanymi wcześniej założeniami. Z tego powodu w projekcie musiało dojść do kilku opisanych w niniejszej sekcji zmian.
 
