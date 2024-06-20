@@ -1,8 +1,10 @@
 \chapter{Testy}
+Testowanie aplikacji odbywało się po dodaniu nowej funkcjonalności, co pozwoliło zmniejszyć liczbę sytuacji, w których aplikacja nie działała zgodnie z oczekiwaniami. Testy integracyjne były przeprowadzane w celu sprawdzenia  poprawności komunikacji endpointów z  bazą danych. Opracowane zostały scenariusze testowe dla testów akceptacyjnych,  które umożliwiły  weryfikację działania kluczowych funkcji systemu. Po uzyskaniu pozytywnych wyników testów, zmiany mogły zostać dodane do repozytorium.
+
 
 \section{Testy integracyjne}
 
-Testy integracyjne mają na celu sprawdzenie, czy interfejsy pomiędzy komponentami współdziałają ze sobą poprawnie.\cite{mielnikIntegrationTests} Do przeprowadzenia testów została użyta biblioteka "pytest", która pozwala na szybkie i proste uruchomienie testów.\cite{oliveira2018} Do wykonywania zapytań HTTP została wykorzystana biblioteka "requests". Testy miały na celu sprawdzenie, czy status zwrócony przez wykonane żądanie pokrywa się z oczekiwanym rezultatem.\\
+Testy integracyjne mają na celu sprawdzenie, czy interfejsy pomiędzy komponentami współdziałają ze sobą poprawnie \cite{mielnikIntegrationTests}. Do przeprowadzenia testów została użyta biblioteka "pytest", która pozwala na szybkie i proste uruchomienie testów \cite{oliveira2018}. Do wykonywania zapytań HTTP została wykorzystana biblioteka "requests". Testy miały na celu sprawdzenie, czy status zwrócony przez wykonane żądanie pokrywa się z oczekiwanym rezultatem.\\
 Przetestowane zostały poniższe funkcjonalności systemu:
 
 \begin{itemize}
@@ -31,7 +33,7 @@ Przetestowane zostały poniższe funkcjonalności systemu:
 
 \section{Testy akceptacyjne}
 
-Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Głównym ich założeniem jest sprawdzenie, czy system nadaje się do użytkowania.\cite{acceptanceTesting} Do przeprowadzenia testów zostały sporządzone scenariusze testowe. Oliwier przechodził przez scenariusze testowe w celu sprawdzenia czy aplikacja działa zgodnie z oczekiwaniami.
+Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Głównym ich założeniem jest sprawdzenie, czy system nadaje się do użytkowania \cite{acceptanceTesting}. Do przeprowadzenia testów zostały sporządzone scenariusze testowe. Oliwier przechodził przez scenariusze testowe w celu sprawdzenia czy aplikacja działa zgodnie z oczekiwaniami.
 
 
 \begin{table}[H]
@@ -42,7 +44,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Użytkownik rejestruje się aby utworzyć konto, potrzebne do logowania. \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.1 Tworzenie konta użytkownika \\
+    \textbf{Testowane wymagania:} & WF01 \\
     \hline
     \textbf{Warunki początkowe:} & Strona z formularzem, która pozwala wprowadzić dane użytkownika w celu zarejestrowania go. \\
     \hline
@@ -74,7 +76,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy użytkownik posiadający konto ma dostęp do strony po poprawnym wypełnieniu formularza logowania. \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.2 Logowanie do systemu \\
+    \textbf{Testowane wymagania:} & WF02 \\
     \hline
     \textbf{Warunki początkowe:} & Posiadane konto użytkownika \\
     \hline
@@ -105,7 +107,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy po wylogowaniu użytkownik, nie ma dostęp do strony domowej bez ponownego zalogowania \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.3 Wylogowanie z systemu \\
+    \textbf{Testowane wymagania:} & WF03 \\
     \hline
     \textbf{Warunki początkowe:} & Posiadane konto użytkownika \\
     \hline
@@ -138,7 +140,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy użytkownik może zmienić e-mail \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.4 Edycja danych użytkownika \\
+    \textbf{Testowane wymagania:} & WF04 \\
     \hline
     \textbf{Warunki początkowe:} & Posiadane konto użytkownika \\
     \hline
@@ -174,7 +176,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy użytkownik może usunąć swoje konto. \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.5 Usunięcie konta użytkownika \\
+    \textbf{Testowane wymagania:} & WF05 \\
     \hline
     \textbf{Warunki początkowe:} & Posiadane konto użytkownika \\
     \hline
@@ -210,7 +212,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy użytkownik może utworzyć nową talię fiszek. \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.6 Tworzenie talii fiszek \\
+    \textbf{Testowane wymagania:} & WF06 \\
     \hline
     \textbf{Warunki początkowe:} & Posiadane konto użytkownika \\
     \hline
@@ -247,7 +249,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy użytkownik, może usunąć talie, która nie jest mu już potrzebna \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.7 Usunięcie talii fiszek \\
+    \textbf{Testowane wymagania:} & WF07 \\
     \hline
     \textbf{Warunki początkowe:} & Posiadane konto użytkownika, utworzona talia \\
     \hline
@@ -283,7 +285,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Użytkownik musi mieć możliwość zmiany nazwy talii lub kategorii, jeżeli popełni jakiś błąd w tytule lub kategorii. \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.8 Edycja talii fiszek \\
+    \textbf{Testowane wymagania:} & WF08 \\
     \hline
     \textbf{Warunki początkowe:} & Utworzona talia fiszek \\
     \hline
@@ -317,15 +319,15 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
 \centering
 \begin{tabularx}{\textwidth}{|>{\raggedright\arraybackslash}p{0.3\textwidth}|X|}
     \hline
-    \textbf{Opis przypadku:} & Tryb uczenia się z talii fiszek służy do podziału fiszek na te, które użytkownik zna i te nie zapamiętane \\
+    \textbf{Opis przypadku:} & Tryb uczenia się z talii fiszek służy do podziału fiszek na te, które użytkownik zna i te niezapamiętane \\
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy tryb uczenia poprawnie rozdziela fiszki należące do talii \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.9 Tryb uczenia się z talii fiszek \\
+    \textbf{Testowane wymagania:} & WF09 \\
     \hline
     \textbf{Warunki początkowe:} & Utworzona talia fiszek, posiadane konto użytkownika \\
     \hline
-    \textbf{Warunki końcowe:} & Fiszki podzielone na zapamiętane i nie zapamiętane \\
+    \textbf{Warunki końcowe:} & Fiszki podzielone na zapamiętane i niezapamiętane \\
     \hline
     \textbf{Dane wejściowe:} & Brak \\
     \hline
@@ -339,8 +341,8 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
         5. Kliknięcie w my decks - \textbf{Pozytywny} \newline
         6. Kliknięcie w talie - \textbf{Pozytywny} \newline
         7. Kliknięcie w tryb uczenia się - \textbf{Pozytywny} \newline
-        8. Użytkownik dzieli talię na fiszki, na zapamiętane i nie zapamiętane - \textbf{Pozytywny} \newline
-        9. Fiszki w talii zostają podzielone na zapamiętane i nie zapamiętane - \textbf{Pozytywny} \\
+        8. Użytkownik dzieli talię na fiszki, na zapamiętane i niezapamiętane - \textbf{Pozytywny} \newline
+        9. Fiszki w talii zostają podzielone na zapamiętane i niezapamiętane - \textbf{Pozytywny} \\
     \hline
     \textbf{Wynik:} & \textbf{Pozytywny} \\
     \hline
@@ -357,7 +359,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy aplikacja reaguje na komendy głosowe \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.10 Sterowanie talią przy użyciu mowy \\
+    \textbf{Testowane wymagania:} & WF10 \\
     \hline
     \textbf{Warunki początkowe:} & Utworzona talia fiszek, posiadane konto użytkownika \\
     \hline
@@ -398,7 +400,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy talia zaimportowana z rankingu dodaje się do public decks \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.11 Import talii innych użytkowników \\
+    \textbf{Testowane wymagania:} & WF11 \\
     \hline
     \textbf{Warunki początkowe:} & Utworzone konto użytkownika \\
     \hline
@@ -435,7 +437,7 @@ Testy akceptacyjne pozwalają ocenić gotowość systemu do wdrożenia. Główny
     \hline
     \textbf{Cel przypadku:} & Sprawdzenie czy treść fiszki zostaje wygenerowana. \\
     \hline
-    \textbf{Testowane wymagania:} & 3.2.16 Generowanie treści fiszki na podstawie słów kluczowych \\
+    \textbf{Testowane wymagania:} & WF16 \\
     \hline
     \textbf{Warunki początkowe:} & Utworzone kont użytkownika \\
     \hline

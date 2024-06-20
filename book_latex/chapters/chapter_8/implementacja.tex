@@ -3,12 +3,12 @@
 Funkcjonalność umożliwiająca rejestrację w aplikacji.
 
 \subsubsection{Backend}
-Po wysłaniu requesta na przez aplikacje webową lub mobilną api wyciąga przesłane dane, weryfikuje je. Do weryfikacji należy:
+Api przetwarza dane rejestracyjne po odebraniu zapytania z aplikacji webowej lub mobilnej. Do weryfikacji należy:
 
 \begin{itemize}
     \item Czy użytkownik z wprowadzonym e-mail istnieje już w bazie;
     \item Czy użytkownik z wprowadzoną nazwą użytkownika istnieje już w bazie;
-    \item Czy przesłane hasła są równe.
+    \item Czy hasła są równe (poprzez porównanie sumy hashu).
 \end{itemize}
 
 W przypadku błędnej weryfikacji zwraca odpowiednią wiadomość z błędem dla użytkownika np. "Wprowadzony e-mail jest już zajęty". Natomiast jeśli weryfikacja przebiegnie pomyślnie, użytkownik zostanie dodany do bazy, a system wyśle mu wiadomość e-mail z prośbą o aktywację konta.
@@ -16,7 +16,7 @@ W przypadku błędnej weryfikacji zwraca odpowiednią wiadomość z błędem dla
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/rejestracja_backend}
-    \caption{Implementacja kodu rejestracji użytkownika w backendzie.}
+    \caption{Kod obsługujący rejestrację użytkownika w backendzie.}
     \label{img:rejestracja_backend}
 \end{figure}
 
@@ -47,7 +47,8 @@ Po zatwierdzeniu prawidłowych danych aplikacja informuje komunikatem o udanym u
     \label{img:rejestracja_web}
 \end{figure}
 
-Powyższe funkcję wysyłają asynchroniczne żądanie POST do serwera w celu rejestracji nowego użytkownika. Metoda przekazuje dane rejestracyjne w treści żądania, a następnie zwraca czy żądanie zostało obsłużone.
+Użycie @ts-ignore w tej metodzie zostało zastosowane w celu zignorowania błędów TypeScript związanych z przekazywanym typem zmiennych. Użycie tej adnotacji jest rozwiązaniem tymczasowym; w dłuższej perspektywie zaimplementowana zostałaby obsługa przekazywanych typów zmiennych tak, aby zminimalizować potrzebę użycia @ts-ignore.\\
+Funkcje z rysunków \ref{img:rejestracja_web} i \ref{img:rejestracja_mobile} wysyłają asynchroniczne żądanie POST do serwera w celu rejestracji nowego użytkownika. Metoda przekazuje dane rejestracyjne w treści żądania, a następnie zwraca czy żądanie zostało obsłużone.
 
 \subsection{Logowanie do systemu}
 Funkcjonalność umożliwiająca logowanie do aplikacji
@@ -60,7 +61,7 @@ Ta najpierw próbuje wyciągnąć z użytkownika z bazy, który posiada wysłany
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/logowanie_backend}
-    \caption{Implementacja kodu logowania użytkownika w backendzie.}
+    \caption{Kod obsługujący logowanie użytkownika w backendzie.}
     \label{img:logowanie_backend}
 \end{figure}
 
@@ -81,7 +82,12 @@ Na stronie logowania, użytkownik musi wypełnić formularz wymagający uzupełn
     \label{img:logowanie_web}
 \end{figure}
 
-Użyta w powyższych metodach funkcja \texttt{ActiveUser.set(data)} zapisuje dane zalogowanego użytkownika w lokalnym stanie aplikacji. Dzięki temu, informacje o użytkowniku, takie jak token autoryzacyjny, mogą być łatwo dostępne w całej aplikacji. Pozwala to na:
+Metoda \texttt{ActiveUser.set(data)} użyta w funkcjach z rysunków \ref{img:logowanie_mobile} i \ref{img:logowanie_web} zapisuje dane zalogowanego użytkownika w lokalnym stanie aplikacji. Dzięki temu informacje o użytkowniku, takie jak token autoryzacyjny, mogą być łatwo dostępne w całej aplikacji. Pozwala to na:
+\begin{itemize}
+    \item Personalizację interfejsu użytkownika (np. wyświetlanie nazwy użytkownika).
+    \item Umożliwienie dostępu do zasobów, które wymagają uwierzytelnienia.
+    \item Przechowywanie sesji użytkownika, aby mógł pozostać zalogowany pomiędzy różnymi wizytami na stronie.
+\end{itemize}
 
 \begin{itemize}
     \item Personalizację interfejsu użytkownika (np. wyświetlanie nazwy użytkownika);
@@ -98,7 +104,7 @@ Po kliknięciu wyloguj w aplikacji mobilnej czy w webowej, zostaje wysłany requ
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/wylogowanie_backend}
-    \caption{Implementacja kodu wylogowania użytkownika w backendzie.}
+    \caption{Kod obsługujący wylogowanie użytkownika w backendzie.}
     \label{img:wylogowanie_backend}
 \end{figure}
 
@@ -119,7 +125,7 @@ Aby wylogować się z aplikacji, użytkownik musi kliknąć w nawigacji "Logout"
     \label{img:wylogowanie_web}
 \end{figure}
 
-Powyższe fragmenty serwisu odpowiadają za usunięcie danych użytkownika z pamięci lokalnej wykorzystujący endpoint dezaktywujący token autoryzacji.
+Fragmenty serwisu przedstawionego na rysunkach \ref{img:wylogowanie_mobile} i \ref{img:wylogowanie_web} odpowiadają za usunięcie danych użytkownika z pamięci lokalnej. Wykorzystany endpoint dezaktywuje token autoryzacji.
 
 \subsection{Edycja danych użytkownika}
 Funkcjonalność umożliwiająca edycję danych użytkownika.
@@ -130,14 +136,14 @@ Aplikacje frontendowe wysyłają dane do aktualizacji np. e-mail. Jedynym obowi�
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{chapters/chapter_8/screens/edit_user_backend_1}
-    \caption{Implementacja klas modeli "UserUpdateModel" i "UpdateMe" w backendzie.}
+    \caption{Implementacja klasy "UserUpdateModel" i klasy "UpdateMe" w backendzie.}
     \label{img:edit_user_backend_1}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/edit_user_backend_2}
-    \caption{Implementacja kodu zmiany danych użytkownika w backendzie.}
+    \caption{Kod obsługujący zmianę danych użytkownika w backendzie.}
     \label{img:edit_user_backend_2}
 \end{figure}
 
@@ -198,7 +204,7 @@ Aplikacje frontendowe wysyłają na api e-mail użytkownika i hasło. Api sprawd
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_user_backend}
-    \caption{Implementacja kodu usunięcia użytkownika w backendzie.}
+    \caption{Kod obsługujący usunięcie użytkownika w backendzie.}
     \label{img:delete_user_backend}
 \end{figure}
 
@@ -286,13 +292,21 @@ Funkcjonalność umożliwiająca usunięcie talii fiszek.
 
 \subsubsection{Backend}
 
-Został utworzony endpoint \texttt{delete\_deck}, która pozwala na usunięcie talii o podanym identyfikatorze wraz z wszystkimi powiązanymi fiszkami.
+Przedstawiony na rysunku \ref{img:delete_deck_backend} endpoint \texttt{delete\_deck}, pozwala na usunięcie talii fiszek. Przekazany zostaje identyfikator talii, następnie zostaje usunięty pierwszy znaleziony deck według identyfikatora. Zostają także usunięte wszystkie fiszki należące do talii jest to spowodowane użyciem parametru \texttt{cascade="all, delete-orphan"} w modelu talii przedstawionego na rysunku \ref{img:model_talii}.
+
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/delete_deck_backend}
     \caption{Logika usuwająca talie i wszystkie należące do niej fiszki.}
     \label{img:delete_deck_backend}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/model_talii}
+    \caption{Model talii fiszek.}
+    \label{img:model_talii}
 \end{figure}
 
 
@@ -323,19 +337,19 @@ Funkcjonalność umożliwiająca aktualizowanie zawartości talii fiszek.
 
 \subsubsection{Backend}
 
-Zostały utworzone metody PUT, pozwalające na komunikację z bazą danych w celu aktualizacji informacji o fiszkach i taliach.
+Zostały utworzone metody PUT, pozwalające na komunikację z bazą danych w celu aktualizacji danych fiszek i talii. Rysunek \ref{img:update_deck_backend} przedstawia endpoint służący do aktualizowania danych talii. Przekazywany jest identyfikator talii i dane do aktualizacji na przykład nowy tytuł talii. Rysunek \ref{img:update_flash_card_backend} przedstawia endpoint do aktualizacji fiszki, który działa na takiej samej zasadzie  jak aktualizacja danych talii.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_deck_backend}
-    \caption{Metoda aktualizujące dane talii o podanym identyfikatorze.}
+    \caption{Metoda do aktualizacji danych talii o podanym identyfikatorze.}
     \label{img:update_deck_backend}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_flash_card_text_backend}
-    \caption{Metoda PUT aktualizująca dane fiszk.}
+    \caption{Metoda PUT do aktualizacji danych fiszk.}
     \label{img:update_flash_card_backend}
 \end{figure}
 
@@ -357,14 +371,14 @@ Użytkownik w celu zmiany nazwy talii lub kategorii musi otworzyć okno opcji na
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_deck_web}
-    \caption{Funkcja służąca do komunikacji z backendowym endpointem do aktualizacji danych talii.}
+    \caption{Funkcja odpowiedzialna za komunikację z endpointem aktualizującym dane talii.}
     \label{img:update_deck_web}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_flash_card_text_web}
-    \caption{Funkcja służąca do komunikacji z backendowym endpointem do aktualizacji danych fiszki.}
+    \caption{Funkcja odpowiedzialna za komunikację z endpointem aktualizującym dane fiszki.}
     \label{img:update_flash_card_web}
 \end{figure}
 
@@ -395,7 +409,7 @@ Po przejściu do widoku nauki, aplikacja ściąga fiszki użytkownika. W trakcie
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile}
-    \caption{Funkcja aktualizacji zapamiętanych fiszek.}
+    \caption{Funkcja odpowiedzialna za aktualizację zapamiętanych fiszek.}
     \label{img:update_unmemorized_flash_cards_mobile}
 \end{figure}
 
@@ -412,15 +426,8 @@ Po uruchomieniu trybu uczenia użytkownik widząc fiszkę może kliknąć przyci
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/pass_unmemorized_flash_cards_web}
-    \caption{Funkcja aktualizacji zapamiętanych fiszek.}
-    \label{img:pass_unmemorized_flash_cards_web}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/update_unmemorized_flash_cards_web}
-    \caption{Funkcja aktualizacji zapamiętanych fiszek.}
+    \caption{Funkcja odpowiedzialna za aktualizację zapamiętanych fiszek.}
     \label{img:update_unmemorized_flash_cards_web}
 \end{figure}
 
@@ -429,7 +436,7 @@ Funkcjonalność umożliwiająca sterowania talią przy użyciu komend głosowyc
 
 
 \subsubsection{Backend}
-Do wczytania modelu nlp została wykorzystana biblioteka "flair". Do zamiany tekstu na wektory został użyty model "BERT". Została utworzona lista wyrażeń i komend im odpowiadających. Lista ta zostanie  wykorzystana do dopasowania tego co mówi użytkownik do odpowiednich komend głosowych. Funkcja \texttt{vectorize\_text()} odpowiada za konwertowanie tekstu na wektor. Następnie przy użyciu pętli for i funkcji \texttt{vectorize\_text()} zdania w liście są konwertowane na wektory. Następnie została utworzona funkcja \texttt{get\_most\_similar\_answer()}, która przyjmuje zdanie, które wypowiedział użytkownik, i listę wyrażeń. Funkcja ta zmienia zdanie wypowiedziane przez użytkownika na wektor,po czym tworzona jest pustą listę do przechowywania wartości podobieństw pomiędzy wypowiedzią użytkownika a wyrażeniami zawartymi w liście. Pętla for przechodzi po wszystkich wektorach zdań w liście i liczona jest odległość cosinusowa pomiędzy wektorem zdania wypowiedzianego przez użytkownika a wektorem z zdania z listy wyrażeń. Odległość kosinusowa jest używana w analizie tekstu, jest to miara określenia różnicy między dwoma wektorami w przestrzeni n-wymiarowej.\cite{dataMining} Podobieństwo jest liczone ze wzoru 1 - odległość kosinusowa obliczona na podstawie wektora wypowiedzi użytkownika i wektora analizowanego zdania z listy wyrażeń. Obliczone podobieństwo dodawane jest do listy wyrażeń. Następnie przy użyciu \texttt{np.argmax()} zwracany jest indeks na, którym miejscu jest wartość z największym prawdopodobieństwem. Mając indeks funkcja zwraca komendę, która  najbardziej odpowiada zdaniu wypowiedzianemu przez użytkownika. Utworzona została metoda POST, która przyjmuje zdanie wypowiedziane przez użytkownika i uruchamia analizę tekstu.
+Do wczytania modelu nlp została wykorzystana biblioteka "flair". Do zamiany tekstu na wektory został użyty model "BERT". Została utworzona lista wyrażeń i komend im odpowiadających. Lista ta zostanie  wykorzystana do dopasowania tego co mówi użytkownik do odpowiednich komend głosowych. Funkcja \texttt{vectorize\_text()} odpowiada za konwertowanie tekstu na wektor. Następnie przy użyciu pętli for i funkcji \texttt{vectorize\_text()} zdania w liście są konwertowane na wektory. Następnie została utworzona funkcja \texttt{get\_most\_similar\_answer()}, która przyjmuje zdanie, które wypowiedział użytkownik, i listę wyrażeń. Funkcja ta zmienia zdanie wypowiedziane przez użytkownika na wektor,po czym tworzona jest pustą listę do przechowywania wartości podobieństw pomiędzy wypowiedzią użytkownika a wyrażeniami zawartymi w liście. Pętla for przechodzi po wszystkich wektorach zdań w liście i liczona jest odległość cosinusowa pomiędzy wektorem zdania wypowiedzianego przez użytkownika a wektorem z zdania z listy wyrażeń. Odległość kosinusowa jest używana w analizie tekstu, jest to miara określenia różnicy między dwoma wektorami w przestrzeni n-wymiarowej \cite{dataMining}. Podobieństwo jest liczone ze wzoru 1 - odległość kosinusowa obliczona na podstawie wektora wypowiedzi użytkownika i wektora analizowanego zdania z listy wyrażeń. Obliczone podobieństwo dodawane jest do listy wyrażeń. Następnie przy użyciu \texttt{np.argmax()} zwracany jest indeks na, którym miejscu jest wartość z największym prawdopodobieństwem. Mając indeks funkcja zwraca komendę, która  najbardziej odpowiada zdaniu wypowiedzianemu przez użytkownika. Utworzona została metoda POST, która przyjmuje zdanie wypowiedziane przez użytkownika i uruchamia analizę tekstu.
 
 
 \begin{figure}[H]
@@ -540,7 +547,7 @@ Do zamiany mowy na tekst, który potem jest analizowany przez model nlp w celu w
 Funkcjonalność pozwalająca użytkownikom na zapisanie talii udostępnionej publicznie.
 
 \subsubsection{Backend}
-Utworzona została metoda POST, która służy do kopiowania talii innych użytkowników. Przyjmuje ona identyfikator talii do skopiowania i identyfikator użytkownika, który tę talię chce zaimportować. Metoda tworzy nową niezależna talią, która zostaje przypisana do użytkownika o podanym identyfikatorze. Pozycje w rankingu talii są przyznawane na podstawie liczby pobrań, natomiast pozycja w rankingu jest zależna od sumy pobrań wszystkich jego udostępnionych talii. Użytkownik ma teraz możliwość importowania talii fiszek. Pobrana talia zostaje dodana do widoku public decs.
+Utworzona została metoda POST, która służy do kopiowania talii innych użytkowników, metoda przedstawiona na rysunku \ref{img:backend_copy_deck}. Przyjmuje ona identyfikator talii do skopiowania i identyfikator użytkownika, który tę talię chce zaimportować. Metoda tworzy nową niezależna talią, która zostaje przypisana do użytkownika o podanym identyfikatorze. Pozycje w rankingu talii są przyznawane na podstawie liczby pobrań, natomiast pozycja w rankingu jest zależna od sumy pobrań wszystkich jego udostępnionych talii. Użytkownik ma teraz możliwość importowania talii fiszek. Pobrana talia zostaje dodana do widoku public decs.
 
 \begin{figure}[H]
     \centering
@@ -625,13 +632,13 @@ Został utworzony service, który pozwala na połączenie z bakcendowym endpoint
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/web_chat_1}
-    \caption{Funkcja, która pobiera treść fiszki z przedniej strony karty i przekazuje wiadomośc do service odpowiedzialnego za komunikację z backendem.}
+    \caption{Funkcja, która pobiera treść fiszki z przedniej strony karty i przekazuje wiadomośc do serwisu odpowiedzialnego za komunikację z backendem.}
     \label{img:web_chat_1}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{chapters/chapter_8/screens/web_chat_2}
-    \caption{Funkcja służąca do komunikacji backendowym endpointem do wysyłania wiadomości do ChatGPT.}
+    \caption{Funkcja służąca do komunikacji z endpointem wysyłającym wiadomości do ChatGPT.}
     \label{img:web_chat_2}
 \end{figure}

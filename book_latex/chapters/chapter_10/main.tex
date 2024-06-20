@@ -5,7 +5,7 @@ Rozdział zawiera zdjęcie i opisy przedstawiające działanie aplikacji mobilne
 Rozdział przedstawia widoki i działanie strony internetowej.
 
 \subsection{Logowanie}
-Po uruchomieniu strony ukazuje się widok zawierający formularz logowania do strony internetowej. Po pomyślnym zalogowaniu użytkownik zostaje przekierowany do strony domowej.
+Po uruchomieniu strony ukazuje się widok zawierający formularz logowania widoczny na rysunku \ref{img:web_login}. Użytkownik przy logowaniu musi podać e-mail i hasło. Po pomyślnym zalogowaniu użytkownik zostaje przekierowany do strony domowej.
 
 
 \begin{figure}[H]
@@ -14,6 +14,8 @@ Po uruchomieniu strony ukazuje się widok zawierający formularz logowania do st
     \caption{Widok logowania.}
     \label{img:web_login}
 \end{figure}
+
+Po podaniu nieprawdziwych danych przy logowaniu użytkownik zostaje poinformowany o nieudanej próbie logowania. Widoczne na rysunku \ref{img:web_login_2} okienko zawiera informację o nieprawidłowym e-mailu lub haśle.
 
 
 \begin{figure}[H]
@@ -25,7 +27,7 @@ Po uruchomieniu strony ukazuje się widok zawierający formularz logowania do st
 
 
 \subsection{Rejestracja}
-Rejestracja pozwala na utworzenie konta potrzebnego do logowania.
+Rejestracja pozwala na utworzenie konta potrzebnego do logowania. Aby utworzyć konto, użytkownik musi podać swój e-mail, nickname i hasło. Na rysunku \ref{img:web_register} ukazany jest formularz rejestracji.
 
 
 \begin{figure}[H]
@@ -35,6 +37,7 @@ Rejestracja pozwala na utworzenie konta potrzebnego do logowania.
     \label{img:web_register}
 \end{figure}
 
+W przypadku nieudanej próby rejestracji konta, użytkownik zostaje o tym poinformowany. Rysunek \ref{img:web_register_2} przedstawia próbę zarejestrowania konta zakończoną niepowodzeniem, ze względu na już istniejący w bazie danych adres e-mail.
 
 \begin{figure}[H]
     \centering
@@ -64,7 +67,7 @@ Po zalogowaniu użytkownik zostaje przekierowany do strony domowej. Na stronie d
 
 
 \subsection{Profil użytkownika}
-Strona przedstawia profil użytkownika. Użytkownik ma możliwość zmiany swoich danych, usunięcia konta oraz przejścia do widoku ze swoimi statystykami.
+Rysunek \ref{img:web_profile} przedstawia profil użytkownika. Użytkownik ma możliwość zmiany swoich danych, usunięcia konta oraz przejścia do widoku ze swoimi statystykami.
 
 
 \begin{figure}[H]
@@ -74,6 +77,7 @@ Strona przedstawia profil użytkownika. Użytkownik ma możliwość zmiany swoic
     \label{img:web_profile}
 \end{figure}
 
+Po kliknięciu przycisku “USER STATS” ukazują się statystyki użytkownika, które są widoczne na rysunku \ref{img:web_stats}.
 
 \begin{figure}[H]
     \centering
@@ -84,7 +88,7 @@ Strona przedstawia profil użytkownika. Użytkownik ma możliwość zmiany swoic
 
 
 \subsection{"Create deck"}
-Strona umożliwia tworzenie talii fiszek. Przycisk "Generate" pozwala na wygenerowanie treści fiszki używając ChatGPT. W celu utworzenia talii fiszek, użytkownik musi wypełnić nazwę talii, kategorię i mieć przynajmniej jedna wypłenione pole dla fiszki. Przycisk "Add card" dodaje następne pola do utworzenia fiszki. Użytkownik po wypełnieniu formularza musi kliknąć "Create deck" w celu utworzenia talii.
+Przedstawiona na rysunku \ref{img:web_create_deck} podstrona umożliwia tworzenie talii fiszek. Przycisk „Generate” pozwala na wygenerowanie treści fiszki, używając ChatGPT. W celu utworzenia talii fiszek użytkownik musi wypełnić nazwę talii, kategorię i mieć przynajmniej jedno wypełnione pole dla fiszki. Przycisk „Add card” dodaje następne pola do tworzenia fiszki. Użytkownik, po wypełnieniu formularza, musi kliknąć „Create deck” w celu utworzenia talii.
 
 
 \begin{figure}[H]
@@ -95,7 +99,7 @@ Strona umożliwia tworzenie talii fiszek. Przycisk "Generate" pozwala na wygener
 \end{figure}
 
 
-Użytkownik może wypełnić przednią stronę fiszki, następnie kliknięcie przycisku "Generate" pozwoli na wygenerowanie przez ChatGPT tekstu na podstawie zawartości przedniej strony fiszki. Po wygenerowaniu treść pojawi się w okienku i użytkownik ma możliwość zaakceptowania treści lub jej odrzucenia. W przypadku zaakceptowania tylna strona fiszki zostanie wypełniona wygenerowaną treścią.
+Użytkownik przed wygenerowaniem treści musi wypełnić przednią stronę fiszki, następnie kliknięcie przycisku ”Generate” pozwoli na wygenerowanie przez ChatGPT tekstu na podstawie zawartości przedniej strony fiszki. Po wygenerowaniu treść pojawi się w okienku i użytkownik ma możliwość zaakceptowania treści lub jej odrzucenia. W przypadku zaakceptowania tylna strona fiszki zostanie wypełniona wygenerowaną treścią. Na rysunku \ref{img:web_chat} przedstawiony jest komunikat, jaki otrzymuje po wygenerowaniu treści przez ChatGPT.
 
 
 \begin{figure}[H]
@@ -107,7 +111,8 @@ Użytkownik może wypełnić przednią stronę fiszki, następnie kliknięcie pr
 
 
 \subsection{"My Decks"}
-W "My decks" trzymane są wszystkie talie utworzone przez użytkownika. Filter pozwala na wyszukiwanie talii jednocześnie po kategorii i nazwie talii.
+W ”My decks” trzymane są wszystkie talie utworzone przez użytkownika. Filtr pozwala na wyszukiwanie talii jednocześnie po kategorii i nazwie talii. Na rysunku \ref{img:web_my_decks} ukazane są trzy talie utworzone przez użytkownika.
+
 
 
 \begin{figure}[H]
@@ -118,16 +123,7 @@ W "My decks" trzymane są wszystkie talie utworzone przez użytkownika. Filter p
 \end{figure}
 
 
-Po przejściu ukazują się wszystkie fiszki w talii. Użytkownik po kliknięciu "Learn" uruchamia trybu uczenia, który pozwala na podzielenie talii na fiszek na zapamiętane i niezapamiętane. "Memorized" to widok w którym widać wszystkie zapamiętane fiszki, a w "Not memorized" znajdują się te niezapamiętane. W "Voice control" są dostępne wszystkie fiszki do podziału, co umożliwia użytkownikowi uruchomienie trybu sterowania na całej dostępnej talii. Opcje oferują użytkownikowi:
-
-
-\begin{itemize}
-    \item Udostępnienie talii;
-    \item Reset talii w celu ustawienia wszystkich fiszek jako niezapamiętane;
-    \item Usunięcie talii;
-    \item Dodanie nowej fiszki;
-    \item Zmianę nazwy lub kategorii talii.
-\end{itemize}
+Po kliknięciu w talię ukazują się wszystkie fiszki wraz z dostępnymi trybami przeglądania talii. Użytkownik po kliknięciu ”Learn” uruchamia trybu uczenia, który pozwala na podzielenie talii na fiszki zapamiętane i niezapamiętane. ”Memorized” to widok w którym widać wszystkie zapamiętane fiszki, a w ”Not memorized” znajdują się te niezapamiętane. W ”Voice control” są dostępne wszystkie fiszki do podziału, co umożliwia użytkownikowi uruchomienie trybu sterowania na całej dostępnej talii. Rysunek \ref{img:web_deck} przedstawia zawartość talii wraz z dostępnymi trybami.
 
 
 \begin{figure}[H]
@@ -137,14 +133,18 @@ Po przejściu ukazują się wszystkie fiszki w talii. Użytkownik po kliknięciu
     \label{img:web_deck}
 \end{figure}
 
+Przedstawiony na rysunku \ref{img:web_learn} tryb uczenia się pozwala na podzielenie talii fiszek na dwa stosy. Pierwsza stos zawiera wszystkie karty, które użytkownik już pamięta.
+W drugim stosie zawarte są wszystkie fiszki, których użytkownika wciąż nie pamięta. W trybie uczenia pojawią się tylko fiszki, które oznaczone są jako niezapamiętane.
+
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{chapters/chapter_10/images_web/web_learn}
-    \caption{Widok podstawowego trybu nauki.}
+    \caption{Widok trybu nauki.}
     \label{img:web_learn}
 \end{figure}
 
+Przedstawiony na rysunku \ref{img:web_voice_1} tryb sterowania głosem po uruchomieniu pozwala na kontrolowanie talii fiszek, wykorzystując komendy głosowe.
 
 \begin{figure}[H]
     \centering
@@ -153,6 +153,17 @@ Po przejściu ukazują się wszystkie fiszki w talii. Użytkownik po kliknięciu
     \label{img:web_voice_1}
 \end{figure}
 
+Po kliknięciu “START LISTENING” ukazuje się instrukcja sterowania komendami głosowymi. Przedstawiona na rysunku \ref{img:web_instrukcja} instrukcja zawiera opis, w jaki sposób działa bezdotykowy interfejs.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{chapters/chapter_10/images_web/web_instrukcja}
+    \caption{Instrukcja sterowania głosem.}
+    \label{img:web_instrukcja}
+\end{figure}
+
+Po zamknięciu instrukcji uruchomiony zostaje tryb sterowania głosem. Widoczna na rysunku \ref{img:web_voice_2} czerwona ramka sugeruje użytkownikowi, że tryb został aktywowany.
 
 \begin{figure}[H]
     \centering
@@ -161,6 +172,14 @@ Po przejściu ukazują się wszystkie fiszki w talii. Użytkownik po kliknięciu
     \label{img:web_voice_2}
 \end{figure}
 
+Opcje talii przedstawione na rysunku \ref{img:web_settings} pozwalają na:
+\begin{itemize}
+    \item Udostępnienie talii, które powoduje dodanie talii do rankingu;
+    \item Reset talii w celu ustawienia wszystkich fiszek jako niezapamiętane;
+    \item Usunięcie talii;
+    \item Zmianę nazwy lub kategorii talii;
+    \item Dodanie nowej fiszki.
+\end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -171,7 +190,7 @@ Po przejściu ukazują się wszystkie fiszki w talii. Użytkownik po kliknięciu
 
 
 \subsection{"Public decks"}
-"Public decks" zawiera wszystkie talie, które zostały zaimportowane z rankingu.
+”Public decks” przedstawiony na rysunku \ref{img:web_public_decks} zawiera wszystkie talie, które użytkownik zaimportował z rankingu talii.
 
 
 \begin{figure}[H]
@@ -183,7 +202,7 @@ Po przejściu ukazują się wszystkie fiszki w talii. Użytkownik po kliknięciu
 
 
 \subsection{Ranking użytkowników i talii}
-Ranking użytkowników zawiera wszystkie konta, które udostępniły co najmniej jedną talię fiszek. Pozycja w rankingu jest zależna od sumy pobrań wszystkich talii udostępnionych przez użytkownika.
+Ranking użytkowników przedstawiony na rysunku \ref{img:web_user_ranking} zawiera wszystkie konta, które udostępniły co najmniej jedną talię fiszek. Pozycja w rankingu jest zależna od sumy pobrań wszystkich talii udostępnionych przez użytkownika.
 
 
 \begin{figure}[H]
@@ -193,6 +212,7 @@ Ranking użytkowników zawiera wszystkie konta, które udostępniły co najmniej
     \label{img:web_user_ranking}
 \end{figure}
 
+Ranking talii przedstawiony na rysunku \ref{img:web_decks_ranking} zawiera wszystkie talie, udostępnione przez użytkowników. Pozycja w rankingu jest zależna od sumy pobrań talii.
 
 \begin{figure}[H]
     \centering
@@ -202,7 +222,7 @@ Ranking użytkowników zawiera wszystkie konta, które udostępniły co najmniej
 \end{figure}
 
 
-Użytkownik po otworzeniu konkretnej talii ma możliwość obejrzenia jej zawartości. Jeżeli talia spodoba się użytkownikowi, ma on możliwość zaimportowania jej, w ten sposób talia zostanie dodana do "Public decks". Można także zgłosić talię w przypadku gdy zawiera ona wulgaryzmy lub inne nieprzyzwoite wyrażenia. Po zgłoszeniu talii moderator widzi taką talię w zgłoszeniach.
+Przedstawiony na rysunku \ref{img:web_public_deck} widok ukazuje zawartość wybranej talii z rankingu. Jeżeli talia spodoba się użytkownikowi, ma on możliwość zaimportowania jej, w ten sposób talia zostanie dodana do ”Public decks”. Można także zgłosić talię w przypadku gdy zawiera ona wulgaryzmy lub inne nieprzyzwoite wyrażenia. Po zgłoszeniu zostaje ona dodana do zgłoszonych talii.
 
 \begin{figure}[H]
     \centering
@@ -212,7 +232,7 @@ Użytkownik po otworzeniu konkretnej talii ma możliwość obejrzenia jej zawart
 \end{figure}
 
 \subsection{Panel moderatora}
-Panel moderatora pozwala na usuwanie użytkowników, usuwanie talii, edycję fiszek lub ich usunięcie. Do opcji moderatora mają dostęp tylko osoby z typem konta moderatora lub administratora, w ich przypadku w profilu pojawia się dodatkowy przycisk przekierowujący do panelu.
+Panel moderatora pozwala na usuwanie użytkowników, usuwanie talii, edycję fiszek lub ich usunięcie. Do opcji moderatora mają dostęp tylko osoby z typem konta moderatora lub administratora. W przypadku konta mających uprawnienia specjalne uprawnienia w profilu użytkownika pojawia się dodatkowy przycisk. Widoczny na rysunku  \ref{img:web_moderator_profile} przycisk “Moderator Panel” przekierowuje moderatora do specjalnego panelu zarządzania taliami i użytkownikami.
 
 
 \begin{figure}[H]
@@ -222,6 +242,7 @@ Panel moderatora pozwala na usuwanie użytkowników, usuwanie talii, edycję fis
     \label{img:web_moderator_profile}
 \end{figure}
 
+Przedstawiony na rysunku \ref{img:web_moderator_delete_user} panel użytkowników pozwala na usunięcie użytkownika z aplikacji.
 
 \begin{figure}[H]
     \centering
@@ -230,6 +251,7 @@ Panel moderatora pozwala na usuwanie użytkowników, usuwanie talii, edycję fis
     \label{img:web_moderator_delete_user}
 \end{figure}
 
+Przedstawiony na rysunku \ref{img:web_reported_decks} widok zawiera wszystkie zgłoszone talie. Po kliknięciu w talię zostaje wyświetlona jej zawartość.
 
 \begin{figure}[H]
     \centering
@@ -239,7 +261,7 @@ Panel moderatora pozwala na usuwanie użytkowników, usuwanie talii, edycję fis
 \end{figure}
 
 
-Moderator po otwarciu talii może ją przejrzeć w celu sprawdzenia czy report talii był uzasadniony. W przypadku gdy report talii był nie potrzebny, może usunąć ją z listy zgłoszeń. Jeżeli zgłoszenie było prawidłowe może usunąć talię z aplikacji.
+Moderator po otwarciu talii może ją przejrzeć w celu sprawdzenia, czy zgłoszenie było uzasadnione. W przypadku, gdy zgłoszenie talii było niepotrzebne, może usunąć ją z listy. Jeżeli zgłoszenie było prawidłowe, może usunąć talię z aplikacji. Na rysunku \ref{img:web_reported_deck_2} przedstawiony jest widok talii po jej otwarciu.
 
 
 \begin{figure}[H]

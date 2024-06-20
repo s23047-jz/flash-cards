@@ -4,7 +4,7 @@ Tworzenie projektu odbyło się metodyką przyrostowo-ewolucyjną. Metodyka ta p
 
 \section{Faza planowania}
 
-Na samym początku przeprowadzona została burza mózgów w celu wymyślenia tematu naszego projektu.\cite{osborn1953} Po analizie potencjalnych tematów zespół zdecydował się na aplikację do uczenia się z wykorzystaniem metody fiszek. Następnym krokiem było wypełnienie karty projektu, zespół musiał określić cele projektu, miary sukcesu i główne funkcjonalności. Po określeniu ogólnych założeń dotyczących projektu, zespół zajął się wypełnieniem dokumentu założeń wstępnych, który dotyczył opisu naszego problemu, analizy konkurencji i ogólnej wizji konstrukcyjnej. Kolejnym krokiem w fazie planowania było wypełnienie specyfikacji wymagań systemowych, która dotyczyła szczegółowego opisu wymagań dotyczących naszego projektu. Ostatnim podjętym działaniem było utworzenie mockupów aplikacji mobilnej i kilku mockupów aplikacji webowej, co pozwoliło na konsolidację informacji i na wytworzenie wspólnej wizji projektu. Po ukończeniu planowania zespół był gotowy do przejścia w fazę implementacji.
+Na samym początku przeprowadzona została burza mózgów w celu wymyślenia tematu naszego projektu \cite{osborn1953}. Po analizie potencjalnych tematów zespół zdecydował się na aplikację do uczenia się z wykorzystaniem metody fiszek. Następnym krokiem było wypełnienie karty projektu, zespół musiał określić cele projektu, miary sukcesu i główne funkcjonalności. Po określeniu ogólnych założeń dotyczących projektu, zespół zajął się wypełnieniem dokumentu założeń wstępnych, który dotyczył opisu naszego problemu, analizy konkurencji i ogólnej wizji konstrukcyjnej. Kolejnym krokiem w fazie planowania było wypełnienie specyfikacji wymagań systemowych, która dotyczyła szczegółowego opisu wymagań dotyczących naszego projektu. Ostatnim podjętym działaniem było utworzenie mockupów aplikacji mobilnej i kilku mockupów aplikacji webowej, co pozwoliło na konsolidację informacji i na wytworzenie wspólnej wizji projektu. Po ukończeniu planowania zespół był gotowy do przejścia w fazę implementacji.
 
 \section{Faza implementacji}
 
@@ -14,7 +14,16 @@ Implementacja projektu odbyła się w sprintach, które trwały od 2 do 4 tygodn
 
 \section{Szczegóły implementacji}
 
-Podrozdział opisuje jak zostały zaimplementowane poszczególne funkcjonalności systemu.
+Wykorzystanym podejściem prowadzenia pracy było monorepo. Cały kod projektu trzymany był w jednym repozytorium, takie podejście wymagało przemyślenia struktury katalogów i odpowiedniej konwencji nazewnictwa \cite{monorepo}. Repozytorium zostało podzielone na 5 katalogów. W katalogu "api" zawarty jest kod projektu odpowiedzialny za warstwę backendu i bazy danych. "Book\_latex" zawiera rozdziały pracy dyplomowej pisanej przy użyciu LateX. "Moblie" zawiera kod aplikacji mobilnej. W "venv" znajduje się wirtualne środowisko pythona, które zawiera zestaw bibliotek i pakietów. "Web" zawiera kod strony internetowej.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{chapters/chapter_8/screens/repo}
+    \caption{Zdjęcie przedstawia strukturę katalogów w projekcie.}
+    \label{img:repo}
+\end{figure}
+
 
 \input{chapters/chapter_8/implementacja}
 
