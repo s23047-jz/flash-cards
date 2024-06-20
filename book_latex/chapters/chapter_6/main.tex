@@ -43,11 +43,16 @@ Na diagramie z rysunku \ref{img:diagram_przypadkow_uzycia} przedstawiono:
 
 \setlength{\parindent}{15pt}
 
-\newpage
 
-\indent Diagram ERD (Entity-Relationship Diagram) to graficzne przedstawienie struktury bazy danych używane w projektowaniu i modelowaniu baz danych.
-
-
+\indent Diagram ERD (Entity-Relationship Diagram) to graficzne przedstawienie struktury bazy danych używane w projektowaniu i modelowaniu baz danych. Diagram widoczny na rysunku \ref{img:erd} opisuje model zastosowany w projekcie:
+\begin{itemize}
+    \item Black\_Token - przechowuje przeterminowane tokeny autoryzujące użytkownika.
+    \item Token - przechowuje aktywne tokeny autoryzujące użytkownika wraz z jego adresem e-mail.
+    \item User - przechowuje wszystkie dane konta użytkownika.
+    \item Deck\_Of\_Flashcards - przechowuje informacje o talii fiszek, jest przypisana do użytkownika poprzez odwołanie do jego identyfikatora.
+    \item Flashcard - przechowuje treść fiszki i jej status, jest przypisana do talii poprzez odwołanie do jej identyfikatora.
+    \item Reports - przechowuje identyfikatory zgłoszonych talii oraz adres e-mail użytkownika zgłaszającego.
+\end{itemize}
 
 \begin{figure}[H]
     \centering
@@ -56,7 +61,13 @@ Na diagramie z rysunku \ref{img:diagram_przypadkow_uzycia} przedstawiono:
     \label{img:erd}
 \end{figure}
 
-\indent Diagram architektury stanowi reprezentację organizacji systemu informatycznego w oparciu o który został zrealizowany podjęty projekt.
+\indent Diagram architektury stanowi reprezentację organizacji systemu informatycznego w oparciu o który został zrealizowany podjęty projekt. Diagram z rysunku \ref{img:diagram_architektury} przedstawia infrastrukturę w której:
+\begin{itemize}
+    \item System jest utrzymywana przez serwer aplikacji;
+    \item Aplikacja webowa znajduje się w kontenerze utrzymywanym przez serwer aplikacji;
+    \item Backend aplikacji i baza danych znajdują się w kontenerze utrzymywanym przez serwer aplikacji;
+    \item Dostęp do aplikacji odbywa się przez internet za pośrednictwem urządzeń mobilnych lub przez przeglądarkę internetową.
+\end{itemize}
 
 
 \begin{figure}[H]
@@ -68,10 +79,16 @@ Na diagramie z rysunku \ref{img:diagram_przypadkow_uzycia} przedstawiono:
 
 
 \setlength{\parindent}{15pt}
-\newpage
+\indent Diagram sekwencji jest używany w modelowaniu systemów za pomocą języka UML, przedstawia interakcje między różnymi obiektami w kolejności czasowej. W diagramach z rysunków \ref{img:diagram_sekwencji_1} i \ref{img:diagram_sekwencji_2} znajdują się:
+\begin{itemize}
+    \item Aktor - użytkownik zalogowany, czyli taki który ma pełny dostęp do funkcjonalności aplikacji;
+    \item Encje - jednostki systemu biorące udział w sekwencji zdarzeń (np. "Lista deck'ów");
+    \item Oś czasu biegnącą w dół diagramu i reprezentującą kolejność zdarzeń;
+    \item Komunikaty - strzałki reprezentujące komuniakcję między encjami i ich funkcjonalności.
+\end{itemize}
 
-\indent W diagramach sekwencji zostały przedstawione sposoby tworzenia deck’u oraz fiszek.
-Użytkownik ma możliwość stworzyć talię od podstaw lub pobrać talię udostępnioną przez innego użytkownika.
+
+\indent Diagram na rysunku \ref{img:diagram_sekwencji_1} przedstawia proces zarządzania talią. Użytkownik może samodzielnie utworzyć talię lub pobrać gotową z puli udostępnionych talii.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{chapters/chapter_6/diagram_sekwencji_1}
@@ -79,9 +96,8 @@ Użytkownik ma możliwość stworzyć talię od podstaw lub pobrać talię udost
     \label{img:diagram_sekwencji_1}
 \end{figure}
 
-\newpage
 
-\indent Tworzenie fiszek natomiast może przebiec poprzez zredagowanie definicji zagadnienia samodzielnie (wpisaniu lub dyktowaniu przez mikrofon) lub wygenerowaniu jej za pomocą ChatGPT.
+\indent Tworzenie fiszek zostało przedstawione na diagramie z rysunku \ref{img:diagram_sekwencji_2}. Tworzenie przebiega poprzez samodzielnie zredagowanie definicji zagadnienia lub przez wygenerowanie treści za pomocą ChatGPT.
 
     \begin{figure}[H]
     \centering

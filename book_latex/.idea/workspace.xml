@@ -6,32 +6,38 @@
   <component name="ChangeListManager">
     <list default="true" id="5bb389f4-d18a-4a16-93d4-8b42b7b9db4f" name="Changes" comment="poprawki">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bibliography.bib" beforeDir="false" afterPath="$PROJECT_DIR$/bibliography.bib" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_10/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_10/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_1/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_1/main.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_11/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_11/main.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_12/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_12/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_2/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_2/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_14/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_13/main.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_3/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_3/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_4/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_4/main.tex" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_5/analiza_ryzyka.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/analiza_ryzyka.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_5/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_5/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_6/diagram_przypadkow_uzycia.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_6/diagram_przypadkow_uzycia.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_6/erd.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_6/erd.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_6/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_6/main.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_6/wymagania.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_6/wymagania.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_7/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_7/main.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/implementacja.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/logowanie_web.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/logowanie_web.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/update_flash_card_text_web.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/update_flash_card_text_web.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/sprinty.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chapters/chapter_9/main.tex" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_9/main.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.bbl" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bbl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.bcf" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.bcf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engineer.blg" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.blg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/delete_deck_backend.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/delete_deck_backend.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/delete_user_backend.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/delete_user_backend.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/delete_user_mobile_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/delete_user_mobile_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/delete_user_web.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/delete_user_web.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/edit_user_backend_1.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/edit_user_backend_1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/edit_user_backend_2.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/edit_user_backend_2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/edit_user_mobile.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/edit_user_mobile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/edit_user_web.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/edit_user_web.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/get_unmemorized_flash_cards_mobile.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/get_unmemorized_flash_cards_mobile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/logowanie_backend.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/logowanie_backend.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/rejestracja_backend.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/rejestracja_backend.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/rejestracja_mobile.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/rejestracja_mobile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/rejestracja_web.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/rejestracja_web.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/wylogowanie_backend.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/wylogowanie_backend.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chapters/chapter_8/screens/wylogowanie_mobile.png" beforeDir="false" afterPath="$PROJECT_DIR$/chapters/chapter_8/screens/wylogowanie_mobile.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engineer.log" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engineer.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engineer.run.xml" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.run.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engineer.tex" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/engineer.toc" beforeDir="false" afterPath="$PROJECT_DIR$/engineer.toc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sprz.cls" beforeDir="false" afterPath="$PROJECT_DIR$/sprz.cls" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -219,7 +225,8 @@
       <workItem from="1718713110561" duration="489000" />
       <workItem from="1718739910451" duration="8279000" />
       <workItem from="1718817963682" duration="12626000" />
-      <workItem from="1718873094208" duration="1450000" />
+      <workItem from="1718873094208" duration="12205000" />
+      <workItem from="1718885780958" duration="4306000" />
     </task>
     <task id="LOCAL-00001" summary="poprawki">
       <option name="closed" value="true" />
@@ -325,7 +332,15 @@
       <option name="project" value="LOCAL" />
       <updated>1718794429325</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="poprawki">
+      <option name="closed" value="true" />
+      <created>1718874559445</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1718874559445</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
