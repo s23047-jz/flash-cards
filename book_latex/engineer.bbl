@@ -84,6 +84,37 @@
       \verb https://pl.wikipedia.org/wiki/Grywalizacja
       \endverb
     \endentry
+    \entry{kosinus}{online}{}
+      \name{author}{1}{}{%
+        {{hash=d19357f742d921fafb0c9ccac35377d0}{%
+           family={FineProxy},
+           familyi={F\bibinitperiod},
+           given={Redakcja},
+           giveni={R\bibinitperiod}}}%
+      }
+      \strng{namehash}{d19357f742d921fafb0c9ccac35377d0}
+      \strng{fullhash}{d19357f742d921fafb0c9ccac35377d0}
+      \strng{bibnamehash}{d19357f742d921fafb0c9ccac35377d0}
+      \strng{authorbibnamehash}{d19357f742d921fafb0c9ccac35377d0}
+      \strng{authornamehash}{d19357f742d921fafb0c9ccac35377d0}
+      \strng{authorfullhash}{d19357f742d921fafb0c9ccac35377d0}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Dostęp: 19 czerwca 2024, godz. 20:45}
+      \field{title}{Podobieństwo cosinusów}
+      \field{urlday}{19}
+      \field{urlmonth}{6}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://fineproxy.org/pl/wiki/cosine-similarity/
+      \endverb
+      \verb{url}
+      \verb https://fineproxy.org/pl/wiki/cosine-similarity/
+      \endverb
+    \endentry
     \entry{ablyGamification}{online}{}
       \name{author}{1}{}{%
         {{hash=6578bb9f58984d0dfa20dd752735c090}{%
@@ -98,8 +129,8 @@
       \strng{authorbibnamehash}{6578bb9f58984d0dfa20dd752735c090}
       \strng{authornamehash}{6578bb9f58984d0dfa20dd752735c090}
       \strng{authorfullhash}{6578bb9f58984d0dfa20dd752735c090}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Dostęp: 11 maja 2024, godz. 8:30}
@@ -130,8 +161,8 @@
       \strng{authorbibnamehash}{15492db0b0728dcf6f2196e42ef0237e}
       \strng{authornamehash}{15492db0b0728dcf6f2196e42ef0237e}
       \strng{authorfullhash}{15492db0b0728dcf6f2196e42ef0237e}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Dostęp: 10 czerwca 2024, godz. 16:40}
@@ -165,8 +196,8 @@
       \strng{authorbibnamehash}{a87f6da668c19cc25d2d42abd49cbd7d}
       \strng{authornamehash}{a87f6da668c19cc25d2d42abd49cbd7d}
       \strng{authorfullhash}{a87f6da668c19cc25d2d42abd49cbd7d}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Praktyczne podejście do inżynierii oprogramowania}
@@ -192,12 +223,46 @@
       \strng{authorbibnamehash}{0d889255ef0e19bfad9dcca939f362f7}
       \strng{authornamehash}{0d889255ef0e19bfad9dcca939f362f7}
       \strng{authorfullhash}{0d889255ef0e19bfad9dcca939f362f7}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{extraname}{1}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Applied Imagination: Principles and Procedures of Creative Problem-Solving}
       \field{year}{1953}
+    \endentry
+    \entry{monorepo}{online}{}
+      \name{author}{1}{}{%
+        {{hash=a26020d0389db0372cb62ac84ff767d4}{%
+           family={A},
+           familyi={A\bibinitperiod},
+           given={Brzozowski},
+           giveni={B\bibinitperiod}}}%
+      }
+      \strng{namehash}{a26020d0389db0372cb62ac84ff767d4}
+      \strng{fullhash}{a26020d0389db0372cb62ac84ff767d4}
+      \strng{bibnamehash}{a26020d0389db0372cb62ac84ff767d4}
+      \strng{authorbibnamehash}{a26020d0389db0372cb62ac84ff767d4}
+      \strng{authornamehash}{a26020d0389db0372cb62ac84ff767d4}
+      \strng{authorfullhash}{a26020d0389db0372cb62ac84ff767d4}
+      \field{extraname}{2}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Dostęp: 19 czerwca 2024, godz. 20:00}
+      \field{title}{Monorepo czy multirepo w złożonym projekcie programistycznym?}
+      \field{urlday}{19}
+      \field{urlmonth}{6}
+      \field{urlyear}{2024}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://pl.asseco.com/kariera/blog/monorepo-czy-multirepo-w-zlozonym-projekcie-programistycznym-4611/
+      \endverb
+      \verb{url}
+      \verb https://pl.asseco.com/kariera/blog/monorepo-czy-multirepo-w-zlozonym-projekcie-programistycznym-4611/
+      \endverb
     \endentry
     \entry{dataMining}{book}{}
       \name{author}{1}{}{%
@@ -218,8 +283,8 @@
       \strng{authorbibnamehash}{77407172421b29e2ee403dc134598d40}
       \strng{authornamehash}{77407172421b29e2ee403dc134598d40}
       \strng{authorfullhash}{77407172421b29e2ee403dc134598d40}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Data Mining: Concepts and Techniques}
@@ -239,8 +304,8 @@
       \strng{authorbibnamehash}{9196f7dbbb9765bd6d8b20898237f884}
       \strng{authornamehash}{9196f7dbbb9765bd6d8b20898237f884}
       \strng{authorfullhash}{9196f7dbbb9765bd6d8b20898237f884}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Dostęp: 31 maja 2024, godz. 14:00}
@@ -274,8 +339,8 @@
       \strng{authorbibnamehash}{e14c8f99a5c662fff05b01360c10216f}
       \strng{authornamehash}{e14c8f99a5c662fff05b01360c10216f}
       \strng{authorfullhash}{e14c8f99a5c662fff05b01360c10216f}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{pytest Quick Start Guide}

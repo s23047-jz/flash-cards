@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  18 JUN 2024 12:02
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  19 JUN 2024 21:20
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -519,6 +519,27 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 2023/07/02 v1.03 Indent first paragraph (DPC)
 )
+(/usr/local/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2022-09-14 v5.2n context-sensitive quotations (JAW)
+\csq@reset=\count420
+\csq@gtype=\count421
+\csq@glevel=\count422
+\csq@qlevel=\count423
+\csq@maxlvl=\count424
+\csq@tshold=\count425
+\csq@ltx@everypar=\toks29
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2022-09-14 v5.2n csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+))
+Package csquotes Info: Redefining alias 'polish' -> 'german'.
+
 (/usr/local/texlive/2024/texmf-dist/tex/latex/nowidow/nowidow.sty
 Package: nowidow 2011/09/20 1.0 Easily prevent widows and orphans
 Package: nowidow 
@@ -532,10 +553,10 @@ Package: xkeyval 2022/06/16 v2.9 package option processing (HA)
 
 (/usr/local/texlive/2024/texmf-dist/tex/generic/xkeyval/xkeyval.tex
 (/usr/local/texlive/2024/texmf-dist/tex/generic/xkeyval/xkvutils.tex
-\XKV@toks=\toks29
-\XKV@tempa@toks=\toks30
+\XKV@toks=\toks30
+\XKV@tempa@toks=\toks31
 )
-\XKV@depth=\count420
+\XKV@depth=\count426
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 ))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/fontspec/fontspec.sty
@@ -544,17 +565,17 @@ Package: fontspec 2024/02/13 v2.9a Font selection for XeLaTeX and LuaLaTeX
 (/usr/local/texlive/2024/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
 Package: fontspec-xetex 2024/02/13 v2.9a Font selection for XeLaTeX and LuaLaTe
 X
-\l__fontspec_script_int=\count421
-\l__fontspec_language_int=\count422
-\l__fontspec_strnum_int=\count423
-\l__fontspec_tmp_int=\count424
-\l__fontspec_tmpa_int=\count425
-\l__fontspec_tmpb_int=\count426
-\l__fontspec_tmpc_int=\count427
-\l__fontspec_em_int=\count428
-\l__fontspec_emdef_int=\count429
-\l__fontspec_strong_int=\count430
-\l__fontspec_strongdef_int=\count431
+\l__fontspec_script_int=\count427
+\l__fontspec_language_int=\count428
+\l__fontspec_strnum_int=\count429
+\l__fontspec_tmp_int=\count430
+\l__fontspec_tmpa_int=\count431
+\l__fontspec_tmpb_int=\count432
+\l__fontspec_tmpc_int=\count433
+\l__fontspec_em_int=\count434
+\l__fontspec_emdef_int=\count435
+\l__fontspec_strong_int=\count436
+\l__fontspec_strongdef_int=\count437
 \l__fontspec_tmpa_dim=\dimen167
 \l__fontspec_tmpb_dim=\dimen168
 \l__fontspec_tmpc_dim=\dimen169
@@ -587,7 +608,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.13 ...ainlanguage[spacedguillemets=true]{polish}
+l.15 ...ainlanguage[spacedguillemets=true]{polish}
                                                   
 ? 
 
@@ -597,7 +618,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.13 ...ainlanguage[spacedguillemets=true]{polish}
+l.15 ...ainlanguage[spacedguillemets=true]{polish}
                                                   
 ? 
 Package polyglossia Info: Default language is polish.
@@ -608,7 +629,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.13 ...ainlanguage[spacedguillemets=true]{polish}
+l.15 ...ainlanguage[spacedguillemets=true]{polish}
                                                   
 ? 
 
@@ -618,11 +639,13 @@ See the biblatex package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.47 \begin{document}
+l.49 \begin{document}
                      
 ? 
-\@quotelevel=\count432
-\@quotereset=\count433
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'polyglossia' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'polish'.
 (./engineer.aux
 
 LaTeX Warning: Label `' multiply defined.
@@ -636,27 +659,27 @@ LaTeX Warning: Label `' multiply defined.
 )
 \openout1 = `engineer.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
-7.
+9.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
-LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -665,21 +688,21 @@ LaTeX Font Info:    ... okay on input line 47.
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(89.62709pt, 418.25368pt, 89.6271pt)
-* v-part:(T,H,B)=(101.40665pt, 591.5302pt, 152.11pt)
+* modes: twoside heightrounded 
+* h-part:(L,W,R)=(85.35826pt, 455.24411pt, 56.9055pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
 * \paperwidth=597.50787pt
 * \paperheight=845.04684pt
-* \textwidth=418.25368pt
-* \textheight=591.5302pt
-* \oddsidemargin=17.3571pt
-* \evensidemargin=17.3571pt
-* \topmargin=-7.86334pt
+* \textwidth=455.24411pt
+* \textheight=706.0pt
+* \oddsidemargin=13.08827pt
+* \evensidemargin=-15.36449pt
+* \topmargin=-38.1381pt
 * \headheight=12.0pt
 * \headsep=25.0pt
 * \topskip=10.0pt
 * \footskip=30.0pt
-* \marginparwidth=65.0pt
+* \marginparwidth=56.9055pt
 * \marginparsep=11.0pt
 * \columnsep=10.0pt
 * \skip\footins=9.0pt plus 4.0pt minus 2.0pt
@@ -687,12 +710,12 @@ LaTeX Font Info:    ... okay on input line 47.
 * \voffset=0.0pt
 * \mag=1000
 * \@twocolumnfalse
-* \@twosidefalse
-* \@mparswitchfalse
+* \@twosidetrue
+* \@mparswitchtrue
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\c@lstlisting=\count434
+\c@lstlisting=\count438
 Package biblatex Info: Trying to load language 'polish'...
 Package biblatex Info: ... file 'polish.lbx' found.
 (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/polish.lbx
@@ -707,74 +730,66 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'engineer.bbl' found.
 
-(./engineer.bbl
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                Han2012DataMining
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-)
-Package biblatex Info: Reference section=0 on input line 47.
-Package biblatex Info: Reference segment=0 on input line 47.
+(./engineer.bbl)
+Package biblatex Info: Reference section=0 on input line 49.
+Package biblatex Info: Reference segment=0 on input line 49.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 47.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 47.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 47.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 47.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 47.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 47.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 47.
-LaTeX Font Info:    Redeclaring math accent \check on input line 47.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 47.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 47.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 47.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 47.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 47.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 49.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 49.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 49.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 49.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 49.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 49.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 49.
+LaTeX Font Info:    Redeclaring math accent \check on input line 49.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 49.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 49.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 49.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 49.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 49.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 47.
+(Font)              `operators' in the math version `normal' on input line 49.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 47.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 49.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 47.
+(Font)              `operators' in the math version `bold' on input line 49.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 47.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 49.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 47.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 49.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 47.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 49.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 47.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 49.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 47.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 49.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 47.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 49.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 47.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 49.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 47.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 49.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 47.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 49.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 47.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 49.
 
 
 ! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
@@ -783,7 +798,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.47 \begin{document}
+l.49 \begin{document}
                      
 ? 
 
@@ -793,12 +808,12 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.47 \begin{document}
+l.49 \begin{document}
                      
 ? 
-LaTeX Info: Redefining \rmfamily on input line 47.
-LaTeX Info: Redefining \sffamily on input line 47.
-LaTeX Info: Redefining \ttfamily on input line 47.
+LaTeX Info: Redefining \rmfamily on input line 49.
+LaTeX Info: Redefining \sffamily on input line 49.
+LaTeX Info: Redefining \ttfamily on input line 49.
 
 ! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
 
@@ -806,7 +821,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.47 \begin{document}
+l.49 \begin{document}
                      
 ? 
 
@@ -816,7 +831,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.47 \begin{document}
+l.49 \begin{document}
                      
 ? 
 File: sprz/pjatk.png Graphic file (type bmp)
@@ -827,30 +842,20 @@ File: sprz/pjatk.png Graphic file (type bmp)
 File: sprz/pjatk.png Graphic file (type bmp)
 <sprz/pjatk.png>
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 51.
+(Font)              <7> on input line 53.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 51.
+(Font)              <5> on input line 53.
 
-Underfull \hbox (badness 10000) in paragraph at lines 51--51
-[]\TU/lmr/bx/n/10 Data ustalenia
- []
-
-
-Overfull \hbox (25.19997pt too wide) in paragraph at lines 51--51
+Overfull \hbox (25.19997pt too wide) in paragraph at lines 53--53
  [] 
  []
 
 
-Underfull \hbox (badness 4673) in paragraph at lines 51--51
-[]|\TU/lmr/bx/n/10 Numer albu-
- []
-
-
-Overfull \hbox (24.90573pt too wide) in paragraph at lines 51--51
+Overfull \hbox (22.6864pt too wide) in paragraph at lines 53--53
  [] 
  []
 
-[1] [2] [3] (./engineer.toc
+[3] [4] (./engineer.toc
 
 ! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
 
@@ -894,52 +899,49 @@ Type  H <return>  for immediate help.
 l.1 ...ctlanguage *[spacedguillemets=true]{polish}
                                                   
 ? 
-[4
+[5
 
-] [5] [6] [7])
+] [6] [7])
 \tf@toc=\write4
 \openout4 = `engineer.toc'.
 
  (./chapters/chapter_1/main.tex [8]
 Rozdział 1.
-[9
+) (./chapters/chapter_2/main.tex [9
 
-]) (./chapters/chapter_2/main.tex [10]
+]
 Rozdział 2.
-[11
+[10
 
 ]
 File: chapters/chapter_2/rich_picture.png Graphic file (type bmp)
 <chapters/chapter_2/rich_picture.png>
- [12]
+ [11]
 File: chapters/chapter_2/krzywa1.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa1.png>
- [13]
 File: chapters/chapter_2/krzywa2.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa2.png>
- [14] [15]) (./chapters/chapter_3/main.tex [16]
+ [12] [13]
+
+LaTeX Warning: Citation 'kosinus' on page 14 undefined on input line 76.
+
+) (./chapters/chapter_3/main.tex [14]
 Rozdział 3.
-[17
+[15
 
 ]
 File: chapters/chapter_3/quizlet.png Graphic file (type bmp)
 <chapters/chapter_3/quizlet.png>
- [18]
+ [16]
 File: chapters/chapter_3/fiszoteka.png Graphic file (type bmp)
 <chapters/chapter_3/fiszoteka.png>
- [19] [20]
+ [17]
 File: chapters/chapter_3/gizmo.png Graphic file (type bmp)
 <chapters/chapter_3/gizmo.png>
- [21]
+ [18]
 File: chapters/chapter_3/flashcards.png Graphic file (type bmp)
 <chapters/chapter_3/flashcards.png>
- [22] [23] [24]
-Overfull \hbox (6.23636pt too wide) in paragraph at lines 175--176
-[]\TU/lmr/m/n/10 System fiszki ma możliwość generowania definicji na podstawie 
-słowa, wykorzystując ChatGPT.
- []
-
-) [25] (./chapters/chapter_5/main.tex
+ [19] [20]) (./chapters/chapter_5/main.tex
 
 ! LaTeX Error: Environment chap5 undefined.
 
@@ -950,9 +952,9 @@ Type  H <return>  for immediate help.
 l.31 \begin{chap5}
                   
 ? 
-[26]
+[21]
 Rozdział 4.
-[27
+[22
 
 ]
 
@@ -962,10 +964,10 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.65 \end{chap5}
+l.61 \end{chap5}
                 
 ? 
-[28] [29] (./chapters/chapter_5/analiza_ryzyka.tex
+[23] (./chapters/chapter_5/analiza_ryzyka.tex
 Underfull \hbox (badness 10000) in paragraph at lines 9--9
 []|\TU/lmr/bx/n/10 Zidentyfiko-
  []
@@ -1456,8 +1458,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--23
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 chat został
+Underfull \hbox (badness 4217) in paragraph at lines 23--23
+\TU/lmr/m/n/10 ChatGPT zo-
  []
 
 
@@ -1477,17 +1479,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--23
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 które zosta-
+\TU/lmr/m/n/10 które zostało
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 ło przesłane
+\TU/lmr/m/n/10 przesłane do
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 do chatu
+\TU/lmr/m/n/10 ChatGPT
  []
 
 
@@ -1641,131 +1643,182 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--25
  []
 
 
-Overfull \hbox (49.19481pt too wide) in alignment at lines 7--28
+Overfull \hbox (12.20438pt too wide) in alignment at lines 7--28
  [] [] [] [] [] [] 
  []
 
-[30])) (./chapters/chapter_6/main.tex
+[24] [25])) (./chapters/chapter_6/main.tex
 ! Undefined control sequence.
 l.1 \newapage
              
 ? 
-[31]
+[26]
 Rozdział 5.
-File: chapters/chapter_6/diagram_przypadkow_uzycia.png Graphic file (type bmp)
-<chapters/chapter_6/diagram_przypadkow_uzycia.png>
-File: chapters/chapter_6/erd.png Graphic file (type bmp)
-<chapters/chapter_6/erd.png>
-[32
+[27
 
 ]
+File: chapters/chapter_6/diagram_przypadkow_uzycia.png Graphic file (type bmp)
+<chapters/chapter_6/diagram_przypadkow_uzycia.png>
+ [28]
+File: chapters/chapter_6/erd.png Graphic file (type bmp)
+<chapters/chapter_6/erd.png>
 File: chapters/chapter_6/diagram_architektury.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_architektury.png>
+ [29]
 File: chapters/chapter_6/diagram_sekwencji_1.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_sekwencji_1.png>
- [33]
+ [30]
 File: chapters/chapter_6/diagram_sekwencji_2.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_sekwencji_2.png>
- [34] (./chapters/chapter_6/wymagania.tex [35] [36] [37] [38] [39]
-[40] [41] [42] [43] [44] [45] [46] [47] [48] [49] [50] [51] [52]
-Underfull \hbox (badness 1199) in paragraph at lines 599--599
-\TU/lmr/m/n/10 plecza technicznego systemu; zarządzanie, utrzymanie
+ (./chapters/chapter_6/wymagania.tex
+! Undefined control sequence.
+<argument> \string \newlabel {\tablabel 
+                                        }{{\@currentlabel }{\thepage }{\@cur...
+l.12 \end{stakeholder}
+                      
+? 
+[31]
+! Undefined control sequence.
+<argument> \string \newlabel {\tablabel 
+                                        }{{\@currentlabel }{\thepage }{\@cur...
+l.24 \end{stakeholder}
+                      
+? 
+! Undefined control sequence.
+<argument> \string \newlabel {\tablabel 
+                                        }{{\@currentlabel }{\thepage }{\@cur...
+l.36 \end{stakeholder}
+                      
+? 
+
+Underfull \hbox (badness 4531) in paragraph at lines 43--43
+[]|\TU/lmr/m/n/10 Dostarczeczenie infrastruktury i środowiska technicznego
  []
 
 ! Undefined control sequence.
 <argument> \string \newlabel {\tablabel 
                                         }{{\@currentlabel }{\thepage }{\@cur...
-l.602 \end{stakeholder}
-                       
+l.46 \end{stakeholder}
+                      
 ? 
-[53]
-! Undefined control sequence.
-<argument> \string \newlabel {\tablabel 
-                                        }{{\@currentlabel }{\thepage }{\@cur...
-l.614 \end{stakeholder}
-                       
-? 
-! Undefined control sequence.
-<argument> \string \newlabel {\tablabel 
-                                        }{{\@currentlabel }{\thepage }{\@cur...
-l.626 \end{stakeholder}
-                       
-? 
-! Undefined control sequence.
-<argument> \string \newlabel {\tablabel 
-                                        }{{\@currentlabel }{\thepage }{\@cur...
-l.636 \end{stakeholder}
-                       
-? 
-[54])) (./chapters/chapter_7/main.tex [55]
+[32] [33]
+Underfull \hbox (badness 2495) in paragraph at lines 134--134
+\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
+ []
+
+[34] [35] [36] [37] [38] [39] [40]
+Underfull \hbox (badness 2495) in paragraph at lines 422--422
+[]|\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
+ []
+
+[41] [42]
+Underfull \hbox (badness 2495) in paragraph at lines 473--473
+[]|\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
+ []
+
+[43] [44] [45] [46])) (./chapters/chapter_7/main.tex [47]
 Rozdział 6.
 File: chapters/chapter_7/github.png Graphic file (type bmp)
 <chapters/chapter_7/github.png>
-[56
+[48
 
 ]
 File: chapters/chapter_7/jira.png Graphic file (type bmp)
 <chapters/chapter_7/jira.png>
 File: chapters/chapter_7/miro.png Graphic file (type bmp)
 <chapters/chapter_7/miro.png>
- [57]
 File: chapters/chapter_7/google_drive.png Graphic file (type bmp)
 <chapters/chapter_7/google_drive.png>
+ [49]
 File: chapters/chapter_7/canva.png Graphic file (type bmp)
 <chapters/chapter_7/canva.png>
- [58] [59] [60]) (./chapters/chapter_8/main.tex [61]
+ [50] [51]) (./chapters/chapter_8/main.tex [52]
 Rozdział 7.
-[62
+(./chapters/chapter_8/sprinty.tex [53
 
-] (./chapters/chapter_8/sprinty.tex [63] [64] [65] [66] [67]
-Overfull \vbox (10.32458pt too high) has occurred while \output is active []
-
-
-[68]
+] [54] [55] [56] [57] [58]
 Overfull \hbox (25.19997pt too wide) in alignment at lines 296--435
  [] [] 
  []
 
-[69] [70]) (./chapters/chapter_8/implementacja.tex [71]
+[59] [60])
+
+LaTeX Warning: Citation 'monorepo' on page 61 undefined on input line 17.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.17 ...y za warstwę backendu i bazy danych. Book_
+                                                  latex zawiera rozdziały pr...
+
+? 
+! Missing $ inserted.
+<inserted text> 
+                $
+l.18 
+     
+? 
+Missing character: There is no ł ("142) in font cmmi10!
+Missing character: There is no ż ("17C) in font cmmi10!
+Missing character: There is no ś ("15B) in font cmmi10!
+Missing character: There is no ó ("F3) in font cmmi10!
+Missing character: There is no ó ("F3) in font cmmi10!
+
+Overfull \hbox (0.14589pt too wide) in paragraph at lines 17--18
+[]\TU/lmr/m/n/10 Wykorzystanym podejściem prowadzenia pracy było monorepo. Cały
+ kod projektu trzymany był w jed-
+ []
+
+
+Overfull \hbox (803.90883pt too wide) in paragraph at lines 17--18
+\TU/lmr/m/n/10 kod projektu odpowiedzialny za warstwę backendu i bazy danych. B
+ook$[]\OML/cmm/m/it/10 atexzawierarozdziaypracydyplomowejpisanejprzyuyciulatexa
+:Mobliezawierakodaplikacjimobilnej:Venvjesttowirtualnerodowiskopythona; ktrezaw
+ierazestawbibliotekipakietw:Webzawierakodstronyinternetowej:$ 
+ []
+
+[61]
+File: chapters/chapter_8/screens/repo.png Graphic file (type bmp)
+<chapters/chapter_8/screens/repo.png>
+ (./chapters/chapter_8/implementacja.tex
 File: chapters/chapter_8/screens/rejestracja_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/rejestracja_backend.png>
- [72]
+ [62] [63]
 File: chapters/chapter_8/screens/rejestracja_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/rejestracja_mobile.png>
 File: chapters/chapter_8/screens/rejestracja_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/rejestracja_web.png>
- [73]
 File: chapters/chapter_8/screens/logowanie_backend.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_backend.png>
- [74]
+ [64]
 File: chapters/chapter_8/screens/logowanie_mobile.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_mobile.png>
 File: chapters/chapter_8/screens/logowanie_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_web.png>
- [75]
+ [65]
 File: chapters/chapter_8/screens/wylogowanie_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/wylogowanie_backend.png>
-
-[76]
+ [66]
 File: chapters/chapter_8/screens/wylogowanie_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/wylogowanie_mobile.png>
 File: chapters/chapter_8/screens/wylogowanie_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/wylogowanie_web.png>
- [77]
+ [67]
 File: chapters/chapter_8/screens/edit_user_backend_1.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/edit_user_backend_1.png>
- [78]
 File: chapters/chapter_8/screens/edit_user_backend_2.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/edit_user_backend_2.png>
- [79] [80]
+
+[68]
 File: chapters/chapter_8/screens/edit_user_mobile.png Graphic file (type bmp)
 <chapters/chapter_8/screens/edit_user_mobile.png>
+ [69]
 File: chapters/chapter_8/screens/edit_user_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/edit_user_web.png>
 
@@ -1773,7 +1826,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 161--163
 
  []
 
-[81]
+
 Underfull \hbox (badness 10000) in paragraph at lines 171--172
 
  []
@@ -1783,262 +1836,345 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
  []
 
+[70]
 File: chapters/chapter_8/screens/delete_user_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/delete_user_backend.png>
-[82]
 File: chapters/chapter_8/screens/delete_user_mobile_1.png Graphic file (type bm
 p)
 <chapters/chapter_8/screens/delete_user_mobile_1.png>
+ [71]
 File: chapters/chapter_8/screens/delete_user_mobile_2.png Graphic file (type bm
 p)
 <chapters/chapter_8/screens/delete_user_mobile_2.png>
- [83]
 File: chapters/chapter_8/screens/delete_user_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/delete_user_web.png>
 File: chapters/chapter_8/screens/create_deck_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/create_deck_backend.png>
- [84]
+ [72]
 File: chapters/chapter_8/screens/create_flash_card_backend.png Graphic file (ty
 pe bmp)
 <chapters/chapter_8/screens/create_flash_card_backend.png>
 File: chapters/chapter_8/screens/create_deck_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/create_deck_mobile.png>
- [85]
+ [73]
 File: chapters/chapter_8/screens/create_deck_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/create_deck_web.png>
 File: chapters/chapter_8/screens/create_flash_card_web.png Graphic file (type b
 mp)
 <chapters/chapter_8/screens/create_flash_card_web.png>
- [86]
+ [74]
 File: chapters/chapter_8/screens/delete_deck_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/delete_deck_backend.png>
 File: chapters/chapter_8/screens/delete_deck_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/delete_deck_mobile.png>
- [87]
+ [75]
 File: chapters/chapter_8/screens/delete_deck_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/delete_deck_web.png>
- [88]
 File: chapters/chapter_8/screens/update_deck_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/update_deck_backend.png>
+ [76]
 File: chapters/chapter_8/screens/update_flash_card_text_backend.png Graphic fil
 e (type bmp)
 <chapters/chapter_8/screens/update_flash_card_text_backend.png>
- [89]
 File: chapters/chapter_8/screens/update_deck_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/update_deck_mobile.png>
- [90]
+ [77]
 File: chapters/chapter_8/screens/update_deck_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/update_deck_web.png>
 File: chapters/chapter_8/screens/update_flash_card_text_web.png Graphic file (t
 ype bmp)
 <chapters/chapter_8/screens/update_flash_card_text_web.png>
- [91]
+ [78]
 File: chapters/chapter_8/screens/update_flash_card_memorized_backend.png Graphi
 c file (type bmp)
 <chapters/chapter_8/screens/update_flash_card_memorized_backend.png>
- [92]
 File: chapters/chapter_8/screens/get_unmemorized_flash_cards_mobile.png Graphic
  file (type bmp)
 <chapters/chapter_8/screens/get_unmemorized_flash_cards_mobile.png>
+ [79]
 File: chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile.png Grap
 hic file (type bmp)
 <chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile.png>
- [93]
+ [80]
 File: chapters/chapter_8/screens/get_unmemorized_flash_cards_web.png Graphic fi
 le (type bmp)
 <chapters/chapter_8/screens/get_unmemorized_flash_cards_web.png>
- [94]
 File: chapters/chapter_8/screens/pass_unmemorized_flash_cards_web.png Graphic f
 ile (type bmp)
 <chapters/chapter_8/screens/pass_unmemorized_flash_cards_web.png>
 File: chapters/chapter_8/screens/update_unmemorized_flash_cards_web.png Graphic
  file (type bmp)
 <chapters/chapter_8/screens/update_unmemorized_flash_cards_web.png>
- [95]
+ [81]
+File: chapters/chapter_8/screens/backend_nlp.png Graphic file (type bmp)
+<chapters/chapter_8/screens/backend_nlp.png>
+ [82]
+File: chapters/chapter_8/screens/backend_nlp_usage.png Graphic file (type bmp)
+<chapters/chapter_8/screens/backend_nlp_usage.png>
+ [83]
+File: chapters/chapter_8/screens/mobile_start_recording.png Graphic file (type 
+bmp)
+<chapters/chapter_8/screens/mobile_start_recording.png>
+ [84]
+File: chapters/chapter_8/screens/mobile_stop_recording.png Graphic file (type b
+mp)
+<chapters/chapter_8/screens/mobile_stop_recording.png>
 
-LaTeX Warning: Citation 'dataMining' on page 96 undefined on input line 431.
+[85]
+File: chapters/chapter_8/screens/mobile_handle_similarity.png Graphic file (typ
+e bmp)
+<chapters/chapter_8/screens/mobile_handle_similarity.png>
+File: chapters/chapter_8/screens/mobile_handle_voice_commands.png Graphic file 
+(type bmp)
+<chapters/chapter_8/screens/mobile_handle_voice_commands.png>
+ [86]
+Overfull \hbox (33.22589pt too wide) in paragraph at lines 484--485
+\TU/lmr/m/n/10 ning” zostaje ustawiona na true rozpoczyna się nasłuchiwanie mow
+y przy użyciu \TU/lmtt/m/n/10 recognition.current.start()\TU/lmr/m/n/10 .
+ []
 
-)) (./chapters/chapter_9/main.tex [96] [97]
+
+Overfull \hbox (45.11592pt too wide) in paragraph at lines 484--485
+\TU/lmr/m/n/10 zostaje wypełniona treścią wypowiedzianą przez użytkownika zosta
+nie to przekazane do funkcji \TU/lmtt/m/n/10 nlpModelControl()\TU/lmr/m/n/10 .
+ []
+
+File: chapters/chapter_8/screens/recognition_reference.png Graphic file (type b
+mp)
+<chapters/chapter_8/screens/recognition_reference.png>
+File: chapters/chapter_8/screens/begin_listening.png Graphic file (type bmp)
+<chapters/chapter_8/screens/begin_listening.png>
+[87]
+File: chapters/chapter_8/screens/textControl_write.png Graphic file (type bmp)
+<chapters/chapter_8/screens/textControl_write.png>
+File: chapters/chapter_8/screens/textControl_to_nlp.png Graphic file (type bmp)
+
+<chapters/chapter_8/screens/textControl_to_nlp.png>
+ [88]
+File: chapters/chapter_8/screens/nlp_to_voiceControl.png Graphic file (type bmp
+)
+<chapters/chapter_8/screens/nlp_to_voiceControl.png>
+File: chapters/chapter_8/screens/sent_message.png Graphic file (type bmp)
+<chapters/chapter_8/screens/sent_message.png>
+File: chapters/chapter_8/screens/voice_control_web.png Graphic file (type bmp)
+<chapters/chapter_8/screens/voice_control_web.png>
+ [89]
+File: chapters/chapter_8/screens/backend_copy_deck.png Graphic file (type bmp)
+<chapters/chapter_8/screens/backend_copy_deck.png>
+ [90]
+File: chapters/chapter_8/screens/mobile_download_deck.png Graphic file (type bm
+p)
+<chapters/chapter_8/screens/mobile_download_deck.png>
+ [91]
+File: chapters/chapter_8/screens/mobile_deck_download_service.png Graphic file 
+(type bmp)
+<chapters/chapter_8/screens/mobile_deck_download_service.png>
+File: chapters/chapter_8/screens/web_download_deck.png Graphic file (type bmp)
+<chapters/chapter_8/screens/web_download_deck.png>
+File: chapters/chapter_8/screens/web_service_download_deck.png Graphic file (ty
+pe bmp)
+<chapters/chapter_8/screens/web_service_download_deck.png>
+ [92]
+File: chapters/chapter_8/screens/darkmode.png Graphic file (type bmp)
+<chapters/chapter_8/screens/darkmode.png>
+File: chapters/chapter_8/screens/backend_chat.png Graphic file (type bmp)
+<chapters/chapter_8/screens/backend_chat.png>
+ [93]
+File: chapters/chapter_8/screens/mobile_chat.png Graphic file (type bmp)
+<chapters/chapter_8/screens/mobile_chat.png>
+ [94]
+File: chapters/chapter_8/screens/web_chat_1.png Graphic file (type bmp)
+<chapters/chapter_8/screens/web_chat_1.png>
+File: chapters/chapter_8/screens/web_chat_2.png Graphic file (type bmp)
+<chapters/chapter_8/screens/web_chat_2.png>
+) [95]) (./chapters/chapter_9/main.tex
+[96]
 Rozdział 8.
-[98
+[97
 
 ]
 File: chapters/chapter_9/testy1.png Graphic file (type bmp)
 <chapters/chapter_9/testy1.png>
- [99]) (./chapters/chapter_10/main.tex [100] [101] [102] [103] [104]
-[105] [106] [107]
+ [98]) (./chapters/chapter_10/main.tex [99] [100] [101] [102] [103]
+[104]
 Rozdział 9.
 File: chapters/chapter_10/images_web/web_login.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_login.png>
-[108
-
-]
 File: chapters/chapter_10/images_web/web_login_2.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_login_2.png>
+[105
+
+]
 File: chapters/chapter_10/images_web/web_register.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_register.png>
- [109]
 File: chapters/chapter_10/images_web/web_register_2.png Graphic file (type bmp)
 
 <chapters/chapter_10/images_web/web_register_2.png>
- [110]
+ [106]
 File: chapters/chapter_10/images_web/web_home.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_home.png>
 File: chapters/chapter_10/images_web/web_profile.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_profile.png>
- [111]
+ [107]
 File: chapters/chapter_10/images_web/web_stats.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_stats.png>
 File: chapters/chapter_10/images_web/web_create_deck.png Graphic file (type bmp
 )
 <chapters/chapter_10/images_web/web_create_deck.png>
- [112]
+ [108]
 File: chapters/chapter_10/images_web/web_chat.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_chat.png>
- [113]
 File: chapters/chapter_10/images_web/web_my_decks.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_my_decks.png>
- [114]
+ [109]
 File: chapters/chapter_10/images_web/web_deck.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_deck.png>
+ [110]
 File: chapters/chapter_10/images_web/web_learn.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_learn.png>
- [115]
 File: chapters/chapter_10/images_web/web_voice_1.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_voice_1.png>
+ [111]
 File: chapters/chapter_10/images_web/web_voice_2.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_voice_2.png>
- [116]
 File: chapters/chapter_10/images_web/web_settings.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_settings.png>
+ [112]
 File: chapters/chapter_10/images_web/web_public_decks.png Graphic file (type bm
 p)
 <chapters/chapter_10/images_web/web_public_decks.png>
- [117]
 File: chapters/chapter_10/images_web/web_user_ranking.png Graphic file (type bm
 p)
 <chapters/chapter_10/images_web/web_user_ranking.png>
+ [113]
 File: chapters/chapter_10/images_web/web_decks_ranking.png Graphic file (type b
 mp)
 <chapters/chapter_10/images_web/web_decks_ranking.png>
- [118]
 File: chapters/chapter_10/images_web/web_public_deck.png Graphic file (type bmp
 )
 <chapters/chapter_10/images_web/web_public_deck.png>
+ [114]
 File: chapters/chapter_10/images_web/web_moderator_profile.png Graphic file (ty
 pe bmp)
 <chapters/chapter_10/images_web/web_moderator_profile.png>
- [119]
 File: chapters/chapter_10/images_web/web_moderator_delete_user.png Graphic file
  (type bmp)
 <chapters/chapter_10/images_web/web_moderator_delete_user.png>
+ [115]
 File: chapters/chapter_10/images_web/web_reported_decks.png Graphic file (type 
 bmp)
 <chapters/chapter_10/images_web/web_reported_decks.png>
-
-[120]
 File: chapters/chapter_10/images_web/web_reported_deck_2.png Graphic file (type
  bmp)
 <chapters/chapter_10/images_web/web_reported_deck_2.png>
- [121]
+ [116]
+[117]
 File: chapters/chapter_10/images_mobile/mobile_login.png Graphic file (type bmp
 )
 <chapters/chapter_10/images_mobile/mobile_login.png>
- [122]
+ [118]
 File: chapters/chapter_10/images_mobile/mobile_register.png Graphic file (type 
 bmp)
 <chapters/chapter_10/images_mobile/mobile_register.png>
- [123]
+ [119]
 File: chapters/chapter_10/images_mobile/mobile_home.png Graphic file (type bmp)
 
 <chapters/chapter_10/images_mobile/mobile_home.png>
- [124]
-Underfull \hbox (badness 10000) in paragraph at lines 312--315
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--312
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 312--315
+Underfull \hbox (badness 10000) in paragraph at lines 309--312
 
  []
 
-[125]
+[120]
 File: chapters/chapter_10/images_mobile/mobile_my_decks.png Graphic file (type 
 bmp)
 <chapters/chapter_10/images_mobile/mobile_my_decks.png>
 File: chapters/chapter_10/images_mobile/mobile_my_decks_2.png Graphic file (typ
 e bmp)
 <chapters/chapter_10/images_mobile/mobile_my_decks_2.png>
- [126] [127]
+ [121] [122]
 File: chapters/chapter_10/images_mobile/mobile_deck_preview.png Graphic file (t
 ype bmp)
 <chapters/chapter_10/images_mobile/mobile_deck_preview.png>
- [128]
 File: chapters/chapter_10/images_mobile/mobile_flashcards_preview.png Graphic f
 ile (type bmp)
 <chapters/chapter_10/images_mobile/mobile_flashcards_preview.png>
- [129]
+ [123]
 File: chapters/chapter_10/images_mobile/mobile_create_flashcards.png Graphic fi
 le (type bmp)
 <chapters/chapter_10/images_mobile/mobile_create_flashcards.png>
- [130]
+ [124]
 File: chapters/chapter_10/images_mobile/mobile_chat.png Graphic file (type bmp)
 
 <chapters/chapter_10/images_mobile/mobile_chat.png>
- [131]
+ [125]
 File: chapters/chapter_10/images_mobile/mobile_learn.png Graphic file (type bmp
 )
 <chapters/chapter_10/images_mobile/mobile_learn.png>
- [132]
+ [126]
 File: chapters/chapter_10/images_mobile/mobile_learn_2.png Graphic file (type b
 mp)
 <chapters/chapter_10/images_mobile/mobile_learn_2.png>
- [133]
+ [127]
+File: chapters/chapter_10/images_mobile/mobile_voice_control.png Graphic file (
+type bmp)
+<chapters/chapter_10/images_mobile/mobile_voice_control.png>
+ [128]
 File: chapters/chapter_10/images_mobile/mobile_memorized.png Graphic file (type
  bmp)
 <chapters/chapter_10/images_mobile/mobile_memorized.png>
- [134] [135]
+ [129]
 File: chapters/chapter_10/images_mobile/mobile_deck_settings.png Graphic file (
 type bmp)
 <chapters/chapter_10/images_mobile/mobile_deck_settings.png>
- [136]
+ [130]
 File: chapters/chapter_10/images_mobile/mobile_ranking.png Graphic file (type b
 mp)
 <chapters/chapter_10/images_mobile/mobile_ranking.png>
+ [131]
 File: chapters/chapter_10/images_mobile/mobile_public_deck.png Graphic file (ty
 pe bmp)
 <chapters/chapter_10/images_mobile/mobile_public_deck.png>
 
-[137]
+[132]
 File: chapters/chapter_10/images_mobile/mobile_other_user.png Graphic file (typ
 e bmp)
 <chapters/chapter_10/images_mobile/mobile_other_user.png>
- [138] [139]
+ [133]
 File: chapters/chapter_10/images_mobile/mobile_profile.png Graphic file (type b
 mp)
 <chapters/chapter_10/images_mobile/mobile_profile.png>
+ [134]
 File: chapters/chapter_10/images_mobile/moderator_panel.png Graphic file (type 
 bmp)
 <chapters/chapter_10/images_mobile/moderator_panel.png>
- [140]) (./chapters/chapter_11/main.tex [141]
+ [135]
+File: chapters/chapter_10/images_mobile/dark_mode.png Graphic file (type bmp)
+<chapters/chapter_10/images_mobile/dark_mode.png>
+) [136] (./chapters/chapter_11/main.tex [137]
 Rozdział 10.
 File: chapters/chapter_11/naklad_pracy_wykres.png Graphic file (type bmp)
 <chapters/chapter_11/naklad_pracy_wykres.png>
-[142
+[138
 
-] [143] [144] [145] [146] [147] [148] [149] [150])
-(./chapters/chapter_12/main.tex [151]
+] [139] [140] [141] [142] [143] [144]) (./chapters/chapter_12/main.tex
+[145]
 Rozdział 11.
-[152
+[146
 
-] [153] [154] [155]) [156] [157
+] [147] [148]) [149] [150] [151
 
 ] (./engineer.aux)
  ***********
@@ -2062,12 +2198,12 @@ Package logreq Info: Writing requests to 'engineer.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 18282 strings out of 474773
- 446091 string characters out of 5757724
+ 19375 strings out of 474773
+ 482179 string characters out of 5757724
  1975839 words of memory out of 5000000
- 40091 multiletter control sequences out of 15000+600000
+ 41151 multiletter control sequences out of 15000+600000
  563931 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 74i,13n,84p,1882b,4991s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 74i,14n,84p,1887b,5016s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on engineer.pdf (159 pages).
+Output written on engineer.pdf (151 pages).
