@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  19 JUN 2024 21:20
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.3.19)  20 JUN 2024 11:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -632,6 +632,11 @@ Type  H <return>  for immediate help.
 l.15 ...ainlanguage[spacedguillemets=true]{polish}
                                                   
 ? 
+(/usr/local/texlive/2024/texmf-dist/tex/latex/hyphenat/hyphenat.sty
+Package: hyphenat 2009/09/02 v2.3c hyphenation utilities
+\langwohyphens=\language90
+LaTeX Info: Redefining \_ on input line 43.
+)
 
 ! Package biblatex Error: 'polyglossia' loaded after biblatex.
 
@@ -639,7 +644,7 @@ See the biblatex package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.49 \begin{document}
+l.50 \begin{document}
                      
 ? 
 Package csquotes Info: Checking for multilingual support...
@@ -659,27 +664,27 @@ LaTeX Warning: Label `' multiply defined.
 )
 \openout1 = `engineer.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
-9.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 50.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 5
+0.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
-LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 50.
+LaTeX Font Info:    ... okay on input line 50.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -731,65 +736,65 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'engineer.bbl' found.
 
 (./engineer.bbl)
-Package biblatex Info: Reference section=0 on input line 49.
-Package biblatex Info: Reference segment=0 on input line 49.
+Package biblatex Info: Reference section=0 on input line 50.
+Package biblatex Info: Reference segment=0 on input line 50.
 
 Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 (fontspec)             this).
 
 \symlegacymaths=\mathgroup4
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 49.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 49.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 49.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 49.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 49.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 49.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 49.
-LaTeX Font Info:    Redeclaring math accent \check on input line 49.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 49.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 49.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 49.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 49.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 49.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 50.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 50.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 50.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 50.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 50.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 50.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 50.
+LaTeX Font Info:    Redeclaring math accent \check on input line 50.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 50.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 50.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \colon on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 50.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 50.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 50.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 49.
+(Font)              `operators' in the math version `normal' on input line 50.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 49.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 50.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 49.
+(Font)              `operators' in the math version `bold' on input line 50.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 49.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 50.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 49.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 49.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 49.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 49.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 49.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 50.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 49.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 49.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 49.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 50.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 49.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 50.
 
 
 ! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
@@ -798,7 +803,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.49 \begin{document}
+l.50 \begin{document}
                      
 ? 
 
@@ -808,12 +813,12 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.49 \begin{document}
+l.50 \begin{document}
                      
 ? 
-LaTeX Info: Redefining \rmfamily on input line 49.
-LaTeX Info: Redefining \sffamily on input line 49.
-LaTeX Info: Redefining \ttfamily on input line 49.
+LaTeX Info: Redefining \rmfamily on input line 50.
+LaTeX Info: Redefining \sffamily on input line 50.
+LaTeX Info: Redefining \ttfamily on input line 50.
 
 ! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
 
@@ -821,7 +826,7 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.49 \begin{document}
+l.50 \begin{document}
                      
 ? 
 
@@ -831,31 +836,53 @@ See the xkeyval package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.49 \begin{document}
+l.50 \begin{document}
                      
 ? 
 File: sprz/pjatk.png Graphic file (type bmp)
 <sprz/pjatk.png>
 [1
 
-] [2]
+]
 File: sprz/pjatk.png Graphic file (type bmp)
 <sprz/pjatk.png>
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 53.
+(Font)              <7> on input line 54.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 53.
+(Font)              <5> on input line 54.
 
-Overfull \hbox (25.19997pt too wide) in paragraph at lines 53--53
+Underfull \hbox (badness 10000) in paragraph at lines 54--54
+[]\TU/lmr/bx/n/10 Data ustalenia
+ []
+
+
+Underfull \hbox (badness 1342) in paragraph at lines 54--54
+\TU/lmr/m/n/10 talii fiszek za pomocą mowy, tworzenie fiszek z pomocą
+ []
+
+
+Underfull \hbox (badness 5260) in paragraph at lines 54--54
+\TU/lmr/m/n/10 z wykorzystaniem infrastruktury serwerowej, zaimplementowanie si
+lnika sztucznej inteligencji,
+ []
+
+
+Overfull \hbox (25.19997pt too wide) in paragraph at lines 54--54
  [] 
  []
 
 
-Overfull \hbox (22.6864pt too wide) in paragraph at lines 53--53
+Overfull \hbox (22.6864pt too wide) in paragraph at lines 54--54
  [] 
  []
 
-[3] [4] (./engineer.toc
+[2]
+Overfull \hbox (26.23592pt too wide) in paragraph at lines 55--55
+[]\TU/lmr/m/n/10 Świadomi odpowiedzialności prawnej oświadczamy, że niniejszą p
+racę dyplomową w zakresie przedstawionym
+ []
+
+[3] (./engineer.toc
 
 ! Package xkeyval Error: `spacedguillemets' undefined in families `polish'.
 
@@ -899,49 +926,211 @@ Type  H <return>  for immediate help.
 l.1 ...ctlanguage *[spacedguillemets=true]{polish}
                                                   
 ? 
-[5
+[4
 
-] [6] [7])
+] [5] [6])
 \tf@toc=\write4
 \openout4 = `engineer.toc'.
 
- (./chapters/chapter_1/main.tex [8]
+ (./chapters/chapter_1/main.tex [7]
 Rozdział 1.
-) (./chapters/chapter_2/main.tex [9
+
+Overfull \hbox (31.35591pt too wide) in paragraph at lines 7--8
+[]\TU/lmr/m/n/10 Geneza projektu wywodzi się ze środowiska zespołu projektowego
+ oraz otoczenia uczelnianego, bezpośredniego
+ []
+
+
+Overfull \hbox (3.50594pt too wide) in paragraph at lines 7--8
+\TU/lmr/m/n/10 zostały zdefiniowane początkowo jako pomysł z osobistych doświad
+czeń członków zespołu z alternatywnymi
+ []
+
+
+Overfull \hbox (2.1259pt too wide) in paragraph at lines 7--8
+\TU/lmr/m/n/10 aplikacjami. Później na podstawie przeprowadzonej w niniejszej p
+racy analizie konkurencyjnych rozwiązań,
+ []
+
+
+Overfull \hbox (12.77591pt too wide) in paragraph at lines 9--10
+[]\TU/lmr/m/n/10 Wśród wielu aplikacji przeznaczonych do nauki przy pomocy różn
+ych metod, ich wspólnym mianownikiem
+ []
+
+
+Overfull \hbox (13.74593pt too wide) in paragraph at lines 9--10
+\TU/lmr/m/n/10 sprecyzowanej problematyki związanej z zagadnieniem utrwalania w
+iedzy. Problematyka ta została omówiona
+ []
+
+) (./chapters/chapter_2/main.tex [8
 
 ]
 Rozdział 2.
-[10
+
+Overfull \hbox (1.49591pt too wide) in paragraph at lines 7--8
+\TU/lmr/m/n/10 przy wykorzystaniu komputera lub smartfonu staje się to znacznie
+ prostsze i szybsze niż ręczne zapisywanie
+ []
+
+
+Overfull \hbox (10.96593pt too wide) in paragraph at lines 11--12
+[]\TU/lmr/m/n/10 Celem projektu jest zwiększenie efektywności uczenia się metod
+ą fiszek poprzez jej integracje z interfejsem
+ []
+
+
+Overfull \hbox (5.01591pt too wide) in paragraph at lines 11--12
+\TU/lmr/m/n/10 cyfrowe rozwiązania, istniejące aplikacje do tworzenia i przeglą
+dania fiszek wymagają zasadniczo aktywnego
+ []
+
+
+Overfull \hbox (8.70592pt too wide) in paragraph at lines 11--12
+\TU/lmr/m/n/10 na przykład proste prace domowe, a urządzenie obsługujące aplika
+cje nie może być efektywnie wykorzystane. 
+ []
+
+
+Overfull \hbox (27.97589pt too wide) in paragraph at lines 13--14
+[]\TU/lmr/m/n/10 Dodatkowo proces tworzenia fiszek, który wymaga od użytkownikó
+w manualnego redagowania, przepisywania
+ []
+
+
+Overfull \hbox (7.26591pt too wide) in paragraph at lines 13--14
+\TU/lmr/m/n/10 przygotowanie zasobów służących do nauki. Sama potrzeba redagowa
+nia fiszek może odebrać użytkownikowi
+ []
+
+[9
 
 ]
+Overfull \hbox (9.8259pt too wide) in paragraph at lines 15--16
+\TU/lmr/m/n/10 proponuje rozwiązanie, które integruje proces przyswajania wiedz
+y z codziennymi czynnościami użytkownika
+ []
+
+
+Overfull \hbox (14.77594pt too wide) in paragraph at lines 15--16
+\TU/lmr/m/n/10 oraz umożliwia jednocześnie szybsze i bardziej intuicyjne tworze
+nie materiałów do nauki. Celem realizowanego
+ []
+
 File: chapters/chapter_2/rich_picture.png Graphic file (type bmp)
 <chapters/chapter_2/rich_picture.png>
- [11]
+
+Overfull \hbox (12.96593pt too wide) in paragraph at lines 34--35
+\TU/lmr/m/n/10 stanu wiedzy na wysokim poziomie zgodnie z zasadami krzywej zapo
+minania Ebbinghausa. Mowa o zależności
+ []
+
+[10]
 File: chapters/chapter_2/krzywa1.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa1.png>
+
+Overfull \hbox (29.12592pt too wide) in paragraph at lines 43--44
+\TU/lmr/m/n/10 Dopiero po upływie tego czasu krzywa się stabilizuje, a tempo za
+pominania znacznie zwalnia. Najskuteczniejszym
+ []
+
 File: chapters/chapter_2/krzywa2.png Graphic file (type bmp)
 <chapters/chapter_2/krzywa2.png>
- [12] [13]
+[11]
+Overfull \hbox (2.42592pt too wide) in paragraph at lines 53--54
+\TU/lmr/m/n/10 utworzonych sylab, aby zminimalizować zależności między danymi a
+ osobami, które się uczyły. Powszechnie
+ []
 
-LaTeX Warning: Citation 'kosinus' on page 14 undefined on input line 76.
 
-) (./chapters/chapter_3/main.tex [14]
+Overfull \hbox (1.43591pt too wide) in paragraph at lines 60--61
+[]\TU/lmr/m/n/10 Nauki techniczne: ze względu na dużą ilość szczegółowych infor
+macji, które istotnie trzeba spamiętać,
+ []
+
+
+Overfull \hbox (13.99593pt too wide) in paragraph at lines 61--62
+[]\TU/lmr/m/n/10 Przygotowanie do egzaminów: uczniowie i studenci przygotowując
+y się do egzaminów mogą wykorzystać
+ []
+
+
+Overfull \hbox (9.37593pt too wide) in paragraph at lines 66--67
+[]\TU/lmr/m/n/10 Do najważniejszych zalet nauki metodą fiszek zalicza się możli
+wość personalizacji materiałów naukowych.
+ []
+
+[12]) (./chapters/chapter_3/main.tex [13]
 Rozdział 3.
-[15
+
+Overfull \hbox (11.4537pt too wide) in paragraph at lines 5--6
+[]\TU/lmr/m/n/10 W odpowiedzi na zdefiniowany i omówiony w Rozdziale II problem
+, niniejszy projekt zakłada wytworzenie
+ []
+
+
+Overfull \hbox (0.5948pt too wide) in paragraph at lines 5--6
+\TU/lmr/m/n/10 z systemem Android lub iOS. W zakres prac wlicza się także zbudo
+wanie pełnej infrastruktury wspierającej
+ []
+
+
+Overfull \hbox (7.62592pt too wide) in paragraph at lines 9--10
+[]\TU/lmr/m/n/10 Projekt bazuje na kilku kluczowych założeniach, które mają na 
+celu bezpośrednie rozwiązanie problemów
+ []
+
+
+Overfull \hbox (0.60591pt too wide) in paragraph at lines 12--13
+\TU/lmr/m/n/10 jest możliwa w każdych warunkach, co odpowiada na problem ograni
+czonej dostępności tradycyjnych
+ []
+
+
+Overfull \hbox (7.16481pt too wide) in paragraph at lines 13--14
+[]\TU/lmr/m/n/10 Narzędzie AI do tworzenia fiszek: udostępnienie narzędzia umoż
+liwiającego automatyczne generowanie
+ []
+
+[14
 
 ]
 File: chapters/chapter_3/quizlet.png Graphic file (type bmp)
 <chapters/chapter_3/quizlet.png>
- [16]
+ [15]
+Overfull \hbox (13.00592pt too wide) in paragraph at lines 56--57
+[]\TU/lmr/m/n/10 Polski portal do nauki metodą fiszek ukierunkowany na naukę ję
+zyków obcych. Oprócz strony internetowej
+ []
+
 File: chapters/chapter_3/fiszoteka.png Graphic file (type bmp)
 <chapters/chapter_3/fiszoteka.png>
- [17]
+[16]
 File: chapters/chapter_3/gizmo.png Graphic file (type bmp)
 <chapters/chapter_3/gizmo.png>
- [18]
+ [17]
 File: chapters/chapter_3/flashcards.png Graphic file (type bmp)
 <chapters/chapter_3/flashcards.png>
- [19] [20]) (./chapters/chapter_5/main.tex
+ [18]
+Overfull \hbox (12.88535pt too wide) in paragraph at lines 142--142
+[]\TU/lmr/bx/n/14.4 Analiza szans oraz zalet względem konkurencyjnych rozwiązań
+ 
+ []
+
+
+Overfull \hbox (28.92593pt too wide) in paragraph at lines 168--169
+\TU/lmr/m/n/10 technologii w edukacji. Ponadto omówiono zagrożenia wynikające z
+ automatyzacji tworzenia treści edukacyjnych,
+ []
+
+[19]
+Overfull \hbox (4.0648pt too wide) in paragraph at lines 175--176
+\TU/lmr/m/n/10 W przypadku, w którym użytkownik nie jest zaznajomiony z tematem
+ lub zagadnieniami może doprowadzić
+ []
+
+) (./chapters/chapter_5/main.tex
 
 ! LaTeX Error: Environment chap5 undefined.
 
@@ -952,9 +1141,15 @@ Type  H <return>  for immediate help.
 l.31 \begin{chap5}
                   
 ? 
-[21]
+[20]
 Rozdział 4.
-[22
+
+Overfull \hbox (17.65591pt too wide) in paragraph at lines 37--38
+\TU/lmr/m/n/10 zebranie informacji oraz zdefiniowanie założeń i wymagań. Druga 
+faza projektu poświęcona była implementacji
+ []
+
+[21
 
 ]
 
@@ -967,29 +1162,27 @@ Type  H <return>  for immediate help.
 l.61 \end{chap5}
                 
 ? 
-[23] (./chapters/chapter_5/analiza_ryzyka.tex
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-[]|\TU/lmr/bx/n/10 Zidentyfiko-
+
+Overfull \hbox (29.74591pt too wide) in paragraph at lines 65--70
+\TU/lmr/m/n/10 planowania oraz fazę implementacji. Faza planowania obejmowała z
+bieranie wymagań, wypełnianie dokumentacji
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-[]|\TU/lmr/bx/n/10 Środki /
+Overfull \hbox (11.28253pt too wide) in paragraph at lines 65--70
+\TU/lmr/m/n/10 wymagań podczas tworzenia wspólnej wizji projektu [6]. Faza impl
+ementacji koncentrowała się na technicznej
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-\TU/lmr/bx/n/10 pobiegawcze
+Overfull \hbox (14.77591pt too wide) in paragraph at lines 65--70
+\TU/lmr/m/n/10 planowany po zakończeniu poprzedniego. Zalety takiego podejścia 
+to przede wszystkim łatwość podejmowania
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-\TU/lmr/bx/n/10 i szacowa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-\TU/lmr/bx/n/10 ny poziom
+[22] (./chapters/chapter_5/analiza_ryzyka.tex
+Overfull \hbox (19.68858pt too wide) in paragraph at lines 9--9
+[]|\TU/lmr/bx/n/10 Zidentyfiko-- wane
  []
 
 
@@ -1003,13 +1196,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--9
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-\TU/lmr/bx/n/10 minimalizu-
+Overfull \hbox (7.06859pt too wide) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 zapobiegawcze
+ []
+
+
+Underfull \hbox (badness 4713) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 i szacowany
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 9--9
-\TU/lmr/bx/n/10 jące wpływ
+\TU/lmr/bx/n/10 poziom
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+[]|\TU/lmr/bx/n/10 Środki /
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 Działania
+ []
+
+
+Overfull \hbox (9.43858pt too wide) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 minimalizujące
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 wpływ na
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 projekt –
  []
 
 
@@ -1023,13 +1246,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--9
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 9--9
-\TU/lmr/bx/n/10 i szacowa-
+Underfull \hbox (badness 4713) in paragraph at lines 9--9
+\TU/lmr/bx/n/10 i szacowany
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 9--9
-\TU/lmr/bx/n/10 ny poziom
+\TU/lmr/bx/n/10 poziom
  []
 
 
@@ -1039,12 +1262,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--9
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 9--9
-[]|\TU/lmr/bx/n/10 Ranga ry-
+[]|\TU/lmr/bx/n/10 Ranga
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 9--9
-\TU/lmr/bx/n/10 zyka (im
+\TU/lmr/bx/n/10 ryzyka (im
  []
 
 
@@ -1068,13 +1291,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--9
  []
 
 
-Overfull \hbox (1.62859pt too wide) in paragraph at lines 9--10
-[]|\TU/lmr/bx/n/10 Prawdopodo-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 9--10
-\TU/lmr/bx/n/10 - bieństwo
+Overfull \hbox (45.29858pt too wide) in paragraph at lines 9--10
+[]|\TU/lmr/bx/n/10 Prawdopodo-- bieństwo
  []
 
 
@@ -1083,8 +1301,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 9--10
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 11--11
-\TU/lmr/m/n/10 pilacji, wyniki
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]|\TU/lmr/m/n/10 Błędy
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 w kompilacji,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 wyniki
  []
 
 
@@ -1099,62 +1327,92 @@ Underfull \hbox (badness 3312) in paragraph at lines 11--11
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 11--11
+[]|\TU/lmr/m/n/10 Szybka
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 identyfikacja
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
+\TU/lmr/m/n/10 błędów,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 11--11
 \TU/lmr/m/n/10 wykonywanie
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 11--11
-\TU/lmr/m/n/10 testów opro-
+\TU/lmr/m/n/10 testów
+ []
+
+
+Overfull \hbox (6.28859pt too wide) in paragraph at lines 11--11
+\TU/lmr/m/n/10 oprogramowania| 
+ []
+
+
+Underfull \hbox (badness 4556) in paragraph at lines 11--11
+\TU/lmr/m/n/10 testowanie na
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 11--11
-\TU/lmr/m/n/10 testowanie
+\TU/lmr/m/n/10 bieżąco nowo
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-\TU/lmr/m/n/10 na bieżąco
+Overfull \hbox (17.32858pt too wide) in paragraph at lines 11--11
+\TU/lmr/m/n/10 implementowanych
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-\TU/lmr/m/n/10 nowo imple-
+Overfull \hbox (1.29858pt too wide) in paragraph at lines 11--11
+\TU/lmr/m/n/10 funkcjonalności
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-\TU/lmr/m/n/10 mentowanych
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 11--11
-\TU/lmr/m/n/10 funkcjonalno-
- []
-
-
-Underfull \hbox (badness 5077) in paragraph at lines 13--13
-[]|\TU/lmr/m/n/10 Awaria sprzę-
- []
-
-
-Underfull \hbox (badness 4608) in paragraph at lines 13--13
-\TU/lmr/m/n/10 tu deweloper-
+Overfull \hbox (4.35858pt too wide) in paragraph at lines 13--13
+\TU/lmr/m/n/10 deweloperskiego
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 13--13
-[]|\TU/lmr/m/n/10 Sprzęt prze-
+[]|\TU/lmr/m/n/10 Sprzęt
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 13--13
-\TU/lmr/m/n/10 staje działać,
+\TU/lmr/m/n/10 przestaje
  []
 
 
-Underfull \hbox (badness 1142) in paragraph at lines 13--13
-\TU/lmr/m/n/10 brak możliwo-
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 działać, brak
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 możliwości
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 odzyskania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+[]|\TU/lmr/m/n/10 Częste
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 13--13
+\TU/lmr/m/n/10 commity na
  []
 
 
@@ -1173,18 +1431,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--15
  []
 
 
-Underfull \hbox (badness 1264) in paragraph at lines 15--15
-[]|\TU/lmr/m/n/10 Problemy jed-
- []
-
-
-Underfull \hbox (badness 2158) in paragraph at lines 15--15
-\TU/lmr/m/n/10 nostek w po-
+Underfull \hbox (badness 10000) in paragraph at lines 15--15
+[]|\TU/lmr/m/n/10 Problemy
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 15--15
-\TU/lmr/m/n/10 szczególnych
+\TU/lmr/m/n/10 jednostek
+ []
+
+
+Overfull \hbox (9.59859pt too wide) in paragraph at lines 15--15
+\TU/lmr/m/n/10 w poszczególnych
  []
 
 
@@ -1193,8 +1451,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 15--15
  []
 
 
+Underfull \hbox (badness 1292) in paragraph at lines 15--15
+[]|\TU/lmr/m/n/10 Pomoc innych
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 15--15
-[]|\TU/lmr/m/n/10 Pomoc in-
+\TU/lmr/m/n/10 członków
  []
 
 
@@ -1204,32 +1467,32 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--17
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 17--17
-[]|\TU/lmr/m/n/10 Osoba blo-
+\TU/lmr/m/n/10 czasowa
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 kuje postęp
+\TU/lmr/m/n/10 postęp nad
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 nad projek-
+\TU/lmr/m/n/10 projektem
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 tem poprzez
+\TU/lmr/m/n/10 poprzez
+ []
+
+
+Overfull \hbox (9.89857pt too wide) in paragraph at lines 17--17
+\TU/lmr/m/n/10 odpowiedzialność
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 odpowiedzial-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 ność nad
+\TU/lmr/m/n/10 nad
  []
 
 
@@ -1274,17 +1537,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--17
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 17--17
-\TU/lmr/m/n/10 powiązanymi
+\TU/lmr/m/n/10 zadaniami
+ []
+
+
+Overfull \hbox (4.00858pt too wide) in paragraph at lines 17--17
+\TU/lmr/m/n/10 niepowiązanymi
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 19--19
-[]|\TU/lmr/m/n/10 Wybór nie-
+[]|\TU/lmr/m/n/10 Wybór
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 odpowiedniej
+Overfull \hbox (4.57858pt too wide) in paragraph at lines 19--19
+\TU/lmr/m/n/10 nieodpowiedniej
  []
 
 
@@ -1299,17 +1567,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--19
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 nie są osią-
+\TU/lmr/m/n/10 nie są
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 galne przez
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 wykorzystywa-
+Overfull \hbox (5.46858pt too wide) in paragraph at lines 19--19
+\TU/lmr/m/n/10 wykorzystywane
  []
 
 
@@ -1319,12 +1582,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--19
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 analiza po-
+\TU/lmr/m/n/10 analiza
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 trzebnych
+\TU/lmr/m/n/10 potrzebnych
  []
 
 
@@ -1334,32 +1597,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 19--19
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 19--19
+\TU/lmr/m/n/10 i ich
+ []
+
+
+Overfull \hbox (32.12859pt too wide) in paragraph at lines 19--19
+\TU/lmr/m/n/10 możliwości/ograniczeń| 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 19--19
 []|\TU/lmr/m/n/10 Dopasowanie
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 alternatyw-
+Overfull \hbox (1.53859pt too wide) in paragraph at lines 19--19
+\TU/lmr/m/n/10 alternatywnych
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 nych możli-
+\TU/lmr/m/n/10 możliwych
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 19--19
-\TU/lmr/m/n/10 wych rozwią-
+Overfull \hbox (10.42857pt too wide) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Niedoszacowa-- nie
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 21--21
-[]|\TU/lmr/m/n/10 Niedoszacowa-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 - nie budżetu
+\TU/lmr/m/n/10 budżetu
  []
 
 
@@ -1373,13 +1641,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--21
  []
 
 
-Underfull \hbox (badness 5008) in paragraph at lines 21--21
-[]|\TU/lmr/m/n/10 Budżet zbliża
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Budżet
+ []
+
+
+Underfull \hbox (badness 4739) in paragraph at lines 21--21
+\TU/lmr/m/n/10 zbliża się do
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 pania przed
+\TU/lmr/m/n/10 wyczerpania
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 przed
  []
 
 
@@ -1388,18 +1666,28 @@ Underfull \hbox (badness 10000) in paragraph at lines 21--21
  []
 
 
-Underfull \hbox (badness 4013) in paragraph at lines 21--21
-\TU/lmr/m/n/10 ków wykorzy-
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Analiza
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 21--21
-[]|\TU/lmr/m/n/10 Próba po-
+\TU/lmr/m/n/10 cenników
+ []
+
+
+Overfull \hbox (15.74858pt too wide) in paragraph at lines 21--21
+\TU/lmr/m/n/10 wykorzystywanych
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 21--21
-\TU/lmr/m/n/10 zyskania
+[]|\TU/lmr/m/n/10 Próba
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 21--21
+\TU/lmr/m/n/10 pozyskania
  []
 
 
@@ -1423,8 +1711,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--23
  []
 
 
-Underfull \hbox (badness 2426) in paragraph at lines 23--23
-\TU/lmr/m/n/10 treść dotyczą-
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 treść
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 dotycząca
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 zagadnienia
  []
 
 
@@ -1444,32 +1742,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--23
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 nawiązują
+\TU/lmr/m/n/10 nawiązują do
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 do zagadnie-
+\TU/lmr/m/n/10 zagadnienia,
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 nia, o które
- []
-
-
-Underfull \hbox (badness 4217) in paragraph at lines 23--23
-\TU/lmr/m/n/10 ChatGPT zo-
+\TU/lmr/m/n/10 o które
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-[]|\TU/lmr/m/n/10 Próba spre-
+\TU/lmr/m/n/10 ChatGPT
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 cyzowania
+\TU/lmr/m/n/10 został
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+[]|\TU/lmr/m/n/10 Próba
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 23--23
+\TU/lmr/m/n/10 sprecyzowania
  []
 
 
@@ -1494,12 +1797,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--23
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 w celu wy-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 generowania
+\TU/lmr/m/n/10 w celu
  []
 
 
@@ -1514,22 +1812,22 @@ Underfull \hbox (badness 10000) in paragraph at lines 23--23
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 może zaak-
+\TU/lmr/m/n/10 może
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 ceptować lub
+\TU/lmr/m/n/10 zaakceptować
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 odrzucić wy-
+\TU/lmr/m/n/10 lub odrzucić
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 23--23
-\TU/lmr/m/n/10 generowaną
+\TU/lmr/m/n/10 wygenerowaną
  []
 
 
@@ -1543,8 +1841,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--25
  []
 
 
-Underfull \hbox (badness 1365) in paragraph at lines 25--25
-\TU/lmr/m/n/10 wczytuje stro-
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 wczytuje
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 stronę
  []
 
 
@@ -1583,13 +1886,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--25
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 25--25
-\TU/lmr/m/n/10 przeglądar-
+Overfull \hbox (2.95859pt too wide) in paragraph at lines 25--25
+\TU/lmr/m/n/10 przeglądarkach.
  []
 
 
-Underfull \hbox (badness 5008) in paragraph at lines 25--25
-\TU/lmr/m/n/10 kach. Pozycje
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 Pozycje
  []
 
 
@@ -1609,32 +1912,47 @@ Underfull \hbox (badness 10000) in paragraph at lines 25--25
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 25--25
-[]|\TU/lmr/m/n/10 Próba dosto-
+[]|\TU/lmr/m/n/10 Próba
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 25--25
-\TU/lmr/m/n/10 sowania styli
+\TU/lmr/m/n/10 dostosowania
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 25--25
-\TU/lmr/m/n/10 lub funkcjo-
+\TU/lmr/m/n/10 styli lub
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 25--25
-\TU/lmr/m/n/10 nalności do
+Overfull \hbox (1.29858pt too wide) in paragraph at lines 25--25
+\TU/lmr/m/n/10 funkcjonalności
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 25--25
-\TU/lmr/m/n/10 konkretnej
+Underfull \hbox (badness 3407) in paragraph at lines 25--25
+\TU/lmr/m/n/10 do konkretnej
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 25--25
 []|\TU/lmr/m/n/10 Uruchomienie
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 strony
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 internetowej
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 25--25
+\TU/lmr/m/n/10 na innej
  []
 
 
@@ -1647,43 +1965,69 @@ Overfull \hbox (12.20438pt too wide) in alignment at lines 7--28
  [] [] [] [] [] [] 
  []
 
-[24] [25])) (./chapters/chapter_6/main.tex
+[23] [24])) (./chapters/chapter_6/main.tex
 ! Undefined control sequence.
 l.1 \newapage
              
 ? 
-[26]
+[25]
 Rozdział 5.
-[27
+
+Overfull \hbox (14.85587pt too wide) in paragraph at lines 24--25
+[]\TU/lmr/m/n/10 Pobieranie talii - Umożliwia użytkownikowi pobranie talii udos
+tępnionej przez innego użytkownika. 
+ []
+
+
+Overfull \hbox (31.29585pt too wide) in paragraph at lines 28--29
+[]\TU/lmr/m/n/10 Zarządzanie taliami - Dostępne dla moderatora, umożliwia usuwa
+nie i przeglądanie talii użytkowników. 
+ []
+
+[26
 
 ]
 File: chapters/chapter_6/diagram_przypadkow_uzycia.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_przypadkow_uzycia.png>
- [28]
+ [27]
 File: chapters/chapter_6/erd.png Graphic file (type bmp)
 <chapters/chapter_6/erd.png>
 File: chapters/chapter_6/diagram_architektury.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_architektury.png>
- [29]
+ [28]
 File: chapters/chapter_6/diagram_sekwencji_1.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_sekwencji_1.png>
- [30]
+ [29]
 File: chapters/chapter_6/diagram_sekwencji_2.png Graphic file (type bmp)
 <chapters/chapter_6/diagram_sekwencji_2.png>
  (./chapters/chapter_6/wymagania.tex
+Underfull \hbox (badness 4378) in paragraph at lines 9--9
+\TU/lmr/m/n/10 technicznego systemu; zarządzanie, utrzymanie i rozwój
+ []
+
 ! Undefined control sequence.
 <argument> \string \newlabel {\tablabel 
                                         }{{\@currentlabel }{\thepage }{\@cur...
 l.12 \end{stakeholder}
                       
 ? 
-[31]
+[30]
+Underfull \hbox (badness 4995) in paragraph at lines 21--21
+[]|\TU/lmr/m/n/10 Nadzór i techniczne utrzymanie systemu, administracja
+ []
+
 ! Undefined control sequence.
 <argument> \string \newlabel {\tablabel 
                                         }{{\@currentlabel }{\thepage }{\@cur...
 l.24 \end{stakeholder}
                       
 ? 
+
+Overfull \hbox (23.82593pt too wide) in paragraph at lines 26--27
+[]\TU/lmr/m/n/10 Użytkownik systemu - osoba używająca systemu oraz wszystkich w
+ytworzonych funkcjonalności użytkowych.
+ []
+
 ! Undefined control sequence.
 <argument> \string \newlabel {\tablabel 
                                         }{{\@currentlabel }{\thepage }{\@cur...
@@ -1701,26 +2045,237 @@ Underfull \hbox (badness 4531) in paragraph at lines 43--43
 l.46 \end{stakeholder}
                       
 ? 
-[32] [33]
-Underfull \hbox (badness 2495) in paragraph at lines 134--134
-\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
+[31]
+Underfull \hbox (badness 1603) in paragraph at lines 60--60
+\TU/lmr/m/n/10 konta użytkownika. Logowanie do systemu. Wylogowanie
  []
 
-[34] [35] [36] [37] [38] [39] [40]
-Underfull \hbox (badness 2495) in paragraph at lines 422--422
-[]|\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
+[32]
+Underfull \hbox (badness 3029) in paragraph at lines 114--114
+\TU/lmr/m/n/10 wzroku. Kalendarz oznacza dni, w których użytkownik
  []
 
-[41] [42]
-Underfull \hbox (badness 2495) in paragraph at lines 473--473
-[]|\TU/lmr/m/n/10 Generowanie treści fiszki na podstawie słów kluczowych
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--130
+[]\TU/lmr/m/n/10 Analiza dokumentów poprzez wykorzystanie sztucznej
  []
 
-[43] [44] [45] [46])) (./chapters/chapter_7/main.tex [47]
+
+Underfull \hbox (badness 6675) in paragraph at lines 146--146
+[]\TU/lmr/m/n/10 Użytkownik musi utworzyć konto aby móc korzystać
+ []
+
+
+Underfull \hbox (badness 1028) in paragraph at lines 151--151
+[]|\TU/lmr/m/n/10 Brak łączności z bazą danych. Wprowadzenie dane przez
+ []
+
+[33]
+Underfull \hbox (badness 1552) in paragraph at lines 189--189
+[]\TU/lmr/m/n/10 Jako użytkownik chciałbym mieć możliwość wylogowania
+ []
+
+[34]
+Underfull \hbox (badness 1668) in paragraph at lines 213--213
+[]|\TU/lmr/m/n/10 Posiadane konto użytkownika, użytkownik zalogowany do
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 234--234
+[]|\TU/lmr/m/n/10 Posiadane konto użytkownika, użytkownik zalogowany do
+ []
+
+
+Underfull \hbox (badness 3713) in paragraph at lines 236--236
+\TU/lmr/m/n/10 niepoprawnych danych, co uniemożliwia usunięcie konta
+ []
+
+[35]
+Underfull \hbox (badness 1668) in paragraph at lines 255--255
+[]|\TU/lmr/m/n/10 Posiadane konto użytkownika, użytkownik zalogowany do
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 274--274
+[]|\TU/lmr/m/n/10 Posiadane konto użytkownika, użytkownik zalogowany do
+ []
+
+[36]
+Underfull \hbox (badness 3148) in paragraph at lines 309--309
+[]\TU/lmr/m/n/10 System musi posiadać tryb uczenia się, który pozwoli
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 309--309
+\TU/lmr/m/n/10 użytkownikowi na naukę i zapamiętywanie zagadnień
+ []
+
+
+Underfull \hbox (badness 7203) in paragraph at lines 310--310
+[]|\TU/lmr/m/n/10 Talia fiszek zostaje podzielona na dwa zbiory, fiszki
+ []
+
+
+Underfull \hbox (badness 7203) in paragraph at lines 313--313
+[]|\TU/lmr/m/n/10 Talia fiszek zostaje podzielona na dwa zbiory, fiszki
+ []
+
+[37]
+Underfull \hbox (badness 1142) in paragraph at lines 326--326
+\TU/lmr/m/n/10 w których odczytywanie treści fiszki jest utrudnione, na
+ []
+
+
+Underfull \hbox (badness 6658) in paragraph at lines 331--331
+\TU/lmr/m/n/10 Hałas, który aplikacja może przechwytywać, przez co
+ []
+
+
+Underfull \hbox (badness 6284) in paragraph at lines 344--344
+[]|\TU/lmr/m/n/10 Talia dodana do zakładki talii pobranych od innych
+ []
+
+
+Underfull \hbox (badness 6284) in paragraph at lines 347--347
+[]|\TU/lmr/m/n/10 Talia dodana do zakładki talii pobranych od innych
+ []
+
+[38]
+Underfull \hbox (badness 10000) in paragraph at lines 362--362
+[]\TU/lmr/m/n/10 Jako użytkownik chciałbym mieć możliwość zmiany
+ []
+
+
+Underfull \hbox (badness 2790) in paragraph at lines 362--362
+\TU/lmr/m/n/10 kontrolowania jasności systemu aby mój wzrok się nie
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 365--365
+[]|\TU/lmr/m/n/10 Posiadane konto użytkownika, użytkownik zalogowany do
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 382--382
+[]|\TU/lmr/m/n/10 Posiadane konto użytkownika, użytkownik zalogowany do
+ []
+
+[39]
+Underfull \hbox (badness 1609) in paragraph at lines 396--396
+[]\TU/lmr/m/n/10 Użytkownik po pomyślnej rejestracji, otrzyma na e-- mail
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 396--396
+\TU/lmr/m/n/10 gdzie nastąpi wysłanie żądania o aktywację konta
+ []
+
+
+Underfull \hbox (badness 3769) in paragraph at lines 397--397
+[]|\TU/lmr/m/n/10 Wiadomość dostarczona na wskazany e-- mail, poprawnie
+ []
+
+
+Underfull \hbox (badness 7012) in paragraph at lines 414--414
+[]\TU/lmr/m/n/10 Jako użytkownik chciałbym mieć możliwość szybkiego
+ []
+
+
+Underfull \hbox (badness 1199) in paragraph at lines 414--414
+\TU/lmr/m/n/10 dokumentu w formacie csv lub pdf z którego zostałaby
+ []
+
+
+Underfull \hbox (badness 1668) in paragraph at lines 417--417
+[]|\TU/lmr/m/n/10 Posiadane konto użytkownika, użytkownik zalogowany do
+ []
+
+[40]
+Underfull \hbox (badness 4303) in paragraph at lines 448--448
+[]\TU/lmr/m/n/10 Użytkownik po podaniu adresu mailowego połączonego
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 448--448
+\TU/lmr/m/n/10 z kontem, otrzyma na e-- mail wiadomość z linkiem
+ []
+
+
+Underfull \hbox (badness 1895) in paragraph at lines 448--448
+\TU/lmr/m/n/10 przekierowującym na stronę webową, gdzie będzie mógł
+ []
+
+[41]
+Underfull \hbox (badness 1038) in paragraph at lines 465--465
+\TU/lmr/m/n/10 miał możliwość wygenerowania treści fiszki na podstawie
+ []
+
+
+Underfull \hbox (badness 7362) in paragraph at lines 484--484
+[]\TU/lmr/m/n/10 Instrukcja zawiera komendy, wraz z opisem, których
+ []
+
+
+Underfull \hbox (badness 6910) in paragraph at lines 484--484
+\TU/lmr/m/n/10 użytkownik korzysta w momencie uruchomienia trybu
+ []
+
+[42]
+Underfull \hbox (badness 5460) in paragraph at lines 496--496
+[]\TU/lmr/m/n/10 Po wpisaniu 3 razy niepoprawnych danych logowania
+ []
+
+
+Underfull \hbox (badness 3449) in paragraph at lines 520--520
+[]\TU/lmr/m/n/10 System musi być responsywnym, dostosowujący się do
+ []
+
+[43]
+Underfull \hbox (badness 1412) in paragraph at lines 571--571
+[]\TU/lmr/m/n/10 Aplikacja działa na urządzeniach mobilnych z systemem
+ []
+
+[44]
+Underfull \hbox (badness 1383) in paragraph at lines 583--583
+[]\TU/lmr/m/n/10 Dwa kontenery: jeden zawierający backend wraz z bazą
+ []
+
+
+Underfull \hbox (badness 1325) in paragraph at lines 595--595
+[]\TU/lmr/m/n/10 Mariadb - relacyjna baza danych w wersji 11.0. Będzie
+ []
+
+[45]
+Underfull \hbox (badness 2269) in paragraph at lines 631--631
+\TU/lmr/m/n/10 będą kontenery dockerowe oraz środowisko z zapleczem
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--632
+\TU/lmr/m/n/10 a aplikacją, obsługuje środowisko techniczne projektu
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--632
+\TU/lmr/m/n/10 z zoptymalizowanym zużyciem zasobów oraz spełnia
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 632--632
+\TU/lmr/m/n/10 podstawowe wymagania zabezpieczeń bezpieczeństwa
+ []
+
+)) (./chapters/chapter_7/main.tex [46]
 Rozdział 6.
+
+Overfull \hbox (5.07591pt too wide) in paragraph at lines 2--3
+[]\TU/lmr/m/n/10 Podjęty projekt cechuje się wysokim stopniem złożoności oraz p
+otrzebą ciągłej komunikacji i współpracy
+ []
+
 File: chapters/chapter_7/github.png Graphic file (type bmp)
 <chapters/chapter_7/github.png>
-[48
+[47
 
 ]
 File: chapters/chapter_7/jira.png Graphic file (type bmp)
@@ -1729,221 +2284,390 @@ File: chapters/chapter_7/miro.png Graphic file (type bmp)
 <chapters/chapter_7/miro.png>
 File: chapters/chapter_7/google_drive.png Graphic file (type bmp)
 <chapters/chapter_7/google_drive.png>
- [49]
+ [48]
 File: chapters/chapter_7/canva.png Graphic file (type bmp)
 <chapters/chapter_7/canva.png>
- [50] [51]) (./chapters/chapter_8/main.tex [52]
-Rozdział 7.
-(./chapters/chapter_8/sprinty.tex [53
 
-] [54] [55] [56] [57] [58]
+Overfull \hbox (0.2559pt too wide) in paragraph at lines 56--57
+[]\TU/lmr/bx/n/10 Discord \TU/lmr/m/n/10 Bezpłatny program służący do komunikac
+ji głosowej i tekstowej. Wykorzystywany do spotkań
+ []
+
+
+Overfull \hbox (29.38924pt too wide) in paragraph at lines 60--61
+[]\TU/lmr/bx/n/10 Enterprise Architect \TU/lmr/m/n/10 Program służący do modelo
+wania diagramów. Został wykorzystany do przygotowania
+ []
+
+
+Overfull \hbox (4.5848pt too wide) in paragraph at lines 68--69
+[]\TU/lmr/bx/n/10 LaTeX \TU/lmr/m/n/10 System składu tekstu. Wykorzystany w pro
+jekcie do organizacji oraz tworzenia książki projektu. 
+ []
+
+[49]
+Overfull \hbox (26.91817pt too wide) in paragraph at lines 84--85
+[]\TU/lmr/bx/n/10 Material UI \TU/lmr/m/n/10 Popularna biblioteka UI, zawiera z
+estaw komponentów do tworzenia interfejsów internetowych.
+ []
+
+
+Overfull \hbox (12.38925pt too wide) in paragraph at lines 117--118
+[]\TU/lmr/bx/n/10 Microsoft Azure \TU/lmr/m/n/10 Platforma chmurowa pozwalająca
+ wdrożyć wirtualną infrastrukturę IT. Wykorzystana
+ []
+
+[50]
+Overfull \hbox (7.78816pt too wide) in paragraph at lines 119--120
+[]\TU/lmr/bx/n/10 Serwer Nginx \TU/lmr/m/n/10 Zaawansowany serwer WWW i serwer 
+PROXY. Wykorzystany w celu pełnej konfiguracji
+ []
+
+
+Overfull \hbox (25.72592pt too wide) in paragraph at lines 131--132
+\TU/lmr/m/n/10 w kontenerach. Docker wykorzystany został do umieszczenia aplika
+cji webowej, api i bazy danych w kontenerach,
+ []
+
+
+Overfull \hbox (3.56926pt too wide) in paragraph at lines 139--140
+[]\TU/lmr/bx/n/10 Android Studio \TU/lmr/m/n/10 Oficjalne zintegrowane środowis
+ko programistyczne dla systemu operacyjnego Google
+ []
+
+) (./chapters/chapter_8/main.tex [51]
+Rozdział 7.
+
+Overfull \hbox (35.76256pt too wide) in paragraph at lines 7--8
+\TU/lmr/m/n/10 projektu [7]. Po analizie potencjalnych tematów zespół zdecydowa
+ł się na aplikację do uczenia się z wykorzystaniem
+ []
+
+
+Overfull \hbox (15.60591pt too wide) in paragraph at lines 7--8
+\TU/lmr/m/n/10 konkurencji i ogólnej wizji konstrukcyjnej. Kolejnym krokiem w f
+azie planowania było wypełnienie specyfikacji
+ []
+
+(./chapters/chapter_8/sprinty.tex [52
+
+] [53]
+Overfull \hbox (10.49591pt too wide) in paragraph at lines 74--75
+\TU/lmr/m/n/10 Ważnym krokiem dotyczącym strony webowej było utworzenie strony 
+domowej. Backend został rozbudowany
+ []
+
+[54]
+Overfull \hbox (10.11589pt too wide) in paragraph at lines 126--127
+\TU/lmr/m/n/10 danych w celu pobierania i tworzenia danych potrzebnych do rejes
+tracji i logowania użytkownika. Rozbudowa
+ []
+
+[55]
+Underfull \hbox (badness 3271) in paragraph at lines 212--212
+[]|\TU/lmr/m/n/10 [BACKEND] Dodanie endpointów do flashcards które filtrują zap
+amiętane
+ []
+
+[56] [57]
+Overfull \hbox (3.09593pt too wide) in paragraph at lines 292--293
+[]\TU/lmr/m/n/10 Sprint 7 był ostatnim przyrostem w naszym projekcie. Zespół by
+ł skupiony na dopracowaniu ostatecznej
+ []
+
+
+Underfull \hbox (badness 3354) in paragraph at lines 400--400
+[]|\TU/lmr/m/n/10 [BACKEND] Usunięcie usera usuwa wszystkie powiązane rekordy, 
+dodanie
+ []
+
+
 Overfull \hbox (25.19997pt too wide) in alignment at lines 296--435
  [] [] 
  []
 
-[59] [60])
-
-LaTeX Warning: Citation 'monorepo' on page 61 undefined on input line 17.
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.17 ...y za warstwę backendu i bazy danych. Book_
-                                                  latex zawiera rozdziały pr...
-
-? 
-! Missing $ inserted.
-<inserted text> 
-                $
-l.18 
-     
-? 
-Missing character: There is no ł ("142) in font cmmi10!
-Missing character: There is no ż ("17C) in font cmmi10!
-Missing character: There is no ś ("15B) in font cmmi10!
-Missing character: There is no ó ("F3) in font cmmi10!
-Missing character: There is no ó ("F3) in font cmmi10!
-
-Overfull \hbox (0.14589pt too wide) in paragraph at lines 17--18
-[]\TU/lmr/m/n/10 Wykorzystanym podejściem prowadzenia pracy było monorepo. Cały
- kod projektu trzymany był w jed-
- []
-
-
-Overfull \hbox (803.90883pt too wide) in paragraph at lines 17--18
-\TU/lmr/m/n/10 kod projektu odpowiedzialny za warstwę backendu i bazy danych. B
-ook$[]\OML/cmm/m/it/10 atexzawierarozdziaypracydyplomowejpisanejprzyuyciulatexa
-:Mobliezawierakodaplikacjimobilnej:Venvjesttowirtualnerodowiskopythona; ktrezaw
-ierazestawbibliotekipakietw:Webzawierakodstronyinternetowej:$ 
- []
-
-[61]
+[58] [59]) [60]
 File: chapters/chapter_8/screens/repo.png Graphic file (type bmp)
 <chapters/chapter_8/screens/repo.png>
  (./chapters/chapter_8/implementacja.tex
 File: chapters/chapter_8/screens/rejestracja_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/rejestracja_backend.png>
- [62] [63]
+ [61] [62]
 File: chapters/chapter_8/screens/rejestracja_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/rejestracja_mobile.png>
 File: chapters/chapter_8/screens/rejestracja_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/rejestracja_web.png>
+
+Overfull \hbox (11.99593pt too wide) in paragraph at lines 50--52
+[]\TU/lmr/m/n/10 Użycie @ts-- ignore w tej metodzie zostało zastosowane w celu 
+zignorowania błędów TypeScript związanych
+ []
+
+
+Overfull \hbox (22.77591pt too wide) in paragraph at lines 50--52
+\TU/lmr/m/n/10 perspektywie zaimplementowana zostałaby obsługa przekazywanych t
+ypów zmiennych tak, aby zminimalizować
+ []
+
+
+Overfull \hbox (1.88591pt too wide) in paragraph at lines 57--60
+\TU/lmr/m/n/10 sprawdzamy hasło metodą klasową \TU/lmtt/m/n/10 verify_-password
+\TU/lmr/m/n/10 . Jeśli wszystko przebiegło pomyślnie, użytkownikowi
+ []
+
 File: chapters/chapter_8/screens/logowanie_backend.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_backend.png>
- [64]
+[63]
 File: chapters/chapter_8/screens/logowanie_mobile.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_mobile.png>
 File: chapters/chapter_8/screens/logowanie_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/logowanie_web.png>
- [65]
+ [64]
+Overfull \hbox (20.32591pt too wide) in paragraph at lines 85--87
+\TU/lmr/m/n/10 użytkownika w lokalnym stanie aplikacji. Dzięki temu informacje 
+o użytkowniku, takie jak token autoryzacyjny,
+ []
+
 File: chapters/chapter_8/screens/wylogowanie_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/wylogowanie_backend.png>
- [66]
+[65]
 File: chapters/chapter_8/screens/wylogowanie_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/wylogowanie_mobile.png>
 File: chapters/chapter_8/screens/wylogowanie_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/wylogowanie_web.png>
- [67]
+ [66]
+Overfull \hbox (14.19589pt too wide) in paragraph at lines 128--129
+[]\TU/lmr/m/n/10 Fragmenty serwisu przedstawionego na rysunkach 7.9[] i 7.10[] 
+odpowiadają za usunięcie danych użytkownika
+ []
+
+
+Overfull \hbox (8.80591pt too wide) in paragraph at lines 134--135
+\TU/lmr/m/n/10 zmiany danych wprowadzonych przez użytkownika. Na koniec zostają
+ zwrócone użytkownika z poprawionym
+ []
+
 File: chapters/chapter_8/screens/edit_user_backend_1.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/edit_user_backend_1.png>
 File: chapters/chapter_8/screens/edit_user_backend_2.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/edit_user_backend_2.png>
-
-[68]
+[67]
 File: chapters/chapter_8/screens/edit_user_mobile.png Graphic file (type bmp)
 <chapters/chapter_8/screens/edit_user_mobile.png>
- [69]
+ [68]
 File: chapters/chapter_8/screens/edit_user_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/edit_user_web.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--163
+Underfull \hbox (badness 10000) in paragraph at lines 167--169
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 171--172
+Overfull \hbox (5.9059pt too wide) in paragraph at lines 171--174
+\TU/lmr/m/n/10 Aby zmienić pseudonim, użytkownik musi wprowadzić nowy pseudonim
+ oraz aktualne hasło w odpowiednim
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Overfull \hbox (15.92592pt too wide) in paragraph at lines 180--183
+\TU/lmr/m/n/10 Aby zmienić adres e-- mail, użytkownik musi wprowadzić nowy adre
+s e-- mail oraz aktualne hasło w odpowiednim
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 186--187
 
  []
 
-[70]
+[69]
 File: chapters/chapter_8/screens/delete_user_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/delete_user_backend.png>
 File: chapters/chapter_8/screens/delete_user_mobile_1.png Graphic file (type bm
 p)
 <chapters/chapter_8/screens/delete_user_mobile_1.png>
- [71]
+ [70]
 File: chapters/chapter_8/screens/delete_user_mobile_2.png Graphic file (type bm
 p)
 <chapters/chapter_8/screens/delete_user_mobile_2.png>
+
+Overfull \hbox (6.13593pt too wide) in paragraph at lines 230--231
+[]\TU/lmr/m/n/10 Jeżeli po potwierdzeniu wyboru prawidłowym hasłem, funkcja wyk
+ryje błąd ”error 401 (Unauthorized)”,
+ []
+
+
+Overfull \hbox (16.23592pt too wide) in paragraph at lines 230--231
+\TU/lmr/m/n/10 oznaczać to będzie że konto zostało usunięte. Następnie pojawia 
+się komunikat o usunięciu który przekierowuje
+ []
+
 File: chapters/chapter_8/screens/delete_user_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/delete_user_web.png>
 File: chapters/chapter_8/screens/create_deck_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/create_deck_backend.png>
- [72]
+[71]
 File: chapters/chapter_8/screens/create_flash_card_backend.png Graphic file (ty
 pe bmp)
 <chapters/chapter_8/screens/create_flash_card_backend.png>
 File: chapters/chapter_8/screens/create_deck_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/create_deck_mobile.png>
- [73]
+ [72]
 File: chapters/chapter_8/screens/create_deck_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/create_deck_web.png>
 File: chapters/chapter_8/screens/create_flash_card_web.png Graphic file (type b
 mp)
 <chapters/chapter_8/screens/create_flash_card_web.png>
- [74]
+ [73]
+
+LaTeX Warning: Reference `img:model_talii' on page 74 undefined on input line 2
+95.
+
+
+Overfull \hbox (24.51591pt too wide) in paragraph at lines 295--296
+\TU/lmr/m/n/10 Zostają także usunięte wszystkie fiszki należące do talii jest t
+o spowodowane użyciem parametru \TU/lmtt/m/n/10 cascade="all,
+ []
+
 File: chapters/chapter_8/screens/delete_deck_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/delete_deck_backend.png>
+File: chapters/chapter_8/screens/model_talii.png Graphic file (type bmp)
+<chapters/chapter_8/screens/model_talii.png>
+[74]
 File: chapters/chapter_8/screens/delete_deck_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/delete_deck_mobile.png>
- [75]
+
+Overfull \hbox (3.55591pt too wide) in paragraph at lines 325--326
+[]\TU/lmr/m/n/10 Użytkownik aby usunąć talię klika w opcje, następnie wybiera ”
+Delete deck”. Po kliknięciu, identyfikator
+ []
+
 File: chapters/chapter_8/screens/delete_deck_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/delete_deck_web.png>
+[75]
+Overfull \hbox (0.2759pt too wide) in paragraph at lines 340--341
+[]\TU/lmr/m/n/10 Zostały utworzone metody PUT, pozwalające na komunikację z baz
+ą danych w celu aktualizacji danych
+ []
+
 File: chapters/chapter_8/screens/update_deck_backend.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/update_deck_backend.png>
- [76]
 File: chapters/chapter_8/screens/update_flash_card_text_backend.png Graphic fil
 e (type bmp)
 <chapters/chapter_8/screens/update_flash_card_text_backend.png>
+[76]
+Overfull \hbox (5.85588pt too wide) in paragraph at lines 358--359
+[]\TU/lmr/m/n/10 Aby zmienić nazwę lub kategorię talii, użytkownik musi wybrać 
+widok ”Edit” w jej opcjach. Aktualizacja
+ []
+
 File: chapters/chapter_8/screens/update_deck_mobile.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/update_deck_mobile.png>
- [77]
+
+Overfull \hbox (3.06589pt too wide) in paragraph at lines 369--370
+[]\TU/lmr/m/n/10 Użytkownik w celu zmiany nazwy talii lub kategorii musi otworz
+yć okno opcji następnie klika w przycisk
+ []
+
+[77]
 File: chapters/chapter_8/screens/update_deck_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/update_deck_web.png>
 File: chapters/chapter_8/screens/update_flash_card_text_web.png Graphic file (t
 ype bmp)
 <chapters/chapter_8/screens/update_flash_card_text_web.png>
- [78]
 File: chapters/chapter_8/screens/update_flash_card_memorized_backend.png Graphi
 c file (type bmp)
 <chapters/chapter_8/screens/update_flash_card_memorized_backend.png>
+ [78]
 File: chapters/chapter_8/screens/get_unmemorized_flash_cards_mobile.png Graphic
  file (type bmp)
 <chapters/chapter_8/screens/get_unmemorized_flash_cards_mobile.png>
- [79]
 File: chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile.png Grap
 hic file (type bmp)
 <chapters/chapter_8/screens/update_unmemorized_flash_cards_mobile.png>
- [80]
+ [79]
+Overfull \hbox (14.8959pt too wide) in paragraph at lines 418--419
+\TU/lmr/m/n/10 endpointu w celu aktualizacji danych fiszek w bazie danych. Kolu
+mna \TU/lmtt/m/n/10 is_-memorized \TU/lmr/m/n/10 wszystkich przekazanych
+ []
+
 File: chapters/chapter_8/screens/get_unmemorized_flash_cards_web.png Graphic fi
 le (type bmp)
 <chapters/chapter_8/screens/get_unmemorized_flash_cards_web.png>
-File: chapters/chapter_8/screens/pass_unmemorized_flash_cards_web.png Graphic f
-ile (type bmp)
-<chapters/chapter_8/screens/pass_unmemorized_flash_cards_web.png>
 File: chapters/chapter_8/screens/update_unmemorized_flash_cards_web.png Graphic
  file (type bmp)
 <chapters/chapter_8/screens/update_unmemorized_flash_cards_web.png>
- [81]
+[80]
+Overfull \hbox (11.47589pt too wide) in paragraph at lines 439--440
+\TU/lmr/m/n/10 z listy wyrażeń. Obliczone podobieństwo dodawane jest do listy w
+yrażeń. Następnie przy użyciu \TU/lmtt/m/n/10 np.argmax()
+ []
+
 File: chapters/chapter_8/screens/backend_nlp.png Graphic file (type bmp)
 <chapters/chapter_8/screens/backend_nlp.png>
- [82]
+[81]
 File: chapters/chapter_8/screens/backend_nlp_usage.png Graphic file (type bmp)
 <chapters/chapter_8/screens/backend_nlp_usage.png>
- [83]
+ [82]
 File: chapters/chapter_8/screens/mobile_start_recording.png Graphic file (type 
 bmp)
 <chapters/chapter_8/screens/mobile_start_recording.png>
- [84]
+ [83]
 File: chapters/chapter_8/screens/mobile_stop_recording.png Graphic file (type b
 mp)
 <chapters/chapter_8/screens/mobile_stop_recording.png>
-
-[85]
+ [84]
 File: chapters/chapter_8/screens/mobile_handle_similarity.png Graphic file (typ
 e bmp)
 <chapters/chapter_8/screens/mobile_handle_similarity.png>
 File: chapters/chapter_8/screens/mobile_handle_voice_commands.png Graphic file 
 (type bmp)
 <chapters/chapter_8/screens/mobile_handle_voice_commands.png>
- [86]
-Overfull \hbox (33.22589pt too wide) in paragraph at lines 484--485
-\TU/lmr/m/n/10 ning” zostaje ustawiona na true rozpoczyna się nasłuchiwanie mow
-y przy użyciu \TU/lmtt/m/n/10 recognition.current.start()\TU/lmr/m/n/10 .
+ [85]
+Overfull \hbox (15.88591pt too wide) in paragraph at lines 491--492
+\TU/lmr/m/n/10 przechowywania instancji SpeechRecognintion. Po kliknięciu przyc
+isku ”start listening” zmienna ”isListening”
  []
 
 
-Overfull \hbox (45.11592pt too wide) in paragraph at lines 484--485
+Overfull \hbox (7.3859pt too wide) in paragraph at lines 491--492
+\TU/lmr/m/n/10 zostaje ustawiona na true rozpoczyna się nasłuchiwanie mowy przy
+ użyciu \TU/lmtt/m/n/10 recognition.current.start()\TU/lmr/m/n/10 .
+ []
+
+
+Overfull \hbox (45.11592pt too wide) in paragraph at lines 491--492
 \TU/lmr/m/n/10 zostaje wypełniona treścią wypowiedzianą przez użytkownika zosta
 nie to przekazane do funkcji \TU/lmtt/m/n/10 nlpModelControl()\TU/lmr/m/n/10 .
+ []
+
+
+Overfull \hbox (2.6359pt too wide) in paragraph at lines 491--492
+\TU/lmr/m/n/10 i dopasowuje zdanie, które jest najbliższe semantycznie do wypow
+iedzi użytkownika. Następnie sprawdzana
+ []
+
+
+Overfull \hbox (16.08592pt too wide) in paragraph at lines 491--492
+\TU/lmr/m/n/10 jest komenda,która przypisana jest do wybranego zdania. Komenda 
+zostaje przesłana na frontend i przekazana
  []
 
 File: chapters/chapter_8/screens/recognition_reference.png Graphic file (type b
@@ -1951,28 +2675,44 @@ mp)
 <chapters/chapter_8/screens/recognition_reference.png>
 File: chapters/chapter_8/screens/begin_listening.png Graphic file (type bmp)
 <chapters/chapter_8/screens/begin_listening.png>
-[87]
+[86]
 File: chapters/chapter_8/screens/textControl_write.png Graphic file (type bmp)
 <chapters/chapter_8/screens/textControl_write.png>
 File: chapters/chapter_8/screens/textControl_to_nlp.png Graphic file (type bmp)
 
 <chapters/chapter_8/screens/textControl_to_nlp.png>
- [88]
+ [87]
 File: chapters/chapter_8/screens/nlp_to_voiceControl.png Graphic file (type bmp
 )
 <chapters/chapter_8/screens/nlp_to_voiceControl.png>
 File: chapters/chapter_8/screens/sent_message.png Graphic file (type bmp)
 <chapters/chapter_8/screens/sent_message.png>
+
+Underfull \hbox (badness 1117) in paragraph at lines 535--535
+[]\TU/lmr/m/n/10 Rysunek 7.49: Funkcja ”sent_-message()” przekazuje wypowiedź u
+żytkownika do modelu nlp na
+ []
+
 File: chapters/chapter_8/screens/voice_control_web.png Graphic file (type bmp)
 <chapters/chapter_8/screens/voice_control_web.png>
- [89]
+[88]
+Overfull \hbox (11.3859pt too wide) in paragraph at lines 550--551
+\TU/lmr/m/n/10 przedstawiona na rysunku 7.51[]. Przyjmuje ona identyfikator tal
+ii do skopiowania i identyfikator użytkownika,
+ []
+
 File: chapters/chapter_8/screens/backend_copy_deck.png Graphic file (type bmp)
 <chapters/chapter_8/screens/backend_copy_deck.png>
- [90]
+[89]
+Overfull \hbox (11.62592pt too wide) in paragraph at lines 560--561
+[]\TU/lmr/m/n/10 Funkcja przekazuje do serwisu dane, takie jak identyfikator wy
+branej talii oraz identyfikator użytkownika,
+ []
+
 File: chapters/chapter_8/screens/mobile_download_deck.png Graphic file (type bm
 p)
 <chapters/chapter_8/screens/mobile_download_deck.png>
- [91]
+[90]
 File: chapters/chapter_8/screens/mobile_deck_download_service.png Graphic file 
 (type bmp)
 <chapters/chapter_8/screens/mobile_deck_download_service.png>
@@ -1981,35 +2721,129 @@ File: chapters/chapter_8/screens/web_download_deck.png Graphic file (type bmp)
 File: chapters/chapter_8/screens/web_service_download_deck.png Graphic file (ty
 pe bmp)
 <chapters/chapter_8/screens/web_service_download_deck.png>
- [92]
+ [91]
 File: chapters/chapter_8/screens/darkmode.png Graphic file (type bmp)
 <chapters/chapter_8/screens/darkmode.png>
 File: chapters/chapter_8/screens/backend_chat.png Graphic file (type bmp)
 <chapters/chapter_8/screens/backend_chat.png>
- [93]
+ [92]
 File: chapters/chapter_8/screens/mobile_chat.png Graphic file (type bmp)
 <chapters/chapter_8/screens/mobile_chat.png>
- [94]
+ [93]
 File: chapters/chapter_8/screens/web_chat_1.png Graphic file (type bmp)
 <chapters/chapter_8/screens/web_chat_1.png>
 File: chapters/chapter_8/screens/web_chat_2.png Graphic file (type bmp)
 <chapters/chapter_8/screens/web_chat_2.png>
-) [95]) (./chapters/chapter_9/main.tex
-[96]
+) [94]) (./chapters/chapter_9/main.tex [95]
 Rozdział 8.
-[97
+
+Overfull \hbox (3.3959pt too wide) in paragraph at lines 2--3
+\TU/lmr/m/n/10 sytuacji, w których aplikacja nie działała zgodnie z oczekiwania
+mi. Testy integracyjne były przeprowadzane
+ []
+
+[96
 
 ]
 File: chapters/chapter_9/testy1.png Graphic file (type bmp)
 <chapters/chapter_9/testy1.png>
- [98]) (./chapters/chapter_10/main.tex [99] [100] [101] [102] [103]
-[104]
+
+Underfull \hbox (badness 1931) in paragraph at lines 66--66
+[]|\TU/lmr/m/n/10 Użytkownik rejestruje się aby utworzyć konto, potrzebne do
+ []
+
+[97]
+Underfull \hbox (badness 1221) in paragraph at lines 97--97
+[]|\TU/lmr/m/n/10 Użytkownik po poprawnym zalogowaniu przechodzi do strony
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 97--97
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 130--130
+[]|\TU/lmr/m/n/10 Użytkownik po kliknięciu przycisku wylogowania zostaje
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 130--130
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 166--166
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 202--202
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 1852) in paragraph at lines 202--202
+\TU/lmr/m/n/10 9. Użytkownik nie jest w stanie zalogować się do strony -
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 239--239
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 275--275
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 313--313
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 349--349
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 3302) in paragraph at lines 390--390
+[]|\TU/lmr/m/n/10 Aplikacja wykonuje akcje zgodnie z wypowiedzianymi przez
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 390--390
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 1275) in paragraph at lines 390--390
+\TU/lmr/m/n/10 9. Pojawia się popup box z instrukcją, zamknięcie instrukcji
+ []
+
+
+Underfull \hbox (badness 1394) in paragraph at lines 390--390
+\TU/lmr/m/n/10 10. Komenda ”next flashcard” przenosi do następnej fiszki -
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 427--427
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+
+Underfull \hbox (badness 3861) in paragraph at lines 464--464
+\TU/lmr/m/n/10 4. Użytkownik zostaje przekierowany do strony domowej -
+ []
+
+) (./chapters/chapter_10/main.tex [98] [99] [100] [101] [102] [103]
 Rozdział 9.
 File: chapters/chapter_10/images_web/web_login.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_login.png>
 File: chapters/chapter_10/images_web/web_login_2.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_login_2.png>
-[105
+[104
 
 ]
 File: chapters/chapter_10/images_web/web_register.png Graphic file (type bmp)
@@ -2017,164 +2851,399 @@ File: chapters/chapter_10/images_web/web_register.png Graphic file (type bmp)
 File: chapters/chapter_10/images_web/web_register_2.png Graphic file (type bmp)
 
 <chapters/chapter_10/images_web/web_register_2.png>
- [106]
+ [105]
+Overfull \hbox (3.7759pt too wide) in paragraph at lines 51--53
+[]\TU/lmr/m/n/10 Po zalogowaniu użytkownik zostaje przekierowany do strony domo
+wej. Na stronie domowej użytkownika
+ []
+
 File: chapters/chapter_10/images_web/web_home.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_home.png>
+
+Overfull \hbox (7.71591pt too wide) in paragraph at lines 70--71
+[]\TU/lmr/m/n/10 Rysunek 9.6[] przedstawia profil użytkownika. Użytkownik ma mo
+żliwość zmiany swoich danych, usunięcia
+ []
+
 File: chapters/chapter_10/images_web/web_profile.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_profile.png>
- [107]
+[106]
 File: chapters/chapter_10/images_web/web_stats.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_stats.png>
 File: chapters/chapter_10/images_web/web_create_deck.png Graphic file (type bmp
 )
 <chapters/chapter_10/images_web/web_create_deck.png>
- [108]
+ [107]
+Overfull \hbox (0.4048pt too wide) in paragraph at lines 102--103
+\TU/lmr/m/n/10 przycisku ”Generate” pozwoli na wygenerowanie przez ChatGPT teks
+tu na podstawie zawartości przedniej
+ []
+
+
+Overfull \hbox (12.94481pt too wide) in paragraph at lines 102--103
+\TU/lmr/m/n/10 treści lub jej odrzucenia. W przypadku zaakceptowania tylna stro
+na fiszki zostanie wypełniona wygenerowaną
+ []
+
 File: chapters/chapter_10/images_web/web_chat.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_chat.png>
+
+Overfull \hbox (5.52481pt too wide) in paragraph at lines 114--115
+[]\TU/lmr/m/n/10 W ”My decks” trzymane są wszystkie talie utworzone przez użytk
+ownika. Filtr pozwala na wyszukiwanie
+ []
+
 File: chapters/chapter_10/images_web/web_my_decks.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_my_decks.png>
- [109]
+[108]
 File: chapters/chapter_10/images_web/web_deck.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_deck.png>
- [110]
+ [109]
 File: chapters/chapter_10/images_web/web_learn.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_learn.png>
 File: chapters/chapter_10/images_web/web_voice_1.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_voice_1.png>
- [111]
+
+
+LaTeX Warning: Reference `img:web_instrukcja' on page 110 undefined on input li
+ne 156.
+
+
+Overfull \hbox (29.24373pt too wide) in paragraph at lines 156--157
+[]\TU/lmr/m/n/10 Po kliknięciu “START LISTENING” ukazuje się instrukcja sterowa
+nia komendami głosowymi. Przedstawiona
+ []
+
+File: chapters/chapter_10/images_web/web_instrukcja.png Graphic file (type bmp)
+
+<chapters/chapter_10/images_web/web_instrukcja.png>
+[110]
 File: chapters/chapter_10/images_web/web_voice_2.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_voice_2.png>
 File: chapters/chapter_10/images_web/web_settings.png Graphic file (type bmp)
 <chapters/chapter_10/images_web/web_settings.png>
- [112]
+ [111]
 File: chapters/chapter_10/images_web/web_public_decks.png Graphic file (type bm
 p)
 <chapters/chapter_10/images_web/web_public_decks.png>
+
+Overfull \hbox (5.31593pt too wide) in paragraph at lines 205--206
+\TU/lmr/m/n/10 najmniej jedną talię fiszek. Pozycja w rankingu jest zależna od 
+sumy pobrań wszystkich talii udostępnionych
+ []
+
 File: chapters/chapter_10/images_web/web_user_ranking.png Graphic file (type bm
 p)
 <chapters/chapter_10/images_web/web_user_ranking.png>
- [113]
+[112]
+Overfull \hbox (3.07593pt too wide) in paragraph at lines 215--216
+[]\TU/lmr/m/n/10 Ranking talii przedstawiony na rysunku 9.18[] zawiera wszystki
+e talie, udostępnione przez użytkowników.
+ []
+
 File: chapters/chapter_10/images_web/web_decks_ranking.png Graphic file (type b
 mp)
 <chapters/chapter_10/images_web/web_decks_ranking.png>
 File: chapters/chapter_10/images_web/web_public_deck.png Graphic file (type bmp
 )
 <chapters/chapter_10/images_web/web_public_deck.png>
- [114]
+[113]
+Overfull \hbox (0.3048pt too wide) in paragraph at lines 235--236
+\TU/lmr/m/n/10 Do opcji moderatora mają dostęp tylko osoby z typem konta modera
+tora lub administratora. W przypadku
+ []
+
+
+Overfull \hbox (1.47592pt too wide) in paragraph at lines 235--236
+\TU/lmr/m/n/10 konta mających uprawnienia specjalne uprawnienia w profilu użytk
+ownika pojawia się dodatkowy przycisk.
+ []
+
 File: chapters/chapter_10/images_web/web_moderator_profile.png Graphic file (ty
 pe bmp)
 <chapters/chapter_10/images_web/web_moderator_profile.png>
 File: chapters/chapter_10/images_web/web_moderator_delete_user.png Graphic file
  (type bmp)
 <chapters/chapter_10/images_web/web_moderator_delete_user.png>
- [115]
+[114]
 File: chapters/chapter_10/images_web/web_reported_decks.png Graphic file (type 
 bmp)
 <chapters/chapter_10/images_web/web_reported_decks.png>
 File: chapters/chapter_10/images_web/web_reported_deck_2.png Graphic file (type
  bmp)
 <chapters/chapter_10/images_web/web_reported_deck_2.png>
- [116]
-[117]
+ [115] [116]
 File: chapters/chapter_10/images_mobile/mobile_login.png Graphic file (type bmp
 )
 <chapters/chapter_10/images_mobile/mobile_login.png>
- [118]
+ [117]
 File: chapters/chapter_10/images_mobile/mobile_register.png Graphic file (type 
 bmp)
 <chapters/chapter_10/images_mobile/mobile_register.png>
- [119]
+ [118]
 File: chapters/chapter_10/images_mobile/mobile_home.png Graphic file (type bmp)
 
 <chapters/chapter_10/images_mobile/mobile_home.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--312
+Underfull \hbox (badness 10000) in paragraph at lines 331--334
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 309--312
+Underfull \hbox (badness 10000) in paragraph at lines 331--334
 
  []
 
-[120]
+[119]
 File: chapters/chapter_10/images_mobile/mobile_my_decks.png Graphic file (type 
 bmp)
 <chapters/chapter_10/images_mobile/mobile_my_decks.png>
 File: chapters/chapter_10/images_mobile/mobile_my_decks_2.png Graphic file (typ
 e bmp)
 <chapters/chapter_10/images_mobile/mobile_my_decks_2.png>
- [121] [122]
+ [120] [121]
 File: chapters/chapter_10/images_mobile/mobile_deck_preview.png Graphic file (t
 ype bmp)
 <chapters/chapter_10/images_mobile/mobile_deck_preview.png>
 File: chapters/chapter_10/images_mobile/mobile_flashcards_preview.png Graphic f
 ile (type bmp)
 <chapters/chapter_10/images_mobile/mobile_flashcards_preview.png>
- [123]
+ [122]
 File: chapters/chapter_10/images_mobile/mobile_create_flashcards.png Graphic fi
 le (type bmp)
 <chapters/chapter_10/images_mobile/mobile_create_flashcards.png>
- [124]
+ [123]
 File: chapters/chapter_10/images_mobile/mobile_chat.png Graphic file (type bmp)
 
 <chapters/chapter_10/images_mobile/mobile_chat.png>
- [125]
+ [124]
+Overfull \hbox (0.10593pt too wide) in paragraph at lines 422--423
+[]\TU/lmr/m/n/10 Podstawowy tryb nauki, w nim wyświetlane są kolejno fiszki z o
+dkrytymi zagadnieniami. Po naciśnięciu
+ []
+
 File: chapters/chapter_10/images_mobile/mobile_learn.png Graphic file (type bmp
 )
 <chapters/chapter_10/images_mobile/mobile_learn.png>
- [126]
+[125]
 File: chapters/chapter_10/images_mobile/mobile_learn_2.png Graphic file (type b
 mp)
 <chapters/chapter_10/images_mobile/mobile_learn_2.png>
- [127]
+ [126]
 File: chapters/chapter_10/images_mobile/mobile_voice_control.png Graphic file (
 type bmp)
 <chapters/chapter_10/images_mobile/mobile_voice_control.png>
- [128]
+ [127]
 File: chapters/chapter_10/images_mobile/mobile_memorized.png Graphic file (type
  bmp)
 <chapters/chapter_10/images_mobile/mobile_memorized.png>
- [129]
+ [128]
 File: chapters/chapter_10/images_mobile/mobile_deck_settings.png Graphic file (
 type bmp)
 <chapters/chapter_10/images_mobile/mobile_deck_settings.png>
- [130]
+ [129]
 File: chapters/chapter_10/images_mobile/mobile_ranking.png Graphic file (type b
 mp)
 <chapters/chapter_10/images_mobile/mobile_ranking.png>
- [131]
+ [130]
 File: chapters/chapter_10/images_mobile/mobile_public_deck.png Graphic file (ty
 pe bmp)
 <chapters/chapter_10/images_mobile/mobile_public_deck.png>
-
-[132]
+ [131]
 File: chapters/chapter_10/images_mobile/mobile_other_user.png Graphic file (typ
 e bmp)
 <chapters/chapter_10/images_mobile/mobile_other_user.png>
- [133]
+ [132]
 File: chapters/chapter_10/images_mobile/mobile_profile.png Graphic file (type b
 mp)
 <chapters/chapter_10/images_mobile/mobile_profile.png>
- [134]
+ [133]
 File: chapters/chapter_10/images_mobile/moderator_panel.png Graphic file (type 
 bmp)
 <chapters/chapter_10/images_mobile/moderator_panel.png>
- [135]
+ [134]
 File: chapters/chapter_10/images_mobile/dark_mode.png Graphic file (type bmp)
 <chapters/chapter_10/images_mobile/dark_mode.png>
-) [136] (./chapters/chapter_11/main.tex [137]
+) [135]
+(./chapters/chapter_11/main.tex [136]
 Rozdział 10.
+
+Overfull \hbox (0.48593pt too wide) in paragraph at lines 3--4
+\TU/lmr/m/n/10 w celu ukończenia projektu. Na początku pierwszego semestru utwo
+rzyliśmy listę potencjalnych pomysłów,
+ []
+
+
+Overfull \hbox (41.99591pt too wide) in paragraph at lines 3--4
+\TU/lmr/m/n/10 aplikacji, pozwoliło nam to na wypracowanie wspólnej wizji proje
+ktu i ponowne przedyskutowanie zaproponowanych
+ []
+
 File: chapters/chapter_11/naklad_pracy_wykres.png Graphic file (type bmp)
 <chapters/chapter_11/naklad_pracy_wykres.png>
-[138
+[137
 
-] [139] [140] [141] [142] [143] [144]) (./chapters/chapter_12/main.tex
-[145]
+]
+Overfull \hbox (13.93593pt too wide) in paragraph at lines 17--24
+\TU/lmr/m/n/10 Rozdziału dokumenty, które zostały przeze mnie napisane to anali
+za konkurencji, zakres systemu i wymagania
+ []
+
+
+Overfull \hbox (2.79593pt too wide) in paragraph at lines 17--24
+\TU/lmr/m/n/10 wymagania funkcjonalne zostały określone zacząłem tworzyć w canv
+ie atrapę aplikacji mobilnej. Kreowanie
+ []
+
+
+Overfull \hbox (4.12593pt too wide) in paragraph at lines 24--33
+\TU/lmr/m/n/10 inżynierskiej. Przy pisaniu backendu byłem odpowiedzialny za imp
+lementację modeli fiszek, talii, i zgłoszeń.
+ []
+
+[138]
+Overfull \hbox (3.50594pt too wide) in paragraph at lines 57--58
+\TU/lmr/m/n/10 nowy element aplikacji zachowywał się zgodnie z oczekiwaniami. O
+prócz testów akceptacyjnych wykonałem
+ []
+
+[139]
+Overfull \hbox (4.40593pt too wide) in paragraph at lines 78--89
+\TU/lmr/m/n/10 aplikacji, co dostarczyło nam cennych informacji pomocnych w ule
+pszaniu naszego produktu. Równocześnie
+ []
+
+
+Overfull \hbox (30.73592pt too wide) in paragraph at lines 89--94
+\TU/lmr/m/n/10 widoków aplikacji webowej, poświęcając najwięcej pracy na ekran 
+profilu. Moje zadania związane z implementacją
+ []
+
+[140]
+Overfull \hbox (1.7548pt too wide) in paragraph at lines 128--134
+[]\TU/lmr/m/n/10 W pierwszym semestrze, od momentu rozpoczętych prac nad projek
+tem, byłem głównie odpowiedzialny
+ []
+
+
+Overfull \hbox (11.11592pt too wide) in paragraph at lines 128--134
+\TU/lmr/m/n/10 za diagramy oraz część dokumentu założeń wstępnych i część dokum
+entu specyfikacji wymagań technicznych.
+ []
+
+
+Overfull \hbox (10.45482pt too wide) in paragraph at lines 128--134
+\TU/lmr/m/n/10 systemu i kontekst systemu. Z kolei w dokumencie specyfikacji wy
+magań systemowych byłem odpowiedzialny
+ []
+
+
+Overfull \hbox (4.0859pt too wide) in paragraph at lines 128--134
+\TU/lmr/m/n/10 za wymagania ogólne i dziedzinowe, wymagania pozafunkcjonalne or
+az wymagania na środowisko docelowe.
+ []
+
+
+Overfull \hbox (33.66483pt too wide) in paragraph at lines 134--148
+\TU/lmr/m/n/10 aplikację mobilną oraz pisanie pracy inżynierskiej. W backendzie
+ byłem odpowiedzialny głównie za bezpieczeństwo
+ []
+
+
+Overfull \hbox (3.26591pt too wide) in paragraph at lines 134--148
+\TU/lmr/m/n/10 dependencji “RoleAccessChecker”, która jak nazwa wskazuje, miała
+ sprawdzać rolę użytkownika i blokować
+ []
+
+
+Overfull \hbox (6.6159pt too wide) in paragraph at lines 134--148
+\TU/lmr/m/n/10 dostęp użytkownikom bez uprawnień. Kolejnym krokiem było zabezpi
+eczeniem api przed nieautoryzowanym
+ []
+
+
+Overfull \hbox (2.63481pt too wide) in paragraph at lines 134--148
+\TU/lmr/m/n/10 aplikacjami, adresami czy headerami. W tym celu utworzyłem custo
+mowe middleware’y. Do middleware’ów
+ []
+
+[141]
+Overfull \hbox (17.96594pt too wide) in paragraph at lines 162--163
+[]\TU/lmr/m/n/10 Przeglądanie rankingu i udostępnionych deck’ów razem z możliwo
+ścia filtrowania po słowach kluczowych; 
+ []
+
+[142]
+Overfull \hbox (13.58589pt too wide) in paragraph at lines 215--216
+[]\TU/lmr/m/n/10 Widok ‘Deck Settings” z funkcjonalnościami upublicznienia/ukry
+cia talii, usunięcia talii, zrestartowania
+ []
+
+[143]
+Overfull \hbox (4.14372pt too wide) in paragraph at lines 226--227
+[]\TU/lmr/m/n/10 Zakup, wygenerowanie i implementacja tokenu ChatGPT na potrzeb
+y funkcjonalności API i aplikacji. 
+ []
+
+) (./chapters/chapter_12/main.tex [144]
 Rozdział 11.
-[146
 
-] [147] [148]) [149] [150] [151
+Overfull \hbox (1.48592pt too wide) in paragraph at lines 6--7
+[]\TU/lmr/m/n/10 Realizacja rozległego projektu informatycznego obejmującego ró
+wnoczesną implementację działających
+ []
+
+
+Overfull \hbox (19.8659pt too wide) in paragraph at lines 9--10
+[]\TU/lmr/m/n/10 Pierwszym poważnym spośród napotkanych problemów były ogranicz
+one możliwości PyCharm Community
+ []
+
+[145
+
+]
+Overfull \hbox (4.37592pt too wide) in paragraph at lines 24--25
+[]\TU/lmr/m/n/10 Przy realizacji rozproszonej infrastruktury wewnątrz serwera, 
+trudna okazała się implementacja pełnego
+ []
+
+
+Overfull \hbox (7.16592pt too wide) in paragraph at lines 24--25
+\TU/lmr/m/n/10 HTTPS. Strona korzystała w protokołu HTTPS, jednak łączyła się z
+ api przez protokół HTTP. Przeglądarki
+ []
+
+
+Overfull \hbox (2.76591pt too wide) in paragraph at lines 24--25
+\TU/lmr/m/n/10 zaimplementowania zaawansowanej konfiguracji Nginx która pozwoli
+ła przekierowywać cały ruch z domeny
+ []
+
+
+Overfull \hbox (13.52592pt too wide) in paragraph at lines 30--31
+\TU/lmr/m/n/10 Implementacja rozwiązania ze strumieniem głosu bezpośrednio musi
+ałoby wiązać się z gruntowną przebodową
+ []
+
+[146]
+Overfull \hbox (15.44592pt too wide) in paragraph at lines 33--34
+\TU/lmr/m/n/10 nieprzewidzianych problemów doszło do konfrontacji rzeczywistośc
+i ze sprecyzowanymi wcześniej założeniami.
+ []
+
+[147]
+Overfull \hbox (5.08592pt too wide) in paragraph at lines 52--53
+\TU/lmr/m/n/10 podstawie otrzymanych informacji miał za zadanie zwrócić komendę
+, która najbardziej pasuje semantycznie
+ []
+
+
+Overfull \hbox (8.8459pt too wide) in paragraph at lines 59--60
+\TU/lmr/m/n/10 zresetowania hasła w przypadku gdy użytkownik zapomni hasła do l
+ogowania. Dodanie osiągnięć związanych
+ []
+
+) [148] [149] [150
 
 ] (./engineer.aux)
  ***********
@@ -2189,21 +3258,19 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 
-Package biblatex Warning: Please (re)run Biber on the file:
-(biblatex)                engineer
-(biblatex)                and rerun LaTeX afterwards.
+Package biblatex Warning: Please rerun LaTeX.
 
 Package logreq Info: Writing requests to 'engineer.run.xml'.
 \openout1 = `engineer.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 19375 strings out of 474773
- 482179 string characters out of 5757724
- 1975839 words of memory out of 5000000
- 41151 multiletter control sequences out of 15000+600000
+ 19447 strings out of 474773
+ 483867 string characters out of 5757724
+ 1974839 words of memory out of 5000000
+ 41218 multiletter control sequences out of 15000+600000
  563931 words of font info for 63 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  74i,14n,84p,1887b,5016s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on engineer.pdf (151 pages).
+Output written on engineer.pdf (150 pages).
