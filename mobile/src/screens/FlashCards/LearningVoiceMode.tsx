@@ -25,7 +25,8 @@ import { LearningFlashCardsModeInterface } from "../../interfaces/flash_cards";
 import {
     Loader,
     FlashCard,
-    MicrophoneButton
+    MicrophoneButton,
+    VoiceControlInstructionModal
 } from "../../components";
 
 const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
@@ -44,6 +45,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const [flashCards, setFlashCards] = useState([]);
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const showFrontCard= useRef(true);
+    const [showModal, setShowModal] = useState(false);
 
     // Audio
     const recording = useRef(null);
@@ -68,10 +70,9 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const handleCheckIfPermissionGranted = async() => {
         try {
             if (permissionResponse?.status !== PERMISSIONS_MAPPING.GRANTED) {
-                console.log('Requesting permission...');
                 const permission = await requestPermission();
-                console.log("PER", permission)
-                if (!permission.granted && permission.status === 'denied') navigation.goBack()
+                if (!permission.granted && permission.status === 'denied') navigation.goBack();
+                // else setShowModal(true);
             }
         } catch (err) {
             console.error('Failed to get permissions', err);
@@ -80,17 +81,11 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const startRecording = async () => {
         try {
-            if (Platform.OS === 'ios') {
-                await Audio.setAudioModeAsync({
-                    allowsRecordingIOS: true,
-                    playsInSilentModeIOS: true,
-                    staysActiveInBackground: true,
-                });
-            } else {
-                await Audio.setAudioModeAsync({
-                    staysActiveInBackground: true,
-                });
-            }
+            await Audio.setAudioModeAsync({
+                staysActiveInBackground: true,
+                allowsRecordingIOS: true,
+                playsInSilentModeIOS: true,
+            });
             console.log('Starting recording...');
             const recordingInstance = new Audio.Recording();
             await recordingInstance.prepareToRecordAsync(
@@ -98,7 +93,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             );
             await recordingInstance.startAsync();
             recording.current = recordingInstance;
-            console.log('Recording started');
+            console.log('Recording started', recording);
         } catch (err) {
             console.error('Failed to start recording', err);
         }
@@ -114,14 +109,11 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                     playsInSilentModeIOS: false,
                     staysActiveInBackground: false,
                 });
-                const uri = recording.current.getURI();
+                const uri = await recording.current.getURI();
+                console.log("URI", uri)
                 recording.current = null;
                 setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
                 if (uri) {
-                    console.log(
-                        uri,
-                        typeof(uri)
-                    )
                     await calculateSimilarity(uri)
                 }
             } else {
@@ -149,6 +141,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             showFrontCard.current = true;
             flatListRef.current.scrollToIndex({animated: true, index: currentCardIndex + 1});
         } else {
+            setCurrentCardIndex(currentCardIndex + 1)
             handleSpeech("End of Deck. You have completed this learning session");
             await handleEndRecognizing()
         }
@@ -180,6 +173,12 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     const handleEndRecognizing = async() => {
         setActiveVoiceControlMode(VOICE_CONTROL_STAGES.END);
+        await Audio.setAudioModeAsync({
+            allowsRecordingIOS: false,
+            playsInSilentModeIOS: false,
+            staysActiveInBackground: false,
+        });
+        recording.current = null
         setShowMicrophoneModal(false);
     }
 
@@ -201,7 +200,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 await handleStopControl();
                 break;
             default:
-                handleSpeech("Sorry, I didn't recognize the command");
+                handleSpeech("Sorry, I didn't recognize the command. Press button again to continue.");
                 console.warn('Command not found');
                 break;
         }
@@ -212,30 +211,32 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     }).current
 
     const calculateSimilarity = async(recordingURI: string) => {
-        if (!recordingURI) {
-            console.error('No recording URI to upload');
-            return;
-        }
+        if (!recordingURI) return;
         try {
             const fileInfo = await FileSystem.getInfoAsync(recordingURI);
-                if (!fileInfo.exists) {
-                console.error('File does not exist at the given URI');
-                return;
-            }
-                const fileUri = fileInfo.uri;
-                const formData = new FormData();
-                formData.append('file', {
-                    uri: fileUri,
-                    name: 'recording.m4a',
-                    type: 'audio/m4a',
-                });
+            if (!fileInfo.exists) return;
+            const now = new Date();
+            const formattedDate = now.getFullYear() + '-' +
+                ('0' + (now.getMonth() + 1)).slice(-2) + '-' +
+                ('0' + now.getDate()).slice(-2) + '_' +
+                ('0' + now.getHours()).slice(-2) + '-' +
+                ('0' + now.getMinutes()).slice(-2) + '-' +
+                ('0' + now.getSeconds()).slice(-2);
+
+            const filename = `recording_${formattedDate}.m4a`;
+            const fileUri = fileInfo.uri;
+            const formData = new FormData();
+            formData.append('file', {
+                uri: fileUri,
+                name: filename,
+                type: 'audio/m4a',
+            });
             const { res, data } = await NlpService.calculateSimilarityByFile(
                 formData,
                 navigation
             )
             await FileSystem.deleteAsync(recordingURI);
             if ([200, 201].includes(res.status)) {
-                console.log('File uploaded successfully');
                 await handleCommands(data.command)
                 if (data.command || data.command !== 'stop') {
                     setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START)
@@ -272,8 +273,8 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
 
     useFocusEffect(
         useCallback(() => {
+            setCurrentCardIndex(0)
             if (recording.current) {
-                console.log('Stopping existing recording before starting a new one.');
                 recording.current.stopAndUnloadAsync();
                 recording.current = null;
                 Audio.setAudioModeAsync({
@@ -287,12 +288,24 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             setShowMicrophoneModal(true);
             setLoading(false);
             handleCheckIfPermissionGranted();
-            stopRecording();
         }, []),
     );
 
     useEffect(() => {
         handleVoiceVoiceControl();
+        return () => {
+            setCurrentCardIndex(0)
+            if (recording.current) {
+                recording.current.stopAndUnloadAsync();
+                recording.current = null;
+                Audio.setAudioModeAsync({
+                    allowsRecordingIOS: false,
+                    playsInSilentModeIOS: false,
+                    staysActiveInBackground: false,
+                });
+                recording.current = null
+            }
+        }
     }, [activeVoiceControlMode])
 
     if (loading) {
@@ -301,7 +314,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         )
     }
 
-    if (!flashCards.length || !(flashCards.length && currentCardIndex < flashCards.length - 1)) {
+    if (!flashCards.length || !(flashCards.length && currentCardIndex <= flashCards.length - 1)) {
         return (
             <View className="flex-1 bg-sky-500 dark:bg-blue-900 placeholder-gray-400">
                 <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
@@ -342,6 +355,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             <Text className="text-white font-extrabold animate-bounce scale-150 absolute top-16 right-10">
                 Learning Voice Mode
             </Text>
+            <VoiceControlInstructionModal visible={showModal} onClose={setShowModal} />
             <MicrophoneButton
                 active={activeVoiceControlMode === VOICE_CONTROL_STAGES.START}
                 show={showMicrophoneModal}
