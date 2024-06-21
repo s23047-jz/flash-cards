@@ -82,8 +82,7 @@ requirements = [
 setup(
     name="flash_cards_api",
     setup_requires=[
-        "setuptools>=64",
-        "setuptools_scm>=8"
+        "setuptools>=64"
     ],
     use_scm_version={
         "write_to": "./_version.txt",
