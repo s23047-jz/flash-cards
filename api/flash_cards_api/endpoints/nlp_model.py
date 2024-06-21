@@ -117,7 +117,6 @@ async def calculate_semantic_similarity(
 async def calculate_semantic_similarity_audio(
     file: UploadFile = File(...)
 ):
-    print("TRING", file.filename)
     if not os.path.exists(AUDIO_DIR):
         os.mkdir(AUDIO_DIR)
 
@@ -130,7 +129,7 @@ async def calculate_semantic_similarity_audio(
 
     old_audio_path = audio_path
     audio_path = convert_m4a_to_wav(audio_path)
-    # os.remove(old_audio_path)
+    os.remove(old_audio_path)
     recognizer = sr.Recognizer()
     try:
         with sr.AudioFile(audio_path) as source:
@@ -142,5 +141,5 @@ async def calculate_semantic_similarity_audio(
         raise HTTPException(status_code=400, detail="Could not understand the audio")
     except sr.RequestError:
         raise HTTPException(status_code=500, detail="Could not request results from the speech recognition service")
-    # finally:
-        # os.remove(audio_path)
+    finally:
+        os.remove(audio_path)
