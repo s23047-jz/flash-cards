@@ -50,7 +50,6 @@ requirements = [
     "segtok==1.5.11",
     "semver==3.0.2",
     "sentencepiece==0.2.0",
-    "setuptools-scm==8.0.4",
     "six==1.16.0",
     "smart-open==7.0.4",
     "sniffio==1.3.0",
@@ -82,9 +81,9 @@ requirements = [
 
 setup(
     name="flash_cards_api",
-    requires=[
-        "setuptools",
-        "setuptools_scm"
+    setup_requires=[
+        "setuptools>=64",
+        "setuptools_scm>=8"
     ],
     use_scm_version={
         "write_to": "./_version.txt",
