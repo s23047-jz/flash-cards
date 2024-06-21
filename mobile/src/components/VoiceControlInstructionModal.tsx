@@ -2,16 +2,21 @@ import React, { useState, useRef } from "react";
 import {
     FlatList,
     Animated,
-    View
+    View,
+    Text
 } from "react-native";
-import Row from "./Row";
-import Col from "./Col";
-import Paginator from "./Paginator";
-import VoiceControlInstructionItem from "./VoiceControlInstructionItem";
-import CModal from "./CModal";
+import {
+    Button,
+    Col,
+    Row,
+    Paginator,
+    VoiceControlInstructionItem,
+    CModal
+} from "./index";
 import voiceControlData from "../data/voiceControlData";
+import { styles } from "../assets/styles";
 
-const VoiceControlInstructionModal = ({ visible }: { visible: boolean }) => {
+const VoiceControlInstructionModal = ({ visible, onClose }: { visible: boolean, onClose: (close: boolean) => void }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const scrollX = useRef(new Animated.Value(0)).current
     const instructionRef = useRef(null);
@@ -55,6 +60,18 @@ const VoiceControlInstructionModal = ({ visible }: { visible: boolean }) => {
                         />
                         </Col>
                 </Row>
+                { currentIndex === voiceControlData.length - 1 ?
+                    <Row className={'w-full mt-2'} >
+                        <Col className={'w-full justify-center items-center mt-2'}>
+                            <Button onPress={() => onClose(false)} style={styles.button}>
+                                <Text className={'text-center text-xl p-2'}>
+                                    Close
+                                </Text>
+                            </Button>
+                        </Col>
+                    </Row>
+                    : null
+                }
                 <Row className={'w-full mt-2'} >
                     <Col className={'w-full'}>
                         <Paginator data={voiceControlData} scrollX={scrollX} parentWidth={parentWidth} />
