@@ -196,12 +196,12 @@
 		\begin{center}
 			\includegraphics[width=0.8\textwidth]{sprz/pjatk}
 			\vfill{\textbf{Gdańsk, \@date}} \\
-			\vspace{1cm}
+%			\vspace{1cm}
 			\large
 			\begin{tabularx}{\textwidth}{X r}
 				\textbf{Kierunek studiów: \@studfield} & \textbf{Rodzaj studiów: \@studtype}
 			\end{tabularx} \\
-			\vspace{1cm}
+%			\vspace{1cm}
 			\huge
 			\textbf{Praca dyplomowa}
 		\end{center}
@@ -223,14 +223,12 @@
 				\@authors
 			\end{tabularx}
 
-			\vspace{1cm}
-			\newpage
+			%\vspace{1cm}
 			\textbf{\\Streszczenie:} \\
 			\@nabstract
 
 		\end{center}
 
-		\newpage
 	\end{titlepage}
 }
 \newcommand{\@mysmartparbox}[2]{%
