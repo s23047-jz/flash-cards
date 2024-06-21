@@ -3,7 +3,7 @@
 ## Instalacja docker i docker-compose
 ### W celu uruchomienia projektu niezbędny jest docker i docker-compose
 #### Instalacja dockera 
-1. Należy uruchomic terminal i wpisać poniższą komendą, która instaluje dockera:
+1. Należy uruchomic terminal i wpisać poniższą komendą, która zainstaluje dockera:
 ```
 $ sudo apt-get install docker-ce=5:26.1.3~3-0~ubuntu-$(lsb_release -cs) docker-ce-cli=5:26.1.3~3-0~ubuntu-$(lsb_release -cs) containerd.io docker-buildx-plugin docker-compose-plugin
 ```
@@ -11,8 +11,8 @@ $ sudo apt-get install docker-ce=5:26.1.3~3-0~ubuntu-$(lsb_release -cs) docker-c
 ```
 $ docker --version
 ```
-#### Instalcja docker-compose 
-1. Należy uruchomic terminal i wpisać poniższą komendą, która instaluje docker-compose:
+#### Instalacja docker-compose 
+1. Należy uruchomic terminal i wpisać poniższą komendą, która zainstaluje docker-compose:
 ```
 $ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ```
@@ -29,9 +29,9 @@ $ docker-compose --version
 ### Zmienne środowisko do urchomienia kontenera znajduja się w pliku .copy_env
 
 Plik .copy_env zawiera zmienne środowiskowe potrzebne do uruchmienia kontenera
-1. W terminal trzeba wkleic zmienne środiwskowe
-2. Następnie trzeba przejść w terminalu do katalogu api
-3. Budowę kontenera wykonuje się przy użcyiu komendy:
+1. Należy uruchomić terminal i wkleić zmienne środowiskowe znajdujące się w pliku .copy_env w katalogu api
+2. Następnie trzeba przejść w terminalu do katalogu api 
+3. Z poziomu katalogu api wykonuje się budowę kontenera przy użyciu komendy:
 ```
 $ docker-compose up -d --build
 ```
@@ -41,11 +41,11 @@ $ docker-compose up -d --build
 ## Uruchomienie kontenera dla strony webowej
 
 1. Należy uruchomic terminal i przejść do katalogu web w projekcie
-2. Następnie w terminalu należy użyć komendy do budowy kontenera: 
+2. Następnie z poziomu katalogu web w terminalu należy użyć komendy do budowy kontenera: 
 ```
 $ docker-compose up -d --build
 ```
-3. Po zbudowaniu się kontenera strona będzie dostępna po adresem: 
+3. Po zbudowaniu kontenera strona będzie dostępna po adresem: 
 
 ```
 $ http://localhost:3000)
