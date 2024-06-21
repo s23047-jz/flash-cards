@@ -40,12 +40,13 @@ $ docker-compose --version
 ## Uruchamianie kontenerów
 
 1. W terminalu bashowym należy wejść do ścieżki api.
-2. Z poziomu katalogu api, wykonać komende budującą konterer dla bazy danych i api.
+2. Upewnić się, że w katalogu znajduje się plik .env.dev ze zmiennymi środowiskowymi. Jest on wymagany do pełnego działania api.
+3. Z poziomu katalogu api, wykonać komende budującą konterer dla bazy danych i api.
 
 ```
 docker-componse up -d --build
 ```
-3. Po zakończeniu budowy, api wystartuje na przypisanym adresie i porcie 
+4. Po zakończeniu budowy, api wystartuje na przypisanym adresie i porcie 
 w zmiennych środowiskowych (.env.dev)
 Domyślnie ustawiono na localhost:8000
 
