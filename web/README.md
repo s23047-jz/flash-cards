@@ -26,10 +26,10 @@ $ docker-compose --version
 ```
 
 ## Uruchomienie kontenera bazy danych i backend
-### Zmienne środowisko do urchomienia kontenera znajduja się w pliku .copy_env
+### Zmienne środowisko do urchomienia kontenera znajduja się w pliku .env.dev
 
 Plik .copy_env zawiera zmienne środowiskowe potrzebne do uruchmienia kontenera
-1. Należy uruchomić terminal i wkleić zmienne środowiskowe znajdujące się w pliku .copy_env w katalogu api
+1. Należy uruchomić terminal i wkleić zmienne środowiskowe znajdujące się w pliku .env.dev w katalogu api
 2. Następnie trzeba przejść w terminalu do katalogu api 
 3. Z poziomu katalogu api wykonuje się budowę kontenera przy użyciu komendy:
 ```
@@ -48,7 +48,7 @@ $ docker-compose up -d --build
 3. Po zbudowaniu kontenera strona będzie dostępna po adresem: 
 
 ```
-$ http://localhost:3000)
+$ http://localhost:3000
 ```
 
 
