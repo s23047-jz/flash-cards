@@ -1,6 +1,6 @@
-## Instrukcja uruchomienia projektu
+# Instrukcja uruchomienia projektu
 
-### Instalacja docker i docker-compose
+## Instalacja docker i docker-compose
 ### W celu uruchomienia projektu niezbędny jest docker i docker-compose
 #### Instalacja dockera 
 1. Należy uruchomic terminal i wpisać poniższą komendą, która instaluje dockera:
@@ -25,8 +25,8 @@ $ sudo chmod +x /usr/local/bin/docker-compose
 $ docker-compose --version
 ```
 
-### Uruchomienie kontenera bazy danych i backend
-#### Zmienne środowisko do urchomienia kontenera znajduja się w pliku .copy_env
+## Uruchomienie kontenera bazy danych i backend
+### Zmienne środowisko do urchomienia kontenera znajduja się w pliku .copy_env
 
 Plik .copy_env zawiera zmienne środowiskowe potrzebne do uruchmienia kontenera
 1. W terminal trzeba wkleic zmienne środiwskowe
@@ -52,11 +52,11 @@ $ http://localhost:3000)
 ```
 
 
-#### uruchomienie kontenera
+### uruchomienie kontenera
 ```
 $ docker-compose up -d
 ```
-#### wylaczenie kontenera
+### wylaczenie kontenera
 ```
 $ docker-compose down
 ```
