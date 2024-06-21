@@ -12,7 +12,6 @@ import {
     Animated
 } from "react-native";
 
-import { Platform } from "react-native";
 import { Audio } from "expo-av";
 import * as Speech from "expo-speech";
 import * as FileSystem from 'expo-file-system';
