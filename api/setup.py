@@ -1,6 +1,50 @@
 from setuptools import setup, find_packages
 
 requirements = [
+    "accelerate==0.31.0",
+    "annotated-types==0.6.0",
+    "anyio==4.2.0",
+    "bcrypt==4.0.1",
+    "beautifulsoup4==4.12.3",
+    "boto3==1.34.122",
+    "botocore==1.34.122",
+    "bpemb==0.3.5",
+    "certifi==2024.2.2",
+    "cffi==1.16.0",
+    "charset-normalizer==3.3.2",
+    "click==8.1.7",
+    "conllu==4.5.3",
+    "contourpy==1.2.1",
+    "cryptography==41.0.7",
+    "cycler==0.12.1",
+    "Deprecated==1.2.14",
+    "ecdsa==0.18.0",
+    "exceptiongroup==1.2.0",
+    "fastapi==0.109.0",
+    "ffprobe==0.5",
+    "filelock==3.14.0",
+    "flair==0.13.1",
+    "flake8==7.0.0",
+    "fonttools==4.53.0",
+    "fsspec==2024.6.0",
+    "ftfy==6.2.0",
+    "gdown==5.2.0",
+    "gensim==4.3.2",
+    "greenlet==3.0.3",
+    "h11==0.14.0",
+    "httptools==0.6.1",
+    "huggingface-hub==0.23.3",
+    "idna==3.6",
+    "Janome==0.5.0",
+    "Jinja2==3.1.4",
+    "jmespath==1.0.1",
+    "joblib==1.4.2",
+    "kiwisolver==1.4.5",
+    "langdetect==1.0.9",
+    "lxml==5.2.2",
+    "MarkupSafe==2.1.5",
+    "matplotlib==3.9.0",
+    "mccabe==0.7.0",
     "more-itertools==10.2.0",
     "mpld3==0.5.10",
     "mpmath==1.3.0",
@@ -79,10 +123,11 @@ requirements = [
     "wrapt==1.16.0"
 ]
 
+
 setup(
     name="flash_cards_api",
     setup_requires=[
-        "setuptools>=64"
+        "setuptools>=65"
     ],
     use_scm_version={
         "write_to": "./_version.txt",

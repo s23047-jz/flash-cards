@@ -3,7 +3,8 @@ FROM python:3.10
 # Update the package list and install required dependencies
 RUN apt-get update -y && \
     apt-get install -y cmake && \
-    apt-get install git
+    apt-get install git && \
+    apt-get install ffmpeg libavcodec-extra
 
 RUN python -m pip install --upgrade pip
 

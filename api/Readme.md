@@ -1,63 +1,59 @@
-## Instrukcja utworzenia środowiska
+# Instrukcja uruchomienia API
 
+## Instalacja docker i docker-compose
+### W celu uruchomienia projektu niezbędny jest docker i docker-compose
+#### Instalacja dockera 
 
-#### W katalogu domowym projektu utworz srodowisko python'owe w wersji 3.10.
-
-Do tego celu mozesz wykorzystac pyenv z poleceniem
-
-```
-$ pyenv exec python -m venv venv
-```
-
-Nastepnie aktywowac srodowisko
-```
-Unix
-$ source venv/bin/activate
-
-Windows
-$ source venv/Scripts/activate
-```
-
-______________________________________________
-## Zainstaluj odpowiednie dependencje:
-    "setuptools" >= 60.0,
-    "setuptools_scm" >= 8.0
-
-Nastepnie uzyj komendy z Makefile:
-
-    $ make dev_install
-
-która przeprowadzi konfiguracje projektu i zainstaluje pozostałe dependencje
-
-
-______________________________________________
-## Tworzenie tablic i ładowanie danych:
-Używając komendy:
-
-    $ make db_load_models_and_fixtures
-
-uruchamiomy metode z grupy click commands, która tworzy modele w bazie danych
-oraz injectuje fixtury do bazy.
-
-
-______________________________________________
-## Uruchomienie projektu:
+1. Należy uruchomic terminal i wpisać poniższą komendą, która zainstaluje dockera:
 
 ```
-$ make dev_run
+$ sudo apt-get install docker-ce=5:26.1.3~3-0~ubuntu-$(lsb_release -cs) docker-ce-cli=5:26.1.3~3-0~ubuntu-$(lsb_release -cs) containerd.io docker-buildx-plugin docker-compose-plugin
 ```
-Projekt jest konteneryzowany, wiec wystarczy uzyc komendy
+
+2. Po zakończeniu instalacji  wersję dockera można sprawdzić komendą:
+
 ```
-$ docker-compose up -d --build
+$ docker --version
 ```
-aby zbudowac kontener. Powyższe instrukcje do srodowiska wykonaja sie samodzielnie
-w kontenerze.
+
+#### Instalacja docker-compose 
+
+1. Należy uruchomic terminal i wpisać poniższą komendą, która zainstaluje docker-compose:
+
+```
+$ sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+2. Po pobraniu pliku binarnego należy nadać mu prawa do wykonywania:
+
+```
+$ sudo chmod +x /usr/local/bin/docker-compose
+```
+
+3. Po zakończeniu instalacji  wersję docker-compose można sprawdzić komendą:
+
+```
+$ docker-compose --version
+```
+
+----------------------------------------------
+## Uruchamianie kontenerów
+
+1. W terminalu bashowym należy wejść do ścieżki api.
+2. Z poziomu katalogu api, wykonać komende budującą konterer dla bazy danych i api.
+
+```
+docker-componse up -d --build
+```
+3. Po zakończeniu budowy, api wystartuje na przypisanym adresie i porcie 
+w zmiennych środowiskowych (.env.dev)
+Domyślnie ustawiono na localhost:8000
 
 ______________________________________________
 
-## Uruchomienie kontenera aplikacji:
+## Przydatne komendy:
 
-#### uruchomienie kontenera
+#### uruchomienie zbudowanego wcześniej kontenera
 ```
 $ docker-compose up -d
 ```
