@@ -14,12 +14,12 @@ services:
     command: npm start
     networks:
       - fc_web_net
-#      - fc_api_net  # Dodanie sieci fc_api_net
+      - fc_api_net  # Dodanie sieci fc_api_net
 
 networks:
   fc_web_net:
     driver: bridge
     name: fc_web_net
-#
-#  fc_api_net:  # Dodanie sieci fc_api_net
-#    external: true
+
+  fc_api_net:  # Dodanie sieci fc_api_net
+    external: true
