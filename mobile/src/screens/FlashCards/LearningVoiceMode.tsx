@@ -71,7 +71,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             if (permissionResponse?.status !== PERMISSIONS_MAPPING.GRANTED) {
                 const permission = await requestPermission();
                 if (!permission.granted && permission.status === 'denied') navigation.goBack();
-                // else setShowModal(true);
+                else setShowModal(true);
             }
         } catch (err) {
             console.error('Failed to get permissions', err);
