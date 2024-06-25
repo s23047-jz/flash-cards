@@ -129,6 +129,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const handlePrevClick = async() => {
+        console.log("currentCardIndex", currentCardIndex)
         if (currentCardIndex !== 0) {
             showFrontCard.current = true;
             flatListRef.current.scrollToIndex({ animated: true, index: currentCardIndex - 1 });
@@ -139,6 +140,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
         if (currentCardIndex < flashCards.length - 1) {
             showFrontCard.current = true;
             flatListRef.current.scrollToIndex({animated: true, index: currentCardIndex + 1});
+            setCurrentCardIndex(currentCardIndex + 1)
         } else {
             setCurrentCardIndex(currentCardIndex + 1)
             handleSpeech("End of Deck. You have completed this learning session");
@@ -153,6 +155,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     const handleSpeakerClick = () => {
         if (currentCardIndex < flashCards.length - 1) {
             const currentCard: LearningFlashCardsModeInterface = flashCards[currentCardIndex];
+            console.log('showFrontCard ? currentCard.title : currentCard.description', showFrontCard ? currentCard.title : currentCard.description)
             handleSpeech(showFrontCard ? currentCard.title : currentCard.description);
         }
     }
@@ -162,12 +165,8 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
     }
 
     const toggleMicrophoneStatus = async() => {
-        if (activeVoiceControlMode === VOICE_CONTROL_STAGES.STOP) {
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START);
-        } else {
-            setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP);
-            await stopRecording();
-        }
+        if (activeVoiceControlMode === VOICE_CONTROL_STAGES.STOP) setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START);
+        else setActiveVoiceControlMode(VOICE_CONTROL_STAGES.STOP)
     }
 
     const handleEndRecognizing = async() => {
@@ -234,8 +233,8 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
                 formData,
                 navigation
             )
-            await FileSystem.deleteAsync(recordingURI);
             if ([200, 201].includes(res.status)) {
+                await FileSystem.deleteAsync(recordingURI);
                 await handleCommands(data.command)
                 if (data.command || data.command !== 'stop') {
                     setActiveVoiceControlMode(VOICE_CONTROL_STAGES.START)
@@ -245,6 +244,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             }
         }catch (err) {
             console.error("Something went wrong during the calculation", err)
+            await calculateSimilarity(recordingURI)
         }
     }
 
@@ -253,7 +253,7 @@ const LearningVoiceMode: React.FC<ScreenProps> = ({ navigation, route }) => {
             await startRecording();
             setTimeout( async () => {
                 await stopRecording();
-            }, 6000)
+            }, 4000)
         }
     }
 
