@@ -124,7 +124,6 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
         const reports_data = await ReportsService.getReportedDecksList({ ...reportsQuery.current, search }, navigation)
         if(data && data.length) setData(prevData => [...prevData, ...reports_data.reports]);
         else setData(reports_data.reports);
-        console.log("reports_data.reports", reports_data.reports)
         setTotal(reports_data.total)
         setFetchLoading(false);
     }
@@ -143,7 +142,6 @@ const ReportedDecks: React.FC<ScreenProps> = ({ navigation }) => {
     };
 
     const handleDeleteReport = (deckId: string) => {
-        console.log("deckId", deckId)
         setIdToDelete(deckId);
         setShowModal(true);
     }
