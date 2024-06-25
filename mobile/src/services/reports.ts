@@ -25,7 +25,8 @@ class Reports {
     public async deleteReport(deckId: string, navigation: NavigationProp<any>) {
         return await request({
             url: REPORTS_ENDPOINTS.delete_report(deckId),
-            navigation
+            navigation,
+            method: 'DELETE'
         })
     }
     
