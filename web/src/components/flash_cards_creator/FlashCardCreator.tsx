@@ -35,22 +35,17 @@ const FlashCardCreator = (props) => {
     const [alertMessage, setAlertMessage] = useState('');
     const [showAlert, setShowAlert] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [boxOpen, setboxOpen] = useState(false);
+    const [boxOpen, setboxOpen] = useState<Record<number, boolean>>({});
     const [boxContent, setboxContent] = useState("");
     const [isChatGenerating, setIsChatGenerating] = useState(false);
 
-
     useEffect(() => {
-
-
         const timeout = setTimeout(() => {
-
             setIsLoading(false);
         }, 500);
 
         return () => clearTimeout(timeout);
     }, []);
-
 
     const appendInputDirector = () => {
         const maxId = directorsArray.length > 0 ? Math.max(...directorsArray.map(item => item.id)) : 0;
@@ -62,7 +57,6 @@ const FlashCardCreator = (props) => {
             [maxId + 1]: ''
         }));
     };
-
 
     const removeDirector = (idToRemove: any) => {
         setDirectorsArray(prevArray =>
@@ -80,7 +74,6 @@ const FlashCardCreator = (props) => {
             delete newTexts[`back-${idToRemove}`];
             return newTexts;
         });
-
     };
 
     const handleDeck = async () => {
@@ -115,7 +108,6 @@ const FlashCardCreator = (props) => {
             deck_category: category,
         };
 
-
         try {
             const createdDeck = await DeckService.create_deck(deck_body);
             let flashcards = []
@@ -132,8 +124,6 @@ const FlashCardCreator = (props) => {
                     flashcards.push(flash_card_body)
                     // await DeckService.create_flash_card(flash_card_body);
                 }
-
-
             }
             await DeckService.create_multiple_flashcard(flashcards)
 
@@ -152,6 +142,7 @@ const FlashCardCreator = (props) => {
     const handleCloseAlert = () => {
         setShowAlert(false);
     };
+
     const handleGenerateText = async (id: number) => {
         const frontSideText = texts[`front-${id}`] || '';
         if (frontSideText.length > 2) {
@@ -161,7 +152,7 @@ const FlashCardCreator = (props) => {
                 const maxLength = 511;
                 const sliced_message = chat_answer.slice(0, maxLength);
                 setboxContent(sliced_message);
-                setboxOpen(true);
+                setboxOpen(prev => ({ ...prev, [id]: true }));
             } catch (error) {
                 console.error('Failed to generate text from chat:', error);
                 setAlertMessage('Failed to generate text from chat.');
@@ -175,8 +166,8 @@ const FlashCardCreator = (props) => {
         }
     };
 
-    const handleRejectChatContent = () => {
-        setboxOpen(false);
+    const handleRejectChatContent = (id: number) => {
+        setboxOpen(prev => ({ ...prev, [id]: false }));
     };
 
     const handleAcceptChatContent = (id: number) => {
@@ -184,13 +175,10 @@ const FlashCardCreator = (props) => {
             ...prevTexts,
             [`back-${id}`]: boxContent
         }));
-        setboxOpen(false);
-
-
+        setboxOpen(prev => ({ ...prev, [id]: false }));
     };
 
     return (
-
         isLoading ? (
             <LoadingSpinner/>
         ) : (
@@ -281,11 +269,8 @@ const FlashCardCreator = (props) => {
                                             )
                                         }}
                                         inputProps={{maxLength: 256}}
-
                                     />
-
                                 </FormControl>
-
                             </Grid>
                             <Grid xs={12} lg={6} item>
                                 <FormControl fullWidth margin="dense">
@@ -301,7 +286,6 @@ const FlashCardCreator = (props) => {
                                         rows={1}
                                         inputRef={el => textFieldRefs.current[index] = el}
                                         value={texts[`back-${id}`] || ''}
-
                                         onInput={(e: any) => setTexts(prevTexts => ({
                                             ...prevTexts,
                                             [`back-${id}`]: e.target.value
@@ -342,19 +326,22 @@ const FlashCardCreator = (props) => {
                                                                 onClick={() => handleGenerateText(id)}/>
                                 </Grid>
                             </Grid>
-                            <GenerateContentChatPopUpBox acceptContent={() => handleAcceptChatContent(id)}
-                                                         rejectContent={handleRejectChatContent} boxOpen={boxOpen}
-                                                         boxContent={boxContent} id={id}/>
-
+                            {boxOpen[id] && (
+                                <GenerateContentChatPopUpBox
+                                    acceptContent={() => handleAcceptChatContent(id)}
+                                    rejectContent={() => handleRejectChatContent(id)}
+                                    boxOpen={boxOpen[id]}
+                                    boxContent={boxContent}
+                                    id={id}
+                                />
+                            )}
                         </Grid>
-
                     ))}
                     <Grid container justify="center" alignItems="center">
                         <ButtonFlashCardsCreatePage text={"Add Card"} image={plus} color={"#08C10A"}
                                                     border={'2px solid black'}
                                                     onClick={appendInputDirector}/>
                     </Grid>
-
                 </div>
             </>
         )
