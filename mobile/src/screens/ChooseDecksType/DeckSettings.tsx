@@ -161,7 +161,7 @@ const DeckSettings: React.FC<ScreenProps> = ({ navigation, route }) => {
       <Button
         onPress={toggleDeckVisibility}
         disabled={numberOfCards === 0} // Disable button based on numberOfCards
-        className={`p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl ${numberOfCards === 0 ? 'bg-gray-500' : 'bg-cyan-400'}`}
+        className={`p-3 m-3 w-72 h-16 justify-center mr-auto ml-auto rounded-1xl ${numberOfCards === 0 ? 'bg-gray-500' : ''}`}
       >
         <Text className="scale-125 mb-1.5 font-bold text-center">
           {numberOfCards === 0 ? "Make deck public" :
