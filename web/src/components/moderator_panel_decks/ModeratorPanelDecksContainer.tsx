@@ -145,7 +145,7 @@ const ModeratorPanelDecksContainer = () => {
                                             frontTextUpper={`${deck['title']}`}
                                             frontTextLower={`${deck['deck_category']}`}
                                             backText={`Reported by: ${deck['submitter']}`}
-                                            onClick={() => navigatePublicDecksFlashCards(deck['id'])}
+                                            onClick={() => navigatePublicDecksFlashCards(deck['deck_id'])}
                                         />
                                     </div>
                                 ))}
